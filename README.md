@@ -1,6 +1,6 @@
 # Invisyne Documentation
 
-This repository contains the source for the Invisyne product documentation, published at [invisyne.github.io/docs](https://invisyne.github.io/docs/).
+This repository contains the source for the Invisyne product documentation, published at [docs.invisyne.com](https://docs.invisyne.com).
 
 ## Products
 

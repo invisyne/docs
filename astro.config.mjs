@@ -7,8 +7,7 @@ export default defineConfig({
 	// Set site and base for GitHub Pages.
 	// For a project page (github.com/ORG/REPO): site='https://ORG.github.io', base='/REPO'
 	// For an org page (github.com/ORG/ORG.github.io): site='https://ORG.github.io', no base needed
-	site: 'https://invisyne.github.io',
-	base: '/docs',
+	site: 'https://docs.invisyne.com',
 	image: {
 		// Allow large animated GIFs (screen recordings) that exceed Sharp's default pixel limit
 		service: {
