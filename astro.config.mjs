@@ -7,8 +7,8 @@ export default defineConfig({
 	// Set site and base for GitHub Pages.
 	// For a project page (github.com/ORG/REPO): site='https://ORG.github.io', base='/REPO'
 	// For an org page (github.com/ORG/ORG.github.io): site='https://ORG.github.io', no base needed
-	site: 'https://potential-bassoon-v3o8vm5.pages.github.io',
-	// No base needed — GitHub Enterprise Pages deploys to the root
+	site: 'https://invisyne.github.io',
+	base: '/docs',
 
 	integrations: [
 		starlight({
