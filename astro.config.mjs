@@ -30,25 +30,6 @@ export default defineConfig({
 			},
 			sidebar: [
 				{
-					label: 'Hub',
-					translations: { de: 'Hub' },
-					items: [
-						{ label: 'Overview', translations: { de: 'Übersicht' }, slug: 'hub' },
-						{
-							label: 'More Overview',
-							translations: { de: 'Weitere Infos' },
-							autogenerate: { directory: 'hub/overview' },
-						},
-						{ label: 'Quickstart', translations: { de: 'Schnellstart' }, slug: 'hub/quickstart' },
-						{
-							label: 'UI Reference',
-							translations: { de: 'Benutzeroberfläche' },
-							autogenerate: { directory: 'hub/ui' },
-						},
-						{ label: 'Changelog', translations: { de: 'Changelog' }, slug: 'hub/changelog' },
-					],
-				},
-				{
 					label: 'Edge',
 					translations: { de: 'Edge' },
 					items: [
@@ -89,6 +70,25 @@ export default defineConfig({
 							autogenerate: { directory: 'companion/how-to' },
 						},
 						{ label: 'Changelog', translations: { de: 'Changelog' }, slug: 'companion/changelog' },
+					],
+				},
+				{
+					label: 'Hub',
+					translations: { de: 'Hub' },
+					items: [
+						{ label: 'Overview', translations: { de: 'Übersicht' }, slug: 'hub' },
+						{
+							label: 'More Overview',
+							translations: { de: 'Weitere Infos' },
+							autogenerate: { directory: 'hub/overview' },
+						},
+						{ label: 'Quickstart', translations: { de: 'Schnellstart' }, slug: 'hub/quickstart' },
+						{
+							label: 'UI Reference',
+							translations: { de: 'Benutzeroberfläche' },
+							autogenerate: { directory: 'hub/ui' },
+						},
+						{ label: 'Changelog', translations: { de: 'Changelog' }, slug: 'hub/changelog' },
 					],
 				},
 			],
