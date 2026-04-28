@@ -1,23 +1,19 @@
 ---
 title: "Filter- und Suchfunktionen"
-description: "What the customer can do: - Targeted search: With many devices, the customer can use the search and"
+description: "Mit den Such- und Filterfunktionen können bei vielen Geräten die relevanten Einträge in der Geräteliste gezielt eingegrenzt werden."
 ---
 
-:::note
-This page has not been translated yet. Content is shown in English.
-:::
+## **Suche**
 
-## **Search**
+Möglichkeiten für den Anwender:
 
-What the customer can do:
-
-- **Targeted search:** With many devices, the customer can use the search and filter functions to reduce the device list to relevant entries.
+- **Gezielte Suche:** Bei vielen Geräten kann der Anwender die Such- und Filterfunktionen nutzen, um die Geräteliste auf relevante Einträge zu reduzieren.
 
 ## **Filter**
 
-- **Filter by criteria:** The customer can filter devices by various criteria, such as device status (e.g., display only "Online" devices) or software version.
-- **Adjust filtered view:** The filter dialog allows entering specific values (e.g., only devices with software version "V1.0.0.1") to precisely adjust the display.
-- **Apply filter:** After selecting the criteria, the customer applies the filter to display only matching devices in the main table.
+- **Nach Kriterien filtern:** Der Anwender kann Geräte nach verschiedenen Kriterien filtern, z. B. nach dem Gerätestatus (z. B. nur „Online"-Geräte anzeigen) oder nach der Softwareversion.
+- **Gefilterte Ansicht anpassen:** Im Filterdialog können spezifische Werte eingegeben werden (z. B. nur Geräte mit Softwareversion „V1.0.0.1"), um die Anzeige präzise anzupassen.
+- **Filter anwenden:** Nach Auswahl der Kriterien wendet der Anwender den Filter an, sodass in der Haupttabelle nur die passenden Geräte angezeigt werden.
 
 ![](../../../../../assets/images/8sLQX7_WcMC_txEYE-KsN_filterfunktion-01.PNG)
 

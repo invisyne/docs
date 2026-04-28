@@ -1,17 +1,13 @@
 ---
-title: "Troubleshooting"
-description: "| Problem               | Possible Cause                                  | Solution"
+title: "Fehlerbehebung"
+description: "Übersicht häufiger Probleme, möglicher Ursachen und Lösungsansätze beim Einsatz des Crawler.Companion."
 ---
 
-:::note
-This page has not been translated yet. Content is shown in English.
-:::
+## Fehlerbehebung:
 
-## Troubleshooting:
-
-| Problem               | Possible Cause                                  | Solution                                                                                              |
-| --------------------- | ----------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| Device not found      | Device is switched off or on the wrong network. | Check the power supply and ensure that the device is in the same subnet as the PC with the Companion. |
-| Network setting error | Incorrect IP address or subnet mask entered.    | Verify that the entered static IP address is unused and within the correct IP range.                  |
-| Update fails          | Network connection interruption.                | Check network stability. Ensure that no firewall is blocking access.                                  |
-| No access to WebUI    | Device has a new, unknown IP address.           | Check the current IP address in the device overview and try accessing manually in the browser.        |
+| Problem                      | Mögliche Ursache                                              | Lösung                                                                                                                              |
+| ---------------------------- | ------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| Gerät nicht gefunden         | Gerät ist ausgeschaltet oder im falschen Netzwerk.            | Überprüfen Sie die Stromversorgung und stellen Sie sicher, dass sich das Gerät im selben Subnetz befindet wie der PC mit dem Companion. |
+| Fehler bei Netzwerkeinstellung | Falsche IP-Adresse oder Subnetzmaske eingegeben.             | Überprüfen Sie, ob die eingegebene statische IP-Adresse nicht bereits vergeben ist und im richtigen IP-Bereich liegt.               |
+| Update schlägt fehl          | Unterbrechung der Netzwerkverbindung.                         | Überprüfen Sie die Netzwerkstabilität. Stellen Sie sicher, dass keine Firewall den Zugriff blockiert.                               |
+| Kein Zugriff auf WebUI       | Gerät hat eine neue, unbekannte IP-Adresse.                   | Überprüfen Sie die aktuelle IP-Adresse in der Geräteübersicht und versuchen Sie den manuellen Zugriff über den Browser.             |

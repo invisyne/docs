@@ -1,126 +1,122 @@
 ---
-title: "Weiterleitung an AWS (IoT)"
-description: "Damit ein Crawler eine Verbindung mit dem IoT Core von AWS aufbauen kann, muss das Gerät in AWS ange"
+title: "Forwarding to AWS (IoT)"
+description: "To enable a Crawler to connect to AWS IoT Core, the device must be registered in AWS and configured with a certificate."
 ---
 
-:::note
-This page has not been translated yet. Content is shown in German.
-:::
-
 :::danger
-ℹ Diese Funktion ist mit dem hinzubuchbaren AWS Gateway Modul verfügbar. Sprechen Sie uns gerne an.
+ℹ This feature is available with the optional AWS Gateway Module. Please get in touch with us.
 :::
 
 # At-a-glance
 
-Damit ein Crawler eine Verbindung mit dem IoT Core von AWS aufbauen kann, muss das Gerät in AWS angelegt und mit einem Zertifikat eingerichtet werden. Das Zertifikat kann vom Gateway-Endpoint genutzt werden, um sich zu authentifizieren. 
+To enable a Crawler to connect to AWS IoT Core, the device must be registered in AWS and configured with a certificate. The certificate can be used by the gateway endpoint to authenticate itself.
 
-Folgende Anleitung beschreibt die erforderlichen Schritte, um ein Crawler als ein IoT-Gerät einzurichten.
+The following guide describes the steps required to set up a Crawler as an IoT device.
 
-# Gerät (Thing) im IoT Core anlegen
+# Creating a device (Thing) in IoT Core
 
-1. im AWS Console Portal einloggen und zum AWS IoT Core wechseln
-2. unter „Manage“ → “Things” ein neues Gerät anlegen
-   - ⚠ Der Thing-Name muss mit dem “Hostname” des Crawlers übereinstimmen
-   - “Thing Type” auswählen
-3. “Device certificate” erstellen
-   - Die Zertifikats-Dateien gut aufbewahren!!!!
-   - **Wichtig**: Policies vergeben 
+1. Log in to the AWS Console Portal and switch to AWS IoT Core
+2. Under "Manage" → "Things", create a new device
+   - ⚠ The Thing name must match the "Hostname" of the Crawler
+   - Select a "Thing Type"
+3. Create a "Device certificate"
+   - Keep the certificate files safe!!!!
+   - **Important**: Assign policies
 
-# Zertifikat einrichten und konvertieren
+# Setting up and converting the certificate
 
-Sowohl das Zertifikat, als auch die zugeordnete Policy kann im Nachhinein geändert werden. Wobei das Zertifikat nicht erneut heruntergeladen werden kann, es kann allerdings ein weiteres erstellt werden.
+Both the certificate and the associated policy can be changed afterwards. Note that the certificate cannot be downloaded again, but a new one can be created.
 
-Die Zertifikats-Dateien sind nach dem Download von AWS nicht im erforderlichen Format für den Endpoint. Es wird eine “.pfx” Datei erforderlich. Diese wird aus dem privaten Schlüssel (`...-private.pem.key`), dem Zertifikat (`...-certificate.pem.crt`) und dem AWS Root Zertifikat (`AmazonRootCA1.pem`) erstellt.
+The certificate files downloaded from AWS are not in the required format for the endpoint. A ".pfx" file is required. This is created from the private key (`...-private.pem.key`), the certificate (`...-certificate.pem.crt`), and the AWS root certificate (`AmazonRootCA1.pem`).
 
 ### Linux
 
-1. WSL-Umgebung öffnen
-2. zum Verzeichnis mit den heruntergeladenen Zertifikats-Dateien navigieren
-3. Folgenden Befehl nutzen:
+1. Open the WSL environment
+2. Navigate to the directory containing the downloaded certificate files
+3. Use the following command:
 
 ```
 openssl pkcs12 -export -in certificate.pem.crt -inkey private.pem.key -out THINGNAME\_certificate.pfx -certfile AmazonRootCA1.pem
 ```
 
-4. Es wird nach einem „Export“ Passwort gefragt, dieses muss aktuell ein definiertes sein, da der Endpoint zum Öffnen des Zertifikats dieses festgelegt bekommen hat
-   - Passwort kann bei AK oder RM erfragt werden
-   - Alternativ könnte es Einträge in der Crawler-Keypass geben, bei denen das Passwort angegeben wurde.
+4. You will be prompted for an "export" password. This must currently be a specific predefined password, as the endpoint has been configured with it to open the certificate
+   - The password can be requested from AK or RM
+   - Alternatively, there may be entries in the Crawler Keepass where the password is specified.
 
 ### Windows
 
-Unter Windows kann in der Powershell das Tool “CertUtil” verwendet werden.
+On Windows, the "CertUtil" tool can be used in PowerShell.
 
-1. Zertifikats- und Privat-Key-Datei muss den gleichen Namen haben und die jeweilige Dateiendung “crt” und “key” haben
-2. in der Shell
+1. The certificate and private key file must have the same name with the respective file extensions "crt" and "key"
+2. In the shell:
 
 ```
 certutil -mergepfx \<certificate-name>.crt \<result-name>.pfx
 ```
 
-3. Es wird nach einem Kennwort gefragt. Diesen muss aktuell ein vordefiniertes sein, welches vom Crawler-Endpoint erwartet wird. (Passwort ist beim Kundensupport anzufragen).
+3. You will be prompted for a password. This must currently be a predefined one expected by the Crawler endpoint. (Password must be requested from customer support.)
 
 :::note
-ℹ Es wird empfohlen, sowohl alle Dateien, das genutzte Passwort bei der Konvertierung als auch den Hostname abzulegen.
+ℹ It is recommended to store all files, the password used during conversion, and the hostname in a safe location.
 :::
 
-# Gateway Endpoint einrichten
+# Setting up the Gateway Endpoint
 
-1. Um Crawler-UI navigieren zu: “System > Einstellungen” → Gateway → gewünschten Endpoint 
-2. unter “Login-Daten”: Zertifikats-Datei hochladen und speichern
+1. Navigate in the Crawler UI to: "System > Settings" → Gateway → desired endpoint
+2. Under "Login credentials": upload the certificate file and save
 
-# Messgrößen hinzufügen
+# Adding measured variables
 
-## Manuell
+## Manual
 
-1. Navigieren Sie zum gewünschten Dispatcher: „Weiterleitung“ → „Endpoint“ → „gewünschte Dispatcher“ (z.B. Dispatcher NuP)
-2. Klicken Sie um unteren Bereich auf den “+” Button
-3. Wählen Sie die gewünschte(n) Messgröße(n) aus.
-4. Geben Sie die initiale Einstellung, wie das Aggregations-Intervall an (diese Einstellung kann jederzeit geändert werden)
-5. Speichern
+1. Navigate to the desired dispatcher: "Forwarding" → "Endpoint" → "desired dispatcher" (e.g. Dispatcher NuP)
+2. Click the "+" button at the bottom
+3. Select the desired measured variable(s).
+4. Enter the initial settings, such as the aggregation interval (this setting can be changed at any time)
+5. Save
 
-Es können weitere Messgrößen hinzugefügt werden.
+Additional measured variables can be added.
 
-## Automatisiertes Beziehen verfügbar ab Version 2.14 
+## Automated retrieval available from version 2.14
 
-### 1. Messgrößen markieren
+### 1. Marking measured variables
 
-Zum automatisierten Beziehen von Messgrößen muss die für den Versand vorgesehenen Messgröße mit einem Parameter ausgestattet werden. Gehen Sie hierzu in die Auflistung der Messgrößen eines Geräts und öffnen den Bearbeitungs-Dialog für die jeweilige Messgröße. Hier fügen Sie einen weiteren Parameter mit dem Bezeichner gateway\_aggregation hinzu.
+To automatically retrieve measured variables, the measured variable intended for transmission must be given a parameter. To do this, go to the list of measured variables for a device and open the editing dialog for the respective measured variable. Here you add an additional parameter with the identifier gateway\_aggregation.
 
 ![](../../../../assets/images/Zf1sFrRI-o_2fofhEwEhG_75b4bffc-2c19-49a2-92fe-5bed121ef1e4.png)
 
-**Aggregations-Intervall**
+**Aggregation interval**
 
-Das Aggregations-Intervall wird als String-Literal angegeben und folgt folgendem Schema:
+The aggregation interval is specified as a string literal and follows this schema:
 
-- s = Sekunden
-- m = Minuten
-- h = Stunden
+- s = seconds
+- m = minutes
+- h = hours
 
-Ein Wert kann also beispielsweise folgendermaßen aussehen:
+A value could therefore look like this, for example:
 
 - 15s
 - 1m
 - 2h
 
-**Roh-Werte übertragen**
+**Transmitting raw values**
 
-Soll die Messstelle roh (nicht aggregiert) übertragen werden, ist als Wert „0“ (“Null”, ohne Zeit-Literale) für den Parameter anzugeben.
+If the measurement point is to be transmitted raw (not aggregated), the value "0" ("null", without time literals) must be specified for the parameter.
 
 :::caution
-Aufgrund eines Bugs können Parameter nicht mehr aus einer Messgröße vollständig gelöscht werden. Damit dennoch die Messgröße nicht mehr für das Gateway selektiert ist, kann der Wert für den Eintrag **LEER **&#x67;elassen werden.
+Due to a bug, parameters can no longer be completely deleted from a measured variable. To prevent the measured variable from being selected for the gateway, the value for the entry can be left **EMPTY**.
 :::
 
 ![](../../../../assets/images/usOM1383pTcEx3KCCaQ2h_8d2c4afe-adb6-4733-ba79-62e1019c4365.png)
 
-### 2. Beziehen im Gateway
+### 2. Retrieving in the gateway
 
-Um das automatisierte Beziehen anzustoßen, klicken Sie im jeweiligen Dispatcher den Button „Messgrößen beziehen“.
+To trigger automated retrieval, click the "Retrieve measured variables" button in the respective dispatcher.
 
 ![](../../../../assets/images/bWMOYYHRn-q1wzaibKVzj_1b7428a9-badb-4931-b176-7f57f709a00f.png)
 
-Nach einem kurzen Moment werden die zuvor markierten Messgrößen dem Dispatcher mit der jeweiligen Aggregation eingerichtet.
+After a brief moment, the previously marked measured variables will be configured in the dispatcher with the respective aggregation.
 
 :::note
-Der automatisierte Import ist nur möglich, solang keine Messgröße aktuell dem Gateway hinzugefügt sind. Manuelle Änderungen werden somit nicht überschrieben. Sind bereits Messgrößen hinzugefügt, müssen diese vom Gateway entfernt werden. Mit der neuen Pulk-Bearbeitungsfunktionen kann dies mit wenigen Klicks erfolgen.
+Automated import is only possible as long as no measured variables are currently added to the gateway. Manual changes will therefore not be overwritten. If measured variables have already been added, they must be removed from the gateway. With the new bulk editing functions, this can be done in just a few clicks.
 :::

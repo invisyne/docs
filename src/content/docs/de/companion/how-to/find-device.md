@@ -1,18 +1,14 @@
 ---
-title: "A. Find a Device via Network (Discovery)"
-description: "Device discovery is the first step to managing your Crawler Edge devices."
+title: "A. Gerät über das Netzwerk finden (Discovery)"
+description: "Die Geräteerkennung ist der erste Schritt zur Verwaltung Ihrer Crawler Edge-Geräte."
 ---
 
-:::note
-This page has not been translated yet. Content is shown in English.
-:::
+Die Geräteerkennung ist der erste Schritt zur Verwaltung Ihrer Crawler Edge-Geräte.
 
-Device discovery is the first step to managing your Crawler Edge devices.
+1. **Companion starten:** Öffnen Sie die Crawler.Companion-Anwendung.
 
-1. **Start Companion:** Open the Crawler.Companion application.
+2. **Automatische Suche:** Die Software beginnt automatisch mit der Suche nach Geräten im Netzwerk. Die Ergebnisse werden in der Haupttabelle angezeigt.
 
-2. **Automatic search:** The software automatically begins searching for devices on the network. The results are displayed in the main table.
+3. **Manuelle Aktualisierung:** Falls Geräte fehlen, klicken Sie auf das Symbol „Aktualisieren" (üblicherweise ein Kreispfeil) oder die Funktion „Nach Geräten suchen", um den Erkennungsvorgang neu zu starten.
 
-3. **Manual refresh:** If devices are missing, click on the "Refresh" icon (usually a circular arrow) or the "Search for devices" function to restart the discovery process.
-
-4. **Select device:** Click on the desired Crawler Edge device in the list to display its details and configuration options.
+4. **Gerät auswählen:** Klicken Sie auf das gewünschte Crawler Edge-Gerät in der Liste, um dessen Details und Konfigurationsoptionen anzuzeigen.

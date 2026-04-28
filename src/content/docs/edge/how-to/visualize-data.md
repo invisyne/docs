@@ -1,186 +1,128 @@
 ---
-title: "Visualisieren von Messwerten"
-description: "VerticalSplitItem - Für die Visualisierung der Messwerte und anderer Daten wird die Visualisierungsp"
+title: "Visualizing Measured Values"
+description: "The visualization platform Grafana is used for visualizing measured values and other data. It offers a wide range of options for displaying data."
 ---
 
-:::note
-This page has not been translated yet. Content is shown in German.
-:::
-
 :::tip
- Gültig ab Crawler Version = **2.7.1**
+ Valid from Crawler version = **2.7.1**
 :::
 
-## Allgemeine Informationen zur Visualisierung (Grafana)
+## General information about visualization (Grafana)
 
-::::VerticalSplit{layout="right"}
-:::VerticalSplitItem
-- Für die Visualisierung der Messwerte und anderer Daten wird die Visualisierungsplattform “Grafana” genutzt.
-- Diese bietet vielseitige Möglichkeiten Daten darzustellen
-- Je nach Datenpunkte und Use Case stehen diverse Anzeigemöglichkeiten zur Verfügung
-- In Dashboard können mehrere Panels eingerichtet werden
-- Jedes Panel kann mehrere Messgrößen umfassen und individuell eingestellt werden.
-- Tutorials und allgemeine Tipps & Trick zu Grafana
+- The visualization platform "Grafana" is used for visualizing measured values and other data.
+- It offers a wide range of options for displaying data
+- Depending on the data points and use case, various display options are available
+- Multiple panels can be configured in a dashboard
+- Each panel can include several measured variables and be configured individually.
+- Tutorials and general tips & tricks for Grafana
   - [Grafana documentation | Grafana documentation ](https://grafana.com/docs/grafana/v7.4/)
-  - [Tutorials | Grafana Labs](https://grafana.com/tutorials/)                                               
-  - [Tips for Designing Grafana Dashboards](https://www.percona.com/blog/designing-grafana-dashboards/) 
+  - [Tutorials | Grafana Labs](https://grafana.com/tutorials/)
+  - [Tips for Designing Grafana Dashboards](https://www.percona.com/blog/designing-grafana-dashboards/)
   - …
-:::
 
-:::VerticalSplitItem
 ![](../../../../assets/images/mEJxXv-fIiPj5ye_5oWQQ_4ef10733-2865-4726-99ab-70c1d6cba655.png)
 
-:::
-::::
-
 :::note
-ℹ Im Crawler wird Grafana mit der Version 7.4 eingesetzt.
+ℹ The Crawler uses Grafana version 7.4.
 :::
 
 ---
 ## Viewer vs. Editor
 
-Für die Anzeige zuvor eingerichteter Dashboards ist keine Anmeldung erforderlich. Möchten sie neue Dashboards oder Panels erstellen oder bestehende bearbeiten müssen Sie sich mich einem “Editor” Account einloggen.
+No login is required to view previously configured dashboards. If you want to create new dashboards or panels, or edit existing ones, you must log in with an "Editor" account.
 
-Zum Einloggen gehen Sie auf das Symbol im unteren linken Bereich. Sie werden anschließend nach einem `Nutzernamen und einem Passwort` gefragt.
+To log in, click the icon in the lower left area. You will then be prompted for a `username and password`.
 
 ![](../../../../assets/images/32agWcXqkSoIr_ihLngAm_a610a4b9-56d0-4802-b533-5ea9436d77d7.gif)
 
-## Dashboards erstellen
+## Creating dashboards
 
-::::VerticalSplit{layout="right"}
-:::VerticalSplitItem
-Zum Erstellen eines neuen Dashboards klicken Sie in der linken Menü-Leiste auf “+”-Symbol und Wählen “Dashboard” aus. Eine Seite mit einem blanken Panel wird geöffnet.
+To create a new dashboard, click the "+" symbol in the left menu bar and select "Dashboard". A page with a blank panel will open.
 
-Sie können nun Inhalte dem Dashboard hinzufügen und erweitere Einstellungen vornehmen.
-:::
+You can now add content to the dashboard and configure advanced settings.
 
-:::VerticalSplitItem
 ![](../../../../assets/images/v-PF6ACKugWYgVL2vufIp_9b7a0d95-1c78-4029-82be-f8dfd8c4b5e7.png)
-:::
-::::
 
-:::::VerticalSplit{layout="middle"}
-:::VerticalSplitItem
 ![](../../../../assets/images/pI0Ss8kjtveIQd3WdcMKc_2a350a82-24c9-45cc-9d51-534372fb16aa.png)
-:::
 
-::::VerticalSplitItem
 :::caution
-Damit das Dashboard dauerhaft existiert, muss dieses zunächst **gespeichert **&#x77;erden. Klicken Sie hierzu auf das 💾 -Symbol im oberen rechten Bereich.
+For the dashboard to persist, it must first be **saved**. To do so, click the 💾 symbol in the upper right area.
 
-In dem sich öffnenden Dialog können Sie dem Dashboard einen Namen geben (kann später geändert werden) und dieses in einen Ordner sortieren. Klicken Sie anschließend auf “Save”.
+In the dialog that opens, you can give the dashboard a name (can be changed later) and sort it into a folder. Then click "Save".
 :::
-::::
-:::::
 
-![](https://app.archbee.com/api/optimize/5QJBvgamF9LtImfLB456o/JdMThWchYHqpthwj6FkU__a4af0ef0-8615-4fc5-8267-ff03ad19e583.gif "Erstellen und Speichern eines neuen Dashboards")
+![](https://app.archbee.com/api/optimize/5QJBvgamF9LtImfLB456o/JdMThWchYHqpthwj6FkU__a4af0ef0-8615-4fc5-8267-ff03ad19e583.gif "Creating and saving a new dashboard")
 
-### Anlegen von Ordnern
+### Creating folders
 
-Ordner dienen der Sortierung von Dashboards. Sie können beliebig viele Ordner erstellen und Dashboards diesen zuordnen.
+Folders are used to organize dashboards. You can create as many folders as you like and assign dashboards to them.
 
 ![](../../../../assets/images/UBxOfgr4f7qQ_u1OuwGLK_258ba3a0-24d8-45c7-99b7-e25a6234ef5e.gif)
 
-::::VerticalSplit{layout="middle"}
-:::VerticalSplitItem
-Zur Erstellung eines Ordners klicken Sie im linken Menü auf das “+”-Symbol und wählen Sie im Untermenü “Folder” aus. 
+To create a folder, click the "+" symbol in the left menu and select "Folder" from the submenu.
 
-Geben Sie den gewünschten Namen für den Ordner an und bestätigen mit “Create”.
-:::
+Enter the desired name for the folder and confirm with "Create".
 
-:::VerticalSplitItem
 ![](../../../../assets/images/g0MGUFIAINugOcd_gSDPf_6a18c1f6-ed48-4bd9-a17c-ad61c872fac8.png)
 
 ![](../../../../assets/images/dLspt0YbLdpmHIJ1p3Zto_62de681f-d95c-4329-a2c0-dd271ea2e8f4.png)
 
-:::
-::::
+### Export/Import of dashboards
 
-### Ex-/Import von Dashboards
+You can export dashboards and import them on another device or for restoration.
 
-Sie können Dashboards exportieren und diese auf einem anderen Gerät oder zur Wiederherstellung importieren werden.
-
-::::VerticalSplit{layout="left"}
-:::VerticalSplitItem
 ![](../../../../assets/images/pY8fJRbm7UDS-3f6ABJoQ_4273f10f-0b18-4624-b628-95db5f364dac.png)
 
-:::
+Open a dashboard that you want to **export**. Click the "Share" symbol in the upper left area (next to the title) and select the "Export" option. Use "Save to file" to download the dashboard (settings and panels) as a file.
 
-:::VerticalSplitItem
-Öffnen Sie ein Dashboard, welches Sie **exportieren **&#x6D;öchten. Klicken Sie im oberen linken Bereich auf das “Share”-Symbol (neben dem Titel) und wählen die Option “Export” aus. Mit “Save to file” laden Sie das Dashboard (Einstellungen und Panels) als Datei herunter.
-:::
-::::
+To **import** an exported dashboard, first click the "+" symbol in the left menu and select "Import". In the following dialog you can select the dashboard file (file extension = .json). You can then change the name, folder, and UID of the dashboard. If a dashboard with the same name or UID already exists, the corresponding information must be adjusted. You can also overwrite the existing dashboard.
 
-Um ein exportiertes Dashboard zu **importieren**, klicken Sie zunächst auf das “+”-Symbol im linken Menü und wählen “Import”. Im folgenden Dialog können Sie die Dashboard-Datei (Datei-Endung = .json) auswählen. Sie können nun den Namen, den Ordner und die UID des Dashboards ändern. Sollte es bereits ein Dashboard mit gleichem Namen oder UID geben, müssen die entsprechenden Informationen angepasst werden. Sie können auch das bestehende Dashboard überschreiben.
+![](https://app.archbee.com/api/optimize/5QJBvgamF9LtImfLB456o/CEqGG03aEmZ_WikrQHL1V_527135dd-01da-4713-a07b-a37fccfad451.gif "Export and import of a dashboard")
 
-![](https://app.archbee.com/api/optimize/5QJBvgamF9LtImfLB456o/CEqGG03aEmZ_WikrQHL1V_527135dd-01da-4713-a07b-a37fccfad451.gif "Export und Import eines Dashboards")
+## Adding content to a dashboard
 
-## Inhalt einem Dashboard hinzufügen
+A dashboard consists mainly of so-called panels. These can be created and configured individually.
 
-Ein Dashboard besteht hauptsächlich aus sogenannten Panels. Diese können individuell erstellt und eingestellt werden.
-
-::::VerticalSplit{layout="left"}
-:::VerticalSplitItem
 ![](../../../../assets/images/HlERS388cP1Wbba7VFOyh_51d5dc27-a3cb-42e0-b6cb-928ab9854acc.png)
 
-:::
+To create a new panel, click the "+" symbol in the upper right area (to the left of the save symbol).
 
-:::VerticalSplitItem
-Um ein neues Panel anzulegen, klicken Sie auf das “+”-Symbol im oberen rechten Bereich (links neben dem Speichern-Symbol).
-:::
-::::
-
-Ein neues Panel wird immer oben eingefügt, kann dann anschließend individuell im Dashboard platziert werden. Wählen Sie in der hinzugefügten Box “+ Add new panel”. Sie werden auf die Editor-Seite für ein Panel geleitet. Dieser Bereich ermöglicht die Konfiguration der Datenquelle und der Anzeige.
+A new panel is always inserted at the top and can then be placed individually within the dashboard. Select "+ Add new panel" in the added box. You will be directed to the editor page for a panel. This area allows configuration of the data source and the display.
 
 ![](../../../../assets/images/bCvzip4vhYgt_H5xLL8mR_5ad99297-d4e7-4ec6-8237-ff5befc7e1a3.gif)
 
-### Messgröße auswählen
+### Selecting a measured variable
 
-Damit Daten in einem Panel angezeigt werden können, muss mindestens eine Messgröße ausgewählt werden. Dies erfolgt im unteren Bereich, unterhalb der Vorschau für die Anzeige.
+For data to be displayed in a panel, at least one measured variable must be selected. This is done in the lower area, below the display preview.
 
 ![](../../../../assets/images/BTGVpGd3Ghsgq_9K6oT7n_ddfe4ece-7576-400e-8087-cb2f38e8a9de.png)
 
-1. **Select Measurement***:* wählen Sie hier source aus. Sollte dies nicht zur Wahl stehen, wurden noch keine Werte zu eingerichteten Messgrößen aufgezeichnet. Möchten Sie dennoch die Visualisierung einrichten, können Sie source auch manuell eingeben (beachten sie die Kleinschreibung).
+1. **Select Measurement***:* Select source here. If this is not available for selection, no values have been recorded yet for configured measured variables. If you still want to set up the visualization, you can also enter source manually (note lowercase spelling).
 
-2. **Feld-Gerät wählen**: Klicken Sie auf das “+”-Symbol rechts neben “WHERE” und wählen “device\_name”. Klicken Sie anschließend auf “select tag value” und wählen das gewünschte Gerät aus.
+2. **Select field device**: Click the "+" symbol to the right of "WHERE" and select "device\_name". Then click "select tag value" and choose the desired device.
 
-3. **Ordner wählen**: Zum Selektieren einer Messgröße muss zunächst der Ordner, in dem die Messgröße angelegt wurde, ausgewählt werden (siehe How-To: Hinzufügen von Messgrößen, How-To: Bearbeiten eingerichteter Messgrößen). Klicken Sie hierzu erneut auf “+”-Symbol und wählen “group\_\*”. Klicken Sie anschließend auf “select tag value” und wählen den gewünschten Ordner aus. Wiederholen Sie diese Schritte, bis Sie in dem Ziel-Ordner angekommen sind.
+3. **Select folder**: To select a measured variable, you must first select the folder in which the measured variable was created (see How-To: Adding measured variables, How-To: Editing configured measured variables). To do this, click the "+" symbol again and select "group\_\*". Then click "select tag value" and choose the desired folder. Repeat these steps until you have reached the target folder.
 
-4. **Messgröße wählen**: Klicken Sie erneut auf das “+”-Symbol und wählen “variable” aus. Wählen Sie aus der Liste die gewünschte Messgröße aus. Sie können durch Text-Eingabe die Auswahl filtern.
+4. **Select measured variable**: Click the "+" symbol again and select "variable". Select the desired measured variable from the list. You can filter the selection by entering text.
 
-Insofern für die ausgewählte Messgröße bereits Werte in dem aktuellen Zeitbereich aufgezeichnet wurden, sollten diese im Vorschau-Bereich anzeigt werden.
+Provided that values have already been recorded for the selected measured variable in the current time range, they should be shown in the preview area.
 
 :::caution
-Wurde die Auswahl der Messgröße noch nicht vollständig abgeschlossen (z. B. wurde nur das Gerät ausgewählt), werden bereits Werte in der Vorschau angezeigt. Diese sind nicht korrekt und entsprechen einer Kombination von mehreren Messgrößen. Es ist daher entscheidend, am Ende eine Messgröße (“variable”) ausgewählt zu haben.
+If the selection of the measured variable has not yet been completed (e.g. only the device has been selected), values will already be displayed in the preview. These are not correct and represent a combination of multiple measured variables. It is therefore crucial to have selected a measured variable ("variable") at the end.
 :::
 
 ![](../../../../assets/images/C_t2FQzv6JqaX_2r_2GUb_f8bcc5fe-4faf-4db2-8019-15d0c5adaa88.gif)
 
-### Messgrößen vom Typ “String”
+### Measured variables of type "String"
 
-::::VerticalSplit{layout="right"}
-:::VerticalSplitItem
-Messgrößen, welche im Crawler als String gespeichert werden `(z.B. S7_DWORD`, siehe *Spezifikation: Protokolle und Feldgeräte*) erfordern eine Änderung des Wert “field”. Klicken Sie hierzu auf “value” im Bereich “Select”. Geben Sie den Text `“stringValue” `ein (⚠ beachten Sie die Groß-/Kleinschreibung). 
-:::
+Measured variables that are stored in the Crawler as a string `(e.g. S7_DWORD`, see *Specification: Protocols and Field Devices*) require a change to the "field" value. To do this, click on "value" in the "Select" area. Enter the text `"stringValue"` (⚠ note case sensitivity).
 
-:::VerticalSplitItem
 ![](../../../../assets/images/ACfznD9vgz55KoiKz1Mnn_ba9efcf4-6e6e-4e77-9487-2df8bfad28ab.png)
 
-:::
-::::
+### Changing and adjusting the display type ("Visualization")
 
-### Anzeigetyp (“Visualization”) ändern und anpassen
-
-::::VerticalSplit{layout="left"}
-:::VerticalSplitItem
 ![](../../../../assets/images/jRQNreJaNDKnXsqWuR_hR_901184c9-836a-4718-adeb-eab11323d625.png)
 
-:::
+Grafana offers a variety of display options. These include charts (line, bar), individual values, gauges, or tables. Depending on the display type, different settings (axes, legend, colors, labels) can be configured. The official *documentation* and *tutorials* from Grafana are referenced here.
 
-:::VerticalSplitItem
-Grafana bietet diverse Darstellungsmöglichkeiten bereit. Diese sind u.a. Diagrammen (Linien, Balken), einzelne Werte, Gauges oder Tabellen. Je nach Darstellung können unterschiedliche Einstellungen (Achsen, Legende, Farben, Bezeichner) vorgenommen werden. Es sei hier auf die offizielle *Dokumentation *&#x75;nd *Tutorials *&#x76;on Grafana verwiesen.
-
-Alle Einstellungen können im rechten Bereich vorgenommen werden.
-:::
-::::
+All settings can be made in the right-hand area.

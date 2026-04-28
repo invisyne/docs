@@ -1,22 +1,18 @@
 ---
-title: "Software Overview"
-description: "Software Overview: The Crawler.Companion serves as a central interface for the following main functions: 1."
+title: "Software-Übersicht"
+description: "Software-Übersicht: Der Crawler.Companion dient als zentrale Schnittstelle für die folgenden Hauptfunktionen."
 ---
 
-:::note
-This page has not been translated yet. Content is shown in English.
-:::
+**Software-Übersicht:** Der Crawler.Companion dient als zentrale Schnittstelle für die folgenden Hauptfunktionen:
 
-**Software Overview:** The Crawler.Companion serves as a central interface for the following main functions:
+1. **Geräteerkennung:** Automatische Erkennung aller aktiven Crawler Edge-Geräte im lokalen Netzwerk.
 
-1. **Device Discovery:** Automatic detection of all active Crawler Edge devices in the local network.
+2. **Geräteverwaltung:** Anzeige von Gerätedetails und einfache Bearbeitung wichtiger Parameter.
 
-2. **Device Management:** Display device details and simple editing of important parameters.
+3. **Netzwerkeinstellungen:** Konfiguration der IP-Adresse und anderer Netzwerkeigenschaften.
 
-3. **Network Settings:** Configuration of IP address and other network properties.
+4. **Software-Updates:** Durchführung von Firmware- und Software-Updates der Edge-Geräte.
 
-4. **Software Updates:** Performing firmware and software updates of Edge devices.
+5. **Datenexport:** Export spezifischer Daten (z. B. Konfigurations- oder Messdateien) als CSV.
 
-5. **Data Export:** Export of specific data (e.g., configuration or measurement files) as CSV.
-
-6. **WebUI Access:** Direct launch of the web interface (WebUI) of the selected device.
+6. **WebUI-Zugriff:** Direkter Aufruf der Web-Oberfläche (WebUI) des ausgewählten Geräts.

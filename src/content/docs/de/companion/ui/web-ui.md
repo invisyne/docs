@@ -1,16 +1,12 @@
 ---
 title: "WebUI"
-description: "- Direct access to configuration: The Crawler.Companion offers a button (e.g., a globe or browser ic"
+description: "Direkter Zugriff auf die browserbasierte Web-Oberfläche des ausgewählten Crawler Edge-Geräts über den Crawler.Companion."
 ---
 
-:::note
-This page has not been translated yet. Content is shown in English.
-:::
+## **Zugriff auf die WebUI**
 
-## **Access to the WebUI**
-
-- **Direct access to configuration:** The Crawler.Companion offers a button (e.g., a globe or browser icon) through which the customer can launch the WebUI (Web User Interface) of the selected Crawler Edge device directly from the application.
-- **Quick connection:** This saves manually entering the IP address in the browser and enables quick switching to detailed, browser-based management of the device.
+- **Direkter Zugriff auf die Konfiguration:** Der Crawler.Companion bietet eine Schaltfläche (z. B. ein Globus- oder Browser-Symbol), über die der Anwender die WebUI (Web User Interface) des ausgewählten Crawler Edge-Geräts direkt aus der Anwendung heraus aufrufen kann.
+- **Schnelle Verbindung:** Dies erspart die manuelle Eingabe der IP-Adresse im Browser und ermöglicht einen schnellen Wechsel zur detaillierten, browserbasierten Verwaltung des Geräts.
 
 ![](../../../../../assets/images/HZ35ysGSam8ehbbS-gggc_allgemein-webui.PNG)
 

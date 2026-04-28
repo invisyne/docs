@@ -1,15 +1,11 @@
 ---
-title: "Safety Notice"
-description: "Safety Notice: Important: The Crawler.Companion accesses network configurations of the Edge devices."
+title: "Sicherheitshinweis"
+description: "Sicherheitshinweis: Wichtig: Der Crawler.Companion greift auf Netzwerkkonfigurationen der Edge-Geräte zu."
 ---
 
-:::note
-This page has not been translated yet. Content is shown in English.
-:::
+**Sicherheitshinweis:**
 
-**Safety Notice:**
+**Wichtig:** Der Crawler.Companion greift auf Netzwerkkonfigurationen der Edge-Geräte zu. Unsachgemäße Änderungen an Netzwerkeinstellungen können dazu führen, dass Geräte nicht mehr erreichbar sind.
 
-**Important:** The Crawler.Companion accesses network configurations of the Edge devices. Improper changes to network settings can result in devices becoming unreachable.
-
-- Only perform configuration changes if you are familiar with the basics of network configuration (IP addresses, subnet masks, gateways).
-- Before installing updates, ensure that the power supply to the Crawler Edge device is not interrupted.
+- Führen Sie Konfigurationsänderungen nur durch, wenn Sie mit den Grundlagen der Netzwerkkonfiguration (IP-Adressen, Subnetzmasken, Gateways) vertraut sind.
+- Stellen Sie vor der Installation von Updates sicher, dass die Stromversorgung des Crawler Edge-Geräts nicht unterbrochen wird.

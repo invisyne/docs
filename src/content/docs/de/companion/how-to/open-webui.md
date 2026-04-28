@@ -1,16 +1,12 @@
 ---
-title: "D. Opening the WebUI"
-description: "The WebUI (Web User Interface) is the browser-based interface of the Crawler Edge device."
+title: "D. Die WebUI öffnen"
+description: "Die WebUI (Web User Interface) ist die browserbasierte Oberfläche des Crawler Edge-Geräts."
 ---
 
-:::note
-This page has not been translated yet. Content is shown in English.
-:::
+Die WebUI (Web User Interface) ist die browserbasierte Oberfläche des Crawler Edge-Geräts.
 
-The WebUI (Web User Interface) is the browser-based interface of the Crawler Edge device.
+1. **Gerät auswählen:** Wählen Sie das gewünschte Gerät im Crawler.Companion aus.
 
-1. **Select device:** Select the desired device in the Crawler.Companion.
+2. **WebUI-Schaltfläche:** Klicken Sie auf die Schaltfläche „Zur WebUI" (oder „Web-Oberfläche öffnen").
 
-2. **WebUI button:** Click on the "Go to WebUI" button (or "Open web interface").
-
-3. **Browser launch:** Your default web browser opens automatically and establishes a connection to the IP address of the selected device. You can log in there with your credentials.
+3. **Browser öffnet sich:** Ihr Standard-Webbrowser öffnet sich automatisch und stellt eine Verbindung zur IP-Adresse des ausgewählten Geräts her. Dort können Sie sich mit Ihren Anmeldedaten einloggen.

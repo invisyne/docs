@@ -3,231 +3,223 @@ title: "Schnellstart"
 description: "Installation, Einrichtung und erste Schritte mit der Crawler.Companion-Anwendung."
 ---
 
-:::note
-This page has not been translated yet. Content is shown in English.
-:::
+## Installation & Inbetriebnahme
 
-## Installation & Deployments
+**Installation und Inbetriebnahme:** Die Installation des Crawler.Companion ist ein unkomplizierter Vorgang:
 
-**Installation and Deployment:** Installing the Crawler.Companion is a simple process:
+## A. Vorbereitung
 
-## A. Preperation
+1. **Installationsdatei herunterladen:** Laden Sie die aktuelle Installationsdatei (CrawlerCompanionSetup.exe oder ähnlich) von der offiziellen Download-Seite oder von Ihrem technischen Ansprechpartner herunter.
 
-1. **Download the installation file:** Obtain the current installation file (CrawlerCompanionSetup.exe or similar) from the official download page or from your technical contact.
+2. **Administratorrechte:** Stellen Sie sicher, dass Sie die erforderlichen Administratorrechte für das Zielsystem besitzen.
 
-2. **Administrator rights:** Ensure that you have the required administrator rights for the target system.
+3. **Netzwerkverbindung:** Verbinden Sie den PC, auf dem der Companion installiert werden soll, mit demselben LAN-Segment (lokales Netzwerk), in dem sich die Crawler Edge-Geräte befinden.
 
-3. **Network connection:** Connect the PC on which the Companion will be installed to the same LAN segment (local network) where the Crawler Edge devices are located.
+## B. Startvorgang
 
-## B. Start Process
+1. **Installation starten:** Doppelklicken Sie auf die heruntergeladene Datei (CrawlerCompanionSetup.exe).
 
-1. **Start the installation:** Double-click on the downloaded file (CrawlerCompanionSetup.exe).
-
-2. **Security prompt:** Confirm the Windows security prompt to allow execution as administrator.
+2. **Sicherheitsabfrage:** Bestätigen Sie die Windows-Sicherheitsabfrage, um die Ausführung als Administrator zu erlauben.
 
 3. ![](../../../../assets/images/JGhPjl-8TNFK3Wb1FczPF_windows-sicherheitshinweis.PNG)
 
-3. **License Agreement (EULA):** Read the End User License Agreement and accept it to continue.
+3. **Lizenzvereinbarung (EULA):** Lesen Sie den Endbenutzer-Lizenzvertrag und akzeptieren Sie ihn, um fortzufahren.
 
 ---
 
-## Technical Specifications and System Requirements
+## Technische Spezifikationen und Systemanforderungen
 
-**Technical Specifications and System Requirements:** To ensure smooth operation of the Crawler.Companion, the following minimum requirements must be met for the system used:
+**Technische Spezifikationen und Systemanforderungen:** Um einen reibungslosen Betrieb des Crawler.Companion sicherzustellen, müssen die folgenden Mindestanforderungen an das verwendete System erfüllt sein:
 
-| Category              | Minimum Requirement                                              | Recommended          |
-| --------------------- | ---------------------------------------------------------------- | -------------------- |
-| Operating System (OS) | Windows 10 (64-bit)                                              | Windows 11 (64-bit)  |
-| Processor (CPU)       |                                                                  |                      |
-| Memory (RAM)          |                                                                  |                      |
-| Hard Disk Space       |                                                                  |                      |
-| Network               |                                                                  |                      |
-| Required Programs     | WebView2 is supported on Windows 10 SAC 1709 and newer versions. | Supported by default |
+| Kategorie                   | Mindestanforderung                                                        | Empfohlen            |
+| --------------------------- | ------------------------------------------------------------------------- | -------------------- |
+| Betriebssystem (OS)         | Windows 10 (64-Bit)                                                       | Windows 11 (64-Bit)  |
+| Prozessor (CPU)             |                                                                           |                      |
+| Arbeitsspeicher (RAM)       |                                                                           |                      |
+| Festplattenspeicher         |                                                                           |                      |
+| Netzwerk                    |                                                                           |                      |
+| Erforderliche Programme     | WebView2 wird unter Windows 10 SAC 1709 und neueren Versionen unterstützt. | Standardmäßig unterstützt |
 
-# ****
+# **Software-Voraussetzungen:**
 
-# **Software Prerequisites:**
-
-- The user may require local administrator rights for installation and for certain functions that affect network traffic (e.g., device discovery).
-- The firewall must be configured to allow the Companion to communicate via the required discovery port (by default a UDP port).
+- Der Benutzer benötigt möglicherweise lokale Administratorrechte für die Installation und für bestimmte Funktionen, die den Netzwerkverkehr beeinflussen (z. B. Geräteerkennung).
+- Die Firewall muss so konfiguriert sein, dass der Companion über den erforderlichen Discovery-Port kommunizieren kann (standardmäßig ein UDP-Port).
 
 ---
 
-## Initial Setup - Step by Step
+## Ersteinrichtung – Schritt für Schritt
 
-## **1) Start Companion**
+## **1) Companion starten**
 
-- Open the Companion file (no installation necessary). Typically, this is an executable file (.exe on Windows, .app/.dmg on macOS, or an executable binary).
-- If prompted: Allow the application (e.g., confirm the operating system's security prompt).
+- Öffnen Sie die Companion-Datei (keine Installation erforderlich). In der Regel handelt es sich um eine ausführbare Datei (.exe unter Windows, .app/.dmg unter macOS oder eine ausführbare Binärdatei).
+- Falls Sie dazu aufgefordert werden: Erlauben Sie die Anwendung (z. B. Bestätigen Sie die Sicherheitsabfrage des Betriebssystems).
 
 :::tip
-** Expected Result** The Companion window opens and displays the user interface.
+**Erwartetes Ergebnis** Das Companion-Fenster öffnet sich und zeigt die Benutzeroberfläche an.
 :::
 
 :::danger
-**Troubleshooting**
+**Fehlerbehebung**
 
-- If the app doesn't start: Right-click → "Run as administrator" (Windows) or allow starting in macOS settings under "Security & Privacy".
-- Check if antivirus/SmartScreen is blocking the file.
+- Falls die App nicht startet: Rechtsklick → „Als Administrator ausführen" (Windows) oder Start in den macOS-Einstellungen unter „Sicherheit & Datenschutz" erlauben.
+- Prüfen Sie, ob Antivirus/SmartScreen die Datei blockiert.
 :::
 
 ---
-## **2) Check network / Set IP range**
+## **2) Netzwerk prüfen / IP-Bereich einstellen**
 
-- Check which subnet the device sends to by default: 
-  - **X1:** Devices typically send in 192.168.0.x
-  - **X2:** Devices typically send in 192.168.1.x
-- Set your PC's IP temporarily so that it is in the same subnet (e.g., 192.168.0.10 for X1 or 192.168.1.10 for X2).
+- Prüfen Sie, in welches Subnetz das Gerät standardmäßig sendet:
+  - **X1:** Geräte senden typischerweise im Bereich 192.168.0.x
+  - **X2:** Geräte senden typischerweise im Bereich 192.168.1.x
+- Stellen Sie die IP Ihres PCs vorübergehend so ein, dass sie sich im selben Subnetz befindet (z. B. 192.168.0.10 für X1 oder 192.168.1.10 für X2).
 
 ### **Windows**
 
-- Settings → Network & Internet → Change adapter options.
-- Right-click on your active adapter → Properties → Internet Protocol Version 4 (TCP/IPv4) → Properties.
-- Select "Use the following IP address" and enter e.g., IP 192.168.0.10, Subnet mask 255.255.255.0, Gateway empty or 192.168.0.1.
+- Einstellungen → Netzwerk & Internet → Adapteroptionen ändern.
+- Rechtsklick auf den aktiven Adapter → Eigenschaften → Internetprotokoll Version 4 (TCP/IPv4) → Eigenschaften.
+- Wählen Sie „Folgende IP-Adresse verwenden" und geben Sie z. B. IP 192.168.0.10, Subnetzmaske 255.255.255.0, Gateway leer oder 192.168.0.1 ein.
 
 ### **MacOS**
 
-- System Preferences → Network → Select adapter → "Advanced" → TCP/IP.
-- Configure: "Manually" → IP 192.168.0.10, Subnet mask 255.255.255.0.
+- Systemeinstellungen → Netzwerk → Adapter auswählen → „Erweitert" → TCP/IP.
+- Konfigurieren: „Manuell" → IP 192.168.0.10, Subnetzmaske 255.255.255.0.
 
 :::tip
-**Expected Result** Your PC has an IP in the appropriate subnet and can receive broadcast packets to devices in the same subnet.
+**Erwartetes Ergebnis** Ihr PC hat eine IP im entsprechenden Subnetz und kann Broadcast-Pakete an Geräte im selben Subnetz empfangen.
 :::
 
 :::note
-**Troubleshooting**
+**Fehlerbehebung**
 
-- Note your normal network configuration beforehand so you can restore it later.
-- If your PC is connected via company VPN or special firewall, disable VPN or use an isolated LAN (e.g., via Ethernet directly to a switch).
+- Notieren Sie sich vorab Ihre normale Netzwerkkonfiguration, damit Sie sie später wiederherstellen können.
+- Wenn Ihr PC über ein Firmen-VPN oder eine spezielle Firewall verbunden ist, deaktivieren Sie das VPN oder verwenden Sie ein isoliertes LAN (z. B. per Ethernet direkt an einen Switch).
 :::
 
 ---
-## **3) Search for devices (Broadcast)**
+## **3) Nach Geräten suchen (Broadcast)**
 
-- In Companion: Click on "Search" (magnifying glass).
-- The software sends broadcast/discovery requests and lists all found Crawlers in the local broadcast range.
+- Im Companion: Klicken Sie auf „Suchen" (Lupensymbol).
+- Die Software sendet Broadcast-/Discovery-Anfragen und listet alle gefundenen Crawler im lokalen Broadcast-Bereich auf.
 
 :::tip
-**Expected Result** All reachable Crawlers appear in the device list with information such as serial number, model, current IP (if available), and status.
+**Erwartetes Ergebnis** Alle erreichbaren Crawler erscheinen in der Geräteliste mit Informationen wie Seriennummer, Modell, aktueller IP (falls verfügbar) und Status.
 :::
 
 :::danger
-**Troubleshooting** If no devices appear:
+**Fehlerbehebung** Falls keine Geräte erscheinen:
 
-- Check network settings again (Step 2).
-- Temporarily disable firewall on the PC or add Companion to exceptions.
-- Restart the device (rule out factory settings).
-- Check if the PC is physically in the same network/segment as the device (no WiFi/guest network with isolation).
+- Prüfen Sie die Netzwerkeinstellungen erneut (Schritt 2).
+- Deaktivieren Sie vorübergehend die Firewall auf dem PC oder fügen Sie den Companion zu den Ausnahmen hinzu.
+- Starten Sie das Gerät neu (Werkseinstellungen ausschließen).
+- Prüfen Sie, ob sich der PC physisch im selben Netzwerk/Segment wie das Gerät befindet (kein WLAN/Gastnetzwerk mit Isolation).
 :::
 
 ---
-## **4) Select device / Open details**
+## **4) Gerät auswählen / Details öffnen**
 
-- Click once on the row of the desired Crawler in the list.
-- The clickable element opens the detail view or network settings of the device.
+- Klicken Sie einmal auf die Zeile des gewünschten Crawlers in der Liste.
+- Das anklickbare Element öffnet die Detailansicht oder die Netzwerkeinstellungen des Geräts.
 
 :::tip
-**Expected Result** You see details: current IP (if available), MAC, network mode (DHCP/static), possibly hostname, and buttons for actions (e.g., change IP, Web UI, restart).
+**Erwartetes Ergebnis** Sie sehen Details: aktuelle IP (falls verfügbar), MAC, Netzwerkmodus (DHCP/statisch), ggf. Hostname sowie Schaltflächen für Aktionen (z. B. IP ändern, Web-UI, Neustart).
 :::
 
 :::danger
-**Troubleshooting**
+**Fehlerbehebung**
 
-- If the detail view remains empty: try double-click or right-click → "Details".
-- If multiple identical devices appear, orient yourself by MAC or serial number.
+- Falls die Detailansicht leer bleibt: Versuchen Sie Doppelklick oder Rechtsklick → „Details".
+- Falls mehrere identische Geräte erscheinen, orientieren Sie sich an MAC oder Seriennummer.
 :::
 
 ---
-## **5) Adjust IP (static vs. DHCP) & Save changes**
+## **5) IP anpassen (statisch vs. DHCP) und Änderungen speichern**
 
-- Select in the device's network settings: 
-  - **DHCP** if the device should obtain an IP automatically from the router (recommended if a DHCP server is available in the network).
-  - **Static IP** if you want to set a fixed address (e.g., 192.168.0.50).
-- For static IP, enter: IP, Subnet mask (255.255.255.0), possibly Gateway and DNS.
-- Click Save / Apply.
-
-****
+- Wählen Sie in den Netzwerkeinstellungen des Geräts:
+  - **DHCP**, wenn das Gerät eine IP automatisch vom Router beziehen soll (empfohlen, wenn ein DHCP-Server im Netzwerk vorhanden ist).
+  - **Statische IP**, wenn Sie eine feste Adresse vergeben möchten (z. B. 192.168.0.50).
+- Geben Sie bei statischer IP ein: IP, Subnetzmaske (255.255.255.0), ggf. Gateway und DNS.
+- Klicken Sie auf Speichern / Übernehmen.
 
 :::tip
-**Expected Result**
+**Erwartetes Ergebnis**
 
-- Companion confirms the change. The device may perform a restart and is then reachable at the new IP.
+- Der Companion bestätigt die Änderung. Das Gerät führt möglicherweise einen Neustart durch und ist anschließend unter der neuen IP erreichbar.
 :::
 
 :::note
-**Practical Examples**
+**Praxisbeispiele**
 
-- Device X1 static: IP=192.168.0.50, Subnet 255.255.255.0.
-- Device X2 static: IP=192.168.1.50, Subnet 255.255.255.0.
+- Gerät X1 statisch: IP=192.168.0.50, Subnetz 255.255.255.0.
+- Gerät X2 statisch: IP=192.168.1.50, Subnetz 255.255.255.0.
 :::
 
 :::danger
-**Troubleshooting**
+**Fehlerbehebung**
 
-- Device restarts but is not reachable: Check if PC is in the same subnet again.
-- When setting static IP, watch for IP conflicts (no other machine may have the same IP).
-- Use ping \<IP> or arp -a (Windows/macOS) to check if the device responds.
+- Gerät startet neu, ist aber nicht erreichbar: Prüfen Sie, ob sich der PC wieder im selben Subnetz befindet.
+- Achten Sie beim Festlegen einer statischen IP auf IP-Konflikte (kein anderes Gerät darf dieselbe IP haben).
+- Verwenden Sie ping \<IP> oder arp -a (Windows/macOS), um zu prüfen, ob das Gerät antwortet.
 :::
 
 ---
-## **6) Access Web UI**
+## **6) Web-UI aufrufen**
 
-- In Companion: Click on Web UI (or open manually in browser http\://\<new-IP> — e.g., http\://192.168.0.50).
-- Wait until the web interface loads. A login may be required.
+- Im Companion: Klicken Sie auf Web-UI (oder öffnen Sie manuell im Browser http\://\<neue-IP> — z. B. http\://192.168.0.50).
+- Warten Sie, bis die Web-Oberfläche geladen ist. Möglicherweise ist eine Anmeldung erforderlich.
 
 :::tip
-**Expected Result** The browser displays the Crawler's Web UI (status, logs, configuration).
+**Erwartetes Ergebnis** Der Browser zeigt die Web-UI des Crawlers an (Status, Protokolle, Konfiguration).
 :::
 
 :::danger
-**Troubleshooting**
+**Fehlerbehebung**
 
-- Browser warns of insecure connection (HTTP or self-signed certificate) — allow secure exception if device is internal.
-- If the page doesn't load: 
-  - Ensure no proxy settings are interfering.
-  - Check firewall rules on the PC.
-  - Try another browser or curl http\://\<IP> in a terminal.
-  - If HTTPS is expected, try https\://\<IP> (and accept certificate exception if necessary).
+- Der Browser warnt vor einer unsicheren Verbindung (HTTP oder selbstsigniertes Zertifikat) — erlauben Sie eine Sicherheitsausnahme, wenn das Gerät intern ist.
+- Falls die Seite nicht lädt:
+  - Stellen Sie sicher, dass keine Proxy-Einstellungen stören.
+  - Überprüfen Sie die Firewallregeln auf dem PC.
+  - Versuchen Sie einen anderen Browser oder curl http\://\<IP> in einem Terminal.
+  - Falls HTTPS erwartet wird, versuchen Sie https\://\<IP> (und akzeptieren Sie ggf. die Zertifikatsausnahme).
 :::
 
 ---
-## **Additional: Verify & reset PC network configuration**
+## **Zusatz: PC-Netzwerkkonfiguration prüfen und zurücksetzen**
 
-- After everything is configured, reset the PC network settings to the original state (e.g., DHCP) if you changed them temporarily.
-- Check reachability from the normal company network (if the device is to be operated there permanently): possibly connect device to the target network or adjust DNS/firewall.
+- Setzen Sie nach abgeschlossener Konfiguration die PC-Netzwerkeinstellungen auf den ursprünglichen Zustand zurück (z. B. DHCP), sofern Sie sie vorübergehend geändert haben.
+- Prüfen Sie die Erreichbarkeit aus dem normalen Unternehmensnetzwerk (falls das Gerät dort dauerhaft betrieben werden soll): ggf. Gerät mit dem Zielnetzwerk verbinden oder DNS/Firewall anpassen.
 
-### **Test commands**
+### **Testbefehle**
 
 - Windows: ping 192.168.0.50
 - macOS / Linux: ping -c 4 192.168.0.50
-- Display ARP cache: arp -a
+- ARP-Cache anzeigen: arp -a
 
-## **Quick Summary / Checklist**
+## **Kurzübersicht / Checkliste**
 
-1. Start Companion.
+1. Companion starten.
 
-2. Set PC IP to 192.168.0.x (X1) or 192.168.1.x (X2).
+2. PC-IP auf 192.168.0.x (X1) oder 192.168.1.x (X2) einstellen.
 
-3. Click on Search in Companion.
+3. Im Companion auf „Suchen" klicken.
 
-4. Click on desired device in the list → Open details.
+4. Gewünschtes Gerät in der Liste anklicken → Details öffnen.
 
-5. Select IP mode (DHCP or static) → Save → Restart device.
+5. IP-Modus wählen (DHCP oder statisch) → Speichern → Gerät neu starten.
 
-6. Open Web UI via button or http\://\<new-IP> in browser.
+6. Web-UI über die Schaltfläche oder http\://\<neue-IP> im Browser öffnen.
 
-7. Reset PC network and check reachability.
+7. PC-Netzwerk zurücksetzen und Erreichbarkeit prüfen.
 
 ---
 
-## Device Functionality-Overview
+## Gerätefunktionen – Übersicht
 
-## **Device Overview and Filter Functions**
+## **Geräteübersicht und Filterfunktionen**
 
-In the main view, you see a table of all detected devices.
+In der Hauptansicht sehen Sie eine Tabelle aller erkannten Geräte.
 
-- **Filter:** To find devices specifically, you can use the integrated filter functions.
-  - Via the filter settings, you can restrict the display according to various criteria (e.g., by software version, status, or device name).
+- **Filter:** Um Geräte gezielt zu finden, können Sie die integrierten Filterfunktionen verwenden.
+  - Über die Filtereinstellungen können Sie die Anzeige nach verschiedenen Kriterien einschränken (z. B. nach Softwareversion, Status oder Gerätename).
 
 ![](../../../../assets/images/fEsU4Tgiv5rMf52u00Dn9_filterfunktion-03.PNG)
 
@@ -236,84 +228,72 @@ In the main view, you see a table of all detected devices.
 ![](../../../../assets/images/1vriMLwZq3DOHPDBk_WWe_filterfunktion-02.PNG)
 
 ---
-## **Edit Devices (Details)**
+## **Geräte bearbeiten (Details)**
 
-By selecting a device and clicking on the detail view (or a corresponding "Edit" function), you gain access to the following management options:
+Durch Auswahl eines Geräts und Klick auf die Detailansicht (oder eine entsprechende „Bearbeiten"-Funktion) erhalten Sie Zugriff auf folgende Verwaltungsoptionen:
 
-- **General Properties:** In the detail window, you can view and possibly edit basic device properties. This may include changing the device name or other device-specific settings.
+- **Allgemeine Eigenschaften:** Im Detailfenster können Sie grundlegende Geräteeigenschaften einsehen und ggf. bearbeiten. Dazu kann auch die Änderung des Gerätenamens oder anderer gerätespezifischer Einstellungen gehören.
 
 ![](../../../../assets/images/zuEQB0BwmKGb16PNEvn5r_geratausgewahlt-details.PNG)
 
 ---
-## **Change Network Settings**
+## **Netzwerkeinstellungen ändern**
 
-To adjust the IP address or other network settings of a device:
+So passen Sie die IP-Adresse oder andere Netzwerkeinstellungen eines Geräts an:
 
-1. Select the device in the overview.
+1. Wählen Sie das Gerät in der Übersicht aus.
 
-2. Navigate to the **Network Settings** area.
+2. Navigieren Sie zum Bereich **Netzwerkeinstellungen**.
 
 2. ![](../../../../assets/images/iFLuTBH7Xe0LZBy25NtM3_gerat-netzwerkeinstellungen.PNG)
 
-3. Choose between **DHCP** (automatic address assignment by the network) or **Static IP** (fixed, manually assigned address).
+3. Wählen Sie zwischen **DHCP** (automatische Adresszuweisung durch das Netzwerk) oder **Statische IP** (feste, manuell zugewiesene Adresse).
 
-4. For static IP, enter the new IP address, subnet mask, and gateway.
+4. Geben Sie bei statischer IP die neue IP-Adresse, Subnetzmaske und Gateway ein.
 
-5. Save the changes. The device will adopt the new settings and will subsequently be reachable at the new address.
-
----
-## **Software Update**
-
-To update the software (firmware/OS) of an Edge device:
-
-:::::WorkflowBlock
-:::WorkflowBlockItem
-Select the device and navigate to the Update function.
-
-![](../../../../assets/images/Tbs7EuB__xyQuCTAUFKLG_gerat-update.PNG)
-:::
-
-:::WorkflowBlockItem
-The software will show you the currently installed version and available newer versions.
-:::
-
-:::WorkflowBlockItem
-Select the desired version.
-:::
-
-::::WorkflowBlockItem
-Start the update process. The device will download and install the update.
-
-:::Paragraph{listStyleType="disc" indent="2"}
-**CAUTION:** The update process can take several minutes. Do not restart the device during this time.
-:::
-::::
-:::::
+5. Speichern Sie die Änderungen. Das Gerät übernimmt die neuen Einstellungen und ist anschließend unter der neuen Adresse erreichbar.
 
 ---
-## **Data Export (CSV Files)**
+## **Software-Update**
 
-To export specific data (e.g., configuration backups or logs) as a CSV file:
+So aktualisieren Sie die Software (Firmware/OS) eines Edge-Geräts:
 
-1. Select the device and navigate to the Export function.
+1. Wählen Sie das Gerät aus und navigieren Sie zur Update-Funktion.
+
+   ![](../../../../assets/images/Tbs7EuB__xyQuCTAUFKLG_gerat-update.PNG)
+
+2. Die Software zeigt Ihnen die aktuell installierte Version und verfügbare neuere Versionen an.
+
+3. Wählen Sie die gewünschte Version aus.
+
+4. Starten Sie den Update-Vorgang. Das Gerät lädt das Update herunter und installiert es.
+
+   **ACHTUNG:** Der Update-Vorgang kann mehrere Minuten dauern. Starten Sie das Gerät in dieser Zeit nicht neu.
+
+---
+## **Datenexport (CSV-Dateien)**
+
+So exportieren Sie spezifische Daten (z. B. Konfigurations-Backups oder Protokolle) als CSV-Datei:
+
+1. Wählen Sie das Gerät aus und navigieren Sie zur Export-Funktion.
 
 1. ![](../../../../assets/images/hnHo4SbJt79AAJ_X99TP5_gerat-export.PNG)
 
-2. Choose the type of data to be exported (e.g., configuration, measurement data metadata, etc.).
+2. Wählen Sie den Typ der zu exportierenden Daten (z. B. Konfiguration, Messdaten-Metadaten usw.).
 
-3. Start the export. The data will be saved in CSV format (Comma Separated Values, a simple text format for storing tabular data) on your local computer.
+3. Starten Sie den Export. Die Daten werden im CSV-Format (Comma Separated Values, ein einfaches Textformat zur Speicherung tabellarischer Daten) auf Ihrem lokalen Computer gespeichert.
 
 ---
-## **Access to the WebUI**
+## **Zugriff auf die WebUI**
 
-You can access the web interface of the Edge device directly from the Crawler.Companion:
+Sie können direkt über den Crawler.Companion auf die Web-Oberfläche des Edge-Geräts zugreifen:
 
-1. Select the device.
+1. Wählen Sie das Gerät aus.
 
 1. ![](../../../../assets/images/AQBsjbgSpeFhSWDxvCRnA_allgemein-webui.PNG)
 
-2. Look for the "Go to WebUI" button or a similar icon (often a browser icon).
+2. Suchen Sie nach der Schaltfläche „Zur WebUI" oder einem ähnlichen Symbol (häufig ein Browser-Symbol).
 
 2. ![](../../../../assets/images/JgPz0VWonQwoAJWN-cxbc_geratausgewahlt-details-webui.PNG)
 
-3. Your default web browser will open and connect to the IP address of the selected device.
+3. Ihr Standard-Webbrowser öffnet sich und stellt eine Verbindung zur IP-Adresse des ausgewählten Geräts her.

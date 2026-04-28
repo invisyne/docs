@@ -1,97 +1,89 @@
 ---
-title: "Weiterleitung an N+P Plattform"
-description: "Neben der lokalen Aufzeichnung auf dem Crawler-System können diese Daten auch an andere Systeme, wie"
+title: "Forwarding to N+P Platform"
+description: "In addition to local recording on the Crawler system, data can also be forwarded to other systems such as the N+P platform."
 ---
 
 :::note
-This page has not been translated yet. Content is shown in German.
+This feature is available with the optional **NuP Gateway Module**.
+Please get in touch with us.
 :::
 
-:::note
-Diese Funktion ist mit dem hinzubuchbaren **NuP Gateway Modul** verfügbar. 
-Sprechen Sie uns gerne an.
-:::
+In addition to local recording on the Crawler system, data can also be forwarded to other systems such as the N+P platform. The following describes how the configuration on the Crawler must be carried out to establish communication with the platform and transmit selected measured values.
 
-Neben der lokalen Aufzeichnung auf dem Crawler-System können diese Daten auch an andere Systeme, wie die N+P-Plattform, übertragen werden. Im Folgenden wird beschrieben, wie die Konfiguration auf dem Crawler durchgeführt werden muss, um die Kommunikation mit der Plattform herzustellen und ausgewählte Messwerte zu übermitteln.
+# Prerequisites
 
-# Voraussetzung
+For the Crawler to communicate with the N+P platform, the gateway functions must first have been installed. This may have already been done at delivery, or must be done retroactively with an update package.
 
-Damit der Crawler mit der N+P-Plattform kommunizieren, muss zunächst die Funktionen im Gateway installiert worden sein. Dies kann bereits bei der Auslieferung erfolgt sein oder muss nachträglich mit einem Update-Paket erfolgen.
+In the advanced UI for configurations, the version of the Crawler is displayed in the lower left corner. If the name contains "-nup1.x" (x may vary depending on version), then the required functions and services have already been installed. Otherwise, the appropriate update package, e.g. "update-2.12.2-nup1.1", must be installed.
 
-Im erweiterten UI für Einrichtungen wird in der unteren linken Ecke die Version des Crawlers angezeigt. Befindet sich im Namen “-nup1.x” (x kann je nach Version variieren) so wurden die nötigen Funktionen und Dienste bereits installiert. Andernfalls ist das passende Update-Paket, z.B. “update-2.12.2-nup1.1” zu installieren.
+# Setting up communication (one-time)
 
-# Einrichtung Kommunikation (einmalig)
-
-1. **BMK **&#x73;etzen:
-   - Klicken Sie im Bereich „System“ → „Einstellungen“ auf die Fläche “Allgemein”
-   - Geben Sie als BMK den für die Cloud definierten Namen des Crawlers ein
-   - Klicken Sie auf speichern
-2. Im Bereich „System“ → „Gateway“ den NuP Endpoint (crawler-app-gateway-endpoint.nup) auswählen. Hier sind folgende Einstellungen vorzunehmen:
-   - **Adresse **&#x65;instellen: 
-     - Klicken Sie im Bereich “Verbindung” auf das Stift-Symbol oben rechts.
+1. **Set BMK**:
+   - In the "System" → "Settings" area, click the "General" section
+   - Enter the name defined for the cloud as the BMK of the Crawler
+   - Click save
+2. In the "System" → "Gateway" area, select the NuP Endpoint (crawler-app-gateway-endpoint.nup). The following settings must be made here:
+   - **Set address**:
+     - In the "Connection" area, click the pencil icon in the top right.
 
 ![](../../../../assets/images/ve0x65iGBszJSnr2Sl4OO_b17532d1-a028-4aa5-b517-735aac98a249.png)
 
-:::Paragraph{listStyleType="lower-roman" indent="2"}
-In dem sich öffnenden Dialog passen Sie das Protokoll, die Adresse, den Port an (z.B. mqtt, *plattform.nupis-rz.de*, 8883).
-:::
+   i. In the dialog that opens, adjust the protocol, address, and port (e.g. mqtt, *plattform.nupis-rz.de*, 8883).
 
-:::Paragraph{listStyleType="lower-roman" listStart="2" indent="2"}
-Klicken Sie auf “Speichern”.
-:::
+   ii. Click "Save".
 
-- **Benutzername **&#x75;nd **Passwort **&#x61;ngeben
-  - Klicken Sie im Bereich “Login-Daten” auf das Stift-Symbol oben rechts.
+- **Enter username and password**
+  - In the "Login credentials" area, click the pencil icon in the top right.
 
 ![](../../../../assets/images/3THkOZa7DyGp1rHsys1Vv_37da128d-3b3f-4c28-9a56-f09d525a9bda.png)
 
-- Wählen Sie hier die Methode „Passwort“ aus.
+- Select the "Password" method here.
 
 ![](../../../../assets/images/A9OwALE6Uz8DOJ_-hFzJS_581e51da-ba63-4aca-be98-dd43cce726c9.png)
 
-- Geben Sie die Ihnen zur Verfügung gestellten Informationen zu Nutzername und Passwort ein.
-- Speichern Sie die Eingaben
+- Enter the username and password provided to you.
+- Save your entries.
 
-Nach diesen Schritten wird die Verbindung zur Plattform hergestellt und der Verbindungsstatus wird angezeigt. Dies kann je nach Umständen einige Sekunden dauern.
+After these steps, the connection to the platform will be established and the connection status will be displayed. Depending on circumstances, this may take a few seconds.
 
 :::note
-ℹ Wurde die BMK nach der Einrichtung der Adresse oder der Benutzer-Daten geändert, muss aktuell erneut im Dialog für die Adresse auf „Speichern“ geklickt werden. Ansonsten wird die geänderte BMK vom System nicht übernommen.
+ℹ If the BMK was changed after setting up the address or the user credentials, you must currently click "Save" again in the address dialog. Otherwise, the changed BMK will not be adopted by the system.
 :::
 
-# Einrichten der Messgrößen
+# Setting up measured variables
 
-Sobald die Kommunikation zur Plattform erfolgreich eingerichtet wurde, können Sie Messgrößen nach Bedarf für die Übertragung einrichten. Vorher sollten jedoch die Messgrößen für die Datenaufzeichnung im Crawler konfiguriert worden sein. Weitere Informationen dazu finden Sie unter: How-To: Einrichtung der Datenaufzeichnung.
+Once communication with the platform has been successfully configured, you can set up measured variables for transmission as needed. The measured variables for data recording in the Crawler should, however, be configured first. For more information, see: How-To: Setting up data recording.
 
-Die Konfiguration der Messgrößen für die Übertragung erfordert sowohl die Auswahl im Gateway-Bereich als auch die Hinzufügung von Parametern/Tags. Die Reihenfolge ist dabei beliebig. Beachten Sie, dass Messgrößen ohne erforderliche Parameter bei der Übertragung ignoriert werden.
+Configuring measured variables for transmission requires both selection in the gateway area and the addition of parameters/tags. The order is arbitrary. Note that measured variables without the required parameters will be ignored during transmission.
 
-### Auswählen im Gateway
+### Selecting in the gateway
 
-1. Wechseln sie über “System” → “Gateway” → “NuP Endpoint”. Im rechten Bereich sehen Sie eine Liste von Erweiterungen. Wählen Sie 'NuP Dispatcher' aus. 
-2. Auf der folgenden Seite können Sie über den **“+”-Button** einzelne oder mehrere Messgrößen zur Übertragung hinzufügen. Diese Auswahl erfolgt aus den zuvor im Crawler konfigurierten Messgrößen. Navigieren Sie durch die Struktur und wählen Sie die gewünschten Messgrößen aus.
-3. Bestätigen Sie Ihre Auswahl über den **Einkaufswagen **(oben rechts). Anschließend müssen Sie entscheiden, ob Sie die Messwerte in ihrer **originalen Auflösung** oder **aggregiert **&#xFC;bertragen möchten. Diese Einstellung kann später für jede Messgröße angepasst werden.
+1. Navigate via "System" → "Gateway" → "NuP Endpoint". In the right area you will see a list of extensions. Select 'NuP Dispatcher'.
+2. On the following page, you can add individual or multiple measured variables for transmission using the **"+" button**. This selection is made from the measured variables previously configured in the Crawler. Navigate through the structure and select the desired measured variables.
+3. Confirm your selection using the **shopping cart** (top right). You then need to decide whether you want to transmit the measured values at their **original resolution** or **aggregated**. This setting can be adjusted later for each measured variable.
 
-Die ausgewählten Messgrößen für die Übertragung werden in der Übersicht des NuP Dispatchers aufgeführt. Hier haben Sie die Möglichkeit, Messgrößen zu entfernen oder die Aggregationseinstellungen anzupassen.
+The selected measured variables for transmission are listed in the NuP Dispatcher overview. Here you have the option to remove measured variables or adjust aggregation settings.
 
-### Einstellung erforderlicher Parameter
+### Setting required parameters
 
-Die N+P-Plattform erfordert die Angabe verschiedener Einstellungen für jede Messgröße, die in die Cloud übertragen werden soll. Diese Informationen umfassen:
+The N+P platform requires the specification of various settings for each measured variable to be transmitted to the cloud. This information includes:
 
-- Name der Messgröße in der Cloud
-- Einheit der Messwerte
-- Zuordnung zur Anlage
+- Name of the measured variable in the cloud
+- Unit of the measured values
+- Assignment to the plant
 
 ![](../../../../assets/images/SlfzP4Ukx1XHGbKfcD1-t_7bfcff86-d857-46f7-9502-010564eca792.png)
 
-Diese Informationen müssen für jede Messgröße separat hinzugefügt werden. Um dies zu tun, wechseln Sie in den Bereich “**Alle Messgrößen”**. Navigieren Sie zu den entsprechenden Messgrößen und öffnen Sie den Einstellungsdialog, indem Sie auf das **Stift-Symbol** rechts neben der jeweiligen Messgröße klicken.
+This information must be added separately for each measured variable. To do this, switch to the **"All measured variables"** area. Navigate to the corresponding measured variables and open the settings dialog by clicking the **pencil icon** to the right of the respective measured variable.
 
-In dem Dialog klicken sie unter “Parameter” auf die Schaltfläche **“+ Information hinzufügen”**. Wiederholen Sie diesen Schritt, bis gena&#x75;** 3 Zeilen** hinzugefügt wurden. Füllen Sie die Felder wie folgt 
+In the dialog, click the **"+ Add information"** button under "Parameters". Repeat this step until exactly **3 rows** have been added. Fill in the fields as follows:
 
-| **Bezeichner**        | **Wert**                                   |
-| --------------------- | ------------------------------------------ |
-| **nupName**           | Namen der Messgröße in der Cloud-Plattform |
-| **nupUnit**           | Einheit der Messwerte                      |
-| **nupIdentification** | Zugeordnete Anlage (in der Cloud)          |
+| **Identifier**        | **Value**                                    |
+| --------------------- | -------------------------------------------- |
+| **nupName**           | Name of the measured variable in the cloud platform |
+| **nupUnit**           | Unit of the measured values                  |
+| **nupIdentification** | Assigned plant (in the cloud)                |
 
-Falls Ihnen ein Tippfehler bei einem Bezeichner unterlaufen ist, können Sie die betreffende Zeile einfach löschen und eine neue hinzufügen.
+If you made a typo in an identifier, you can simply delete the relevant row and add a new one.
 
-Vergessen Sie am Ende nicht, Ihre Änderungen zu speichern. Diese werden im **nächsten Übertragungszyklus **&#x62;ei der Übertragung berücksichtigt.
+Don't forget to save your changes at the end. They will be taken into account in the **next transmission cycle**.

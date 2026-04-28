@@ -1,15 +1,11 @@
 ---
-title: "Language Settings"
-description: "- Adjust language: Via a settings menu, the customer can easily switch the display language of the C"
+title: "Spracheinstellungen"
+description: "Über ein Einstellungsmenü kann die Anzeigesprache der Crawler.Companion-Software einfach geändert werden."
 ---
 
-:::note
-This page has not been translated yet. Content is shown in English.
-:::
+### **Spracheinstellungen ändern**
 
-### **Change Language Settings**
-
-- **Adjust language:** Via a settings menu, the customer can easily switch the display language of the Crawler.Companion software.
-- **Make selection:** The interface shows a list of available languages (in the example German and English). The customer selects the desired language from the list and confirms the selection. The application then switches accordingly.
+- **Sprache anpassen:** Über ein Einstellungsmenü kann der Anwender die Anzeigesprache der Crawler.Companion-Software einfach wechseln.
+- **Auswahl treffen:** Die Oberfläche zeigt eine Liste der verfügbaren Sprachen (im Beispiel Deutsch und Englisch). Der Anwender wählt die gewünschte Sprache aus der Liste aus und bestätigt die Auswahl. Die Anwendung wechselt daraufhin entsprechend.
 
 ![](../../../../../assets/images/3e8KovKvG3HM9GIfvepit_language.PNG)

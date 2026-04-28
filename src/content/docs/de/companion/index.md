@@ -1,54 +1,33 @@
 ---
-title: "What is the „Companion“?"
-description: "The Crawler.Companion is a specialized Windows application (desktop software) that serves as a centr"
+title: "Was ist der „Companion\"?"
+description: "Der Crawler.Companion ist eine spezialisierte Windows-Anwendung (Desktop-Software), die als zentrales lokales Verwaltungswerkzeug für Ihre Crawler Edge-Geräte dient."
 ---
 
-:::note
-This page has not been translated yet. Content is shown in English.
-:::
+## Was ist der „Companion"?
 
-## What is the „Companion“?
+Der Crawler.Companion ist eine spezialisierte Windows-Anwendung (Desktop-Software), die als zentrales lokales Verwaltungswerkzeug für Ihre Crawler Edge-Geräte dient. Er ist ein wesentlicher Bestandteil der Crawler-Plattform (bestehend aus Edge, Hub und Companion) und wurde speziell für Techniker und Administratoren entwickelt, die Konfigurations- und Wartungsaufgaben direkt vor Ort im lokalen Netzwerk (LAN) durchführen müssen.
 
-The Crawler.Companion is a specialized Windows application (desktop software) that serves as a central local management tool for your Crawler Edge devices. It is an essential component of the Crawler platform (consisting of Edge, Hub, and Companion) and was specifically developed for technicians and administrators who need to perform configuration and maintenance tasks directly on-site in the local network (LAN).
+### **Kernfunktionen und Abgrenzung:**
 
-### **Core Functionality and Differentiation:**
+| Funktion               | Beschreibung                                                                                    | Nutzen für den Anwender                                                                                    |
+| ---------------------- | ----------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| Netzwerkerkennung      | Automatische Suche und Auflistung aller Crawler Edge-Geräte im selben lokalen Netzwerk.         | Schnelles Auffinden und Identifizieren von Geräten ohne manuelle IP-Eingabe.                               |
+| Lokale Verwaltung      | Konfiguration grundlegender Einstellungen (z. B. IP-Adresse) und Geräteeigenschaften.           | Ermöglicht schnelle Inbetriebnahme und Anpassung der Netzwerkkonfiguration.                                |
+| Updates                | Installation von Firmware- und Software-Updates auf den Edge-Geräten.                          | Stellt sicher, dass Geräte stets mit der neuesten, sichersten und funktionsreichsten Software betrieben werden. |
+| Datensicherung/Export  | Sicherung von Gerätedaten (z. B. Konfigurationen oder Protokolle) oder Export als CSV-Dateien. | Dient der Datensicherung, Archivierung und Vorbereitung von Daten für die Analyse.                         |
 
-| Function           | Description                                                                         | Benefit for the User                                                                         |
-| ------------------ | ----------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| Network Discovery  | Automatic search and listing of all Crawler Edge devices in the same local network. | Quick finding and identification of devices without manual IP entry.                         |
-| Local Management   | Configuration of basic settings (e.g., IP address) and device properties.           | Enables quick commissioning and adjustment of network configuration.                         |
-| Updates            | Installation of firmware and software updates on the Edge devices.                  | Ensures that devices always operate with the latest, most secure, and feature-rich software. |
-| Data Backup/Export | Backing up device data (e.g., configurations or logs) or exporting CSV files.       | Serves data backup, archiving, and preparation of data for analysis.                         |
+Der Crawler.Companion ist für das **Vor-Ort-Management** ausgelegt, während der Crawler.Hub für die zentrale, umfassende Verwaltung und Visualisierung mehrerer Geräte an verschiedenen Standorten konzipiert ist.
 
-The Crawler.Companion is designed for **on-site management**, while the Crawler.Hub is designed for central, comprehensive management and visualization of multiple devices across various locations.
+### **Allgemein:**
 
-### **General:**
+- **Zweck:** Crawler-Gerät finden, darauf zugreifen und es konfigurieren – ein Gerät, das Daten erfasst, verarbeitet und weiterleitet.
+- **Voraussetzung:** Der PC muss sich im selben Netzwerk wie der Crawler befinden.
 
-- **Purpose:** To find, access, and configure a Crawler device that collects, processes, and forwards data.
-- **Requirement:** PC must be on the same network as the Crawler.
+### **Kernaufgaben:**
 
-### **Core Tasks:** 
-
-:::Paragraph{listStyleType="disc" indent="2"}
-Automatically find device (Crawler)
-:::
-
-:::Paragraph{listStyleType="disc" listStart="2" indent="2"}
-Display live status and technical data
-:::
-
-:::Paragraph{listStyleType="disc" listStart="3" indent="2"}
-Set network parameters (IP, DNS, gateway)
-:::
-
-:::Paragraph{listStyleType="disc" listStart="4" indent="2"}
-Install firmware updates
-:::
-
-:::Paragraph{listStyleType="disc" listStart="5" indent="2"}
-Direct jump to the device's web interface (WebUI)
-:::
-
-:::Paragraph{listStyleType="disc" listStart="6" indent="2"}
-Device overview
-:::
+- Gerät (Crawler) automatisch finden
+- Live-Status und technische Daten anzeigen
+- Netzwerkparameter festlegen (IP, DNS, Gateway)
+- Firmware-Updates installieren
+- Direkten Sprung zur Web-Oberfläche des Geräts (WebUI) ausführen
+- Geräteübersicht anzeigen

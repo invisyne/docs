@@ -1,22 +1,16 @@
 ---
-title: "C. Updating a Device"
-description: "Keep your Edge devices secure and functional through regular updates."
+title: "C. Ein Gerät aktualisieren"
+description: "Halten Sie Ihre Edge-Geräte durch regelmäßige Updates sicher und funktionsfähig."
 ---
 
-:::note
-This page has not been translated yet. Content is shown in English.
-:::
+Halten Sie Ihre Edge-Geräte durch regelmäßige Updates sicher und funktionsfähig.
 
-Keep your Edge devices secure and functional through regular updates.
+1. **Gerät auswählen:** Wählen Sie das Zielgerät aus der Geräteliste aus.
 
-1. **Select device:** Select the target device from the device list.
+2. **Update-Bereich öffnen:** Navigieren Sie zum Bereich „Update".
 
-2. **Open update area:** Navigate to the "Update" section.
+3. **Verfügbarkeit prüfen:** Der Companion zeigt die aktuell installierte Version und verfügbare neue Versionen an.
 
-3. **Check availability:** The Companion displays the currently installed version and available new versions.
+4. **Update starten:** Wählen Sie die Zielversion aus und klicken Sie auf „Update installieren".
 
-4. **Start update:** Select the target version and click on "Install update".
-
-5. **Wait for process:** The Companion transfers the update files and the device begins installation. Progress is displayed. Do not disconnect the device from power during this process!
-
-****
+5. **Vorgang abwarten:** Der Companion überträgt die Update-Dateien und das Gerät beginnt mit der Installation. Der Fortschritt wird angezeigt. Trennen Sie das Gerät während dieses Vorgangs nicht vom Strom!

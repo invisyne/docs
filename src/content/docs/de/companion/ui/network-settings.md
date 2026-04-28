@@ -1,31 +1,27 @@
 ---
-title: "Netzwork Settings"
-description: "- Checkbox \"Use as primary adapter\" → Determines via which port Companion responds."
+title: "Netzwerkeinstellungen"
+description: "Konfiguration von IP-Modus, Adressparametern und DNS-Server über den Reiter „Netzwerk\" im Crawler.Companion."
 ---
 
-:::note
-This page has not been translated yet. Content is shown in English.
-:::
+### **Reiter „Netzwerk"**
 
-### **"Network" Tab**
-
-- **Checkbox "Use as primary adapter"** → Determines via which port Companion responds.
-- **Configuration mode** 
-  - **DHCP:** Device obtains IP automatically.
-  - **Static:** IP, netmask, gateway can be entered freely.
-- **DNS server** optional.
-- **Save** → Device reboots with new values.
+- **Kontrollkästchen „Als primären Adapter verwenden"** → Bestimmt, über welchen Port der Companion antwortet.
+- **Konfigurationsmodus**
+  - **DHCP:** Gerät bezieht IP automatisch.
+  - **Statisch:** IP, Netzmaske und Gateway können frei eingegeben werden.
+- **DNS-Server** optional.
+- **Speichern** → Gerät startet mit neuen Werten neu.
 
 ![](../../../../../assets/images/RmxlPTLH2Zl-_YtnszR9c_gerat-netzwerkeinstellungen.PNG)
 
-- **Set IP mode:** The customer can determine how the device obtains its IP address: 
-  - **DHCP:** The address is automatically assigned by the network.
-  - **Static IP:** The customer can assign a fixed, manual address.
-- **Assign static addresses:** If the customer selects Static IP, they can enter the necessary parameters themselves: 
-  - **IP Address** (Unique network address)
-  - **Subnet Mask** (Determines the address range of the local network)
-  - **Gateway** (Router address for communication outside the local network)
-- **Apply configuration:** After entering the data, the customer saves it. The device adopts the new settings, which is important for permanent reachability.
+- **IP-Modus festlegen:** Der Anwender kann bestimmen, wie das Gerät seine IP-Adresse bezieht:
+  - **DHCP:** Die Adresse wird automatisch vom Netzwerk zugewiesen.
+  - **Statische IP:** Der Anwender kann eine feste, manuelle Adresse vergeben.
+- **Statische Adressen vergeben:** Wenn der Anwender „Statische IP" wählt, können die erforderlichen Parameter selbst eingegeben werden:
+  - **IP-Adresse** (Eindeutige Netzwerkadresse)
+  - **Subnetzmaske** (Bestimmt den Adressbereich des lokalen Netzwerks)
+  - **Gateway** (Router-Adresse für die Kommunikation außerhalb des lokalen Netzwerks)
+- **Konfiguration übernehmen:** Nach der Dateneingabe speichert der Anwender die Einstellungen. Das Gerät übernimmt die neuen Einstellungen, was für eine dauerhafte Erreichbarkeit wichtig ist.
 
 ![](../../../../../assets/images/QUWonz6apZkuwK5xAMu67_gerat-netzwerkeinstellungen.PNG)
 

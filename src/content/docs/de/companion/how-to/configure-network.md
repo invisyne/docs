@@ -1,24 +1,20 @@
 ---
-title: "B. Configuring Network Settings (IP-Adress)"
-description: "This procedure is necessary when you need to assign a static IP address to a device."
+title: "B. Netzwerkeinstellungen konfigurieren (IP-Adresse)"
+description: "Dieser Vorgang ist erforderlich, wenn Sie einem Gerät eine statische IP-Adresse zuweisen möchten."
 ---
 
-:::note
-This page has not been translated yet. Content is shown in English.
-:::
+Dieser Vorgang ist erforderlich, wenn Sie einem Gerät eine statische IP-Adresse zuweisen möchten.
 
-This procedure is necessary when you need to assign a static IP address to a device.
+1. **Gerät auswählen:** Wählen Sie das zu konfigurierende Gerät aus der Übersicht aus.
 
-1. **Select device:** Select the device to be configured from the overview.
+2. **Einstellungen öffnen:** Navigieren Sie zum Bereich „Netzwerkeinstellungen".
 
-2. **Open settings:** Navigate to the "Network Settings" section.
+3. **IP-Modus wählen:** Wechseln Sie von „DHCP" (dynamische IP) zu „Statische IP".
 
-3. **Choose IP mode:** Switch from "DHCP" (dynamic IP) to "Static IP".
+4. **Daten eingeben:** Geben Sie die neuen, festen Werte ein:
 
-4. **Enter data:** Enter the new, fixed values: 
+4. - **IP-Adresse:** Die gewünschte Adresse (z. B. 192.168.1.50).
+   - **Subnetzmaske:** (z. B. 255.255.255.0).
+   - **Gateway:** (z. B. 192.168.1.1).
 
-4. - **IP Address:** The desired address (e.g., 192.168.1.50).
-   - **Subnet Mask:** (e.g., 255.255.255.0).
-   - **Gateway:** (e.g., 192.168.1.1).
-
-5. **Save & Apply:** Click on "Apply" or "Save". The device restarts and is subsequently reachable at the new IP address.
+5. **Speichern & Übernehmen:** Klicken Sie auf „Übernehmen" oder „Speichern". Das Gerät startet neu und ist anschließend unter der neuen IP-Adresse erreichbar.

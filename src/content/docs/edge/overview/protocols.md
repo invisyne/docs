@@ -1,137 +1,133 @@
 ---
-title: "Protokolle und Feldgeräte"
-description: "- absolute Adressierung - TIA, symbolische Adressierung - S7 300/400 und 1200 & 1500 Die Unterstützt"
+title: "Protocols and Field Devices"
+description: "- Absolute addressing - TIA, symbolic addressing - S7 300/400 and 1200 & 1500. The supported data types depend on the addressing mode."
 ---
-
-:::note
-This page has not been translated yet. Content is shown in German.
-:::
 
 # Siemens S7
 
-- absolute Adressierung
-- TIA, symbolische Adressierung
-- S7 300/400 und `1200 & 1500`
+- Absolute addressing
+- TIA, symbolic addressing
+- S7 300/400 and `1200 & 1500`
 
-## Unterstützte Datentypen
+## Supported Data Types
 
-Die Unterstützten Datentypen sind von der Adressierungsart (absolut oder symbolisch) anhängig. Sie können diese der folgenden Tabelle entnehmen.
+The supported data types depend on the addressing mode (absolute or symbolic). You can find them in the following table.
 
-| **Datentyp**          | **Im Crawler (nur Lesen)** | **Von SPS unterstützt** |                |                                                                        |                                                          |                                                          |                                                              |
+| **Data type**         | **In Crawler (read only)** | **Supported by PLC**    |                |                                                                        |                                                          |                                                          |                                                              |
 | --------------------- | -------------------------- | ----------------------- | -------------- | ---------------------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | ------------------------------------------------------------ |
-| **Crawler VarType**   | **Crawler InfluxType**     | **Bits**                | **Symbolisch** | **Absolut**                                                            | **S7-300/400**                                           | **S7-1200**                                              | **S7-1500**                                                  |
-| **Binärzahlen**       |                            |                         |                |                                                                        |                                                          |                                                          |                                                              |
+| **Crawler VarType**   | **Crawler InfluxType**     | **Bits**                | **Symbolic**   | **Absolute**                                                           | **S7-300/400**                                           | **S7-1200**                                              | **S7-1500**                                                  |
+| **Binary numbers**    |                            |                         |                |                                                                        |                                                          |                                                          |                                                              |
 | S7\_Bool              | FLOAT                      | 1                       | ✔              | ✔                                                                      | ✔                                                        | ✔                                                        | ✔                                                            |
 | S7\_Byte              | FLOAT                      | 8                       | ✔              | ✔                                                                      | ✔                                                        | ✔                                                        | ✔                                                            |
 | S7\_Word              | FLOAT                      | 16                      | ✔              | ✔                                                                      | ✔                                                        | ✔                                                        | ✔                                                            |
 | S7\_DWord             | FLOAT                      | 32                      | ✔              | ✔                                                                      | ✔                                                        | ✔                                                        | ✔                                                            |
-| S7\_LWord             | FLOAT                      | 64                      | ✔              | ✔                                                                      |                                                          |                                                          | ✔                                                            |
-| **Ganzzahlen**        |                            |                         |                |                                                                        |                                                          |                                                          |                                                              |
-| S7\_SInt              | FLOAT                      | 8                       | ✔              | ✔                                                                      |                                                          | ✔                                                        | ✔                                                            |
+| S7\_LWord             | FLOAT                      | 64                      | ✔              | ✔                                                                      |                                                          |                                                          | ✔                                                            |
+| **Integers**          |                            |                         |                |                                                                        |                                                          |                                                          |                                                              |
+| S7\_SInt              | FLOAT                      | 8                       | ✔              | ✔                                                                      |                                                          | ✔                                                        | ✔                                                            |
 | S7\_Int               | FLOAT                      | 16                      | ✔              | ✔                                                                      | ✔                                                        | ✔                                                        | ✔                                                            |
 | S7\_DInt              | FLOAT                      | 32                      | ✔              | ✔                                                                      | ✔                                                        | ✔                                                        | ✔                                                            |
-| S7\_USInt             | FLOAT                      | 8                       | ✔              | ✔                                                                      |                                                          | ✔                                                        | ✔                                                            |
-| S7\_UInt              | FLOAT                      | 16                      | ✔              | ✔                                                                      |                                                          | ✔                                                        | ✔                                                            |
-| S7\_UDInt             | FLOAT                      | 32                      | ✔              | ✔                                                                      |                                                          | ✔                                                        | ✔                                                            |
-| S7\_LInt              | FLOAT                      | 64                      | ✔              | ✔                                                                      |                                                          |                                                          | ✔                                                            |
-| S7\_ULInt             | FLOAT                      | 64                      | ✔              | ✔                                                                      |                                                          |                                                          | ✔                                                            |
-| **Gleitpunktzahlen**  |                            |                         |                |                                                                        |                                                          |                                                          |                                                              |
+| S7\_USInt             | FLOAT                      | 8                       | ✔              | ✔                                                                      |                                                          | ✔                                                        | ✔                                                            |
+| S7\_UInt              | FLOAT                      | 16                      | ✔              | ✔                                                                      |                                                          | ✔                                                        | ✔                                                            |
+| S7\_UDInt             | FLOAT                      | 32                      | ✔              | ✔                                                                      |                                                          | ✔                                                        | ✔                                                            |
+| S7\_LInt              | FLOAT                      | 64                      | ✔              | ✔                                                                      |                                                          |                                                          | ✔                                                            |
+| S7\_ULInt             | FLOAT                      | 64                      | ✔              | ✔                                                                      |                                                          |                                                          | ✔                                                            |
+| **Floating-point numbers** |                       |                         |                |                                                                        |                                                          |                                                          |                                                              |
 | S7\_Real              | FLOAT                      | 32                      | ✔              | ✔                                                                      | ✔                                                        | ✔                                                        | ✔                                                            |
-| S7\_LReal             | FLOAT                      | 64                      | ✔              | ✔                                                                      |                                                          | ✔                                                        | ✔                                                            |
-| **Zeiten**            |                            |                         |                |                                                                        |                                                          |                                                          |                                                              |
-| S7\_S5Time            | STRING                     | 16                      | ✔              | ✔                                                                      | ✔                                                        |                                                          | ✔                                                            |
+| S7\_LReal             | FLOAT                      | 64                      | ✔              | ✔                                                                      |                                                          | ✔                                                        | ✔                                                            |
+| **Times**             |                            |                         |                |                                                                        |                                                          |                                                          |                                                              |
+| S7\_S5Time            | STRING                     | 16                      | ✔              | ✔                                                                      | ✔                                                        |                                                          | ✔                                                            |
 | S7\_Time              | STRING                     | 32                      | ✔              | ✔                                                                      | ✔                                                        | ✔                                                        | ✔                                                            |
 | FLOAT
-(Millisek.) | ❌                          | ❌                       |                |                                                                        |                                                          |                                                          |                                                              |
-| S7\_LTime             | STRING                     | 64                      | ✔              | ✔                                                                      |                                                          |                                                          | ✔                                                            |
+(millisec.) | ❌                          | ❌                       |                |                                                                        |                                                          |                                                          |                                                              |
+| S7\_LTime             | STRING                     | 64                      | ✔              | ✔                                                                      |                                                          |                                                          | ✔                                                            |
 | FLOAT
-(Nanosek.)  | ❌                          | ❌                       |                |                                                                        |                                                          |                                                          |                                                              |
-| **Datum und Uhrzeit** |                            |                         |                |                                                                        |                                                          |                                                          |                                                              |
+(nanosec.)  | ❌                          | ❌                       |                |                                                                        |                                                          |                                                          |                                                              |
+| **Date and time**     |                            |                         |                |                                                                        |                                                          |                                                          |                                                              |
 | S7\_Date              | STRING                     | 16                      | ✔              | ✔                                                                      | ✔                                                        | ✔                                                        | ✔                                                            |
 | FLOAT
-(Tage)      | ❌                          | ❌                       |                |                                                                        |                                                          |                                                          |                                                              |
+(days)      | ❌                          | ❌                       |                |                                                                        |                                                          |                                                          |                                                              |
 | S7\_Time\_Of\_Day     | STRING                     | 32                      | ✔              | ✔                                                                      | ✔                                                        | ✔                                                        | ✔                                                            |
 | FLOAT
-(Millisek.) | ❌                          | ❌                       |                |                                                                        |                                                          |                                                          |                                                              |
-| S7\_LTOD              | STRING                     | 64                      | ✔              | ✔                                                                      |                                                          |                                                          | ✔                                                            |
+(millisec.) | ❌                          | ❌                       |                |                                                                        |                                                          |                                                          |                                                              |
+| S7\_LTOD              | STRING                     | 64                      | ✔              | ✔                                                                      |                                                          |                                                          | ✔                                                            |
 | FLOAT
-(Ticks)     | ❌                          | ❌                       |                |                                                                        |                                                          |                                                          |                                                              |
-| S7\_Date\_And\_Time   | STRING                     | 64                      | ✔              | ✔                                                                      | ✔                                                        |                                                          | ✔                                                            |
-| S7\_LDT               | STRING                     | 64                      | ✔              | ✔                                                                      |                                                          |                                                          | ✔                                                            |
-| S7\_DTL               | STRING                     | 96                      | ✔              | ✔                                                                      |                                                          | ✔                                                        | ✔                                                            |
-| **Zeichen**           |                            |                         |                |                                                                        |                                                          |                                                          |                                                              |
+(ticks)     | ❌                          | ❌                       |                |                                                                        |                                                          |                                                          |                                                              |
+| S7\_Date\_And\_Time   | STRING                     | 64                      | ✔              | ✔                                                                      | ✔                                                        |                                                          | ✔                                                            |
+| S7\_LDT               | STRING                     | 64                      | ✔              | ✔                                                                      |                                                          |                                                          | ✔                                                            |
+| S7\_DTL               | STRING                     | 96                      | ✔              | ✔                                                                      |                                                          | ✔                                                        | ✔                                                            |
+| **Characters**        |                            |                         |                |                                                                        |                                                          |                                                          |                                                              |
 | S7\_Char              | STRING                     | 8                       | ✔              | ✔                                                                      | ✔                                                        | ✔                                                        | ✔                                                            |
-| S7\_WChar             | STRING                     | 16                      | ✔              | ✔                                                                      |                                                          | ✔                                                        | ✔                                                            |
+| S7\_WChar             | STRING                     | 16                      | ✔              | ✔                                                                      |                                                          | ✔                                                        | ✔                                                            |
 | S7\_String            | STRING                     | n+2 Bytes               | ✔              | ✔                                                                      | ✔                                                        | ✔                                                        | ✔                                                            |
-| S7\_WString           | STRING                     | n+2 Words               | ✔              | ✔                                                                      |                                                          | ✔                                                        | ✔                                                            |
+| S7\_WString           | STRING                     | n+2 Words               | ✔              | ✔                                                                      |                                                          | ✔                                                        | ✔                                                            |
 | **Array**             |                            |                         |                |                                                                        |                                                          |                                                          |                                                              |
-| S7\_Array             |                            |                         | ✔              | ✔<br />Einzelzugriff auf jedes Element mit seiner spezifischen Adresse | ✔<br />Max. Dimensionen: 6
-Max. Anzahl Bytes: 32.767 | ✔<br />Max. Dimensionen: 6
-Max. Anzahl Bytes: 65.535 | ✔<br />Max. Dimensionen: 6
-Max. Anzahl Bytes: 16.777.216 |
-| **Zeiger**            |                            |                         |                |                                                                        |                                                          |                                                          |                                                              |
-| Pointer               |                            | 48                      | ❌              | ❌                                                                      | ✔                                                        |                                                          | ✔                                                            |
-| Any                   |                            | 80                      | ❌              | ❌                                                                      | ✔                                                        |                                                          | ✔                                                            |
-| Variant               |                            | 0                       | ❌              | ❌                                                                      |                                                          | ✔                                                        | ✔                                                            |
+| S7\_Array             |                            |                         | ✔              | ✔<br />Individual access to each element via its specific address | ✔<br />Max. dimensions: 6
+Max. number of bytes: 32,767 | ✔<br />Max. dimensions: 6
+Max. number of bytes: 65,535 | ✔<br />Max. dimensions: 6
+Max. number of bytes: 16,777,216 |
+| **Pointers**          |                            |                         |                |                                                                        |                                                          |                                                          |                                                              |
+| Pointer               |                            | 48                      | ❌              | ❌                                                                      | ✔                                                        |                                                          | ✔                                                            |
+| Any                   |                            | 80                      | ❌              | ❌                                                                      | ✔                                                        |                                                          | ✔                                                            |
+| Variant               |                            | 0                       | ❌              | ❌                                                                      |                                                          | ✔                                                        | ✔                                                            |
 
  
-Manuelle Eingabe der Adressen
+Manual address entry
 -----------------------------
 
-Werden die Messgrößen manuell über das UI oder über einen Import  mittels CSV-Datei, sind bei der Angabe der Adressen folgende Dinge zu beachten.
+If measured variables are entered manually via the UI or imported via a CSV file, the following points must be observed when specifying addresses.
 
-### Absolute Adressierung
+### Absolute addressing
 
-Für absolut adressierten Datenzugriff muss das Adressschema dem gängigen, vollqualifizierten Schema aus Datenblock-Nummer, Operand und Byte-/Bit-Offset folgen.
+For absolute-addressed data access, the address schema must follow the common, fully qualified schema consisting of data block number, operand, and byte/bit offset.
 
-Aufbau: `DB<Nr>.DB<B|W|D|X><ByteOffset>.<BitOffset>`; wobei zu beachten ist:
+Structure: `DB<Nr>.DB<B|W|D|X><ByteOffset>.<BitOffset>`; noting:
 
-- Der durch DBB, DBD, DBX oder DBW beschriebene Operandentyp kann *gegenwärtig* beliebig genutzt werden, könnte auch bei allen Datentypen auf DBB stehen (dient lediglich der gewohnten Lesbarkeit durch den SPS-Programmierer)
-- Der Bit-Offset ist optional, kann (inklusive des trennenden Punkts) bedarfsweise weggelassen werden
-- Leerzeichen sind zu entfernen
+- The operand type described by DBB, DBD, DBX, or DBW can *currently* be used arbitrarily; it could be set to DBB for all data types as well (it merely serves the familiar readability for the PLC programmer)
+- The bit offset is optional and may be omitted (including the separating period) as needed
+- Spaces must be removed
 
-**Beispiele:**
+**Examples:**
 
 - `DB9.DBX200.2`
-  Adressiert das zweite Bit des 200. Bytes im Datenblock Nr. 9
+  Addresses the second bit of byte 200 in data block no. 9
 - `DB30.DBW558`
-  Adressiert das 558. Byte des Datenblocks Nr. 30
+  Addresses byte 558 of data block no. 30
 
 ### 
-Symbolische Adressierung
+Symbolic addressing
 
-Für symbolisch adressierten Datenzugriff setzt sich die Adresse hierarchisch aus der Programmstruktur, Gruppen, mit einem Punkt getrennt, zusammen. Sie beginnt immer mit den beiden Gruppenelementen PLC (nicht dem Gerätenamen wie bspw. `PLC_1` !) und `Blocks.` Zu beachten:
+For symbolic-addressed data access, the address is composed hierarchically from the program structure and groups, separated by a period. It always begins with the two group elements PLC (not the device name such as `PLC_1`!) and `Blocks.` Note the following:
 
-- Enthalten Gruppenelemente oder Variablen einen Punkt, so ist dieser Adressteil in doppelte Anführungszeichen (ASCII-Code 0x22) zu setzen
-- Enthalten Gruppenelemente oder Variablen ein doppeltes Anführungszeichen, so ist dieser Adressteil in doppelte Anführungszeichen zu setzen und zusätzlich das enthaltene Anführungszeichen zu verdoppeln
-- Die Groß-/Kleinschreibung ist zu beachten
-- Gewissen Sonderzeichen erfordern ebenfalls die Maskierung mit doppeltes Anführungszeichen 
-  (z.B.: \<>\[ ] . \{ } ) 
+- If group elements or variables contain a period, that address part must be enclosed in double quotation marks (ASCII code 0x22)
+- If group elements or variables contain a double quotation mark, that address part must be enclosed in double quotation marks and the contained quotation mark must additionally be doubled
+- Case sensitivity must be observed
+- Certain special characters also require escaping with double quotation marks
+  (e.g.: \<>\[ ] . \{ } )
 
-**Beispiele:**
+**Examples:**
 
 - `PLC.Blocks.TestDB.MyFunkyVariable`
-  Adressiert eine Variable namens `MyFunkyVariable` im (direkt der Hauptstruktur untergeordneten) Datenblock namens `TestDB`
+  Addresses a variable named `MyFunkyVariable` in the data block named `TestDB` (directly subordinate to the main structure)
 - `PLC.Blocks.TestDB."My.Funky.Struktur".MyFunkyVariable`
-  Adressiert eine Variable namens `MyFunkyVariable` in einer UDT-Instanz `My.Funky.Struktur` im (direkt der Hauptstruktur untergeordneten) Datenblock namens `TestDB`
+  Addresses a variable named `MyFunkyVariable` in a UDT instance `My.Funky.Struktur` in the data block named `TestDB` (directly subordinate to the main structure)
 - `PLC.Blocks.TestDB."My""Funky""Struktur"."My""Funky""Variable"`
-  Adressiert eine Variable namens `My"Funky"Variable` in einer UDT-Instanz `My"Funky"Struktur` im (direkt der Hauptstruktur untergeordneten) Datenblock namens `TestDB `
+  Addresses a variable named `My"Funky"Variable` in a UDT instance `My"Funky"Struktur` in the data block named `TestDB` (directly subordinate to the main structure)
 - `PLC.Blocks.TestDB.TestArray.MyFunkyElement[28]`
-  Adressiert das 28. Element des eindimensionalen Arrays `TestArray` im (direkt der Hauptstruktur untergeordneten) Datenblock namens `TestDB`
+  Addresses the 28th element of the one-dimensional array `TestArray` in the data block named `TestDB` (directly subordinate to the main structure)
 - `PLC.Blocks.TestDB.TestArray.MyFunkyElement[2,1,28]`
-  Adressiert das Element Nr. \[2,1,28] des mehrdimensionalen Arrays `TestArray` im (direkt der Hauptstruktur untergeordneten) Datenblock namens `TestDB`
+  Addresses element no. \[2,1,28] of the multi-dimensional array `TestArray` in the data block named `TestDB` (directly subordinate to the main structure)
 
 :::caution
-⚠ Ungültige Adressangaben, wie sie häufig bei manueller Eingabe auftreten, verhindern einen ordnungsgemäßen Datenzugriff! Durch Nutzung der Import-Funktion wird diese Fehlerquelle ausgeschlossen, die Variablen werden somit korrekt formatiert und maskiert in die Crawler-Struktur übernommen.
+⚠ Invalid address entries, which frequently occur with manual input, prevent proper data access! By using the import function, this source of error is eliminated — variables are correctly formatted and escaped when transferred into the Crawler structure.
 :::
 
 ## Modbus TCP
 
-| **Funktion**                              | **Kommentar**                                                                                                                                                                                                                                                                                                                                                                                                                |
+| **Function**                              | **Comment**                                                                                                                                                                                                                                                                                                                                                                                                                |
 | ----------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Unterstützte Zugriffsmethoden**         | READ\_COIL, READ\_DISCRETE\_INPUT, READ\_INPUT\_REGISTER, READ\_HOLDING\_REGISTER                                                                                                                                                                                                                                                                                                                                            |
-| **Unterstützte Datentypen**               | BOOLEAN\*, INT16, UINT16, INT32, UINT32, INT64, UINT64, FLOAT, DOUBLE, STRING\*\*<br />\*Boolean nur für Bit-level Zugriffsmethoden (read coils, read discrete input) unterstützt.<br />\*\* Der Datentyp STRING ist standardmäßig auf 8 Zeichen eingestellt. Wird eine andere Zeichenanzahl gewünscht, muss aktuell Kontakt mit dem Support aufgenommen werden.                                                             |
-| **Slave ID **
-**(Modbus RTU)**   | Bei Modbus RTU kann die “Slave ID” angegeben werden. **Standard = 1**<br />                                                                                                                                                                                                                                                                                                                                                  |
-| **Byte-Reihenfolge**
-**(endianness)** | Big-endian\*, **little-endian\* (Standard)**<br />\* Für Datentypen größer als 16 Bit (INT32, UINT32, INT64, UINT64, FLOAT, DOUBLE, STRING). Definiert in welchem REGISTER (nicht Bytes) das höchste Bit enthält.<br />Byte-Reihenfolge ist ein optionaler Konfigurationsparameter, welcher aktuell nicht im UI eingerichtet werden kann. Ist eine Abweichung vom Standard erforderlich, kontaktieren Sie bitte den Support. |
+| **Supported access methods**              | READ\_COIL, READ\_DISCRETE\_INPUT, READ\_INPUT\_REGISTER, READ\_HOLDING\_REGISTER                                                                                                                                                                                                                                                                                                                                            |
+| **Supported data types**                  | BOOLEAN\*, INT16, UINT16, INT32, UINT32, INT64, UINT64, FLOAT, DOUBLE, STRING\*\*<br />\*Boolean is only supported for bit-level access methods (read coils, read discrete input).<br />\*\* The STRING data type is set to 8 characters by default. If a different number of characters is required, please contact support.                                                             |
+| **Slave ID**
+**(Modbus RTU)**    | For Modbus RTU, the "Slave ID" can be specified. **Default = 1**<br />                                                                                                                                                                                                                                                                                                                                                  |
+| **Byte order**
+**(endianness)** | Big-endian\*, **little-endian\* (default)**<br />\* For data types larger than 16 bits (INT32, UINT32, INT64, UINT64, FLOAT, DOUBLE, STRING). Defines which REGISTER (not bytes) contains the most significant bit.<br />Byte order is an optional configuration parameter that cannot currently be configured in the UI. If a deviation from the default is required, please contact support. |

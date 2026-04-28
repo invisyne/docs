@@ -1,20 +1,14 @@
 ---
-title: "Interface Overview"
-description: "The Crawler.Companion software is an intuitive tool that facilitates local management of your Crawler Edge devices."
+title: "Oberflächen-Übersicht"
+description: "Die Crawler.Companion-Software ist ein intuitives Werkzeug, das die lokale Verwaltung Ihrer Crawler Edge-Geräte erleichtert."
 ---
 
-:::note
-This page has not been translated yet. Content is shown in English.
-:::
+Die Crawler.Companion-Software ist ein intuitives Werkzeug, das die lokale Verwaltung Ihrer Crawler Edge-Geräte erleichtert. Nachfolgend finden Sie eine Beschreibung der Hauptfunktionen anhand der Benutzeroberfläche der Anwendung.
 
-The Crawler.Companion software is an intuitive tool that facilitates local management of your Crawler Edge devices. Below you will find a description of the main functions based on the application's interface.
+# **Oberflächen-Übersicht und Geräteerkennung**
 
-# **Interface Overview and Device Discovery**
-
-- **Find devices immediately:** After starting the application, all Crawler Edge devices found in the local network are automatically listed in the central table.
-- **View important data:** The customer receives at a glance an overview of the most important device data such as the device name, current IP address, status (e.g., "Online"), and installed software version.
-- **Select devices:** By clicking on a device in the list, the customer can select it and access all specific management functions (details, network, update, export) via the right side of the interface.
+- **Geräte sofort finden:** Nach dem Start der Anwendung werden alle im lokalen Netzwerk gefundenen Crawler Edge-Geräte automatisch in der zentralen Tabelle aufgelistet.
+- **Wichtige Daten einsehen:** Der Anwender erhält auf einen Blick eine Übersicht der wichtigsten Gerätedaten wie Gerätename, aktuelle IP-Adresse, Status (z. B. „Online") und installierte Softwareversion.
+- **Geräte auswählen:** Durch Klick auf ein Gerät in der Liste kann der Anwender es auswählen und über die rechte Seite der Oberfläche auf alle spezifischen Verwaltungsfunktionen zugreifen (Details, Netzwerk, Update, Export).
 
 ![](../../../../../assets/images/kmHSNZGTcW1Q6ui9NdhH4_allgemein.PNG)
-
--

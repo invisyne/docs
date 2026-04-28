@@ -1,13 +1,9 @@
 ---
-title: "Hardware Spezifikationen"
-description: "- Intel® Atom E3940 Quadcore 1.80 GHz - 4GB RAM - 64GB FLASH - 2 x ETHERNET  - 2x USB 3.0 - Display"
+title: "Hardware Specifications"
+description: "- Intel® Atom E3940 Quadcore 1.80 GHz - 4GB RAM - 64GB FLASH - 2 x ETHERNET - 2x USB 3.0 - Display Port"
 ---
 
-:::note
-This page has not been translated yet. Content is shown in German.
-:::
-
-# Plattform-Varianten
+# Platform Variants
 
 ## Hardware
 
@@ -22,36 +18,24 @@ This page has not been translated yet. Content is shown in German.
 - 2x USB 3.0
 - Display Port
 
-**Bauform**
+**Form factor**
 
-| **Breite** | 40 mm / 1.575 inches  |
-| ---------- | --------------------- |
-| **Höhe**   | 150 mm / 5.906 inches |
-| **Tiefe**  | 105 mm / 4.134 inches |
+| **Width** | 40 mm / 1.575 inches  |
+| --------- | --------------------- |
+| **Height** | 150 mm / 5.906 inches |
+| **Depth**  | 105 mm / 4.134 inches |
 
-### Montage
+### Mounting
 
 ![](../../../../assets/images/Ej4po8CMx5JZBagyxY_cS_9183dcf4-8681-4ccf-aae4-a594f82a1a44.jfif)
 
-::::VerticalSplit{layout="middle"}
-:::VerticalSplitItem
-Hutschiene: DIN-Halterung:
-:::
+DIN rail: DIN bracket:
 
-:::VerticalSplitItem
-Hutschiene: Buchmontage:
-:::
-::::
+DIN rail: Book mounting:
 
-::::VerticalSplit{layout="middle"}
-:::VerticalSplitItem
 ![](../../../../assets/images/7JyTS-UVLL3xQ_XwL6nt7_499a35e9-4d13-47f7-a570-c29444d42d10.png)
-:::
 
-:::VerticalSplitItem
 ![](../../../../assets/images/sYO_jkT6x_RPDD5O5Rnog_57068125-fdab-4039-9978-90383b0dba94.png)
-:::
-::::
 
 ---
 ### WAGO Edge Computer **752-9400**
@@ -62,28 +46,28 @@ Hutschiene: Buchmontage:
 - 4GB RAM
 - 64GB FLASH
 - 2 x ETHERNET 
-- 4 x USB (davon 1x USB 3.0)
-- HDMI und Display Port
+- 4 x USB (including 1x USB 3.0)
+- HDMI and Display Port
 
-**Bauform**
+**Form factor**
 
-| **Breite** | 40 mm / 1.575 inches  |
-| ---------- | --------------------- |
-| **Höhe**   | 150 mm / 5.906 inches |
-| **Tiefe**  | 105 mm / 4.134 inches |
-
-:::note
-ℹ Montage ist fester Teil der Hardware, Buchmontage.
-:::
-
-## Virtuelle Maschine
+| **Width** | 40 mm / 1.575 inches  |
+| --------- | --------------------- |
+| **Height** | 150 mm / 5.906 inches |
+| **Depth**  | 105 mm / 4.134 inches |
 
 :::note
-📄 aktuell wird ausschließlich **VMWare** unterstützt.
+ℹ Mounting is a fixed part of the hardware; book mounting.
 :::
 
-### Systemvoraussetzung
+## Virtual Machine
 
-- CPU: 4 Kerne, 1.8 GHz
+:::note
+📄 Currently only **VMWare** is supported.
+:::
+
+### System requirements
+
+- CPU: 4 cores, 1.8 GHz
 - 4GB RAM
-- 64GB Festplattenspeicher
+- 64GB disk space

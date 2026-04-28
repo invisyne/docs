@@ -1,24 +1,20 @@
 ---
 title: "Firmware-Updates"
-description: "1. \"Select Firmware\" → File drop zone opens Explorer/Finder."
+description: "Anleitung zum Durchführen von Firmware-Updates über den Reiter „Update\" im Crawler.Companion."
 ---
 
-:::note
-This page has not been translated yet. Content is shown in English.
-:::
+## **Reiter „Update"**
 
-## **"Update" Tab**
+1. **„Firmware auswählen"** → Datei-Dropzone öffnet Explorer/Finder.
 
-1. **"Select Firmware"** → File drop zone opens Explorer/Finder.
+2. **Bundle (ZIP) hineinziehen** → Companion prüft den Header.
 
-2. **Drag bundle (ZIP) in** → Companion checks header.
+3. **„Hochladen & Starten"** → Fortschrittsbalken erscheint.
 
-3. **"Upload & Start"** → Progress bar appears.
-
-4. **After successful flash:** Device restarts, version string updates.
+4. **Nach erfolgreichem Flash:** Gerät startet neu, Versionsstring wird aktualisiert.
 
 ![](../../../../../assets/images/yT1dvfv24D4PnDtTqXvVN_gerat-update.PNG)
 
-- **Check software version:** The customer immediately sees which software version is currently installed on the Edge device and can determine whether a newer version is available.
-- **Select update files:** They can select a new update file (e.g., a firmware package) that has either already been downloaded or is to be loaded from an external server (depending on the implementation).
-- **Start update:** With a click on "Install update," the process begins. This allows the customer to keep the Edge devices up to date quickly and securely (important for security and new features).
+- **Softwareversion prüfen:** Der Anwender sieht sofort, welche Softwareversion aktuell auf dem Edge-Gerät installiert ist, und kann feststellen, ob eine neuere Version verfügbar ist.
+- **Update-Dateien auswählen:** Es kann eine neue Update-Datei ausgewählt werden (z. B. ein Firmware-Paket), das entweder bereits heruntergeladen wurde oder von einem externen Server geladen werden soll (je nach Implementierung).
+- **Update starten:** Mit einem Klick auf „Update installieren" beginnt der Vorgang. So kann der Anwender die Edge-Geräte schnell und sicher auf dem neuesten Stand halten (wichtig für Sicherheit und neue Funktionen).

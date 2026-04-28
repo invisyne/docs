@@ -1,84 +1,54 @@
 ---
-title: "Installieren von Updates"
-description: "Das Crawler-System wird stetig weiterentwickelt."
+title: "Installing Updates"
+description: "The Crawler system is continuously developed. Improvements or new features are provided via update bundles."
 ---
 
-:::note
-This page has not been translated yet. Content is shown in German.
-:::
+The Crawler system is continuously developed. Improvements or new features are provided via update bundles. These are delivered digitally by your contact person.
 
-Das Crawler-System wird stetig weiterentwickelt. Verbesserungen oder neue Funktionen werden mittels Update-Bundles bereitgestellt. Diese werden digital durch Ihre Ansprechperson bereitgestellt.
-
-Wie Sie diese Installieren können, erfahren Sie im Folgenden.
+The following explains how to install them.
 
 ## Update Bundle
 
-Ein Update-Bundle kann mehrere Funktionen und Bereiche eines Crawlers umfassen. Dabei bei jedes Paket auf dem Vorhergehenden auf. Es ist daher wichtig, Update-Pakete nacheinander und in der richtigen Reihenfolge zu installieren.
+An update bundle can cover several functions and areas of a Crawler. Each package builds on the previous one. It is therefore important to install update packages one after another and in the correct order.
 
-Ein Update-Bundle hat die Dateiendung .zip und muss vor der Installation **NICHT **&#x65;ntpackt werden.
+An update bundle has the file extension .zip and does **NOT** need to be unpacked before installation.
 
-## Anleitung
+## Instructions
 
-:::::WorkflowBlock
-:::WorkflowBlockItem
-Laden Sie das gewünschte Update-Paket herunter (z. B. crawlerUpdate\_2.12.2.zip).
-:::
+import { Steps } from '@astrojs/starlight/components';
 
-:::WorkflowBlockItem
-Öffnen Sie im Crawler AdvancedUI (zu erreichen unter „Erweiterte Einstellungen”).
-:::
+<Steps>
 
-:::WorkflowBlockItem
-Navigieren Sie zu „System” > „Einstellungen” > „Systemsteuerung”.
-:::
+1. Download the desired update package (e.g. crawlerUpdate\_2.12.2.zip).
 
-:::WorkflowBlockItem
-Klicken Sie unter „Update” auf den Button. Ein neuer Tab öffnet sich mit dem Update-Bereich.
-:::
+2. Open the Crawler AdvancedUI (accessible under "Advanced Settings").
 
-:::WorkflowBlockItem
-Stellen Sie sicher, dass die aktuelle Version vom Crawler der direkte Vorgänger vom Update-Bundle ist.
+3. Navigate to "System" > "Settings" > "System Control".
 
-- z.B. 2.12.2 erfordert 2.12.1
-:::
+4. Under "Update", click the button. A new tab opens with the update area.
 
-:::WorkflowBlockItem
-Klicken Sie auf „Paket hochladen” und klicken anschließend im Dialog auf „Datei hinzufügen”.
-:::
+5. Make sure the current version of the Crawler is the direct predecessor of the update bundle.
 
-:::WorkflowBlockItem
-Wählen Sie im Dateiauswahldialog das Update-Bundle aus.
-:::
+   - e.g. 2.12.2 requires 2.12.1
 
-:::WorkflowBlockItem
-Klicken Sie anschließend auf „Hochladen”. Je nach Verbindungsgeschwindigkeit kann dieser Vorgang einen kurzen Moment benötigen.
-:::
+6. Click "Upload package" and then click "Add file" in the dialog.
 
-:::WorkflowBlockItem
-Nachdem das Bundle hochgeladen wurde, wird in einer Liste aktualisierte Funktionen/Dienste hervorgehoben. Sie können hier das Update verwerfen oder starten.
-:::
+7. Select the update bundle in the file selection dialog.
 
-:::WorkflowBlockItem
-Klicken Sie zum Starten „Update starten“
-:::
+8. Then click "Upload". Depending on the connection speed, this process may take a moment.
 
-:::WorkflowBlockItem
-Das Update kann mehrere Minuten brauchen. Während des Update-Vorgangs werden die Schritte des Updates aufgelistet.
-:::
+9. After the bundle has been uploaded, updated functions/services are highlighted in a list. You can discard or start the update here.
 
-:::WorkflowBlockItem
-Ist das Update abgeschlossen, wird dies in einem Dialog angezeigt (in der aktuellen Version wird eine falsche Versionsnummer angezeigt. Erst nach Bestätigen des Dialogs und evtl. neu laden der Seite, wird die korrekte Version dargestellt)
-:::
+10. Click "Start update" to begin.
 
-:::WorkflowBlockItem
-Je nach Update wird empfohlen, das System einmal neu zu starten.  
-:::
+11. The update may take several minutes. The steps of the update are listed during the update process.
 
-::::WorkflowBlockItem
- 
+12. When the update is complete, this is shown in a dialog (in the current version an incorrect version number is displayed. Only after confirming the dialog and possibly reloading the page will the correct version be shown).
 
-:::note
-🔁 Wiederholen Sie die Schritte für jedes Update-Bundle.
-:::
-::::
-:::::
+13. Depending on the update, it is recommended to restart the system once.
+
+14. :::note
+    🔁 Repeat the steps for each update bundle.
+    :::
+
+</Steps>
