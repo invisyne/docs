@@ -42,6 +42,7 @@ export default defineConfig({
 				{
 					label: 'Edge (Crawler)',
 					translations: { de: 'Edge (Crawler)' },
+					collapsed: true,
 					items: [
 						{ label: 'Overview', translations: { de: 'Übersicht' }, slug: 'edge' },
 						{
@@ -61,6 +62,7 @@ export default defineConfig({
 				{
 					label: 'Companion',
 					translations: { de: 'Companion' },
+					collapsed: true,
 					items: [
 						{ label: 'Overview', translations: { de: 'Übersicht' }, slug: 'companion' },
 						{
@@ -85,6 +87,7 @@ export default defineConfig({
 				{
 					label: 'Hub',
 					translations: { de: 'Hub' },
+					collapsed: true,
 					items: [
 						{ label: 'Overview', translations: { de: 'Übersicht' }, slug: 'hub' },
 						{
