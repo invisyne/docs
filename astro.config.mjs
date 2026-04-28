@@ -20,6 +20,7 @@ export default defineConfig({
 	integrations: [
 		starlight({
 			title: 'Documentation',
+			favicon: '/favicon.png',
 			logo: {
 				src: './src/assets/logo.png',
 				alt: 'Invisyne',
