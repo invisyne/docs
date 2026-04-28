@@ -107,6 +107,7 @@ export default defineConfig({
 				{
 					label: 'Downloads',
 					translations: { de: 'Downloads' },
+					collapsed: true,
 					items: [
 						{ label: 'Edge (Crawler) PDF', link: '/downloads/edge.pdf', attrs: { target: '_blank' } },
 						{ label: 'Companion PDF', link: '/downloads/companion.pdf', attrs: { target: '_blank' } },
