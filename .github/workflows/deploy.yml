@@ -30,6 +30,7 @@ jobs:
         with:
           app-id: ${{ secrets.RELEASE_NOTES_APP_ID }}
           private-key: ${{ secrets.RELEASE_NOTES_APP_KEY }}
+          owner: invisyne
           repositories: release-notes  # TODO: update if the repo name differs
 
       - name: Checkout release-notes
