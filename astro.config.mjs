@@ -9,6 +9,13 @@ export default defineConfig({
 	// For an org page (github.com/ORG/ORG.github.io): site='https://ORG.github.io', no base needed
 	site: 'https://invisyne.github.io',
 	base: '/docs',
+	image: {
+		// Allow large animated GIFs (screen recordings) that exceed Sharp's default pixel limit
+		service: {
+			entrypoint: 'astro/assets/services/sharp',
+			config: { limitInputPixels: false },
+		},
+	},
 
 	integrations: [
 		starlight({
@@ -27,11 +34,16 @@ export default defineConfig({
 					translations: { de: 'Hub' },
 					items: [
 						{ label: 'Overview', translations: { de: 'Übersicht' }, slug: 'hub' },
+						{
+							label: 'More Overview',
+							translations: { de: 'Weitere Infos' },
+							autogenerate: { directory: 'hub/overview' },
+						},
 						{ label: 'Quickstart', translations: { de: 'Schnellstart' }, slug: 'hub/quickstart' },
 						{
-							label: 'How-To Guides',
-							translations: { de: 'Anleitungen' },
-							autogenerate: { directory: 'hub/how-to' },
+							label: 'UI Reference',
+							translations: { de: 'Benutzeroberfläche' },
+							autogenerate: { directory: 'hub/ui' },
 						},
 						{ label: 'Changelog', translations: { de: 'Changelog' }, slug: 'hub/changelog' },
 					],
@@ -41,6 +53,11 @@ export default defineConfig({
 					translations: { de: 'Edge' },
 					items: [
 						{ label: 'Overview', translations: { de: 'Übersicht' }, slug: 'edge' },
+						{
+							label: 'More Overview',
+							translations: { de: 'Weitere Infos' },
+							autogenerate: { directory: 'edge/overview' },
+						},
 						{ label: 'Quickstart', translations: { de: 'Schnellstart' }, slug: 'edge/quickstart' },
 						{
 							label: 'How-To Guides',
@@ -55,7 +72,17 @@ export default defineConfig({
 					translations: { de: 'Companion' },
 					items: [
 						{ label: 'Overview', translations: { de: 'Übersicht' }, slug: 'companion' },
+						{
+							label: 'More Overview',
+							translations: { de: 'Weitere Infos' },
+							autogenerate: { directory: 'companion/overview' },
+						},
 						{ label: 'Quickstart', translations: { de: 'Schnellstart' }, slug: 'companion/quickstart' },
+						{
+							label: 'UI Reference',
+							translations: { de: 'Benutzeroberfläche' },
+							autogenerate: { directory: 'companion/ui' },
+						},
 						{
 							label: 'How-To Guides',
 							translations: { de: 'Anleitungen' },
