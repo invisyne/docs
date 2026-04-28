@@ -98,6 +98,15 @@ export default defineConfig({
 						{ label: 'Changelog', translations: { de: 'Changelog' }, slug: 'hub/changelog' },
 					],
 				},
+				{
+					label: 'Downloads',
+					translations: { de: 'Downloads' },
+					items: [
+						{ label: 'Edge PDF', link: '/downloads/edge.pdf', attrs: { target: '_blank' } },
+						{ label: 'Companion PDF', link: '/downloads/companion.pdf', attrs: { target: '_blank' } },
+						{ label: 'Hub PDF', link: '/downloads/hub.pdf', attrs: { target: '_blank' } },
+					],
+				},
 			],
 		}),
 	],
