@@ -17,23 +17,20 @@ Erhalten Sie nicht nur schnell neue und tiefe Einblicke in die Arbeitsweise ihre
 | Durch seinen modulares, erweiterbares Konzept lassen sich kleine Anwendungsfälle, aber auch komplexe, die komplette Fertigung einbeziehende Digitalisierungs-Lösungen individuell und schnell umsetzen. Der Edge (Crawler) ist damit ein idealer Wegbereiter und Startpunkt für die Digitalisierung Ihrer Fertigungsprozesse.                                                        |
 | Der Edge (Crawler) enthält bereits vorinstallierte, sofort nutzbare Funktionen, wie die Konnektivität zu SIEMENS Steuerungen und Modbus Geräten. Er erlaubt gleichzeitig die Erweiterung um weitere angepasste Funktionen wie spezifische Konnektoren, Condition-Monitoring oder Lastmanagement. Er ist anpassbar und erweiterbar für individuelle Anwendungen und Einsatzszenarien. |
 
----
-## 
-
 ## Mit dem Edge (Crawler) können Sie
 
-| ### **Kosten senken durch:**                                                                                                                             |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Erhöhung der Produktivität durch Vermeidung von Überlastungen, Planen von Stillständen, einer schnelleren Fehlerbehebung und zielgerichteten Alarmierung |
-| Einsatz innovativer Arbeits- und Dokumentationsmethoden                                                                                                  |
-| Validierung von Investitionen                                                                                                                            |
-| Identifikation und Nachweis von Schwachstellen                                                                                                           |
-| Kosteneffizientes Gesamtkonzept                                                                                                                          |
+### Kosten senken durch:
 
-| ### **Anlagen und Prozesse optimieren durch:**                                               |
-| -------------------------------------------------------------------------------------------- |
-| Transparenz und einzigartige Anlagenkenntnis durch Datenaggregation, Historien, Auswertungen |
-| Machine Learning                                                                             |
-| Zur Verfügungstellung relevanter Informationen (intern und extern)                           |
-| Einfache Bedienkonzepte, «Plug & Play»                                                       |
-| Anbindung & Integration mobiler Endgeräte                                                    |
+- Erhöhung der Produktivität durch Vermeidung von Überlastungen, Planen von Stillständen, einer schnelleren Fehlerbehebung und zielgerichteten Alarmierung
+- Einsatz innovativer Arbeits- und Dokumentationsmethoden
+- Validierung von Investitionen
+- Identifikation und Nachweis von Schwachstellen
+- Kosteneffizientes Gesamtkonzept
+
+### Anlagen und Prozesse optimieren durch:
+
+- Transparenz und einzigartige Anlagenkenntnis durch Datenaggregation, Historien, Auswertungen
+- Machine Learning
+- Zur Verfügungstellung relevanter Informationen (intern und extern)
+- Einfache Bedienkonzepte, «Plug & Play»
+- Anbindung & Integration mobiler Endgeräte
