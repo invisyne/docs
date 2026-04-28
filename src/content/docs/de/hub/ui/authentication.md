@@ -27,4 +27,4 @@ description: "1. Anmeldung: 1."
 
 # Benutzerverwaltung
 
-Benutzer werden nach Anfrage ins Hub aufgenommen. Die Zugangsberechtigung wird von Administratoren verwaltet und ermöglicht den Zugriff auf relevante Crawler-Produkte und -Funktionen.
+Benutzer werden nach Anfrage ins Hub aufgenommen. Die Zugangsberechtigung wird von Administratoren verwaltet und ermöglicht den Zugriff auf relevante Edge (Crawler)-Produkte und -Funktionen.

@@ -1,9 +1,9 @@
 ---
 title: "A. Find a Device via Network (Discovery)"
-description: "Device discovery is the first step to managing your Crawler Edge devices."
+description: "Device discovery is the first step to managing your Edge (Crawler) devices."
 ---
 
-Device discovery is the first step to managing your Crawler Edge devices.
+Device discovery is the first step to managing your Edge (Crawler) devices.
 
 1. **Start Companion:** Open the Crawler.Companion application.
 
@@ -11,4 +11,4 @@ Device discovery is the first step to managing your Crawler Edge devices.
 
 3. **Manual refresh:** If devices are missing, click on the "Refresh" icon (usually a circular arrow) or the "Search for devices" function to restart the discovery process.
 
-4. **Select device:** Click on the desired Crawler Edge device in the list to display its details and configuration options.
+4. **Select device:** Click on the desired Edge (Crawler) device in the list to display its details and configuration options.

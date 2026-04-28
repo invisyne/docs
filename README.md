@@ -7,8 +7,8 @@ This repository contains the source for the Invisyne product documentation, publ
 Documentation is provided for three Invisyne products:
 
 - **Hub** — Web-based platform for centralised device management, user administration, and software distribution
-- **Edge** — Embedded industrial IoT system for data acquisition from field devices and protocols
-- **Companion** — Windows desktop application for discovering and managing Edge devices on the local network
+- **Edge (Crawler)** — Embedded industrial IoT system for data acquisition from field devices and protocols
+- **Companion** — Windows desktop application for discovering and managing Edge (Crawler) devices on the local network
 
 ## Structure
 
@@ -41,6 +41,9 @@ npm run dev
 
 # Build
 npm run build
+
+# Generate PDFs (run after build, outputs to dist/downloads/)
+npm run generate-pdfs
 ```
 
 The dev server runs at `http://localhost:4321`.
@@ -72,6 +75,7 @@ Pushes to `main` trigger a GitHub Actions workflow that:
 1. Checks out the private `release-notes` repo via GitHub App token
 2. Generates changelog pages from public release notes
 3. Builds the static site with Astro
-4. Deploys to GitHub Pages
+4. Generates one PDF per product (`dist/downloads/`)
+5. Deploys to GitHub Pages
 
 The GitHub App requires two secrets in this repo: `RELEASE_NOTES_APP_ID` and `RELEASE_NOTES_APP_KEY`.

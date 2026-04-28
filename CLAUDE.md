@@ -16,6 +16,7 @@ npm run generate          # Generate changelog pages from release-notes repo
 npm run dev               # Generate changelogs + start dev server
 npm run build             # Build static site (changelogs must already be generated)
 npm run preview           # Preview the built site
+npm run generate-pdfs     # Generate one PDF per product into dist/downloads/ (run after build)
 ```
 
 ## Content Conventions
@@ -26,6 +27,7 @@ npm run preview           # Preview the built site
   - `<Steps>` component from `@astrojs/starlight/components` for step-by-step sequences
 - Images go in `src/assets/` and are referenced with relative paths
 - Filenames use lowercase kebab-case
+- **Product naming:** The Edge device was historically called "Crawler". In content, always write **Edge (Crawler)** — never just "Edge" or just "Crawler" when referring to the device. Sidebar labels and page titles may use "Edge" alone for brevity. Do not change `Crawler.Companion` or `Crawler.Hub` — those are proper product names.
 
 ## Changelog Generation
 
@@ -37,14 +39,10 @@ It skips `-internal` files and `-upcoming` version folders. Versions are sorted 
 
 Run `node scripts/generate-changelogs.js [path]` directly to regenerate. Default path is `../release-notes`.
 
-## Content Migration (In Progress)
+## PDF Generation
 
-Source material is in `../docs-imported/` — an Archbee export with 106 Markdown files covering Hub EN/DE, Edge 2.18–2.20 EN/DE, and Companion 1.0.2 EN/DE.
+`scripts/generate-pdfs.js` generates one PDF per product from the built site. It starts a local static file server over `dist/`, visits all pages per product in sidebar order, combines them into a single styled HTML document, and prints to PDF via Puppeteer.
 
-Migration tasks remaining:
-1. **Download images** — All images in the exported files link to `api.archbee.com`. Download them to `src/assets/` before the Archbee subscription lapses.
-2. **Convert Archbee components** — `:::hint` → Starlight asides, `WorkflowBlock` → `<Steps>`, `VerticalSplit` → simple two-column layout.
-3. **Migrate content** — Use Edge 2.20 and Companion 1.0.2 as source (skip Edge 2.18). Rewrite and restructure into the current doc structure rather than importing as-is.
-4. **Clean up** — Some EN folders in the export have German-named files; rename during migration.
+PDFs are written to `dist/downloads/` and deployed alongside the site. They are not committed to the repo.
 
-Only migrate EN first; translate to DE in a second pass.
+Run `npm run build && npm run generate-pdfs` to regenerate locally.

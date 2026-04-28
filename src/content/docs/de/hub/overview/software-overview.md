@@ -11,7 +11,7 @@ Das Hub ist eine webbasierte Management-Plattform, die folgende Kernfunktionen b
 
 ### 1. Geräte-Management
 
-- **Dashboard-Übersicht**: Zentrale Ansicht aller verwalteten Crawler-Geräte
+- **Dashboard-Übersicht**: Zentrale Ansicht aller verwalteten Edge (Crawler)-Geräte
 - **Geräte-Detailansicht**: Umfassende Informationen zu einzelnen Geräten (Status, Leistung, Fehlerprotokolle)
 - **?Echtzeit-Monitoring**: Überwachung von Betriebsstatus und Performance-Metriken
 - **Geräte-Konfiguration**: Speichern und Laden von Hardware-Konfigurationen
@@ -74,7 +74,7 @@ Aufgaben Admin:
 - **Kundenverwaltung**: Anlegen, Bearbeiten und Verwalten von Kundenaccounts
 - **Benutzerverwaltung**: Erstellen und Verwalten von Benutzerkonten
 - **Rollen und Rechte**: Differenzierte Zugriffskontrolle (Super Admin, Admin, User)
-- **Kundengruppierung**: Organisation von Crawlern nach Kunden
+- **Kundengruppierung**: Organisation von Edge (Crawler)n nach Kunden
 
 ### 2. ?Lizenzverwaltung?
 

@@ -1,13 +1,13 @@
 ---
 title: "Manage devices"
-description: "The central device overview provides a tabular display of all managed crawler devices with the follo"
+description: "The central device overview provides a tabular display of all managed Edge (Crawler) devices with the follo"
 ---
 
 # Device Management
 
 ## Dashboard - Device Overview
 
-The central device overview provides a tabular display of all managed crawler devices with the following information:
+The central device overview provides a tabular display of all managed Edge (Crawler) devices with the following information:
 
 - **Serial Number**: Unique device identification
 - **Name**: User-defined designation

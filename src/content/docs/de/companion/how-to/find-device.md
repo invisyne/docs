@@ -1,9 +1,9 @@
 ---
 title: "A. Gerät über das Netzwerk finden (Discovery)"
-description: "Die Geräteerkennung ist der erste Schritt zur Verwaltung Ihrer Crawler Edge-Geräte."
+description: "Die Geräteerkennung ist der erste Schritt zur Verwaltung Ihrer Edge (Crawler)-Geräte."
 ---
 
-Die Geräteerkennung ist der erste Schritt zur Verwaltung Ihrer Crawler Edge-Geräte.
+Die Geräteerkennung ist der erste Schritt zur Verwaltung Ihrer Edge (Crawler)-Geräte.
 
 1. **Companion starten:** Öffnen Sie die Crawler.Companion-Anwendung.
 
@@ -11,4 +11,4 @@ Die Geräteerkennung ist der erste Schritt zur Verwaltung Ihrer Crawler Edge-Ger
 
 3. **Manuelle Aktualisierung:** Falls Geräte fehlen, klicken Sie auf das Symbol „Aktualisieren" (üblicherweise ein Kreispfeil) oder die Funktion „Nach Geräten suchen", um den Erkennungsvorgang neu zu starten.
 
-4. **Gerät auswählen:** Klicken Sie auf das gewünschte Crawler Edge-Gerät in der Liste, um dessen Details und Konfigurationsoptionen anzuzeigen.
+4. **Gerät auswählen:** Klicken Sie auf das gewünschte Edge (Crawler)-Gerät in der Liste, um dessen Details und Konfigurationsoptionen anzuzeigen.

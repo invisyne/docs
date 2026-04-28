@@ -1,6 +1,6 @@
 ---
 title: "Forwarding to N+P Platform"
-description: "In addition to local recording on the Crawler system, data can also be forwarded to other systems such as the N+P platform."
+description: "In addition to local recording on the Edge (Crawler) system, data can also be forwarded to other systems such as the N+P platform."
 ---
 
 :::note
@@ -8,19 +8,19 @@ This feature is available with the optional **NuP Gateway Module**.
 Please get in touch with us.
 :::
 
-In addition to local recording on the Crawler system, data can also be forwarded to other systems such as the N+P platform. The following describes how the configuration on the Crawler must be carried out to establish communication with the platform and transmit selected measured values.
+In addition to local recording on the Edge (Crawler) system, data can also be forwarded to other systems such as the N+P platform. The following describes how the configuration on the Edge (Crawler) must be carried out to establish communication with the platform and transmit selected measured values.
 
 # Prerequisites
 
-For the Crawler to communicate with the N+P platform, the gateway functions must first have been installed. This may have already been done at delivery, or must be done retroactively with an update package.
+For the Edge (Crawler) to communicate with the N+P platform, the gateway functions must first have been installed. This may have already been done at delivery, or must be done retroactively with an update package.
 
-In the advanced UI for configurations, the version of the Crawler is displayed in the lower left corner. If the name contains "-nup1.x" (x may vary depending on version), then the required functions and services have already been installed. Otherwise, the appropriate update package, e.g. "update-2.12.2-nup1.1", must be installed.
+In the advanced UI for configurations, the version of the Edge (Crawler) is displayed in the lower left corner. If the name contains "-nup1.x" (x may vary depending on version), then the required functions and services have already been installed. Otherwise, the appropriate update package, e.g. "update-2.12.2-nup1.1", must be installed.
 
 # Setting up communication (one-time)
 
 1. **Set BMK**:
    - In the "System" → "Settings" area, click the "General" section
-   - Enter the name defined for the cloud as the BMK of the Crawler
+   - Enter the name defined for the cloud as the BMK of the Edge (Crawler)
    - Click save
 2. In the "System" → "Gateway" area, select the NuP Endpoint (crawler-app-gateway-endpoint.nup). The following settings must be made here:
    - **Set address**:
@@ -52,14 +52,14 @@ After these steps, the connection to the platform will be established and the co
 
 # Setting up measured variables
 
-Once communication with the platform has been successfully configured, you can set up measured variables for transmission as needed. The measured variables for data recording in the Crawler should, however, be configured first. For more information, see: How-To: Setting up data recording.
+Once communication with the platform has been successfully configured, you can set up measured variables for transmission as needed. The measured variables for data recording in the Edge (Crawler) should, however, be configured first. For more information, see: How-To: Setting up data recording.
 
 Configuring measured variables for transmission requires both selection in the gateway area and the addition of parameters/tags. The order is arbitrary. Note that measured variables without the required parameters will be ignored during transmission.
 
 ### Selecting in the gateway
 
 1. Navigate via "System" → "Gateway" → "NuP Endpoint". In the right area you will see a list of extensions. Select 'NuP Dispatcher'.
-2. On the following page, you can add individual or multiple measured variables for transmission using the **"+" button**. This selection is made from the measured variables previously configured in the Crawler. Navigate through the structure and select the desired measured variables.
+2. On the following page, you can add individual or multiple measured variables for transmission using the **"+" button**. This selection is made from the measured variables previously configured in the Edge (Crawler). Navigate through the structure and select the desired measured variables.
 3. Confirm your selection using the **shopping cart** (top right). You then need to decide whether you want to transmit the measured values at their **original resolution** or **aggregated**. This setting can be adjusted later for each measured variable.
 
 The selected measured variables for transmission are listed in the NuP Dispatcher overview. Here you have the option to remove measured variables or adjust aggregation settings.

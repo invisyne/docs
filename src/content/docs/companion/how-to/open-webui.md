@@ -1,9 +1,9 @@
 ---
 title: "D. Opening the WebUI"
-description: "The WebUI (Web User Interface) is the browser-based interface of the Crawler Edge device."
+description: "The WebUI (Web User Interface) is the browser-based interface of the Edge (Crawler) device."
 ---
 
-The WebUI (Web User Interface) is the browser-based interface of the Crawler Edge device.
+The WebUI (Web User Interface) is the browser-based interface of the Edge (Crawler) device.
 
 1. **Select device:** Select the desired device in the Crawler.Companion.
 

@@ -5,7 +5,7 @@ description: "Software-Übersicht: Der Crawler.Companion dient als zentrale Schn
 
 **Software-Übersicht:** Der Crawler.Companion dient als zentrale Schnittstelle für die folgenden Hauptfunktionen:
 
-1. **Geräteerkennung:** Automatische Erkennung aller aktiven Crawler Edge-Geräte im lokalen Netzwerk.
+1. **Geräteerkennung:** Automatische Erkennung aller aktiven Edge (Crawler)-Geräte im lokalen Netzwerk.
 
 2. **Geräteverwaltung:** Anzeige von Gerätedetails und einfache Bearbeitung wichtiger Parameter.
 

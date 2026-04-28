@@ -28,7 +28,7 @@ Im oberen rechten Bereich befindet sich das Benutzermenü mit:
 
 # Geräte-Detailansicht
 
-## Crawler Details
+## Edge (Crawler) Details
 
 Die Detailansicht eines einzelnen Geräts zeigt folgende Informationen:
 

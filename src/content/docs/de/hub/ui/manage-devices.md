@@ -1,13 +1,13 @@
 ---
 title: "Geräte verwalten"
-description: "Die zentrale Geräte-Übersicht bietet eine tabellarische Darstellung aller verwalteten Crawler-Geräte"
+description: "Die zentrale Geräte-Übersicht bietet eine tabellarische Darstellung aller verwalteten Edge (Crawler)-Geräte"
 ---
 
 # Geräte-Verwaltung
 
 ## Dashboard - Geräte-Übersicht
 
-Die zentrale Geräte-Übersicht bietet eine tabellarische Darstellung aller verwalteten Crawler-Geräte mit folgenden Informationen:
+Die zentrale Geräte-Übersicht bietet eine tabellarische Darstellung aller verwalteten Edge (Crawler)-Geräte mit folgenden Informationen:
 
 - **Seriennummer**: Eindeutige Identifikation des Geräts
 - **Name**: Benutzerdefinierte Bezeichnung

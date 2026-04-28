@@ -4,7 +4,7 @@ description: "The visualization platform Grafana is used for visualizing measure
 ---
 
 :::tip
- Valid from Crawler version = **2.7.1**
+ Valid from Edge (Crawler) version = **2.7.1**
 :::
 
 ## General information about visualization (Grafana)
@@ -23,7 +23,7 @@ description: "The visualization platform Grafana is used for visualizing measure
 ![](../../../../assets/images/mEJxXv-fIiPj5ye_5oWQQ_4ef10733-2865-4726-99ab-70c1d6cba655.png)
 
 :::note
-ℹ The Crawler uses Grafana version 7.4.
+ℹ The Edge (Crawler) uses Grafana version 7.4.
 :::
 
 ---
@@ -115,7 +115,7 @@ If the selection of the measured variable has not yet been completed (e.g. only 
 
 ### Measured variables of type "String"
 
-Measured variables that are stored in the Crawler as a string `(e.g. S7_DWORD`, see *Specification: Protocols and Field Devices*) require a change to the "field" value. To do this, click on "value" in the "Select" area. Enter the text `"stringValue"` (⚠ note case sensitivity).
+Measured variables that are stored in the Edge (Crawler) as a string `(e.g. S7_DWORD`, see *Specification: Protocols and Field Devices*) require a change to the "field" value. To do this, click on "value" in the "Select" area. Enter the text `"stringValue"` (⚠ note case sensitivity).
 
 ![](../../../../assets/images/ACfznD9vgz55KoiKz1Mnn_ba9efcf4-6e6e-4e77-9487-2df8bfad28ab.png)
 

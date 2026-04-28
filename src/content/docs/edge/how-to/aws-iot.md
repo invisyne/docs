@@ -1,6 +1,6 @@
 ---
 title: "Forwarding to AWS (IoT)"
-description: "To enable a Crawler to connect to AWS IoT Core, the device must be registered in AWS and configured with a certificate."
+description: "To enable an Edge (Crawler) to connect to AWS IoT Core, the device must be registered in AWS and configured with a certificate."
 ---
 
 :::danger
@@ -9,15 +9,15 @@ description: "To enable a Crawler to connect to AWS IoT Core, the device must be
 
 # At-a-glance
 
-To enable a Crawler to connect to AWS IoT Core, the device must be registered in AWS and configured with a certificate. The certificate can be used by the gateway endpoint to authenticate itself.
+To enable an Edge (Crawler) to connect to AWS IoT Core, the device must be registered in AWS and configured with a certificate. The certificate can be used by the gateway endpoint to authenticate itself.
 
-The following guide describes the steps required to set up a Crawler as an IoT device.
+The following guide describes the steps required to set up an Edge (Crawler) as an IoT device.
 
 # Creating a device (Thing) in IoT Core
 
 1. Log in to the AWS Console Portal and switch to AWS IoT Core
 2. Under "Manage" → "Things", create a new device
-   - ⚠ The Thing name must match the "Hostname" of the Crawler
+   - ⚠ The Thing name must match the "Hostname" of the Edge (Crawler)
    - Select a "Thing Type"
 3. Create a "Device certificate"
    - Keep the certificate files safe!!!!
@@ -41,7 +41,7 @@ openssl pkcs12 -export -in certificate.pem.crt -inkey private.pem.key -out THING
 
 4. You will be prompted for an "export" password. This must currently be a specific predefined password, as the endpoint has been configured with it to open the certificate
    - The password can be requested from AK or RM
-   - Alternatively, there may be entries in the Crawler Keepass where the password is specified.
+   - Alternatively, there may be entries in the Edge (Crawler) Keepass where the password is specified.
 
 ### Windows
 
@@ -54,7 +54,7 @@ On Windows, the "CertUtil" tool can be used in PowerShell.
 certutil -mergepfx \<certificate-name>.crt \<result-name>.pfx
 ```
 
-3. You will be prompted for a password. This must currently be a predefined one expected by the Crawler endpoint. (Password must be requested from customer support.)
+3. You will be prompted for a password. This must currently be a predefined one expected by the Edge (Crawler) endpoint. (Password must be requested from customer support.)
 
 :::note
 ℹ It is recommended to store all files, the password used during conversion, and the hostname in a safe location.
@@ -62,7 +62,7 @@ certutil -mergepfx \<certificate-name>.crt \<result-name>.pfx
 
 # Setting up the Gateway Endpoint
 
-1. Navigate in the Crawler UI to: "System > Settings" → Gateway → desired endpoint
+1. Navigate in the Edge (Crawler) UI to: "System > Settings" → Gateway → desired endpoint
 2. Under "Login credentials": upload the certificate file and save
 
 # Adding measured variables

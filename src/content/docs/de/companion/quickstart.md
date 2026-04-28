@@ -9,15 +9,15 @@ description: "Installation, Einrichtung und erste Schritte mit der Crawler.Compa
 
 ## A. Vorbereitung
 
-1. **Installationsdatei herunterladen:** Laden Sie die aktuelle Installationsdatei (CrawlerCompanionSetup.exe oder ähnlich) von der offiziellen Download-Seite oder von Ihrem technischen Ansprechpartner herunter.
+1. **Installationsdatei herunterladen:** Laden Sie die aktuelle Installationsdatei (Edge (Crawler)CompanionSetup.exe oder ähnlich) von der offiziellen Download-Seite oder von Ihrem technischen Ansprechpartner herunter.
 
 2. **Administratorrechte:** Stellen Sie sicher, dass Sie die erforderlichen Administratorrechte für das Zielsystem besitzen.
 
-3. **Netzwerkverbindung:** Verbinden Sie den PC, auf dem der Companion installiert werden soll, mit demselben LAN-Segment (lokales Netzwerk), in dem sich die Crawler Edge-Geräte befinden.
+3. **Netzwerkverbindung:** Verbinden Sie den PC, auf dem der Companion installiert werden soll, mit demselben LAN-Segment (lokales Netzwerk), in dem sich die Edge (Crawler)-Geräte befinden.
 
 ## B. Startvorgang
 
-1. **Installation starten:** Doppelklicken Sie auf die heruntergeladene Datei (CrawlerCompanionSetup.exe).
+1. **Installation starten:** Doppelklicken Sie auf die heruntergeladene Datei (Edge (Crawler)CompanionSetup.exe).
 
 2. **Sicherheitsabfrage:** Bestätigen Sie die Windows-Sicherheitsabfrage, um die Ausführung als Administrator zu erlauben.
 
@@ -99,10 +99,10 @@ description: "Installation, Einrichtung und erste Schritte mit der Crawler.Compa
 ## **3) Nach Geräten suchen (Broadcast)**
 
 - Im Companion: Klicken Sie auf „Suchen" (Lupensymbol).
-- Die Software sendet Broadcast-/Discovery-Anfragen und listet alle gefundenen Crawler im lokalen Broadcast-Bereich auf.
+- Die Software sendet Broadcast-/Discovery-Anfragen und listet alle gefundenen Edge (Crawler) im lokalen Broadcast-Bereich auf.
 
 :::tip
-**Erwartetes Ergebnis** Alle erreichbaren Crawler erscheinen in der Geräteliste mit Informationen wie Seriennummer, Modell, aktueller IP (falls verfügbar) und Status.
+**Erwartetes Ergebnis** Alle erreichbaren Edge (Crawler) erscheinen in der Geräteliste mit Informationen wie Seriennummer, Modell, aktueller IP (falls verfügbar) und Status.
 :::
 
 :::danger
@@ -117,7 +117,7 @@ description: "Installation, Einrichtung und erste Schritte mit der Crawler.Compa
 ---
 ## **4) Gerät auswählen / Details öffnen**
 
-- Klicken Sie einmal auf die Zeile des gewünschten Crawlers in der Liste.
+- Klicken Sie einmal auf die Zeile des gewünschten Edge (Crawler)s in der Liste.
 - Das anklickbare Element öffnet die Detailansicht oder die Netzwerkeinstellungen des Geräts.
 
 :::tip
@@ -168,7 +168,7 @@ description: "Installation, Einrichtung und erste Schritte mit der Crawler.Compa
 - Warten Sie, bis die Web-Oberfläche geladen ist. Möglicherweise ist eine Anmeldung erforderlich.
 
 :::tip
-**Erwartetes Ergebnis** Der Browser zeigt die Web-UI des Crawlers an (Status, Protokolle, Konfiguration).
+**Erwartetes Ergebnis** Der Browser zeigt die Web-UI des Edge (Crawler)s an (Status, Protokolle, Konfiguration).
 :::
 
 :::danger

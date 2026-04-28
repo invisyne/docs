@@ -11,7 +11,7 @@ After clicking on a device, the "Details" tab opens:
 | ------------- | ---------------------------------------------------------- |
 | Name          | Name of the device                                         |
 | Status        | Status                                                     |
-| WebUI         | Link to the web interface of the Crawler                   |
+| WebUI         | Link to the web interface of the Edge (Crawler)                   |
 | Firmware      | Currently installed version (e.g., ≤2.18) and last update. |
 | MAC 1/2       | Read-out addresses (X1 / X2).                              |
 | Serial Number | Read out when available.                                   |

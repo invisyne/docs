@@ -1,33 +1,33 @@
 ---
 title: "Erst-Einrichtung"
-description: "In dieser Anleitung finden Sie Informationen für die Erst-Einrichtung des Crawlers."
+description: "In dieser Anleitung finden Sie Informationen für die Erst-Einrichtung des Edge (Crawler)s."
 ---
 
-In dieser Anleitung finden Sie Informationen für die Erst-Einrichtung des Crawlers. Mithilfe eines Wizards werden Sie durch mehrere Schritte geleitet. Erst nach Abschluss des Wizards ist der Crawler-betriebsbereit.
+In dieser Anleitung finden Sie Informationen für die Erst-Einrichtung des Edge (Crawler)s. Mithilfe eines Wizards werden Sie durch mehrere Schritte geleitet. Erst nach Abschluss des Wizards ist der Edge (Crawler)-betriebsbereit.
 
 :::caution
-💡  Bitte beachten Sie, dass nach dem Abschluss der Wizard der Crawler neu   gestartet werden muss. Dies kann wenige Minuten in Anspruch nehmen.
+💡  Bitte beachten Sie, dass nach dem Abschluss der Wizard der Edge (Crawler) neu   gestartet werden muss. Dies kann wenige Minuten in Anspruch nehmen.
 :::
 
 ---
-# Verbindung mit dem Crawler herstellen
+# Verbindung mit dem Edge (Crawler) herstellen
 
 :::tip
-🌏 💻  Der Zugriff auf den Crawler erfolgt mit dem **Browser**. 
+🌏 💻  Der Zugriff auf den Edge (Crawler) erfolgt mit dem **Browser**. 
 *           Es wird empfohlen Chrome, Edge oder Firefox zu nutzen.*
 :::
 
-Um Verbindung mit dem Crawler aufzubauen, muss man über das Netzwerk verbunden sein. Bei Auslieferung oder nach dem Zurücksetzen auf Werkseinstellungen werden die IP-Adresse auf Standard-Werte gesetzt:
+Um Verbindung mit dem Edge (Crawler) aufzubauen, muss man über das Netzwerk verbunden sein. Bei Auslieferung oder nach dem Zurücksetzen auf Werkseinstellungen werden die IP-Adresse auf Standard-Werte gesetzt:
 
 - X1: 192.168.0.5
 - X2: 192.168.1.5
 
-Ist der Crawler in einem anderen Subnetz, kann das *Discovery-Tool* behilflich sein. Dieses ermöglicht den X1 Adapter zu konfigurieren, sodass im Anschluss direkt auf die Web-Oberfläche zugegriffen werden kann.
+Ist der Edge (Crawler) in einem anderen Subnetz, kann das *Discovery-Tool* behilflich sein. Dieses ermöglicht den X1 Adapter zu konfigurieren, sodass im Anschluss direkt auf die Web-Oberfläche zugegriffen werden kann.
 
 ---
 # Einrichtungs-Wizard
 
-Mit dem Wizard wird die Erst-Konfiguration des Crawler-Systems vorgenommen. Diese Vorgang wird nach einem Zurücksetzen des Crawlers erneut erforderlich.
+Mit dem Wizard wird die Erst-Konfiguration des Edge (Crawler)-Systems vorgenommen. Diese Vorgang wird nach einem Zurücksetzen des Edge (Crawler)s erneut erforderlich.
 
 ---
 ## Sprache
@@ -58,7 +58,7 @@ Mit dem Wizard wird die Erst-Konfiguration des Crawler-Systems vorgenommen. Dies
 
 ![](../../../../../assets/images/xFG8jzw_vn_exe19_2qxN_bd868d7a-2df6-423c-9a5e-bff2e4aec58f.png)
 
-Im nächsten Schritt ist das Passwort für den Einstellungsbereich im Crawler zu setzen. Dieses Passwort kann später geändert werden.
+Im nächsten Schritt ist das Passwort für den Einstellungsbereich im Edge (Crawler) zu setzen. Dieses Passwort kann später geändert werden.
 
 :::note
 - Das Passwort muss eine Länge von mind. 6 Zeichen haben.
@@ -84,7 +84,7 @@ Modus kann umgeschaltet werden
 
 - automatische Synchronisation (Intervall???)
 - Nutzung des angegebenen Servers, kann geändert werden
-- Voraussetzung: Server kann vom Crawler erreicht werden (egal, welche `LAN-Adapter`)
+- Voraussetzung: Server kann vom Edge (Crawler) erreicht werden (egal, welche `LAN-Adapter`)
 
 ![](../../../../../assets/images/Ss9ye-RBXOTtskYXePN43_6ead054f-276a-408b-8f87-601a7a771231.png)
 
@@ -150,4 +150,4 @@ Bei dem Einsatz als VM kann es zu Abweichungen bei der Anzahl der Netzwerkadapte
 
 ![](../../../../../assets/images/xw_nuC9k3G67iwYiAPWQf_1afbc729-882a-414d-93ca-65c125ab77ae.png)
 
-Die Erst-Einrichtung ist abgeschlossen. Mit Drücken des „Abschließen“ Buttons wird der Crawler neu gestartet. Es kann anschließend mit der Einrichtung der Datenaufzeichnung fortgesetzt werden.
+Die Erst-Einrichtung ist abgeschlossen. Mit Drücken des „Abschließen“ Buttons wird der Edge (Crawler) neu gestartet. Es kann anschließend mit der Einrichtung der Datenaufzeichnung fortgesetzt werden.

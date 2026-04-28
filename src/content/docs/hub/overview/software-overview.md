@@ -11,7 +11,7 @@ The Hub is a web-based management platform that provides the following core func
 
 ### 1. Device Management
 
-- **Dashboard overview:** Central view of all managed crawler devices 
+- **Dashboard overview:** Central view of all managed Edge (Crawler) devices 
 - **Device detail view:** Comprehensive information on individual devices (status, performance, error logs) 
 - **Real-time monitoring:** Monitoring of operational status and performance metrics 
 - **Device configuration:** Saving and loading of hardware configurations 
@@ -72,7 +72,7 @@ The Hub is a web-based management platform that provides the following core func
 - **Customer management:** Creation, editing, and administration of customer accounts 
 - **User management:** Creation and management of user accounts 
 - **Roles and permissions:** Differentiated access control (Super Admin, Admin, User) 
-- **Customer grouping:** Organization of crawlers by customer 
+- **Customer grouping:** Organization of Edge (Crawler) devices by customer 
 
 ### 2. License Management
 

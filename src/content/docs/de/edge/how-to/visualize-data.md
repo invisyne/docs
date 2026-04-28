@@ -4,7 +4,7 @@ description: "VerticalSplitItem - Für die Visualisierung der Messwerte und ande
 ---
 
 :::tip
- Gültig ab Crawler Version = **2.7.1**
+ Gültig ab Edge (Crawler) Version = **2.7.1**
 :::
 
 ## Allgemeine Informationen zur Visualisierung (Grafana)
@@ -30,7 +30,7 @@ description: "VerticalSplitItem - Für die Visualisierung der Messwerte und ande
 ::::
 
 :::note
-ℹ Im Crawler wird Grafana mit der Version 7.4 eingesetzt.
+ℹ Im Edge (Crawler) wird Grafana mit der Version 7.4 eingesetzt.
 :::
 
 ---
@@ -157,7 +157,7 @@ Wurde die Auswahl der Messgröße noch nicht vollständig abgeschlossen (z. B. w
 
 ::::VerticalSplit{layout="right"}
 :::VerticalSplitItem
-Messgrößen, welche im Crawler als String gespeichert werden `(z.B. S7_DWORD`, siehe *Spezifikation: Protokolle und Feldgeräte*) erfordern eine Änderung des Wert “field”. Klicken Sie hierzu auf “value” im Bereich “Select”. Geben Sie den Text `“stringValue” `ein (⚠ beachten Sie die Groß-/Kleinschreibung). 
+Messgrößen, welche im Edge (Crawler) als String gespeichert werden `(z.B. S7_DWORD`, siehe *Spezifikation: Protokolle und Feldgeräte*) erfordern eine Änderung des Wert “field”. Klicken Sie hierzu auf “value” im Bereich “Select”. Geben Sie den Text `“stringValue” `ein (⚠ beachten Sie die Groß-/Kleinschreibung). 
 :::
 
 :::VerticalSplitItem

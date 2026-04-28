@@ -13,9 +13,9 @@ description: "- absolute Adressierung - TIA, symbolische Adressierung - S7 300/4
 
 Die Unterstützten Datentypen sind von der Adressierungsart (absolut oder symbolisch) anhängig. Sie können diese der folgenden Tabelle entnehmen.
 
-| **Datentyp**          | **Im Crawler (nur Lesen)** | **Von SPS unterstützt** |                |                                                                        |                                                          |                                                          |                                                              |
+| **Datentyp**          | **Im Edge (Crawler) (nur Lesen)** | **Von SPS unterstützt** |                |                                                                        |                                                          |                                                          |                                                              |
 | --------------------- | -------------------------- | ----------------------- | -------------- | ---------------------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | ------------------------------------------------------------ |
-| **Crawler VarType**   | **Crawler InfluxType**     | **Bits**                | **Symbolisch** | **Absolut**                                                            | **S7-300/400**                                           | **S7-1200**                                              | **S7-1500**                                                  |
+| **Edge (Crawler) VarType**   | **Edge (Crawler) InfluxType**     | **Bits**                | **Symbolisch** | **Absolut**                                                            | **S7-300/400**                                           | **S7-1200**                                              | **S7-1500**                                                  |
 | **Binärzahlen**       |                            |                         |                |                                                                        |                                                          |                                                          |                                                              |
 | S7\_Bool              | FLOAT                      | 1                       | ✔              | ✔                                                                      | ✔                                                        | ✔                                                        | ✔                                                            |
 | S7\_Byte              | FLOAT                      | 8                       | ✔              | ✔                                                                      | ✔                                                        | ✔                                                        | ✔                                                            |
@@ -118,7 +118,7 @@ Für symbolisch adressierten Datenzugriff setzt sich die Adresse hierarchisch au
   Adressiert das Element Nr. \[2,1,28] des mehrdimensionalen Arrays `TestArray` im (direkt der Hauptstruktur untergeordneten) Datenblock namens `TestDB`
 
 :::caution
-⚠ Ungültige Adressangaben, wie sie häufig bei manueller Eingabe auftreten, verhindern einen ordnungsgemäßen Datenzugriff! Durch Nutzung der Import-Funktion wird diese Fehlerquelle ausgeschlossen, die Variablen werden somit korrekt formatiert und maskiert in die Crawler-Struktur übernommen.
+⚠ Ungültige Adressangaben, wie sie häufig bei manueller Eingabe auftreten, verhindern einen ordnungsgemäßen Datenzugriff! Durch Nutzung der Import-Funktion wird diese Fehlerquelle ausgeschlossen, die Variablen werden somit korrekt formatiert und maskiert in die Edge (Crawler)-Struktur übernommen.
 :::
 
 ## Modbus TCP

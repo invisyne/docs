@@ -30,7 +30,7 @@ In the upper right area, the user menu contains:
 
 # Device Detail View
 
-## Crawler Details
+## Edge (Crawler) Details
 
 The detail view of an individual device shows the following information:
 

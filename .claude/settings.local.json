@@ -17,7 +17,9 @@
       "Bash(xargs -I{} cat {})",
       "Bash(python3 *)",
       "Read(//Users/al/**)",
-      "Bash(printenv)"
+      "Bash(printenv)",
+      "Bash(awk -F: '{print $1}')",
+      "Bash(xargs perl -i -pe ' *)"
     ]
   }
 }

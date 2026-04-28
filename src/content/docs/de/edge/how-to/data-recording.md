@@ -7,12 +7,12 @@ description: "- IP-Adresse des Feldgeräts bestimmen - Geräte-Typ vom Feldgerä
 
 - IP-Adresse des Feldgeräts bestimmen
 - Geräte-Typ vom Feldgerät bestimmen (z.B. Modbus, Simatic S7 → siehe “Unterstützte Geräte-Typen” \[TODO])
-- Feld-Gerät mit dem Netzwerk des Crawlers verbinden
+- Feld-Gerät mit dem Netzwerk des Edge (Crawler)s verbinden
 
 ---
 # Allgemeiner Ablauf
 
-1. Feldgerät im Netzwerk vom Crawler verfügbar machen
+1. Feldgerät im Netzwerk vom Edge (Crawler) verfügbar machen
 
 2. IP-Adresse und Typ vom Feldgerät ermitteln
 
@@ -57,7 +57,7 @@ optional: Vorlage auswählen
 ![](../../../../../assets/images/5wb_8nRHTdX30YjSCM4W8_b097cab7-3952-4dbb-84ff-a05a23b3be35.png)
 
 - diese Informationen dienen lediglich weitere Meta-Informationen zu hinterlegen
-- die Informationen werden später auf der Geräte-Seite angezeigt, aber haben im Crawler-System keine weitere Verwendung.
+- die Informationen werden später auf der Geräte-Seite angezeigt, aber haben im Edge (Crawler)-System keine weitere Verwendung.
 
 ---
 # Messgrößen einrichten
@@ -86,7 +86,7 @@ optional: Vorlage auswählen
 - mit Drücken von “von Gerät” werden Struktur und Messgrößen vom Feldgerät bezogen
 - Es wird anschließend im “VariablenBrowser” die verfügbaren Messgrößen und deren umliegende Struktur angezeigt
   - Bereits importierte Messgrößen sind ***grau*** hinterlegt
-  - Messgrößen, welche auf dem Crawler eingerichtet sind, aber nicht beim Import auf dem Feldgerät gefunden wurden, sind ***gelb*** hinterlegt
+  - Messgrößen, welche auf dem Edge (Crawler) eingerichtet sind, aber nicht beim Import auf dem Feldgerät gefunden wurden, sind ***gelb*** hinterlegt
 - wählen Sie alle gewünschten Messgrößen aus, welche für die Datenaufzeichnung hinzufügen wollen
 - gehen Sie anschließend zum “Warenkorb” → “Alle Importieren”
 
