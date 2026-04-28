@@ -26,12 +26,11 @@ jobs:
       #   RELEASE_NOTES_APP_KEY     — the App's private key (PEM)
       - name: Generate release-notes access token
         id: app-token
-        uses: actions/create-github-app-token@v1
+        uses: actions/create-github-app-token@v2
         with:
           app-id: ${{ secrets.RELEASE_NOTES_APP_ID }}
           private-key: ${{ secrets.RELEASE_NOTES_APP_KEY }}
           owner: invisyne
-          repositories: release-notes  # TODO: update if the repo name differs
 
       - name: Checkout release-notes
         uses: actions/checkout@v4
