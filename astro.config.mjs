@@ -40,8 +40,8 @@ export default defineConfig({
 			},
 			sidebar: [
 				{
-					label: 'Edge',
-					translations: { de: 'Edge' },
+					label: 'Edge (Crawler)',
+					translations: { de: 'Edge (Crawler)' },
 					items: [
 						{ label: 'Overview', translations: { de: 'Übersicht' }, slug: 'edge' },
 						{
@@ -105,7 +105,7 @@ export default defineConfig({
 					label: 'Downloads',
 					translations: { de: 'Downloads' },
 					items: [
-						{ label: 'Edge PDF', link: '/downloads/edge.pdf', attrs: { target: '_blank' } },
+						{ label: 'Edge (Crawler) PDF', link: '/downloads/edge.pdf', attrs: { target: '_blank' } },
 						{ label: 'Companion PDF', link: '/downloads/companion.pdf', attrs: { target: '_blank' } },
 						{ label: 'Hub PDF', link: '/downloads/hub.pdf', attrs: { target: '_blank' } },
 					],
