@@ -1,5 +1,17 @@
 # Invisyne Docs — Claude Code Instructions
 
+## ⚠ Public Repository
+
+This repository is publicly visible. Before committing anything, ensure it contains no sensitive information:
+
+- No internal URLs, IP addresses, or hostnames beyond example values
+- No credentials, API keys, tokens, or passwords
+- No internal employee names, email addresses, or contact details
+- No unreleased product information, roadmap details, or internal project names
+- No customer-specific data or references
+
+When in doubt, leave it out.
+
 This is the Invisyne product documentation site built with Starlight (Astro). It covers Hub, Edge, and Companion in English and German.
 
 ## Key Facts
