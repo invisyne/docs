@@ -18,7 +18,10 @@ export default defineConfig({
 
 	integrations: [
 		starlight({
-			title: 'Documentation',
+			title: {
+				en: 'Documentation',
+				de: 'Dokumentation',
+			},
 			customCss: ['./src/styles/custom.css'],
 			favicon: '/favicon.png',
 			logo: {
