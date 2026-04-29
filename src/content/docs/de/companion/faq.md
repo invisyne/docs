@@ -4,7 +4,7 @@ description: ""
 ---
 
 :::note
-This page has not been translated yet. Content is shown in English.
+Diese Seite wurde noch nicht übersetzt. Die Inhalte werden auf Englisch angezeigt.
 :::
 
 

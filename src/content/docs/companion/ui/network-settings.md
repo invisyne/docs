@@ -1,5 +1,5 @@
 ---
-title: "Netzwork Settings"
+title: "Network Settings"
 description: "- Checkbox \"Use as primary adapter\" → Determines via which port Companion responds."
 ---
 

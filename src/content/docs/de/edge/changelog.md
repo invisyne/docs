@@ -101,7 +101,7 @@ description: Versionshinweise für den Invisyne Edge.
 
 #### Grundlegende Änderungen
 
-- Upgrade from **v2.19 only** supported. Ensure v2.19 is fully installed before applying this update.
+- Upgrade nur von **v2.19** unterstützt. Stelle sicher, dass v2.19 vollständig installiert ist, bevor dieses Update angewendet wird.
 
 ---
 
@@ -170,8 +170,8 @@ description: Versionshinweise für den Invisyne Edge.
 
 #### Grundlegende Änderungen
 
-- Upgrade from **v2.18 only** supported.
-- After applying the optional config migration package, Grafana dashboards must be reconfigured.
+- Upgrade nur von **v2.18** unterstützt.
+- Nach dem Einspielen des optionalen Konfigurations-Migrations-Pakets müssen Grafana-Dashboards neu konfiguriert werden.
 
 ---
 
@@ -206,7 +206,7 @@ description: Versionshinweise für den Invisyne Edge.
 
 #### Grundlegende Änderungen
 
-None.
+Keine.
 
 ---
 
@@ -241,7 +241,7 @@ None.
 
 #### Grundlegende Änderungen
 
-None.
+Keine.
 
 ---
 
@@ -312,8 +312,8 @@ None.
 
 #### Grundlegende Änderungen
 
-- Upgrade from **v2.17 only** supported.
-- Docker infrastructure overhaul: all services migrated to new Docker Compose structure. Direct per-container updates are now possible.
+- Upgrade nur von **v2.17** unterstützt.
+- Docker-Infrastruktur überarbeitet: alle Dienste auf neue Docker-Compose-Struktur migriert. Direkte Updates einzelner Container sind nun möglich.
 
 ---
 
@@ -399,7 +399,7 @@ Der Simatic-Service beanspruchte beim Verbindungsaufbau zur SPS übermäßig vie
 
 #### Grundlegende Änderungen
 
-None.
+Keine.
 
 ---
 
@@ -434,7 +434,7 @@ None.
 
 #### Grundlegende Änderungen
 
-None.
+Keine.
 
 ---
 
@@ -479,8 +479,8 @@ None.
 
 #### Grundlegende Änderungen
 
-- Upgrade from **v2.15 or later** supported (2.15.1 changes included).
-- Database migrations are applied during update — brief data loss possible.
+- Upgrade von **v2.15 oder höher** unterstützt (Änderungen aus 2.15.1 sind enthalten).
+- Datenbankmigrationen werden während des Updates angewendet — kurzzeitiger Datenverlust möglich.
 
 ---
 

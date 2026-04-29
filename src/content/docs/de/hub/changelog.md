@@ -105,4 +105,4 @@ Keine.
 
 #### Grundlegende Änderungen
 
-None — initial release.
+Keine — Erstveröffentlichung.

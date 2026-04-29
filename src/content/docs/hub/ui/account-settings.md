@@ -9,7 +9,7 @@ To manage your personal data and security settings, follow these steps:
 
 **Step 1: Open Your Profile** Click on your profile icon (the circular initials "JG") in the top right corner of the navigation bar. A dropdown menu will open with various options.
 
-**Step 2: Select Account Settings** In the dropdown menu, you'll see the option "Kontoeinstellungen" (Account Settings) with a gear icon. Click on it to navigate to the settings page.
+**Step 2: Select Account Settings** In the dropdown menu, you'll see the option "Account Settings" with a gear icon. Click on it to navigate to the settings page.
 
 ![](https://api.archbee.com/api/optimize/5QJBvgamF9LtImfLB456o/--SfI4zXwXOKW-n5RhDhK_einstellungen.PNG)
 
@@ -25,7 +25,7 @@ Here you can view and edit the following information:
 - **First Name**: Your first name
 - **Last Name**: Your last name
 
-To make changes, click the "Persönliche Daten bearbeiten" (Edit Personal Data) button. The fields will become editable, allowing you to update your information. Save your changes using the "Persönliche Daten speichern" (Save Personal Data) button.
+To make changes, click the "Edit Personal Data" button. The fields will become editable, allowing you to update your information. Save your changes using the "Save Personal Data" button.
 
 ![](https://api.archbee.com/api/optimize/5QJBvgamF9LtImfLB456o/R0QtrkC805MkbFUcqhr1N_kontoeinstellungen01.PNG)
 
@@ -34,9 +34,9 @@ To make changes, click the "Persönliche Daten bearbeiten" (Edit Personal Data) 
 In the Security section, you can change your password:
 
 - Your current password is displayed as masked characters (asterisks) for security reasons
-- Click "Passwort bearbeiten" (Edit Password) to set a new password
+- Click "Edit Password" to set a new password
 
-If needed, you can discard any changes by clicking "Abbrechen" (Cancel) if you change your mind.
+If needed, you can discard any changes by clicking "Cancel" if you change your mind.
 
 ![](https://api.archbee.com/api/optimize/5QJBvgamF9LtImfLB456o/pn5NpXYW4cHV-01bTmYK6_kontoeinstellungen02.PNG)
 

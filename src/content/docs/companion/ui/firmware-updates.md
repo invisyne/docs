@@ -1,5 +1,5 @@
 ---
-title: "Firmware-Updates"
+title: "Firmware Updates"
 description: "1. \"Select Firmware\" → File drop zone opens Explorer/Finder."
 ---
 

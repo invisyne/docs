@@ -11,7 +11,7 @@ In the top right corner of the user interface, you'll find the profile icon (dis
 
 This menu provides the following options:
 
-- **Kontoeinstellungen** (Account Settings): Access to personal settings (indicated by a gear icon)
+- **Account Settings**: Access to personal settings (indicated by a gear icon)
 - **Logout**: Sign out from the Hub (indicated by an arrow icon)
 
 ## Logging Out of the System

@@ -1,5 +1,5 @@
 ---
-title: "Filter- und Suchfunktionen"
+title: "Filter & Search"
 description: "What the customer can do: - Targeted search: With many devices, the customer can use the search and"
 ---
 
