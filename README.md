@@ -71,11 +71,22 @@ How-to guides are auto-discovered from the `how-to/` directories and added to th
 
 ## Deployment
 
-Pushes to `main` trigger a GitHub Actions workflow that:
-1. Checks out the private `release-notes` repo via GitHub App token
-2. Generates changelog pages from public release notes
-3. Builds the static site with Astro
-4. Generates one PDF per product (`dist/downloads/`)
-5. Deploys to GitHub Pages
+Every push to `main` triggers the GitHub Actions workflow automatically — no manual steps, no tool login required.
 
-The GitHub App requires two secrets in this repo: `RELEASE_NOTES_APP_ID` and `RELEASE_NOTES_APP_KEY`.
+### What happens on push
+
+1. **Generate release-notes token** — A short-lived GitHub App token is created to access the private `invisyne/release-notes` repo. No stored passwords; the token expires after the run.
+2. **Checkout release-notes** — The private repo is checked out into the build environment.
+3. **Generate changelogs** — `scripts/generate-changelogs.js` reads all public release notes and writes one changelog page per product (EN + DE). Files marked `-internal` and version folders marked `-upcoming` are excluded — they never appear in the published docs.
+4. **Build** — Astro compiles the full static site to `dist/`.
+5. **Generate PDFs** — `scripts/generate-pdfs.js` produces one PDF per product (`dist/downloads/edge.pdf`, `hub.pdf`, `companion.pdf`) via Puppeteer. PDFs are not committed to the repo.
+6. **Deploy** — The `dist/` folder is deployed to GitHub Pages under the custom domain with HTTPS.
+
+### Required secrets
+
+The GitHub App requires two secrets configured in this repo's settings:
+
+| Secret | Description |
+|--------|-------------|
+| `RELEASE_NOTES_APP_ID` | The App's numeric ID |
+| `RELEASE_NOTES_APP_KEY` | The App's private key (PEM format) |
