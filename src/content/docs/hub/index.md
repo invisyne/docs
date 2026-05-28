@@ -1,10 +1,27 @@
 ---
-title: "What is the \"Hub\"?"
-description: "The Hub is a central management platform for Edge (Crawler) devices, designed as a “Edge (Crawler)’s Toolbox.” It"
+title: "Hub Overview"
+description: "Crawler.Hub is a web-based management platform for registered Edge (Crawler) devices."
 ---
 
-The Hub is a central management platform for Edge (Crawler) devices, designed as a “Edge (Crawler)’s Toolbox.” It serves as a command center for the seamless control and management of all connected Edge (Crawler) devices. The system provides a comprehensive overview of all devices, including their status, performance data, and configurations or software versions.
+Crawler.Hub is a web-based management platform for registered Edge (Crawler) devices. It provides a central view of all your devices, their current status, and available software.
 
-### Main Purpose
+## Functional Scope
 
-The Hub enables technicians and administrators to centrally manage Edge (Crawler) devices. Users are granted access to the Hub upon request and can log in to obtain an overview of all products related to Edge (Crawler) devices. In addition, users can view software statuses and different versions of devices as well as specific accompanying software, including the Companion App.
+### All Users
+
+- **My Devices** — Overview of all registered Edge (Crawler) devices with status, firmware version, and key details; access to device-specific information (status, performance, error logs, license)
+- **Software Downloads** — Download current firmware and Companion App releases
+- **Account Settings** — Manage your profile, change your password, switch language and appearance
+
+### Admins
+
+In addition to the above, administrators have access to:
+
+- **User Management** — Invite users and assign roles (Admin or User)
+
+## Security Notes
+
+- **Session timeout:** Hub automatically logs you out after a period of inactivity. Always log out manually on shared computers.
+- **Role-based access:** Your access is limited to the functions assigned to your role.
+- **HTTPS only:** Always access Hub via a secure HTTPS connection (indicated by the lock icon in your browser's address bar).
+- **Two-factor authentication:** Hub uses email-based verification codes during login.

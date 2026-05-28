@@ -15,7 +15,9 @@ description: Release notes for the Invisyne Companion.
 
 ### New Features
 
-- **Run Data Export** — Measurement data can be downloaded as a CSV file via a new run export. For time intervals exceeding 8 hours, a notice is displayed as the file size and export duration may increase accordingly. The full signal path is included in the filename to avoid duplicates.
+- **Run Data Export** — Measurement data can be downloaded as a CSV file via a new run export.
+
+- **New CSV Export Format** — All CSV exports (run export and timeframe export) use a unified wide-table format from version 1.1.0 onwards: one time column followed by one column per configured measurement data point. Two header rows — one with short names and one with the full data point path — allow unambiguous identification of identically named data points. The column separator is ";", the decimal separator is ".". The format is optimised for direct use in Excel. The timeframe export no longer splits output across multiple files — all data is written to a single file.
 
 ### Bug Fixes
 
@@ -23,13 +25,9 @@ None.
 
 ---
 
-### System Requirements
+### Requirements
 
-| Requirement    | Details                                                                 |
-|----------------|-------------------------------------------------------------------------|
-| Operating System | Windows                                                               |
-| Network        | PC must be on the same local network (LAN) as the Edge device           |
-| Compatibility  | Invisyne Edge version 2.21 or later                                     |
+- Runs are only available on Crawlers running version 2.21 or later.
 
 ---
 
@@ -52,7 +50,7 @@ None.
 
 - **Firmware & Software Updates** — Firmware and software updates can be installed directly on Edge devices.
 
-- **Data Backup & Export** — Device data (configurations, logs) can be backed up and exported as CSV.
+- **Measurement Data Export** — Configured measurement data points can be exported as CSV over a selectable timeframe. If the export timeframe exceeds the configurable maximum file duration, multiple files are created automatically. The CSV files use a custom format with time, signal, and value columns.
 
 ### Bug Fixes
 
@@ -60,10 +58,10 @@ None.
 
 ---
 
-### System Requirements
+### Requirements
 
-| Requirement    | Details                                                                 |
-|----------------|-------------------------------------------------------------------------|
-| Operating System | Windows                                                               |
-| Network        | PC must be on the same local network (LAN) as the Edge device           |
-| Compatibility  | Invisyne Edge version 2.19 or later                                     |
+| Requirement      | Details                                                                                                                           |
+|------------------|-----------------------------------------------------------------------------------------------------------------------------------|
+| Operating System | Windows 10, 11                                                                                                                    |
+| Network          | PC must be physically on the same network as the Edge device                                                                      |
+| Compatibility    | Crawler version 2.18 or later required for the updater and full network configuration                                             |

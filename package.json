@@ -18,5 +18,11 @@
   },
   "devDependencies": {
     "puppeteer": "^22.0.0"
+  },
+  "allowScripts": {
+    "esbuild": true,
+    "fsevents@2.3.3": true,
+    "puppeteer@22.15.0": true,
+    "sharp": true
   }
 }

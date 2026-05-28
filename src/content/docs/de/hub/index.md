@@ -1,10 +1,27 @@
 ---
-title: "Was ist das \"Hub\"?"
-description: "Das Hub ist eine zentrale Management-Plattform für Edge (Crawler)-Geräte, die als \"Edge (Crawler)'s Toolbox\" konzipiert ist."
+title: "Hub-Übersicht"
+description: "Crawler.Hub ist eine webbasierte Management-Plattform für registrierte Edge (Crawler)-Geräte."
 ---
 
-Das Hub ist eine zentrale Management-Plattform für Edge (Crawler)-Geräte, die als "Edge (Crawler)'s Toolbox" konzipiert ist. Es dient als Command Center zur nahtlosen Kontrolle und Verwaltung aller verbundenen Edge (Crawler)-Geräte. Das System bietet eine umfassende Übersicht über alle Geräte, deren Status, Leistungsdaten und Konfigurationen oder Softwareversionen.
+Crawler.Hub ist eine webbasierte Management-Plattform für registrierte Edge (Crawler)-Geräte. Sie bietet eine zentrale Übersicht über alle Geräte, deren aktuellen Status und verfügbare Software.
 
-### Hauptzweck
+## Funktionsumfang
 
-Das Hub ermöglicht es Technikern und Administratoren, eine zentrale Verwaltung von Edge (Crawler)-Geräten durchzuführen. Benutzer erhalten nach Anfrage Zugang zum Hub und können sich einloggen, um eine Übersicht über alle Produkte zu erhalten, die im Zusammenhang mit Edge (Crawler)n stehen. Des Weiteren kann man Softwarestände und verschiedene Versionen von Geräten sowie bestimmter begleitender Software einsehen. Darunter fällt auch die Companion App.
+### Alle Benutzer
+
+- **Meine Geräte** — Übersicht aller registrierten Edge (Crawler)-Geräte mit Status, Firmware-Version und wichtigen Details; Zugriff auf gerätespezifische Informationen (Status, Performance, Fehlerprotokolle, Lizenz)
+- **Software-Downloads** — Aktuelle Firmware- und Companion-App-Releases herunterladen
+- **Kontoeinstellungen** — Profil verwalten, Passwort ändern, Sprache und Darstellung wechseln
+
+### Admins
+
+Zusätzlich zu den oben genannten Funktionen haben Administratoren Zugriff auf:
+
+- **Benutzerverwaltung** — Benutzer einladen und Rollen zuweisen (Admin oder User)
+
+## Sicherheitshinweise
+
+- **Session-Timeout:** Hub meldet Sie nach einer Inaktivitätsphase automatisch ab. Melden Sie sich auf gemeinsam genutzten Computern immer manuell ab.
+- **Rollenbasierter Zugriff:** Ihr Zugriff ist auf die Funktionen beschränkt, die Ihrer Rolle zugewiesen sind.
+- **Nur HTTPS:** Greifen Sie auf Hub ausschließlich über eine sichere HTTPS-Verbindung zu (erkennbar am Schloss-Symbol in der Adressleiste).
+- **Zwei-Faktor-Authentifizierung:** Hub verwendet E-Mail-basierte Bestätigungscodes beim Login.

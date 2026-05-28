@@ -27,28 +27,6 @@ description: "Installation, setup, and first steps for the Crawler.Companion app
 
 ---
 
-## Technical Specifications and System Requirements
-
-**Technical Specifications and System Requirements:** To ensure smooth operation of the Crawler.Companion, the following minimum requirements must be met for the system used:
-
-| Category              | Minimum Requirement                                              | Recommended          |
-| --------------------- | ---------------------------------------------------------------- | -------------------- |
-| Operating System (OS) | Windows 10 (64-bit)                                              | Windows 11 (64-bit)  |
-| Processor (CPU)       |                                                                  |                      |
-| Memory (RAM)          |                                                                  |                      |
-| Hard Disk Space       |                                                                  |                      |
-| Network               |                                                                  |                      |
-| Required Programs     | WebView2 is supported on Windows 10 SAC 1709 and newer versions. | Supported by default |
-
-# ****
-
-# **Software Prerequisites:**
-
-- The user may require local administrator rights for installation and for certain functions that affect network traffic (e.g., device discovery).
-- The firewall must be configured to allow the Companion to communicate via the required discovery port (by default a UDP port).
-
----
-
 ## Initial Setup - Step by Step
 
 ## **1) Start Companion**

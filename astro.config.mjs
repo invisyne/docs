@@ -18,6 +18,7 @@ export default defineConfig({
 
 	integrations: [
 		starlight({
+			pagination: false,
 			title: {
 				en: 'Documentation',
 				de: 'Dokumentation',
@@ -42,76 +43,79 @@ export default defineConfig({
 				{
 					label: 'Edge (Crawler)',
 					translations: { de: 'Edge (Crawler)' },
-					collapsed: true,
+					collapsed: false,
 					items: [
 						{ label: 'Overview', translations: { de: 'Übersicht' }, slug: 'edge' },
-						{
-							label: 'More Overview',
-							translations: { de: 'Weitere Infos' },
-							autogenerate: { directory: 'edge/overview' },
-						},
 						{ label: 'Quickstart', translations: { de: 'Schnellstart' }, slug: 'edge/quickstart' },
+						{ label: 'Changelog', translations: { de: 'Changelog' }, slug: 'edge/changelog' },
 						{
 							label: 'How-To Guides',
-							translations: { de: 'Anleitungen' },
+							translations: { de: 'How-To\'s' },
 							autogenerate: { directory: 'edge/how-to' },
 						},
-						{ label: 'Changelog', translations: { de: 'Changelog' }, slug: 'edge/changelog' },
+						{
+							label: 'UI Reference',
+							translations: { de: 'Benutzeroberfläche' },
+							autogenerate: { directory: 'edge/ui' },
+						},
+						{
+							label: 'Technical Reference',
+							translations: { de: 'Technische Referenz' },
+							autogenerate: { directory: 'edge/overview' },
+						},
+						{ label: 'Download PDF', translations: { de: 'PDF-Download' }, link: '/downloads/edge.pdf', attrs: { target: '_blank' } },
 					],
 				},
 				{
 					label: 'Companion',
 					translations: { de: 'Companion' },
-					collapsed: true,
+					collapsed: false,
 					items: [
 						{ label: 'Overview', translations: { de: 'Übersicht' }, slug: 'companion' },
-						{
-							label: 'More Overview',
-							translations: { de: 'Weitere Infos' },
-							autogenerate: { directory: 'companion/overview' },
-						},
 						{ label: 'Quickstart', translations: { de: 'Schnellstart' }, slug: 'companion/quickstart' },
+						{ label: 'Changelog', translations: { de: 'Changelog' }, slug: 'companion/changelog' },
+						{
+							label: 'How-To Guides',
+							translations: { de: 'How-To\'s' },
+							autogenerate: { directory: 'companion/how-to' },
+						},
 						{
 							label: 'UI Reference',
 							translations: { de: 'Benutzeroberfläche' },
 							autogenerate: { directory: 'companion/ui' },
 						},
 						{
-							label: 'How-To Guides',
-							translations: { de: 'Anleitungen' },
-							autogenerate: { directory: 'companion/how-to' },
+							label: 'Technical Reference',
+							translations: { de: 'Technische Referenz' },
+							autogenerate: { directory: 'companion/technical' },
 						},
-						{ label: 'Changelog', translations: { de: 'Changelog' }, slug: 'companion/changelog' },
+						{ label: 'Download PDF', translations: { de: 'PDF-Download' }, link: '/downloads/companion.pdf', attrs: { target: '_blank' } },
 					],
 				},
 				{
 					label: 'Hub',
 					translations: { de: 'Hub' },
-					collapsed: true,
+					collapsed: false,
 					items: [
 						{ label: 'Overview', translations: { de: 'Übersicht' }, slug: 'hub' },
-						{
-							label: 'More Overview',
-							translations: { de: 'Weitere Infos' },
-							autogenerate: { directory: 'hub/overview' },
-						},
 						{ label: 'Quickstart', translations: { de: 'Schnellstart' }, slug: 'hub/quickstart' },
+						{ label: 'Changelog', translations: { de: 'Changelog' }, slug: 'hub/changelog' },
+						{
+							label: 'How-To Guides',
+							translations: { de: 'How-To\'s' },
+							autogenerate: { directory: 'hub/how-to' },
+						},
 						{
 							label: 'UI Reference',
 							translations: { de: 'Benutzeroberfläche' },
 							autogenerate: { directory: 'hub/ui' },
 						},
-						{ label: 'Changelog', translations: { de: 'Changelog' }, slug: 'hub/changelog' },
-					],
-				},
-				{
-					label: 'Downloads',
-					translations: { de: 'Downloads' },
-					collapsed: true,
-					items: [
-						{ label: 'Edge (Crawler) PDF', link: '/downloads/edge.pdf', attrs: { target: '_blank' } },
-						{ label: 'Companion PDF', link: '/downloads/companion.pdf', attrs: { target: '_blank' } },
-						{ label: 'Hub PDF', link: '/downloads/hub.pdf', attrs: { target: '_blank' } },
+						{
+							label: 'Technical Reference',
+							translations: { de: 'Technische Referenz' },
+							autogenerate: { directory: 'hub/technical' },
+						},
+						{ label: 'Download PDF', translations: { de: 'PDF-Download' }, link: '/downloads/hub.pdf', attrs: { target: '_blank' } },
 					],
 				},
 			],

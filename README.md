@@ -12,11 +12,12 @@ Documentation is provided for three Invisyne products:
 
 ## Structure
 
-Documentation is available in English (default) and German (`/de/`). Each product has four sections:
+Documentation is available in English (default) and German (`/de/`). Each product has the following sections:
 
 - **Overview** — What the product is and how it fits into the Invisyne ecosystem
 - **Quickstart** — First-time setup guide
-- **How-To Guides** — Task-oriented guides for specific operations
+- **UI Reference** — Description of all UI pages and their functions
+- **How-To Guides** — Task-oriented guides for specific operations (Companion and Edge only; Hub in progress)
 - **Changelog** — Version history and release notes
 
 ## How It Works

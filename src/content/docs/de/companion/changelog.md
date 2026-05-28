@@ -15,7 +15,9 @@ description: Versionshinweise für den Invisyne Companion.
 
 ### Neue Funktionen
 
-- **Run-Datenexport** — Messdaten lassen sich über einen neuen Run-Export als CSV-Datei herunterladen. Bei Zeitintervallen über 8 Stunden wird ein Hinweis angezeigt, da die Dateigröße und Dauer des Exports entsprechend zunehmen können. Der vollständige Signalpfad ist im Dateinamen enthalten, um Duplikate zu vermeiden.
+- **Run-Datenexport** — Messdaten lassen sich über einen neuen Run-Export als CSV-Datei herunterladen.
+
+- **Neues CSV-Export-Format** — Alle CSV-Exporte (Run-Export und Zeitraum-Export) verwenden ab Version 1.1.0 ein einheitliches Breitformat: eine Zeitspalte gefolgt von einer Spalte pro konfiguriertem Messpunkt. Zwei Kopfzeilen — eine Kurzbezeichnung und der vollständige Datenpfad — ermöglichen die eindeutige Zuordnung bei gleichnamigen Messpunkten. Als Spaltentrennzeichen wird „;" verwendet, Dezimalzeichen ist „.". Das Format ist für die direkte Verwendung in Excel optimiert. Beim Zeitraum-Export entfällt die bisherige Dateigrößenbegrenzung — alle Daten werden in eine einzige Datei geschrieben.
 
 ### Fehlerbehebungen
 
@@ -23,13 +25,9 @@ Keine.
 
 ---
 
-### Systemvoraussetzungen
+### Voraussetzungen
 
-| Anforderung    | Details                                                                 |
-|----------------|-------------------------------------------------------------------------|
-| Betriebssystem | Windows                                                                 |
-| Netzwerk       | PC muss sich im selben lokalen Netzwerk (LAN) befinden wie das Edge-Gerät |
-| Kompatibilität | Invisyne Edge ab Version 2.21                                           |
+- Runs sind nur auf Crawlern ab Version 2.21 verfügbar.
 
 ---
 
@@ -52,7 +50,7 @@ Keine.
 
 - **Firmware & Software-Updates** — Firmware- und Software-Updates lassen sich direkt auf den Edge-Geräten installieren.
 
-- **Daten-Backup & Export** — Gerätedaten (Konfigurationen, Logs) können gesichert und als CSV exportiert werden.
+- **Messdaten-Export** — Konfigurierte Messpunkte lassen sich über einen wählbaren Zeitraum als CSV exportieren. Überschreitet der Exportzeitraum die einstellbare Maximaldauer pro Datei, werden automatisch mehrere Dateien erstellt. Die CSV-Dateien verwenden ein eigenes Format mit den Spalten Zeit, Signal und Wert.
 
 ### Fehlerbehebungen
 
@@ -60,10 +58,10 @@ Keine.
 
 ---
 
-### Systemvoraussetzungen
+### Voraussetzungen
 
-| Anforderung    | Details                                                                 |
-|----------------|-------------------------------------------------------------------------|
-| Betriebssystem | Windows                                                                 |
-| Netzwerk       | PC muss sich im selben lokalen Netzwerk (LAN) befinden wie das Edge-Gerät |
-| Kompatibilität | Invisyne Edge ab Version 2.19                                           |
+| Anforderung    | Details                                                                                                                                     |
+|----------------|---------------------------------------------------------------------------------------------------------------------------------------------|
+| Betriebssystem | Windows 10, 11                                                                                                                              |
+| Netzwerk       | PC muss sich physisch im selben Netzwerk befinden wie das Edge-Gerät                                                                        |
+| Kompatibilität | Für Updater und vollständige Netzwerkkonfiguration wird ein Crawler ab Version 2.18 benötigt                                                 |

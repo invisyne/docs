@@ -1,33 +1,37 @@
 ---
-title: "Was ist der „Companion\"?"
-description: "Der Crawler.Companion ist eine spezialisierte Windows-Anwendung (Desktop-Software), die als zentrales lokales Verwaltungswerkzeug für Ihre Edge (Crawler)-Geräte dient."
+title: "Companion-Übersicht"
+description: "Der Crawler.Companion ist eine Windows-Desktop-Anwendung zur Erkennung und Verwaltung von Edge (Crawler)-Geräten im lokalen Netzwerk."
 ---
 
-## Was ist der „Companion"?
+Der Crawler.Companion ist eine Windows-Desktop-Anwendung zur Erkennung und Verwaltung von Edge (Crawler)-Geräten im lokalen Netzwerk. Er ist für das Vor-Ort-Management ausgelegt — während der Crawler.Hub die zentrale Verwaltung über mehrere Standorte hinweg übernimmt, wird der Companion direkt vor Ort von Technikern und Administratoren eingesetzt.
 
-Der Crawler.Companion ist eine spezialisierte Windows-Anwendung (Desktop-Software), die als zentrales lokales Verwaltungswerkzeug für Ihre Edge (Crawler)-Geräte dient. Er ist ein wesentlicher Bestandteil der Edge (Crawler)-Plattform (bestehend aus Edge, Hub und Companion) und wurde speziell für Techniker und Administratoren entwickelt, die Konfigurations- und Wartungsaufgaben direkt vor Ort im lokalen Netzwerk (LAN) durchführen müssen.
+:::note
+Der PC muss sich im selben Netzwerk wie das Edge (Crawler)-Gerät befinden.
+:::
 
-### **Kernfunktionen und Abgrenzung:**
+## Funktionsumfang
 
-| Funktion               | Beschreibung                                                                                    | Nutzen für den Anwender                                                                                    |
-| ---------------------- | ----------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| Netzwerkerkennung      | Automatische Suche und Auflistung aller Edge (Crawler)-Geräte im selben lokalen Netzwerk.         | Schnelles Auffinden und Identifizieren von Geräten ohne manuelle IP-Eingabe.                               |
-| Lokale Verwaltung      | Konfiguration grundlegender Einstellungen (z. B. IP-Adresse) und Geräteeigenschaften.           | Ermöglicht schnelle Inbetriebnahme und Anpassung der Netzwerkkonfiguration.                                |
-| Updates                | Installation von Firmware- und Software-Updates auf den Edge-Geräten.                          | Stellt sicher, dass Geräte stets mit der neuesten, sichersten und funktionsreichsten Software betrieben werden. |
-| Datensicherung/Export  | Sicherung von Gerätedaten (z. B. Konfigurationen oder Protokolle) oder Export als CSV-Dateien. | Dient der Datensicherung, Archivierung und Vorbereitung von Daten für die Analyse.                         |
+1. **Geräteerkennung** — Automatische Erkennung aller aktiven Edge (Crawler)-Geräte im lokalen Netzwerk
+2. **Geräteverwaltung** — Anzeige von Gerätedetails und Bearbeitung wichtiger Parameter
+3. **Netzwerkeinstellungen** — Konfiguration der IP-Adresse und anderer Netzwerkeigenschaften
+4. **Software-Updates** — Firmware- und Software-Updates der Edge (Crawler)-Geräte durchführen
+5. **Datenexport** — Konfigurations- oder Messdaten als CSV exportieren
+6. **WebUI-Zugriff** — Web-Oberfläche des ausgewählten Geräts direkt im Browser öffnen
 
-Der Crawler.Companion ist für das **Vor-Ort-Management** ausgelegt, während der Crawler.Hub für die zentrale, umfassende Verwaltung und Visualisierung mehrerer Geräte an verschiedenen Standorten konzipiert ist.
+## Sicherheitshinweise
 
-### **Allgemein:**
+:::caution
+Der Crawler.Companion kann Netzwerkeinstellungen der Edge (Crawler)-Geräte ändern. Unsachgemäße Änderungen können dazu führen, dass Geräte nicht mehr erreichbar sind.
+:::
 
-- **Zweck:** Edge (Crawler)-Gerät finden, darauf zugreifen und es konfigurieren – ein Gerät, das Daten erfasst, verarbeitet und weiterleitet.
-- **Voraussetzung:** Der PC muss sich im selben Netzwerk wie der Edge (Crawler) befinden.
+- Führen Sie Konfigurationsänderungen nur durch, wenn Sie mit den Grundlagen der Netzwerkkonfiguration (IP-Adressen, Subnetzmasken, Gateways) vertraut sind.
+- Stellen Sie vor der Installation von Updates sicher, dass die Stromversorgung des Edge (Crawler)-Geräts nicht unterbrochen wird.
 
-### **Kernaufgaben:**
+## Fehlerbehebung
 
-- Gerät (Edge (Crawler)) automatisch finden
-- Live-Status und technische Daten anzeigen
-- Netzwerkparameter festlegen (IP, DNS, Gateway)
-- Firmware-Updates installieren
-- Direkten Sprung zur Web-Oberfläche des Geräts (WebUI) ausführen
-- Geräteübersicht anzeigen
+| Problem | Mögliche Ursache | Lösung |
+| --- | --- | --- |
+| Gerät nicht gefunden | Gerät ist ausgeschaltet oder im falschen Netzwerk | Überprüfen Sie die Stromversorgung und stellen Sie sicher, dass sich das Gerät im selben Subnetz wie der PC mit dem Companion befindet |
+| Fehler bei Netzwerkeinstellung | Falsche IP-Adresse oder Subnetzmaske eingegeben | Überprüfen Sie, ob die eingegebene statische IP-Adresse nicht bereits vergeben ist und im richtigen IP-Bereich liegt |
+| Kein Zugriff auf WebUI | Gerät hat eine neue, unbekannte IP-Adresse | Überprüfen Sie die aktuelle IP-Adresse in der Geräteübersicht und versuchen Sie den manuellen Zugriff über den Browser |
+| Update schlägt fehl | Unterbrechung der Netzwerkverbindung | Überprüfen Sie die Netzwerkstabilität; stellen Sie sicher, dass keine Firewall den Zugriff blockiert |

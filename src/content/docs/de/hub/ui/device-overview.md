@@ -10,6 +10,8 @@ description: "Die Hauptnavigation befindet sich im oberen Bereich der Anwendung 
 Die Hauptnavigation befindet sich im oberen Bereich der Anwendung und bietet Zugriff auf folgende Bereiche:
 
 - **Geräte**: Zentrale Geräte-Übersicht
+- **Kunden**: Kundenverwaltung (je nach Berechtigung)
+- **Benutzer**: Benutzerverwaltung (Admin-Bereich)
 - **Software**: Software-bezogene Funktionen
 - **Hardware**: Hardware-Konfigurationen
 
@@ -23,8 +25,6 @@ Im oberen rechten Bereich befindet sich das Benutzermenü mit:
 - Benutzerprofil mit Initialen
 - Kontoeinstellungen
 - Logout-Funktion
-
-##
 
 # Geräte-Detailansicht
 
@@ -57,10 +57,10 @@ Die Detailansicht bietet folgende Aktionsmöglichkeiten:
 
 ### Setup-Funktionen
 
-- **?HW-Konfiguration speichern/laden**: Sichern und Wiederherstellen von Hardware-Konfigurationen
-- **?****Datenbank exportieren**: Export der Gerätedatenbank
+- **HW-Konfiguration speichern/laden**: Sichern und Wiederherstellen von Hardware-Konfigurationen
+- **Datenbank exportieren**: Export der Gerätedatenbank
 - **FW-Update durchführen**: Firmware-Aktualisierung für das Gerät
-- **?Alarme setzen**: Konfiguration von Geräte-Alarmen
+- **Alarme setzen**: Konfiguration von Geräte-Alarmen
 
 ### Bearbeiten und Speichern
 

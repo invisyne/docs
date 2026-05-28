@@ -3,4 +3,6 @@ title: Schnellstart
 description: Einstieg mit dem Invisyne Edge.
 ---
 
-Folgen Sie diesen Schritten zur Ersteinrichtung Ihres Edge-Geräts.
+:::caution
+Dieser Bereich befindet sich derzeit im Aufbau. Inhalte werden in Kürze ergänzt.
+:::
