@@ -1,0 +1,266 @@
+/*
+ * Design Tokens — Invisyne
+ *
+ * Section 1 — Raw brand tokens (manually authored from Brand Book)
+ * Section 2 — M3 system color tokens (generated from Material Theme Builder, source color #2549FF)
+ *             Update by re-running Material Theme Builder in Figma → Web (CSS) export
+ *             → replace brand/tokens/light.json and dark.json → update Section 2 below
+ */
+
+/* ───────────────────────────────────────────────
+   Section 1: Raw Brand Tokens
+─────────────────────────────────────────────── */
+:root {
+  /* Brand Colors */
+  --brand-primary:       #2549FF;
+  --brand-primary-dark:  #0327AC;
+  --brand-secondary:     #BF4DF3;
+  --brand-tertiary-1:    #2BBDB6;
+  --brand-tertiary-2:    #F78337;
+
+  /* Grey Scale */
+  --brand-grey-050: #F4F3F5;
+  --brand-grey-100: #E9E7EB;
+  --brand-grey-150: #DEDBE1;
+  --brand-grey-200: #D3CFD7;
+  --brand-grey-300: #BDB6C3;
+  --brand-grey-400: #A79EB0;
+  --brand-grey-500: #91869C;
+  --brand-grey-600: #746B7D;
+  --brand-grey-700: #57505E;
+  --brand-grey-800: #3A363E;
+  --brand-grey-900: #2B282F;
+  --brand-grey-950: #191A20;
+
+  /* Typography */
+  --brand-font-display: 'GT America Extended';
+  --brand-font-body:    Roboto;
+
+  /* Feedback Colors */
+  --brand-success-light: #C1FFC0;
+  --brand-success:       #58D056;
+  --brand-success-dark:  #235322;
+
+  --brand-warning-light: #FCF0CD;
+  --brand-warning:       #F6CC58;
+  --brand-warning-dark:  #786224;
+
+  --brand-error-light:   #FFB7BC;
+  --brand-error:         #ED3C48;
+  --brand-error-dark:    #5F181D;
+
+  --brand-info-light:    #ECCAFB;
+  --brand-info:          #BF4DF3;
+  --brand-info-dark:     #56206F;
+}
+
+/* ───────────────────────────────────────────────
+   Section 2: M3 System Color Tokens
+   Apply via [data-scheme="light"] or [data-scheme="dark"] on <html>
+─────────────────────────────────────────────── */
+[data-scheme="light"] {
+  --md-sys-color-background: #fdfcff;
+  --md-sys-color-error: #bf0031;
+  --md-sys-color-error-container: #ffdad8;
+  --md-sys-color-inverse-on-surface: #f2f0f7;
+  --md-sys-color-inverse-primary: #b9c5ff;
+  --md-sys-color-inverse-surface: #313035;
+  --md-sys-color-on-background: #1c1b20;
+  --md-sys-color-on-error: #ffffff;
+  --md-sys-color-on-error-container: #410004;
+  --md-sys-color-on-primary: #ffffff;
+  --md-sys-color-on-primary-container: #002fd5;
+  --md-sys-color-on-primary-fixed: #000f67;
+  --md-sys-color-on-primary-fixed-variant: #002fd5;
+  --md-sys-color-on-secondary: #ffffff;
+  --md-sys-color-on-secondary-container: #4c4451;
+  --md-sys-color-on-secondary-fixed: #1f182b;
+  --md-sys-color-on-secondary-fixed-variant: #4b4358;
+  --md-sys-color-on-surface: #1c1b20;
+  --md-sys-color-on-surface-variant: #484551;
+  --md-sys-color-on-tertiary: #ffffff;
+  --md-sys-color-on-tertiary-container: #370a1c;
+  --md-sys-color-on-tertiary-fixed: #31101b;
+  --md-sys-color-on-tertiary-fixed-variant: #643b46;
+  --md-sys-color-outline: #787583;
+  --md-sys-color-outline-variant: #c8c4d3;
+  --md-sys-color-primary: #2549ff;
+  --md-sys-color-primary-container: #d5dbff;
+  --md-sys-color-primary-fixed: #d5dbff;
+  --md-sys-color-primary-fixed-dim: #b9c5ff;
+  --md-sys-color-scrim: #000002;
+  --md-sys-color-secondary: #7b7280;
+  --md-sys-color-secondary-container: #e7e2ea;
+  --md-sys-color-secondary-fixed: #e7e2ea;
+  --md-sys-color-secondary-fixed-dim: #cdc8d1;
+  --md-sys-color-shadow: #000002;
+  --md-sys-color-surface: #fdfcff;
+  --md-sys-color-surface-bright: #faf9fb;
+  --md-sys-color-surface-container: #f0edf2;
+  --md-sys-color-surface-container-high: #ebe7ec;
+  --md-sys-color-surface-container-highest: #e7e0e8;
+  --md-sys-color-surface-container-low: #f5f3f8;
+  --md-sys-color-surface-container-lowest: #ffffff;
+  --md-sys-color-surface-dim: #ddd9de;
+  --md-sys-color-surface-tint: #2549ff;
+  --md-sys-color-surface-variant: #e4e0f0;
+  --md-sys-color-tertiary: #834f5f;
+  --md-sys-color-tertiary-container: #ffd9e3;
+  --md-sys-color-tertiary-fixed: #ffd9e1;
+  --md-sys-color-tertiary-fixed-dim: #f0b7c5;
+}
+
+[data-scheme="dark"] {
+  --md-sys-color-background: #151218;
+  --md-sys-color-error: #ffb4ab;
+  --md-sys-color-error-container: #93000a;
+  --md-sys-color-inverse-on-surface: #322f35;
+  --md-sys-color-inverse-primary: #1445fa;
+  --md-sys-color-inverse-surface: #e7e0e8;
+  --md-sys-color-on-background: #e7e0e8;
+  --md-sys-color-on-error: #690005;
+  --md-sys-color-on-error-container: #ffdad6;
+  --md-sys-color-on-primary: #001e9d;
+  --md-sys-color-on-primary-container: #d5dbff;
+  --md-sys-color-on-primary-fixed: #000f67;
+  --md-sys-color-on-primary-fixed-variant: #002fd5;
+  --md-sys-color-on-secondary: #362d3a;
+  --md-sys-color-on-secondary-container: #e7e2ea;
+  --md-sys-color-on-secondary-fixed: #201924;
+  --md-sys-color-on-secondary-fixed-variant: #4c4451;
+  --md-sys-color-on-surface: #e3e1e9;
+  --md-sys-color-on-surface-variant: #c8c4d3;
+  --md-sys-color-on-tertiary: #4a2530;
+  --md-sys-color-on-tertiary-container: #ffd9e1;
+  --md-sys-color-on-tertiary-fixed: #31101b;
+  --md-sys-color-on-tertiary-fixed-variant: #643b46;
+  --md-sys-color-outline: #928f9d;
+  --md-sys-color-outline-variant: #484551;
+  --md-sys-color-primary: #b9c5ff;
+  --md-sys-color-primary-container: #002fd5;
+  --md-sys-color-primary-fixed: #d5dbff;
+  --md-sys-color-primary-fixed-dim: #b9c5ff;
+  --md-sys-color-scrim: #000000;
+  --md-sys-color-secondary: #cdc8d1;
+  --md-sys-color-secondary-container: #4c4451;
+  --md-sys-color-secondary-fixed: #e7e2ea;
+  --md-sys-color-secondary-fixed-dim: #cdc8d1;
+  --md-sys-color-shadow: #000000;
+  --md-sys-color-surface: #141319;
+  --md-sys-color-surface-bright: #3d3c42;
+  --md-sys-color-surface-container: #1f1e23;
+  --md-sys-color-surface-container-high: #2a292e;
+  --md-sys-color-surface-container-highest: #37363b;
+  --md-sys-color-surface-container-low: #1c1b20;
+  --md-sys-color-surface-container-lowest: #0f0e14;
+  --md-sys-color-surface-dim: #141319;
+  --md-sys-color-surface-tint: #d3bcfd;
+  --md-sys-color-surface-variant: #49454e;
+  --md-sys-color-tertiary: #f0b7c5;
+  --md-sys-color-tertiary-container: #643b46;
+  --md-sys-color-tertiary-fixed: #ffd9e1;
+  --md-sys-color-tertiary-fixed-dim: #f0b7c5;
+}
+
+/* ───────────────────────────────────────────────
+   Section 3: M3 Typography Tokens
+   Source: designer export, typography.css
+   Update by re-exporting from Figma → typography.css → replace Section 3
+─────────────────────────────────────────────── */
+:root {
+  --mat-sys-body-large-font:        var(--brand-font-body);
+  --mat-sys-body-large-size:        16px;
+  --mat-sys-body-large-weight:      400;
+  --mat-sys-body-large-line-height: 24px;
+  --mat-sys-body-large-tracking:    0.5px;
+
+  --mat-sys-body-medium-font:        var(--brand-font-body);
+  --mat-sys-body-medium-size:        14px;
+  --mat-sys-body-medium-weight:      400;
+  --mat-sys-body-medium-line-height: 20px;
+  --mat-sys-body-medium-tracking:    0.25px;
+
+  --mat-sys-body-small-font:        var(--brand-font-body);
+  --mat-sys-body-small-size:        12px;
+  --mat-sys-body-small-weight:      400;
+  --mat-sys-body-small-line-height: 16px;
+  --mat-sys-body-small-tracking:    0.4px;
+
+  --mat-sys-display-large-font:        var(--brand-font-display);
+  --mat-sys-display-large-size:        57px;
+  --mat-sys-display-large-weight:      500;
+  --mat-sys-display-large-line-height: 64px;
+  --mat-sys-display-large-tracking:    -0.25px;
+  --mat-sys-display-large:             500 57px/64px var(--brand-font-display);
+
+  --mat-sys-display-medium-font:        var(--brand-font-display);
+  --mat-sys-display-medium-size:        45px;
+  --mat-sys-display-medium-weight:      500;
+  --mat-sys-display-medium-line-height: 52px;
+  --mat-sys-display-medium-tracking:    0px;
+  --mat-sys-display-medium:             500 45px/52px var(--brand-font-display);
+
+  --mat-sys-display-small-font:        var(--brand-font-display);
+  --mat-sys-display-small-size:        36px;
+  --mat-sys-display-small-weight:      500;
+  --mat-sys-display-small-line-height: 44px;
+  --mat-sys-display-small-tracking:    0px;
+  --mat-sys-display-small:             500 36px/44px var(--brand-font-display);
+
+  --mat-sys-headline-large-font:        var(--brand-font-display);
+  --mat-sys-headline-large-size:        32px;
+  --mat-sys-headline-large-weight:      500;
+  --mat-sys-headline-large-line-height: 40px;
+  --mat-sys-headline-large-tracking:    0px;
+  --mat-sys-headline-large:             500 32px/40px var(--brand-font-display);
+
+  --mat-sys-headline-medium-font:        var(--brand-font-display);
+  --mat-sys-headline-medium-size:        28px;
+  --mat-sys-headline-medium-weight:      500;
+  --mat-sys-headline-medium-line-height: 36px;
+  --mat-sys-headline-medium-tracking:    0px;
+  --mat-sys-headline-medium:             500 28px/36px var(--brand-font-display);
+
+  --mat-sys-headline-small-font:        var(--brand-font-display);
+  --mat-sys-headline-small-size:        24px;
+  --mat-sys-headline-small-weight:      500;
+  --mat-sys-headline-small-line-height: 32px;
+  --mat-sys-headline-small-tracking:    0px;
+  --mat-sys-headline-small:             500 24px/32px var(--brand-font-display);
+
+  --mat-sys-label-large-font:        var(--brand-font-body);
+  --mat-sys-label-large-size:        14px;
+  --mat-sys-label-large-weight:      500;
+  --mat-sys-label-large-line-height: 20px;
+  --mat-sys-label-large-tracking:    0.1px;
+
+  --mat-sys-label-medium-font:        var(--brand-font-body);
+  --mat-sys-label-medium-size:        12px;
+  --mat-sys-label-medium-weight:      500;
+  --mat-sys-label-medium-line-height: 16px;
+  --mat-sys-label-medium-tracking:    0.5px;
+
+  --mat-sys-label-small-font:        var(--brand-font-body);
+  --mat-sys-label-small-size:        11px;
+  --mat-sys-label-small-weight:      500;
+  --mat-sys-label-small-line-height: 16px;
+  --mat-sys-label-small-tracking:    0.5px;
+
+  --mat-sys-title-large-font:        var(--brand-font-body);
+  --mat-sys-title-large-size:        22px;
+  --mat-sys-title-large-weight:      400;
+  --mat-sys-title-large-line-height: 28px;
+  --mat-sys-title-large-tracking:    0px;
+
+  --mat-sys-title-medium-font:        var(--brand-font-body);
+  --mat-sys-title-medium-size:        16px;
+  --mat-sys-title-medium-weight:      500;
+  --mat-sys-title-medium-line-height: 24px;
+  --mat-sys-title-medium-tracking:    0.15px;
+
+  --mat-sys-title-small-font:        var(--brand-font-body);
+  --mat-sys-title-small-size:        14px;
+  --mat-sys-title-small-weight:      500;
+  --mat-sys-title-small-line-height: 20px;
+  --mat-sys-title-small-tracking:    0.1px;
+}

@@ -1,7 +1,29 @@
+@import './tokens.css';
+
+/* Dark mode (Starlight default) */
+:root {
+  --sl-color-accent-low:  #002fd5;
+  --sl-color-accent:      #2549ff;
+  --sl-color-accent-high: #b9c5ff;
+  --sl-font: Roboto, sans-serif;
+}
+
+/* Light mode */
+:root[data-theme='light'] {
+  --sl-color-accent-low:  #d5dbff;
+  --sl-color-accent:      #2549ff;
+  --sl-color-accent-high: #0327ac;
+}
+
 :root[data-theme="light"] .site-title {
 	color: #1a1a1a !important;
 }
 
 :root[data-theme="dark"] .site-title {
 	color: #ffffff !important;
+}
+
+.site-title img {
+	/* Logo PNG has 30px top / 5px bottom padding → content sits ~3px below center */
+	transform: translateY(-3px);
 }
