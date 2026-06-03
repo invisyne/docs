@@ -27,3 +27,124 @@
 	/* Logo PNG has 30px top / 5px bottom padding → content sits ~3px below center */
 	transform: translateY(-3px);
 }
+
+/* ─── Hub Overview — Role badge ─────────────────────────────────────── */
+.role-badge {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	background: var(--sl-color-gray-6);
+	color: var(--sl-color-gray-2);
+	font-size: 0.75rem;
+	font-weight: 600;
+	padding: 3px 10px;
+	border-radius: 20px;
+	margin-bottom: 1rem;
+	margin-top: 1.5rem;
+	border: 1px solid var(--sl-color-gray-5);
+}
+
+/* ─── Hub Overview — Feature card grid ──────────────────────────────── */
+.feature-grid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 0.75rem;
+	margin-bottom: 0.5rem;
+}
+
+.feature-grid.two-col {
+	grid-template-columns: 1fr 1fr;
+}
+
+.feature-grid.one-col {
+	grid-template-columns: 1fr;
+	max-width: 420px;
+}
+
+.feature-card {
+	background: var(--sl-color-black);
+	border: 1px solid var(--sl-color-gray-5);
+	border-radius: 10px;
+	padding: 1.1rem 1.25rem;
+}
+
+:root[data-theme='light'] .feature-card {
+	background: #ffffff;
+}
+
+.feature-card-title {
+	font-size: 0.9rem;
+	font-weight: 600;
+	color: var(--sl-color-white);
+	margin-bottom: 0.4rem;
+}
+
+:root[data-theme='light'] .feature-card-title {
+	color: var(--sl-color-gray-1);
+}
+
+.feature-card p {
+	font-size: 0.85rem;
+	line-height: 1.55;
+	color: var(--sl-color-gray-3);
+	margin: 0;
+}
+
+.feature-footnote {
+	font-size: 0.75rem;
+	color: var(--sl-color-gray-3);
+	margin-top: 0.4rem;
+	margin-bottom: 0;
+}
+
+/* ─── Hub Overview — Security grid ──────────────────────────────────── */
+.security-grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 0.75rem;
+	margin-top: 0.5rem;
+}
+
+.security-item {
+	background: var(--sl-color-black);
+	border: 1px solid var(--sl-color-gray-5);
+	border-radius: 10px;
+	padding: 1rem 1.1rem;
+}
+
+:root[data-theme='light'] .security-item {
+	background: var(--sl-color-gray-7);
+}
+
+.security-item-title {
+	font-size: 0.85rem;
+	font-weight: 600;
+	color: var(--sl-color-white);
+	margin-bottom: 0.35rem;
+}
+
+:root[data-theme='light'] .security-item-title {
+	color: var(--sl-color-gray-1);
+}
+
+.security-item p {
+	font-size: 0.82rem;
+	line-height: 1.5;
+	color: var(--sl-color-gray-3);
+	margin: 0;
+}
+
+/* ─── Hub Overview — Screenshot frame ───────────────────────────────── */
+.screenshot-frame {
+	border-radius: 10px;
+	overflow: hidden;
+	border: 1px solid var(--sl-color-gray-5);
+	margin-bottom: 2rem;
+	margin-top: 0.5rem;
+}
+
+.screenshot-frame img {
+	width: 100%;
+	display: block;
+	margin: 0;
+}
