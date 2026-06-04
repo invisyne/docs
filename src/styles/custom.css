@@ -1,150 +1,256 @@
 @import './tokens.css';
 
-/* Dark mode (Starlight default) */
+/* ─── Starlight colour overrides (brand) ────────────────────────────── */
 :root {
   --sl-color-accent-low:  #002fd5;
   --sl-color-accent:      #2549ff;
   --sl-color-accent-high: #b9c5ff;
   --sl-font: Roboto, sans-serif;
 }
-
-/* Light mode */
 :root[data-theme='light'] {
   --sl-color-accent-low:  #d5dbff;
   --sl-color-accent:      #2549ff;
   --sl-color-accent-high: #0327ac;
 }
 
-:root[data-theme="light"] .site-title {
-	color: #1a1a1a !important;
+/* ─── Sidebar: hide non-active product groups ───────────────────────── */
+/*
+  Starlight renders top-level sidebar groups in ul.top-level > li.
+  Hide any group that doesn't contain the currently active page link.
+*/
+.top-level > li:not(:has(a[aria-current='page'])) {
+  display: none;
 }
 
-:root[data-theme="dark"] .site-title {
-	color: #ffffff !important;
+/* ─── Background colours (mockup palette) ───────────────────────────── */
+:root[data-theme='light'] {
+  --sl-color-bg:          #f2f2f0;
+  --sl-color-bg-sidebar:  #ebebea;
+  --sl-color-bg-nav:      rgba(242,242,240,0.92);
+  --sl-color-hairline:    #dcdcd8;
+  --sl-color-gray-1:      #1a1a1a;
+  --sl-color-gray-2:      #3a3a3a;
+  --sl-color-gray-3:      #5a5a5a;
+  --sl-color-gray-4:      #7a7a7a;
+  --sl-color-gray-5:      #dcdcd8;
+  --sl-color-gray-6:      #e8e8e5;
+  --sl-color-gray-7:      #fafaf8;
 }
+:root[data-theme='dark'] {
+  --sl-color-bg:          #1c1c1a;
+  --sl-color-bg-sidebar:  #1c1c1a;
+  --sl-color-bg-nav:      rgba(28,28,26,0.92);
+  --sl-color-hairline:    #3a3a38;
+  --sl-color-gray-1:      #f0f0ee;
+  --sl-color-gray-2:      #d0d0ce;
+  --sl-color-gray-3:      #a0a09e;
+  --sl-color-gray-5:      #3a3a38;
+  --sl-color-gray-6:      #252523;
+  --sl-color-gray-7:      #2a2a28;
+}
+
+/* Logo title text colour */
+:root[data-theme='light'] .site-title { color: #1a1a1a !important; }
+:root[data-theme='dark']  .site-title { color: #ffffff !important; }
 
 .site-title img {
-	/* Logo PNG has 30px top / 5px bottom padding → content sits ~3px below center */
-	transform: translateY(-3px);
+  transform: translateY(-3px);
+}
+
+/* ─── Sidebar collapse/expand ───────────────────────────────────────── */
+:root.sidebar-hidden .sidebar {
+  display: none !important;
+}
+
+/* Sidebar toggle button — clearly visible tab at sidebar right edge */
+#sl-sidebar-btn {
+  position: fixed;
+  top: 50vh;
+  transform: translateY(-50%);
+  z-index: 9999;
+  width: 20px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #888;
+  border: none;
+  border-radius: 0 6px 6px 0;
+  cursor: pointer;
+  color: #fff;
+  padding: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  font-family: inherit;
+  box-shadow: 2px 0 6px rgba(0,0,0,0.15);
+  transition: background 0.15s;
+}
+#sl-sidebar-btn:hover {
+  background: #555;
+}
+
+/* ─── Sidebar groups: always static, no collapse arrow ──────────────── */
+.sidebar details {
+  display: block !important;
+}
+.sidebar summary > svg,
+.sidebar summary .caret {
+  display: none !important;
+}
+.sidebar summary {
+  pointer-events: none;
+  cursor: default;
+}
+
+/* ─── Right TOC: compact width, close to content ────────────────────── */
+.right-sidebar {
+  width: 11rem !important;
+  min-width: 11rem !important;
+  flex-shrink: 0;
+}
+
+/* Slightly smaller TOC text to fit the narrower column */
+.right-sidebar-panel {
+  padding-inline-start: 0.75rem !important;
+}
+
+starlight-toc a {
+  font-size: 0.8rem !important;
 }
 
 /* ─── Hub Overview — Role badge ─────────────────────────────────────── */
 .role-badge {
-	display: inline-flex;
-	align-items: center;
-	gap: 6px;
-	background: var(--sl-color-gray-6);
-	color: var(--sl-color-gray-2);
-	font-size: 0.75rem;
-	font-weight: 600;
-	padding: 3px 10px;
-	border-radius: 20px;
-	margin-bottom: 1rem;
-	margin-top: 1.5rem;
-	border: 1px solid var(--sl-color-gray-5);
+  display: inline-flex;
+  align-items: center;
+  background: var(--sl-color-gray-6, #e8e8e5);
+  color: var(--sl-color-gray-3, #5a5a5a);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 20px;
+  margin-bottom: 1rem;
+  margin-top: 1.5rem;
+  border: 1px solid var(--sl-color-gray-5, #dcdcd8);
 }
 
 /* ─── Hub Overview — Feature card grid ──────────────────────────────── */
 .feature-grid {
-	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	gap: 0.75rem;
-	margin-bottom: 0.5rem;
-}
-
-.feature-grid.two-col {
-	grid-template-columns: 1fr 1fr;
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 0.5rem;
+  align-items: stretch;
 }
 
 .feature-grid.one-col {
-	grid-template-columns: 1fr;
-	max-width: 420px;
+  grid-template-columns: 1fr;
+  max-width: 380px;
 }
 
 .feature-card {
-	background: var(--sl-color-black);
-	border: 1px solid var(--sl-color-gray-5);
-	border-radius: 10px;
-	padding: 1.1rem 1.25rem;
+  background: var(--sl-color-gray-7, #fafaf8) !important;
+  border: 1px solid var(--sl-color-gray-5, #dcdcd8) !important;
+  border-radius: 12px;
+  padding: 20px 24px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  transition: box-shadow 0.2s;
+  display: flex !important;
+  flex-direction: column;
+  align-self: stretch !important;
+  margin-top: 0 !important;
 }
 
-:root[data-theme='light'] .feature-card {
-	background: #ffffff;
+.feature-card:hover {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
 }
 
 .feature-card-title {
-	font-size: 0.9rem;
-	font-weight: 600;
-	color: var(--sl-color-white);
-	margin-bottom: 0.4rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--sl-color-gray-1, #1a1a1a);
+  margin-bottom: 6px;
 }
 
-:root[data-theme='light'] .feature-card-title {
-	color: var(--sl-color-gray-1);
-}
-
-.feature-card p {
-	font-size: 0.85rem;
-	line-height: 1.55;
-	color: var(--sl-color-gray-3);
-	margin: 0;
+.feature-card > p {
+  font-size: 0.875rem !important;
+  color: var(--sl-color-gray-3, #5a5a5a) !important;
+  margin: 0 !important;
+  line-height: 1.55;
+  flex: 1;
 }
 
 .feature-footnote {
-	font-size: 0.75rem;
-	color: var(--sl-color-gray-3);
-	margin-top: 0.4rem;
-	margin-bottom: 0;
+  font-size: 0.75rem !important;
+  color: var(--sl-color-gray-3, #5a5a5a) !important;
+  margin-top: 0.4rem !important;
+  margin-bottom: 0 !important;
+}
+
+.admin-note { display: none; }
+
+.role-badge-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.role-note {
+  font-size: 0.8rem;
+  color: var(--sl-color-gray-3, #5a5a5a);
+  font-style: italic;
 }
 
 /* ─── Hub Overview — Security grid ──────────────────────────────────── */
 .security-grid {
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	gap: 0.75rem;
-	margin-top: 0.5rem;
+  display: grid !important;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 0.5rem;
+  align-items: stretch !important;
 }
 
 .security-item {
-	background: var(--sl-color-black);
-	border: 1px solid var(--sl-color-gray-5);
-	border-radius: 10px;
-	padding: 1rem 1.1rem;
+  background: var(--sl-color-gray-6, #e8e8e5) !important;
+  border: 1px solid var(--sl-color-gray-5, #dcdcd8) !important;
+  border-radius: 10px;
+  padding: 16px 18px;
+  align-self: stretch !important;
+  display: flex !important;
+  flex-direction: column;
+  margin-top: 0 !important;
 }
 
-:root[data-theme='light'] .security-item {
-	background: var(--sl-color-gray-7);
+.security-item > p {
+  flex: 1;
 }
 
 .security-item-title {
-	font-size: 0.85rem;
-	font-weight: 600;
-	color: var(--sl-color-white);
-	margin-bottom: 0.35rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--sl-color-gray-1, #1a1a1a);
+  margin-bottom: 6px;
 }
 
-:root[data-theme='light'] .security-item-title {
-	color: var(--sl-color-gray-1);
-}
-
-.security-item p {
-	font-size: 0.82rem;
-	line-height: 1.5;
-	color: var(--sl-color-gray-3);
-	margin: 0;
+.security-item > p {
+  font-size: 0.8125rem !important;
+  color: var(--sl-color-gray-3, #5a5a5a) !important;
+  margin: 0 !important;
+  line-height: 1.5;
 }
 
 /* ─── Hub Overview — Screenshot frame ───────────────────────────────── */
 .screenshot-frame {
-	border-radius: 10px;
-	overflow: hidden;
-	border: 1px solid var(--sl-color-gray-5);
-	margin-bottom: 2rem;
-	margin-top: 0.5rem;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--sl-color-gray-5, #dcdcd8);
+  margin-bottom: 2rem;
+  margin-top: 0.5rem;
 }
 
 .screenshot-frame img {
-	width: 100%;
-	display: block;
-	margin: 0;
+  width: 100%;
+  display: block;
+  margin: 0 !important;
 }

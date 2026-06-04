@@ -6,7 +6,7 @@ description: "Crawler.Hub ist eine webbasierte Management-Plattform für registr
 Crawler.Hub ist eine webbasierte Management-Plattform für registrierte Edge (Crawler)-Geräte. Nutzer behalten den Überblick über alle Geräte, Firmware-Versionen und Software-Downloads — ohne direkten Gerätezugriff. Zugriff und Sichtbarkeit richten sich nach der zugewiesenen Rolle.
 
 <div class="screenshot-frame">
-  <img src="../../../../assets/images/hub/hub-login.png" alt="Hub Login" />
+  <img src="/images/hub/hub-login.png" alt="Hub Login" />
 </div>
 
 ## Funktionsumfang
@@ -14,7 +14,7 @@ Crawler.Hub ist eine webbasierte Management-Plattform für registrierte Edge (Cr
 Jeder Account hat eine Rolle — entweder **User** oder **Admin**. Admins können zusätzlich neue Benutzer innerhalb ihrer Organisation anlegen und Rollen vergeben.
 
 <div class="screenshot-frame">
-  <img src="../../../../assets/images/hub/hub-devices.png" alt="Hub Geräteübersicht" />
+  <img src="/images/hub/hub-devices.png" alt="Hub Geräteübersicht" />
 </div>
 
 <div class="role-badge">User</div>
@@ -45,6 +45,8 @@ Jeder Account hat eine Rolle — entweder **User** oder **Admin**. Admins könne
   </div>
 </div>
 
+<p class="feature-footnote">* Admins verfügen zusätzlich über alle Funktionen der User-Rolle.</p>
+
 ## Sicherheitshinweise
 
 <div class="security-grid">
@@ -53,8 +55,8 @@ Jeder Account hat eine Rolle — entweder **User** oder **Admin**. Admins könne
     <p>Hub meldet Sie nach einer Inaktivitätsphase automatisch ab. Melden Sie sich auf gemeinsam genutzten Computern immer manuell ab.</p>
   </div>
   <div class="security-item">
-    <div class="security-item-title">Zwei-Faktor-Authentifizierung</div>
-    <p>Hub verwendet E-Mail-basierte Bestätigungscodes beim Login.</p>
+    <div class="security-item-title">Kontoeinrichtung</div>
+    <p>Konten werden von einem Administrator angelegt. Sie erhalten Ihre Zugangsdaten per E-Mail und können Ihr Passwort jederzeit selbst ändern.</p>
   </div>
   <div class="security-item">
     <div class="security-item-title">Rollenbasierter Zugriff</div>

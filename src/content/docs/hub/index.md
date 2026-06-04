@@ -6,7 +6,7 @@ description: "Crawler.Hub is a web-based management platform for registered Edge
 Crawler.Hub is a web-based management platform for registered Edge (Crawler) devices. Users maintain a central overview of all their devices, firmware versions, and software downloads — without requiring direct device access. Visibility and access are determined by the assigned role.
 
 <div class="screenshot-frame">
-  <img src="../../../assets/images/hub/hub-login.png" alt="Hub Login" />
+  <img src="/images/hub/hub-login.png" alt="Hub Login" />
 </div>
 
 ## Functional Scope
@@ -14,7 +14,7 @@ Crawler.Hub is a web-based management platform for registered Edge (Crawler) dev
 Each account has a role — either **User** or **Admin**. Admins can additionally invite new users within their organization and assign roles.
 
 <div class="screenshot-frame">
-  <img src="../../../assets/images/hub/hub-devices.png" alt="Hub Device Overview" />
+  <img src="/images/hub/hub-devices.png" alt="Hub Device Overview" />
 </div>
 
 <div class="role-badge">User</div>
@@ -45,6 +45,8 @@ Each account has a role — either **User** or **Admin**. Admins can additionall
   </div>
 </div>
 
+<p class="feature-footnote">* Admins have access to all User features listed above, plus the additional capabilities shown here.</p>
+
 ## Security Notes
 
 <div class="security-grid">
@@ -53,8 +55,8 @@ Each account has a role — either **User** or **Admin**. Admins can additionall
     <p>Hub automatically logs you out after a period of inactivity. Always log out manually on shared computers.</p>
   </div>
   <div class="security-item">
-    <div class="security-item-title">Two-Factor Authentication</div>
-    <p>Hub uses email-based verification codes during login.</p>
+    <div class="security-item-title">Account Setup</div>
+    <p>Accounts are created by an administrator. You receive your login credentials by email and can change your password at any time.</p>
   </div>
   <div class="security-item">
     <div class="security-item-title">Role-Based Access</div>

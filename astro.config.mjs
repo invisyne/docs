@@ -19,6 +19,12 @@ export default defineConfig({
 	integrations: [
 		starlight({
 			pagination: false,
+			components: {
+				Header: './src/components/Header.astro',
+				LanguageSelect: './src/components/LanguageSelect.astro',
+				ThemeSelect: './src/components/ThemeSelect.astro',
+				Sidebar: './src/components/Sidebar.astro',
+			},
 			title: {
 				en: 'Documentation',
 				de: 'Dokumentation',
@@ -29,11 +35,8 @@ export default defineConfig({
 				dark: './src/assets/logo.png',
 				light: './src/assets/logo-light.png',
 				alt: 'Invisyne',
-				replacesTitle: false,
+				replacesTitle: true,
 			},
-			social: [
-				{ icon: 'github', label: 'GitHub', href: 'https://github.com/invisyne' },
-			],
 			defaultLocale: 'root',
 			locales: {
 				root: { label: 'English', lang: 'en' },
@@ -43,7 +46,7 @@ export default defineConfig({
 				{
 					label: 'Edge (Crawler)',
 					translations: { de: 'Edge (Crawler)' },
-					collapsed: false,
+					collapsed: true,
 					items: [
 						{ label: 'Overview', translations: { de: 'Übersicht' }, slug: 'edge' },
 						{ label: 'Quickstart', translations: { de: 'Schnellstart' }, slug: 'edge/quickstart' },
@@ -69,7 +72,7 @@ export default defineConfig({
 				{
 					label: 'Companion',
 					translations: { de: 'Companion' },
-					collapsed: false,
+					collapsed: true,
 					items: [
 						{ label: 'Overview', translations: { de: 'Übersicht' }, slug: 'companion' },
 						{ label: 'Quickstart', translations: { de: 'Schnellstart' }, slug: 'companion/quickstart' },
@@ -95,7 +98,7 @@ export default defineConfig({
 				{
 					label: 'Hub',
 					translations: { de: 'Hub' },
-					collapsed: false,
+					collapsed: true,
 					items: [
 						{ label: 'Overview', translations: { de: 'Übersicht' }, slug: 'hub' },
 						{ label: 'Quickstart', translations: { de: 'Schnellstart' }, slug: 'hub/quickstart' },

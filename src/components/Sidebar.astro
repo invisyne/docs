@@ -1,0 +1,104 @@
+---
+import type { Props } from '@astrojs/starlight/props';
+import Default from '@astrojs/starlight/components/Sidebar.astro';
+---
+
+<Default {...Astro.props} />
+
+<style>
+  .sidebar-toggle {
+    position: fixed;
+    top: 50vh;
+    transform: translateY(-50%);
+    z-index: 9999;
+    width: 18px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--sl-color-bg);
+    border: 1px solid var(--sl-color-gray-5);
+    border-radius: 0 6px 6px 0;
+    border-left: none;
+    cursor: pointer;
+    color: var(--sl-color-gray-3);
+    padding: 0;
+    transition: background 0.15s, color 0.15s;
+  }
+
+  .sidebar-toggle:hover {
+    background: var(--sl-color-gray-6);
+    color: var(--sl-color-gray-1);
+  }
+
+  /* Make sidebar groups static */
+  :global(.sidebar details) {
+    display: block !important;
+  }
+  :global(.sidebar summary svg),
+  :global(.sidebar summary .caret) {
+    display: none !important;
+  }
+  :global(.sidebar summary) {
+    pointer-events: none;
+    cursor: default;
+  }
+</style>
+
+<script>
+  // Force all sidebar details open
+  function openAllDetails() {
+    document.querySelectorAll('.sidebar details').forEach(d => {
+      (d as HTMLDetailsElement).open = true;
+    });
+  }
+  openAllDetails();
+
+  // Create toggle button directly on document.body — never inside a transformed container
+  (function initSidebarToggle() {
+    if (document.getElementById('sl-sidebar-btn')) return; // already exists
+
+    const btn = document.createElement('button');
+    btn.id = 'sl-sidebar-btn';
+    btn.setAttribute('aria-label', 'Sidebar ein-/ausblenden');
+    btn.innerHTML = `<span id="sl-btn-arrow">&lsaquo;</span>`;
+    document.body.appendChild(btn);
+
+    let open = true;
+
+    function getSidebarWidth() {
+      // sidebar-pane is the actual visible sidebar panel
+      const pane = document.querySelector('.sidebar-pane') as HTMLElement | null;
+      if (pane) {
+        const r = pane.getBoundingClientRect();
+        if (r.right > 0) return r.right;
+      }
+      // fallback: CSS variable
+      const rem = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--sl-sidebar-width') || '18.75');
+      return rem * parseFloat(getComputedStyle(document.documentElement).fontSize);
+    }
+
+    function update() {
+      const w = open ? getSidebarWidth() : 0;
+      btn.style.left         = w + 'px';
+      btn.style.borderLeft   = open ? 'none' : '1px solid var(--sl-color-gray-4, #aaa)';
+      btn.style.borderRight  = open ? '1px solid var(--sl-color-gray-4, #aaa)' : 'none';
+      btn.style.borderRadius = open ? '0 6px 6px 0' : '6px 0 0 6px';
+      const arrow = document.getElementById('sl-btn-arrow');
+      if (arrow) arrow.innerHTML = open ? '&lsaquo;' : '&rsaquo;';
+    }
+
+    btn.addEventListener('click', () => {
+      open = !open;
+      document.documentElement.classList.toggle('sidebar-hidden', !open);
+      update();
+    });
+
+    window.addEventListener('load', update);
+    setTimeout(update, 150);
+    window.addEventListener('resize', update);
+  })();
+
+  document.addEventListener('astro:page-load',  openAllDetails);
+  document.addEventListener('astro:after-swap', openAllDetails);
+</script>

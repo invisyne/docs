@@ -1,30 +1,16 @@
 ---
 title: "Authentication and access"
-description: "1. User Registration: 1."
+description: "How to access Crawler.Hub and how user accounts are managed."
 ---
 
-# User Registration
+## Account Setup
 
-1. **User Registration:**
+Accounts are created by an administrator. Once set up, you will receive your login credentials (email address and password) by email. You can change your password at any time in your account settings.
 
-1. Users are registered upon request using a predefined email address and a password.
+## Logging In
 
-1. ![](https://api.archbee.com/api/optimize/5QJBvgamF9LtImfLB456o/tCY7UAUNkFEtYBMy02Vnd_accerstellung.PNG)
+Navigate to the Hub URL in your browser. Enter your email address and password on the login page and click **Log in**.
 
-2. **Email Verification:**
+## User Management
 
-2. For security reasons, a verification code is sent to the registered email address during the first login.
-
-2. ![](https://api.archbee.com/api/optimize/5QJBvgamF9LtImfLB456o/jWHzOnZOwpDaQ9rJjlXW9_anmelden01.PNG)
-
-3. ![](https://api.archbee.com/api/optimize/5QJBvgamF9LtImfLB456o/yZXOnSCEddL3rwkE0de4m_bestacurrencyttigungscode.PNG)
-
-3. **Verification Code:**
-
-3. The verification code must be entered to verify and grant access.
-
-3. ![](https://api.archbee.com/api/optimize/5QJBvgamF9LtImfLB456o/sdfE658W090rzsUJ3j_3Q_bestacurrencytigungscodeeingeben.PNG)
-
-# User Management
-
-Users are added to the Hub upon request. Access permissions are managed by administrators and allow users to access relevant crawler products and functionalities.
+Administrators manage who has access to Hub. They can invite new users, assign roles (Admin or User), and manage existing accounts within the organization.

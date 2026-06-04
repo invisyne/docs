@@ -1,0 +1,135 @@
+---
+import type { Props } from '@astrojs/starlight/props';
+import LanguageSelect from 'virtual:starlight/components/LanguageSelect';
+import Search from 'virtual:starlight/components/Search';
+import SiteTitle from 'virtual:starlight/components/SiteTitle';
+import ThemeSelect from 'virtual:starlight/components/ThemeSelect';
+
+const locale = Astro.props.locale ?? '';
+const isDE = locale === 'de';
+
+const hubHref       = isDE ? '/de/hub'       : '/hub';
+const edgeHref      = isDE ? '/de/edge'      : '/edge';
+const companionHref = isDE ? '/de/companion' : '/companion';
+---
+
+<div class="header">
+  <div class="title-wrapper sl-flex">
+    <SiteTitle {...Astro.props} />
+  </div>
+
+  <nav class="product-nav">
+    <a href={hubHref}       class="pnav" id="pnav-hub">Hub</a>
+    <a href={edgeHref}      class="pnav" id="pnav-edge">Edge</a>
+    <a href={companionHref} class="pnav" id="pnav-companion">Companion</a>
+  </nav>
+
+  <div class="search-col sl-flex print:hidden">
+    <Search {...Astro.props} />
+  </div>
+
+  <div class="right-group print:hidden">
+    <ThemeSelect {...Astro.props} />
+    <LanguageSelect {...Astro.props} />
+  </div>
+</div>
+
+<style>
+  @layer starlight.core {
+    .header {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: var(--sl-nav-gap);
+      align-items: center;
+      height: 100%;
+      width: 100%;
+    }
+
+    .title-wrapper {
+      overflow: clip;
+      padding: 0.25rem;
+      margin: -0.25rem;
+      min-width: 0;
+      flex-shrink: 0;
+    }
+
+    /* Hide site title text — keep logo only */
+    .title-wrapper :global(.site-title span:not(:has(img))) {
+      display: none;
+    }
+
+    .product-nav {
+      display: flex;
+      gap: 2px;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .pnav {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--sl-color-gray-3);
+      text-decoration: none;
+      padding: 5px 10px;
+      border-radius: 6px;
+      transition: background 0.15s, color 0.15s;
+      white-space: nowrap;
+    }
+
+    .pnav:hover {
+      background: var(--sl-color-gray-6);
+      color: var(--sl-color-white);
+    }
+
+    :root[data-theme='light'] .pnav:hover {
+      background: var(--sl-color-gray-6);
+      color: var(--sl-color-gray-1);
+    }
+
+    .pnav.active {
+      background: var(--sl-color-gray-5);
+      color: var(--sl-color-white);
+      font-weight: 600;
+    }
+
+    :root[data-theme='light'] .pnav.active {
+      background: var(--sl-color-gray-6);
+      color: var(--sl-color-gray-1);
+    }
+
+    .search-col {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .right-group {
+      display: none;
+      gap: 0.5rem;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    @media (min-width: 50rem) {
+      .right-group {
+        display: flex;
+      }
+    }
+  }
+</style>
+
+<script>
+  function setActiveProduct() {
+    const path = window.location.pathname;
+    const hub  = document.getElementById('pnav-hub');
+    const edge = document.getElementById('pnav-edge');
+    const comp = document.getElementById('pnav-companion');
+    [hub, edge, comp].forEach(el => el?.classList.remove('active'));
+    if (path.includes('/edge'))      edge?.classList.add('active');
+    else if (path.includes('/companion')) comp?.classList.add('active');
+    else                             hub?.classList.add('active');
+  }
+
+  setActiveProduct();
+  document.addEventListener('astro:page-load',   setActiveProduct);
+  document.addEventListener('astro:after-swap',  setActiveProduct);
+</script>
