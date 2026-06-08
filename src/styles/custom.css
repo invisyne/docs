@@ -22,6 +22,23 @@
   display: none;
 }
 
+/* ─── Content width: use more of the available space ────────────────── */
+:root {
+  --sl-content-width: 72rem;
+  --sl-text-body: 1.05rem;
+  --sl-text-body-sm: 0.95rem;
+}
+
+/* ─── Base font size ─────────────────────────────────────────────────── */
+.sl-markdown-content {
+  font-size: 1.125rem;
+  line-height: 1.8;
+}
+
+.sl-markdown-content p {
+  font-size: 1.125rem;
+}
+
 /* ─── Background colours (mockup palette) ───────────────────────────── */
 :root[data-theme='light'] {
   --sl-color-bg:          #f2f2f0;
@@ -102,21 +119,412 @@
   cursor: default;
 }
 
-/* ─── Right TOC: compact width, close to content ────────────────────── */
+/* ─── Right TOC: fixed top-right, below topbar controls ─────────────── */
 .right-sidebar {
-  width: 11rem !important;
-  min-width: 11rem !important;
+  width: 154px !important;
+  min-width: 154px !important;
   flex-shrink: 0;
-}
-
-/* Slightly smaller TOC text to fit the narrower column */
-.right-sidebar-panel {
-  padding-inline-start: 0.75rem !important;
+  position: fixed !important;
+  top: var(--sl-nav-height, 3.5rem) !important;
+  right: 0 !important;
+  height: auto !important;
+  padding: 0.75rem 0.75rem 0 !important;
+  background: var(--sl-color-bg) !important;
+  border-left: 1px solid var(--sl-color-gray-5) !important;
+  z-index: 5;
 }
 
 starlight-toc a {
-  font-size: 0.8rem !important;
+  font-size: 0.72rem !important;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
 }
+
+.right-sidebar-panel {
+  padding: 0 !important;
+}
+
+.right-sidebar h2 {
+  font-size: 0.72rem !important;
+}
+
+/* ─── Quickstart stepper ─────────────────────────────────────────────── */
+.qs-stepper {
+  margin: 1.5rem 0 2rem;
+}
+
+.qs-panels {
+  position: relative;
+}
+
+/* Show first panel by default, target shows selected panel */
+.qs-panel {
+  display: none;
+  animation: qsFadeIn 0.25s ease;
+}
+
+.qs-panels:not(:has(:target)) .qs-panel:first-child,
+.qs-panel:target {
+  display: block;
+}
+
+/* Highlight active tab via :target */
+.qs-tabbar .qs-tab:first-child {
+  background: var(--sl-color-gray-1, #1a1a1a);
+  color: var(--sl-color-bg, #f2f2f0);
+  font-weight: 600;
+}
+
+.qs-panels:has(#qs-0:target) ~ .qs-tabbar a[href="#qs-0"],
+.qs-panels:has(#qs-1:target) ~ .qs-tabbar a[href="#qs-1"],
+.qs-panels:has(#qs-2:target) ~ .qs-tabbar a[href="#qs-2"],
+.qs-panels:has(#qs-3:target) ~ .qs-tabbar a[href="#qs-3"] {
+  background: var(--sl-color-gray-1, #1a1a1a);
+  color: var(--sl-color-bg, #f2f2f0);
+  font-weight: 600;
+}
+
+.qs-panels:has(:target) ~ .qs-tabbar .qs-tab:first-child {
+  background: transparent;
+  color: var(--sl-color-gray-3, #5a5a5a);
+  font-weight: 500;
+}
+
+@keyframes qsFadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.qs-panel-text {
+  flex-shrink: 0;
+}
+
+.qs-step-label {
+  display: none;
+}
+
+.qs-title {
+  font-size: 2rem !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.75rem !important;
+  margin-top: 0.25rem !important;
+  color: var(--sl-color-gray-1, #1a1a1a) !important;
+  border: none !important;
+  padding: 0 !important;
+}
+
+.qs-panel-text p {
+  font-size: 1rem;
+  color: var(--sl-color-gray-3, #5a5a5a);
+  line-height: 1.7;
+  margin-bottom: 0;
+}
+
+.qs-screenshot {
+  margin: 1rem 0 0 !important;
+}
+
+/* Tab bar */
+.qs-tabbar {
+  display: flex;
+  gap: 6px;
+  background: var(--sl-color-gray-6, #e8e8e5);
+  border-radius: 50px;
+  padding: 5px;
+  margin-top: 1.5rem;
+  width: fit-content;
+}
+
+.qs-tab {
+  padding: 8px 20px;
+  border: none;
+  border-radius: 50px;
+  background: transparent;
+  color: var(--sl-color-gray-3, #5a5a5a);
+  font-size: 0.875rem;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  white-space: nowrap;
+}
+
+.qs-tab:hover {
+  background: var(--sl-color-gray-5, #dcdcd8);
+  color: var(--sl-color-gray-1, #1a1a1a);
+}
+
+.qs-tab.active,
+.qs-tab:target {
+  background: var(--sl-color-gray-1, #1a1a1a);
+  color: var(--sl-color-bg, #f2f2f0);
+  font-weight: 600;
+}
+
+.qs-tab {
+  text-decoration: none !important;
+}
+
+/* ─── Quickstart tip box ─────────────────────────────────────────────── */
+.qs-tip {
+  background: var(--sl-color-gray-6, #e8e8e5);
+  border-left: 3px solid var(--sl-color-accent, #2549ff);
+  border-radius: 0 8px 8px 0;
+  padding: 12px 16px;
+  font-size: 0.9rem;
+  color: var(--sl-color-gray-2, #3a3a3a);
+  margin: 1rem 0;
+}
+
+/* ─── Changelog timeline ─────────────────────────────────────────────── */
+
+/* ── Changelog: each bullet point as a card ── */
+.changelog-page .sl-markdown-content ul {
+  list-style: none !important;
+  padding-left: 0 !important;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 0.5rem !important;
+}
+
+.changelog-page .sl-markdown-content li {
+  background: var(--sl-color-gray-6, #e8e8e5) !important;
+  border: 1px solid var(--sl-color-gray-5, #dcdcd8) !important;
+  border-radius: 10px;
+  padding: 14px 18px !important;
+  margin: 0 !important;
+  font-size: 1rem !important;
+  line-height: 1.6;
+}
+
+/* Card title and description */
+.changelog-page .sl-markdown-content .cl-item-title {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--sl-color-gray-1, #1a1a1a);
+  margin-bottom: 4px;
+}
+
+.changelog-page .sl-markdown-content .cl-item-desc {
+  font-size: 0.95rem;
+  color: var(--sl-color-gray-2, #3a3a3a);
+  line-height: 1.6;
+}
+
+/* Emoji prefix on h3 */
+.changelog-page .sl-markdown-content .cl-emoji {
+  display: inline-block;
+  margin-right: 4px;
+  filter: grayscale(1) brightness(0);
+}
+
+/* "None." / "Keine." after h3 also gets a card */
+.changelog-page .sl-markdown-content h3 + p {
+  background: var(--sl-color-gray-6, #e8e8e5) !important;
+  border: 1px solid var(--sl-color-gray-5, #dcdcd8) !important;
+  border-radius: 10px;
+  padding: 14px 18px !important;
+  font-size: 1rem !important;
+  color: var(--sl-color-gray-3, #5a5a5a) !important;
+  margin-top: 0 !important;
+  font-style: italic;
+}
+
+.changelog-page .sl-markdown-content li::marker {
+  display: none;
+}
+
+/* ── Timeline line (changelog only) ── */
+.changelog-page .sl-markdown-content {
+  position: relative;
+  padding-left: 2.5rem !important;
+}
+
+/* Vertical line */
+.changelog-page .sl-markdown-content::before {
+  content: '';
+  position: absolute;
+  left: 0.6rem;
+  top: 0.5rem;
+  bottom: 0;
+  width: 2px;
+  background: var(--sl-color-gray-5, #dcdcd8);
+}
+
+/* Dot on each version */
+.changelog-page .sl-markdown-content h2::before {
+  content: '';
+  position: absolute;
+  left: -2.15rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--sl-color-gray-1, #1a1a1a);
+  border: 2px solid var(--sl-color-bg, #f2f2f0);
+  box-shadow: 0 0 0 2px var(--sl-color-gray-1, #1a1a1a);
+}
+
+/* Relative position needed for dot */
+.changelog-page .sl-markdown-content h2 {
+  position: relative !important;
+}
+
+/* Version header = timeline node (changelog only) */
+.changelog-page .sl-markdown-content h2 {
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+  margin-top: 2.5rem !important;
+  margin-bottom: 0.25rem !important;
+  padding: 0 !important;
+  border: none !important;
+}
+
+.changelog-page .sl-markdown-content h2:first-of-type {
+  margin-top: 0 !important;
+}
+
+/* Version badge — added via JS */
+.sl-markdown-content h2 .version-badge {
+  display: inline-flex;
+  align-items: center;
+  background: #4a4a4a;
+  color: #f5f5f3;
+  font-size: 1.15rem;
+  font-weight: 700;
+  padding: 6px 18px;
+  border-radius: 20px;
+  white-space: nowrap;
+  letter-spacing: -0.01em;
+}
+
+/* Date (changelog only) */
+.changelog-page .sl-markdown-content h2 + p > em {
+  font-style: normal;
+  font-size: 0.85rem !important;
+  color: var(--sl-color-gray-3, #5a5a5a);
+}
+
+/* Highlights blockquote (changelog only) */
+.changelog-page .sl-markdown-content blockquote {
+  background: var(--sl-color-gray-6, #e8e8e5) !important;
+  border-left: 3px solid var(--sl-color-accent, #2549ff) !important;
+  border-radius: 0 8px 8px 0;
+  padding: 14px 18px !important;
+  margin: 0.75rem 0 1rem !important;
+  font-style: normal !important;
+}
+
+.changelog-page .sl-markdown-content blockquote p {
+  font-size: 0.95rem !important;
+  line-height: 1.6;
+  margin: 0 !important;
+  color: var(--sl-color-gray-2, #3a3a3a) !important;
+}
+
+/* Section labels — only in changelog */
+.changelog-page .sl-markdown-content h3,
+.changelog-page .sl-markdown-content h4 {
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  color: var(--sl-color-gray-2, #3a3a3a) !important;
+  margin-top: 1.5rem !important;
+  margin-bottom: 0.6rem !important;
+}
+
+/* Right TOC: hide sub-entries (h3), show only version numbers (h2) */
+.changelog-page .right-sidebar starlight-toc li li {
+  display: none !important;
+}
+
+/* Changelog body text same size as other pages */
+.changelog-page .sl-markdown-content p,
+.changelog-page .sl-markdown-content li {
+  font-size: 1.125rem !important;
+}
+
+/* Date slightly smaller */
+.changelog-page .sl-markdown-content h2 + p {
+  font-size: 0.9rem !important;
+  color: var(--sl-color-gray-3, #5a5a5a) !important;
+}
+
+/* Hide separators */
+.sl-markdown-content hr {
+  display: none;
+}
+
+/* ─── Lightbox ───────────────────────────────────────────────────────── */
+.screenshot-frame {
+  position: relative;
+}
+
+.screenshot-frame .zoom-btn {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 32px;
+  height: 32px;
+  background: rgba(0,0,0,0.55);
+  border: none;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.15s;
+  color: #fff;
+  z-index: 2;
+}
+
+.screenshot-frame:hover .zoom-btn {
+  opacity: 1;
+}
+
+#sl-lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  z-index: 99999;
+  align-items: center;
+  justify-content: center;
+  cursor: zoom-out;
+}
+
+#sl-lightbox.open {
+  display: flex;
+}
+
+#sl-lightbox img {
+  max-width: 90vw;
+  max-height: 90vh;
+  border-radius: 8px;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.5);
+  object-fit: contain;
+}
+
+#sl-lightbox-close {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.5rem;
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+#sl-lightbox-close:hover { opacity: 1; }
 
 /* ─── Hub Overview — Role badge ─────────────────────────────────────── */
 .role-badge {
@@ -151,7 +559,8 @@ starlight-toc a {
   background: var(--sl-color-gray-7, #fafaf8) !important;
   border: 1px solid var(--sl-color-gray-5, #dcdcd8) !important;
   border-radius: 12px;
-  padding: 20px 24px;
+  padding: 28px 28px;
+  min-height: 160px;
   box-shadow: 0 1px 4px rgba(0,0,0,0.06);
   transition: box-shadow 0.2s;
   display: flex !important;
@@ -165,14 +574,14 @@ starlight-toc a {
 }
 
 .feature-card-title {
-  font-size: 0.9375rem;
+  font-size: 1.05rem;
   font-weight: 600;
   color: var(--sl-color-gray-1, #1a1a1a);
   margin-bottom: 6px;
 }
 
 .feature-card > p {
-  font-size: 0.875rem !important;
+  font-size: 0.95rem !important;
   color: var(--sl-color-gray-3, #5a5a5a) !important;
   margin: 0 !important;
   line-height: 1.55;
@@ -215,7 +624,8 @@ starlight-toc a {
   background: var(--sl-color-gray-6, #e8e8e5) !important;
   border: 1px solid var(--sl-color-gray-5, #dcdcd8) !important;
   border-radius: 10px;
-  padding: 16px 18px;
+  padding: 24px 24px;
+  min-height: 120px;
   align-self: stretch !important;
   display: flex !important;
   flex-direction: column;
@@ -227,14 +637,14 @@ starlight-toc a {
 }
 
 .security-item-title {
-  font-size: 0.8125rem;
+  font-size: 1rem;
   font-weight: 600;
   color: var(--sl-color-gray-1, #1a1a1a);
   margin-bottom: 6px;
 }
 
 .security-item > p {
-  font-size: 0.8125rem !important;
+  font-size: 0.95rem !important;
   color: var(--sl-color-gray-3, #5a5a5a) !important;
   margin: 0 !important;
   line-height: 1.5;

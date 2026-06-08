@@ -118,6 +118,100 @@ const companionHref = isDE ? '/de/companion' : '/companion';
 </style>
 
 <script>
+  // ── Changelog version badges ──────────────────────────────
+  function initChangelogBadges() {
+    const isChangelog = window.location.pathname.includes('changelog');
+    document.body.classList.toggle('changelog-page', isChangelog);
+    if (!isChangelog) return;
+
+    const content = document.querySelector('.sl-markdown-content');
+    if (!content) return;
+
+    // Badge each h2
+    content.querySelectorAll('h2').forEach(h2 => {
+      if (h2.querySelector('.version-badge')) return;
+      const text = h2.textContent.trim();
+      h2.innerHTML = '<span class="version-badge">' + text + '</span>';
+    });
+
+    // Add emojis to h3 labels
+    const emojiMap = {
+      'highlights': '✦',
+      'new features': '↑',
+      'neue funktionen': '↑',
+      'bug fixes': '✓',
+      'fehlerbehebungen': '✓',
+      'technical appendix': '◆',
+      'technischer anhang': '◆',
+    };
+    content.querySelectorAll('h3').forEach(h3 => {
+      if (h3.querySelector('.cl-emoji')) return;
+      const key = h3.textContent.toLowerCase().trim();
+      const emoji = emojiMap[key];
+      if (emoji) {
+        h3.innerHTML = '<span class="cl-emoji">' + emoji + '</span> ' + h3.textContent.trim();
+      }
+    });
+
+    // Split card content: bold title on its own line, text below
+    content.querySelectorAll('li').forEach(li => {
+      if (li.querySelector('.cl-item-title')) return;
+      const strong = li.querySelector('strong');
+      if (!strong) return;
+      const title = strong.textContent.trim();
+      // Get remaining text after strong (skip em dash and leading space)
+      let desc = '';
+      strong.nextSiblings = [];
+      let node = strong.nextSibling;
+      while (node) {
+        desc += node.textContent || '';
+        node = node.nextSibling;
+      }
+      desc = desc.replace(/^\s*[—–-]\s*/, '').trim();
+      li.innerHTML =
+        '<div class="cl-item-title">' + title + '</div>' +
+        (desc ? '<div class="cl-item-desc">' + desc + '</div>' : '');
+    });
+  }
+  initChangelogBadges();
+  document.addEventListener('astro:page-load', initChangelogBadges);
+  document.addEventListener('astro:after-swap', initChangelogBadges);
+
+  // ── Lightbox ──────────────────────────────────────────────
+  (function() {
+    // Create lightbox overlay once
+    if (!document.getElementById('sl-lightbox')) {
+      const lb = document.createElement('div');
+      lb.id = 'sl-lightbox';
+      lb.innerHTML = '<button id="sl-lightbox-close">✕</button><img id="sl-lightbox-img" src="" alt="" />';
+      document.body.appendChild(lb);
+      lb.addEventListener('click', () => lb.classList.remove('open'));
+      document.getElementById('sl-lightbox-close').addEventListener('click', e => { e.stopPropagation(); lb.classList.remove('open'); });
+    }
+
+    function initZoomBtns() {
+      document.querySelectorAll('.screenshot-frame').forEach(frame => {
+        if (frame.querySelector('.zoom-btn')) return;
+        const img = frame.querySelector('img');
+        if (!img) return;
+        const btn = document.createElement('button');
+        btn.className = 'zoom-btn';
+        btn.setAttribute('aria-label', 'Zoom');
+        btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>';
+        btn.addEventListener('click', e => {
+          e.stopPropagation();
+          document.getElementById('sl-lightbox-img').src = img.src;
+          document.getElementById('sl-lightbox').classList.add('open');
+        });
+        frame.appendChild(btn);
+      });
+    }
+
+    initZoomBtns();
+    document.addEventListener('astro:page-load', initZoomBtns);
+    document.addEventListener('astro:after-swap', initZoomBtns);
+  })();
+
   function setActiveProduct() {
     const path = window.location.pathname;
     const hub  = document.getElementById('pnav-hub');
