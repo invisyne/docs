@@ -8,7 +8,7 @@ import loginImg from '../../../../assets/images/hub-auth-login.png';
 
 ## Account Setup
 
-Accounts are created by an administrator. Once set up, you will receive your login credentials (email address and password) by email. You can change your password at any time in your account settings.
+Accounts are created by an admin. Your login credentials (email address and password) are then sent to you manually by the super admin. You can change your password at any time in your [account settings](/hub/ui/account-settings/).
 
 ## Logging In
 
@@ -24,6 +24,21 @@ Accounts are created by an administrator. Once set up, you will receive your log
   <img src={loginImg.src} alt="Hub login page with email and password fields" />
 </div>
 
+<div class="qs-tip">Forgot your password? Click <strong>Passwort vergessen?</strong> on the login page. Enter your email address and you will receive a reset link.</div>
+
+## Session and Logout
+
+Hub automatically logs you out after a period of inactivity. On shared or public computers, always log out manually by clicking your profile avatar in the top right and selecting **Logout**.
+
+## User Roles
+
+Every Hub account is assigned one of two roles:
+
+| Role | Access |
+|------|--------|
+| **User** | View devices, software releases, and account settings |
+| **Admin** | All User permissions, plus user management (invite, assign roles, deactivate) |
+
 ## User Management
 
-Administrators manage who has access to Hub. They can invite new users, assign roles (Admin or User), and manage existing accounts within the organization.
+User management is handled by administrators. They can invite new team members, assign roles, and manage existing accounts. See [Invite a New User](/hub/how-to/invite-user/) for step-by-step instructions.

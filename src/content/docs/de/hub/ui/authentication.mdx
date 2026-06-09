@@ -8,7 +8,7 @@ import loginImg from '../../../../../assets/images/hub-auth-login.png';
 
 ## Kontoeinrichtung
 
-Konten werden von einem Administrator angelegt. Nach der Einrichtung erhalten Sie Ihre Zugangsdaten (E-Mail-Adresse und Passwort) per E-Mail. Das Passwort können Sie jederzeit in den Kontoeinstellungen ändern.
+Konten werden von einem Admin angelegt. Ihre Zugangsdaten (E-Mail-Adresse und Passwort) werden Ihnen anschließend vom Super-Admin händisch zugeschickt. Das Passwort können Sie jederzeit in den [Kontoeinstellungen](/de/hub/ui/account-settings/) ändern.
 
 ## Anmelden
 
@@ -24,6 +24,21 @@ Konten werden von einem Administrator angelegt. Nach der Einrichtung erhalten Si
   <img src={loginImg.src} alt="Hub-Anmeldeseite mit E-Mail- und Passwortfeldern" />
 </div>
 
+<div class="qs-tip">Passwort vergessen? Klicken Sie auf <strong>Passwort vergessen?</strong> auf der Anmeldeseite. Geben Sie Ihre E-Mail-Adresse ein und Sie erhalten einen Link zum Zurücksetzen.</div>
+
+## Sitzung und Abmeldung
+
+Hub meldet Sie nach einer Inaktivitätsphase automatisch ab. Melden Sie sich auf gemeinsam genutzten oder öffentlichen Computern immer manuell ab — klicken Sie dazu oben rechts auf Ihren Initialen-Avatar und wählen Sie **Logout**.
+
+## Benutzerrollen
+
+Jeder Hub-Account hat eine der folgenden Rollen:
+
+| Rolle | Zugriff |
+|-------|---------|
+| **User** | Geräte, Software-Versionen und Kontoeinstellungen einsehen |
+| **Admin** | Alle User-Berechtigungen plus Benutzerverwaltung (einladen, Rollen vergeben, deaktivieren) |
+
 ## Benutzerverwaltung
 
-Administratoren verwalten, wer Zugang zu Hub hat. Sie können neue Benutzer einladen, Rollen vergeben (Admin oder User) und bestehende Konten innerhalb der Organisation verwalten.
+Die Benutzerverwaltung obliegt Administratoren. Sie können neue Teammitglieder einladen, Rollen vergeben und bestehende Konten verwalten. Eine Schritt-für-Schritt-Anleitung finden Sie unter [Neuen Benutzer einladen](/de/hub/how-to/invite-user/).

@@ -30,7 +30,7 @@ Each account has a role — either **User** or **Admin**. Admins can additionall
   </div>
   <div class="feature-card">
     <div class="feature-card-title">Account Settings</div>
-    <p>Edit your personal details (name, email address) and change your password.</p>
+    <p>Edit your personal details (name) and change your password.</p>
   </div>
 </div>
 
@@ -56,7 +56,7 @@ Each account has a role — either **User** or **Admin**. Admins can additionall
   </div>
   <div class="security-item">
     <div class="security-item-title">Account Setup</div>
-    <p>Accounts are created by an administrator. You receive your login credentials by email and can change your password at any time.</p>
+    <p>Accounts are created by an admin. Login credentials are sent to you manually by the super admin. You can change your password at any time.</p>
   </div>
   <div class="security-item">
     <div class="security-item-title">Role-Based Access</div>

@@ -30,7 +30,7 @@ Jeder Account hat eine Rolle — entweder **User** oder **Admin**. Admins könne
   </div>
   <div class="feature-card">
     <div class="feature-card-title">Kontoeinstellungen</div>
-    <p>Persönliche Daten bearbeiten (Name, E-Mail-Adresse) und Passwort ändern.</p>
+    <p>Namen bearbeiten und Passwort ändern.</p>
   </div>
 </div>
 
@@ -56,7 +56,7 @@ Jeder Account hat eine Rolle — entweder **User** oder **Admin**. Admins könne
   </div>
   <div class="security-item">
     <div class="security-item-title">Kontoeinrichtung</div>
-    <p>Konten werden von einem Administrator angelegt. Sie erhalten Ihre Zugangsdaten per E-Mail und können Ihr Passwort jederzeit selbst ändern.</p>
+    <p>Konten werden von einem Admin angelegt. Die Zugangsdaten werden Ihnen vom Super-Admin händisch zugeschickt. Das Passwort können Sie jederzeit selbst ändern.</p>
   </div>
   <div class="security-item">
     <div class="security-item-title">Rollenbasierter Zugriff</div>
