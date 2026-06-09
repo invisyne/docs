@@ -1,0 +1,62 @@
+---
+title: "Account Settings"
+description: "Manage your personal data and change your password in Hub."
+---
+
+import { Steps } from '@astrojs/starlight/components';
+import overviewImg from '../../../../assets/images/hub-account-settings-overview.png';
+import dropdownImg from '../../../../assets/images/hub-account-settings-dropdown.png';
+import editPersonalImg from '../../../../assets/images/hub-account-settings-edit-personal.png';
+import changePasswordImg from '../../../../assets/images/hub-account-settings-change-password.png';
+
+The Account Settings page lets you update your name, email address, and password.
+
+## Opening Account Settings
+
+Click the **initials avatar** in the top-right corner of the navigation bar to open the user menu.
+
+<div class="screenshot-frame">
+  <img src={dropdownImg.src} alt="Hub user menu dropdown showing Kontoeinstellungen and Logout options" />
+</div>
+
+Select **Kontoeinstellungen** to navigate to the settings page.
+
+## Overview
+
+The settings page has two sections — **Persönliche Daten** (personal data) and **Sicherheit** (security).
+
+<div class="screenshot-frame">
+  <img src={overviewImg.src} alt="Hub Kontoeinstellungen overview with Persönliche Daten and Sicherheit sections" />
+</div>
+
+## Persönliche Daten
+
+This section shows your current email address, first name, and last name.
+
+<Steps>
+1. Click **Persönliche Daten bearbeiten** to switch the section into edit mode.
+
+2. Update any of the three fields — **E-Mail-Adresse**, **Vorname**, or **Nachname**.
+
+3. Click **Persönliche Daten speichern** to apply your changes, or **Abbrechen** to discard them.
+</Steps>
+
+<div class="screenshot-frame">
+  <img src={editPersonalImg.src} alt="Hub personal data form in edit mode showing email, first name, and last name fields" />
+</div>
+
+## Sicherheit
+
+The Security section lets you set a new password.
+
+<Steps>
+1. Click **Passwort bearbeiten** to open the password form.
+
+2. Enter your **Aktuelles Passwort** (current password), then your new password twice — in **Neues Passwort** and **Neues Passwort wiederholen**.
+
+3. Click **Passwort speichern** to save, or **Abbrechen** to cancel.
+</Steps>
+
+<div class="screenshot-frame">
+  <img src={changePasswordImg.src} alt="Hub security section with password change form open" />
+</div>

@@ -74,6 +74,9 @@ const companionHref = isDE ? '/de/companion' : '/companion';
       border-radius: 6px;
       transition: background 0.15s, color 0.15s;
       white-space: nowrap;
+      line-height: 1.4;
+      display: inline-flex;
+      align-items: center;
     }
 
     .pnav:hover {
@@ -212,18 +215,58 @@ const companionHref = isDE ? '/de/companion' : '/companion';
     document.addEventListener('astro:after-swap', initZoomBtns);
   })();
 
+  // ── Quickstart / How-To tabs: each .qs-stepper is independent ───
+  function initQsTabs() {
+    document.querySelectorAll('.qs-stepper').forEach(stepper => {
+      // Skip steppers that were already initialized on this DOM
+      if ((stepper as HTMLElement).dataset.qsReady) return;
+      (stepper as HTMLElement).dataset.qsReady = '1';
+
+      const tabs   = Array.from(stepper.querySelectorAll<HTMLElement>('.qs-tab'));
+      const panels = Array.from(stepper.querySelectorAll<HTMLElement>('.qs-panel'));
+      if (!tabs.length || !panels.length) return;
+
+      function activate(index: number) {
+        panels.forEach((p, i) => p.classList.toggle('qs-active', i === index));
+        tabs.forEach((t, i)   => t.classList.toggle('qs-active', i === index));
+      }
+
+      tabs.forEach((tab, i) => {
+        tab.addEventListener('click', e => { e.preventDefault(); activate(i); });
+      });
+
+      activate(0);
+    });
+  }
+
+  initQsTabs();
+  document.addEventListener('astro:page-load', initQsTabs);
+
+  // ── Keep language prefix when navigating between products ────
+  function updateProductNavLinks() {
+    const isDE   = window.location.pathname.startsWith('/de');
+    const prefix = isDE ? '/de' : '';
+    const hub  = document.getElementById('pnav-hub')  as HTMLAnchorElement | null;
+    const edge = document.getElementById('pnav-edge') as HTMLAnchorElement | null;
+    const comp = document.getElementById('pnav-companion') as HTMLAnchorElement | null;
+    if (hub)  hub.href  = prefix + '/hub';
+    if (edge) edge.href = prefix + '/edge';
+    if (comp) comp.href = prefix + '/companion';
+  }
+
   function setActiveProduct() {
     const path = window.location.pathname;
     const hub  = document.getElementById('pnav-hub');
     const edge = document.getElementById('pnav-edge');
     const comp = document.getElementById('pnav-companion');
     [hub, edge, comp].forEach(el => el?.classList.remove('active'));
-    if (path.includes('/edge'))      edge?.classList.add('active');
+    if (path.includes('/edge'))           edge?.classList.add('active');
     else if (path.includes('/companion')) comp?.classList.add('active');
-    else                             hub?.classList.add('active');
+    else                                  hub?.classList.add('active');
+    updateProductNavLinks();
   }
 
   setActiveProduct();
-  document.addEventListener('astro:page-load',   setActiveProduct);
-  document.addEventListener('astro:after-swap',  setActiveProduct);
+  document.addEventListener('astro:page-load',  setActiveProduct);
+  document.addEventListener('astro:after-swap', setActiveProduct);
 </script>

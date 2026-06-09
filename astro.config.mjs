@@ -104,9 +104,12 @@ export default defineConfig({
 						{ label: 'Quickstart', translations: { de: 'Schnellstart' }, slug: 'hub/quickstart' },
 						{ label: 'Changelog', translations: { de: 'Changelog' }, slug: 'hub/changelog' },
 						{
-							label: 'How-To Guides',
-							translations: { de: 'How-To\'s' },
-							autogenerate: { directory: 'hub/how-to' },
+							label: "How-To's",
+							translations: { de: "How-To's" },
+							collapsed: false,
+							items: [
+								{ label: 'Guides', translations: { de: 'Anleitungen' }, slug: 'hub/how-to' },
+							],
 						},
 						{
 							label: 'UI Reference',

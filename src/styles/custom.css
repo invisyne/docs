@@ -79,7 +79,7 @@
   display: none !important;
 }
 
-/* Sidebar toggle button — clearly visible tab at sidebar right edge */
+/* Sidebar toggle button — CSS-positioned via --sl-sidebar-width so it never jumps */
 #sl-sidebar-btn {
   position: fixed;
   top: 50vh;
@@ -100,11 +100,15 @@
   font-weight: 700;
   font-family: inherit;
   box-shadow: 2px 0 6px rgba(0,0,0,0.15);
-  transition: background 0.15s;
+  /* CSS-driven position — no JS timing issues */
+  left: var(--sl-sidebar-width, 18.75rem);
 }
-#sl-sidebar-btn:hover {
-  background: #555;
+/* When sidebar is hidden */
+:root.sidebar-hidden #sl-sidebar-btn {
+  left: 0;
+  border-radius: 6px 0 0 6px;
 }
+
 
 /* ─── Sidebar groups: always static, no collapse arrow ──────────────── */
 .sidebar details {
@@ -118,6 +122,8 @@
   pointer-events: none;
   cursor: default;
 }
+
+/* Sidebar alignment is handled in src/components/Sidebar.astro via :global() */
 
 /* ─── Right TOC: fixed top-right, below topbar controls ─────────────── */
 .right-sidebar {
@@ -159,37 +165,32 @@ starlight-toc a {
   position: relative;
 }
 
-/* Show first panel by default, target shows selected panel */
+/* Panels: all stacked in same grid cell, height = tallest panel */
+.qs-panels {
+  display: grid;
+}
+
 .qs-panel {
-  display: none;
-  animation: qsFadeIn 0.25s ease;
+  grid-row: 1;
+  grid-column: 1;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
 }
 
-.qs-panels:not(:has(:target)) .qs-panel:first-child,
-.qs-panel:target {
-  display: block;
+.qs-panel.qs-active {
+  opacity: 1;
+  pointer-events: auto;
 }
 
-/* Highlight active tab via :target */
-.qs-tabbar .qs-tab:first-child {
-  background: var(--sl-color-gray-1, #1a1a1a);
-  color: var(--sl-color-bg, #f2f2f0);
-  font-weight: 600;
-}
-
-.qs-panels:has(#qs-0:target) ~ .qs-tabbar a[href="#qs-0"],
-.qs-panels:has(#qs-1:target) ~ .qs-tabbar a[href="#qs-1"],
-.qs-panels:has(#qs-2:target) ~ .qs-tabbar a[href="#qs-2"],
-.qs-panels:has(#qs-3:target) ~ .qs-tabbar a[href="#qs-3"] {
-  background: var(--sl-color-gray-1, #1a1a1a);
-  color: var(--sl-color-bg, #f2f2f0);
-  font-weight: 600;
-}
-
-.qs-panels:has(:target) ~ .qs-tabbar .qs-tab:first-child {
-  background: transparent;
-  color: var(--sl-color-gray-3, #5a5a5a);
-  font-weight: 500;
+/* Active tab */
+.qs-tab.qs-active {
+  background: var(--sl-color-gray-1, #1a1a1a) !important;
+  color: var(--sl-color-bg, #f2f2f0) !important;
+  font-weight: 600 !important;
 }
 
 @keyframes qsFadeIn {
@@ -234,7 +235,8 @@ starlight-toc a {
   background: var(--sl-color-gray-6, #e8e8e5);
   border-radius: 50px;
   padding: 5px;
-  margin-top: 1.5rem;
+  margin-top: 0.75rem;
+  margin-bottom: 0;
   width: fit-content;
 }
 
@@ -525,6 +527,120 @@ starlight-toc a {
 }
 
 #sl-lightbox-close:hover { opacity: 1; }
+
+/* ─── Guide page: back button ────────────────────────────────────────── */
+.guide-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--sl-color-gray-3, #5a5a5a);
+  text-decoration: none;
+  padding: 5px 12px;
+  border: 1px solid var(--sl-color-gray-5, #dcdcd8);
+  border-radius: 20px;
+  background: var(--sl-color-gray-7, #fafaf8);
+  margin-bottom: 1.5rem;
+  margin-top: 0.25rem;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.guide-back-link:hover {
+  background: var(--sl-color-gray-6, #e8e8e5);
+  border-color: var(--sl-color-gray-4, #7a7a7a);
+  color: var(--sl-color-gray-1, #1a1a1a);
+  text-decoration: none !important;
+}
+
+/* ─── How-To Guide Cards ─────────────────────────────────────────────── */
+
+/* Section separator */
+.howto-section-divider {
+  border: none;
+  border-top: 1px solid var(--sl-color-gray-5, #dcdcd8);
+  margin: 2rem 0 1.5rem;
+}
+
+/* Admin badge inline in heading */
+.howto-admin-badge {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--sl-color-gray-3, #5a5a5a);
+  background: var(--sl-color-gray-6, #e8e8e5);
+  border: 1px solid var(--sl-color-gray-5, #dcdcd8);
+  border-radius: 20px;
+  padding: 2px 9px;
+  vertical-align: middle;
+  margin-left: 8px;
+  white-space: nowrap;
+}
+
+/* Guide preview card — fixed min-height so all cards in a stepper look the same */
+.howto-card {
+  background: var(--sl-color-gray-7, #fafaf8);
+  border: 1px solid var(--sl-color-gray-5, #dcdcd8);
+  border-radius: 12px;
+  padding: 24px 28px;
+  max-width: 600px;
+  min-height: 300px;
+  margin-top: 1rem;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Steps list fills remaining space so CTA always sits at bottom */
+.howto-card .howto-steps-preview {
+  flex: 1;
+}
+
+
+.howto-card-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--sl-color-gray-1, #1a1a1a);
+  margin-bottom: 6px;
+  margin-top: 0;
+}
+
+.howto-card-desc {
+  font-size: 0.95rem !important;
+  color: var(--sl-color-gray-3, #5a5a5a) !important;
+  margin-bottom: 14px !important;
+  line-height: 1.6;
+}
+
+/* Steps preview list inside card */
+.howto-steps-preview {
+  padding-left: 1.2rem;
+  margin: 0 0 16px !important;
+}
+
+.howto-steps-preview li {
+  font-size: 0.9rem !important;
+  color: var(--sl-color-gray-2, #3a3a3a) !important;
+  margin-bottom: 5px !important;
+  line-height: 1.5;
+  background: none !important;
+  border: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+}
+
+/* "Full guide" CTA link */
+.howto-cta {
+  display: inline-block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--sl-color-accent, #2549ff);
+  text-decoration: none;
+  margin-top: 4px;
+}
+
+.howto-cta:hover {
+  text-decoration: underline;
+}
 
 /* ─── Hub Overview — Role badge ─────────────────────────────────────── */
 .role-badge {
