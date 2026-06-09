@@ -1,0 +1,47 @@
+---
+title: "Geräte-Übersicht"
+description: "Übersicht über die Geräteliste und die Geräte-Detailansicht in Hub."
+---
+
+import { Steps } from '@astrojs/starlight/components';
+import devicesListImg from '../../../../../assets/images/hub-devices-list.png';
+import deviceDetailImg from '../../../../../assets/images/hub-devices-detail.png';
+
+## Hauptnavigation
+
+Die obere Navigationsleiste bietet Zugriff auf die wichtigsten Bereiche von Hub:
+
+- **Geräte** — Zentrale Geräte-Übersicht
+- **Software** — Softwareverwaltung
+- **Benutzer** — Benutzerverwaltung (Admin-Bereich)
+
+In der oberen rechten Ecke befinden sich die Sprachauswahl, der Hilfe-Link sowie das Benutzermenü (Initialen-Avatar).
+
+## Geräteliste
+
+Die Seite **Geräte** listet alle registrierten Edge (Crawler)-Geräte Ihrer Organisation auf. Jede Zeile zeigt Seriennummer, Name, Typ, Standort und Firmware-Version.
+
+<div class="screenshot-frame">
+  <img src={devicesListImg.src} alt="Hub-Geräteliste mit registrierten Edge (Crawler)-Geräten und Spalten für Seriennummer, Name, Typ und Firmware" />
+</div>
+
+Klicken Sie auf das Suchsymbol oben rechts, um die Geräteliste zu filtern.
+
+## Geräte-Detailansicht
+
+Klicken Sie auf eine Zeile, um das Panel **Crawler Details** auf der rechten Seite zu öffnen. Es zeigt alle Geräteinformationen:
+
+- **Seriennummer** — Eindeutige Geräte-ID
+- **Name** — Gerätename
+- **Typ** — Gerätetyp und Modell
+- **Ort** — Installationsstandort
+- **Firmware (Auslieferung)** — Firmware-Version zum Auslieferungszeitpunkt
+- **Bestellnummer** — Interne Bestellreferenz
+- **Ausgeliefert am** — Auslieferungsdatum
+- **Notiz** — Freitextfeld für Anmerkungen
+
+<div class="screenshot-frame">
+  <img src={deviceDetailImg.src} alt="Hub-Detailpanel mit Crawler-Details wie Seriennummer, Name, Typ und weiteren Metadaten" />
+</div>
+
+Klicken Sie auf **Bearbeiten**, um die Gerätedaten zu bearbeiten. Mit **×** schließen Sie das Detailpanel.

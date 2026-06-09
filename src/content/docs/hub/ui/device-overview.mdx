@@ -1,0 +1,47 @@
+---
+title: "Device overview"
+description: "An overview of the device list and device detail view in Hub."
+---
+
+import { Steps } from '@astrojs/starlight/components';
+import devicesListImg from '../../../../assets/images/hub-devices-list.png';
+import deviceDetailImg from '../../../../assets/images/hub-devices-detail.png';
+
+## Main Navigation
+
+The top navigation bar provides access to the main sections of Hub:
+
+- **Geräte** — Central device overview
+- **Software** — Software management
+- **Benutzer** — User management (admin area)
+
+The upper-right corner contains the language selector, help link, and the user menu (initials avatar).
+
+## Device List
+
+The **Geräte** page lists all registered Edge (Crawler) devices in your organization. Each row shows the serial number, name, type, location, and firmware version.
+
+<div class="screenshot-frame">
+  <img src={devicesListImg.src} alt="Hub device list showing registered Edge (Crawler) devices with serial number, name, type, and firmware columns" />
+</div>
+
+Click the search icon in the top right to filter the device list.
+
+## Device Detail View
+
+Click any row to open the **Crawler Details** panel on the right. It shows the full device information:
+
+- **Seriennummer** — Unique device ID
+- **Name** — Device name
+- **Typ** — Device type and model
+- **Ort** — Installation location
+- **Firmware (Auslieferung)** — Firmware version at time of delivery
+- **Bestellnummer** — Internal order reference
+- **Ausgeliefert am** — Delivery date
+- **Notiz** — Free-text notes field
+
+<div class="screenshot-frame">
+  <img src={deviceDetailImg.src} alt="Hub device detail panel showing Crawler Details with serial number, name, type, and other metadata fields" />
+</div>
+
+Click **Bearbeiten** to edit the device information. Click **×** to close the detail panel.
