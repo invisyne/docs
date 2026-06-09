@@ -1,9 +1,13 @@
 ---
 title: "Hub Overview"
-description: "Crawler.Hub is a web-based management platform for registered Edge (Crawler) devices."
+description: "Crawler.Hub is a web-based management platform for registered Edge devices."
 ---
 
-Crawler.Hub is a web-based management platform for registered Edge (Crawler) devices. Users maintain a central overview of all their devices, firmware versions, and software downloads — without requiring direct device access. Visibility and access are determined by the assigned role.
+Crawler.Hub is the central web-based management portal for registered Edge devices. It gives teams a single access point to monitor all deployed devices, track firmware versions, and retrieve software downloads — without requiring physical or network access to individual devices.
+
+Hub is designed for organizations operating multiple Edge units across different sites. Rather than managing each device in isolation, Hub aggregates everything relevant in one place: device status, installed firmware, location, and metadata. Software releases — both Edge firmware and Companion App updates — are published directly in Hub, making it the authoritative source for deployment-relevant downloads.
+
+Access is governed by roles. Each user is assigned either the **User** or **Admin** role. Users can view devices and access software; Admins additionally manage user accounts and invitations for their organization.
 
 <div class="screenshot-frame">
   <img src="/images/hub/hub-login.png" alt="Hub Login" />
@@ -22,7 +26,7 @@ Each account has a role — either **User** or **Admin**. Admins can additionall
 <div class="feature-grid">
   <div class="feature-card">
     <div class="feature-card-title">Devices</div>
-    <p>Overview of all registered Edge (Crawler) devices with serial number, name, type, location, and firmware version. Click any device to open the detail view.<sup>*</sup></p>
+    <p>Overview of all registered Edge devices with serial number, name, type, location, and firmware version. Click any device to open the detail view.<sup>*</sup></p>
   </div>
   <div class="feature-card">
     <div class="feature-card-title">Software</div>

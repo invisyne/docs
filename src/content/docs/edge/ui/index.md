@@ -1,6 +1,6 @@
 ---
 title: "UI Reference"
-description: "Reference documentation for the Edge (Crawler) web interface."
+description: "Reference documentation for the Edge web interface."
 ---
 
 :::caution

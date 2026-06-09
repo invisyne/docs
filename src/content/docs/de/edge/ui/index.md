@@ -1,6 +1,6 @@
 ---
 title: "Benutzeroberfläche"
-description: "Referenzdokumentation für die Web-Oberfläche des Edge (Crawler)."
+description: "Referenzdokumentation für die Web-Oberfläche des Edge."
 ---
 
 :::caution

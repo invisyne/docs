@@ -1,9 +1,13 @@
 ---
 title: "Hub-Übersicht"
-description: "Crawler.Hub ist eine webbasierte Management-Plattform für registrierte Edge (Crawler)-Geräte."
+description: "Crawler.Hub ist eine webbasierte Management-Plattform für registrierte Edge-Geräte."
 ---
 
-Crawler.Hub ist eine webbasierte Management-Plattform für registrierte Edge (Crawler)-Geräte. Nutzer behalten den Überblick über alle Geräte, Firmware-Versionen und Software-Downloads — ohne direkten Gerätezugriff. Zugriff und Sichtbarkeit richten sich nach der zugewiesenen Rolle.
+Crawler.Hub ist das zentrale, webbasierte Verwaltungsportal für registrierte Edge-Geräte. Es bietet Teams einen einheitlichen Zugriffspunkt, um alle eingesetzten Geräte zu überwachen, Firmware-Versionen nachzuverfolgen und Software-Downloads bereitzustellen — ohne physischen oder Netzwerkzugriff auf einzelne Geräte.
+
+Hub ist für Organisationen konzipiert, die mehrere Edge-Einheiten an verschiedenen Standorten betreiben. Anstatt jedes Gerät einzeln zu verwalten, fasst Hub alle relevanten Informationen an einem Ort zusammen: Gerätestatus, installierte Firmware, Standort und Metadaten. Software-Releases — sowohl Edge-Firmware als auch Companion-App-Updates — werden direkt in Hub veröffentlicht und machen es zur zentralen Anlaufstelle für alle deployment-relevanten Downloads.
+
+Der Zugriff wird über Rollen gesteuert. Jedem Benutzer wird entweder die Rolle **User** oder **Admin** zugewiesen. User können Geräte einsehen und auf Software zugreifen; Admins verwalten zusätzlich Benutzerkonten und Einladungen innerhalb ihrer Organisation.
 
 <div class="screenshot-frame">
   <img src="/images/hub/hub-login.png" alt="Hub Login" />
@@ -22,7 +26,7 @@ Jeder Account hat eine Rolle — entweder **User** oder **Admin**. Admins könne
 <div class="feature-grid">
   <div class="feature-card">
     <div class="feature-card-title">Geräte</div>
-    <p>Übersicht aller registrierten Edge (Crawler)-Geräte mit Seriennummer, Name, Typ, Ort und Firmware-Version. Ein Klick öffnet die Detailansicht.<sup>*</sup></p>
+    <p>Übersicht aller registrierten Edge-Geräte mit Seriennummer, Name, Typ, Ort und Firmware-Version. Ein Klick öffnet die Detailansicht.<sup>*</sup></p>
   </div>
   <div class="feature-card">
     <div class="feature-card-title">Software</div>

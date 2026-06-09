@@ -13,9 +13,9 @@ description: "- Absolute addressing - TIA, symbolic addressing - S7 300/400 and 
 
 The supported data types depend on the addressing mode (absolute or symbolic). You can find them in the following table.
 
-| **Data type**         | **In Edge (Crawler) (read only)** | **Supported by PLC**    |                |                                                                        |                                                          |                                                          |                                                              |
+| **Data type**         | **In Edge (read only)** | **Supported by PLC**    |                |                                                                        |                                                          |                                                          |                                                              |
 | --------------------- | -------------------------- | ----------------------- | -------------- | ---------------------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | ------------------------------------------------------------ |
-| **Edge (Crawler) VarType**   | **Edge (Crawler) InfluxType**     | **Bits**                | **Symbolic**   | **Absolute**                                                           | **S7-300/400**                                           | **S7-1200**                                              | **S7-1500**                                                  |
+| **Edge VarType**   | **Edge InfluxType**     | **Bits**                | **Symbolic**   | **Absolute**                                                           | **S7-300/400**                                           | **S7-1200**                                              | **S7-1500**                                                  |
 | **Binary numbers**    |                            |                         |                |                                                                        |                                                          |                                                          |                                                              |
 | S7\_Bool              | FLOAT                      | 1                       | ✔              | ✔                                                                      | ✔                                                        | ✔                                                        | ✔                                                            |
 | S7\_Byte              | FLOAT                      | 8                       | ✔              | ✔                                                                      | ✔                                                        | ✔                                                        | ✔                                                            |
@@ -118,7 +118,7 @@ For symbolic-addressed data access, the address is composed hierarchically from 
   Addresses element no. \[2,1,28] of the multi-dimensional array `TestArray` in the data block named `TestDB` (directly subordinate to the main structure)
 
 :::caution
-⚠ Invalid address entries, which frequently occur with manual input, prevent proper data access! By using the import function, this source of error is eliminated — variables are correctly formatted and escaped when transferred into the Edge (Crawler) structure.
+⚠ Invalid address entries, which frequently occur with manual input, prevent proper data access! By using the import function, this source of error is eliminated — variables are correctly formatted and escaped when transferred into the Edge structure.
 :::
 
 ## Modbus TCP

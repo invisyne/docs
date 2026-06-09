@@ -772,7 +772,7 @@ starlight-toc a {
   overflow: hidden;
   border: 1px solid var(--sl-color-gray-5, #dcdcd8);
   margin-bottom: 2rem;
-  margin-top: 0.5rem;
+  margin-top: 1.5rem;
 }
 
 .screenshot-frame img {
