@@ -1,4 +1,25 @@
 @import './tokens.css';
+@import '@fontsource/roboto/400.css';
+@import '@fontsource/roboto/500.css';
+@import '@fontsource/roboto/700.css';
+
+@font-face {
+  font-family: 'GT America Extended';
+  src: url('/fonts/GT-America-Extended-Regular.woff2') format('woff2'),
+       url('/fonts/GT-America-Extended-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'GT America Extended';
+  src: url('/fonts/GT-America-Extended-Medium.woff2') format('woff2'),
+       url('/fonts/GT-America-Extended-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
 
 /* ─── Starlight colour overrides (brand) ────────────────────────────── */
 :root {
@@ -6,6 +27,18 @@
   --sl-color-accent:      #2549ff;
   --sl-color-accent-high: #b9c5ff;
   --sl-font: Roboto, sans-serif;
+}
+
+/* ─── GT America Extended on all headings ───────────────────────────── */
+h1, h2, h3, h4, h5, h6,
+.sl-markdown-content h1,
+.sl-markdown-content h2,
+.sl-markdown-content h3,
+.sl-markdown-content h4,
+.sl-markdown-content h5,
+.sl-markdown-content h6,
+.page-title {
+  font-family: 'GT America Extended', sans-serif;
 }
 :root[data-theme='light'] {
   --sl-color-accent-low:  #d5dbff;
