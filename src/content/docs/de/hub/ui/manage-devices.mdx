@@ -1,0 +1,40 @@
+---
+title: "Geräte verwalten"
+description: "Geräteinformationen in Crawler.Hub einsehen und bearbeiten."
+---
+
+import { Steps } from '@astrojs/starlight/components';
+import deviceDetailImg from '../../../../../assets/images/hub-devices-detail.png';
+
+Der Bereich **Geräte** ist die zentrale Ansicht im Hub. Er listet alle bei Ihrer Firma registrierten Edge (Crawler)-Geräte auf und ermöglicht das Einsehen und Bearbeiten der Geräteinformationen.
+
+## Geräteliste
+
+Nach dem Login landen Sie direkt in der Geräteliste. Jede Zeile zeigt:
+
+<div class="field-list">
+  <div class="field-item"><span class="field-label">Seriennummer</span><span class="field-desc">Eindeutige Gerätekennung</span></div>
+  <div class="field-item"><span class="field-label">Name</span><span class="field-desc">Benutzerdefinierte Bezeichnung</span></div>
+  <div class="field-item"><span class="field-label">Typ</span><span class="field-desc">Gerätemodell (z. B. Wago 752-9400)</span></div>
+  <div class="field-item"><span class="field-label">Ort</span><span class="field-desc">Installationsstandort</span></div>
+  <div class="field-item"><span class="field-label">Firmware</span><span class="field-desc">Installierte Firmware-Version</span></div>
+</div>
+
+<div class="screenshot-frame">
+  <img src="/images/hub/hub-devices.png" alt="Geräteliste mit allen registrierten Edge (Crawler)-Geräten" />
+</div>
+
+Nutzen Sie das **Suchfeld** oben rechts, um nach beliebigen Spalten zu filtern, oder klicken Sie auf einen Spaltenkopf zum Sortieren. Mehr dazu unter [Filter und Suche](/de/hub/ui/filter-search/).
+
+## Gerät bearbeiten
+
+<Steps>
+1. Klicken Sie auf eine beliebige Zeile in der Geräteliste, um das Detailfenster zu öffnen.
+2. Das Fenster zeigt alle Geräteinformationen auf der rechten Seite des Bildschirms.
+3. Klicken Sie in ein bearbeitbares Feld — **Name**, **Ort**, **Bestellnummer**, **Lieferdatum** oder **Notiz** — und nehmen Sie Ihre Änderungen vor.
+4. Die Änderungen werden automatisch gespeichert.
+</Steps>
+
+<div class="screenshot-frame">
+  <img src={deviceDetailImg.src} alt="Geräte-Detailfenster mit bearbeitbaren Feldern" />
+</div>

@@ -5,6 +5,8 @@ description: "How to log in to Crawler.Hub and how user accounts are managed."
 
 import { Steps } from '@astrojs/starlight/components';
 import loginImg from '../../../../assets/images/hub-auth-login.png';
+import logoDark from '../../../../assets/logo.png';
+import logoLight from '../../../../assets/logo-light.png';
 
 ## Account Setup
 
@@ -15,16 +17,16 @@ Accounts are created by an admin. Your login credentials (email address and pass
 <Steps>
 1. Navigate to the Hub URL in your browser. The login page opens automatically.
 
-2. Enter your **E-Mail** address and **Passwort** in the respective fields.
+2. Enter your **email address** and **password** in the respective fields.
 
-3. Click **Anmelden** to sign in.
+3. Click **Sign in** to log in.
 </Steps>
 
 <div class="screenshot-frame">
   <img src={loginImg.src} alt="Hub login page with email and password fields" />
 </div>
 
-<div class="qs-tip">Forgot your password? Click <strong>Passwort vergessen?</strong> on the login page. Enter your email address and you will receive a reset link.</div>
+<div class="qs-tip">Forgot your password? Click **Forgot password?** on the login page. Enter your email address and you will receive a reset link.</div>
 
 ## Session and Logout
 
@@ -32,12 +34,29 @@ Hub automatically logs you out after a period of inactivity. On shared or public
 
 ## User Roles
 
-Every Hub account is assigned one of two roles:
-
-| Role | Access |
-|------|--------|
-| **User** | View devices, software releases, and account settings |
-| **Admin** | All User permissions, plus user management (invite, assign roles, deactivate) |
+<div class="role-cols">
+  <div class="role-col">
+    <div class="role-col-title">User</div>
+    <p>Can view devices, software versions, and account settings</p>
+  </div>
+  <div class="role-col">
+    <div class="role-col-title">Admin</div>
+    <p>All User permissions plus user management (invite, assign roles, deactivate)</p>
+  </div>
+  <div class="role-col-logo">
+    <svg class="role-deco-svg" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="10" cy="10" r="4" fill="currentColor"/>
+      <circle cx="30" cy="10" r="4" fill="currentColor"/>
+      <circle cx="50" cy="10" r="4" fill="currentColor"/>
+      <circle cx="10" cy="30" r="4" fill="currentColor"/>
+      <circle cx="30" cy="30" r="4" fill="currentColor"/>
+      <circle cx="50" cy="30" r="4" fill="currentColor"/>
+      <circle cx="10" cy="50" r="4" fill="currentColor"/>
+      <circle cx="30" cy="50" r="4" fill="currentColor"/>
+      <circle cx="50" cy="50" r="4" fill="currentColor"/>
+    </svg>
+  </div>
+</div>
 
 ## User Management
 

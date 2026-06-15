@@ -8,6 +8,9 @@ export default defineConfig({
 	// For a project page (github.com/ORG/REPO): site='https://ORG.github.io', base='/REPO'
 	// For an org page (github.com/ORG/ORG.github.io): site='https://ORG.github.io', no base needed
 	site: 'https://docs.invisyne.com',
+	redirects: {
+		'/': '/de/hub',
+	},
 	image: {
 		// Allow large animated GIFs (screen recordings) that exceed Sharp's default pixel limit
 		service: {
@@ -109,6 +112,14 @@ export default defineConfig({
 							collapsed: false,
 							items: [
 								{ label: 'Guides', translations: { de: 'Anleitungen' }, slug: 'hub/how-to' },
+								{ label: 'Invite a New User', translations: { de: 'Benutzer einladen' }, slug: 'hub/how-to/invite-user' },
+								{ label: 'Change User Role', translations: { de: 'Rolle ändern' }, slug: 'hub/how-to/change-role' },
+								{ label: 'Edit a Device', translations: { de: 'Gerät bearbeiten' }, slug: 'hub/how-to/edit-device' },
+								{ label: 'Search & Filter', translations: { de: 'Suchen & Filtern' }, slug: 'hub/how-to/search-filter' },
+								{ label: 'Change Password', translations: { de: 'Passwort ändern' }, slug: 'hub/how-to/change-password' },
+								{ label: 'Change Language', translations: { de: 'Sprache ändern' }, slug: 'hub/how-to/change-language' },
+								{ label: 'Download Firmware', translations: { de: 'Firmware herunterladen' }, slug: 'hub/how-to/download-firmware' },
+								{ label: 'Download Companion', translations: { de: 'Companion herunterladen' }, slug: 'hub/how-to/download-companion' },
 							],
 						},
 						{

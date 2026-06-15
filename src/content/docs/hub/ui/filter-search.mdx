@@ -1,0 +1,94 @@
+---
+title: "Filter and search"
+description: "How to search and sort the device list in Crawler.Hub."
+---
+
+import filterOpenImg from '../../../../assets/images/hub-filter-search-open.png';
+import filterActiveImg from '../../../../assets/images/hub-filter-search-active.png';
+import filterDetailImg from '../../../../assets/images/hub-filter-search-detail.png';
+import filterSortImg from '../../../../assets/images/hub-filter-search-sort.png';
+
+The device list in Hub includes a real-time search field and sortable columns.
+
+<div class="doc-accordion" id="fs-accordion">
+  <div class="doc-accordion-items">
+    <div class="doc-accordion-item doc-accordion-active">
+      <button class="doc-accordion-title">
+        <span>Search icon</span>
+        <span class="doc-accordion-arrow">&#x2303;</span>
+      </button>
+      <div class="doc-accordion-body">
+        The search field is located in the top-right corner of the device list — look for the magnifying glass icon. Click the **search icon** to open the input field.
+
+        <div class="qs-tip">The search checks all columns: <strong>Serial Number</strong>, <strong>Name</strong>, <strong>Type</strong>, <strong>Location</strong>, and <strong>Firmware</strong>.</div>
+      </div>
+    </div>
+    <div class="doc-accordion-item">
+      <button class="doc-accordion-title">
+        <span>Enter a search term</span>
+        <span class="doc-accordion-arrow">&#x2303;</span>
+      </button>
+      <div class="doc-accordion-body">
+        Start typing — the list filters in real time. Type e.g. **Wago**, and only matching devices remain visible. To reset: click the **×** icon or delete the text.
+
+        <div class="qs-tip">A partial term like <strong>Wago</strong> matches any device that contains it in any column.</div>
+      </div>
+    </div>
+    <div class="doc-accordion-item">
+      <button class="doc-accordion-title">
+        <span>Open a device</span>
+        <span class="doc-accordion-arrow">&#x2303;</span>
+      </button>
+      <div class="doc-accordion-body">
+        Click any row in the filtered list to open the **detail panel** for that device. There you can view all device information and edit Name, Location, Order Number, Delivery Date, and Notes.
+      </div>
+    </div>
+    <div class="doc-accordion-item">
+      <button class="doc-accordion-title">
+        <span>Sort columns</span>
+        <span class="doc-accordion-arrow">&#x2303;</span>
+      </button>
+      <div class="doc-accordion-body">
+        Click any **column header** to sort the list by that column. Click again to reverse the direction. The arrow (↑ / ↓) next to the column name shows the active sort column and direction.
+
+        <div class="qs-tip">Sorting and searching work together — you can sort a filtered result set.</div>
+      </div>
+    </div>
+  </div>
+  <div class="doc-accordion-image">
+    <div class="doc-acc-img-wrap doc-acc-img-active">
+      <img src={filterOpenImg.src} alt="Search icon in the top right of the device list" />
+    </div>
+    <div class="doc-acc-img-wrap">
+      <img src={filterActiveImg.src} alt="Device list filtered by Wago" />
+    </div>
+    <div class="doc-acc-img-wrap">
+      <img src={filterDetailImg.src} alt="Device detail panel open" />
+    </div>
+    <div class="doc-acc-img-wrap">
+      <img src={filterSortImg.src} alt="Column header with sort arrow highlighted" />
+    </div>
+  </div>
+</div>
+
+<script>{`
+if (typeof document !== 'undefined') {
+  function initFsAccordion() {
+    const acc = document.getElementById('fs-accordion');
+    if (!acc || acc.dataset.ready) return;
+    acc.dataset.ready = '1';
+    const items = Array.from(acc.querySelectorAll('.doc-accordion-item'));
+    const imgWraps = Array.from(acc.querySelectorAll('.doc-acc-img-wrap'));
+    items.forEach((item, i) => {
+      item.querySelector('.doc-accordion-title').addEventListener('click', () => {
+        items.forEach((it, j) => {
+          it.classList.toggle('doc-accordion-active', j === i);
+          if (imgWraps[j]) imgWraps[j].classList.toggle('doc-acc-img-active', j === i);
+        });
+      });
+    });
+  }
+  initFsAccordion();
+  document.addEventListener('astro:page-load', initFsAccordion);
+}
+`}</script>

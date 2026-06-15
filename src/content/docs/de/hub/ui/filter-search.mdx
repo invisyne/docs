@@ -1,0 +1,94 @@
+---
+title: "Filter und Suche"
+description: "So durchsuchen und sortieren Sie die Geräteliste in Crawler.Hub."
+---
+
+import filterOpenImg from '../../../../../assets/images/hub-filter-search-open.png';
+import filterActiveImg from '../../../../../assets/images/hub-filter-search-active.png';
+import filterDetailImg from '../../../../../assets/images/hub-filter-search-detail.png';
+import filterSortImg from '../../../../../assets/images/hub-filter-search-sort.png';
+
+Die Geräteliste im Hub verfügt über ein Echtzeit-Suchfeld und sortierbare Spalten.
+
+<div class="doc-accordion" id="fs-accordion">
+  <div class="doc-accordion-items">
+    <div class="doc-accordion-item doc-accordion-active">
+      <button class="doc-accordion-title">
+        <span>Suchsymbol</span>
+        <span class="doc-accordion-arrow">&#x2303;</span>
+      </button>
+      <div class="doc-accordion-body">
+        Das Suchfeld befindet sich oben rechts über der Geräteliste — erkennbar am Lupensymbol. Klicken Sie auf das **Suchsymbol**, um das Eingabefeld zu öffnen.
+
+        <div class="qs-tip">Die Suche durchsucht alle Spalten: <strong>Seriennummer</strong>, <strong>Name</strong>, <strong>Typ</strong>, <strong>Ort</strong> und <strong>Firmware</strong>.</div>
+      </div>
+    </div>
+    <div class="doc-accordion-item">
+      <button class="doc-accordion-title">
+        <span>Suchbegriff eingeben</span>
+        <span class="doc-accordion-arrow">&#x2303;</span>
+      </button>
+      <div class="doc-accordion-body">
+        Tippen Sie einen Begriff ein — die Liste filtert sich sofort in Echtzeit. Geben Sie z. B. **Wago** ein, und nur passende Geräte bleiben sichtbar. Zum Zurücksetzen: **×**-Symbol klicken oder Text löschen.
+
+        <div class="qs-tip">Mit einem Teilbegriff wie <strong>Wago</strong> werden alle Geräte gefunden, die diesen Begriff in einer Spalte enthalten.</div>
+      </div>
+    </div>
+    <div class="doc-accordion-item">
+      <button class="doc-accordion-title">
+        <span>Gerät öffnen</span>
+        <span class="doc-accordion-arrow">&#x2303;</span>
+      </button>
+      <div class="doc-accordion-body">
+        Klicken Sie auf eine beliebige Zeile in der gefilterten Liste, um das **Detailfenster** des Geräts zu öffnen. Dort sehen Sie alle Geräteinformationen und können Name, Ort, Bestellnummer, Lieferdatum und Notiz bearbeiten.
+      </div>
+    </div>
+    <div class="doc-accordion-item">
+      <button class="doc-accordion-title">
+        <span>Spalten sortieren</span>
+        <span class="doc-accordion-arrow">&#x2303;</span>
+      </button>
+      <div class="doc-accordion-body">
+        Klicken Sie auf einen **Spaltenkopf**, um die Liste nach dieser Spalte zu sortieren. Ein erneuter Klick kehrt die Sortierrichtung um. Der Pfeil (↑ / ↓) neben dem Spaltennamen zeigt die aktive Sortierspalte und -richtung an.
+
+        <div class="qs-tip">Sortierung und Suche funktionieren zusammen — Sie können auch gefilterte Ergebnisse sortieren.</div>
+      </div>
+    </div>
+  </div>
+  <div class="doc-accordion-image">
+    <div class="doc-acc-img-wrap doc-acc-img-active">
+      <img src={filterOpenImg.src} alt="Suchsymbol oben rechts in der Geräteliste" />
+    </div>
+    <div class="doc-acc-img-wrap">
+      <img src={filterActiveImg.src} alt="Geräteliste gefiltert nach Wago" />
+    </div>
+    <div class="doc-acc-img-wrap">
+      <img src={filterDetailImg.src} alt="Detailfenster eines Geräts geöffnet" />
+    </div>
+    <div class="doc-acc-img-wrap">
+      <img src={filterSortImg.src} alt="Spaltenkopf mit Sortierpfeil markiert" />
+    </div>
+  </div>
+</div>
+
+<script>{`
+if (typeof document !== 'undefined') {
+  function initFsAccordion() {
+    const acc = document.getElementById('fs-accordion');
+    if (!acc || acc.dataset.ready) return;
+    acc.dataset.ready = '1';
+    const items = Array.from(acc.querySelectorAll('.doc-accordion-item'));
+    const imgWraps = Array.from(acc.querySelectorAll('.doc-acc-img-wrap'));
+    items.forEach((item, i) => {
+      item.querySelector('.doc-accordion-title').addEventListener('click', () => {
+        items.forEach((it, j) => {
+          it.classList.toggle('doc-accordion-active', j === i);
+          if (imgWraps[j]) imgWraps[j].classList.toggle('doc-acc-img-active', j === i);
+        });
+      });
+    });
+  }
+  initFsAccordion();
+  document.addEventListener('astro:page-load', initFsAccordion);
+}
+`}</script>

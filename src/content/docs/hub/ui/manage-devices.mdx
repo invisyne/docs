@@ -1,0 +1,40 @@
+---
+title: "Manage devices"
+description: "How to view and edit device information in Crawler.Hub."
+---
+
+import { Steps } from '@astrojs/starlight/components';
+import deviceDetailImg from '../../../../assets/images/hub-devices-detail.png';
+
+The **Devices** section is the central view in Hub. It lists all Edge (Crawler) devices registered in your organization and lets you view and edit their details.
+
+## Device List
+
+After logging in, you land directly on the device list. Each row shows:
+
+<div class="field-list">
+  <div class="field-item"><span class="field-label">Serial Number</span><span class="field-desc">Unique device identifier</span></div>
+  <div class="field-item"><span class="field-label">Name</span><span class="field-desc">User-defined label</span></div>
+  <div class="field-item"><span class="field-label">Type</span><span class="field-desc">Device model (e.g., Wago 752-9400)</span></div>
+  <div class="field-item"><span class="field-label">Location</span><span class="field-desc">Installation site</span></div>
+  <div class="field-item"><span class="field-label">Firmware</span><span class="field-desc">Installed firmware version</span></div>
+</div>
+
+<div class="screenshot-frame">
+  <img src="/images/hub/hub-devices.png" alt="Device list showing all registered Edge (Crawler) devices" />
+</div>
+
+Use the **search field** in the top right to filter by any column, or click a column header to sort. See [Filter and search](/hub/ui/filter-search/) for details.
+
+## Editing a Device
+
+<Steps>
+1. Click any row in the device list to open the detail panel.
+2. The panel shows all device information on the right side of the screen.
+3. Click into any editable field — **Name**, **Location**, **Order Number**, **Delivery Date**, or **Notes** — and make your changes.
+4. Your changes are saved automatically.
+</Steps>
+
+<div class="screenshot-frame">
+  <img src={deviceDetailImg.src} alt="Device detail panel with editable fields" />
+</div>

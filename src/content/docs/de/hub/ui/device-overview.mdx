@@ -3,45 +3,33 @@ title: "Geräte-Übersicht"
 description: "Übersicht über die Geräteliste und die Geräte-Detailansicht in Hub."
 ---
 
-import { Steps } from '@astrojs/starlight/components';
 import devicesListImg from '../../../../../assets/images/hub-devices-list.png';
-import deviceDetailImg from '../../../../../assets/images/hub-devices-detail.png';
+import devicesDetailImg from '../../../../../assets/images/hub-devices-detail.png';
 
-## Hauptnavigation
-
-Die obere Navigationsleiste bietet Zugriff auf die wichtigsten Bereiche von Hub:
-
-- **Geräte** — Zentrale Geräte-Übersicht
-- **Software** — Softwareverwaltung
-- **Benutzer** — Benutzerverwaltung (Admin-Bereich)
-
-In der oberen rechten Ecke befinden sich die Sprachauswahl, der Hilfe-Link sowie das Benutzermenü (Initialen-Avatar). Die Sprachauswahl gilt nur für die aktuelle Sitzung und ist nicht am Konto gespeichert.
-
-## Geräteliste
-
-Die Seite **Geräte** listet alle registrierten Edge-Geräte Ihrer Firma auf. Jede Zeile zeigt Seriennummer, Name, Typ, Standort und Firmware-Version.
+Alle registrierten Edge-Geräte Ihrer Organisation auf einen Blick. Die Geräteliste zeigt für jedes Gerät Seriennummer, Name, Typ, Standort und installierte Firmware-Version. Über das Suchsymbol oben rechts lässt sich die Liste in Echtzeit filtern und nach jeder Spalte sortieren.
 
 <div class="screenshot-frame">
-  <img src={devicesListImg.src} alt="Hub-Geräteliste mit registrierten Edge-Geräten und Spalten für Seriennummer, Name, Typ und Firmware" />
+  <img src={devicesListImg.src} alt="Hub-Geräteliste mit registrierten Edge-Geräten" />
 </div>
 
-Klicken Sie auf das Suchsymbol oben rechts, um die Geräteliste zu filtern.
-
-## Geräte-Detailansicht
-
-Klicken Sie auf eine Zeile, um das Panel **Crawler Details** auf der rechten Seite zu öffnen. Es zeigt alle Geräteinformationen:
-
-- **Seriennummer** — Eindeutige Geräte-ID
-- **Name** — Gerätename
-- **Typ** — Gerätetyp und Modell
-- **Ort** — Installationsstandort
-- **Firmware (Auslieferung)** — Firmware-Version zum Auslieferungszeitpunkt
-- **Bestellnummer** — Interne Bestellreferenz
-- **Ausgeliefert am** — Auslieferungsdatum
-- **Notiz** — Freitextfeld für Anmerkungen
-
-<div class="screenshot-frame">
-  <img src={deviceDetailImg.src} alt="Hub-Detailpanel mit Crawler-Details wie Seriennummer, Name, Typ und weiteren Metadaten" />
+<div class="page-hero page-hero-reverse">
+  <div class="page-hero-text">
+    <p class="page-hero-overline">Geräte-Detailansicht</p>
+    <p>Klicken Sie auf eine Zeile, um das Detailpanel zu öffnen.</p>
+    <div class="page-hero-body">
+      <div class="field-list">
+        <div class="field-item"><span class="field-label">Name</span><span class="field-desc">Gerätename (bearbeitbar)</span></div>
+        <div class="field-item"><span class="field-label">Seriennummer</span><span class="field-desc">Eindeutige Geräte-ID</span></div>
+        <div class="field-item"><span class="field-label">Typ</span><span class="field-desc">Gerätetyp und Modell</span></div>
+        <div class="field-item"><span class="field-label">Ort</span><span class="field-desc">Installationsstandort (bearbeitbar)</span></div>
+        <div class="field-item"><span class="field-label">Firmware</span><span class="field-desc">Version zum Auslieferungszeitpunkt</span></div>
+        <div class="field-item"><span class="field-label">Bestellnummer</span><span class="field-desc">Interne Referenz (bearbeitbar)</span></div>
+        <div class="field-item"><span class="field-label">Notiz</span><span class="field-desc">Freitextfeld (bearbeitbar)</span></div>
+      </div>
+      <p style="margin-top: 1rem; font-size: 0.9rem;">Klicken Sie auf <strong>Bearbeiten</strong>, um Gerätedaten anzupassen. Mit <strong>×</strong> schließen Sie das Panel.</p>
+    </div>
+  </div>
+  <div class="page-hero-image">
+    <img src={devicesDetailImg.src} alt="Hub-Detailpanel mit Geräteinformationen" />
+  </div>
 </div>
-
-Klicken Sie auf **Bearbeiten**, um die Gerätedaten zu bearbeiten. Mit **×** schließen Sie das Detailpanel.

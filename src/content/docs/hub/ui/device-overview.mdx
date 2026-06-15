@@ -1,47 +1,35 @@
 ---
-title: "Device overview"
+title: "Device Overview"
 description: "An overview of the device list and device detail view in Hub."
 ---
 
-import { Steps } from '@astrojs/starlight/components';
 import devicesListImg from '../../../../assets/images/hub-devices-list.png';
-import deviceDetailImg from '../../../../assets/images/hub-devices-detail.png';
+import devicesDetailImg from '../../../../assets/images/hub-devices-detail.png';
 
-## Main Navigation
-
-The top navigation bar provides access to the main sections of Hub:
-
-- **Geräte** — Central device overview
-- **Software** — Software management
-- **Benutzer** — User management (admin area)
-
-The upper-right corner contains the language selector, help link, and the user menu (initials avatar). The language selection applies to the current session only and is not tied to your account.
-
-## Device List
-
-The **Geräte** page lists all registered Edge devices in your company. Each row shows the serial number, name, type, location, and firmware version.
+All registered Edge devices in your organization at a glance. The device list shows each device's serial number, name, type, location, and installed firmware version. Use the search icon in the top right to filter and sort the list in real time.
 
 <div class="screenshot-frame">
-  <img src={devicesListImg.src} alt="Hub device list showing registered Edge devices with serial number, name, type, and firmware columns" />
+  <img src={devicesListImg.src} alt="Hub device list showing registered Edge devices" />
 </div>
 
-Click the search icon in the top right to filter the device list.
-
-## Device Detail View
-
-Click any row to open the **Crawler Details** panel on the right. It shows the full device information:
-
-- **Seriennummer** — Unique device ID
-- **Name** — Device name
-- **Typ** — Device type and model
-- **Ort** — Installation location
-- **Firmware (Auslieferung)** — Firmware version at time of delivery
-- **Bestellnummer** — Internal order reference
-- **Ausgeliefert am** — Delivery date
-- **Notiz** — Free-text notes field
-
-<div class="screenshot-frame">
-  <img src={deviceDetailImg.src} alt="Hub device detail panel showing Crawler Details with serial number, name, type, and other metadata fields" />
+<div class="page-hero page-hero-reverse">
+  <div class="page-hero-text">
+    <p class="page-hero-overline">Device Detail View</p>
+    <p>Click any row to open the detail panel.</p>
+    <div class="page-hero-body">
+      <div class="field-list">
+        <div class="field-item"><span class="field-label">Name</span><span class="field-desc">Device name (editable)</span></div>
+        <div class="field-item"><span class="field-label">Serial number</span><span class="field-desc">Unique device ID</span></div>
+        <div class="field-item"><span class="field-label">Type</span><span class="field-desc">Device type and model</span></div>
+        <div class="field-item"><span class="field-label">Location</span><span class="field-desc">Installation site (editable)</span></div>
+        <div class="field-item"><span class="field-label">Firmware</span><span class="field-desc">Version at time of delivery</span></div>
+        <div class="field-item"><span class="field-label">Order no.</span><span class="field-desc">Internal reference (editable)</span></div>
+        <div class="field-item"><span class="field-label">Notes</span><span class="field-desc">Free-text field (editable)</span></div>
+      </div>
+      <p style="margin-top: 1rem; font-size: 0.9rem;">Click <strong>Edit</strong> to edit device data. Click <strong>×</strong> to close the panel.</p>
+    </div>
+  </div>
+  <div class="page-hero-image">
+    <img src={devicesDetailImg.src} alt="Hub detail panel showing device information" />
+  </div>
 </div>
-
-Click **Bearbeiten** to edit the device information. Click **×** to close the detail panel.

@@ -59,6 +59,11 @@ import Default from '@astrojs/starlight/components/Sidebar.astro';
     if (!btn || (btn as HTMLElement).dataset.ready) return;
     (btn as HTMLElement).dataset.ready = '1';
 
+    // Move button to body so it is never hidden when .sidebar gets display:none
+    if (btn.parentElement !== document.body) {
+      document.body.appendChild(btn);
+    }
+
     let open = true;
     btn.addEventListener('click', () => {
       open = !open;
