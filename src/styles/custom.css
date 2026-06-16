@@ -130,6 +130,20 @@ h1, h2, h3, h4, h5, h6,
   display: none !important;
 }
 
+:root.sidebar-hidden {
+  --sl-sidebar-width: 0px;
+}
+
+:root.sidebar-hidden .right-sidebar-container {
+  display: none !important;
+}
+
+/* Sidebar sub-items indentation */
+.sidebar details > ul > li > a,
+.sidebar details details a {
+  padding-inline-start: 1.75rem !important;
+}
+
 /* Sidebar toggle button — CSS-positioned via --sl-sidebar-width so it never jumps */
 #sl-sidebar-btn {
   position: fixed;

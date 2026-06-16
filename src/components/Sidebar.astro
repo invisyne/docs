@@ -65,11 +65,22 @@ import Default from '@astrojs/starlight/components/Sidebar.astro';
     }
 
     let open = true;
-    btn.addEventListener('click', () => {
-      open = !open;
+
+    function applyLayout() {
       document.documentElement.classList.toggle('sidebar-hidden', !open);
       const arrow = document.getElementById('sl-btn-arrow');
       if (arrow) arrow.innerHTML = open ? '&#x2039;' : '&#x203a;';
+      // Expand content when sidebar is hidden
+      const contentWrap = document.querySelector('[class*="lg:sl-flex"]') as HTMLElement | null;
+      if (contentWrap) {
+        contentWrap.style.width = open ? '' : '100%';
+        contentWrap.style.maxWidth = open ? '' : '100%';
+      }
+    }
+
+    btn.addEventListener('click', () => {
+      open = !open;
+      applyLayout();
     });
   }
 
