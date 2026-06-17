@@ -114,7 +114,7 @@ export default defineConfig({
 							items: [
 								{ label: 'Overview', translations: { de: 'Übersicht' }, slug: 'hub/how-to' },
 								// Geräte
-{ label: 'Search & Filter', translations: { de: 'Suchen & Filtern' }, slug: 'hub/how-to/search-filter' },
+{ label: 'Filter, Search and Sort', translations: { de: 'Filtern, Suchen und Sortieren' }, slug: 'hub/how-to/search-filter' },
 								{ label: 'Edit a Device', translations: { de: 'Gerät bearbeiten' }, slug: 'hub/how-to/edit-device' },
 								// Software
 { label: 'Download Edge Firmware', translations: { de: 'Edge-Firmware herunterladen' }, slug: 'hub/how-to/download-firmware' },

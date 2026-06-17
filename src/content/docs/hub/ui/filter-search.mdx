@@ -1,14 +1,15 @@
 ---
-title: "Filter and search"
-description: "How to search and sort the device list in Crawler.Hub."
+title: "Filter, Search and Sort"
+description: "How to use search, filters, and sorting in Crawler.Hub."
+sidebar:
+  order: 3
 ---
 
 import filterOpenImg from '../../../../assets/images/hub-filter-search-open.png';
 import filterActiveImg from '../../../../assets/images/hub-filter-search-active.png';
-import filterDetailImg from '../../../../assets/images/hub-filter-search-detail.png';
 import filterSortImg from '../../../../assets/images/hub-filter-search-sort.png';
 
-The device list in Hub includes a real-time search field and sortable columns.
+Many views in Hub include a real-time search field, filter options, and sortable columns.
 
 <div class="doc-accordion" id="fs-accordion">
   <div class="doc-accordion-items">
@@ -18,9 +19,9 @@ The device list in Hub includes a real-time search field and sortable columns.
         <span class="doc-accordion-arrow">&#x2303;</span>
       </button>
       <div class="doc-accordion-body">
-        The search field is located in the top-right corner of the device list — look for the magnifying glass icon. Click the **search icon** to open the input field.
+        The search field is located in the top-right corner of the active view — look for the magnifying glass icon. Click the **search icon** to open the input field.
 
-        <div class="qs-tip">The search checks all columns: <strong>Serial Number</strong>, <strong>Name</strong>, <strong>Type</strong>, <strong>Location</strong>, and <strong>Firmware</strong>.</div>
+        <div class="qs-tip">The search checks all visible columns of the active view in real time.</div>
       </div>
     </div>
     <div class="doc-accordion-item">
@@ -29,18 +30,9 @@ The device list in Hub includes a real-time search field and sortable columns.
         <span class="doc-accordion-arrow">&#x2303;</span>
       </button>
       <div class="doc-accordion-body">
-        Start typing — the list filters in real time. Type e.g. **Wago**, and only matching devices remain visible. To reset: click the **×** icon or delete the text.
+        Start typing — the list filters in real time. To reset: click the **×** icon or delete the text.
 
-        <div class="qs-tip">A partial term like <strong>Wago</strong> matches any device that contains it in any column.</div>
-      </div>
-    </div>
-    <div class="doc-accordion-item">
-      <button class="doc-accordion-title">
-        <span>Open a device</span>
-        <span class="doc-accordion-arrow">&#x2303;</span>
-      </button>
-      <div class="doc-accordion-body">
-        Click any row in the filtered list to open the **detail panel** for that device. There you can view all device information and edit Name, Location, Order Number, Delivery Date, and Notes.
+        <div class="qs-tip">A partial term is enough — any entry containing it in any column will match.</div>
       </div>
     </div>
     <div class="doc-accordion-item">
@@ -61,9 +53,6 @@ The device list in Hub includes a real-time search field and sortable columns.
     </div>
     <div class="doc-acc-img-wrap">
       <img src={filterActiveImg.src} alt="Device list filtered by Wago" />
-    </div>
-    <div class="doc-acc-img-wrap">
-      <img src={filterDetailImg.src} alt="Device detail panel open" />
     </div>
     <div class="doc-acc-img-wrap">
       <img src={filterSortImg.src} alt="Column header with sort arrow highlighted" />
