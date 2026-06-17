@@ -68,6 +68,11 @@ const PRODUCTS = [
   { id: 'hub',       title: 'Invisyne Hub' },
 ];
 
+const LANGUAGES = [
+  { id: 'en', label: 'Documentation',  dir: '' },
+  { id: 'de', label: 'Dokumentation',  dir: 'de' },
+];
+
 function startServer() {
   return new Promise(resolve => {
     const server = createServer((req, res) => {
@@ -93,8 +98,8 @@ function findPages(dir) {
   return results;
 }
 
-function sortPages(pages, productId) {
-  const base = join(DIST, productId);
+function sortPages(pages, basePath) {
+  const base = basePath;
   return pages.sort((a, b) => {
     const rel = p => p.replace(base, '').replace(/\/?index\.html$/, '').replace(/^\//, '');
     const section = p => rel(p).split('/')[0] || '';
@@ -193,11 +198,14 @@ async function extractContent(browser, url) {
   }
 }
 
-async function buildProductPDF(browser, product, pages) {
+async function buildProductPDF(browser, product, lang, pages) {
+  const basePath = join(DIST, ...(lang.dir ? [lang.dir, product.id] : [product.id]));
+  const urlPrefix = lang.dir ? `${BASE}/${lang.dir}/${product.id}` : `${BASE}/${product.id}`;
+
   const sections = [];
   for (const pagePath of pages) {
-    const rel = pagePath.replace(join(DIST, product.id), '').replace('index.html', '');
-    const url = `${BASE}/${product.id}${rel}`;
+    const rel = pagePath.replace(basePath, '').replace('index.html', '');
+    const url = `${urlPrefix}${rel}`;
     console.log(`  ${url}`);
     const html = await extractContent(browser, url);
     if (html) sections.push(html);
@@ -206,7 +214,7 @@ async function buildProductPDF(browser, product, pages) {
   const productLogo = loadLogoSVG(product.id);
   const invisyneLogo = loadLogoSVG('invisyne');
   const combined = `<!DOCTYPE html>
-<html lang="en">
+<html lang="${lang.id}">
 <head>
   <meta charset="utf-8">
   <title>${product.title}</title>
@@ -215,7 +223,7 @@ async function buildProductPDF(browser, product, pages) {
 <body>
   <div class="cover">
     ${productLogo ? `<div class="cover-logo">${productLogo}</div>` : `<h1>${product.title}</h1>`}
-    <p>Documentation</p>
+    <p>${lang.label}</p>
     ${invisyneLogo ? `<div class="cover-brand">${invisyneLogo}</div>` : ''}
   </div>
   ${sections.map(s => `<div class="section">${s}</div>`).join('\n')}
@@ -229,7 +237,7 @@ async function buildProductPDF(browser, product, pages) {
     printBackground: true,
     margin: { top: '2cm', right: '2cm', bottom: '2.5cm', left: '2cm' },
     displayHeaderFooter: true,
-    headerTemplate: `<div style="font-size:8pt;width:100%;text-align:center;color:#9ca3af;padding-top:8px;">${product.title} — Documentation</div>`,
+    headerTemplate: `<div style="font-size:8pt;width:100%;text-align:center;color:#9ca3af;padding-top:8px;">${product.title} — ${lang.label}</div>`,
     footerTemplate: `<div style="font-size:8pt;width:100%;text-align:center;color:#9ca3af;padding-bottom:8px;"><span class="pageNumber"></span> / <span class="totalPages"></span></div>`,
   });
   await page.close();
@@ -250,13 +258,20 @@ async function main() {
 
   try {
     for (const product of PRODUCTS) {
-      console.log(`\nGenerating ${product.title} PDF...`);
-      const pages = sortPages(findPages(join(DIST, product.id)), product.id);
-      console.log(`  ${pages.length} pages`);
-      const pdf = await buildProductPDF(browser, product, pages);
-      const outPath = join(DIST, 'downloads', `${product.id}.pdf`);
-      await writeFile(outPath, pdf);
-      console.log(`  → dist/downloads/${product.id}.pdf`);
+      for (const lang of LANGUAGES) {
+        const basePath = join(DIST, ...(lang.dir ? [lang.dir, product.id] : [product.id]));
+        if (!existsSync(basePath)) {
+          console.log(`\nSkipping ${product.title} (${lang.id}) — ${basePath} not found`);
+          continue;
+        }
+        console.log(`\nGenerating ${product.title} (${lang.id}) PDF...`);
+        const pages = sortPages(findPages(basePath), basePath);
+        console.log(`  ${pages.length} pages`);
+        const pdf = await buildProductPDF(browser, product, lang, pages);
+        const outPath = join(DIST, 'downloads', `${product.id}-${lang.id}.pdf`);
+        await writeFile(outPath, pdf);
+        console.log(`  → dist/downloads/${product.id}-${lang.id}.pdf`);
+      }
     }
   } finally {
     await browser.close();
