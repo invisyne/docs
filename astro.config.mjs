@@ -70,7 +70,7 @@ export default defineConfig({
 							translations: { de: 'Technische Referenz' },
 							autogenerate: { directory: 'edge/overview' },
 						},
-						{ label: 'Download PDF', translations: { de: 'PDF-Download' }, link: '/downloads/edge.pdf', attrs: { target: '_blank' } },
+						{ label: 'Download PDF', translations: { de: 'PDF-Download' }, slug: 'edge/download' },
 					],
 				},
 				{
@@ -96,7 +96,7 @@ export default defineConfig({
 							translations: { de: 'Technische Referenz' },
 							autogenerate: { directory: 'companion/technical' },
 						},
-						{ label: 'Download PDF', translations: { de: 'PDF-Download' }, link: '/downloads/companion.pdf', attrs: { target: '_blank' } },
+						{ label: 'Download PDF', translations: { de: 'PDF-Download' }, slug: 'companion/download' },
 					],
 				},
 				{
@@ -137,7 +137,7 @@ export default defineConfig({
 							translations: { de: 'Technische Referenz' },
 							autogenerate: { directory: 'hub/technical' },
 						},
-						{ label: 'Download PDF', translations: { de: 'PDF-Download' }, link: '/downloads/hub.pdf', attrs: { target: '_blank' } },
+						{ label: 'Download PDF', translations: { de: 'PDF-Download' }, slug: 'hub/download' },
 					],
 				},
 			],
