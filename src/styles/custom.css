@@ -29,6 +29,11 @@
   --sl-font: Roboto, sans-serif;
 }
 
+/* ─── Hide heading anchor links ─────────────────────────────────────── */
+a.sl-anchor-link {
+  display: none !important;
+}
+
 /* ─── GT America Extended on all headings ───────────────────────────── */
 h1, h2, h3, h4, h5, h6,
 .sl-markdown-content h1,
@@ -188,6 +193,17 @@ h1, h2, h3, h4, h5, h6,
 .sidebar summary {
   pointer-events: none;
   cursor: default;
+}
+
+/* ─── Kill all sidebar transitions — prevents jump on navigation ────── */
+/* Starlight sets transition:all on sidebar-pane, links, and details,
+   which causes every property change to animate and look like a jump. */
+#starlight__sidebar,
+#starlight__sidebar *,
+.sidebar-pane,
+.sidebar-pane * {
+  transition: none !important;
+  animation: none !important;
 }
 
 /* Sidebar alignment is handled in src/components/Sidebar.astro via :global() */
@@ -494,6 +510,23 @@ starlight-toc a {
 
 .carousel-caption {
   display: none;
+}
+
+/* ─── Callout / aside overrides ─────────────────────────────────────── */
+.starlight-aside {
+  background: var(--sl-color-gray-6, #f0f0ed) !important;
+  border-inline-start: 3px solid currentColor !important;
+  border-radius: 0 6px 6px 0 !important;
+}
+.starlight-aside--note {
+  color: var(--sl-color-accent, #2549ff) !important;
+  --sl-color-asides-text-accent: var(--sl-color-gray-2, #3a3a3a) !important;
+}
+.starlight-aside .starlight-aside__content {
+  color: var(--sl-color-gray-2, #3a3a3a) !important;
+}
+.starlight-aside .starlight-aside__title {
+  color: var(--sl-color-accent, #2549ff) !important;
 }
 
 /* ─── Quickstart tip box ─────────────────────────────────────────────── */
@@ -841,6 +874,13 @@ starlight-toc a {
   flex: 1;
 }
 
+/* Reduce gap between step text and nested list inside <Steps> */
+.sl-steps > li > ul,
+.sl-steps > li > ol {
+  margin-top: 0.4rem;
+  margin-bottom: 0;
+}
+
 
 .howto-card-title {
   font-size: 0.72rem;
@@ -951,6 +991,122 @@ starlight-toc a {
   margin: 0 !important;
   line-height: 1.55;
   flex: 1;
+}
+
+/* ─── Browser-style interactive tabs (device-overview) ──────────────── */
+.ui-tabs {
+  margin: 1.5rem 0;
+}
+
+.ui-tabs-bar {
+  display: flex;
+  gap: 0;
+  border-bottom: 2px solid var(--sl-color-gray-5, #dcdcd8);
+  flex-wrap: wrap;
+  align-items: flex-end;
+}
+
+.ui-tab {
+  padding: 10px 20px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--sl-color-gray-3, #5a5a5a);
+  background: transparent;
+  border: 1px solid transparent;
+  border-bottom: 2px solid transparent;
+  border-radius: 6px 6px 0 0;
+  cursor: pointer;
+  transition: color 0.15s, background 0.15s;
+  margin-bottom: -2px;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.ui-tab:hover {
+  color: var(--sl-color-accent, #2549ff);
+  background: var(--sl-color-gray-6, #f0f0ed);
+}
+
+.ui-tab.active {
+  color: var(--sl-color-accent, #2549ff);
+  background: var(--sl-color-gray-7, #fafaf8);
+  border-color: var(--sl-color-gray-5, #dcdcd8);
+  border-bottom-color: var(--sl-color-gray-7, #fafaf8);
+  font-weight: 600;
+}
+
+.ui-tabs-content {
+  background: var(--sl-color-gray-7, #fafaf8);
+  border: 1px solid var(--sl-color-gray-5, #dcdcd8);
+  border-top: none;
+  border-radius: 0 0 10px 10px;
+  padding: 24px 28px;
+  min-height: 80px;
+}
+
+.ui-tab-panel {
+  display: none;
+}
+
+.ui-tab-panel.active {
+  display: block;
+}
+
+.ui-tab-panel p {
+  margin: 0 !important;
+  color: var(--sl-color-gray-2, #3a3a3a) !important;
+  font-size: 0.95rem !important;
+  line-height: 1.6 !important;
+}
+
+/* ─── Tab cards grid (device-overview tabs section) ─────────────────── */
+.tab-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+  margin: 1.5rem 0;
+  align-items: stretch;
+}
+
+@media (max-width: 900px) {
+  .tab-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .tab-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.tab-card {
+  background: var(--sl-color-gray-7, #fafaf8) !important;
+  border: 1px solid var(--sl-color-gray-5, #dcdcd8) !important;
+  border-radius: 12px;
+  padding: 28px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  transition: box-shadow 0.2s;
+}
+
+.tab-card:hover {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+}
+
+.tab-card-title {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--sl-color-gray-3, #5a5a5a);
+  margin: 0 0 10px 0;
+}
+
+.tab-card-desc {
+  font-size: 0.95rem;
+  color: var(--sl-color-gray-2, #3a3a3a);
+  line-height: 1.55;
+  margin: 0;
 }
 
 .feature-footnote {

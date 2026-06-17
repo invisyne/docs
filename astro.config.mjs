@@ -111,15 +111,21 @@ export default defineConfig({
 							translations: { de: "How-To's" },
 							collapsed: false,
 							items: [
-								{ label: 'Guides', translations: { de: 'Anleitungen' }, slug: 'hub/how-to' },
-								{ label: 'Invite a New User', translations: { de: 'Benutzer einladen' }, slug: 'hub/how-to/invite-user' },
-								{ label: 'Change User Role', translations: { de: 'Rolle ändern' }, slug: 'hub/how-to/change-role' },
+								{ label: 'Overview', translations: { de: 'Übersicht' }, slug: 'hub/how-to' },
+								// Geräte
+								{ label: 'Add Device Information', translations: { de: 'Geräteinformationen ergänzen' }, slug: 'hub/how-to/add-device-info' },
 								{ label: 'Edit a Device', translations: { de: 'Gerät bearbeiten' }, slug: 'hub/how-to/edit-device' },
 								{ label: 'Search & Filter', translations: { de: 'Suchen & Filtern' }, slug: 'hub/how-to/search-filter' },
+								// Software
+								{ label: 'Download a Software Release', translations: { de: 'Software-Release herunterladen' }, slug: 'hub/how-to/download-software' },
+								{ label: 'Download Edge Firmware', translations: { de: 'Edge-Firmware herunterladen' }, slug: 'hub/how-to/download-firmware' },
+								{ label: 'Download Companion Firmware', translations: { de: 'Companion-Firmware herunterladen' }, slug: 'hub/how-to/download-companion' },
+								// Benutzer
+								{ label: 'Invite a New User', translations: { de: 'Benutzer einladen' }, slug: 'hub/how-to/invite-user' },
+								{ label: 'Change User Role', translations: { de: 'Rolle ändern' }, slug: 'hub/how-to/change-role' },
+								// Kontoeinstellungen
 								{ label: 'Change Password', translations: { de: 'Passwort ändern' }, slug: 'hub/how-to/change-password' },
 								{ label: 'Change Language', translations: { de: 'Sprache ändern' }, slug: 'hub/how-to/change-language' },
-								{ label: 'Download Firmware', translations: { de: 'Firmware herunterladen' }, slug: 'hub/how-to/download-firmware' },
-								{ label: 'Download Companion', translations: { de: 'Companion herunterladen' }, slug: 'hub/how-to/download-companion' },
 							],
 						},
 						{

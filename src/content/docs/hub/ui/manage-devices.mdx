@@ -1,40 +1,91 @@
 ---
-title: "Manage devices"
-description: "How to view and edit device information in Crawler.Hub."
+title: "Devices"
+description: "The device list and detail view in Hub — columns, tabs, and editing explained."
 ---
 
 import { Steps } from '@astrojs/starlight/components';
-import deviceDetailImg from '../../../../assets/images/hub-devices-detail.png';
+import devicesImg from '../../../../assets/images/hub-devices-list.png';
+import devicesDetailImg from '../../../../assets/images/hub-devices-detail.png';
 
-The **Devices** section is the central view in Hub. It lists all Edge (Crawler) devices registered in your organization and lets you view and edit their details.
+The **Devices** section is the central view in Hub. It lists all Edge devices registered in your organization and lets you view and edit their details.
 
 ## Device List
 
-After logging in, you land directly on the device list. Each row shows:
-
-<div class="field-list">
-  <div class="field-item"><span class="field-label">Serial Number</span><span class="field-desc">Unique device identifier</span></div>
-  <div class="field-item"><span class="field-label">Name</span><span class="field-desc">User-defined label</span></div>
-  <div class="field-item"><span class="field-label">Type</span><span class="field-desc">Device model (e.g., Wago 752-9400)</span></div>
-  <div class="field-item"><span class="field-label">Location</span><span class="field-desc">Installation site</span></div>
-  <div class="field-item"><span class="field-label">Firmware</span><span class="field-desc">Installed firmware version</span></div>
-</div>
+After logging in, you land directly on the device list showing all Edge devices registered in your organization.
 
 <div class="screenshot-frame">
-  <img src="/images/hub/hub-devices.png" alt="Device list showing all registered Edge (Crawler) devices" />
+  <img src={devicesImg.src} alt="Device list showing all registered Edge devices" />
 </div>
 
-Use the **search field** in the top right to filter by any column, or click a column header to sort. See [Filter and search](/hub/ui/filter-search/) for details.
+Use the **search field** in the top right to filter by any column, or click a column header to sort.
+
+## Device Detail Panel
+
+<div class="page-hero page-hero-reverse">
+  <div class="page-hero-text">
+    <p class="page-hero-overline">Detail View</p>
+    <p>Click any row to open the detail panel on the right side of the screen.</p>
+    <div class="page-hero-body">
+      <div class="field-list">
+        <div class="field-item"><span class="field-label">Name</span><span class="field-desc">User-defined label (editable)</span></div>
+        <div class="field-item"><span class="field-label">Address</span><span class="field-desc">Street address of the installation site (editable)</span></div>
+        <div class="field-item"><span class="field-label">Contact</span><span class="field-desc">Responsible person or team (editable)</span></div>
+        <div class="field-item"><span class="field-label">Location</span><span class="field-desc">Physical installation site (editable)</span></div>
+        <div class="field-item"><span class="field-label">Serial Number</span><span class="field-desc">Unique device identifier (read-only)</span></div>
+        <div class="field-item"><span class="field-label">MAC</span><span class="field-desc">Network hardware address (read-only)</span></div>
+        <div class="field-item"><span class="field-label">Firmware</span><span class="field-desc">Installed firmware version (read-only)</span></div>
+        <div class="field-item"><span class="field-label">Order Number</span><span class="field-desc">Internal reference number (editable)</span></div>
+        <div class="field-item"><span class="field-label">Delivery Date</span><span class="field-desc">Date the device was delivered (editable)</span></div>
+        <div class="field-item"><span class="field-label">Notes</span><span class="field-desc">Free-text field for additional information (editable)</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="page-hero-image">
+    <img src={devicesDetailImg.src} alt="Hub device detail panel showing device information" />
+  </div>
+</div>
+
+### Detail Panel Tabs
+
+<div class="ui-tabs">
+  <div class="ui-tabs-bar">
+    <button class="ui-tab active" data-tab="status">Status</button>
+    <button class="ui-tab" data-tab="performance">Performance</button>
+    <button class="ui-tab" data-tab="detail">Detail Information</button>
+    <button class="ui-tab" data-tab="errors">Error Logs</button>
+    <button class="ui-tab" data-tab="license">License</button>
+  </div>
+  <div class="ui-tabs-content">
+    <div class="ui-tab-panel active" data-panel="status">
+      <p>Shows the current connection state of the device and a brief summary of its last known activity.</p>
+    </div>
+    <div class="ui-tab-panel" data-panel="performance">
+      <p>Displays runtime metrics for the device — processor load, memory usage, and communication activity.</p>
+    </div>
+    <div class="ui-tab-panel" data-panel="detail">
+      <p>Contains all editable and descriptive fields for the device (see the panel above). Click <strong>Edit</strong> to modify fields and <strong>Save</strong> to apply changes.</p>
+    </div>
+    <div class="ui-tab-panel" data-panel="errors">
+      <p>Lists recent error events with timestamps and error codes. Use this tab to diagnose connectivity issues or unexpected behavior.</p>
+    </div>
+    <div class="ui-tab-panel" data-panel="license">
+      <p>Shows the license type, validity period, and assigned features. Contact your administrator if a license has expired or is missing.</p>
+    </div>
+  </div>
+</div>
 
 ## Editing a Device
 
 <Steps>
-1. Click any row in the device list to open the detail panel.
-2. The panel shows all device information on the right side of the screen.
-3. Click into any editable field — **Name**, **Location**, **Order Number**, **Delivery Date**, or **Notes** — and make your changes.
-4. Your changes are saved automatically.
+1. Click a device row to open the detail panel.
+
+2. Click the **Edit** button to enable editing mode.
+
+3. Update any of the following fields: **Name**, **Address**, **Contact**, **Location**, **Order Number**, **Delivery Date**, or **Notes**.
+
+4. Click **Save** to apply your changes.
 </Steps>
 
-<div class="screenshot-frame">
-  <img src={deviceDetailImg.src} alt="Device detail panel with editable fields" />
-</div>
+:::note
+Serial number, MAC address, firmware version, and status are read-only and cannot be edited manually.
+:::

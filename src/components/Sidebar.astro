@@ -9,6 +9,15 @@ import Default from '@astrojs/starlight/components/Sidebar.astro';
   if (typeof customElements !== 'undefined' && !customElements.get('sl-sidebar-restore')) {
     customElements.define('sl-sidebar-restore', class extends HTMLElement {});
   }
+  // Apply sidebar state before first paint to prevent layout shift on navigation
+  try {
+    if (sessionStorage.getItem('sl-sidebar-open') === 'false') {
+      document.documentElement.classList.add('sidebar-hidden');
+      document.documentElement.style.setProperty('--sl-sidebar-width', '0px');
+      document.documentElement.style.setProperty('--sl-content-inline-start', '3rem');
+      document.documentElement.style.setProperty('--sl-content-width', 'calc(100vw - 8.5rem)');
+    }
+  } catch(e) {}
 </script>
 
 <Default {...Astro.props} />
@@ -54,36 +63,93 @@ import Default from '@astrojs/starlight/components/Sidebar.astro';
 </style>
 
 <script>
+  const STORAGE_KEY = 'sl-sidebar-open';
+
+  function getSidebarOpen(): boolean {
+    return sessionStorage.getItem(STORAGE_KEY) !== 'false';
+  }
+
+  function setSidebarOpen(value: boolean) {
+    sessionStorage.setItem(STORAGE_KEY, String(value));
+  }
+
+  function applyLayout() {
+    const open = getSidebarOpen();
+    document.documentElement.classList.toggle('sidebar-hidden', !open);
+    // main-frame uses --sl-content-inline-start which resolves to --sl-sidebar-width
+    // Set both inline (highest specificity) to remove the left offset
+    document.documentElement.style.setProperty('--sl-sidebar-width', open ? '' : '0px');
+    document.documentElement.style.setProperty('--sl-content-inline-start', open ? '' : '3rem');
+    document.documentElement.style.setProperty('--sl-content-width', open ? '' : 'calc(100vw - 8.5rem)');
+    const arrow = document.getElementById('sl-btn-arrow');
+    if (arrow) arrow.innerHTML = open ? '&#x2039;' : '&#x203a;';
+  }
+
   function initToggle() {
     const btn = document.getElementById('sl-sidebar-btn');
-    if (!btn || (btn as HTMLElement).dataset.ready) return;
-    (btn as HTMLElement).dataset.ready = '1';
+    if (!btn) return;
 
-    // Move button to body so it is never hidden when .sidebar gets display:none
-    if (btn.parentElement !== document.body) {
-      document.body.appendChild(btn);
-    }
-
-    let open = true;
-
-    function applyLayout() {
-      document.documentElement.classList.toggle('sidebar-hidden', !open);
-      const arrow = document.getElementById('sl-btn-arrow');
-      if (arrow) arrow.innerHTML = open ? '&#x2039;' : '&#x203a;';
-      // Expand content when sidebar is hidden
-      const contentWrap = document.querySelector('[class*="lg:sl-flex"]') as HTMLElement | null;
-      if (contentWrap) {
-        contentWrap.style.width = open ? '' : '100%';
-        contentWrap.style.maxWidth = open ? '' : '100%';
+    if (!(btn as HTMLElement).dataset.ready) {
+      (btn as HTMLElement).dataset.ready = '1';
+      if (btn.parentElement !== document.body) {
+        document.body.appendChild(btn);
       }
+      btn.addEventListener('click', () => {
+        setSidebarOpen(!getSidebarOpen());
+        applyLayout();
+      });
     }
 
-    btn.addEventListener('click', () => {
-      open = !open;
-      applyLayout();
+    applyLayout();
+  }
+
+  function initUiTabs() {
+    document.querySelectorAll('.ui-tabs').forEach((tabs) => {
+      if ((tabs as HTMLElement).dataset.ready) return;
+      (tabs as HTMLElement).dataset.ready = '1';
+      tabs.querySelectorAll('.ui-tab').forEach((btn) => {
+        btn.addEventListener('click', function(this: HTMLElement) {
+          const key = this.dataset.tab;
+          tabs.querySelectorAll('.ui-tab').forEach((b) => b.classList.remove('active'));
+          tabs.querySelectorAll('.ui-tab-panel').forEach((p) => p.classList.remove('active'));
+          this.classList.add('active');
+          tabs.querySelector(`.ui-tab-panel[data-panel="${key}"]`)?.classList.add('active');
+        });
+      });
     });
   }
 
+  function initQsStepper() {
+    document.querySelectorAll('.qs-stepper').forEach((stepper) => {
+      if ((stepper as HTMLElement).dataset.ready) return;
+      (stepper as HTMLElement).dataset.ready = '1';
+      const tabs = Array.from(stepper.querySelectorAll('.qs-tab'));
+      const panels = Array.from(stepper.querySelectorAll('.qs-panel'));
+      function activate(idx: number) {
+        tabs.forEach((t, i) => t.classList.toggle('qs-active', i === idx));
+        panels.forEach((p, i) => p.classList.toggle('qs-active', i === idx));
+      }
+      tabs.forEach((tab, idx) => {
+        tab.addEventListener('click', (e) => { e.preventDefault(); activate(idx); });
+      });
+      activate(0);
+    });
+  }
+
+  // Apply sidebar state to the incoming document BEFORE the swap so there is
+  // never a frame where the layout is in the wrong state.
+  document.addEventListener('astro:before-swap', (e: any) => {
+    const open = getSidebarOpen();
+    if (!open) {
+      e.newDocument.documentElement.classList.add('sidebar-hidden');
+      e.newDocument.documentElement.style.setProperty('--sl-sidebar-width', '0px');
+      e.newDocument.documentElement.style.setProperty('--sl-content-inline-start', '3rem');
+      e.newDocument.documentElement.style.setProperty('--sl-content-width', 'calc(100vw - 8.5rem)');
+    }
+  });
+
   initToggle();
-  document.addEventListener('astro:page-load', initToggle);
+  initUiTabs();
+  initQsStepper();
+  document.addEventListener('astro:page-load', () => { initToggle(); initUiTabs(); initQsStepper(); });
 </script>
