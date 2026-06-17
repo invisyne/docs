@@ -136,9 +136,14 @@ import Default from '@astrojs/starlight/components/Sidebar.astro';
     });
   }
 
-  // Apply sidebar state to the incoming document BEFORE the swap so there is
-  // never a frame where the layout is in the wrong state.
+  // Apply sidebar state AND theme to the incoming document BEFORE the swap so
+  // there is never a frame where layout or theme is in the wrong state.
   document.addEventListener('astro:before-swap', (e: any) => {
+    // Preserve theme
+    const theme = document.documentElement.dataset.theme;
+    if (theme) e.newDocument.documentElement.dataset.theme = theme;
+
+    // Preserve sidebar state
     const open = getSidebarOpen();
     if (!open) {
       e.newDocument.documentElement.classList.add('sidebar-hidden');

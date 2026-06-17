@@ -43,27 +43,35 @@ import type { Props } from '@astrojs/starlight/props';
 </style>
 
 <script>
-  const btn = document.getElementById('theme-btn');
-  const moon = document.getElementById('icon-moon');
-  const sun = document.getElementById('icon-sun');
+  function initThemeToggle() {
+    const btn  = document.getElementById('theme-btn') as HTMLButtonElement | null;
+    const moon = document.getElementById('icon-moon') as HTMLElement | null;
+    const sun  = document.getElementById('icon-sun')  as HTMLElement | null;
+    if (!btn || (btn as any)._themeReady) return;
+    (btn as any)._themeReady = true;
 
-  function syncIcons() {
-    const isDark = document.documentElement.dataset.theme === 'dark';
-    if (moon) moon.style.display = isDark ? 'none' : 'block';
-    if (sun)  sun.style.display  = isDark ? 'block' : 'none';
+    function syncIcons() {
+      const isDark = document.documentElement.dataset.theme === 'dark';
+      if (moon) moon.style.display = isDark ? 'none' : 'block';
+      if (sun)  sun.style.display  = isDark ? 'block' : 'none';
+    }
+
+    syncIcons();
+
+    btn.addEventListener('click', () => {
+      const isDark = document.documentElement.dataset.theme === 'dark';
+      const next = isDark ? 'light' : 'dark';
+      document.documentElement.dataset.theme = next;
+      localStorage.setItem('starlight-theme', next);
+      syncIcons();
+    });
+
+    new MutationObserver(syncIcons).observe(
+      document.documentElement,
+      { attributes: true, attributeFilter: ['data-theme'] }
+    );
   }
 
-  syncIcons();
-
-  btn?.addEventListener('click', () => {
-    const isDark = document.documentElement.dataset.theme === 'dark';
-    const next = isDark ? 'light' : 'dark';
-    document.documentElement.dataset.theme = next;
-    localStorage.setItem('starlight-theme', next);
-    syncIcons();
-  });
-
-  // Sync on external theme changes
-  const observer = new MutationObserver(syncIcons);
-  observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+  initThemeToggle();
+  document.addEventListener('astro:page-load', initThemeToggle);
 </script>

@@ -23,6 +23,7 @@ export default defineConfig({
 		starlight({
 			pagination: false,
 			components: {
+				Head: './src/components/Head.astro',
 				Header: './src/components/Header.astro',
 				LanguageSelect: './src/components/LanguageSelect.astro',
 				ThemeSelect: './src/components/ThemeSelect.astro',
