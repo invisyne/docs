@@ -114,15 +114,13 @@ export default defineConfig({
 							items: [
 								{ label: 'Overview', translations: { de: 'Übersicht' }, slug: 'hub/how-to' },
 								// Geräte
-								{ label: 'Add Device Information', translations: { de: 'Geräteinformationen ergänzen' }, slug: 'hub/how-to/add-device-info' },
+{ label: 'Search & Filter', translations: { de: 'Suchen & Filtern' }, slug: 'hub/how-to/search-filter' },
 								{ label: 'Edit a Device', translations: { de: 'Gerät bearbeiten' }, slug: 'hub/how-to/edit-device' },
-								{ label: 'Search & Filter', translations: { de: 'Suchen & Filtern' }, slug: 'hub/how-to/search-filter' },
 								// Software
-								{ label: 'Download a Software Release', translations: { de: 'Software-Release herunterladen' }, slug: 'hub/how-to/download-software' },
-								{ label: 'Download Edge Firmware', translations: { de: 'Edge-Firmware herunterladen' }, slug: 'hub/how-to/download-firmware' },
+{ label: 'Download Edge Firmware', translations: { de: 'Edge-Firmware herunterladen' }, slug: 'hub/how-to/download-firmware' },
 								{ label: 'Download Companion Firmware', translations: { de: 'Companion-Firmware herunterladen' }, slug: 'hub/how-to/download-companion' },
 								// Benutzer
-								{ label: 'Invite a New User', translations: { de: 'Benutzer einladen' }, slug: 'hub/how-to/invite-user' },
+								{ label: 'Create a New User', translations: { de: 'Benutzer anlegen' }, slug: 'hub/how-to/invite-user' },
 								{ label: 'Change User Role', translations: { de: 'Rolle ändern' }, slug: 'hub/how-to/change-role' },
 								// Kontoeinstellungen
 								{ label: 'Change Password', translations: { de: 'Passwort ändern' }, slug: 'hub/how-to/change-password' },
