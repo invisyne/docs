@@ -200,8 +200,8 @@ const companionHref = isDE ? '/de/companion' : '/companion';
 
   // ── Lightbox ──────────────────────────────────────────────
   (function() {
-    // Create lightbox overlay once
-    if (!document.getElementById('sl-lightbox')) {
+    function ensureLightbox() {
+      if (document.getElementById('sl-lightbox')) return;
       const lb = document.createElement('div');
       lb.id = 'sl-lightbox';
       lb.innerHTML = '<button id="sl-lightbox-close">✕</button><img id="sl-lightbox-img" src="" alt="" />';
@@ -224,6 +224,7 @@ const companionHref = isDE ? '/de/companion' : '/companion';
     }
 
     function initZoomBtns() {
+      ensureLightbox();
       document.querySelectorAll('.screenshot-frame, .page-hero-image').forEach(frame => {
         if (frame.querySelector('.zoom-btn')) return;
         const img = frame.querySelector('img');
