@@ -47,6 +47,8 @@ jobs:
         with:
           node-version: 22
           cache: npm
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@invisyne'
 
       - run: npm ci
         env:
