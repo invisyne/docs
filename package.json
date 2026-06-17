@@ -19,6 +19,7 @@
     "sharp": "^0.34.5"
   },
   "devDependencies": {
+    "@invisyne/design-tokens": "^0.2.0",
     "puppeteer": "^22.0.0"
   },
   "allowScripts": {

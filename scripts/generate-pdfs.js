@@ -5,15 +5,43 @@
  */
 import puppeteer from 'puppeteer';
 import { createServer } from 'node:http';
-import { createReadStream, existsSync, readdirSync } from 'node:fs';
+import { createReadStream, existsSync, readdirSync, readFileSync } from 'node:fs';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { join, extname, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const DIST = join(__dirname, '../dist');
+const DESIGN_TOKENS_DIR = join(__dirname, '../node_modules/@invisyne/design-tokens');
 const PORT = 4322;
 const BASE = `http://localhost:${PORT}`;
+
+function buildFontCSS() {
+  const fontsDir = join(DESIGN_TOKENS_DIR, 'fonts');
+  if (!existsSync(fontsDir)) return '';
+  const faces = [
+    { file: 'GT-America-Extended-Regular', weight: 400 },
+    { file: 'GT-America-Extended-Medium', weight: 500 },
+  ];
+  return faces.map(({ file, weight }) => {
+    const woff2Path = join(fontsDir, `${file}.woff2`);
+    const woffPath = join(fontsDir, `${file}.woff`);
+    if (!existsSync(woff2Path)) return '';
+    const woff2b64 = readFileSync(woff2Path).toString('base64');
+    const woffb64 = existsSync(woffPath) ? readFileSync(woffPath).toString('base64') : null;
+    const src = woffb64
+      ? `url("data:font/woff2;base64,${woff2b64}") format("woff2"), url("data:font/woff;base64,${woffb64}") format("woff")`
+      : `url("data:font/woff2;base64,${woff2b64}") format("woff2")`;
+    return `@font-face { font-family: 'GT America Extended'; src: ${src}; font-weight: ${weight}; font-style: normal; font-display: swap; }`;
+  }).filter(Boolean).join('\n');
+}
+
+function loadLogoSVG(product, variant = 'wordmark-color-pos') {
+  const path = join(DESIGN_TOKENS_DIR, 'logos', product, `${product}-${variant}.svg`);
+  return existsSync(path) ? readFileSync(path, 'utf-8') : '';
+}
+
+const FONT_CSS = buildFontCSS();
 
 const MIME = {
   '.html': 'text/html; charset=utf-8',
@@ -86,6 +114,9 @@ const PRINT_CSS = `
     margin: 0;
     padding: 0;
   }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'GT America Extended', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
   .cover {
     display: flex;
     flex-direction: column;
@@ -94,9 +125,13 @@ const PRINT_CSS = `
     min-height: 100vh;
     text-align: center;
     page-break-after: always;
+    position: relative;
   }
-  .cover h1 { font-size: 32pt; margin: 0 0 0.4em; }
-  .cover p { font-size: 13pt; color: #6b7280; margin: 0; }
+  .cover-logo { width: 260px; margin-bottom: 1.5em; }
+  .cover-logo svg { width: 100%; height: auto; display: block; }
+  .cover p { font-size: 13pt; color: #6b7280; margin: 0; font-family: 'GT America Extended', -apple-system, sans-serif; }
+  .cover-brand { position: absolute; bottom: 48px; width: 120px; opacity: 0.7; }
+  .cover-brand svg { width: 100%; height: auto; display: block; }
   .section { page-break-before: always; }
   h1 { font-size: 20pt; border-bottom: 2px solid #e5e7eb; padding-bottom: 0.25em; margin-top: 0; }
   h2 { font-size: 15pt; }
@@ -168,17 +203,20 @@ async function buildProductPDF(browser, product, pages) {
     if (html) sections.push(html);
   }
 
+  const productLogo = loadLogoSVG(product.id);
+  const invisyneLogo = loadLogoSVG('invisyne');
   const combined = `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <title>${product.title}</title>
-  <style>${PRINT_CSS}</style>
+  <style>${FONT_CSS}\n${PRINT_CSS}</style>
 </head>
 <body>
   <div class="cover">
-    <h1>${product.title}</h1>
+    ${productLogo ? `<div class="cover-logo">${productLogo}</div>` : `<h1>${product.title}</h1>`}
     <p>Documentation</p>
+    ${invisyneLogo ? `<div class="cover-brand">${invisyneLogo}</div>` : ''}
   </div>
   ${sections.map(s => `<div class="section">${s}</div>`).join('\n')}
 </body>
