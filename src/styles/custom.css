@@ -67,7 +67,6 @@ h1, h2, h3, h4, h5, h6,
 /* PDF download link: visually separated from the section content above it. */
 .sidebar-pdf-link {
   margin-top: 1rem !important;
-  padding-top: 0.75rem !important;
   border-top: 1px solid var(--sl-color-hairline) !important;
 }
 
