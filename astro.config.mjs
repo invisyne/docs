@@ -72,7 +72,6 @@ export default defineConfig({
 						},
 					],
 				},
-				{ label: 'Download PDF', translations: { de: 'PDF herunterladen' }, slug: 'edge/download' },
 				{
 					label: 'Companion',
 					translations: { de: 'Companion' },
@@ -98,7 +97,6 @@ export default defineConfig({
 						},
 					],
 				},
-				{ label: 'Download PDF', translations: { de: 'PDF herunterladen' }, slug: 'companion/download' },
 				{
 					label: 'Hub',
 					translations: { de: 'Hub' },
@@ -139,7 +137,9 @@ export default defineConfig({
 						},
 					],
 				},
-				{ label: 'Download PDF', translations: { de: 'PDF herunterladen' }, slug: 'hub/download' },
+				{ label: 'Edge PDF', translations: { de: 'Edge PDF' }, slug: 'edge/download' },
+				{ label: 'Companion PDF', translations: { de: 'Companion PDF' }, slug: 'companion/download' },
+				{ label: 'Hub PDF', translations: { de: 'Hub PDF' }, slug: 'hub/download' },
 			],
 		}),
 	],

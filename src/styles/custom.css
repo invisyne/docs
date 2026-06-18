@@ -56,18 +56,12 @@ h1, h2, h3, h4, h5, h6,
   Starlight renders top-level sidebar groups in ul.top-level > li.
   Hide any group that doesn't contain the currently active page link.
 */
-.top-level > li:not(:has(a[aria-current='page'])) {
+/* Only hide non-active product groups (li 1–3); PDF links (li 4–6) are always visible. */
+.top-level > li:nth-child(-n+3):not(:has(a[aria-current='page'])) {
   display: none;
 }
-/* Each product group is immediately followed by its standalone PDF link.
-   Show both when either one is the active page. */
-.top-level > li:has(a[aria-current='page']) + li,
-.top-level > li:has(+ li a[aria-current='page']) {
-  display: block !important;
-}
 /* Cancel the li + li margin-top — the first visible item must always start flush. */
-.top-level > li:has(a[aria-current='page']),
-.top-level > li:has(+ li a[aria-current='page']) {
+.top-level > li:has(a[aria-current='page']) {
   margin-top: 0 !important;
 }
 
