@@ -1,5 +1,7 @@
 ---
-title: "B. Configuring Network Settings (IP-Adress)"
+title: "Adjust Network Settings"
+sidebar:
+  order: 1
 description: "This procedure is necessary when you need to assign a static IP address to a device."
 ---
 

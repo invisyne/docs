@@ -1,5 +1,7 @@
 ---
-title: "B. Netzwerkeinstellungen konfigurieren (IP-Adresse)"
+title: "Netzwerkeinstellungen anpassen"
+sidebar:
+  order: 1
 description: "Dieser Vorgang ist erforderlich, wenn Sie einem Gerät eine statische IP-Adresse zuweisen möchten."
 ---
 
