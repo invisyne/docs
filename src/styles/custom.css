@@ -56,26 +56,19 @@ h1, h2, h3, h4, h5, h6,
   Starlight renders top-level sidebar groups in ul.top-level > li.
   Hide any group that doesn't contain the currently active page link.
 */
-/* Hide all sidebar items that don't contain the active page link. */
+/* Hide non-active product groups. */
 .top-level > li:not(:has(a[aria-current='page'])) {
   display: none;
-}
-/*
-  Sidebar structure: li 1 = Edge, li 2 = Companion, li 3 = Hub,
-                     li 4 = Edge PDF, li 5 = Companion PDF, li 6 = Hub PDF.
-  Show the matching PDF link alongside its active product group, and vice versa.
-*/
-.top-level:has(> li:nth-child(1) a[aria-current='page']) > li:nth-child(4),
-.top-level:has(> li:nth-child(2) a[aria-current='page']) > li:nth-child(5),
-.top-level:has(> li:nth-child(3) a[aria-current='page']) > li:nth-child(6),
-.top-level:has(> li:nth-child(4) a[aria-current='page']) > li:nth-child(1),
-.top-level:has(> li:nth-child(5) a[aria-current='page']) > li:nth-child(2),
-.top-level:has(> li:nth-child(6) a[aria-current='page']) > li:nth-child(3) {
-  display: block !important;
 }
 /* Cancel the li + li margin-top — the first visible item must always start flush. */
 .top-level > li:has(a[aria-current='page']) {
   margin-top: 0 !important;
+}
+/* PDF download link: visually separated from the section content above it. */
+.sidebar-pdf-link {
+  margin-top: 1rem !important;
+  padding-top: 0.75rem !important;
+  border-top: 1px solid var(--sl-color-hairline) !important;
 }
 
 /* ─── Content width: use more of the available space ────────────────── */
