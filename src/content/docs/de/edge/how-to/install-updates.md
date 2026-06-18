@@ -1,6 +1,8 @@
 ---
 title: "Installieren von Updates"
 description: "Das Edge-System wird stetig weiterentwickelt."
+sidebar:
+  order: 4
 ---
 
 Das Edge-System wird stetig weiterentwickelt. Verbesserungen oder neue Funktionen werden mittels Update-Bundles bereitgestellt. Diese werden digital durch Ihre Ansprechperson bereitgestellt.

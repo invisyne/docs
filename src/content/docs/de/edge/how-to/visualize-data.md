@@ -1,6 +1,8 @@
 ---
 title: "Visualisieren von Messwerten"
 description: "VerticalSplitItem - Für die Visualisierung der Messwerte und anderer Daten wird die Visualisierungsp"
+sidebar:
+  order: 3
 ---
 
 :::tip

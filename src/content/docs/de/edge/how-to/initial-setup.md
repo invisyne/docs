@@ -1,6 +1,8 @@
 ---
 title: "Erst-Einrichtung"
 description: "In dieser Anleitung finden Sie Informationen für die Erst-Einrichtung des Edges."
+sidebar:
+  order: 1
 ---
 
 In dieser Anleitung finden Sie Informationen für die Erst-Einrichtung des Edges. Mithilfe eines Wizards werden Sie durch mehrere Schritte geleitet. Erst nach Abschluss des Wizards ist der Edge-betriebsbereit.

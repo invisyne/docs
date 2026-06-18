@@ -1,6 +1,8 @@
 ---
 title: "Visualizing Measured Values"
 description: "The visualization platform Grafana is used for visualizing measured values and other data. It offers a wide range of options for displaying data."
+sidebar:
+  order: 3
 ---
 
 :::tip

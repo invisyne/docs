@@ -1,6 +1,8 @@
 ---
 title: "Weiterleitung an N+P Plattform"
 description: "Neben der lokalen Aufzeichnung auf dem Edge-System können diese Daten auch an andere Systeme, wie"
+sidebar:
+  order: 6
 ---
 
 :::note

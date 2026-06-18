@@ -1,6 +1,8 @@
 ---
 title: "Einrichten der Datenaufzeichnung"
 description: "- IP-Adresse des Feldgeräts bestimmen - Geräte-Typ vom Feldgerät bestimmen (z.B."
+sidebar:
+  order: 2
 ---
 
 # Vorbereitung

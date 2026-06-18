@@ -1,6 +1,8 @@
 ---
 title: "Forwarding to AWS (IoT)"
 description: "To enable an Edge to connect to AWS IoT Core, the device must be registered in AWS and configured with a certificate."
+sidebar:
+  order: 5
 ---
 
 :::danger
