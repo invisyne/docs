@@ -231,6 +231,14 @@ const companionHref = isDE ? '/de/companion' : '/companion';
         if (!img) return;
         frame.appendChild(makeZoomBtn(img));
       });
+      document.querySelectorAll('.companion-banner').forEach(frame => {
+        if (frame.querySelector('.zoom-btn')) return;
+        const img = frame.querySelector('img');
+        if (!img) return;
+        const btn = makeZoomBtn(img);
+        btn.style.cssText = 'position:absolute;bottom:10px;right:10px;width:32px;height:32px;background:rgba(0,0,0,0.55);border:none;border-radius:6px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#fff;z-index:10;';
+        frame.appendChild(btn);
+      });
       document.querySelectorAll('.carousel-slide').forEach(slide => {
         if (slide.querySelector('.zoom-btn')) return;
         const img = slide.querySelector('img');

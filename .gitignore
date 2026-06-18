@@ -6,6 +6,9 @@ dist/
 # dependencies
 node_modules/
 
+# local npm auth token — never commit
+.npmrc
+
 # logs
 npm-debug.log*
 yarn-debug.log*

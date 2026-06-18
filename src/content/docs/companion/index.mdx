@@ -1,0 +1,95 @@
+---
+title: "Companion Overview"
+description: "Crawler.Companion is a Windows desktop application for discovering, configuring, and managing Edge devices on the local network."
+---
+
+<div class="companion-banner">
+  <img src="/images/companion/companion-devices-list.png" alt="Companion device list" />
+  <div class="companion-banner-chips">
+    <span class="companion-chip">Initial Setup</span>
+    <span class="companion-chip">Device Management</span>
+    <span class="companion-chip">Closed Networks</span>
+  </div>
+</div>
+
+<div class="companion-intro">
+  <p class="companion-intro-overline">Crawler.Companion</p>
+  <p class="companion-intro-lead">Initial configuration and management of Edge devices on the local network.</p>
+  <p class="companion-intro-body">Companion finds unconfigured Edge devices in the local network and assigns them their first network configuration. It also serves as a utility for managing multiple devices at once — adjusting network settings, installing updates, and exporting data — instead of accessing each device's web interface individually.</p>
+</div>
+
+## Functional Scope
+
+<div class="feature-grid">
+  <div class="feature-card">
+    <div class="feature-card-title">Device Discovery</div>
+    <p>Finds unconfigured Edge devices in the local network — no prior setup or IP address required.</p>
+  </div>
+  <div class="feature-card">
+    <div class="feature-card-title">Initial Configuration</div>
+    <p>Assigns a first network configuration to newly discovered Edge devices.</p>
+  </div>
+  <div class="feature-card">
+    <div class="feature-card-title">Network Settings</div>
+    <p>Adjust and export network settings across multiple devices at once.</p>
+  </div>
+  <div class="feature-card">
+    <div class="feature-card-title">Software Updates</div>
+    <p>Install firmware updates on Edge devices directly from Companion.</p>
+  </div>
+  <div class="feature-card">
+    <div class="feature-card-title">Data Export</div>
+    <p>Export data from Edge devices — especially useful in closed local networks.</p>
+  </div>
+  <div class="feature-card">
+    <div class="feature-card-title">Bulk Management</div>
+    <p>Manage multiple Edge devices simultaneously instead of accessing each web interface individually.</p>
+  </div>
+</div>
+
+## Safety Notes
+
+<div class="security-grid">
+  <div class="security-item">
+    <div class="security-item-title">Network Changes</div>
+    <p>Incorrect network settings can make devices unreachable. Only edit these if you are familiar with IP addresses and subnet masks.</p>
+  </div>
+  <div class="security-item">
+    <div class="security-item-title">Updates</div>
+    <p>Ensure stable power supply to the Edge device before installing updates.</p>
+  </div>
+  <div class="security-item">
+    <div class="security-item-title">Same Network Required</div>
+    <p>Your PC must be in the same local network as the Edge devices.</p>
+  </div>
+</div>
+
+## Troubleshooting
+
+<div class="ts-table">
+  <div class="ts-header">
+    <div class="ts-header-cell">Problem</div>
+    <div class="ts-header-cell">Possible Cause</div>
+    <div class="ts-header-cell">Solution</div>
+  </div>
+  <div class="ts-row">
+    <div class="ts-cell ts-cell-problem">Device not found</div>
+    <div class="ts-cell">Device off or wrong network</div>
+    <div class="ts-cell">Check power and ensure same subnet as Companion PC</div>
+  </div>
+  <div class="ts-row">
+    <div class="ts-cell ts-cell-problem">Network setting error</div>
+    <div class="ts-cell">Wrong IP or subnet mask</div>
+    <div class="ts-cell">Verify the IP is unused and in the correct range</div>
+  </div>
+  <div class="ts-row">
+    <div class="ts-cell ts-cell-problem">No WebUI access</div>
+    <div class="ts-cell">Device has unknown IP</div>
+    <div class="ts-cell">Check current IP in device overview, access manually</div>
+  </div>
+  <div class="ts-row">
+    <div class="ts-cell ts-cell-problem">Update fails</div>
+    <div class="ts-cell">Network interruption</div>
+    <div class="ts-cell">Check stability; ensure no firewall blocks access</div>
+  </div>
+</div>

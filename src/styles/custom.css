@@ -775,8 +775,27 @@ starlight-toc a {
   z-index: 2;
 }
 
+.companion-banner .zoom-btn {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 32px;
+  height: 32px;
+  background: rgba(0,0,0,0.55);
+  border: none;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 1;
+  color: #fff;
+  z-index: 2;
+}
+
 .screenshot-frame:hover .zoom-btn,
-.page-hero-image:hover .zoom-btn {
+.page-hero-image:hover .zoom-btn,
+.companion-banner:hover .zoom-btn {
   opacity: 1;
 }
 
@@ -1321,6 +1340,66 @@ starlight-toc a {
   .sysreq-col { border-right: none; padding-left: 0 !important; border-bottom: 1px solid var(--sl-color-gray-5); }
 }
 
+/* ─── Companion overview — banner + chips ───────────────────────────── */
+.companion-banner {
+  position: relative;
+  width: 100%;
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 2rem;
+  border: 1px solid var(--sl-color-gray-5);
+}
+.companion-banner img {
+  width: 100%;
+  display: block;
+  max-height: 340px;
+  object-fit: cover;
+  object-position: top left;
+}
+.companion-banner-chips {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.companion-chip {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--sl-color-accent, #2549ff);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(6px);
+  border-radius: 20px;
+  padding: 5px 13px;
+  white-space: nowrap;
+}
+.companion-intro {
+  margin-bottom: 2.5rem;
+}
+.companion-intro-overline {
+  font-size: 0.75rem !important;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--sl-color-gray-3) !important;
+  margin: 0 0 0.5rem !important;
+}
+.companion-intro-lead {
+  font-size: 1.5rem !important;
+  font-weight: 600 !important;
+  line-height: 1.35 !important;
+  color: var(--sl-color-gray-1) !important;
+  margin: 0 0 0.75rem !important;
+  letter-spacing: -0.02em;
+}
+.companion-intro-body {
+  font-size: 1rem !important;
+  color: var(--sl-color-gray-3) !important;
+  line-height: 1.7 !important;
+  margin: 0 !important;
+}
+
 /* ─── Page hero (editorial image + text) ────────────────────────────── */
 .page-hero {
   display: grid;
@@ -1589,4 +1668,44 @@ starlight-toc a {
 .img-toggle-btn:hover {
   background: var(--sl-color-accent-high);
   transform: translateY(-50%) scale(1.08);
+}
+
+/* ─── Companion — Troubleshooting rows ──────────────────────────────── */
+.ts-table {
+  width: 100%;
+  border-top: 1px solid var(--sl-color-gray-5);
+}
+.ts-header {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr 1fr !important;
+  align-items: end;
+  padding: 0 0 8px;
+}
+.ts-header-cell {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--sl-color-gray-1);
+  padding: 0;
+}
+.ts-row {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr 1fr !important;
+  align-items: start;
+  border-top: 1px solid var(--sl-color-gray-6);
+  padding: 18px 0;
+}
+.ts-row:last-child {
+  border-bottom: 1px solid var(--sl-color-gray-5);
+}
+.ts-cell {
+  font-size: 0.9rem;
+  color: var(--sl-color-gray-2);
+  line-height: 1.55;
+  padding-right: 2rem;
+}
+.ts-cell-problem {
+  font-weight: 500;
+  color: var(--sl-color-gray-2);
 }
