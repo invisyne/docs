@@ -59,6 +59,11 @@ h1, h2, h3, h4, h5, h6,
 .top-level > li:not(:has(a[aria-current='page'])) {
   display: none;
 }
+/* Cancel the li + li margin-top that Starlight applies to non-first groups —
+   since only one group is ever visible, the active one must always start flush. */
+.top-level > li:has(a[aria-current='page']) {
+  margin-top: 0 !important;
+}
 
 /* ─── Content width: use more of the available space ────────────────── */
 :root {
