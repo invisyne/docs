@@ -1,0 +1,49 @@
+---
+title: "Switch to HTTP-only Mode"
+description: "How to disable HTTPS on Edge 2.22 and revert to unencrypted HTTP access."
+---
+
+import { Steps } from '@astrojs/starlight/components';
+
+From Edge 2.22, the web interface runs over HTTPS by default. For environments without an internal certificate authority, it is possible to revert to unencrypted HTTP. This mode requires explicit acceptance of the associated security risks.
+
+:::danger
+**Switching to HTTP removes all transport encryption. Understand the risks before proceeding.**
+
+- **Credentials transmitted in plaintext** — Login passwords and session tokens are sent unencrypted. Anyone with access to the network can intercept them.
+- **All communication readable** — Configuration data, sensor values, and API responses are visible to other parties on the same network.
+- **Man-in-the-middle attacks possible** — Without TLS, an attacker on the network can intercept and modify traffic between the browser and the device without detection.
+- **No server identity verification** — The browser cannot confirm it is communicating with the actual Edge device.
+
+HTTP-only mode is only appropriate in completely isolated network environments with no possibility of unauthorized access. When in doubt, use a certificate instead — see [Install a Custom HTTPS Certificate](/edge/how-to/https-certificate).
+:::
+
+## Option A: Switch via Network Settings
+
+<Steps>
+1. Open the Edge web interface and log in.
+
+2. Go to **Settings** → **Network**.
+
+3. Scroll to the **Protocol** section and select **HTTP**.
+
+4. A security confirmation dialog appears. Read the listed risks and confirm that you accept them.
+
+5. Click **Save**. The device switches to HTTP immediately. The browser will redirect to the unencrypted address.
+</Steps>
+
+## Option B: Configure during Initial Setup (Setup Wizard)
+
+<Steps>
+1. Start the Setup Wizard for the Edge device.
+
+2. In the **Network** step, locate the **Protocol** setting and select **HTTP**.
+
+3. Confirm acceptance of the security risks in the dialog that appears.
+
+4. Continue and complete the wizard. The device starts in HTTP mode.
+</Steps>
+
+## Switching Back to HTTPS
+
+To re-enable HTTPS at any time, follow the same steps and select **HTTPS** in the Protocol section. The device will revert to its self-signed certificate. To avoid the browser warning after switching back, upload a custom certificate — see [Install a Custom HTTPS Certificate](/edge/how-to/https-certificate).
