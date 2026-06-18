@@ -3,9 +3,14 @@ title: "Eigenes HTTPS-Zertifikat installieren"
 description: "So wird die Browser-Sicherheitswarnung auf Edge 2.22 behoben — durch ein eigenes Zertifikat oder durch Browser-Vertrauen für das Gerätezertifikat."
 sidebar:
   order: 7
+  badge:
+    text: "2.22+"
+    variant: note
 ---
 
-import { Steps } from '@astrojs/starlight/components';
+import { Badge, Steps } from '@astrojs/starlight/components';
+
+<Badge text="Verfügbar ab Edge 2.22" variant="note" />
 import warningPageEdge from '../../../../../assets/images/warning-page-edge.png';
 import warningAdvancedEdge from '../../../../../assets/images/warning-advanced-edge.png';
 import notSecureClick from '../../../../../assets/images/not-secure-click.png';
