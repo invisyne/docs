@@ -1,5 +1,7 @@
 ---
-title: "C. Updating a Device"
+title: "Update Firmware"
+sidebar:
+  order: 2
 description: "Keep your Edge devices secure and functional through regular updates."
 ---
 

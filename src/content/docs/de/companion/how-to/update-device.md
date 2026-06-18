@@ -1,5 +1,7 @@
 ---
-title: "C. Ein Gerät aktualisieren"
+title: "Firmware aktualisieren"
+sidebar:
+  order: 2
 description: "Halten Sie Ihre Edge-Geräte durch regelmäßige Updates sicher und funktionsfähig."
 ---
 
