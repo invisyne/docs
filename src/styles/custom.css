@@ -1550,3 +1550,33 @@ starlight-toc a {
   .doc-accordion { grid-template-columns: 1fr; }
   .doc-accordion-items { border-right: none; border-bottom: 1px solid var(--sl-color-gray-5); }
 }
+
+/* ─── Image toggle (before/after arrow) ─────────────────────────────── */
+.img-toggle-frame {
+  position: relative;
+}
+
+.img-toggle-btn {
+  position: absolute;
+  right: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 36px;
+  height: 36px;
+  background: var(--sl-color-accent);
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #fff;
+  z-index: 3;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+  transition: background 0.15s, transform 0.15s;
+}
+
+.img-toggle-btn:hover {
+  background: var(--sl-color-accent-high);
+  transform: translateY(-50%) scale(1.08);
+}

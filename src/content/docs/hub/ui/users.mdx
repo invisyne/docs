@@ -1,0 +1,66 @@
+---
+title: "Users"
+description: "Manage team members and roles in Hub."
+sidebar:
+  order: 4
+---
+
+import { Steps } from '@astrojs/starlight/components';
+import usersImg from '../../../../assets/images/hub-users-overview.png';
+import createUserImg from '../../../../assets/images/hub-create-user.png';
+
+The **Users** section lets administrators manage who has access to the Hub organization. It is only visible to users with the **Admin** role.
+
+## User Roles
+
+<div class="role-cols">
+  <div class="role-col">
+    <div class="role-col-title">User</div>
+    <p>Can view devices, software versions, and account settings</p>
+  </div>
+  <div class="role-col">
+    <div class="role-col-title">Admin</div>
+    <p>All User permissions plus user management (create accounts, assign roles, deactivate)</p>
+  </div>
+  <div class="role-col-logo">
+    <svg class="role-deco-svg" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="10" cy="10" r="4" fill="currentColor"/>
+      <circle cx="30" cy="10" r="4" fill="currentColor"/>
+      <circle cx="50" cy="10" r="4" fill="currentColor"/>
+      <circle cx="10" cy="30" r="4" fill="currentColor"/>
+      <circle cx="30" cy="30" r="4" fill="currentColor"/>
+      <circle cx="50" cy="30" r="4" fill="currentColor"/>
+      <circle cx="10" cy="50" r="4" fill="currentColor"/>
+      <circle cx="30" cy="50" r="4" fill="currentColor"/>
+      <circle cx="50" cy="50" r="4" fill="currentColor"/>
+    </svg>
+  </div>
+</div>
+
+## Overview
+
+Navigate to **Users** in the top navigation bar to see all accounts in your organization, including their name, email address, role, and status.
+
+<div class="screenshot-frame">
+  <img src={usersImg.src} alt="Hub users list showing team members and their roles" />
+</div>
+
+## Inviting a New User
+
+User management is handled by administrators. They can create new user accounts, assign roles, and manage existing accounts.
+
+<Steps>
+1. Click **Invite User** to open the invitation form.
+
+2. Enter the new user's email address and assign a role — **User** or **Admin**.
+
+3. Click **Send Invitation**. The new user receives an email with their login credentials.
+</Steps>
+
+<div class="screenshot-frame">
+  <img src={createUserImg.src} alt="Hub invite user form with email and role fields" />
+</div>
+
+## Deactivating a User
+
+To deactivate an account, open the user entry and click **Deactivate**. The user loses access immediately. Deactivated accounts can be reactivated at any time.

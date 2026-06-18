@@ -1,6 +1,6 @@
 ---
 title: "Geräte"
-description: "Die Geräteliste und Detailansicht in Hub — Felder, Tabs und Bearbeitung erklärt."
+description: "Die Geräteliste und Detailansicht in Hub — Felder und Bearbeitung erklärt."
 sidebar:
   order: 2
 ---
@@ -8,6 +8,8 @@ sidebar:
 import { Steps } from '@astrojs/starlight/components';
 import devicesImg from '../../../../../assets/images/hub-devices-list.png';
 import devicesDetailImg from '../../../../../assets/images/hub-devices-detail.png';
+import filterActiveImg from '../../../../../assets/images/hub-filter-search-open.png';
+import filterSortImg from '../../../../../assets/images/hub-filter-search-sort.png';
 
 Der Bereich **Geräte** ist die zentrale Ansicht in Hub. Er listet alle bei Ihrer Organisation registrierten Edge-Geräte auf und ermöglicht das Einsehen und Bearbeiten der Geräteinformationen.
 
@@ -19,62 +21,37 @@ Nach dem Login landen Sie direkt in der Geräteliste mit allen registrierten Edg
   <img src={devicesImg.src} alt="Geräteliste mit allen registrierten Edge-Geräten" />
 </div>
 
-Nutzen Sie das **Suchfeld** oben rechts, um nach beliebigen Spalten zu filtern, oder klicken Sie auf einen Spaltenkopf zum Sortieren.
+Über das **Suchfeld** oben rechts können Sie die Liste nach Gerätenamen, Seriennummer oder anderen Spalteninhalten durchsuchen. Um die Einträge zu sortieren, klicken Sie auf den Pfeil im gewünschten Spaltenkopf. Weitere Details finden Sie unter [Suchen und Sortieren](/de/hub/ui/filter-search/).
+
+<div class="img-toggle" data-imgs={JSON.stringify([filterActiveImg.src, filterSortImg.src])}>
+  <div class="screenshot-frame img-toggle-frame">
+    <img src={filterActiveImg.src} alt="Geräteliste mit aktivem Suchfilter" />
+    <button class="img-toggle-btn" aria-label="Nächster Screenshot">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+  </div>
+</div>
 
 ## Geräte-Detailpanel
 
-<div class="page-hero page-hero-reverse">
-  <div class="page-hero-text">
-    <p class="page-hero-overline">Detailansicht</p>
-    <p>Klicken Sie auf eine Zeile, um das Detailpanel auf der rechten Seite zu öffnen.</p>
-    <div class="page-hero-body">
-      <div class="field-list">
-        <div class="field-item"><span class="field-label">Name</span><span class="field-desc">Benutzerdefinierte Bezeichnung (bearbeitbar)</span></div>
-        <div class="field-item"><span class="field-label">Adresse</span><span class="field-desc">Straßenadresse des Installationsorts (bearbeitbar)</span></div>
-        <div class="field-item"><span class="field-label">Kontakt</span><span class="field-desc">Zuständige Person oder Team (bearbeitbar)</span></div>
-        <div class="field-item"><span class="field-label">Standort</span><span class="field-desc">Physischer Aufstellungsort (bearbeitbar)</span></div>
-        <div class="field-item"><span class="field-label">Seriennummer</span><span class="field-desc">Eindeutige Gerätekennung (nicht bearbeitbar)</span></div>
-        <div class="field-item"><span class="field-label">MAC</span><span class="field-desc">Hardware-Netzwerkadresse (nicht bearbeitbar)</span></div>
-        <div class="field-item"><span class="field-label">Firmware</span><span class="field-desc">Installierte Firmware-Version (nicht bearbeitbar)</span></div>
-        <div class="field-item"><span class="field-label">Bestellnummer</span><span class="field-desc">Interne Referenznummer (bearbeitbar)</span></div>
-        <div class="field-item"><span class="field-label">Lieferdatum</span><span class="field-desc">Datum der Gerätelieferung (bearbeitbar)</span></div>
-        <div class="field-item"><span class="field-label">Notiz</span><span class="field-desc">Freitextfeld für zusätzliche Informationen (bearbeitbar)</span></div>
-      </div>
-    </div>
-  </div>
-  <div class="page-hero-image">
-    <img src={devicesDetailImg.src} alt="Hub-Detailpanel mit Geräteinformationen" />
-  </div>
+Klicken Sie auf eine Zeile im Geräte-Panel des Hubs — es öffnet sich ein Detailpanel auf der rechten Seite.
+
+<div class="screenshot-frame">
+  <img src={devicesDetailImg.src} alt="Hub-Detailpanel mit Geräteinformationen" />
 </div>
 
-### Tabs im Detailpanel
+Das Panel enthält folgende Felder:
 
-<div class="ui-tabs">
-  <div class="ui-tabs-bar">
-    <button class="ui-tab active" data-tab="status">Status</button>
-    <button class="ui-tab" data-tab="performance">Performance</button>
-    <button class="ui-tab" data-tab="detail">Detailinformationen</button>
-    <button class="ui-tab" data-tab="errors">Fehlerprotokoll</button>
-    <button class="ui-tab" data-tab="license">Lizenz</button>
-  </div>
-  <div class="ui-tabs-content">
-    <div class="ui-tab-panel active" data-panel="status">
-      <p>Zeigt den aktuellen Verbindungsstatus des Geräts und eine kurze Zusammenfassung der letzten bekannten Aktivität.</p>
-    </div>
-    <div class="ui-tab-panel" data-panel="performance">
-      <p>Zeigt Laufzeit-Metriken des Geräts — Prozessorlast, Speicherauslastung und Kommunikationsaktivität.</p>
-    </div>
-    <div class="ui-tab-panel" data-panel="detail">
-      <p>Enthält alle bearbeitbaren und beschreibenden Felder des Geräts (siehe Panel oben). Klicken Sie auf <strong>Bearbeiten</strong>, um Felder zu ändern, und auf <strong>Speichern</strong>, um die Änderungen zu übernehmen.</p>
-    </div>
-    <div class="ui-tab-panel" data-panel="errors">
-      <p>Listet aktuelle Fehlerereignisse des Geräts mit Zeitstempel und Fehlercode auf. Nutzen Sie diesen Tab zur Diagnose von Verbindungsproblemen oder unerwartetem Verhalten.</p>
-    </div>
-    <div class="ui-tab-panel" data-panel="license">
-      <p>Zeigt den aktuellen Lizenzstatus — Lizenztyp, Gültigkeitszeitraum und freigeschaltete Funktionen. Wenden Sie sich an Ihren Administrator, wenn eine Lizenz abgelaufen ist oder fehlt.</p>
-    </div>
-  </div>
-</div>
+| Feld | Beschreibung |
+|---|---|
+| **Seriennummer** | Eindeutige Gerätekennung (nicht bearbeitbar) |
+| **Name** | Benutzerdefinierte Bezeichnung (bearbeitbar) |
+| **Typ** | Gerätemodell (nicht bearbeitbar) |
+| **Ort** | Physischer Aufstellungsort (bearbeitbar) |
+| **Firmware (Auslieferung)** | Firmware-Version bei Auslieferung (nicht bearbeitbar) |
+| **Bestellnummer** | Interne Referenznummer (nicht bearbeitbar) |
+| **Ausgeliefert am** | Datum der Gerätelieferung (nicht bearbeitbar) |
+| **Notiz** | Freitextfeld für zusätzliche Informationen (bearbeitbar) |
 
 ## Gerät bearbeiten
 
@@ -83,11 +60,11 @@ Nutzen Sie das **Suchfeld** oben rechts, um nach beliebigen Spalten zu filtern, 
 
 2. Klicken Sie auf die Schaltfläche **Bearbeiten**, um den Bearbeitungsmodus zu aktivieren.
 
-3. Aktualisieren Sie eines der folgenden Felder: **Name**, **Adresse**, **Kontakt**, **Standort**, **Bestellnummer**, **Lieferdatum** oder **Notiz**.
+3. Aktualisieren Sie eines der folgenden Felder: **Name**, **Ort** oder **Notiz**.
 
 4. Klicken Sie auf **Speichern**, um die Änderungen zu übernehmen.
 </Steps>
 
 :::note
-Seriennummer, MAC-Adresse, Firmware-Version und Status sind schreibgeschützt und können nicht manuell bearbeitet werden.
+Alle Felder außer **Name**, **Ort** und **Notiz** sind schreibgeschützt und können nicht manuell bearbeitet werden.
 :::

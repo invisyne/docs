@@ -281,6 +281,26 @@ const companionHref = isDE ? '/de/companion' : '/companion';
   initQsTabs();
   document.addEventListener('astro:page-load', initQsTabs);
 
+  // ── Image toggles (arrow button cycles through images) ──────────────
+  function initImgToggles() {
+    document.querySelectorAll<HTMLElement>('.img-toggle').forEach(wrapper => {
+      if ((wrapper as any)._toggleReady) return;
+      (wrapper as any)._toggleReady = true;
+      const imgs: string[] = JSON.parse(wrapper.dataset.imgs || '[]');
+      if (imgs.length < 2) return;
+      let idx = 0;
+      const img = wrapper.querySelector('img') as HTMLImageElement;
+      const btn = wrapper.querySelector<HTMLButtonElement>('.img-toggle-btn');
+      if (!img || !btn) return;
+      btn.addEventListener('click', () => {
+        idx = (idx + 1) % imgs.length;
+        img.src = imgs[idx];
+      });
+    });
+  }
+  initImgToggles();
+  document.addEventListener('astro:page-load', initImgToggles);
+
   // ── Keep language prefix when navigating between products ────
   function updateProductNavLinks() {
     const isDE   = window.location.pathname.startsWith('/de');
