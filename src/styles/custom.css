@@ -59,9 +59,15 @@ h1, h2, h3, h4, h5, h6,
 .top-level > li:not(:has(a[aria-current='page'])) {
   display: none;
 }
-/* Cancel the li + li margin-top that Starlight applies to non-first groups —
-   since only one group is ever visible, the active one must always start flush. */
-.top-level > li:has(a[aria-current='page']) {
+/* Each product group is immediately followed by its standalone PDF link.
+   Show both when either one is the active page. */
+.top-level > li:has(a[aria-current='page']) + li,
+.top-level > li:has(+ li a[aria-current='page']) {
+  display: block !important;
+}
+/* Cancel the li + li margin-top — the first visible item must always start flush. */
+.top-level > li:has(a[aria-current='page']),
+.top-level > li:has(+ li a[aria-current='page']) {
   margin-top: 0 !important;
 }
 
