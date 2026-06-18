@@ -5,15 +5,43 @@
  */
 import puppeteer from 'puppeteer';
 import { createServer } from 'node:http';
-import { createReadStream, existsSync, readdirSync } from 'node:fs';
+import { createReadStream, existsSync, readdirSync, readFileSync } from 'node:fs';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { join, extname, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const DIST = join(__dirname, '../dist');
+const DESIGN_TOKENS_DIR = join(__dirname, '../node_modules/@invisyne/design-tokens');
 const PORT = 4322;
 const BASE = `http://localhost:${PORT}`;
+
+function buildFontCSS() {
+  const fontsDir = join(DESIGN_TOKENS_DIR, 'fonts');
+  if (!existsSync(fontsDir)) return '';
+  const faces = [
+    { file: 'GT-America-Extended-Regular', weight: 400 },
+    { file: 'GT-America-Extended-Medium', weight: 500 },
+  ];
+  return faces.map(({ file, weight }) => {
+    const woff2Path = join(fontsDir, `${file}.woff2`);
+    const woffPath = join(fontsDir, `${file}.woff`);
+    if (!existsSync(woff2Path)) return '';
+    const woff2b64 = readFileSync(woff2Path).toString('base64');
+    const woffb64 = existsSync(woffPath) ? readFileSync(woffPath).toString('base64') : null;
+    const src = woffb64
+      ? `url("data:font/woff2;base64,${woff2b64}") format("woff2"), url("data:font/woff;base64,${woffb64}") format("woff")`
+      : `url("data:font/woff2;base64,${woff2b64}") format("woff2")`;
+    return `@font-face { font-family: 'GT America Extended'; src: ${src}; font-weight: ${weight}; font-style: normal; font-display: swap; }`;
+  }).filter(Boolean).join('\n');
+}
+
+function loadLogoSVG(product, variant = 'wordmark-color-pos') {
+  const path = join(DESIGN_TOKENS_DIR, 'logos', product, `${product}-${variant}.svg`);
+  return existsSync(path) ? readFileSync(path, 'utf-8') : '';
+}
+
+const FONT_CSS = buildFontCSS();
 
 const MIME = {
   '.html': 'text/html; charset=utf-8',
@@ -38,6 +66,11 @@ const PRODUCTS = [
   { id: 'edge',      title: 'Invisyne Edge' },
   { id: 'companion', title: 'Invisyne Companion' },
   { id: 'hub',       title: 'Invisyne Hub' },
+];
+
+const LANGUAGES = [
+  { id: 'en', label: 'Documentation',  dir: '' },
+  { id: 'de', label: 'Dokumentation',  dir: 'de' },
 ];
 
 function startServer() {
@@ -65,8 +98,8 @@ function findPages(dir) {
   return results;
 }
 
-function sortPages(pages, productId) {
-  const base = join(DIST, productId);
+function sortPages(pages, basePath) {
+  const base = basePath;
   return pages.sort((a, b) => {
     const rel = p => p.replace(base, '').replace(/\/?index\.html$/, '').replace(/^\//, '');
     const section = p => rel(p).split('/')[0] || '';
@@ -86,6 +119,9 @@ const PRINT_CSS = `
     margin: 0;
     padding: 0;
   }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'GT America Extended', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
   .cover {
     display: flex;
     flex-direction: column;
@@ -94,9 +130,13 @@ const PRINT_CSS = `
     min-height: 100vh;
     text-align: center;
     page-break-after: always;
+    position: relative;
   }
-  .cover h1 { font-size: 32pt; margin: 0 0 0.4em; }
-  .cover p { font-size: 13pt; color: #6b7280; margin: 0; }
+  .cover-logo { width: 260px; margin-bottom: 1.5em; }
+  .cover-logo svg { width: 100%; height: auto; display: block; }
+  .cover p { font-size: 13pt; color: #6b7280; margin: 0; font-family: 'GT America Extended', -apple-system, sans-serif; }
+  .cover-brand { position: absolute; bottom: 48px; width: 120px; opacity: 0.7; }
+  .cover-brand svg { width: 100%; height: auto; display: block; }
   .section { page-break-before: always; }
   h1 { font-size: 20pt; border-bottom: 2px solid #e5e7eb; padding-bottom: 0.25em; margin-top: 0; }
   h2 { font-size: 15pt; }
@@ -158,27 +198,33 @@ async function extractContent(browser, url) {
   }
 }
 
-async function buildProductPDF(browser, product, pages) {
+async function buildProductPDF(browser, product, lang, pages) {
+  const basePath = join(DIST, ...(lang.dir ? [lang.dir, product.id] : [product.id]));
+  const urlPrefix = lang.dir ? `${BASE}/${lang.dir}/${product.id}` : `${BASE}/${product.id}`;
+
   const sections = [];
   for (const pagePath of pages) {
-    const rel = pagePath.replace(join(DIST, product.id), '').replace('index.html', '');
-    const url = `${BASE}/${product.id}${rel}`;
+    const rel = pagePath.replace(basePath, '').replace('index.html', '');
+    const url = `${urlPrefix}${rel}`;
     console.log(`  ${url}`);
     const html = await extractContent(browser, url);
     if (html) sections.push(html);
   }
 
+  const productLogo = loadLogoSVG(product.id);
+  const invisyneLogo = loadLogoSVG('invisyne');
   const combined = `<!DOCTYPE html>
-<html lang="en">
+<html lang="${lang.id}">
 <head>
   <meta charset="utf-8">
   <title>${product.title}</title>
-  <style>${PRINT_CSS}</style>
+  <style>${FONT_CSS}\n${PRINT_CSS}</style>
 </head>
 <body>
   <div class="cover">
-    <h1>${product.title}</h1>
-    <p>Documentation</p>
+    ${productLogo ? `<div class="cover-logo">${productLogo}</div>` : `<h1>${product.title}</h1>`}
+    <p>${lang.label}</p>
+    ${invisyneLogo ? `<div class="cover-brand">${invisyneLogo}</div>` : ''}
   </div>
   ${sections.map(s => `<div class="section">${s}</div>`).join('\n')}
 </body>
@@ -191,7 +237,7 @@ async function buildProductPDF(browser, product, pages) {
     printBackground: true,
     margin: { top: '2cm', right: '2cm', bottom: '2.5cm', left: '2cm' },
     displayHeaderFooter: true,
-    headerTemplate: `<div style="font-size:8pt;width:100%;text-align:center;color:#9ca3af;padding-top:8px;">${product.title} — Documentation</div>`,
+    headerTemplate: `<div style="font-size:8pt;width:100%;text-align:center;color:#9ca3af;padding-top:8px;">${product.title} — ${lang.label}</div>`,
     footerTemplate: `<div style="font-size:8pt;width:100%;text-align:center;color:#9ca3af;padding-bottom:8px;"><span class="pageNumber"></span> / <span class="totalPages"></span></div>`,
   });
   await page.close();
@@ -212,13 +258,20 @@ async function main() {
 
   try {
     for (const product of PRODUCTS) {
-      console.log(`\nGenerating ${product.title} PDF...`);
-      const pages = sortPages(findPages(join(DIST, product.id)), product.id);
-      console.log(`  ${pages.length} pages`);
-      const pdf = await buildProductPDF(browser, product, pages);
-      const outPath = join(DIST, 'downloads', `${product.id}.pdf`);
-      await writeFile(outPath, pdf);
-      console.log(`  → dist/downloads/${product.id}.pdf`);
+      for (const lang of LANGUAGES) {
+        const basePath = join(DIST, ...(lang.dir ? [lang.dir, product.id] : [product.id]));
+        if (!existsSync(basePath)) {
+          console.log(`\nSkipping ${product.title} (${lang.id}) — ${basePath} not found`);
+          continue;
+        }
+        console.log(`\nGenerating ${product.title} (${lang.id}) PDF...`);
+        const pages = sortPages(findPages(basePath), basePath);
+        console.log(`  ${pages.length} pages`);
+        const pdf = await buildProductPDF(browser, product, lang, pages);
+        const outPath = join(DIST, 'downloads', `${product.id}-${lang.id}.pdf`);
+        await writeFile(outPath, pdf);
+        console.log(`  → dist/downloads/${product.id}-${lang.id}.pdf`);
+      }
     }
   } finally {
     await browser.close();

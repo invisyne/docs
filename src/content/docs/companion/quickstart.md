@@ -9,15 +9,15 @@ description: "Installation, setup, and first steps for the Crawler.Companion app
 
 ## A. Preperation
 
-1. **Download the installation file:** Obtain the current installation file (Edge (Crawler)CompanionSetup.exe or similar) from the official download page or from your technical contact.
+1. **Download the installation file:** Obtain the current installation file (EdgeCompanionSetup.exe or similar) from the official download page or from your technical contact.
 
 2. **Administrator rights:** Ensure that you have the required administrator rights for the target system.
 
-3. **Network connection:** Connect the PC on which the Companion will be installed to the same LAN segment (local network) where the Edge (Crawler) devices are located.
+3. **Network connection:** Connect the PC on which the Companion will be installed to the same LAN segment (local network) where the Edge devices are located.
 
 ## B. Start Process
 
-1. **Start the installation:** Double-click on the downloaded file (Edge (Crawler)CompanionSetup.exe).
+1. **Start the installation:** Double-click on the downloaded file (EdgeCompanionSetup.exe).
 
 2. **Security prompt:** Confirm the Windows security prompt to allow execution as administrator.
 
@@ -79,10 +79,10 @@ description: "Installation, setup, and first steps for the Crawler.Companion app
 ## **3) Search for devices (Broadcast)**
 
 - In Companion: Click on "Search" (magnifying glass).
-- The software sends broadcast/discovery requests and lists all found Edge (Crawler)s in the local broadcast range.
+- The software sends broadcast/discovery requests and lists all found Edges in the local broadcast range.
 
 :::tip
-**Expected Result** All reachable Edge (Crawler)s appear in the device list with information such as serial number, model, current IP (if available), and status.
+**Expected Result** All reachable Edges appear in the device list with information such as serial number, model, current IP (if available), and status.
 :::
 
 :::danger
@@ -97,7 +97,7 @@ description: "Installation, setup, and first steps for the Crawler.Companion app
 ---
 ## **4) Select device / Open details**
 
-- Click once on the row of the desired Edge (Crawler) in the list.
+- Click once on the row of the desired Edge in the list.
 - The clickable element opens the detail view or network settings of the device.
 
 :::tip
@@ -150,7 +150,7 @@ description: "Installation, setup, and first steps for the Crawler.Companion app
 - Wait until the web interface loads. A login may be required.
 
 :::tip
-**Expected Result** The browser displays the Edge (Crawler)'s Web UI (status, logs, configuration).
+**Expected Result** The browser displays the Edge's Web UI (status, logs, configuration).
 :::
 
 :::danger
@@ -238,7 +238,7 @@ To adjust the IP address or other network settings of a device:
 ---
 ## **Software Update**
 
-To update the software (firmware/OS) of an Edge (Crawler) device:
+To update the software (firmware/OS) of an Edge device:
 
 :::::WorkflowBlock
 :::WorkflowBlockItem
@@ -280,7 +280,7 @@ To export specific data (e.g., configuration backups or logs) as a CSV file:
 ---
 ## **Access to the WebUI**
 
-You can access the web interface of the Edge (Crawler) device directly from the Crawler.Companion:
+You can access the web interface of the Edge device directly from the Crawler.Companion:
 
 1. Select the device.
 

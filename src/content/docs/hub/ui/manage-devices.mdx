@@ -1,0 +1,70 @@
+---
+title: "Devices"
+description: "The device list and detail view in Hub — columns and editing explained."
+sidebar:
+  order: 2
+---
+
+import { Steps } from '@astrojs/starlight/components';
+import devicesImg from '../../../../assets/images/hub-devices-list.png';
+import devicesDetailImg from '../../../../assets/images/hub-devices-detail.png';
+import filterActiveImg from '../../../../assets/images/hub-filter-search-open.png';
+import filterSortImg from '../../../../assets/images/hub-filter-search-sort.png';
+
+The **Devices** section is the central view in Hub. It lists all Edge devices registered in your organization and lets you view and edit their details.
+
+## Device List
+
+After logging in, you land directly on the device list showing all Edge devices registered in your organization.
+
+<div class="screenshot-frame">
+  <img src={devicesImg.src} alt="Device list showing all registered Edge devices" />
+</div>
+
+Use the **search field** in the top right to search by device name, serial number, or any other column value. To sort the list, click the arrow in the desired column header. See [Search and Sort](/hub/ui/filter-search/) for details.
+
+<div class="img-toggle" data-imgs={JSON.stringify([filterActiveImg.src, filterSortImg.src])}>
+  <div class="screenshot-frame img-toggle-frame">
+    <img src={filterActiveImg.src} alt="Device list with active search filter" />
+    <button class="img-toggle-btn" aria-label="Next screenshot">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+  </div>
+</div>
+
+## Device Detail Panel
+
+Click any row in the Devices panel of Hub — a detail panel opens on the right side of the screen.
+
+<div class="screenshot-frame">
+  <img src={devicesDetailImg.src} alt="Hub device detail panel showing device information" />
+</div>
+
+The panel contains the following fields:
+
+| Field | Description |
+|---|---|
+| **Serial Number** | Unique device identifier (read-only) |
+| **Name** | User-defined label (editable) |
+| **Type** | Device model (read-only) |
+| **Location** | Physical installation site (editable) |
+| **Firmware (Delivery)** | Firmware version as shipped (read-only) |
+| **Order Number** | Internal reference number (read-only) |
+| **Delivered On** | Date the device was delivered (read-only) |
+| **Notes** | Free-text field for additional information (editable) |
+
+## Editing a Device
+
+<Steps>
+1. Click a device row to open the detail panel.
+
+2. Click the **Edit** button to enable editing mode.
+
+3. Update any of the following fields: **Name**, **Location**, or **Notes**.
+
+4. Click **Save** to apply your changes.
+</Steps>
+
+:::note
+All fields except **Name**, **Location**, and **Notes** are read-only and cannot be edited manually.
+:::

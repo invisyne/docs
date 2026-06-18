@@ -1,0 +1,68 @@
+---
+title: "Benutzer"
+description: "Teammitglieder und Rollen in Hub verwalten."
+sidebar:
+  order: 4
+---
+
+import { Steps } from '@astrojs/starlight/components';
+import usersImg from '../../../../../assets/images/hub-users-overview.png';
+import createUserImg from '../../../../../assets/images/hub-create-user.png';
+
+Der Bereich **Benutzer** ermöglicht Administratoren die Verwaltung aller Zugänge zur Hub-Organisation. Er ist nur für Benutzer mit der Rolle **Admin** sichtbar.
+
+## Benutzerrollen
+
+<div class="role-cols">
+  <div class="role-col">
+    <div class="role-col-title">User</div>
+    <p>Kann Geräte, Software-Versionen und Kontoeinstellungen einsehen</p>
+  </div>
+  <div class="role-col">
+    <div class="role-col-title">Admin</div>
+    <p>Alle User-Berechtigungen plus Benutzerverwaltung (anlegen, Rollen vergeben, deaktivieren)</p>
+  </div>
+  <div class="role-col-logo">
+    <svg class="role-deco-svg" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="10" cy="10" r="4" fill="currentColor"/>
+      <circle cx="30" cy="10" r="4" fill="currentColor"/>
+      <circle cx="50" cy="10" r="4" fill="currentColor"/>
+      <circle cx="10" cy="30" r="4" fill="currentColor"/>
+      <circle cx="30" cy="30" r="4" fill="currentColor"/>
+      <circle cx="50" cy="30" r="4" fill="currentColor"/>
+      <circle cx="10" cy="50" r="4" fill="currentColor"/>
+      <circle cx="30" cy="50" r="4" fill="currentColor"/>
+      <circle cx="50" cy="50" r="4" fill="currentColor"/>
+    </svg>
+  </div>
+</div>
+
+## Übersicht
+
+Navigieren Sie über die obere Navigationsleiste zu **Benutzer**, um alle Konten Ihrer Organisation einzusehen — inklusive Name, E-Mail-Adresse, Rolle und Status.
+
+<div class="screenshot-frame">
+  <img src={usersImg.src} alt="Hub-Benutzerliste mit Teammitgliedern und ihren Rollen" />
+</div>
+
+## Neuen Benutzer anlegen
+
+Administratoren können neue Benutzerkonten direkt auf der Benutzerseite anlegen. Der Account ist nach der Erstellung sofort aktiv — es wird keine Einladungs-E-Mail versendet.
+
+<Steps>
+1. Klicken Sie auf die **+**-Schaltfläche, um den Dialog zum Anlegen eines neuen Benutzers zu öffnen.
+
+2. Geben Sie die E-Mail-Adresse ein, legen Sie ein initiales Passwort fest und tragen Sie Vor- und Nachname ein.
+
+3. Wählen Sie eine Rolle — **Benutzer** oder **Admin**.
+
+4. Klicken Sie auf **Erstellen**. Der Benutzer kann sich sofort mit den gesetzten Zugangsdaten anmelden.
+</Steps>
+
+<div class="screenshot-frame">
+  <img src={createUserImg.src} alt="Hub-Dialog zum Anlegen eines neuen Benutzers mit E-Mail, Passwort, Name und Rolle" />
+</div>
+
+## Benutzer deaktivieren
+
+Um ein Konto zu deaktivieren, öffnen Sie den Benutzereintrag und klicken Sie auf **Deaktivieren**. Der Zugang wird sofort entzogen. Deaktivierte Konten können jederzeit wieder aktiviert werden.

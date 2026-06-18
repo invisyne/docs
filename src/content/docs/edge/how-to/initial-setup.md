@@ -1,33 +1,33 @@
 ---
 title: "Initial Setup"
-description: "This guide contains information for the initial setup of the Edge (Crawler)."
+description: "This guide contains information for the initial setup of the Edge."
 ---
 
-This guide contains information for the initial setup of the Edge (Crawler). A wizard will guide you through several steps. The Edge (Crawler) is not ready for operation until the wizard has been completed.
+This guide contains information for the initial setup of the Edge. A wizard will guide you through several steps. The Edge is not ready for operation until the wizard has been completed.
 
 :::caution
-💡  Please note that after completing the wizard, the Edge (Crawler) must be restarted. This may take a few minutes.
+💡  Please note that after completing the wizard, the Edge must be restarted. This may take a few minutes.
 :::
 
 ---
-# Connecting to the Edge (Crawler)
+# Connecting to the Edge
 
 :::tip
-🌏 💻  The Edge (Crawler) is accessed via a **browser**.
+🌏 💻  The Edge is accessed via a **browser**.
 *           It is recommended to use Chrome, Edge, or Firefox.*
 :::
 
-To connect to the Edge (Crawler), you must be connected via the network. Upon delivery or after resetting to factory settings, the IP addresses are set to default values:
+To connect to the Edge, you must be connected via the network. Upon delivery or after resetting to factory settings, the IP addresses are set to default values:
 
 - X1: 192.168.0.5
 - X2: 192.168.1.5
 
-If the Edge (Crawler) is on a different subnet, the *Discovery Tool* can help. This allows you to configure the X1 adapter so that you can subsequently access the web interface directly.
+If the Edge is on a different subnet, the *Discovery Tool* can help. This allows you to configure the X1 adapter so that you can subsequently access the web interface directly.
 
 ---
 # Setup Wizard
 
-The wizard is used to perform the initial configuration of the Edge (Crawler) system. This process will be required again after resetting the Edge (Crawler).
+The wizard is used to perform the initial configuration of the Edge system. This process will be required again after resetting the Edge.
 
 ---
 ## Language
@@ -58,7 +58,7 @@ The wizard is used to perform the initial configuration of the Edge (Crawler) sy
 
 ![](../../../../assets/images/xFG8jzw_vn_exe19_2qxN_bd868d7a-2df6-423c-9a5e-bff2e4aec58f.png)
 
-In the next step, the password for the settings area of the Edge (Crawler) must be set. This password can be changed later.
+In the next step, the password for the settings area of the Edge must be set. This password can be changed later.
 
 :::note
 - The password must be at least 6 characters long.
@@ -84,7 +84,7 @@ Mode can be switched
 
 - Automatic synchronization (interval???)
 - Uses the specified server, which can be changed
-- Prerequisite: the server must be reachable from the Edge (Crawler) (regardless of which `LAN adapter` is used)
+- Prerequisite: the server must be reachable from the Edge (regardless of which `LAN adapter` is used)
 
 ![](../../../../assets/images/Ss9ye-RBXOTtskYXePN43_6ead054f-276a-408b-8f87-601a7a771231.png)
 
@@ -140,4 +140,4 @@ When used as a VM, the number of network adapters may differ.
 
 ![](../../../../assets/images/xw_nuC9k3G67iwYiAPWQf_1afbc729-882a-414d-93ca-65c125ab77ae.png)
 
-The initial setup is complete. Pressing the "Finish" button will restart the Edge (Crawler). You can then proceed with setting up data recording.
+The initial setup is complete. Pressing the "Finish" button will restart the Edge. You can then proceed with setting up data recording.

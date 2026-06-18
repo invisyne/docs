@@ -7,12 +7,12 @@ description: "- Determine the IP address of the field device - Determine the dev
 
 - Determine the IP address of the field device
 - Determine the device type of the field device (e.g. Modbus, Simatic S7 → see "Supported Device Types" \[TODO])
-- Connect the field device to the Edge (Crawler)'s network
+- Connect the field device to the Edge's network
 
 ---
 # General workflow
 
-1. Make the field device available in the Edge (Crawler)'s network
+1. Make the field device available in the Edge's network
 
 2. Determine the IP address and type of the field device
 
@@ -49,7 +49,7 @@ description: "- Determine the IP address of the field device - Determine the dev
 ![](../../../../assets/images/5wb_8nRHTdX30YjSCM4W8_b097cab7-3952-4dbb-84ff-a05a23b3be35.png)
 
 - This information is only used to store additional metadata
-- The information is displayed later on the device page, but has no further use within the Edge (Crawler) system.
+- The information is displayed later on the device page, but has no further use within the Edge system.
 
 ---
 # Setting up measured variables
@@ -78,7 +78,7 @@ description: "- Determine the IP address of the field device - Determine the dev
 - Pressing "From device" retrieves the structure and measured variables from the field device
 - The "Variable Browser" then displays the available measured variables and their surrounding structure
   - Already imported measured variables are highlighted in ***grey***
-  - Measured variables that are configured on the Edge (Crawler) but were not found on the field device during import are highlighted in ***yellow***
+  - Measured variables that are configured on the Edge but were not found on the field device during import are highlighted in ***yellow***
 - Select all desired measured variables that you want to add for data recording
 - Then go to the "Cart" → "Import all"
 
