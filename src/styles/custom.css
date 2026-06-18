@@ -51,6 +51,19 @@ h1, h2, h3, h4, h5, h6,
   --sl-color-accent-high: #0327ac;
 }
 
+/* ─── Note badge: lighter blue from design system ───────────────────── */
+:root {
+  --sl-badge-note-bg:     var(--md-sys-color-primary-container);
+  --sl-badge-note-border: var(--md-sys-color-primary);
+  --sl-badge-note-text:   var(--md-sys-color-on-primary-container);
+}
+
+/* ─── Inline badge in page content: breathing room below ────────────── */
+.sl-markdown-content .sl-badge {
+  display: block;
+  margin-bottom: 1.5rem;
+}
+
 /* ─── Sidebar: hide non-active product groups ───────────────────────── */
 /*
   Starlight renders top-level sidebar groups in ul.top-level > li.
