@@ -56,14 +56,14 @@ export default defineConfig({
 						{ label: 'Quickstart', translations: { de: 'Schnellstart' }, slug: 'edge/quickstart' },
 						{ label: 'Changelog', translations: { de: 'Changelog' }, slug: 'edge/changelog' },
 						{
-							label: 'How-To Guides',
-							translations: { de: 'How-To\'s' },
-							autogenerate: { directory: 'edge/how-to' },
-						},
-						{
 							label: 'UI Reference',
 							translations: { de: 'Benutzeroberfläche' },
 							autogenerate: { directory: 'edge/ui' },
+						},
+						{
+							label: 'How-To Guides',
+							translations: { de: 'How-To\'s' },
+							autogenerate: { directory: 'edge/how-to' },
 						},
 						{
 							label: 'Technical Reference',
@@ -82,14 +82,14 @@ export default defineConfig({
 						{ label: 'Quickstart', translations: { de: 'Schnellstart' }, slug: 'companion/quickstart' },
 						{ label: 'Changelog', translations: { de: 'Changelog' }, slug: 'companion/changelog' },
 						{
-							label: 'How-To Guides',
-							translations: { de: 'How-To\'s' },
-							autogenerate: { directory: 'companion/how-to' },
-						},
-						{
 							label: 'UI Reference',
 							translations: { de: 'Benutzeroberfläche' },
 							autogenerate: { directory: 'companion/ui' },
+						},
+						{
+							label: 'How-To Guides',
+							translations: { de: 'How-To\'s' },
+							autogenerate: { directory: 'companion/how-to' },
 						},
 						{
 							label: 'Technical Reference',
@@ -107,6 +107,11 @@ export default defineConfig({
 						{ label: 'Overview', translations: { de: 'Übersicht' }, slug: 'hub' },
 						{ label: 'Quickstart', translations: { de: 'Schnellstart' }, slug: 'hub/quickstart' },
 						{ label: 'Changelog', translations: { de: 'Changelog' }, slug: 'hub/changelog' },
+						{
+							label: 'UI Reference',
+							translations: { de: 'Benutzeroberfläche' },
+							autogenerate: { directory: 'hub/ui' },
+						},
 						{
 							label: "How-To's",
 							translations: { de: "How-To's" },
@@ -126,11 +131,6 @@ export default defineConfig({
 								{ label: 'Change Password', translations: { de: 'Passwort ändern' }, slug: 'hub/how-to/change-password' },
 								{ label: 'Change Language', translations: { de: 'Sprache ändern' }, slug: 'hub/how-to/change-language' },
 							],
-						},
-						{
-							label: 'UI Reference',
-							translations: { de: 'Benutzeroberfläche' },
-							autogenerate: { directory: 'hub/ui' },
 						},
 						{
 							label: 'Technical Reference',
