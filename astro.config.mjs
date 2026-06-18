@@ -70,6 +70,11 @@ export default defineConfig({
 							translations: { de: 'Technische Referenz' },
 							autogenerate: { directory: 'edge/overview' },
 						},
+						{
+							label: 'Security',
+							translations: { de: 'Sicherheit' },
+							autogenerate: { directory: 'edge/security' },
+						},
 						{ label: 'Download PDF', translations: { de: 'PDF herunterladen' }, slug: 'edge/download', attrs: { class: 'sidebar-pdf-link' } },
 					],
 				},
