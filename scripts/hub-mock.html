@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1440">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #fff; color: #1a1a1a; font-size: 14px; }
+  .topbar { background: #1a1a2e; height: 48px; display: flex; align-items: center; padding: 0 24px; gap: 32px; }
+  .topbar-logo { color: #fff; font-size: 16px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+  .topbar-logo svg { width: 28px; height: 28px; }
+  .nav-item { color: rgba(255,255,255,0.6); font-size: 13px; cursor: pointer; padding: 4px 12px; border-radius: 6px; }
+  .nav-item.active { background: rgba(255,255,255,0.15); color: #fff; }
+  .topbar-right { margin-left: auto; display: flex; align-items: center; gap: 16px; color: rgba(255,255,255,0.7); font-size: 13px; }
+  .content { padding: 40px 48px; }
+  h1 { font-size: 28px; font-weight: 700; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; }
+  .search-icon { color: #6b7280; }
+  table { width: 100%; border-collapse: collapse; }
+  thead tr { border-bottom: 1px solid #e5e7eb; }
+  th { text-align: left; padding: 10px 16px; font-size: 12px; font-weight: 500; color: #6b7280; }
+  tr { border-bottom: 1px solid #f3f4f6; }
+  tr.selected { background: #ede9fe; }
+  td { padding: 12px 16px; font-size: 14px; color: #1a1a1a; }
+  td.muted { color: #9ca3af; }
+  .detail-panel { position: fixed; right: 0; top: 48px; width: 340px; height: calc(100vh - 48px); background: #fff; border-left: 1px solid #e5e7eb; padding: 24px; box-shadow: -4px 0 16px rgba(0,0,0,0.06); }
+  .detail-panel h2 { font-size: 16px; font-weight: 600; margin-bottom: 20px; display: flex; justify-content: space-between; }
+  .detail-row { display: flex; flex-direction: column; margin-bottom: 14px; }
+  .detail-label { font-size: 12px; color: #6b7280; margin-bottom: 2px; }
+  .detail-value { font-size: 14px; color: #1a1a1a; }
+  .detail-value.muted { color: #9ca3af; }
+  .btn { margin-top: 24px; border: 1px solid #7c3aed; color: #7c3aed; background: #fff; padding: 8px 16px; border-radius: 6px; font-size: 13px; cursor: pointer; }
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div class="topbar-logo">
+    <svg viewBox="0 0 28 28" fill="none"><path d="M4 14C4 8.477 8.477 4 14 4s10 4.477 10 10-4.477 10-10 10S4 19.523 4 14z" fill="#7c3aed" opacity="0.2"/><path d="M8 14l3 3 5-6" stroke="#a78bfa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    hub
+  </div>
+  <span class="nav-item active">Geräte</span>
+  <span class="nav-item">Software</span>
+  <span class="nav-item">Benutzer</span>
+  <div class="topbar-right">
+    <span>Hilfe</span>
+    <span>DE ▾</span>
+    <span style="background:#6b7280;color:#fff;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;">DA</span>
+  </div>
+</div>
+
+<div class="content" style="padding-right: 380px;">
+  <h1>Geräte <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg></h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Seriennummer</th>
+        <th>Name</th>
+        <th>Typ</th>
+        <th>Ort</th>
+        <th>Firmware (Auslieferung)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="selected"><td>TPAC388675</td><td>HW-Crawler-01</td><td>Wago 752-9400</td><td class="muted">Kein Eintrag</td><td>2.22</td></tr>
+      <tr><td>N6ZZ4280</td><td class="muted">Kein Eintrag</td><td>Siemens Simatic IPC127E</td><td class="muted">Kein Eintrag</td><td class="muted">Kein Eintrag</td></tr>
+      <tr><td>Test VM 106</td><td class="muted">Kein Eintrag</td><td>Virtual Machine</td><td class="muted">Kein Eintrag</td><td>2.22.0</td></tr>
+      <tr><td>vm-demo-01</td><td class="muted">Kein Eintrag</td><td>Virtual Machine</td><td class="muted">Kein Eintrag</td><td>2.21.0</td></tr>
+      <tr><td>V-L2ZZ0560</td><td>HW-Crawler-08</td><td>Siemens Simatic IPC127E</td><td class="muted">Kein Eintrag</td><td class="muted">Kein Eintrag</td></tr>
+      <tr><td>V-P3Z02471</td><td>HW-Crawler-07</td><td class="muted">Kein Eintrag</td><td class="muted">Kein Eintrag</td><td class="muted">Kein Eintrag</td></tr>
+      <tr><td class="muted">Kein Eintrag</td><td class="muted">Kein Eintrag</td><td class="muted">Kein Eintrag</td><td class="muted">Kein Eintrag</td><td class="muted">Kein Eintrag</td></tr>
+      <tr><td class="muted">Kein Eintrag</td><td>WR (IPC)</td><td class="muted">Kein Eintrag</td><td class="muted">Kein Eintrag</td><td class="muted">Kein Eintrag</td></tr>
+      <tr><td>V-P3Z01413 2022</td><td class="muted">Kein Eintrag</td><td class="muted">Kein Eintrag</td><td class="muted">Kein Eintrag</td><td class="muted">Kein Eintrag</td></tr>
+      <tr><td>TPAD436097</td><td class="muted">Kein Eintrag</td><td>Wago 752-9400</td><td class="muted">Kein Eintrag</td><td class="muted">Kein Eintrag</td></tr>
+      <tr><td class="muted">Kein Eintrag</td><td class="muted">Kein Eintrag</td><td>Siemens Simatic IPC127E</td><td class="muted">Kein Eintrag</td><td class="muted">Kein Eintrag</td></tr>
+      <tr><td class="muted">Kein Eintrag</td><td>Simatic Box PC</td><td>Siemens Simatic IPC127E</td><td class="muted">Kein Eintrag</td><td class="muted">Kein Eintrag</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="detail-panel">
+  <h2>Crawler Details <span style="color:#9ca3af;font-weight:400;cursor:pointer;">✕</span></h2>
+  <div class="detail-row"><div class="detail-label">Seriennummer</div><div class="detail-value">TPAC388675</div></div>
+  <div class="detail-row"><div class="detail-label">Name</div><div class="detail-value">HW-Crawler-01</div></div>
+  <div class="detail-row"><div class="detail-label">Typ</div><div class="detail-value">Wago 752-9400</div></div>
+  <div class="detail-row"><div class="detail-label">Ort</div><div class="detail-value muted">Kein Eintrag</div></div>
+  <div class="detail-row"><div class="detail-label">Firmware (Auslieferung)</div><div class="detail-value">2.22</div></div>
+  <div class="detail-row"><div class="detail-label">Bestellnummer</div><div class="detail-value muted">Kein Eintrag</div></div>
+  <div class="detail-row"><div class="detail-label">Ausgeliefert am</div><div class="detail-value muted">Kein Eintrag</div></div>
+  <div class="detail-row"><div class="detail-label">Notiz</div><div class="detail-value">Intern Test</div></div>
+  <button class="btn">Bearbeiten</button>
+</div>
+</body>
+</html>

@@ -1,9 +1,9 @@
 ---
 title: "C. Updating a Device"
-description: "Keep your Edge (Crawler) devices secure and functional through regular updates."
+description: "Keep your Edge devices secure and functional through regular updates."
 ---
 
-Keep your Edge (Crawler) devices secure and functional through regular updates.
+Keep your Edge devices secure and functional through regular updates.
 
 1. **Select device:** Select the target device from the device list.
 

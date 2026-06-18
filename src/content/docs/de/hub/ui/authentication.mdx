@@ -1,0 +1,36 @@
+---
+title: "Login / Authentifizierung"
+description: "Wie die Anmeldung bei Crawler.Hub funktioniert."
+sidebar:
+  order: 1
+---
+
+import { Steps } from '@astrojs/starlight/components';
+import loginImg from '../../../../../assets/images/hub-auth-login.png';
+
+## Kontoeinrichtung
+
+Der Zugang zu Hub erfolgt ausschließlich per Einladung — eine Selbstregistrierung ist nicht möglich. Ein Administrator legt Ihr Konto an und schickt Ihnen die Zugangsdaten (E-Mail-Adresse und initiales Passwort) per E-Mail zu. Das Passwort können Sie jederzeit in den [Kontoeinstellungen](/de/hub/ui/account-settings/) ändern.
+
+## Anmelden
+
+<Steps>
+1. Rufen Sie die Hub-URL in Ihrem Browser auf. Die Anmeldeseite öffnet sich automatisch.
+
+2. Geben Sie Ihre **E-Mail-Adresse** und Ihr **Passwort** in die entsprechenden Felder ein.
+
+3. Klicken Sie auf **Anmelden**.
+</Steps>
+
+<div class="screenshot-frame">
+  <img src={loginImg.src} alt="Hub-Anmeldeseite mit E-Mail- und Passwortfeldern" />
+</div>
+
+## Passwort vergessen?
+
+Klicken Sie auf der Anmeldeseite auf **Passwort vergessen?**. Geben Sie Ihre E-Mail-Adresse ein — Sie erhalten daraufhin einen Link zum Zurücksetzen. Sollte die E-Mail nicht ankommen, prüfen Sie Ihren Spam-Ordner oder wenden Sie sich an Ihren Administrator.
+
+## Sitzung und Abmeldung
+
+Hub meldet Sie nach einer Inaktivitätsphase automatisch ab. Melden Sie sich auf gemeinsam genutzten oder öffentlichen Computern immer manuell ab — klicken Sie dazu oben rechts auf Ihr Profilsymbol und wählen Sie **Logout**.
+

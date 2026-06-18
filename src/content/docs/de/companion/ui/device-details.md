@@ -11,7 +11,7 @@ Nach dem Klick auf ein Gerät öffnet sich der Reiter „Details":
 | ------------- | ------------------------------------------------------------------ |
 | Name          | Name des Geräts                                                    |
 | Status        | Status                                                             |
-| WebUI         | Link zur Web-Oberfläche des Edge (Crawler)s                               |
+| WebUI         | Link zur Web-Oberfläche des Edges                               |
 | Firmware      | Aktuell installierte Version (z. B. ≤2.18) und letztes Update.    |
 | MAC 1/2       | Ausgelesene Adressen (X1 / X2).                                    |
 | Seriennummer  | Wird ausgelesen, sofern verfügbar.                                 |

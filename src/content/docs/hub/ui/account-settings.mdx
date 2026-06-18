@@ -1,0 +1,62 @@
+---
+title: "Account Settings"
+description: "Manage your personal data and change your password in Hub."
+sidebar:
+  order: 7
+---
+
+import { Steps } from '@astrojs/starlight/components';
+import overviewImg from '../../../../assets/images/hub-account-settings-overview.png';
+import dropdownImg from '../../../../assets/images/hub-account-settings-dropdown.png';
+import editPersonalImg from '../../../../assets/images/hub-account-settings-edit-personal.png';
+import changePasswordImg from '../../../../assets/images/hub-account-settings-change-password.png';
+
+The Account Settings page lets you update your name and password.
+
+## Opening Account Settings
+
+Click the **initials avatar** in the top-right corner of the navigation bar to open the user menu. Select **Account Settings** to navigate to the settings page.
+
+<div class="screenshot-frame">
+  <img src={dropdownImg.src} alt="Hub user menu dropdown showing Account Settings and Logout options" />
+</div>
+
+## Overview
+
+The settings page has two sections — **Personal Data** and **Security**.
+
+<div class="screenshot-frame">
+  <img src={overviewImg.src} alt="Hub Account Settings overview with Personal Data and Security sections" />
+</div>
+
+## Personal Data
+
+This section shows your current email address, first name, and last name. The email address is display-only and cannot be changed here.
+
+<Steps>
+1. Click **Edit Personal Data** to switch the section into edit mode.
+
+2. Update your first name and/or last name as needed.
+
+3. Click **Save Personal Data** to apply your changes, or **Cancel** to discard them.
+</Steps>
+
+<div class="screenshot-frame">
+  <img src={editPersonalImg.src} alt="Hub personal data form in edit mode showing email, first name, and last name fields" />
+</div>
+
+## Security
+
+The Security section lets you set a new password.
+
+<Steps>
+1. Click **Edit Password** to open the password form.
+
+2. Enter your current password, then your new password twice in the fields provided.
+
+3. Click **Save Password** to save, or **Cancel** to cancel.
+</Steps>
+
+<div class="screenshot-frame">
+  <img src={changePasswordImg.src} alt="Hub security section with password change form open" />
+</div>

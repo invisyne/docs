@@ -1,0 +1,69 @@
+---
+title: Quickstart
+description: Get started with Crawler.Hub step by step — from your first login to navigating the dashboard.
+---
+
+import loginImg from '../../../assets/images/hub/hub-login.png';
+import devicesImg from '../../../assets/images/hub-devices-list.png';
+import softwareImg from '../../../assets/images/hub-software-versions.png';
+import usersImg from '../../../assets/images/hub-users-overview.png';
+import accountImg from '../../../assets/images/hub-account-settings-overview.png';
+
+Get up and running with Crawler.Hub in minutes.
+
+<div class="qs-stepper">
+
+  <div class="qs-tabbar">
+    <a class="qs-tab" href="#">Log In</a>
+    <a class="qs-tab" href="#">Devices</a>
+    <a class="qs-tab" href="#">Software</a>
+    <a class="qs-tab" href="#">Users</a>
+    <a class="qs-tab" href="#">Account Settings</a>
+  </div>
+
+  <div class="qs-panels">
+
+    <div class="qs-panel">
+      <p>Navigate to the Hub URL provided by your administrator. Hub runs entirely in the browser — no installation required. We recommend using a current version of Chrome, Firefox, Edge, or Safari.</p>
+      <p>Hub uses invitation-only access — there is no self-registration. Your administrator creates your account and sends you your login credentials (email address and password) by email. Enter your email and password on the login page and click <strong>Sign in</strong>.</p>
+      <div class="qs-tip">Forgot your password? Click <strong>Forgot password?</strong> on the login page. Enter your email address and you will receive a reset link.</div>
+      <div class="screenshot-frame">
+        <img src={loginImg.src} alt="Hub login page with email and password fields" />
+      </div>
+    </div>
+
+    <div class="qs-panel">
+      <p>After logging in, you land directly on the <strong>Devices</strong> page — the central view in Hub. Here you can see all Edge devices registered in your organization, including their serial number, name, type, location, and installed firmware version.</p>
+      <p>Click any row to open the device detail panel on the right, where you can view and edit device information.</p>
+      <div class="screenshot-frame">
+        <img src={devicesImg.src} alt="Hub device list showing registered Edge devices" />
+      </div>
+    </div>
+
+    <div class="qs-panel">
+      <p>Navigate to <strong>Software</strong> in the top navigation bar to browse current firmware and Companion App releases. Versions are listed newest-first and each entry shows release notes.</p>
+      <p>Click any version entry to open its detail page, then click <strong>Download</strong> to save the file to your device.</p>
+      <div class="screenshot-frame">
+        <img src={softwareImg.src} alt="Hub software page showing firmware and Companion App versions" />
+      </div>
+    </div>
+
+    <div class="qs-panel">
+      <p>Navigate to <strong>Users</strong> in the top navigation bar to manage who has access to your Hub organization. This area is visible to <strong>Admins only</strong>.</p>
+      <p>From here you can create new user accounts, assign roles (Admin or User), and manage existing accounts.</p>
+      <div class="screenshot-frame">
+        <img src={usersImg.src} alt="Hub users list showing team members and their roles" />
+      </div>
+    </div>
+
+    <div class="qs-panel">
+      <p>Click your <strong>profile icon</strong> in the top-right corner and select <strong>Account Settings</strong> to update your password, change the interface language, or edit your personal information.</p>
+      <p>For a full overview of all guides, visit the <a href="/hub/how-to/">How-To Guides</a> page.</p>
+      <div class="screenshot-frame">
+        <img src={accountImg.src} alt="Hub account settings page" />
+      </div>
+    </div>
+
+  </div>
+
+</div>

@@ -1,0 +1,49 @@
+---
+title: "Auf HTTP umstellen"
+description: "So deaktivieren Sie HTTPS auf Edge 2.22 und wechseln zurück zu unverschlüsseltem HTTP-Zugriff."
+---
+
+import { Steps } from '@astrojs/starlight/components';
+
+Ab Edge 2.22 läuft die Benutzeroberfläche standardmäßig über HTTPS. Für Umgebungen ohne interne Zertifizierungsstelle ist es möglich, auf unverschlüsseltes HTTP zurückzuwechseln. Dieser Modus erfordert die ausdrückliche Bestätigung der damit verbundenen Sicherheitsrisiken.
+
+:::danger
+**Der Wechsel auf HTTP entfernt die gesamte Transportverschlüsselung. Bitte die Risiken vor dem Fortfahren zur Kenntnis nehmen.**
+
+- **Zugangsdaten werden im Klartext übertragen** — Login-Passwort und Session-Tokens werden unverschlüsselt gesendet. Jeder mit Zugang zum Netzwerk kann diese abfangen.
+- **Gesamte Kommunikation ist lesbar** — Konfigurationsdaten, Messwerte und API-Antworten sind für andere Teilnehmer im selben Netzwerk sichtbar.
+- **Man-in-the-Middle-Angriffe möglich** — Ohne TLS kann ein Angreifer im Netzwerk den Datenverkehr zwischen Browser und Gerät unbemerkt abfangen und verändern.
+- **Keine Server-Authentifizierung** — Der Browser kann nicht bestätigen, dass tatsächlich mit dem Edge-Gerät kommuniziert wird.
+
+Der HTTP-only-Modus ist ausschließlich in vollständig isolierten Netzwerkumgebungen ohne Möglichkeit eines unberechtigten Zugriffs geeignet. Im Zweifelsfall sollte stattdessen ein Zertifikat verwendet werden — siehe [Eigenes HTTPS-Zertifikat installieren](/de/edge/how-to/https-certificate).
+:::
+
+## Option A: Umstellung über die Netzwerk-Einstellungen
+
+<Steps>
+1. Edge-Benutzeroberfläche öffnen und anmelden.
+
+2. **Einstellungen** → **Netzwerk** aufrufen.
+
+3. Zum Abschnitt **Protokoll** scrollen und **HTTP** auswählen.
+
+4. Ein Sicherheits-Bestätigungsdialog erscheint. Die aufgelisteten Risiken lesen und bestätigen, dass diese akzeptiert werden.
+
+5. **Speichern** klicken. Das Gerät wechselt sofort auf HTTP. Der Browser leitet automatisch auf die unverschlüsselte Adresse um.
+</Steps>
+
+## Option B: Konfiguration beim Ersteinrichten (Setup-Assistent)
+
+<Steps>
+1. Den Setup-Assistenten für das Edge-Gerät starten.
+
+2. Im Schritt **Netzwerk** die Einstellung **Protokoll** suchen und **HTTP** auswählen.
+
+3. Die Sicherheitsrisiken im erscheinenden Dialog bestätigen.
+
+4. Den Assistenten fortsetzen und abschließen. Das Gerät startet im HTTP-Modus.
+</Steps>
+
+## Zurück zu HTTPS wechseln
+
+HTTPS kann jederzeit wieder aktiviert werden: dieselben Schritte ausführen und im Abschnitt Protokoll **HTTPS** auswählen. Das Gerät kehrt zu seinem selbst-signierten Zertifikat zurück. Um die Browserwarnung nach dem Wechsel zu vermeiden, ein eigenes Zertifikat hochladen — siehe [Eigenes HTTPS-Zertifikat installieren](/de/edge/how-to/https-certificate).

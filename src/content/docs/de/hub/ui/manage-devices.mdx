@@ -1,0 +1,70 @@
+---
+title: "Geräte"
+description: "Die Geräteliste und Detailansicht in Hub — Felder und Bearbeitung erklärt."
+sidebar:
+  order: 2
+---
+
+import { Steps } from '@astrojs/starlight/components';
+import devicesImg from '../../../../../assets/images/hub-devices-list.png';
+import devicesDetailImg from '../../../../../assets/images/hub-devices-detail.png';
+import filterActiveImg from '../../../../../assets/images/hub-filter-search-open.png';
+import filterSortImg from '../../../../../assets/images/hub-filter-search-sort.png';
+
+Der Bereich **Geräte** ist die zentrale Ansicht in Hub. Er listet alle bei Ihrer Organisation registrierten Edge-Geräte auf und ermöglicht das Einsehen und Bearbeiten der Geräteinformationen.
+
+## Geräteliste
+
+Nach dem Login landen Sie direkt in der Geräteliste mit allen registrierten Edge-Geräten Ihrer Organisation.
+
+<div class="screenshot-frame">
+  <img src={devicesImg.src} alt="Geräteliste mit allen registrierten Edge-Geräten" />
+</div>
+
+Über das **Suchfeld** oben rechts können Sie die Liste nach Gerätenamen, Seriennummer oder anderen Spalteninhalten durchsuchen. Um die Einträge zu sortieren, klicken Sie auf den Pfeil im gewünschten Spaltenkopf. Weitere Details finden Sie unter [Suchen und Sortieren](/de/hub/ui/filter-search/).
+
+<div class="img-toggle" data-imgs={JSON.stringify([filterActiveImg.src, filterSortImg.src])}>
+  <div class="screenshot-frame img-toggle-frame">
+    <img src={filterActiveImg.src} alt="Geräteliste mit aktivem Suchfilter" />
+    <button class="img-toggle-btn" aria-label="Nächster Screenshot">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+  </div>
+</div>
+
+## Geräte-Detailpanel
+
+Klicken Sie auf eine Zeile im Geräte-Panel des Hubs — es öffnet sich ein Detailpanel auf der rechten Seite.
+
+<div class="screenshot-frame">
+  <img src={devicesDetailImg.src} alt="Hub-Detailpanel mit Geräteinformationen" />
+</div>
+
+Das Panel enthält folgende Felder:
+
+| Feld | Beschreibung |
+|---|---|
+| **Seriennummer** | Eindeutige Gerätekennung (nicht bearbeitbar) |
+| **Name** | Benutzerdefinierte Bezeichnung (bearbeitbar) |
+| **Typ** | Gerätemodell (nicht bearbeitbar) |
+| **Ort** | Physischer Aufstellungsort (bearbeitbar) |
+| **Firmware (Auslieferung)** | Firmware-Version bei Auslieferung (nicht bearbeitbar) |
+| **Bestellnummer** | Interne Referenznummer (nicht bearbeitbar) |
+| **Ausgeliefert am** | Datum der Gerätelieferung (nicht bearbeitbar) |
+| **Notiz** | Freitextfeld für zusätzliche Informationen (bearbeitbar) |
+
+## Gerät bearbeiten
+
+<Steps>
+1. Klicken Sie auf eine Gerätezeile, um das Detailpanel zu öffnen.
+
+2. Klicken Sie auf die Schaltfläche **Bearbeiten**, um den Bearbeitungsmodus zu aktivieren.
+
+3. Aktualisieren Sie eines der folgenden Felder: **Name**, **Ort** oder **Notiz**.
+
+4. Klicken Sie auf **Speichern**, um die Änderungen zu übernehmen.
+</Steps>
+
+:::note
+Alle Felder außer **Name**, **Ort** und **Notiz** sind schreibgeschützt und können nicht manuell bearbeitet werden.
+:::

@@ -1,31 +1,31 @@
 ---
 title: "Companion Overview"
-description: "Crawler.Companion is a Windows desktop application for discovering and managing Edge (Crawler) devices on the local network."
+description: "Crawler.Companion is a Windows desktop application for discovering and managing Edge devices on the local network."
 ---
 
-Crawler.Companion is a Windows desktop application for discovering and managing Edge (Crawler) devices on the local network. It is designed for on-site management — while Crawler.Hub provides central management across multiple locations, Companion is used directly on-site by technicians and administrators.
+Crawler.Companion is a Windows desktop application for discovering and managing Edge devices on the local network. It is designed for on-site management — while Crawler.Hub provides central management across multiple locations, Companion is used directly on-site by technicians and administrators.
 
 :::note
-Your PC must be on the same network as the Edge (Crawler) device.
+Your PC must be on the same network as the Edge device.
 :::
 
 ## Functional Scope
 
-1. **Device Discovery** — Automatic detection of all active Edge (Crawler) devices in the local network
+1. **Device Discovery** — Automatic detection of all active Edge devices in the local network
 2. **Device Management** — Display device details and edit important parameters
 3. **Network Settings** — Configure IP address and other network properties
-4. **Software Updates** — Perform firmware and software updates on Edge (Crawler) devices
+4. **Software Updates** — Perform firmware and software updates on Edge devices
 5. **Data Export** — Export configuration or measurement data as CSV
 6. **WebUI Access** — Open the web interface of a selected device directly in the browser
 
 ## Safety Notes
 
 :::caution
-Crawler.Companion can modify network settings of Edge (Crawler) devices. Incorrect changes can make devices unreachable.
+Crawler.Companion can modify network settings of Edge devices. Incorrect changes can make devices unreachable.
 :::
 
 - Only change network settings if you are familiar with the basics of network configuration (IP addresses, subnet masks, gateways).
-- Before installing updates, ensure that the power supply to the Edge (Crawler) device is not interrupted.
+- Before installing updates, ensure that the power supply to the Edge device is not interrupted.
 
 ## Troubleshooting
 

@@ -1,0 +1,18 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "docs-dev",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["astro", "dev"],
+      "port": 4321,
+      "autoPort": true
+    },
+    {
+      "name": "mockup",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["serve", ".", "--listen", "4444", "--no-clipboard"],
+      "port": 4444
+    }
+  ]
+}

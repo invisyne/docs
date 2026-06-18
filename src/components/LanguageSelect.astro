@@ -1,0 +1,54 @@
+---
+import type { Props } from '@astrojs/starlight/props';
+
+const locale = Astro.props.locale ?? '';
+const isDE = locale === 'de';
+
+const enHref = Astro.url.pathname.replace(/^\/de\//, '/').replace(/^\/de$/, '/');
+const deHref = locale === 'de' ? Astro.url.pathname : '/de' + Astro.url.pathname;
+---
+
+<div class="lang-switcher">
+  <a href={deHref} id="lang-de" class:list={['lang-btn', { 'lang-active': isDE }]} aria-label="Deutsch">DE</a>
+  <a href={enHref} id="lang-en" class:list={['lang-btn', { 'lang-active': !isDE }]} aria-label="English">EN</a>
+</div>
+
+<script>
+  function syncLang() {
+    const isDE = window.location.pathname.startsWith('/de');
+    document.getElementById('lang-de')?.classList.toggle('lang-active', isDE);
+    document.getElementById('lang-en')?.classList.toggle('lang-active', !isDE);
+  }
+  syncLang();
+  document.addEventListener('astro:page-load',  syncLang);
+  document.addEventListener('astro:after-swap', syncLang);
+</script>
+
+<style>
+  .lang-switcher {
+    display: flex;
+    border: 1px solid var(--sl-color-gray-5);
+    border-radius: 8px;
+    overflow: hidden;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  .lang-btn {
+    padding: 5px 10px;
+    text-decoration: none;
+    color: var(--sl-color-gray-3);
+    background: transparent;
+    transition: background 0.15s, color 0.15s;
+  }
+
+  .lang-btn.lang-active {
+    background: var(--sl-color-gray-1);
+    color: var(--sl-color-bg);
+  }
+
+  .lang-btn:not(.lang-active):hover {
+    background: var(--sl-color-gray-6);
+    color: var(--sl-color-gray-1);
+  }
+</style>

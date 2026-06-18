@@ -1,0 +1,29 @@
+---
+title: "Software"
+description: "Browse firmware and Companion App releases in Hub."
+sidebar:
+  order: 3
+---
+
+import { Steps } from '@astrojs/starlight/components';
+import softwareImg from '../../../../assets/images/hub-software-versions.png';
+
+The **Software** section lists all available firmware and Companion App releases for your Edge devices.
+
+## Overview
+
+Navigate to **Software** in the top navigation bar to open the software list. Versions are displayed newest-first.
+
+<div class="screenshot-frame">
+  <img src={softwareImg.src} alt="Hub software page showing firmware and Companion App versions" />
+</div>
+
+## Version Detail Page
+
+Each version entry has two buttons — click **Details** to read the release notes, or **Downloads** to go directly to the download. The detail page contains:
+
+- **New Features** — what was added in this release
+- **Version History** — all patch versions with release dates
+- **Release Notes** — full changelog including bug fixes and technical appendix
+- **Downloads** — direct download button with file size
+- **Documentation** — link to the documentation for this version

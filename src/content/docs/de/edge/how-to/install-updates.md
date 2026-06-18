@@ -1,15 +1,15 @@
 ---
 title: "Installieren von Updates"
-description: "Das Edge (Crawler)-System wird stetig weiterentwickelt."
+description: "Das Edge-System wird stetig weiterentwickelt."
 ---
 
-Das Edge (Crawler)-System wird stetig weiterentwickelt. Verbesserungen oder neue Funktionen werden mittels Update-Bundles bereitgestellt. Diese werden digital durch Ihre Ansprechperson bereitgestellt.
+Das Edge-System wird stetig weiterentwickelt. Verbesserungen oder neue Funktionen werden mittels Update-Bundles bereitgestellt. Diese werden digital durch Ihre Ansprechperson bereitgestellt.
 
 Wie Sie diese Installieren können, erfahren Sie im Folgenden.
 
 ## Update Bundle
 
-Ein Update-Bundle kann mehrere Funktionen und Bereiche eines Edge (Crawler)s umfassen. Dabei bei jedes Paket auf dem Vorhergehenden auf. Es ist daher wichtig, Update-Pakete nacheinander und in der richtigen Reihenfolge zu installieren.
+Ein Update-Bundle kann mehrere Funktionen und Bereiche eines Edges umfassen. Dabei bei jedes Paket auf dem Vorhergehenden auf. Es ist daher wichtig, Update-Pakete nacheinander und in der richtigen Reihenfolge zu installieren.
 
 Ein Update-Bundle hat die Dateiendung .zip und muss vor der Installation **NICHT **&#x65;ntpackt werden.
 
@@ -21,7 +21,7 @@ Laden Sie das gewünschte Update-Paket herunter (z. B. crawlerUpdate\_2.12.2.zi
 :::
 
 :::WorkflowBlockItem
-Öffnen Sie im Edge (Crawler) AdvancedUI (zu erreichen unter „Erweiterte Einstellungen”).
+Öffnen Sie im Edge AdvancedUI (zu erreichen unter „Erweiterte Einstellungen”).
 :::
 
 :::WorkflowBlockItem
@@ -33,7 +33,7 @@ Klicken Sie unter „Update” auf den Button. Ein neuer Tab öffnet sich mit de
 :::
 
 :::WorkflowBlockItem
-Stellen Sie sicher, dass die aktuelle Version vom Edge (Crawler) der direkte Vorgänger vom Update-Bundle ist.
+Stellen Sie sicher, dass die aktuelle Version vom Edge der direkte Vorgänger vom Update-Bundle ist.
 
 - z.B. 2.12.2 erfordert 2.12.1
 :::

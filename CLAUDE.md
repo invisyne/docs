@@ -39,7 +39,7 @@ npm run generate-pdfs     # Generate one PDF per product into dist/downloads/ (r
   - `<Steps>` component from `@astrojs/starlight/components` for step-by-step sequences
 - Images go in `src/assets/` and are referenced with relative paths
 - Filenames use lowercase kebab-case
-- **Product naming:** The Edge device was historically called "Crawler". In content, always write **Edge (Crawler)** — never just "Edge" or just "Crawler" when referring to the device. Sidebar labels and page titles may use "Edge" alone for brevity. Do not change `Crawler.Companion` or `Crawler.Hub` — those are proper product names.
+- **Product naming:** The Edge device was historically called "Crawler". In content, always write **Edge** — never "Edge (Crawler)" or just "Crawler". The full form "Edge (Crawler)" is used only for the top-level sidebar group label in `astro.config.mjs`. Do not change `Crawler.Companion` or `Crawler.Hub` — those are proper product names.
 
 ## Changelog Generation
 
