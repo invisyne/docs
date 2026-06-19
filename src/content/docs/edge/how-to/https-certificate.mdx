@@ -1,6 +1,6 @@
 ---
 title: "Install a Custom HTTPS Certificate"
-description: "How to remove the browser security warning on Edge 2.22 — either by uploading a custom certificate or by trusting the device certificate in the browser."
+description: "Remove the browser security warning on Edge 2.22 by installing a certificate from your organization's Certificate Authority."
 sidebar:
   order: 7
   label: "Custom HTTPS Certificate"
@@ -9,177 +9,82 @@ sidebar:
     variant: note
 ---
 
-import { Badge, Steps } from '@astrojs/starlight/components';
-
-<Badge text="Verfügbar ab Edge 2.22" variant="note" />
-import warningPageEdge from '../../../../assets/images/warning-page-edge.png';
-import warningAdvancedEdge from '../../../../assets/images/warning-advanced-edge.png';
-import notSecureClick from '../../../../assets/images/not-secure-click.png';
-import clickCertDetailsEdge from '../../../../assets/images/click-cert-details-edge.png';
-import certDetailsEdge from '../../../../assets/images/cert-details-edge.png';
-import warningPageFirefox from '../../../../assets/images/warning-page-firefox.png';
-import warningAdvancedFirefox from '../../../../assets/images/warning-advanced-firefox.png';
-import certViewSaveFirefox from '../../../../assets/images/cert-view-save-firefox.png';
-import certmgrOpen from '../../../../assets/images/certmgr-open.png';
-import certmgrTrustedRoot from '../../../../assets/images/certmgr-trusted-root.png';
-import certmgrImportWizard from '../../../../assets/images/certmgr-import-wizard.png';
-import certmgrImportWizardConfirm from '../../../../assets/images/certmgr-import-wizard-confirm.png';
+import { Steps } from '@astrojs/starlight/components';
+import certUploadSettings from '../../../../assets/images/cert-upload-settings.png';
+import certUploadWizard from '../../../../assets/images/cert-upload-wizard.png';
 import edgeSecure from '../../../../assets/images/edge-secure.png';
 
-From Edge 2.22, the web interface is accessible via HTTPS only. By default, the device uses a self-signed certificate — browsers display a security warning on first access. This happens because the browser cannot verify the certificate through a public authority, not because anything is wrong with the device or the connection.
+From Edge 2.22, the web interface is served by default over HTTPS. The device uses a self-signed certificate, so browsers show a security warning on first access. The connection is encrypted either way — the warning only means the browser cannot verify the device's identity. For the background, see [Security Certificates](/edge/technical-reference/security-certificates).
 
-**The connection is always encrypted, even when the warning is shown.** The warning simply means the browser cannot automatically confirm the device's identity.
+To remove the warning permanently, install a certificate issued by a **Certificate Authority (CA) that your computers already trust** — normally your organization's own CA. Obtaining that certificate and managing CA trust is a task for your **IT department**, or one to carry out together with them. This guide shows how to install the certificate on the device once you have it.
 
-There are three ways to handle this:
-
-1. **Upload a custom certificate** (IT-issued) — permanently removes the warning.
-2. **Trust the device certificate in the browser** — import once into the Windows certificate store; covers Chrome, Edge, and Firefox.
-3. **Click through the warning** — no setup required; the connection remains encrypted.
-
-:::tip
-If your organization does not have an internal certificate authority, option 2 (trust in browser) is the recommended approach.
-If neither option is feasible, HTTP-only mode is available as a fallback — see [Switch to HTTP-only Mode](/edge/how-to/http-mode).
+:::note
+Don't have a certificate? For most deployments you can simply proceed past the warning — the connection stays encrypted (see [Security Certificates](/edge/technical-reference/security-certificates)). If even the warning is unacceptable in your environment, see [Allow HTTP](/edge/how-to/http-mode).
 :::
 
----
+## What you need
 
-## Option 1: Upload a Custom Certificate (IT-issued)
+Ask your IT department for a certificate issued **for the device's IP address or hostname**, in one of these formats:
 
-Your IT department must issue a valid TLS certificate for the IP address or hostname under which the Edge device is accessed on your network.
+| Format | What to upload |
+|--------|----------------|
+| PFX / PKCS#12 | the `.pfx` file (plus its password, if it is protected) |
+| PEM bundle | a single `.pem` file containing the certificate **and** its private key |
+| PEM, separate files | the certificate file **and** the private key file |
 
-| File | Required |
-|------|----------|
-| Certificate bundle (`.crt`, `.pem`, or `.cer`) | Yes |
-| Private key file | No |
-| Key passphrase | No (only if the key is passphrase-protected) |
+IT issues this from your organization's PKI — for example **Active Directory Certificate Services (AD CS)** or another internal CA.
 
-### Via Network Settings
+:::note
+If your IT department has technical questions about certificates for the Edge device, they are welcome to contact us.
+:::
+
+## Upload the certificate
+
+### Via Settings
 
 <Steps>
+
 1. Open the Edge web interface and log in.
 
-2. Go to **Settings** → **Network**.
+2. Go to **Settings** → **Network Adapter** and open the **Security** tab.
 
-3. Scroll to the **Certificate** section.
+   <div class="screenshot-frame"><img src={certUploadSettings.src} alt="Certificate upload in Settings, Network Adapter, Security tab" /></div>
 
-4. Click **Upload Certificate**, select the bundle file, and optionally attach the key file and enter the passphrase.
+3. Choose the format you have, select the file(s), and enter the password if your PFX is protected.
 
-5. Click **Save**. The certificate is applied immediately — no restart required.
+4. Click **Save**. The certificate is applied immediately — no restart required.
+
 </Steps>
 
 ### Via Setup Wizard (during initial setup)
 
 <Steps>
+
 1. Start the Setup Wizard for the Edge device.
 
-2. In the **Network** step, scroll to the **Certificate** section.
+2. When you reach the **Network Adapter** step, open its **Security** tab and upload the certificate the same way as above.
 
-3. Upload the certificate bundle and optionally the key file and passphrase.
+   <div class="screenshot-frame"><img src={certUploadWizard.src} alt="Certificate upload in the Setup Wizard's Network Adapter step" /></div>
 
-4. Continue and complete the wizard.
+3. Continue and complete the wizard.
+
 </Steps>
 
----
-
-## Option 2: Trust the Device Certificate in the Browser
-
-Chrome, Edge, and Firefox on Windows all use the Windows certificate store. Importing the device certificate once removes the warning in all three browsers.
-
-:::caution
-**When to repeat this:** If the Edge device's IP address changes, its certificate is automatically regenerated. The old trust no longer applies — repeat the import steps with the new certificate. The certificate is also regenerated after approximately 825 days (about 2.25 years).
+:::tip
+To return to the device's built-in self-signed certificate at any time, open the same **Security** tab and click **Reset to default** — this removes the uploaded certificate.
 :::
 
-### Step 1 — Export the certificate from the browser
+## Trust the issuing CA on client machines
 
-#### Chrome or Microsoft Edge
+For the browser to accept the certificate without a warning, each client computer must trust the CA that issued it. In a managed (**Active Directory**) environment, your IT department usually distributes the CA automatically via group policy, so users need to do nothing. Otherwise, an administrator imports the CA once on each machine — if your IT team needs the exact steps, contact us.
 
-<Steps>
-1. Navigate to `https://<device-ip>`. The browser shows a "Your connection isn't private" warning.
+## Verify
 
-   <div class="screenshot-frame"><img src={warningPageEdge.src} alt="Browser warning page in Edge" /></div>
-
-2. Click **Advanced**, then click **Continue to \<device-ip\> (unsafe)** to load the page.
-
-   <div class="screenshot-frame"><img src={warningAdvancedEdge.src} alt="Advanced section with proceed link" /></div>
-
-3. Once the page loads, click **Not secure** in the address bar.
-
-   <div class="screenshot-frame"><img src={notSecureClick.src} alt="Not secure indicator in the address bar" /></div>
-
-4. Click the certificate details link.
-
-   <div class="screenshot-frame"><img src={clickCertDetailsEdge.src} alt="Certificate details link in the dropdown" /></div>
-
-5. In the Certificate Viewer, switch to the **Details** tab and click **Export**. Save the file.
-
-   <div class="screenshot-frame"><img src={certDetailsEdge.src} alt="Certificate Viewer — Details tab with Export button" /></div>
-</Steps>
-
-#### Firefox
-
-<Steps>
-1. Navigate to `https://<device-ip>`. Firefox shows a warning page.
-
-   <div class="screenshot-frame"><img src={warningPageFirefox.src} alt="Browser warning page in Firefox" /></div>
-
-2. Click **Advanced**, then click **View the site's certificate**.
-
-   <div class="screenshot-frame"><img src={warningAdvancedFirefox.src} alt="Advanced section with certificate link" /></div>
-
-3. Firefox opens a certificate details tab. Scroll to the **Miscellaneous** section and click **PEM (cert)** to download the file.
-
-   <div class="screenshot-frame"><img src={certViewSaveFirefox.src} alt="Certificate details page with PEM download link" /></div>
-</Steps>
-
-### Step 2 — Import into the Windows certificate store
-
-<Steps>
-1. Press **Win + R**, type `certmgr.msc`, and press Enter.
-
-   <div class="screenshot-frame"><img src={certmgrOpen.src} alt="Windows Certificate Manager" /></div>
-
-2. In the left panel, expand **Trusted Root Certification Authorities** and select **Certificates**.
-
-   <div class="screenshot-frame"><img src={certmgrTrustedRoot.src} alt="Trusted Root Certification Authorities store" /></div>
-
-   :::note
-   Self-signed certificates must be imported here (not into Personal or Intermediate). This is the only store browsers check for TLS trust decisions on self-signed certificates.
-   :::
-
-3. Right-click **Trusted Root Certification Authorities** → **All Tasks** → **Import**.
-
-4. The Certificate Import Wizard opens. Click **Next**, browse to the certificate file, and select it.
-
-   <div class="screenshot-frame"><img src={certmgrImportWizard.src} alt="Certificate Import Wizard" /></div>
-
-5. Confirm the store is set to **Trusted Root Certification Authorities**, then click **Next** → **Finish**.
-
-6. A security confirmation appears — click **Yes** to trust the certificate.
-
-   <div class="screenshot-frame"><img src={certmgrImportWizardConfirm.src} alt="Security confirmation dialog" /></div>
-</Steps>
-
-:::note
-Importing into the Windows certificate store requires local administrator access. If access is restricted, ask your IT department to perform the import.
-:::
-
-### Step 3 — Verify
-
-Close **all** browser windows (browsers cache certificate decisions for the entire session — closing just the tab is not enough). Reopen the browser and navigate to `https://<device-ip>`. A padlock icon should appear with no warning.
+Close **all** browser windows (browsers cache certificate decisions for the whole session — closing the tab is not enough), reopen the browser, and navigate to the device. A padlock should appear with no warning.
 
 <div class="screenshot-frame"><img src={edgeSecure.src} alt="Secure connection padlock in browser" /></div>
 
 **If the warning still appears, check:**
-- The IP address matches the IP in the certificate's SAN field
-- The certificate is in **Trusted Root Certification Authorities**, not another store
-- All browser windows were fully closed and reopened
-
-**Firefox note:** Firefox reads the Windows certificate store via `security.enterprise_roots.enabled`, which is enabled by default since Firefox 68. If Firefox still shows a warning, navigate to `about:config`, search for `security.enterprise_roots.enabled`, and ensure it is set to `true`.
-
----
-
-## Option 3: Click through the warning
-
-No setup is required. Every browser provides an option to proceed despite the warning. The connection is encrypted regardless — only identity verification is skipped.
-
-This is suitable for occasional access or when neither of the above options is practical.
+- The address you use matches the IP (or hostname) in the certificate.
+- Your computer trusts the CA that issued the certificate — in a managed environment, confirm with IT that the CA has been distributed.
+- All browser windows were fully closed and reopened.

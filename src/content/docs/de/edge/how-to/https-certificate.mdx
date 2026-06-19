@@ -1,6 +1,6 @@
 ---
 title: "Eigenes HTTPS-Zertifikat installieren"
-description: "So wird die Browser-Sicherheitswarnung auf Edge 2.22 behoben — durch ein eigenes Zertifikat oder durch Browser-Vertrauen für das Gerätezertifikat."
+description: "Beheben Sie die Browser-Sicherheitswarnung in Edge 2.22, indem Sie ein Zertifikat der Zertifizierungsstelle Ihrer Organisation installieren."
 sidebar:
   order: 7
   label: "Eigenes HTTPS-Zertifikat"
@@ -9,177 +9,82 @@ sidebar:
     variant: note
 ---
 
-import { Badge, Steps } from '@astrojs/starlight/components';
-
-<Badge text="Verfügbar ab Edge 2.22" variant="note" />
-import warningPageEdge from '../../../../../assets/images/warning-page-edge.png';
-import warningAdvancedEdge from '../../../../../assets/images/warning-advanced-edge.png';
-import notSecureClick from '../../../../../assets/images/not-secure-click.png';
-import clickCertDetailsEdge from '../../../../../assets/images/click-cert-details-edge.png';
-import certDetailsEdge from '../../../../../assets/images/cert-details-edge.png';
-import warningPageFirefox from '../../../../../assets/images/warning-page-firefox.png';
-import warningAdvancedFirefox from '../../../../../assets/images/warning-advanced-firefox.png';
-import certViewSaveFirefox from '../../../../../assets/images/cert-view-save-firefox.png';
-import certmgrOpen from '../../../../../assets/images/certmgr-open.png';
-import certmgrTrustedRoot from '../../../../../assets/images/certmgr-trusted-root.png';
-import certmgrImportWizard from '../../../../../assets/images/certmgr-import-wizard.png';
-import certmgrImportWizardConfirm from '../../../../../assets/images/certmgr-import-wizard-confirm.png';
+import { Steps } from '@astrojs/starlight/components';
+import certUploadSettings from '../../../../../assets/images/cert-upload-settings.png';
+import certUploadWizard from '../../../../../assets/images/cert-upload-wizard.png';
 import edgeSecure from '../../../../../assets/images/edge-secure.png';
 
-Ab Edge 2.22 ist die Benutzeroberfläche ausschließlich über HTTPS erreichbar. Standardmäßig verwendet das Gerät ein selbst-signiertes Zertifikat — Browser zeigen beim ersten Zugriff eine Sicherheitswarnung. Diese erscheint, weil der Browser das Zertifikat nicht über eine öffentliche Zertifizierungsstelle prüfen kann, nicht weil etwas mit dem Gerät oder der Verbindung nicht stimmt.
+Ab Edge 2.22 wird die Weboberfläche standardmäßig über HTTPS bereitgestellt. Das Gerät verwendet ein selbstsigniertes Zertifikat, sodass Browser beim ersten Zugriff eine Sicherheitswarnung anzeigen. Die Verbindung ist in beiden Fällen verschlüsselt — die Warnung bedeutet lediglich, dass der Browser die Identität des Geräts nicht überprüfen kann. Hintergründe finden Sie unter [Sicherheit: Zertifikate](/de/edge/technical-reference/security-certificates).
 
-**Die Verbindung ist auch bei angezeigter Warnung immer verschlüsselt.** Die Warnung bedeutet lediglich, dass der Browser die Geräteidentität nicht automatisch bestätigen kann.
+Um die Warnung dauerhaft zu beseitigen, installieren Sie ein Zertifikat, das von einer **Zertifizierungsstelle (CA) ausgestellt wurde, der Ihre Rechner bereits vertrauen** — in der Regel die eigene CA Ihrer Organisation. Das Beschaffen dieses Zertifikats und die Verwaltung des CA-Vertrauens sind Aufgabe Ihrer **IT-Abteilung** bzw. gemeinsam mit ihr durchzuführen. Diese Anleitung zeigt, wie Sie das Zertifikat auf dem Gerät installieren, sobald Sie es haben.
 
-Es gibt drei Möglichkeiten, damit umzugehen:
-
-1. **Eigenes Zertifikat hochladen** (von der IT ausgestellt) — entfernt die Warnung dauerhaft.
-2. **Gerätezertifikat im Browser vertrauen** — einmalig in den Windows-Zertifikatspeicher importieren; gilt für Chrome, Edge und Firefox.
-3. **Warnung übergehen** — kein Setup erforderlich; die Verbindung bleibt verschlüsselt.
-
-:::tip
-Wenn keine interne Zertifizierungsstelle vorhanden ist, ist Option 2 (Browser-Vertrauen) der empfohlene Weg.
-Falls keine der Optionen umsetzbar ist, steht als Fallback der HTTP-only-Modus zur Verfügung — siehe [Auf HTTP umstellen](/de/edge/how-to/http-mode).
+:::note
+Sie haben kein Zertifikat? In den meisten Installationen können Sie die Warnung einfach übergehen — die Verbindung bleibt verschlüsselt (siehe [Sicherheit: Zertifikate](/de/edge/technical-reference/security-certificates)). Falls selbst die Warnung in Ihrer Umgebung nicht akzeptabel ist, siehe [HTTP erlauben](/de/edge/how-to/http-mode).
 :::
 
----
+## Was Sie benötigen
 
-## Option 1: Eigenes Zertifikat hochladen (von der IT ausgestellt)
+Fordern Sie bei Ihrer IT-Abteilung ein Zertifikat an, das **für die IP-Adresse oder den Hostnamen des Geräts** ausgestellt ist, in einem der folgenden Formate:
 
-Die IT-Abteilung muss ein gültiges TLS-Zertifikat für die IP-Adresse oder den Hostnamen ausstellen, unter dem das Edge-Gerät im Netzwerk erreichbar ist.
+| Format | Was hochzuladen ist |
+|--------|---------------------|
+| PFX / PKCS#12 | die `.pfx`-Datei (plus Passwort, falls geschützt) |
+| PEM-Bündel | eine einzelne `.pem`-Datei mit Zertifikat **und** privatem Schlüssel |
+| PEM, getrennte Dateien | die Zertifikatsdatei **und** die Schlüsseldatei |
 
-| Datei | Erforderlich |
-|-------|-------------|
-| Zertifikat-Bundle (`.crt`, `.pem` oder `.cer`) | Ja |
-| Private-Key-Datei | Nein |
-| Key-Passwort | Nein (nur wenn die Key-Datei passwortgeschützt ist) |
+Die IT stellt dieses Zertifikat aus der PKI Ihrer Organisation aus — zum Beispiel **Active Directory Certificate Services (AD CS)** oder einer anderen internen CA.
 
-### Über die Netzwerk-Einstellungen
+:::note
+Wenn Ihre IT-Abteilung technische Fragen zu Zertifikaten für das Edge-Gerät hat, kann sie sich gerne an uns wenden.
+:::
+
+## Zertifikat hochladen
+
+### Über die Einstellungen
 
 <Steps>
-1. Edge-Benutzeroberfläche öffnen und anmelden.
 
-2. **Einstellungen** → **Netzwerk** aufrufen.
+1. Die Edge-Weboberfläche öffnen und anmelden.
 
-3. Zum Abschnitt **Zertifikat** scrollen.
+2. Zu **Einstellungen** → **Netzwerkadapter** wechseln und den Tab **Sicherheit** öffnen.
 
-4. **Zertifikat hochladen** klicken, Bundle-Datei auswählen, optional Key-Datei anhängen und Passwort eingeben.
+   <div class="screenshot-frame"><img src={certUploadSettings.src} alt="Zertifikat-Upload in Einstellungen, Netzwerkadapter, Tab Sicherheit" /></div>
 
-5. **Speichern** klicken. Das Zertifikat wird sofort übernommen — kein Neustart erforderlich.
+3. Das vorliegende Format auswählen, die Datei(en) wählen und das Passwort eingeben, falls die PFX-Datei geschützt ist.
+
+4. **Speichern** klicken. Das Zertifikat wird sofort übernommen — kein Neustart erforderlich.
+
 </Steps>
 
 ### Über den Setup-Assistenten (bei der Ersteinrichtung)
 
 <Steps>
+
 1. Den Setup-Assistenten für das Edge-Gerät starten.
 
-2. Im Schritt **Netzwerk** zum Abschnitt **Zertifikat** scrollen.
+2. Im Schritt **Netzwerkadapter** den Tab **Sicherheit** öffnen und das Zertifikat auf dieselbe Weise wie oben hochladen.
 
-3. Bundle-Datei hochladen, optional Key-Datei und Passwort angeben.
+   <div class="screenshot-frame"><img src={certUploadWizard.src} alt="Zertifikat-Upload im Netzwerkadapter-Schritt des Setup-Assistenten" /></div>
 
-4. Assistenten fortsetzen und abschließen.
+3. Den Assistenten fortsetzen und abschließen.
+
 </Steps>
 
----
-
-## Option 2: Gerätezertifikat im Browser vertrauen
-
-Chrome, Edge und Firefox unter Windows verwenden alle den Windows-Zertifikatspeicher. Das Gerätezertifikat muss einmalig importiert werden — danach gilt das Vertrauen in allen drei Browsern.
-
-:::caution
-**Wann muss dieser Schritt wiederholt werden:** Ändert sich die IP-Adresse des Edge-Geräts, wird das Zertifikat automatisch neu ausgestellt. Das alte Vertrauen gilt nicht mehr — die Import-Schritte müssen mit dem neuen Zertifikat wiederholt werden. Das Zertifikat wird außerdem nach ca. 825 Tagen (ca. 2,25 Jahre) neu ausgestellt.
+:::tip
+Um jederzeit zum integrierten selbstsignierten Zertifikat des Geräts zurückzukehren, öffnen Sie denselben Tab **Sicherheit** und klicken auf **Zurücksetzen** — dadurch wird das hochgeladene Zertifikat entfernt.
 :::
 
-### Schritt 1 — Zertifikat aus dem Browser exportieren
+## Der ausstellenden CA auf Client-Rechnern vertrauen
 
-#### Chrome oder Microsoft Edge
+Damit der Browser das Zertifikat ohne Warnung akzeptiert, muss jeder Client-Rechner der CA vertrauen, die es ausgestellt hat. In einer verwalteten (**Active Directory**) Umgebung verteilt Ihre IT-Abteilung die CA in der Regel automatisch per Gruppenrichtlinie — Benutzer müssen dann nichts tun. Andernfalls importiert ein Administrator die CA einmalig auf jedem Rechner — wenn Ihr IT-Team die genauen Schritte benötigt, wenden Sie sich an uns.
 
-<Steps>
-1. `https://<Geräte-IP>` im Browser öffnen. Es erscheint die Warnung „Ihre Verbindung ist nicht privat".
+## Überprüfen
 
-   <div class="screenshot-frame"><img src={warningPageEdge.src} alt="Browser-Warnung in Edge" /></div>
-
-2. **Erweitert** klicken, dann **Weiter zu \<Geräte-IP\> (unsicher)** klicken, um die Seite zu laden.
-
-   <div class="screenshot-frame"><img src={warningAdvancedEdge.src} alt="Erweiterter Bereich mit Weiter-Link" /></div>
-
-3. Nach dem Laden der Seite in der Adresszeile auf **Nicht sicher** klicken.
-
-   <div class="screenshot-frame"><img src={notSecureClick.src} alt="Nicht-sicher-Anzeige in der Adresszeile" /></div>
-
-4. Den Link zu den Zertifikat-Details klicken.
-
-   <div class="screenshot-frame"><img src={clickCertDetailsEdge.src} alt="Zertifikat-Details-Link im Dropdown" /></div>
-
-5. Im Zertifikats-Viewer den Tab **Details** öffnen und auf **Exportieren** klicken. Datei speichern.
-
-   <div class="screenshot-frame"><img src={certDetailsEdge.src} alt="Zertifikats-Viewer — Tab Details mit Export-Schaltfläche" /></div>
-</Steps>
-
-#### Firefox
-
-<Steps>
-1. `https://<Geräte-IP>` im Browser öffnen. Firefox zeigt eine Warnseite.
-
-   <div class="screenshot-frame"><img src={warningPageFirefox.src} alt="Browser-Warnung in Firefox" /></div>
-
-2. **Erweitert** klicken, dann **Zertifikat des Servers anzeigen** klicken.
-
-   <div class="screenshot-frame"><img src={warningAdvancedFirefox.src} alt="Erweiterter Bereich mit Zertifikat-Link" /></div>
-
-3. Firefox öffnet eine Zertifikat-Detailseite. Zum Abschnitt **Verschiedenes** scrollen und auf **PEM (Zertifikat)** klicken, um die Datei herunterzuladen.
-
-   <div class="screenshot-frame"><img src={certViewSaveFirefox.src} alt="Zertifikat-Detailseite mit PEM-Download-Link" /></div>
-</Steps>
-
-### Schritt 2 — In den Windows-Zertifikatspeicher importieren
-
-<Steps>
-1. **Win + R** drücken, `certmgr.msc` eingeben und Enter drücken.
-
-   <div class="screenshot-frame"><img src={certmgrOpen.src} alt="Windows-Zertifikat-Manager" /></div>
-
-2. Im linken Bereich **Vertrauenswürdige Stammzertifizierungsstellen** aufklappen und **Zertifikate** auswählen.
-
-   <div class="screenshot-frame"><img src={certmgrTrustedRoot.src} alt="Vertrauenswürdige Stammzertifizierungsstellen" /></div>
-
-   :::note
-   Selbst-signierte Zertifikate müssen hier importiert werden (nicht unter Persönlich oder Zwischenzertifizierungsstellen). Nur dieser Speicher wird von Browsern für TLS-Vertrauensentscheidungen bei selbst-signierten Zertifikaten geprüft.
-   :::
-
-3. Rechtsklick auf **Vertrauenswürdige Stammzertifizierungsstellen** → **Alle Aufgaben** → **Importieren**.
-
-4. Der Zertifikat-Import-Assistent öffnet sich. **Weiter** klicken, zur Zertifikatsdatei navigieren und sie auswählen.
-
-   <div class="screenshot-frame"><img src={certmgrImportWizard.src} alt="Zertifikat-Import-Assistent" /></div>
-
-5. Sicherstellen, dass der Speicher auf **Vertrauenswürdige Stammzertifizierungsstellen** gesetzt ist, dann **Weiter** → **Fertig stellen** klicken.
-
-6. Eine Sicherheitsbestätigung erscheint — **Ja** klicken, um dem Zertifikat zu vertrauen.
-
-   <div class="screenshot-frame"><img src={certmgrImportWizardConfirm.src} alt="Sicherheitsbestätigungsdialog" /></div>
-</Steps>
-
-:::note
-Der Import in den Windows-Zertifikatspeicher erfordert lokale Administratorrechte. Falls der Zugriff eingeschränkt ist, muss der Import von der IT-Abteilung durchgeführt werden.
-:::
-
-### Schritt 3 — Überprüfen
-
-**Alle** Browser-Fenster schließen (Browser speichern Zertifikatsentscheidungen für die gesamte Sitzung — nur den Tab zu schließen reicht nicht). Den Browser neu öffnen und `https://<Geräte-IP>` aufrufen. Das Schloss-Symbol sollte ohne Warnung erscheinen.
+Schließen Sie **alle** Browserfenster (Browser speichern Zertifikatsentscheidungen für die gesamte Sitzung — nur den Tab zu schließen reicht nicht), öffnen Sie den Browser erneut und rufen Sie das Gerät auf. Es sollte ein Schloss-Symbol ohne Warnung erscheinen.
 
 <div class="screenshot-frame"><img src={edgeSecure.src} alt="Sichere Verbindung mit Schloss-Symbol im Browser" /></div>
 
-**Falls die Warnung weiterhin erscheint:**
-- Sicherstellen, dass die aufgerufene IP-Adresse mit der IP im SAN-Feld des Zertifikats übereinstimmt
-- Prüfen, ob das Zertifikat unter **Vertrauenswürdige Stammzertifizierungsstellen** liegt (nicht in einem anderen Speicher)
-- Sicherstellen, dass alle Browser-Fenster vollständig geschlossen und neu geöffnet wurden
-
-**Firefox-Hinweis:** Firefox liest den Windows-Zertifikatspeicher über `security.enterprise_roots.enabled`, was seit Firefox 68 standardmäßig aktiviert ist. Falls Firefox die Warnung weiter anzeigt: `about:config` aufrufen, nach `security.enterprise_roots.enabled` suchen und sicherstellen, dass der Wert `true` ist.
-
----
-
-## Option 3: Warnung übergehen
-
-Kein Setup erforderlich. Jeder Browser bietet die Möglichkeit, trotz Warnung fortzufahren. Die Verbindung ist dabei verschlüsselt — lediglich die Identitätsprüfung wird übersprungen.
-
-Diese Option ist für gelegentlichen Zugriff geeignet oder wenn keine der obigen Optionen praktikabel ist.
+**Falls die Warnung weiterhin erscheint, prüfen Sie:**
+- Die verwendete Adresse stimmt mit der IP-Adresse (oder dem Hostnamen) im Zertifikat überein.
+- Der Rechner vertraut der CA, die das Zertifikat ausgestellt hat — in einer verwalteten Umgebung bestätigen Sie mit der IT, dass die CA verteilt wurde.
+- Alle Browserfenster wurden vollständig geschlossen und neu geöffnet.

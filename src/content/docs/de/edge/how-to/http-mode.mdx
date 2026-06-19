@@ -1,6 +1,6 @@
 ---
-title: "Auf HTTP umstellen"
-description: "So deaktivieren Sie HTTPS auf Edge 2.22 und wechseln zurück zu unverschlüsseltem HTTP-Zugriff."
+title: "HTTP erlauben"
+description: "Die Weboberfläche von Edge 2.22 zusätzlich zu HTTPS über unverschlüsseltes HTTP bereitstellen — und die damit verbundenen Sicherheitskompromisse."
 sidebar:
   order: 8
   badge:
@@ -8,49 +8,63 @@ sidebar:
     variant: note
 ---
 
-import { Badge, Steps } from '@astrojs/starlight/components';
+import { Steps } from '@astrojs/starlight/components';
+import allowHttp from '../../../../../assets/images/allow-http.png';
 
-<Badge text="Verfügbar ab Edge 2.22" variant="note" />
+Ab Edge 2.22 wird die Weboberfläche standardmäßig über HTTPS bereitgestellt, und über unverschlüsseltes HTTP eingehende Anfragen werden auf HTTPS umgeleitet. Für Umgebungen, in denen HTTPS unpraktikabel ist, ermöglicht die Einstellung **HTTP erlauben**, die Oberfläche zusätzlich über HTTP bereitzustellen. Sie ist **standardmäßig deaktiviert** und sollte nur bewusst aktiviert werden. Hintergründe zum standardmäßigen HTTPS-Verhalten finden Sie unter [Sicherheit: Zertifikate](/de/edge/technical-reference/security-certificates).
 
-Ab Edge 2.22 läuft die Benutzeroberfläche standardmäßig über HTTPS. Für Umgebungen ohne interne Zertifizierungsstelle ist es möglich, auf unverschlüsseltes HTTP zurückzuwechseln. Dieser Modus erfordert die ausdrückliche Bestätigung der damit verbundenen Sicherheitsrisiken.
+HTTP wird **zusätzlich** zu HTTPS bereitgestellt, nicht anstelle davon:
+
+- **HTTP erlauben aus (Standard):** Über HTTP eingehende Anfragen werden auf HTTPS umgeleitet, sodass der gesamte Datenverkehr verschlüsselt ist.
+- **HTTP erlauben ein:** Über HTTP eingehende Anfragen werden über HTTP bedient, während HTTPS weiterhin wie bisher funktioniert. Clients, die sich über HTTP verbinden, werden lediglich nicht mehr umgeleitet.
 
 :::danger
-**Der Wechsel auf HTTP entfernt die gesamte Transportverschlüsselung. Bitte die Risiken vor dem Fortfahren zur Kenntnis nehmen.**
+**Das Erlauben von HTTP deaktiviert die Transportverschlüsselung für HTTP-Verbindungen. Machen Sie sich die Risiken bewusst, bevor Sie es aktivieren.**
 
-- **Zugangsdaten werden im Klartext übertragen** — Login-Passwort und Session-Tokens werden unverschlüsselt gesendet. Jeder mit Zugang zum Netzwerk kann diese abfangen.
-- **Gesamte Kommunikation ist lesbar** — Konfigurationsdaten, Messwerte und API-Antworten sind für andere Teilnehmer im selben Netzwerk sichtbar.
-- **Man-in-the-Middle-Angriffe möglich** — Ohne TLS kann ein Angreifer im Netzwerk den Datenverkehr zwischen Browser und Gerät unbemerkt abfangen und verändern.
-- **Keine Server-Authentifizierung** — Der Browser kann nicht bestätigen, dass tatsächlich mit dem Edge-Gerät kommuniziert wird.
+- **Alles wird im Klartext übertragen** — Anmeldedaten, Sitzungs-Tokens, Konfiguration und über HTTP gesendete Daten können von jedem im Netzwerk gelesen werden.
+- **Datenverkehr kann verändert werden** — ohne Verschlüsselung kann jemand im Netzwerk den Verkehr zwischen Browser und Gerät unbemerkt abfangen und verändern.
+- **Die Identität des Geräts wird nicht überprüft** — der Browser kann nicht bestätigen, dass er tatsächlich mit dem Edge-Gerät kommuniziert.
+- **Compliance** — Verschlüsselung bei der Übertragung ist häufig eine regulatorische oder beschaffungsseitige Anforderung für Industrieausrüstung (zum Beispiel IEC 62443 oder NIS2); unverschlüsseltes HTTP erfüllt diese möglicherweise nicht.
 
-Der HTTP-only-Modus ist ausschließlich in vollständig isolierten Netzwerkumgebungen ohne Möglichkeit eines unberechtigten Zugriffs geeignet. Im Zweifelsfall sollte stattdessen ein Zertifikat verwendet werden — siehe [Eigenes HTTPS-Zertifikat installieren](/de/edge/how-to/https-certificate).
+Aktivieren Sie HTTP nur in vollständig isolierten Netzwerken, in denen diese Risiken akzeptabel sind, und treffen Sie die Entscheidung gemeinsam mit Ihrer **IT- oder Sicherheitsabteilung**. Im Zweifelsfall bleiben Sie bei HTTPS und installieren stattdessen ein Zertifikat — siehe [Eigenes HTTPS-Zertifikat installieren](/de/edge/how-to/https-certificate).
 :::
 
-## Option A: Umstellung über die Netzwerk-Einstellungen
+:::note
+Beim Wechsel zwischen HTTPS und HTTP müssen Sie sich erneut anmelden — der Browser speichert die Sitzung für jedes Protokoll getrennt.
+:::
+
+## HTTP aktivieren
+
+### Über die Einstellungen
 
 <Steps>
-1. Edge-Benutzeroberfläche öffnen und anmelden.
 
-2. **Einstellungen** → **Netzwerk** aufrufen.
+1. Die Edge-Weboberfläche öffnen und anmelden.
 
-3. Zum Abschnitt **Protokoll** scrollen und **HTTP** auswählen.
+2. Zu **Einstellungen** → **Netzwerkadapter** wechseln und die Einstellung **HTTP erlauben** suchen.
 
-4. Ein Sicherheits-Bestätigungsdialog erscheint. Die aufgelisteten Risiken lesen und bestätigen, dass diese akzeptiert werden.
+   <div class="screenshot-frame"><img src={allowHttp.src} alt="Der Schalter HTTP erlauben in Einstellungen, Netzwerkadapter" /></div>
 
-5. **Speichern** klicken. Das Gerät wechselt sofort auf HTTP. Der Browser leitet automatisch auf die unverschlüsselte Adresse um.
+3. **HTTP erlauben** einschalten. Eine Sicherheitswarnung erscheint — lesen Sie sie und bestätigen Sie, dass Sie die Risiken akzeptieren. Die Einstellung wird sofort übernommen; ein separates Speichern ist nicht erforderlich.
+
+4. Es erscheint eine Schaltfläche **WebUI mit HTTP neu laden**. Klicken Sie darauf, um die aktuelle Browsersitzung auf HTTP umzustellen, oder ändern Sie in der Adresszeile einfach `https://` zu `http://`.
+
 </Steps>
 
-## Option B: Konfiguration beim Ersteinrichten (Setup-Assistent)
+### Über den Setup-Assistenten (bei der Ersteinrichtung)
 
 <Steps>
+
 1. Den Setup-Assistenten für das Edge-Gerät starten.
 
-2. Im Schritt **Netzwerk** die Einstellung **Protokoll** suchen und **HTTP** auswählen.
+2. Im Schritt **Netzwerkadapter** **HTTP erlauben** einschalten und die Sicherheitswarnung bestätigen.
 
-3. Die Sicherheitsrisiken im erscheinenden Dialog bestätigen.
+3. Den Assistenten fortsetzen und abschließen.
 
-4. Den Assistenten fortsetzen und abschließen. Das Gerät startet im HTTP-Modus.
 </Steps>
 
-## Zurück zu HTTPS wechseln
+## Zurück zu ausschließlich HTTPS wechseln
 
-HTTPS kann jederzeit wieder aktiviert werden: dieselben Schritte ausführen und im Abschnitt Protokoll **HTTPS** auswählen. Das Gerät kehrt zu seinem selbst-signierten Zertifikat zurück. Um die Browserwarnung nach dem Wechsel zu vermeiden, ein eigenes Zertifikat hochladen — siehe [Eigenes HTTPS-Zertifikat installieren](/de/edge/how-to/https-certificate).
+Um zu ausschließlichem HTTPS-Zugriff zurückzukehren, schalten Sie **HTTP erlauben** an derselben Stelle wieder aus. Über HTTP eingehende Anfragen werden dann wie zuvor auf HTTPS umgeleitet.
+
+Für eine saubere HTTPS-Verbindung ohne Zertifikatswarnung installieren Sie ein Zertifikat, dem Ihre Rechner vertrauen — siehe [Eigenes HTTPS-Zertifikat installieren](/de/edge/how-to/https-certificate).

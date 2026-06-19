@@ -1,6 +1,6 @@
 ---
-title: "Switch to HTTP-only Mode"
-description: "How to disable HTTPS on Edge 2.22 and revert to unencrypted HTTP access."
+title: "Allow HTTP"
+description: "Serve the Edge 2.22 web interface over plain HTTP alongside HTTPS, and understand the security trade-offs."
 sidebar:
   order: 8
   badge:
@@ -8,49 +8,63 @@ sidebar:
     variant: note
 ---
 
-import { Badge, Steps } from '@astrojs/starlight/components';
+import { Steps } from '@astrojs/starlight/components';
+import allowHttp from '../../../../assets/images/allow-http.png';
 
-<Badge text="Verfügbar ab Edge 2.22" variant="note" />
+From Edge 2.22, the web interface is served by default over HTTPS, and requests that arrive over plain HTTP are redirected to HTTPS. For environments where HTTPS is impractical, the **Allow HTTP** setting lets the device also serve the interface over HTTP. It is **off by default** and should only be turned on deliberately. For background on the default HTTPS behaviour, see [Security Certificates](/edge/technical-reference/security-certificates).
 
-From Edge 2.22, the web interface runs over HTTPS by default. For environments without an internal certificate authority, it is possible to revert to unencrypted HTTP. This mode requires explicit acceptance of the associated security risks.
+HTTP is served **alongside** HTTPS, not instead of it:
+
+- **Allow HTTP off (default):** requests over HTTP are redirected to HTTPS, so all traffic is encrypted.
+- **Allow HTTP on:** requests over HTTP are served over HTTP, while HTTPS continues to work as before. Clients that connect over HTTP are simply no longer redirected.
 
 :::danger
-**Switching to HTTP removes all transport encryption. Understand the risks before proceeding.**
+**Allowing HTTP turns off transport encryption for HTTP connections. Understand the risks before enabling it.**
 
-- **Credentials transmitted in plaintext** — Login passwords and session tokens are sent unencrypted. Anyone with access to the network can intercept them.
-- **All communication readable** — Configuration data, sensor values, and API responses are visible to other parties on the same network.
-- **Man-in-the-middle attacks possible** — Without TLS, an attacker on the network can intercept and modify traffic between the browser and the device without detection.
-- **No server identity verification** — The browser cannot confirm it is communicating with the actual Edge device.
+- **Everything travels in clear text** — login credentials, session tokens, configuration, and data sent over HTTP can be read by anyone on the network.
+- **Traffic can be altered** — without encryption, someone on the network can intercept and modify traffic between the browser and the device without detection.
+- **The device's identity is not verified** — the browser cannot confirm it is really communicating with the Edge device.
+- **Compliance** — encryption in transit is often a regulatory or procurement requirement for industrial equipment (for example IEC 62443 or NIS2); plain HTTP may not meet it.
 
-HTTP-only mode is only appropriate in completely isolated network environments with no possibility of unauthorized access. When in doubt, use a certificate instead — see [Install a Custom HTTPS Certificate](/edge/how-to/https-certificate).
+Only enable HTTP on fully isolated networks where these risks are acceptable, and make the decision together with your **IT or security team**. When in doubt, keep HTTPS and install a certificate instead — see [Install a Custom HTTPS Certificate](/edge/how-to/https-certificate).
 :::
 
-## Option A: Switch via Network Settings
+:::note
+When you switch between HTTPS and HTTP, you will need to log in again — the browser keeps its session separately for each protocol.
+:::
+
+## Enable HTTP
+
+### Via Settings
 
 <Steps>
+
 1. Open the Edge web interface and log in.
 
-2. Go to **Settings** → **Network**.
+2. Go to **Settings** → **Network Adapter** and locate the **Allow HTTP** setting.
 
-3. Scroll to the **Protocol** section and select **HTTP**.
+   <div class="screenshot-frame"><img src={allowHttp.src} alt="The Allow HTTP toggle in Settings, Network Adapter" /></div>
 
-4. A security confirmation dialog appears. Read the listed risks and confirm that you accept them.
+3. Turn on **Allow HTTP**. A security warning appears — read it and confirm that you accept the risks. The setting is applied immediately; there is no separate save step.
 
-5. Click **Save**. The device switches to HTTP immediately. The browser will redirect to the unencrypted address.
+4. A **Reload WebUI via HTTP** button appears. Click it to switch your current browser session to HTTP, or simply change `https://` to `http://` in the address bar yourself.
+
 </Steps>
 
-## Option B: Configure during Initial Setup (Setup Wizard)
+### Via Setup Wizard (during initial setup)
 
 <Steps>
+
 1. Start the Setup Wizard for the Edge device.
 
-2. In the **Network** step, locate the **Protocol** setting and select **HTTP**.
+2. In the **Network Adapter** step, turn on **Allow HTTP** and confirm the security warning.
 
-3. Confirm acceptance of the security risks in the dialog that appears.
+3. Continue and complete the wizard.
 
-4. Continue and complete the wizard. The device starts in HTTP mode.
 </Steps>
 
-## Switching Back to HTTPS
+## Switch back to HTTPS only
 
-To re-enable HTTPS at any time, follow the same steps and select **HTTPS** in the Protocol section. The device will revert to its self-signed certificate. To avoid the browser warning after switching back, upload a custom certificate — see [Install a Custom HTTPS Certificate](/edge/how-to/https-certificate).
+To return to HTTPS-only access, turn **Allow HTTP** off again in the same place. HTTP requests are then redirected to HTTPS as before.
+
+To get a clean HTTPS connection with no certificate warning, install a certificate your computers trust — see [Install a Custom HTTPS Certificate](/edge/how-to/https-certificate).
