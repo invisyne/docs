@@ -231,6 +231,12 @@ const companionHref = isDE ? '/de/companion' : '/companion';
         if (!img) return;
         frame.appendChild(makeZoomBtn(img));
       });
+      document.querySelectorAll('.qs-img-slide').forEach(slide => {
+        if (slide.querySelector('.zoom-btn')) return;
+        const img = slide.querySelector('img');
+        if (!img) return;
+        slide.appendChild(makeZoomBtn(img));
+      });
       document.querySelectorAll('.companion-banner').forEach(frame => {
         if (frame.querySelector('.zoom-btn')) return;
         const img = frame.querySelector('img');
@@ -288,6 +294,29 @@ const companionHref = isDE ? '/de/companion' : '/companion';
 
   initQsTabs();
   document.addEventListener('astro:page-load', initQsTabs);
+
+  // ── Quickstart image carousel (.qs-img-carousel) ────────────────────
+  function initQsImgCarousels() {
+    document.querySelectorAll<HTMLElement>('.qs-img-carousel').forEach(carousel => {
+      if ((carousel as any)._qsImgReady) return;
+      (carousel as any)._qsImgReady = true;
+      const slides = Array.from(carousel.querySelectorAll<HTMLElement>('.qs-img-slide'));
+      const nextBtn = carousel.querySelector<HTMLButtonElement>('.qs-img-next');
+      const prevBtn = carousel.querySelector<HTMLButtonElement>('.qs-img-prev');
+      if (slides.length < 2) return;
+      let idx = 0;
+      function showSlide(i: number) {
+        slides.forEach((s, j) => s.classList.toggle('qs-img-active', j === i));
+        if (prevBtn) prevBtn.style.display = i > 0 ? 'flex' : 'none';
+        if (nextBtn) nextBtn.style.display = i < slides.length - 1 ? 'flex' : 'none';
+      }
+      nextBtn?.addEventListener('click', () => { idx = Math.min(idx + 1, slides.length - 1); showSlide(idx); });
+      prevBtn?.addEventListener('click', () => { idx = Math.max(idx - 1, 0); showSlide(idx); });
+      showSlide(0);
+    });
+  }
+  initQsImgCarousels();
+  document.addEventListener('astro:page-load', initQsImgCarousels);
 
   // ── Image toggles (arrow button cycles through images) ──────────────
   function initImgToggles() {

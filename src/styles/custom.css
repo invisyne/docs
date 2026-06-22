@@ -564,6 +564,41 @@ starlight-toc a {
   margin: 1rem 0;
 }
 
+/* ─── Quickstart image carousel ─────────────────────────────────────── */
+.qs-img-carousel {
+  position: relative;
+  display: grid;
+  margin-top: 1rem;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.qs-img-slide { grid-area: 1 / 1; position: relative; visibility: hidden; }
+.qs-img-slide.qs-img-active { visibility: visible; }
+.qs-img-slide img { width: 100%; height: auto; display: block; border-radius: 10px; }
+.qs-img-next,
+.qs-img-prev {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--sl-color-accent, #2549ff);
+  border: none;
+  color: #fff;
+  font-size: 1.6rem;
+  line-height: 1;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.15s;
+  z-index: 5;
+}
+.qs-img-next { right: 10px; opacity: 1; }
+.qs-img-prev { left: 10px; display: none; opacity: 1; }
+
 /* ─── Changelog timeline ─────────────────────────────────────────────── */
 
 /* ── Changelog: each bullet point as a card ── */
@@ -807,9 +842,29 @@ starlight-toc a {
   z-index: 2;
 }
 
+.qs-img-slide .zoom-btn {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 32px;
+  height: 32px;
+  background: rgba(0,0,0,0.55);
+  border: none;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.15s;
+  color: #fff;
+  z-index: 6;
+}
+
 .screenshot-frame:hover .zoom-btn,
 .page-hero-image:hover .zoom-btn,
-.companion-banner:hover .zoom-btn {
+.companion-banner:hover .zoom-btn,
+.qs-img-slide:hover .zoom-btn {
   opacity: 1;
 }
 
