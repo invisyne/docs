@@ -1355,7 +1355,7 @@ starlight-toc a {
   width: 100%;
   border-radius: 14px;
   overflow: hidden;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   border: 1px solid var(--sl-color-gray-5);
 }
 .companion-banner img {
@@ -1366,19 +1366,16 @@ starlight-toc a {
   object-position: top left;
 }
 .companion-banner-chips {
-  position: absolute;
-  bottom: 16px;
-  left: 16px;
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
+  margin-bottom: 2rem;
 }
 .companion-chip {
   font-size: 0.75rem;
   font-weight: 600;
   color: var(--sl-color-accent, #2549ff);
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(6px);
+  background: var(--sl-color-gray-6);
   border-radius: 20px;
   padding: 5px 13px;
   white-space: nowrap;
