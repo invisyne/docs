@@ -3,8 +3,8 @@
   "configurations": [
     {
       "name": "docs-dev",
-      "runtimeExecutable": "npx",
-      "runtimeArgs": ["astro", "dev"],
+      "runtimeExecutable": "cmd",
+      "runtimeArgs": ["/c", "node_modules\\.bin\\astro.cmd", "dev"],
       "port": 4321,
       "autoPort": true
     },

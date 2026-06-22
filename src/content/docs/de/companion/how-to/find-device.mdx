@@ -1,0 +1,40 @@
+---
+title: "Gerät finden"
+description: "Edge-Geräte im lokalen Netzwerk mit Crawler.Companion entdecken."
+sidebar:
+  order: 2
+---
+
+import { Steps } from '@astrojs/starlight/components';
+
+Crawler.Companion durchsucht das lokale Netzwerk beim Start automatisch nach Edge-Geräten. Es ist keine manuelle Konfiguration erforderlich.
+
+<Steps>
+
+1. **Mit demselben Netzwerk verbinden**
+
+   Sicherstellen, dass der PC mit demselben lokalen Netzwerk (Subnetz) verbunden ist wie die gesuchten Edge-Geräte.
+
+2. **Companion öffnen**
+
+   Crawler.Companion starten. Die Suche nach Geräten beginnt sofort — kein weiterer Schritt notwendig.
+
+3. **Geräteliste prüfen**
+
+   Alle gefundenen Edge-Geräte erscheinen in der Hauptliste mit Name, Hardware-Typ, Firmware-Version und Netzwerkinformationen.
+
+   Unkonfigurierte Geräte werden mit dem Status **N/A** angezeigt — sie können direkt von hier ausgewählt und eingerichtet werden.
+
+   <div class="screenshot-frame">
+     <img src="/images/companion/companion-devices-list.png" alt="Companion Geräteliste mit gefundenen Edge-Geräten" />
+   </div>
+
+4. **Gerät auswählen**
+
+   Auf eine Zeile klicken, um das Detailpanel des Geräts auf der rechten Seite zu öffnen.
+
+</Steps>
+
+:::note
+Wenn ein Gerät nicht erscheint: Prüfen, ob es eingeschaltet und mit demselben Subnetz wie der PC verbunden ist. Geräte in einem anderen Subnetz sind über den lokalen Netzwerk-Scan nicht erreichbar.
+:::

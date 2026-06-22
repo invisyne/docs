@@ -159,6 +159,11 @@ h1, h2, h3, h4, h5, h6,
   padding-inline-start: 1.75rem !important;
 }
 
+/* Extra clearance when sidebar is open: push content past the 20px toggle button */
+:root:not(.sidebar-hidden) .main-frame {
+  padding-inline-start: calc(var(--sl-sidebar-width, 18.75rem) + 2rem) !important;
+}
+
 /* Sidebar toggle button — CSS-positioned via --sl-sidebar-width so it never jumps */
 #sl-sidebar-btn {
   position: fixed;
@@ -559,6 +564,41 @@ starlight-toc a {
   margin: 1rem 0;
 }
 
+/* ─── Quickstart image carousel ─────────────────────────────────────── */
+.qs-img-carousel {
+  position: relative;
+  display: grid;
+  margin-top: 1rem;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.qs-img-slide { grid-area: 1 / 1; position: relative; visibility: hidden; }
+.qs-img-slide.qs-img-active { visibility: visible; }
+.qs-img-slide img { width: 100%; height: auto; display: block; border-radius: 10px; }
+.qs-img-next,
+.qs-img-prev {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--sl-color-accent, #2549ff);
+  border: none;
+  color: #fff;
+  font-size: 1.6rem;
+  line-height: 1;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.15s;
+  z-index: 5;
+}
+.qs-img-next { right: 10px; opacity: 1; }
+.qs-img-prev { left: 10px; display: none; opacity: 1; }
+
 /* ─── Changelog timeline ─────────────────────────────────────────────── */
 
 /* ── Changelog: each bullet point as a card ── */
@@ -784,8 +824,47 @@ starlight-toc a {
   z-index: 2;
 }
 
+.companion-banner .zoom-btn {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 32px;
+  height: 32px;
+  background: rgba(0,0,0,0.55);
+  border: none;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 1;
+  color: #fff;
+  z-index: 2;
+}
+
+.qs-img-slide .zoom-btn {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 32px;
+  height: 32px;
+  background: rgba(0,0,0,0.55);
+  border: none;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.15s;
+  color: #fff;
+  z-index: 6;
+}
+
 .screenshot-frame:hover .zoom-btn,
-.page-hero-image:hover .zoom-btn {
+.page-hero-image:hover .zoom-btn,
+.companion-banner:hover .zoom-btn,
+.qs-img-slide:hover .zoom-btn {
   opacity: 1;
 }
 
@@ -1330,6 +1409,63 @@ starlight-toc a {
   .sysreq-col { border-right: none; padding-left: 0 !important; border-bottom: 1px solid var(--sl-color-gray-5); }
 }
 
+/* ─── Companion overview — banner + chips ───────────────────────────── */
+.companion-banner {
+  position: relative;
+  width: 100%;
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+  border: 1px solid var(--sl-color-gray-5);
+}
+.companion-banner img {
+  width: 100%;
+  display: block;
+  max-height: 340px;
+  object-fit: cover;
+  object-position: top left;
+}
+.companion-banner-chips {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+.companion-chip {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--sl-color-accent, #2549ff);
+  background: var(--sl-color-gray-6);
+  border-radius: 20px;
+  padding: 5px 13px;
+  white-space: nowrap;
+}
+.companion-intro {
+  margin-bottom: 2.5rem;
+}
+.companion-intro-overline {
+  font-size: 0.75rem !important;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--sl-color-gray-3) !important;
+  margin: 0 0 0.5rem !important;
+}
+.companion-intro-lead {
+  font-size: 1.5rem !important;
+  font-weight: 600 !important;
+  line-height: 1.35 !important;
+  color: var(--sl-color-gray-1) !important;
+  margin: 0 0 0.75rem !important;
+  letter-spacing: -0.02em;
+}
+.companion-intro-body {
+  font-size: 1rem !important;
+  color: var(--sl-color-gray-3) !important;
+  line-height: 1.7 !important;
+  margin: 0 !important;
+}
+
 /* ─── Page hero (editorial image + text) ────────────────────────────── */
 .page-hero {
   display: grid;
@@ -1598,4 +1734,131 @@ starlight-toc a {
 .img-toggle-btn:hover {
   background: var(--sl-color-accent-high);
   transform: translateY(-50%) scale(1.08);
+}
+
+/* ─── Companion — Troubleshooting rows ──────────────────────────────── */
+.ts-table {
+  width: 100%;
+  border: 1px solid var(--sl-color-gray-5);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.ts-header {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr 1fr !important;
+  align-items: center !important;
+  padding: 10px 16px;
+  background: var(--sl-color-gray-6);
+  border-bottom: 1px solid var(--sl-color-gray-5);
+}
+.ts-header-cell {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--sl-color-gray-1);
+  padding: 0;
+  margin: 0 !important;
+}
+.ts-row {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr 1fr !important;
+  align-items: center !important;
+  border-top: 1px solid var(--sl-color-gray-6);
+  padding: 11px 16px;
+  margin-top: 0 !important;
+}
+.ts-row:hover {
+  background: var(--sl-color-gray-7);
+}
+.ts-cell {
+  font-size: 0.9rem;
+  color: var(--sl-color-gray-2);
+  line-height: 1.55;
+  padding-right: 1.5rem;
+  margin: 0 !important;
+}
+.ts-cell-problem {
+  font-weight: 500;
+  color: var(--sl-color-gray-1);
+}
+
+/* ─── Export flow: horizontal step diagram ───────────────────────────── */
+.export-flow {
+  display: grid !important;
+  grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr auto 1fr auto 1fr;
+  grid-template-rows: auto;
+  align-items: start;
+  justify-items: center;
+  margin: 2rem 0 2.5rem;
+  overflow-x: auto;
+}
+.export-flow > * {
+  margin-top: 0 !important;
+}
+.ef-col {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  text-align: center;
+  width: 100%;
+  max-width: 130px;
+}
+.ef-icon {
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  background: var(--sl-color-accent, #2549ff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  flex-shrink: 0;
+  margin-bottom: 12px;
+}
+:root[data-theme='light'] .ef-icon {
+  box-shadow: 0 2px 10px rgba(37,73,255,0.18);
+}
+.ef-arrow {
+  display: flex !important;
+  align-items: flex-start !important;
+  justify-content: center;
+  margin-top: 0 !important;
+  padding-top: 21px !important;
+  padding-left: 6px;
+  padding-right: 6px;
+  color: var(--sl-color-gray-4);
+}
+.ef-num {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--sl-color-accent, #2549ff);
+  margin-bottom: 3px;
+}
+.ef-title {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--sl-color-gray-1);
+  line-height: 1.3;
+  margin-bottom: 5px;
+  min-height: 2.2rem;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  text-align: center;
+}
+.ef-desc {
+  font-size: 0.775rem;
+  color: var(--sl-color-gray-3);
+  line-height: 1.5;
+  text-align: center;
+}
+@media (max-width: 700px) {
+  .export-flow {
+    grid-template-columns: 1fr 1fr 1fr !important;
+    gap: 16px;
+  }
+  .ef-arrow { display: none !important; }
 }
