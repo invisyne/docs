@@ -6,6 +6,7 @@ description: Get started with Crawler.Hub step by step — from your first login
 import loginImg from '../../../assets/images/hub/hub-login.png';
 import devicesImg from '../../../assets/images/hub-devices-list.png';
 import softwareImg from '../../../assets/images/hub-software-versions.png';
+import softwareDetailImg from '../../../assets/images/hub/hub-software-detail.png';
 import usersImg from '../../../assets/images/hub-users-overview.png';
 import accountImg from '../../../assets/images/hub-account-settings-overview.png';
 
@@ -41,10 +42,19 @@ Get up and running with Crawler.Hub in minutes.
     </div>
 
     <div class="qs-panel">
-      <p>Navigate to <strong>Software</strong> in the top navigation bar to browse current firmware and Companion App releases. Versions are listed newest-first and each entry shows release notes.</p>
-      <p>Click any version entry to open its detail page, then click <strong>Download</strong> to save the file to your device.</p>
+      <p>Navigate to <strong>Software</strong> in the top navigation bar to browse current firmware and Companion App releases. Versions are listed newest-first.</p>
       <div class="screenshot-frame">
         <img src={softwareImg.src} alt="Hub software page showing firmware and Companion App versions" />
+      </div>
+      <p>Click any version entry to open its detail page. Each detail page contains:</p>
+      <ul>
+        <li><strong>Highlights</strong> — a summary of the most important changes in this release</li>
+        <li><strong>Release Notes</strong> — the full list of new features, improvements, and bug fixes</li>
+        <li><strong>Downloads</strong> — full version and patch files available for download</li>
+        <li><strong>Version history</strong> — a chronological list of all releases within this major version</li>
+      </ul>
+      <div class="screenshot-frame">
+        <img src={softwareDetailImg.src} alt="Hub software detail page showing highlights, release notes, and download options" />
       </div>
     </div>
 
