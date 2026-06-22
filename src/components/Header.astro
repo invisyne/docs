@@ -270,30 +270,52 @@ const companionHref = isDE ? '/de/companion' : '/companion';
   })();
 
   // ── Quickstart / How-To tabs: each .qs-stepper is independent ───
-  function initQsTabs() {
-    document.querySelectorAll('.qs-stepper').forEach(stepper => {
-      // Skip steppers that were already initialized on this DOM
-      if ((stepper as HTMLElement).dataset.qsReady) return;
-      (stepper as HTMLElement).dataset.qsReady = '1';
+  function slugifyTab(text: string): string {
+    return text.trim().toLowerCase()
+      .replace(/ä/g, 'a').replace(/ö/g, 'o').replace(/ü/g, 'u').replace(/ß/g, 'ss')
+      .replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+  }
 
+  // Event delegation: one persistent listener handles all tab clicks,
+  // regardless of when the DOM was built or swapped by View Transitions.
+  document.addEventListener('click', (e: MouseEvent) => {
+    const tab = (e.target as HTMLElement).closest<HTMLElement>('.qs-tab');
+    if (!tab) return;
+    e.preventDefault();
+    const stepper = tab.closest<HTMLElement>('.qs-stepper');
+    if (!stepper) return;
+    const tabs   = Array.from(stepper.querySelectorAll<HTMLElement>('.qs-tab'));
+    const panels = Array.from(stepper.querySelectorAll<HTMLElement>('.qs-panel'));
+    const index  = tabs.indexOf(tab);
+    if (index < 0) return;
+    panels.forEach((p, i) => p.classList.toggle('qs-active', i === index));
+    tabs.forEach((t, i)   => t.classList.toggle('qs-active', i === index));
+    const stepperIdx = Array.from(document.querySelectorAll('.qs-stepper')).indexOf(stepper);
+    sessionStorage.setItem(`qs-tab:${location.pathname}:${stepperIdx}`, String(index));
+    const slug = slugifyTab(tab.textContent || '');
+    if (slug) history.replaceState(null, '', '#' + slug);
+  });
+
+  // Restore active tab after every page load / View Transition swap.
+  // No qsReady guard — this is idempotent (just sets classes).
+  function initQsTabs() {
+    document.querySelectorAll<HTMLElement>('.qs-stepper').forEach((stepper, stepperIdx) => {
       const tabs   = Array.from(stepper.querySelectorAll<HTMLElement>('.qs-tab'));
       const panels = Array.from(stepper.querySelectorAll<HTMLElement>('.qs-panel'));
       if (!tabs.length || !panels.length) return;
 
-      function activate(index: number) {
-        panels.forEach((p, i) => p.classList.toggle('qs-active', i === index));
-        tabs.forEach((t, i)   => t.classList.toggle('qs-active', i === index));
-      }
+      const storageKey = `qs-tab:${location.pathname}:${stepperIdx}`;
+      const hash       = location.hash.slice(1);
+      const hashIndex  = hash ? tabs.findIndex(t => slugifyTab(t.textContent || '') === hash) : -1;
+      const savedIndex = parseInt(sessionStorage.getItem(storageKey) || '-1', 10);
+      const initial    = hashIndex >= 0 ? hashIndex
+                       : (savedIndex >= 0 && savedIndex < tabs.length ? savedIndex : 0);
 
-      tabs.forEach((tab, i) => {
-        tab.addEventListener('click', e => { e.preventDefault(); activate(i); });
-      });
-
-      activate(0);
+      panels.forEach((p, i) => p.classList.toggle('qs-active', i === initial));
+      tabs.forEach((t, i)   => t.classList.toggle('qs-active', i === initial));
     });
   }
 
-  initQsTabs();
   document.addEventListener('astro:page-load', initQsTabs);
 
   // ── Quickstart image carousel (.qs-img-carousel) ────────────────────
