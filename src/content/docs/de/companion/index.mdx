@@ -1,0 +1,94 @@
+---
+title: "Companion-Übersicht"
+description: "Der Crawler.Companion ist eine Windows-Desktop-Anwendung zur Erkennung, Erstkonfiguration und Verwaltung von Edge-Geräten im lokalen Netzwerk."
+---
+
+Crawler.Companion ist eine Windows-Desktop-Anwendung zur Verwaltung von Edge-Geräten im lokalen Netzwerk. Die Anwendung deckt den gesamten Gerätelebenszyklus ab — von der Erkennung und Konfiguration von Geräten ohne bekannte IP-Adresse bis hin zur Anpassung von Netzwerkeinstellungen, dem Einspielen von Firmware-Updates und dem Export von Daten für eine gesamte Geräteflotte.
+
+Companion ist besonders in geschlossenen Netzwerken ohne Internetzugang sinnvoll, in denen Geräte nicht über Crawler.Hub verwaltet werden können. In diesen Umgebungen stellt Companion alle Konfigurations- und Verwaltungsfunktionen vollständig über das lokale Netzwerk bereit.
+
+<div class="companion-banner">
+  <img src="/images/companion/companion-devices-list.png" alt="Companion Geräteübersicht" />
+</div>
+
+<div class="companion-intro">
+  <p class="companion-intro-overline">Crawler.Companion</p>
+  <p class="companion-intro-lead">Erstkonfiguration von Edge-Geräten im lokalen Netzwerk.</p>
+  <p class="companion-intro-body">Die Geräteübersicht zeigt alle Edge-Geräte im lokalen Netzwerk — sowohl bereits konfigurierte Geräte als auch neue Geräte, die noch nicht eingerichtet wurden. Unkonfigurierte Geräte können von hier aus direkt mit einer ersten Netzwerkkonfiguration versehen werden.</p>
+</div>
+
+## Funktionsumfang
+
+<div class="feature-grid">
+  <div class="feature-card">
+    <div class="feature-card-title">Geräteerkennung</div>
+    <p>Findet alle Edge-Geräte im lokalen Netzwerk — einschließlich unkonfigurierter Geräte ohne bekannte IP-Adresse.</p>
+  </div>
+  <div class="feature-card">
+    <div class="feature-card-title">Erstkonfiguration</div>
+    <p>Weist neu erkannten Edge-Geräten eine erste Netzwerkkonfiguration zu.</p>
+  </div>
+  <div class="feature-card">
+    <div class="feature-card-title">Netzwerkeinstellungen</div>
+    <p>Netzwerkeinstellungen mehrerer Geräte anpassen und exportieren — ohne jedes Gerät einzeln über die Web-Oberfläche öffnen zu müssen.</p>
+  </div>
+  <div class="feature-card">
+    <div class="feature-card-title">Software-Updates</div>
+    <p>Firmware-Updates direkt über den Companion auf Edge-Geräten einspielen.</p>
+  </div>
+  <div class="feature-card">
+    <div class="feature-card-title">Datenexport</div>
+    <p>Daten von Edge-Geräten exportieren — besonders nützlich in geschlossenen lokalen Netzwerken.</p>
+  </div>
+  <div class="feature-card">
+    <div class="feature-card-title">Bulk-Verwaltung</div>
+    <p>Mehrere Edge-Geräte gleichzeitig verwalten, statt jedes einzeln über die Web-Oberfläche zu öffnen.</p>
+  </div>
+</div>
+
+## Sicherheitshinweise
+
+<div class="security-grid">
+  <div class="security-item">
+    <div class="security-item-title">Netzwerkänderungen</div>
+    <p>Falsche Netzwerkeinstellungen können Geräte unerreichbar machen. Nur bearbeiten, wenn Grundkenntnisse zu IP-Adressen und Subnetzmasken vorhanden sind.</p>
+  </div>
+  <div class="security-item">
+    <div class="security-item-title">Updates</div>
+    <p>Vor der Installation sicherstellen, dass die Stromversorgung des Edge-Geräts stabil ist.</p>
+  </div>
+  <div class="security-item">
+    <div class="security-item-title">Gleiches Netzwerk erforderlich</div>
+    <p>Der PC muss sich im selben lokalen Netzwerk wie die Edge-Geräte befinden.</p>
+  </div>
+</div>
+
+## Fehlerbehebung
+
+<div class="ts-table">
+  <div class="ts-header">
+    <div class="ts-header-cell">Problem</div>
+    <div class="ts-header-cell">Mögliche Ursache</div>
+    <div class="ts-header-cell">Lösung</div>
+  </div>
+  <div class="ts-row">
+    <div class="ts-cell ts-cell-problem">Gerät nicht gefunden</div>
+    <div class="ts-cell">Gerät aus oder falsches Netzwerk</div>
+    <div class="ts-cell">Stromversorgung prüfen, gleiches Subnetz sicherstellen</div>
+  </div>
+  <div class="ts-row">
+    <div class="ts-cell ts-cell-problem">Fehler bei Netzwerkeinstellung</div>
+    <div class="ts-cell">Falsche IP oder Subnetzmaske</div>
+    <div class="ts-cell">Prüfen ob IP frei und im richtigen Bereich</div>
+  </div>
+  <div class="ts-row">
+    <div class="ts-cell ts-cell-problem">Kein WebUI-Zugriff</div>
+    <div class="ts-cell">Unbekannte IP-Adresse</div>
+    <div class="ts-cell">Aktuelle IP in der Geräteübersicht prüfen</div>
+  </div>
+  <div class="ts-row">
+    <div class="ts-cell ts-cell-problem">Update schlägt fehl</div>
+    <div class="ts-cell">Netzwerkunterbrechung</div>
+    <div class="ts-cell">Stabilität prüfen, Firewall-Blockierung ausschließen</div>
+  </div>
+</div>

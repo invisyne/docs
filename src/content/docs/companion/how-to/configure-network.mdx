@@ -1,0 +1,42 @@
+---
+title: "Adjust Network Settings"
+description: "How to change the IP configuration of an Edge device using Crawler.Companion."
+sidebar:
+  order: 3
+---
+
+import { Steps } from '@astrojs/starlight/components';
+
+Use Crawler.Companion to switch an Edge device between DHCP and static IP, or to update its network address.
+
+:::caution
+Incorrect network settings can make a device unreachable. Only make changes if you are familiar with IP addresses and subnet masks.
+:::
+
+<Steps>
+
+1. **Select a device**
+
+   Click on the device you want to configure in the device list.
+
+2. **Open the Network Settings tab**
+
+   In the detail panel on the right, click the **Netzwerk Einstellungen** tab.
+
+3. **Choose an IP mode**
+
+   Select either **DHCP** (the device receives its IP automatically from a router) or **Statische IP** (fixed IP address).
+
+4. **Enter network values** *(Static IP only)*
+
+   If you selected **Statische IP**, enter the following values:
+
+   - **IP-Adresse** — e.g. `192.168.1.50`
+   - **Subnetzmaske** — e.g. `255.255.255.0`
+   - **Gateway** — e.g. `192.168.1.1`
+
+5. **Save the settings**
+
+   Click **Speichern**. The device applies the new configuration and restarts. It will be reachable at the new IP address afterwards.
+
+</Steps>

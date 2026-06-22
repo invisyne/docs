@@ -43,18 +43,29 @@ import type { Props } from '@astrojs/starlight/props';
 </style>
 
 <script>
-  function initThemeToggle() {
-    const btn  = document.getElementById('theme-btn') as HTMLButtonElement | null;
+  function syncIcons() {
+    const isDark = document.documentElement.dataset.theme === 'dark';
     const moon = document.getElementById('icon-moon') as HTMLElement | null;
     const sun  = document.getElementById('icon-sun')  as HTMLElement | null;
+    if (moon) moon.style.display = isDark ? 'none' : 'block';
+    if (sun)  sun.style.display  = isDark ? 'block' : 'none';
+  }
+
+  function restoreTheme() {
+    const saved = localStorage.getItem('starlight-theme');
+    if (saved === 'dark' || saved === 'light') {
+      document.documentElement.dataset.theme = saved;
+    } else {
+      document.documentElement.dataset.theme =
+        window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+    syncIcons();
+  }
+
+  function initThemeToggle() {
+    const btn = document.getElementById('theme-btn') as HTMLButtonElement | null;
     if (!btn || (btn as any)._themeReady) return;
     (btn as any)._themeReady = true;
-
-    function syncIcons() {
-      const isDark = document.documentElement.dataset.theme === 'dark';
-      if (moon) moon.style.display = isDark ? 'none' : 'block';
-      if (sun)  sun.style.display  = isDark ? 'block' : 'none';
-    }
 
     syncIcons();
 
@@ -74,4 +85,5 @@ import type { Props } from '@astrojs/starlight/props';
 
   initThemeToggle();
   document.addEventListener('astro:page-load', initThemeToggle);
+  document.addEventListener('astro:after-swap', restoreTheme);
 </script>

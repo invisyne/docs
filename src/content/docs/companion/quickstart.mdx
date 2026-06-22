@@ -1,0 +1,61 @@
+---
+title: "Quickstart"
+description: "A quick tour of the main areas of Crawler.Companion."
+---
+
+A brief overview of what you can do with Crawler.Companion.
+
+<div class="qs-stepper">
+
+  <div class="qs-tabbar">
+    <a class="qs-tab" href="#">Device List</a>
+    <a class="qs-tab" href="#">Network Settings</a>
+    <a class="qs-tab" href="#">Updates</a>
+    <a class="qs-tab" href="#">Export</a>
+  </div>
+
+  <div class="qs-panels">
+
+    <div class="qs-panel">
+      <p>The main view lists all Edge devices found in your local network. Click any device row to open its detail panel, where you can view the device name, hardware type, firmware version, and current network configuration.</p>
+      <div class="screenshot-frame">
+        <img src="/images/companion/companion-devices-detail.png" alt="Companion device detail panel" />
+      </div>
+    </div>
+
+    <div class="qs-panel">
+      <p>In the device detail panel, navigate to <strong>Network Settings</strong> to adjust the IP configuration of the selected device. You can switch between DHCP and static IP, and set the IP address, subnet mask, and gateway.</p>
+      <p>Save your changes — the device will apply the new settings and restart if necessary.</p>
+      <div class="screenshot-frame">
+        <img src="/images/companion/companion-network-settings.png" alt="Companion network settings panel" />
+      </div>
+    </div>
+
+    <div class="qs-panel">
+      <p>In the device detail panel, navigate to <strong>Update</strong> to install a new firmware version on the selected device. Select the desired version and start the update.</p>
+      <div class="qs-tip">Make sure the device has a stable power supply during the update.</div>
+      <div class="screenshot-frame">
+        <img src="/images/companion/companion-update.png" alt="Companion update panel" />
+      </div>
+    </div>
+
+    <div class="qs-panel">
+      <p>Companion exports measurement data either by time range or by runs — defined measurement recording sessions stored on the device, each with a clear start and end. Data can be exported as a CSV file or transferred directly to DeepView, a data analysis tool for detailed signal visualization and complex charting.</p>
+      <div class="screenshot-frame">
+        <img src="/images/companion/companion-export.png" alt="Companion export panel" />
+      </div>
+      <p><strong>By Time Range</strong></p>
+      <ul>
+        <li><strong>CSV</strong> — Set a start and end time and export all signal data in that range as a CSV file.</li>
+        <li><strong>DeepView</strong> — Transfer signal data for a selected time range directly to DeepView. DeepView opens in your browser after clicking the DeepView button.</li>
+      </ul>
+      <p><strong>By Runs</strong></p>
+      <ul>
+        <li><strong>CSV</strong> — Select one or more completed runs to export each as a separate CSV file.</li>
+        <li><strong>DeepView</strong> — Transfer one or more completed runs directly to DeepView for analysis.</li>
+      </ul>
+    </div>
+
+  </div>
+
+</div>

@@ -79,6 +79,7 @@ export default defineConfig({
 					collapsed: true,
 					items: [
 						{ label: 'Overview', translations: { de: 'Übersicht' }, slug: 'companion' },
+						{ label: 'Installation', translations: { de: 'Installation' }, slug: 'companion/installation' },
 						{ label: 'Quickstart', translations: { de: 'Schnellstart' }, slug: 'companion/quickstart' },
 						{ label: 'Changelog', translations: { de: 'Changelog' }, slug: 'companion/changelog' },
 						{
