@@ -6,6 +6,7 @@ description: Schritt für Schritt in Crawler.Hub einsteigen — vom ersten Login
 import loginImg from '../../../../assets/images/hub/hub-login.png';
 import devicesImg from '../../../../assets/images/hub-devices-list.png';
 import softwareImg from '../../../../assets/images/hub-software-versions.png';
+import softwareDetailImg from '../../../../assets/images/hub/hub-software-detail.png';
 import usersImg from '../../../../assets/images/hub-users-overview.png';
 import accountImg from '../../../../assets/images/hub-account-settings-overview.png';
 
@@ -41,10 +42,19 @@ In wenigen Minuten startklar mit Crawler.Hub.
     </div>
 
     <div class="qs-panel">
-      <p>Navigieren Sie zu <strong>Software</strong> in der oberen Navigationsleiste, um aktuelle Firmware- und Companion-App-Versionen einzusehen. Versionen werden neueste zuerst angezeigt, jeder Eintrag enthält Release-Notes.</p>
-      <p>Klicken Sie auf einen Versionseintrag, um die Detailseite zu öffnen, und dann auf <strong>Herunterladen</strong>, um die Datei zu speichern.</p>
+      <p>Navigieren Sie zu <strong>Software</strong> in der oberen Navigationsleiste, um aktuelle Firmware- und Companion-App-Versionen einzusehen. Versionen werden neueste zuerst angezeigt.</p>
       <div class="screenshot-frame">
         <img src={softwareImg.src} alt="Hub-Software-Seite mit Firmware- und Companion-App-Versionen" />
+      </div>
+      <p>Klicken Sie auf einen Versionseintrag, um die Detailseite zu öffnen. Dort finden Sie:</p>
+      <ul>
+        <li><strong>Highlights</strong> — eine Zusammenfassung der wichtigsten Änderungen dieser Version</li>
+        <li><strong>Release Notes</strong> — die vollständige Liste der neuen Funktionen, Verbesserungen und Fehlerbehebungen</li>
+        <li><strong>Downloads</strong> — Vollversion und Patches zum Herunterladen</li>
+        <li><strong>Versionshistorie</strong> — eine chronologische Übersicht aller Releases innerhalb dieser Hauptversion</li>
+      </ul>
+      <div class="screenshot-frame">
+        <img src={softwareDetailImg.src} alt="Hub-Software-Detailseite mit Highlights, Release Notes und Download-Optionen" />
       </div>
     </div>
 
