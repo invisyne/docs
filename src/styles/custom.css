@@ -159,6 +159,11 @@ h1, h2, h3, h4, h5, h6,
   padding-inline-start: 1.75rem !important;
 }
 
+/* Extra clearance when sidebar is open: push content past the 20px toggle button */
+:root:not(.sidebar-hidden) .main-frame {
+  padding-inline-start: calc(var(--sl-sidebar-width, 18.75rem) + 2rem) !important;
+}
+
 /* Sidebar toggle button — CSS-positioned via --sl-sidebar-width so it never jumps */
 #sl-sidebar-btn {
   position: fixed;
@@ -1679,13 +1684,17 @@ starlight-toc a {
 /* ─── Companion — Troubleshooting rows ──────────────────────────────── */
 .ts-table {
   width: 100%;
-  border-top: 1px solid var(--sl-color-gray-5);
+  border: 1px solid var(--sl-color-gray-5);
+  border-radius: 12px;
+  overflow: hidden;
 }
 .ts-header {
   display: grid !important;
   grid-template-columns: 1fr 1fr 1fr !important;
-  align-items: end;
-  padding: 0 0 8px;
+  align-items: center !important;
+  padding: 10px 16px;
+  background: var(--sl-color-gray-6);
+  border-bottom: 1px solid var(--sl-color-gray-5);
 }
 .ts-header-cell {
   font-size: 0.75rem;
@@ -1694,26 +1703,29 @@ starlight-toc a {
   text-transform: uppercase;
   color: var(--sl-color-gray-1);
   padding: 0;
+  margin: 0 !important;
 }
 .ts-row {
   display: grid !important;
   grid-template-columns: 1fr 1fr 1fr !important;
-  align-items: start;
+  align-items: center !important;
   border-top: 1px solid var(--sl-color-gray-6);
-  padding: 18px 0;
+  padding: 11px 16px;
+  margin-top: 0 !important;
 }
-.ts-row:last-child {
-  border-bottom: 1px solid var(--sl-color-gray-5);
+.ts-row:hover {
+  background: var(--sl-color-gray-7);
 }
 .ts-cell {
   font-size: 0.9rem;
   color: var(--sl-color-gray-2);
   line-height: 1.55;
-  padding-right: 2rem;
+  padding-right: 1.5rem;
+  margin: 0 !important;
 }
 .ts-cell-problem {
   font-weight: 500;
-  color: var(--sl-color-gray-2);
+  color: var(--sl-color-gray-1);
 }
 
 /* ─── Export flow: horizontal step diagram ───────────────────────────── */
