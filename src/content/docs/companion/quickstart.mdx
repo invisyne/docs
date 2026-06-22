@@ -1,56 +1,60 @@
 ---
 title: "Quickstart"
-description: "Download and launch Crawler.Companion."
+description: "Get started with Crawler.Companion — from download to data export."
 ---
 
-import { Steps } from '@astrojs/starlight/components';
+Get up and running with Crawler.Companion in minutes.
 
-## Installation
+<div class="qs-stepper">
 
-Crawler.Companion does not require a traditional installation. Download the `.exe` file from the Hub and run it directly.
+  <div class="qs-tabbar">
+    <a class="qs-tab" href="#">Download</a>
+    <a class="qs-tab" href="#">Device Details</a>
+    <a class="qs-tab" href="#">Network Settings</a>
+    <a class="qs-tab" href="#">Updates</a>
+    <a class="qs-tab" href="#">Export</a>
+  </div>
 
-<Steps>
+  <div class="qs-panels">
 
-1. **Open Hub → Software**
+    <div class="qs-panel">
+      <p>Download Companion from the Hub and run the <code>.exe</code> directly — no installation required.</p>
+      <div class="qs-tip">Step-by-step guide with screenshots: <a href="/companion/how-to/install-companion">Download and Install Companion</a>.</div>
+      <div class="screenshot-frame">
+        <img src="/images/companion/companion_download_button.png" alt="Download button on the Companion version detail page in Hub" />
+      </div>
+    </div>
 
-   Navigate to the **Software** section in your Hub and locate the Companion version you want to use. Click **Downloads und Details**.
+    <div class="qs-panel">
+      <p>The main view lists all Edge devices found in your local network. Click any device row to open its detail panel, where you can view the device name, hardware type, firmware version, and current network configuration.</p>
+      <div class="screenshot-frame">
+        <img src="/images/companion/companion-devices-detail.png" alt="Companion device detail panel" />
+      </div>
+    </div>
 
-   <div class="screenshot-frame">
-     <img src="/images/companion/companion_download.png" alt="Hub Software page with Companion version" />
-   </div>
+    <div class="qs-panel">
+      <p>In the device detail panel, navigate to <strong>Network Settings</strong> to adjust the IP configuration of the selected device. You can switch between DHCP and static IP, and set the IP address, subnet mask, and gateway.</p>
+      <p>Save your changes — the device will apply the new settings and restart if necessary.</p>
+      <div class="screenshot-frame">
+        <img src="/images/companion/companion-network-settings.png" alt="Companion network settings panel" />
+      </div>
+    </div>
 
-2. **Download the file**
+    <div class="qs-panel">
+      <p>In the device detail panel, navigate to <strong>Update</strong> to install a new firmware version on the selected device. Select the desired version and start the update.</p>
+      <div class="qs-tip">Make sure the device has a stable power supply during the update.</div>
+      <div class="screenshot-frame">
+        <img src="/images/companion/companion-update.png" alt="Companion update panel" />
+      </div>
+    </div>
 
-   On the version detail page, click the **Download** button on the right side. A ZIP archive (e.g. `crawler.companion-v1.2.0.zip`) will be saved to your computer.
+    <div class="qs-panel">
+      <p>In the device detail panel, navigate to <strong>Export</strong> to download data from the selected Edge device as a CSV file. This is especially useful in closed local networks where direct internet access is not available.</p>
+      <div class="screenshot-frame">
+        <img src="/images/companion/companion-export.png" alt="Companion export panel" />
+      </div>
+    </div>
 
-   <div class="screenshot-frame">
-     <img src="/images/companion/companion_download_button.png" alt="Download button on the version detail page" />
-   </div>
+  </div>
 
-3. **Extract and run**
-
-   Extract the ZIP archive and double-click the `.exe` file inside.
-
-   <div class="screenshot-frame">
-     <img src="/images/companion/companion_exe.png" alt="Extracted companion exe file" />
-   </div>
-
-4. **Confirm the Windows security prompt**
-
-   Windows SmartScreen may block the launch. Click **Weitere Informationen** (More info).
-
-   <div class="screenshot-frame" style="max-width: 500px;">
-     <img src="/images/companion/companion_windows_warning.png" alt="Windows SmartScreen warning" />
-   </div>
-
-   Then click **Trotzdem ausführen** (Run anyway) to start Companion.
-
-   <div class="screenshot-frame" style="max-width: 500px;">
-     <img src="/images/companion/companion_windows_warning_expanded.png" alt="Windows SmartScreen expanded with Run anyway button" />
-   </div>
-
-5. **Companion opens**
-
-   Crawler.Companion is now running. Connect your PC to the same local network as the Edge devices and use the search function to discover them.
-
-</Steps>
+</div>
