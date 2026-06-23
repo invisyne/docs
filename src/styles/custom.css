@@ -1897,3 +1897,125 @@ starlight-toc a {
   }
   .ef-arrow { display: none !important; }
 }
+
+/* ─── Splash page: hero + intro text + product grid ─────────────────── */
+
+/* Left-align the sl-container (default: margin-inline:auto = centered) */
+html:not([data-has-sidebar]) .sl-container {
+  margin-inline-start: 0 !important;
+  margin-inline-end: auto !important;
+}
+
+/* Left-align the Starlight hero section on the splash page */
+.hero .sl-flex.copy { align-items: flex-start !important; }
+.hero h1,
+.hero .tagline { text-align: left !important; }
+
+/* Compact the hero vertical padding (Starlight default: clamp(2.5rem, 1rem+10vmin, 10rem)) */
+html:not([data-has-sidebar]) .hero {
+  padding-block: 2rem 0.75rem !important;
+}
+/* Tighten the content-panel default top padding */
+html:not([data-has-sidebar]) .content-panel {
+  padding-block-start: 0.75rem !important;
+}
+/* Reduce spacing between sl-container children (default: 1.5rem) */
+html:not([data-has-sidebar]) .sl-container > * + * {
+  margin-top: 1rem !important;
+}
+
+.splash-intro {
+  max-width: 640px;
+  margin: 0 0 1.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--sl-color-gray-5);
+  color: var(--sl-color-gray-2);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+.splash-intro p { margin: 0; }
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+}
+
+@media (max-width: 50rem) {
+  .product-grid { grid-template-columns: 1fr; }
+}
+
+.product-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+  padding: 1.5rem 1.75rem;
+  border: 1px solid var(--sl-color-gray-5);
+  border-radius: 12px;
+  text-decoration: none;
+  color: inherit;
+  background: var(--sl-color-bg-sidebar);
+  transition: border-color 0.18s, background 0.18s;
+}
+.product-card:hover {
+  border-color: var(--sl-color-accent);
+  background: var(--sl-color-bg-nav);
+}
+.product-card--soon { opacity: 0.75; }
+.product-card--soon:hover { opacity: 1; }
+
+.product-card-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 2.5rem;
+}
+.product-card-logo img {
+  height: 2rem;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+  object-position: left center;
+}
+
+/* Dark/light logo switching — default is dark */
+.logo-light { display: none; }
+.logo-dark  { display: block; }
+:root[data-theme='light'] .logo-dark  { display: none; }
+:root[data-theme='light'] .logo-light { display: block; }
+
+.product-card-badge {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.5rem;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--sl-color-orange-high, #f59e0b);
+  border: 1px solid currentColor;
+  border-radius: 4px;
+  padding: 2px 6px;
+  white-space: nowrap;
+  line-height: 1.5;
+}
+
+.product-card-desc {
+  flex: 1;
+  font-size: 0.875rem;
+  color: var(--sl-color-gray-2);
+  line-height: 1.65;
+  margin: 0;
+}
+
+.product-card-arrow {
+  font-size: 1rem;
+  color: var(--sl-color-gray-4);
+  align-self: flex-end;
+  transition: color 0.18s, transform 0.18s;
+}
+.product-card:hover .product-card-arrow {
+  color: var(--sl-color-accent);
+  transform: translateX(3px);
+}
