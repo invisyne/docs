@@ -1472,14 +1472,13 @@ starlight-toc a {
   grid-template-columns: 3fr 2fr;
   gap: 0;
   margin-block: 2rem 3rem;
-  border-bottom: 1px solid var(--sl-color-gray-5);
   align-items: stretch;
-  min-height: 340px;
 }
 .page-hero-image {
   overflow: hidden;
   border-right: 1px solid var(--sl-color-gray-5);
   position: relative;
+  height: 340px;
 }
 .page-hero-image img {
   width: 100%;
@@ -1492,7 +1491,7 @@ starlight-toc a {
   padding: 2.5rem 2rem 2.5rem 2.5rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 1.5rem;
 }
 .page-hero-lead {
@@ -1500,16 +1499,16 @@ starlight-toc a {
   line-height: 1.65 !important;
   color: #1a1a1a !important;
   margin: 0 !important;
-  font-weight: 500;
+  font-weight: 700;
 }
 :root[data-theme='dark'] .page-hero-lead {
   color: #f0f0ee !important;
 }
+.page-hero-body {
+  margin-bottom: 2rem;
+}
 .page-hero-body p {
-  font-size: 0.95rem !important;
-  line-height: 1.7 !important;
-  color: var(--sl-color-text) !important;
-  opacity: 0.65;
+  color: var(--sl-color-gray-3) !important;
   margin-top: 0 !important;
   margin-bottom: 0.75rem !important;
 }

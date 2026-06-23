@@ -14,14 +14,26 @@ const deHref = locale === 'de' ? Astro.url.pathname : '/de' + Astro.url.pathname
 </div>
 
 <script>
-  function syncLang() {
-    const isDE = window.location.pathname.startsWith('/de');
-    document.getElementById('lang-de')?.classList.toggle('lang-active', isDE);
-    document.getElementById('lang-en')?.classList.toggle('lang-active', !isDE);
+  function updateLangSwitcher() {
+    const path = window.location.pathname;
+    const isDE = path === '/de' || path.startsWith('/de/');
+    const dePath = isDE ? path : '/de' + path;
+    const enPath = isDE ? path.replace(/^\/de\//, '/').replace(/^\/de$/, '/') : path;
+
+    const deBtn = document.getElementById('lang-de') as HTMLAnchorElement | null;
+    const enBtn = document.getElementById('lang-en') as HTMLAnchorElement | null;
+    if (deBtn) { deBtn.href = dePath; deBtn.classList.toggle('lang-active', isDE); }
+    if (enBtn) { enBtn.href = enPath; enBtn.classList.toggle('lang-active', !isDE); }
   }
-  syncLang();
-  document.addEventListener('astro:page-load',  syncLang);
-  document.addEventListener('astro:after-swap', syncLang);
+
+  updateLangSwitcher();
+  document.addEventListener('astro:page-load',  updateLangSwitcher);
+  document.addEventListener('astro:after-swap', updateLangSwitcher);
+
+  document.addEventListener('click', e => {
+    const btn = (e.target as HTMLElement).closest('.lang-btn');
+    if (btn?.classList.contains('lang-active')) e.preventDefault();
+  });
 </script>
 
 <style>
