@@ -118,19 +118,15 @@ export default defineConfig({
 							translations: { de: "How-To's" },
 							collapsed: false,
 							items: [
-								{ label: 'Overview', translations: { de: 'Übersicht' }, slug: 'hub/how-to' },
 								// Geräte
-{ label: 'Filter, Search and Sort', translations: { de: 'Filtern, Suchen und Sortieren' }, slug: 'hub/how-to/search-filter' },
-								{ label: 'Edit a Device', translations: { de: 'Gerät bearbeiten' }, slug: 'hub/how-to/edit-device' },
+								{ label: 'Edit an Edge Device', translations: { de: 'Edge-Gerät bearbeiten' }, slug: 'hub/how-to/edit-device' },
 								// Software
-{ label: 'Download Edge Firmware', translations: { de: 'Edge-Firmware herunterladen' }, slug: 'hub/how-to/download-firmware' },
-								{ label: 'Download Companion Firmware', translations: { de: 'Companion-Firmware herunterladen' }, slug: 'hub/how-to/download-companion' },
+{ label: 'Download Firmware', translations: { de: 'Firmware herunterladen' }, slug: 'hub/how-to/download-firmware' },
 								// Benutzer
-								{ label: 'Create a New User', translations: { de: 'Benutzer anlegen' }, slug: 'hub/how-to/invite-user' },
-								{ label: 'Change User Role', translations: { de: 'Rolle ändern' }, slug: 'hub/how-to/change-role' },
+								{ label: 'Manage Users', translations: { de: 'Benutzer verwalten' }, slug: 'hub/how-to/invite-user' },
 								// Kontoeinstellungen
-								{ label: 'Change Password', translations: { de: 'Passwort ändern' }, slug: 'hub/how-to/change-password' },
-								{ label: 'Change Language', translations: { de: 'Sprache ändern' }, slug: 'hub/how-to/change-language' },
+								{ label: 'Change My Password', translations: { de: 'Mein Passwort ändern' }, slug: 'hub/how-to/change-password' },
+{ label: 'Filter, Search and Sort', translations: { de: 'Filtern, Suchen und Sortieren' }, slug: 'hub/how-to/search-filter' },
 							],
 						},
 						{
