@@ -25,7 +25,7 @@ const companionHref = isDE ? '/de/companion' : '/companion';
     <a href={companionHref} class="pnav" id="pnav-companion">Companion</a>
   </nav>
 
-  <div class="search-col sl-flex print:hidden">
+  <div class="search-col sl-flex print:hidden" transition:persist="search">
     <Search {...Astro.props} />
   </div>
 
