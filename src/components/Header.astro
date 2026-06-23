@@ -13,6 +13,7 @@ const hasSidebar = (Astro.props.hasSidebar ?? true) && !isSplash;
 const hubHref       = isDE ? '/de/hub'       : '/hub';
 const edgeHref      = isDE ? '/de/edge'      : '/edge';
 const companionHref = isDE ? '/de/companion' : '/companion';
+const deepviewHref  = isDE ? '/de/deepview'  : '/deepview';
 ---
 
 <div class="header">
@@ -25,6 +26,7 @@ const companionHref = isDE ? '/de/companion' : '/companion';
     <a href={hubHref}       class="pnav" id="pnav-hub">Hub</a>
     <a href={edgeHref}      class="pnav" id="pnav-edge">Edge</a>
     <a href={companionHref} class="pnav" id="pnav-companion">Companion</a>
+    <a href={deepviewHref}  class="pnav" id="pnav-deepview">Deepview</a>
   </nav>
 
   <div class="header-spacer"></div>
@@ -48,6 +50,7 @@ const companionHref = isDE ? '/de/companion' : '/companion';
   <a href={hubHref}       class="msn-link">Hub</a>
   <a href={edgeHref}      class="msn-link">Edge (Crawler)</a>
   <a href={companionHref} class="msn-link">Companion</a>
+  <a href={deepviewHref}  class="msn-link">Deepview</a>
 </nav>
 
 <style>
@@ -454,23 +457,27 @@ const companionHref = isDE ? '/de/companion' : '/companion';
   function updateProductNavLinks() {
     const isDE   = window.location.pathname.startsWith('/de');
     const prefix = isDE ? '/de' : '';
-    const hub  = document.getElementById('pnav-hub')  as HTMLAnchorElement | null;
-    const edge = document.getElementById('pnav-edge') as HTMLAnchorElement | null;
-    const comp = document.getElementById('pnav-companion') as HTMLAnchorElement | null;
-    if (hub)  hub.href  = prefix + '/hub';
-    if (edge) edge.href = prefix + '/edge';
-    if (comp) comp.href = prefix + '/companion';
+    const hub      = document.getElementById('pnav-hub')      as HTMLAnchorElement | null;
+    const edge     = document.getElementById('pnav-edge')     as HTMLAnchorElement | null;
+    const comp     = document.getElementById('pnav-companion') as HTMLAnchorElement | null;
+    const deepview = document.getElementById('pnav-deepview') as HTMLAnchorElement | null;
+    if (hub)      hub.href      = prefix + '/hub';
+    if (edge)     edge.href     = prefix + '/edge';
+    if (comp)     comp.href     = prefix + '/companion';
+    if (deepview) deepview.href = prefix + '/deepview';
   }
 
   function setActiveProduct() {
-    const path = window.location.pathname;
-    const hub  = document.getElementById('pnav-hub');
-    const edge = document.getElementById('pnav-edge');
-    const comp = document.getElementById('pnav-companion');
-    [hub, edge, comp].forEach(el => el?.classList.remove('active'));
+    const path     = window.location.pathname;
+    const hub      = document.getElementById('pnav-hub');
+    const edge     = document.getElementById('pnav-edge');
+    const comp     = document.getElementById('pnav-companion');
+    const deepview = document.getElementById('pnav-deepview');
+    [hub, edge, comp, deepview].forEach(el => el?.classList.remove('active'));
     if      (path === '/' || path === '/de' || path === '/de/')  { /* splash — nothing active */ }
     else if (path.includes('/edge'))      edge?.classList.add('active');
     else if (path.includes('/companion')) comp?.classList.add('active');
+    else if (path.includes('/deepview'))  deepview?.classList.add('active');
     else                                  hub?.classList.add('active');
     updateProductNavLinks();
   }
@@ -528,7 +535,7 @@ const companionHref = isDE ? '/de/companion' : '/companion';
     const isDE   = window.location.pathname.startsWith('/de');
     const prefix = isDE ? '/de' : '';
     const links  = document.querySelectorAll<HTMLAnchorElement>('.msn-link');
-    const targets = [prefix + '/hub', prefix + '/edge', prefix + '/companion'];
+    const targets = [prefix + '/hub', prefix + '/edge', prefix + '/companion', prefix + '/deepview'];
     links.forEach((a, i) => { if (targets[i]) a.href = targets[i]; });
   }
 
