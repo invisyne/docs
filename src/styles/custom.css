@@ -1488,7 +1488,7 @@ starlight-toc a {
   display: block;
 }
 .page-hero-text {
-  padding: 2.5rem 2rem 2.5rem 2.5rem;
+  padding: 0 2rem 2.5rem 2.5rem;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
