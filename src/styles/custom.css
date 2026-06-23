@@ -101,6 +101,32 @@ h1, h2, h3, h4, h5, h6,
   background: var(--sl-color-hairline);
 }
 
+/* Lang/theme controls live in the header — hide Starlight's sidebar-footer duplicates */
+.sidebar-pane .lang-switcher,
+.sidebar-pane .theme-toggle {
+  display: none !important;
+}
+
+/* ─── Header controls: uniform height of 2rem ───────────────────────── */
+site-search button[data-open-modal] {
+  height: 2rem !important;
+}
+
+/* ─── Mobile: normalize header padding + hide PageFrame's native hamburger ── */
+/* Starlight adds extra padding-inline-end on [data-has-sidebar] pages to
+   reserve space for its fixed hamburger. We use .mobile-splash-btn instead,
+   so both pages share the same padding. PageFrame's native button is hidden
+   but still clickable via JS for sidebar toggling. */
+@media (max-width: 49.999rem) {
+  [data-has-sidebar] header.header {
+    padding-inline-end: var(--sl-nav-pad-x) !important;
+  }
+
+  nav.sidebar starlight-menu-button button {
+    display: none !important;
+  }
+}
+
 /* ─── Content width: use more of the available space ────────────────── */
 :root {
   --sl-content-width: 72rem;
@@ -191,40 +217,46 @@ h1, h2, h3, h4, h5, h6,
 }
 
 /* Extra clearance when sidebar is open: push content past the 20px toggle button */
-:root:not(.sidebar-hidden) .main-frame {
-  padding-inline-start: calc(var(--sl-sidebar-width, 18.75rem) + 2rem) !important;
+@media (min-width: 50rem) {
+  :root:not(.sidebar-hidden) .main-frame {
+    padding-inline-start: calc(var(--sl-sidebar-width, 18.75rem) + 2rem) !important;
+  }
 }
 
-/* Sidebar toggle button — CSS-positioned via --sl-sidebar-width so it never jumps */
-#sl-sidebar-btn {
-  position: fixed;
-  top: 50vh;
-  transform: translateY(-50%);
-  z-index: 9999;
-  width: 20px;
-  height: 56px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #888;
-  border: none;
-  border-radius: 0 6px 6px 0;
-  cursor: pointer;
-  color: #fff;
-  padding: 0;
-  font-size: 1rem;
-  font-weight: 700;
-  font-family: inherit;
-  box-shadow: 2px 0 6px rgba(0,0,0,0.15);
-  /* CSS-driven position — no JS timing issues */
-  left: var(--sl-sidebar-width, 18.75rem);
+/* Sidebar toggle button — desktop only */
+@media (min-width: 50rem) {
+  #sl-sidebar-btn {
+    position: fixed;
+    top: 50vh;
+    transform: translateY(-50%);
+    z-index: 9999;
+    width: 20px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #888;
+    border: none;
+    border-radius: 0 6px 6px 0;
+    cursor: pointer;
+    color: #fff;
+    padding: 0;
+    font-size: 1rem;
+    font-weight: 700;
+    font-family: inherit;
+    box-shadow: 2px 0 6px rgba(0,0,0,0.15);
+    left: var(--sl-sidebar-width, 18.75rem);
+  }
+  :root.sidebar-hidden #sl-sidebar-btn {
+    left: 0;
+    border-radius: 0 6px 6px 0;
+    display: flex !important;
+    z-index: 99999;
+  }
 }
-/* When sidebar is hidden */
-:root.sidebar-hidden #sl-sidebar-btn {
-  left: 0;
-  border-radius: 0 6px 6px 0;
-  display: flex !important;
-  z-index: 99999;
+
+@media (max-width: 49.999rem) {
+  #sl-sidebar-btn { display: none !important; }
 }
 
 
@@ -255,6 +287,10 @@ h1, h2, h3, h4, h5, h6,
 /* Sidebar alignment is handled in src/components/Sidebar.astro via :global() */
 
 /* ─── Right TOC: fixed top-right, below topbar controls ─────────────── */
+@media (max-width: 49.999rem) {
+  .right-sidebar { display: none !important; }
+}
+
 .right-sidebar {
   width: 200px !important;
   min-width: 200px !important;

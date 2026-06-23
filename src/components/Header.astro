@@ -7,6 +7,8 @@ import ThemeSelect from 'virtual:starlight/components/ThemeSelect';
 
 const locale = Astro.props.locale ?? '';
 const isDE = locale === 'de';
+const isSplash = Astro.url.pathname === '/' || Astro.url.pathname === '/de/';
+const hasSidebar = (Astro.props.hasSidebar ?? true) && !isSplash;
 
 const hubHref       = isDE ? '/de/hub'       : '/hub';
 const edgeHref      = isDE ? '/de/edge'      : '/edge';
@@ -25,6 +27,8 @@ const companionHref = isDE ? '/de/companion' : '/companion';
     <a href={companionHref} class="pnav" id="pnav-companion">Companion</a>
   </nav>
 
+  <div class="header-spacer"></div>
+
   <div class="search-col sl-flex print:hidden" transition:persist="search">
     <Search {...Astro.props} />
   </div>
@@ -33,7 +37,18 @@ const companionHref = isDE ? '/de/companion' : '/companion';
     <ThemeSelect {...Astro.props} />
     <LanguageSelect {...Astro.props} />
   </div>
+
+  <button class="mobile-splash-btn print:hidden" id="mobile-splash-btn" aria-label="Navigation" aria-expanded="false">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="menu-icon"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="close-icon"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
 </div>
+
+<nav class="mobile-splash-nav print:hidden" id="mobile-splash-nav" hidden>
+  <a href={hubHref}       class="msn-link">Hub</a>
+  <a href={edgeHref}      class="msn-link">Edge (Crawler)</a>
+  <a href={companionHref} class="msn-link">Companion</a>
+</nav>
 
 <style>
   @layer starlight.core {
@@ -118,13 +133,22 @@ const companionHref = isDE ? '/de/companion' : '/companion';
       color: var(--sl-color-gray-1);
     }
 
-    .search-col {
+    .header-spacer {
       flex: 1;
       min-width: 0;
     }
 
+    .search-col {
+      flex: 0 0 280px;
+    }
+
+    @media (max-width: 49.999rem) {
+      /* Spacer stays visible → pushes search + controls to the right */
+      .search-col { flex: 0 0 auto; }
+    }
+
     .right-group {
-      display: none;
+      display: flex;
       gap: 0.5rem;
       align-items: center;
       flex-shrink: 0;
@@ -132,10 +156,75 @@ const companionHref = isDE ? '/de/companion' : '/companion';
 
     @media (min-width: 50rem) {
       .right-group {
-        display: flex;
+        margin-left: calc(0.5rem - var(--sl-nav-gap));
       }
     }
+
+    /* Mobile hamburger: hidden on desktop, always shown on mobile (global style) */
+    .mobile-splash-btn {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--sl-color-white);
+      padding: 0.35rem;
+      flex-shrink: 0;
+      width: 2rem;
+      height: 2rem;
+      border-radius: 6px;
+    }
+    .mobile-splash-btn .close-icon { display: none; }
+    .mobile-splash-btn[aria-expanded="true"] .menu-icon { display: none; }
+    .mobile-splash-btn[aria-expanded="true"] .close-icon { display: block; }
+
+    @media (min-width: 50rem) {
+      .mobile-splash-btn { display: none !important; }
+    }
+
+    @media (max-width: 49.999rem) {
+      .docs-label { display: none; }
+      .right-group { gap: 0.25rem; }
+      .header { gap: 0.375rem; }
+    }
+
+    @media (max-width: 50rem) {
+      .product-nav { display: none; }
+    }
   }
+</style>
+
+<style is:global>
+  /* On mobile: always show our custom hamburger button */
+  @media (max-width: 49.999rem) {
+    .mobile-splash-btn { display: flex !important; }
+  }
+
+  /* Splash product nav overlay */
+  .mobile-splash-nav {
+    position: fixed;
+    top: var(--sl-nav-height, 3.5rem);
+    left: 0;
+    right: 0;
+    background: var(--sl-color-bg);
+    border-bottom: 1px solid var(--sl-color-gray-5);
+    padding: 0.75rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    z-index: 200;
+  }
+  .mobile-splash-nav[hidden] { display: none !important; }
+  .msn-link {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--sl-color-gray-2);
+    text-decoration: none;
+    padding: 0.65rem 0.75rem;
+    border-radius: 6px;
+  }
+  .msn-link:hover { background: var(--sl-color-gray-6); }
 </style>
 
 <script>
@@ -379,7 +468,8 @@ const companionHref = isDE ? '/de/companion' : '/companion';
     const edge = document.getElementById('pnav-edge');
     const comp = document.getElementById('pnav-companion');
     [hub, edge, comp].forEach(el => el?.classList.remove('active'));
-    if (path.includes('/edge'))           edge?.classList.add('active');
+    if      (path === '/' || path === '/de' || path === '/de/')  { /* splash — nothing active */ }
+    else if (path.includes('/edge'))      edge?.classList.add('active');
     else if (path.includes('/companion')) comp?.classList.add('active');
     else                                  hub?.classList.add('active');
     updateProductNavLinks();
@@ -388,4 +478,67 @@ const companionHref = isDE ? '/de/companion' : '/companion';
   setActiveProduct();
   document.addEventListener('astro:page-load',  setActiveProduct);
   document.addEventListener('astro:after-swap', setActiveProduct);
+
+  // ── Mobile hamburger: handles both splash overlay and sidebar toggle ──
+  let _splashObserver: MutationObserver | null = null;
+
+  function initSplashBtn() {
+    const btn = document.getElementById('mobile-splash-btn') as HTMLButtonElement | null;
+    const nav = document.getElementById('mobile-splash-nav') as HTMLElement | null;
+    if (!btn || !nav) return;
+
+    // Reconnect observer each call so it stays current after page navigations
+    if (_splashObserver) _splashObserver.disconnect();
+    _splashObserver = new MutationObserver(() => {
+      if (!document.querySelector('.sidebar-pane')) return;
+      btn.setAttribute('aria-expanded', String(document.body.hasAttribute('data-mobile-menu-expanded')));
+    });
+    _splashObserver.observe(document.body, { attributes: true, attributeFilter: ['data-mobile-menu-expanded'] });
+
+    if ((btn as any)._splashReady) return;
+    (btn as any)._splashReady = true;
+
+    btn.addEventListener('click', () => {
+      if (document.querySelector('.sidebar-pane')) {
+        // Product page: trigger the PageFrame's hamburger (sibling of .sidebar-pane)
+        const starlightBtn = document.querySelector<HTMLButtonElement>('nav.sidebar starlight-menu-button button');
+        if (starlightBtn) {
+          starlightBtn.click();
+          btn.setAttribute('aria-expanded', String(document.body.hasAttribute('data-mobile-menu-expanded')));
+        }
+      } else {
+        // Splash page: show/hide product nav overlay
+        const open = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!open));
+        nav.hidden = open;
+      }
+    });
+
+    // Close splash nav when a link is clicked
+    nav.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        btn.setAttribute('aria-expanded', 'false');
+        nav.hidden = true;
+      });
+    });
+  }
+
+  // Also update splash nav hrefs after navigation (locale can change)
+  function updateSplashNavLinks() {
+    const isDE   = window.location.pathname.startsWith('/de');
+    const prefix = isDE ? '/de' : '';
+    const links  = document.querySelectorAll<HTMLAnchorElement>('.msn-link');
+    const targets = [prefix + '/hub', prefix + '/edge', prefix + '/companion'];
+    links.forEach((a, i) => { if (targets[i]) a.href = targets[i]; });
+  }
+
+  initSplashBtn();
+  updateSplashNavLinks();
+  document.addEventListener('astro:page-load', () => {
+    const btn = document.getElementById('mobile-splash-btn') as HTMLButtonElement | null;
+    if (btn) btn.setAttribute('aria-expanded', 'false');
+    initSplashBtn();
+    updateSplashNavLinks();
+  });
+  document.addEventListener('astro:after-swap', updateSplashNavLinks);
 </script>

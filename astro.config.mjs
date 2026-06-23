@@ -8,9 +8,7 @@ export default defineConfig({
 	// For a project page (github.com/ORG/REPO): site='https://ORG.github.io', base='/REPO'
 	// For an org page (github.com/ORG/ORG.github.io): site='https://ORG.github.io', no base needed
 	site: 'https://docs.invisyne.com',
-	redirects: {
-		'/': '/de/hub',
-	},
+	redirects: {},
 	image: {
 		// Allow large animated GIFs (screen recordings) that exceed Sharp's default pixel limit
 		service: {
@@ -25,6 +23,7 @@ export default defineConfig({
 			components: {
 				Head: './src/components/Head.astro',
 				Header: './src/components/Header.astro',
+				SiteTitle: './src/components/SiteTitle.astro',
 				LanguageSelect: './src/components/LanguageSelect.astro',
 				ThemeSelect: './src/components/ThemeSelect.astro',
 				Sidebar: './src/components/Sidebar.astro',
