@@ -121,7 +121,7 @@ export default defineConfig({
 								// Geräte
 								{ label: 'Edit an Edge Device', translations: { de: 'Edge-Gerät bearbeiten' }, slug: 'hub/how-to/edit-device' },
 								// Software
-{ label: 'Download Firmware', translations: { de: 'Firmware herunterladen' }, slug: 'hub/how-to/download-firmware' },
+{ label: 'Download Software', translations: { de: 'Software herunterladen' }, slug: 'hub/how-to/download-firmware' },
 								// Benutzer
 								{ label: 'Manage Users', translations: { de: 'Benutzer verwalten' }, slug: 'hub/how-to/invite-user' },
 								// Kontoeinstellungen
