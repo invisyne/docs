@@ -29,6 +29,7 @@ const currentPath = Astro.url.pathname;
   <a href={`${prefix}/hub`}       class:list={['mpnav', { 'mpnav-active': currentPath.includes('/hub') }]}>Hub</a>
   <a href={`${prefix}/edge`}      class:list={['mpnav', { 'mpnav-active': currentPath.includes('/edge') }]}>Edge (Crawler)</a>
   <a href={`${prefix}/companion`} class:list={['mpnav', { 'mpnav-active': currentPath.includes('/companion') }]}>Companion</a>
+  <a href={`${prefix}/deepview`}  class:list={['mpnav', { 'mpnav-active': currentPath.includes('/deepview') }]}>Deepview</a>
 </nav>
 
 <Default {...Astro.props} />

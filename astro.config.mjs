@@ -136,6 +136,14 @@ export default defineConfig({
 						{ label: 'Download PDF', translations: { de: 'PDF herunterladen' }, slug: 'hub/download', attrs: { class: 'sidebar-pdf-link' } },
 					],
 				},
+				{
+					label: 'Deepview',
+					translations: { de: 'Deepview' },
+					collapsed: true,
+					items: [
+						{ label: 'Overview', translations: { de: 'Übersicht' }, slug: 'deepview' },
+					],
+				},
 			],
 		}),
 	],
