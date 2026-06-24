@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "node scripts/generate-changelogs.js && astro dev",
     "start": "node scripts/generate-changelogs.js && astro dev",
-    "build": "astro build",
+    "build": "node scripts/generate-changelogs.js && astro build",
     "preview": "astro preview",
     "generate": "node scripts/generate-changelogs.js",
     "generate-pdfs": "node scripts/generate-pdfs.js",
