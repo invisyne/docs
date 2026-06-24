@@ -9,8 +9,8 @@ src/content/docs/**/changelog.md
 # dependencies
 node_modules/
 
-# local npm auth token — never commit
-.npmrc
+# local npm auth tokens — never commit (use .npmrc.local for credentials)
+.npmrc.local
 
 # logs
 npm-debug.log*

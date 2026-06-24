@@ -12,7 +12,9 @@ import { fileURLToPath } from 'url';
 const DOCS_ROOT = resolve(fileURLToPath(new URL('.', import.meta.url)), '..');
 const RELEASE_NOTES_ROOT = process.argv[2]
   ? resolve(process.cwd(), process.argv[2])
-  : resolve(DOCS_ROOT, '..', 'release-notes');
+  : process.env.RELEASE_NOTES_PATH
+    ? resolve(process.cwd(), process.env.RELEASE_NOTES_PATH)
+    : resolve(DOCS_ROOT, '..', 'release-notes');
 
 const PRODUCTS = ['edge', 'companion', 'hub'];
 
