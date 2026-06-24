@@ -3,6 +3,36 @@ title: Changelog
 description: Versionshinweise für den Invisyne Companion.
 ---
 
+## 1.2.0
+
+*2026-06-24*
+
+### Highlights
+
+> Version 1.2.0 ermöglicht für die Nutzung von DeepView ein optionales Login über den Invisyne Hub und speichert Sitzungsdaten sicher lokal.
+> Runs lassen sich nun in einen DeepView-Workspace hochladen und dort analysieren.
+> Zudem wurde ein Anzeigefehler auf der Updater-Seite bei fehlgeschlagenen Updates behoben.
+
+---
+
+### Neue Funktionen
+
+- **Hub-Anmeldung** — Die Anmeldung erfolgt über die Hub-Zugangsdaten. Die Anmeldeseite entspricht dem Design des Hubs. Anmeldeinformationen können lokal verschlüsselt gespeichert werden, sodass sie bei erneutem Öffnen der Anwendung erhalten bleiben.
+
+- **DeepView-Integration** — Runs und Zeitraum basierte Datenexporte können direkt aus dem Companion in den kundeneigenen DeepView-Workspace hochgeladen werden.
+
+### Fehlerbehebungen
+
+- **Updater-Seite zeigte falschen Erfolgsstatus** — Nach einem fehlgeschlagenen Crawler-Update wurde auf der Updater-Seite fälschlicherweise „Erfolgreich" angezeigt, während die Hauptansicht den Fehler korrekt auswies. Der angezeigte Status ist nun in beiden Ansichten konsistent.
+
+---
+
+### Voraussetzungen
+
+- Für DeepView wird ein Abonnement benötigt.
+
+---
+
 ## 1.1.0
 
 *2026-04-16*

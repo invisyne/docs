@@ -3,6 +3,24 @@ title: Changelog
 description: Versionshinweise für den Invisyne Hub.
 ---
 
+## 1.4.0
+
+*2026-06-24*
+
+### Highlights
+
+> Hub 1.4 stellt die Benutzeroberfläche auf das Invisyne Design System um, führt ein systemweites Änderungsprotokoll ein und legt im Hintergrund die Grundlage für die kommende DeepView-Integration.
+
+---
+
+### Neue Funktionen
+
+- **Änderungsprotokoll** — Auf Detailseiten von Crawlern und Benutzern ist die jeweils letzte Änderung mit Zeitstempel sichtbar.
+- **Aktualisiertes Design** — Die Hub-Benutzeroberfläche wurde auf das Invisyne Design System umgestellt und unterstützt jetzt vollständig Light- und Dark-Mode.
+- **Zweisprachige Versionshinweise** — Versions-Highlights auf der Software-Download-Seite werden jetzt in Deutsch und Englisch angezeigt.
+
+---
+
 ## 1.3.0
 
 *2026-04-16*

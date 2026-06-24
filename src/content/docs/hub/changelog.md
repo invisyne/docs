@@ -3,6 +3,24 @@ title: Changelog
 description: Release notes for the Invisyne Hub.
 ---
 
+## 1.4.0
+
+*2026-06-24*
+
+### Highlights
+
+> Hub 1.4 updates the user interface to the Invisyne Design System, introduces a system-wide audit log, and lays the groundwork in the background for the upcoming DeepView integration.
+
+---
+
+### New Features
+
+- **Audit Log** — On detail pages for crawlers and users, the most recent change is now visible with a timestamp.
+- **Updated Design** — The Hub user interface has been updated to the Invisyne Design System and now fully supports light and dark mode.
+- **Bilingual Release Highlights** — Version highlights on the software download page are now displayed in both German and English.
+
+---
+
 ## 1.3.0
 
 *2026-04-16*
