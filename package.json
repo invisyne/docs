@@ -15,12 +15,16 @@
     "@astrojs/mdx": "^5.0.6",
     "@astrojs/starlight": "^0.38.4",
     "@fontsource/roboto": "^5.2.10",
-    "astro": "6.3.8",
+    "astro": "6.4.8",
     "sharp": "^0.34.5"
   },
   "devDependencies": {
     "@invisyne/design-tokens": "^0.2.0",
     "puppeteer": "^22.0.0"
+  },
+  "overrides": {
+    "js-yaml": "^4.2.0",
+    "vite": ">=7.3.5"
   },
   "allowScripts": {
     "esbuild": true,
