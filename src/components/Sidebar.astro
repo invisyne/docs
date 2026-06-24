@@ -102,6 +102,22 @@ const currentPath = Astro.url.pathname;
 <script>
   const STORAGE_KEY = 'sl-sidebar-open';
 
+  function productPrefix(pathname: string): string | null {
+    const p = pathname.replace(/^\/de(\/|$)/, '/');
+    if (p.startsWith('/edge'))      return 'Edge';
+    if (p.startsWith('/hub'))       return 'Hub';
+    if (p.startsWith('/companion')) return 'Companion';
+    if (p.startsWith('/deepview'))  return 'Deepview';
+    return null;
+  }
+
+  function applyTitlePrefix(pathname: string, rawTitle: string): string {
+    const prefix = productPrefix(pathname);
+    return prefix ? `Invisyne - ${prefix} - ${rawTitle}` : `Invisyne - ${rawTitle}`;
+  }
+
+  document.title = applyTitlePrefix(location.pathname, document.title);
+
   function getSidebarOpen(): boolean {
     return sessionStorage.getItem(STORAGE_KEY) !== 'false';
   }
@@ -177,6 +193,9 @@ const currentPath = Astro.url.pathname;
   document.addEventListener('astro:before-swap', (e: any) => {
     const theme = document.documentElement.dataset.theme;
     if (theme) e.newDocument.documentElement.dataset.theme = theme;
+
+    const newTitle = e.newDocument.querySelector('title')?.textContent;
+    if (newTitle) document.title = applyTitlePrefix(e.to.pathname, newTitle);
 
     if (window.innerWidth >= 800) {
       const open = getSidebarOpen();
