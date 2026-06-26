@@ -1,0 +1,62 @@
+---
+title: "Geräte-Firmware aktualisieren"
+description: "Firmware-Update auf einem Edge-Gerät über Crawler.Companion einspielen."
+sidebar:
+  order: 2
+---
+
+import { Steps } from '@astrojs/starlight/components';
+
+Crawler.Companion ermöglicht Firmware-Updates auf verbundenen Edge-Geräten — ohne direkten Zugriff auf die Web-Oberfläche des Geräts.
+
+<div class="ht-phase-steps">
+
+  <div class="ht-phase-label">Gerät vorbereiten</div>
+
+  <Steps>
+
+  1. **Firmware-Datei herunterladen**
+
+     Die Firmware-Datei (`.zip`) aus dem Hub beziehen — siehe [Edge-Firmware herunterladen](/de/hub/how-to/download-firmware).
+
+  2. **Gerät auswählen**
+
+     In der Geräteliste auf das gewünschte Gerät klicken.
+
+  3. **Tab „Update" öffnen**
+
+     Im Detailpanel auf den Tab **Update** klicken. Unter **Dein System** werden die aktuelle Version und das Datum des letzten Updates angezeigt.
+
+  </Steps>
+
+  <div class="ht-phase-cont-3">
+
+    <div class="ht-phase-label">Update installieren</div>
+
+    <Steps>
+
+    1. **Firmware-Datei auswählen**
+
+       Unter **System aktualisieren** die Firmware-Datei (`.zip`) in die Drop-Zone ziehen oder auf **öffnen Sie eine Datei** klicken und die Datei auswählen.
+
+       <div class="screenshot-frame">
+         <img src="/images/companion/geraete-firmware-update.png" alt="Companion Update-Tab mit Firmware-Drop-Zone" />
+       </div>
+
+    2. **Update starten**
+
+       Auf **Update starten** klicken. Ein Fortschrittsbalken zeigt den Übertragungsstatus an.
+
+    3. **Neustart abwarten**
+
+       Das Gerät startet automatisch neu, sobald das Update abgeschlossen ist. Nach wenigen Sekunden erscheint es mit der neuen Firmware-Version wieder in der Geräteliste.
+
+    </Steps>
+
+  </div>
+
+</div>
+
+<div class="ht-note-block">
+  <p>Crawler.Companion während des Updates nicht schließen und das Gerät nicht vom Netzwerk trennen. Ein unterbrochenes Update kann das Gerät in einen nicht nutzbaren Zustand versetzen.</p>
+</div>

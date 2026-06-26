@@ -1,0 +1,68 @@
+---
+title: "Edge-Ersteinrichtung"
+description: "Netzwerkeinstellungen eines neuen Edge-Geräts über Crawler.Companion konfigurieren, damit es im Netzwerk erreichbar ist."
+sidebar:
+  order: 1
+---
+
+import { Steps } from '@astrojs/starlight/components';
+
+Sobald ein neues Edge-Gerät mit dem Netzwerk verbunden wird, erkennt Crawler.Companion es automatisch. Bevor das Gerät genutzt werden kann, benötigt es eine im Netzwerk erreichbare IP-Adresse. Diese Anleitung erklärt, wie die Netzwerkkonfiguration eingestellt wird.
+
+<div class="ht-note-block">
+  <p>Die vollständige Geräteeinrichtung (Hub-Verbindung, Sensoren, Konfiguration) erfolgt über die Web-Oberfläche des Edge-Geräts mit dem Einrichtungs-Wizard — nicht über Companion. Sobald die Netzwerkeinstellungen gespeichert sind, den Guide <a href="/de/edge/how-to/initial-setup">Edge-Ersteinrichtung</a> aufrufen, um den Vorgang abzuschließen.</p>
+</div>
+
+<div class="ht-phase-steps">
+
+  <div class="ht-phase-label">Gerät finden</div>
+
+  <Steps>
+
+  1. **Companion öffnen**
+
+     Crawler.Companion starten. Es scannt das Netzwerk automatisch. Neue Geräte erscheinen in der Geräteliste mit dem Status **Einrichtung erforderlich**.
+
+     <div class="screenshot-frame">
+       <img src="/images/companion/einrichtung-erforderlich.png" alt="Geräteliste mit einem Gerät mit Status Einrichtung erforderlich" />
+     </div>
+
+  2. **Gerät auswählen**
+
+     Auf das Gerät klicken, um das Detailpanel zu öffnen.
+
+  </Steps>
+
+  <div class="ht-phase-cont-2">
+
+    <div class="ht-phase-label">Netzwerk konfigurieren</div>
+
+    <Steps>
+
+    1. **Tab „Netzwerk Einstellungen" öffnen**
+
+       Im Detailpanel auf den Tab **Netzwerk Einstellungen** klicken.
+
+    2. **IP-Modus wählen**
+
+       **DHCP** (IP wird automatisch vom Router vergeben) oder **Statische IP** (feste IP-Adresse) auswählen.
+
+    3. **Netzwerkwerte eintragen** *(nur bei Statischer IP)*
+
+       Bei **Statische IP** folgende Felder ausfüllen:
+
+       - **IP-Adresse** — z. B. `192.168.1.50`
+       - **Subnetzmaske** — z. B. `255.255.255.0`
+       - **Gateway** — z. B. `192.168.1.1`
+
+    4. **Konfiguration speichern**
+
+       Auf **Speichern** klicken. Das Gerät übernimmt die neuen Netzwerkeinstellungen.
+
+    </Steps>
+
+  </div>
+
+</div>
+
+Sobald das Gerät unter der neuen Adresse erreichbar ist, die Web-Oberfläche des Edge-Geräts aufrufen und den Einrichtungs-Wizard durchlaufen — siehe [Edge-Ersteinrichtung](/de/edge/how-to/initial-setup).
