@@ -7,7 +7,12 @@ sidebar:
 
 import { Steps } from '@astrojs/starlight/components';
 
-Crawler.Companion ermöglicht Firmware-Updates auf verbundenen Edge-Geräten — ohne direkten Zugriff auf die Web-Oberfläche des Geräts.
+Crawler.Companion ermöglicht Firmware-Updates auf verbundenen Edge-Geräten — ohne direkten Zugriff auf die Web-Oberfläche des Geräts. Die Firmware-Datei wird zuerst aus dem Hub heruntergeladen und dann über Companion auf das Gerät eingespielt, das anschließend automatisch neu startet.
+
+<div class="ht-note-block">
+  <p>Derzeit erfolgen Firmware-Updates ausschließlich sequentiell. Ein direktes Upgrade auf eine beliebige neuere Version ist aktuell noch nicht möglich. Eine Aktualisierung kann nur von der jeweils installierten Firmware-Version auf die unmittelbar nachfolgende unterstützte Version durchgeführt werden.</p>
+  <p>Beispiel: Befindet sich ein Gerät auf Firmware-Version 2.18, ist eine direkte Aktualisierung auf Version 2.22 derzeit nicht möglich. Stattdessen müssen momentan die Zwischenversionen in der vorgesehenen Reihenfolge installiert werden (z. B. 2.18 → 2.19 → 2.20 → 2.21 → 2.22).</p>
+</div>
 
 <div class="ht-phase-steps">
 
@@ -47,6 +52,10 @@ Crawler.Companion ermöglicht Firmware-Updates auf verbundenen Edge-Geräten —
 
        Auf **Update starten** klicken. Ein Fortschrittsbalken zeigt den Übertragungsstatus an.
 
+       <div class="ht-note-block">
+         <p>Crawler.Companion während des Updates nicht schließen und das Gerät nicht vom Netzwerk trennen. Ein unterbrochenes Update kann das Gerät in einen nicht nutzbaren Zustand versetzen.</p>
+       </div>
+
     3. **Neustart abwarten**
 
        Das Gerät startet automatisch neu, sobald das Update abgeschlossen ist. Nach wenigen Sekunden erscheint es mit der neuen Firmware-Version wieder in der Geräteliste.
@@ -55,13 +64,4 @@ Crawler.Companion ermöglicht Firmware-Updates auf verbundenen Edge-Geräten —
 
   </div>
 
-</div>
-
-<div class="ht-note-block">
-  <p>Crawler.Companion während des Updates nicht schließen und das Gerät nicht vom Netzwerk trennen. Ein unterbrochenes Update kann das Gerät in einen nicht nutzbaren Zustand versetzen.</p>
-</div>
-
-<div class="ht-note-block">
-  <p>Derzeit erfolgen Firmware-Updates ausschließlich sequentiell. Ein direktes Upgrade auf eine beliebige neuere Version ist aktuell nicht möglich. Eine Aktualisierung kann nur von der jeweils installierten Firmware-Version auf die unmittelbar nachfolgende unterstützte Version durchgeführt werden.</p>
-  <p>Beispiel: Befindet sich ein Gerät auf Firmware-Version 2.18, ist eine direkte Aktualisierung auf Version 2.22 derzeit nicht möglich. Stattdessen müssen momentan die Zwischenversionen in der vorgesehenen Reihenfolge installiert werden (z. B. 2.18 → 2.19 → 2.20 → 2.21 → 2.22).</p>
 </div>

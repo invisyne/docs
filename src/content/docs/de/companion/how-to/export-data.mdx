@@ -7,36 +7,25 @@ sidebar:
 
 import { Steps } from '@astrojs/starlight/components';
 
-Crawler.Companion bietet zwei Wege, Messdaten von einem Edge-Gerät abzurufen — ohne Browser und ohne direkten Zugang zur Web-Oberfläche des Geräts.
+Edge-Geräte zeichnen Messdaten kontinuierlich auf. Crawler.Companion ermöglicht es, diese Daten direkt abzurufen und zu exportieren — ohne direkten Zugang zur Web-Oberfläche des Geräts.
 
-<div class="ht-glossary">
-  <div class="ht-glossary-item open">
-    <button class="ht-glossary-trigger" aria-expanded="true">Warum Daten exportieren?</button>
-    <div class="ht-glossary-body">
-      <p>Edge-Geräte zeichnen Messdaten kontinuierlich auf. Der Export ermöglicht es, diese Daten abzurufen — entweder als CSV-Datei zur lokalen Weiterverarbeitung oder direkt in Deepview zur visuellen Analyse.</p>
-    </div>
-  </div>
-  <div class="ht-glossary-item">
-    <button class="ht-glossary-trigger" aria-expanded="false">Was sind Runs?</button>
-    <div class="ht-glossary-body">
-      <p>Ein Run ist eine definierte Messaufzeichnung, die auf dem Gerät gespeichert wird — mit einem klar definierten Start- und Endzeitpunkt. Runs werden automatisch erstellt, wenn das Gerät eine Aufzeichnung startet und beendet. Der Export nach Runs ermöglicht es, gezielt einzelne Messsitzungen auszuwählen, anstatt nach einem Zeitraum zu filtern.</p>
-    </div>
-  </div>
-  <div class="ht-glossary-item">
-    <button class="ht-glossary-trigger" aria-expanded="false">Was ist Deepview?</button>
-    <div class="ht-glossary-body">
-      <p>Deepview ist ein browserbasiertes Analysetool, das Signaldaten als interaktive Diagramme visualisiert. Es ist mit dem Hub-Account verknüpft und ermöglicht die detaillierte Auswertung und den Vergleich von Messungen. Beim Export zu Deepview überträgt Companion die Daten direkt — die Ergebnisse öffnen sich im Browser, keine zusätzliche Software notwendig.</p>
-    </div>
-  </div>
-</div>
+:::note[Warum Daten exportieren?]
+Edge-Geräte zeichnen Messdaten kontinuierlich auf. Der Export ermöglicht es, diese Daten abzurufen — entweder als CSV-Datei zur lokalen Weiterverarbeitung oder direkt in Deepview zur visuellen Analyse.
+:::
 
-<div class="ht-note-block">
-  <p>Die Deepview-Option ist nur verfügbar, wenn der Hub-Account Deepview-Zugriff hat. Wenn sie ausgegraut ist, bitte den Administrator kontaktieren.</p>
-</div>
+Zur Wahl stehen zwei Methoden: ein zeitraumbasierter Export oder der Export einzelner abgeschlossener Messaufzeichnungen (Runs).
+
+:::note[Was sind Runs?]
+Ein Run ist eine definierte Messaufzeichnung, die auf dem Gerät gespeichert wird — mit einem klar definierten Start- und Endzeitpunkt. Runs werden automatisch erstellt, wenn das Gerät eine Aufzeichnung startet und beendet. Der Export nach Runs ermöglicht es, gezielt einzelne Messsitzungen auszuwählen, anstatt nach einem Zeitraum zu filtern.
+:::
 
 Beide Methoden unterstützen zwei Exportformate — wählen, was zum Workflow passt:
 
 <p class="ht-format-text"><strong>CSV</strong> — Datei auf dem PC &nbsp;·&nbsp; <strong>Deepview</strong> — öffnet direkt im Browser, keine zusätzliche Software notwendig</p>
+
+:::note[Was ist Deepview?]
+Deepview ist ein browserbasiertes Analysetool, das Signaldaten als interaktive Diagramme visualisiert. Es ist mit dem Hub-Account verknüpft und ermöglicht die detaillierte Auswertung und den Vergleich von Messungen. Beim Export zu Deepview überträgt Companion die Daten direkt — die Ergebnisse öffnen sich im Browser, keine zusätzliche Software notwendig.
+:::
 
 <div class="qs-stepper ht-card-stepper">
 
@@ -194,3 +183,7 @@ Beide Methoden unterstützen zwei Exportformate — wählen, was zum Workflow pa
   </div>
 
 </div>
+
+:::note
+Die Deepview-Option ist nur verfügbar, wenn der Hub-Account Deepview-Zugriff hat. Wenn sie ausgegraut ist, bitte den Administrator kontaktieren.
+:::

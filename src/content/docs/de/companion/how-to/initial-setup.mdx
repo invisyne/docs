@@ -7,14 +7,16 @@ sidebar:
 
 import { Steps } from '@astrojs/starlight/components';
 
-Sobald ein neues Edge-Gerät mit dem Netzwerk verbunden wird, erkennt Crawler.Companion es automatisch. Bevor das Gerät genutzt werden kann, benötigt es eine im Netzwerk erreichbare IP-Adresse. Diese Anleitung erklärt, wie die Netzwerkkonfiguration eingestellt wird.
+Ein neues Edge-Gerät ist ab Werk noch nicht im Netzwerk erreichbar. Crawler.Companion erkennt es beim Anschließen automatisch und ermöglicht es, die Netzwerkeinstellungen direkt zu konfigurieren — ohne direkten Zugang zur Web-Oberfläche des Geräts. Die Ersteinrichtung über Companion beschränkt sich auf diesen Schritt; alles Weitere erfolgt anschließend über die Web-Oberfläche des Geräts.
+
+<div class="ht-note-block">
+  <p>Die vollständige Geräteeinrichtung (Hub-Verbindung, Sensoren, Konfiguration) erfolgt über die Web-Oberfläche des Edge-Geräts mit dem Einrichtungs-Wizard — nicht über Companion. Sobald die Netzwerkeinstellungen gespeichert sind, den Guide <a href="/de/edge/how-to/initial-setup">Ersteinrichtung (Edge)</a> aufrufen, um den Vorgang abzuschließen.</p>
+</div>
+
+Bevor das Gerät genutzt werden kann, benötigt es eine im Netzwerk erreichbare IP-Adresse. Diese Anleitung erklärt, wie die Netzwerkkonfiguration eingestellt wird.
 
 <div class="ht-note-block">
   <p>Crawler.Companion erkennt nur Geräte im gleichen physischen Netzwerk. PC und Edge-Gerät müssen direkt am gleichen Switch oder Kabel angeschlossen sein.</p>
-</div>
-
-<div class="ht-note-block">
-  <p>Die vollständige Geräteeinrichtung (Hub-Verbindung, Sensoren, Konfiguration) erfolgt über die Web-Oberfläche des Edge-Geräts mit dem Einrichtungs-Wizard — nicht über Companion. Sobald die Netzwerkeinstellungen gespeichert sind, den Guide <a href="/de/edge/how-to/initial-setup">Edge-Ersteinrichtung</a> aufrufen, um den Vorgang abzuschließen.</p>
 </div>
 
 <div class="ht-phase-steps">
@@ -69,4 +71,4 @@ Sobald ein neues Edge-Gerät mit dem Netzwerk verbunden wird, erkennt Crawler.Co
 
 </div>
 
-Sobald das Gerät unter der neuen Adresse erreichbar ist, die Web-Oberfläche des Edge-Geräts aufrufen und den Einrichtungs-Wizard durchlaufen — siehe [Edge-Ersteinrichtung](/de/edge/how-to/initial-setup).
+Sobald das Gerät unter der neuen Adresse erreichbar ist, die Web-Oberfläche des Edge-Geräts aufrufen und den Einrichtungs-Wizard durchlaufen — siehe [Ersteinrichtung (Edge)](/de/edge/how-to/initial-setup).

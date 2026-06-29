@@ -403,25 +403,6 @@ const deepviewHref  = isDE ? '/de/deepview'  : '/deepview';
   document.addEventListener('astro:page-load', initQsTabs);
   document.addEventListener('astro:after-swap', initQsTabs);
 
-  // ── Glossary accordion (.ht-glossary) ───────────────────────────────
-  document.addEventListener('click', (e: MouseEvent) => {
-    const trigger = (e.target as HTMLElement).closest<HTMLElement>('.ht-glossary-trigger');
-    if (!trigger) return;
-    const item = trigger.closest<HTMLElement>('.ht-glossary-item');
-    if (!item) return;
-    const glossary = item.closest<HTMLElement>('.ht-glossary');
-    if (!glossary) return;
-    const isOpen = item.classList.contains('open');
-    glossary.querySelectorAll<HTMLElement>('.ht-glossary-item').forEach(i => {
-      i.classList.remove('open');
-      i.querySelector<HTMLElement>('.ht-glossary-trigger')?.setAttribute('aria-expanded', 'false');
-    });
-    if (!isOpen) {
-      item.classList.add('open');
-      trigger.setAttribute('aria-expanded', 'true');
-    }
-  });
-
   // ── Quickstart image carousel (.qs-img-carousel) ────────────────────
   function initQsImgCarousels() {
     document.querySelectorAll<HTMLElement>('.qs-img-carousel').forEach(carousel => {

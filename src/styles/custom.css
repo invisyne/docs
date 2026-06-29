@@ -588,8 +588,10 @@ starlight-toc a {
   color: var(--sl-color-accent, #2549ff) !important;
   --sl-color-asides-text-accent: var(--sl-color-gray-2, #3a3a3a) !important;
 }
-.starlight-aside .starlight-aside__content {
+.starlight-aside .starlight-aside__content,
+.starlight-aside .starlight-aside__content p {
   color: var(--sl-color-gray-2, #3a3a3a) !important;
+  font-size: 0.875rem !important;
 }
 .starlight-aside .starlight-aside__title {
   color: var(--sl-color-accent, #2549ff) !important;
@@ -837,13 +839,13 @@ starlight-toc a {
   border-left: 3px solid var(--sl-color-accent, #2549ff);
   border-radius: 0 8px 8px 0;
   padding: 12px 16px;
-  font-size: 14px;
+  font-size: 0.875rem;
   color: var(--sl-color-gray-2, #3a3a3a);
   margin-bottom: 1.25rem;
 }
 
 .ht-note-block p {
-  font-size: 14px;
+  font-size: 0.875rem !important;
   margin: 0 !important;
 }
 
