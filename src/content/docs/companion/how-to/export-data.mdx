@@ -1,26 +1,196 @@
 ---
-title: "Export Data to CSV"
-description: "How to export measurement data from an Edge device as a CSV file using Crawler.Companion."
+title: "Export Data"
+description: "How to export measurement data from an Edge device as a CSV file or transfer it to Deepview using Crawler.Companion."
 sidebar:
-  order: 6
+  order: 3
 ---
 
-Export measurement data directly from Crawler.Companion to a CSV file — no browser or access to the device's web interface needed.
+import { Steps } from '@astrojs/starlight/components';
 
-<div class="export-flow">
-<div class="ef-col"><div class="ef-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div><div class="ef-num">Step 1</div><div class="ef-title">Select a device</div><div class="ef-desc">Click on the device in the list to open its detail panel.</div></div>
-<div class="ef-arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg></div>
-<div class="ef-col"><div class="ef-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="9" x2="9" y2="21"/></svg></div><div class="ef-num">Step 2</div><div class="ef-title">Open "Export" tab</div><div class="ef-desc">In the detail panel, click the <strong>Export</strong> tab.</div></div>
-<div class="ef-arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg></div>
-<div class="ef-col"><div class="ef-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div><div class="ef-num">Step 3</div><div class="ef-title">Set time range</div><div class="ef-desc">Set <strong>From</strong> and <strong>To</strong> with date and time.</div></div>
-<div class="ef-arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg></div>
-<div class="ef-col"><div class="ef-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/></svg></div><div class="ef-num">Step 4</div><div class="ef-title">Select CSV</div><div class="ef-desc">Under <strong>Export Format</strong>, select <strong>CSV</strong>.</div></div>
-<div class="ef-arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg></div>
-<div class="ef-col"><div class="ef-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg></div><div class="ef-num">Step 5</div><div class="ef-title">Check save path</div><div class="ef-desc">Check the <strong>save path</strong> — pencil icon to change it.</div></div>
-<div class="ef-arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg></div>
-<div class="ef-col"><div class="ef-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div><div class="ef-num">Step 6</div><div class="ef-title">Start export</div><div class="ef-desc">Click <strong>Export</strong>. The CSV file is saved.</div></div>
+Crawler.Companion gives you two ways to get measurement data off an Edge device — without needing a browser or direct access to the device's web interface.
+
+<div class="ht-glossary">
+  <div class="ht-glossary-item open">
+    <button class="ht-glossary-trigger" aria-expanded="true">Why export data?</button>
+    <div class="ht-glossary-body">
+      <p>Edge devices record measurement data continuously. Exporting lets you retrieve that data — either as a CSV file for local processing, or directly into Deepview for visual analysis.</p>
+    </div>
+  </div>
+  <div class="ht-glossary-item">
+    <button class="ht-glossary-trigger" aria-expanded="false">What are Runs?</button>
+    <div class="ht-glossary-body">
+      <p>A run is a defined measurement session stored on the device — it has a clear start time and end time. Runs are created automatically when the device starts and stops a recording. Exporting by runs lets you pick specific sessions instead of filtering by a time range.</p>
+    </div>
+  </div>
+  <div class="ht-glossary-item">
+    <button class="ht-glossary-trigger" aria-expanded="false">What is Deepview?</button>
+    <div class="ht-glossary-body">
+      <p>Deepview is a browser-based analysis tool that visualizes signal data as interactive charts. It is connected to your Hub account and lets you explore and compare measurements in detail. When you export to Deepview, Companion transfers the data directly — results open in your browser, no additional software required.</p>
+    </div>
+  </div>
 </div>
 
-<div class="screenshot-frame">
-  <img src="/images/companion/companion-export-detail.png" alt="Companion export panel with time period and CSV format selected" />
+<div class="ht-note-block">
+  <p>The Deepview option is only available when your Hub account has Deepview access enabled. If it is grayed out, contact your administrator.</p>
+</div>
+
+Both methods let you choose between two export formats:
+
+<p class="ht-format-text"><strong>CSV</strong> — saved as a file on your PC &nbsp;·&nbsp; <strong>Deepview</strong> — opens directly in browser, no additional software required</p>
+
+<div class="qs-stepper ht-card-stepper">
+
+  <div class="qs-tabbar ht-card-tabbar">
+    <a class="qs-tab ht-method-card" href="#">
+      <span class="ht-method-card-label">Method 1</span>
+      <span class="ht-method-card-title">Time-based Export</span>
+      <span class="ht-method-card-desc">Export all signal data recorded within a defined start and end time.</span>
+    </a>
+    <a class="qs-tab ht-method-card" href="#">
+      <span class="ht-method-card-label">Method 2</span>
+      <span class="ht-method-card-title">Run-based Export</span>
+      <span class="ht-method-card-desc">Select specific completed recording sessions to export individually.</span>
+    </a>
+  </div>
+
+  <div class="qs-panels">
+
+    <div class="qs-panel">
+
+      <p>Use this method when you want to export all signal data recorded within a specific start and end time — regardless of individual runs.</p>
+
+      <div class="ht-phase-steps">
+
+        <div class="ht-phase-label">Prepare device</div>
+
+        <Steps>
+
+        1. **Select a device**
+
+           Click on the device in the list to open its detail panel.
+
+        2. **Open the Export tab**
+
+           In the detail panel, click the **Export** tab.
+
+        </Steps>
+
+        <div class="ht-phase-cont-2">
+
+          <div class="ht-phase-label">Configure export</div>
+
+          <Steps>
+
+          1. **Select "Zeitraum"**
+
+             Make sure the **Zeitraum** (Time Range) tab is active in the Export settings.
+
+          2. **Set the time range**
+
+             Enter a **Von** (From) and **Bis** (To) date and time.
+
+          3. **Select the export format**
+
+             Under **Export Format**, select **CSV** or **Deepview**. For CSV, a **Speicherpfad** field appears showing the default save location. Click the pencil icon to choose a different folder.
+
+             <div class="screenshot-frame" style="max-width: 680px">
+               <img src="/images/companion/exporter-deepview-link-zoom.jpg" alt="In Deepview öffnen button after export" />
+             </div>
+
+          </Steps>
+
+        </div>
+
+        <div class="ht-phase-cont-5">
+
+          <div class="ht-phase-label">Start</div>
+
+          <Steps>
+
+          1. **Start the export**
+
+             Click **Exportieren**.
+
+          2. **Open Deepview** *(Deepview only)*
+
+             Once the export is complete, an **In Deepview öffnen** button appears. Click it to open the data in Deepview.
+
+          </Steps>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="qs-panel">
+
+      <p>Use this method when you want to export one or more specific measurement sessions. Each selected run is exported separately, which makes it easy to compare individual recordings or share a specific session.</p>
+
+      <div class="ht-phase-steps">
+
+        <div class="ht-phase-label">Prepare device</div>
+
+        <Steps>
+
+        1. **Select a device**
+
+           Click on the device in the list to open its detail panel.
+
+        2. **Open the Export tab**
+
+           In the detail panel, click the **Export** tab.
+
+        </Steps>
+
+        <div class="ht-phase-cont-2">
+
+          <div class="ht-phase-label">Configure export</div>
+
+          <Steps>
+
+          1. **Select "Runs"**
+
+             Click the **Runs** tab in the Export settings. The list shows all completed runs stored on the device, with their start time, end time, and duration.
+
+          2. **Select one or more runs**
+
+             Check the runs you want to export from the list.
+
+          3. **Select the export format**
+
+             Under **Export Format**, select **CSV** or **Deepview**. For CSV, a **Speicherpfad** field appears showing the default save location. Click the pencil icon to choose a different folder. With CSV, each selected run is saved as a separate file.
+
+             <div class="screenshot-frame">
+               <img src="/images/companion/companion-export-runs.png" alt="Companion runs export with run selection" />
+             </div>
+
+          </Steps>
+
+        </div>
+
+        <div class="ht-phase-cont-5">
+
+          <div class="ht-phase-label">Start</div>
+
+          <Steps>
+
+          1. **Start the export**
+
+             Click **Exportieren**.
+
+          2. **Open Deepview** *(Deepview only)*
+
+             Once the export is complete, an **In Deepview öffnen** button appears. Click it to open the data in Deepview.
+
+          </Steps>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
 </div>

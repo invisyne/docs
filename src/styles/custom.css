@@ -353,6 +353,12 @@ starlight-toc a {
   min-height: 0;
   display: flex;
   flex-direction: column;
+  margin-top: 0 !important;
+}
+
+.qs-panel > p:first-child,
+.qs-panel > div:first-child {
+  margin-top: 0 !important;
 }
 
 .qs-panel.qs-active {
@@ -613,14 +619,329 @@ starlight-toc a {
   color: var(--sl-color-accent, #2549ff) !important;
   --sl-color-asides-text-accent: var(--sl-color-gray-2, #3a3a3a) !important;
 }
-.starlight-aside .starlight-aside__content {
+.starlight-aside .starlight-aside__content,
+.starlight-aside .starlight-aside__content p {
   color: var(--sl-color-gray-2, #3a3a3a) !important;
+  font-size: 0.875rem !important;
 }
 .starlight-aside .starlight-aside__title {
   color: var(--sl-color-accent, #2549ff) !important;
 }
 
 /* ─── Quickstart tip box ─────────────────────────────────────────────── */
+.qs-export-grid {
+  display: flex;
+  align-items: stretch;
+  gap: 12px;
+  margin-top: 1rem;
+}
+
+.qs-export-col {
+  flex: 1;
+  align-self: stretch;
+  margin-top: 0 !important;
+  background: var(--sl-color-gray-6, #e8e8e5);
+  border-radius: 10px;
+  padding: 14px 16px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.qs-export-col-title {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--sl-color-gray-3, #5a5a5a);
+  margin: 0 0 10px !important;
+}
+
+.qs-export-row {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 8px;
+}
+
+.qs-export-row:last-child {
+  margin-bottom: 0;
+}
+
+.qs-export-row strong {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--sl-color-gray-1, #1a1a1a);
+}
+
+.qs-export-row span {
+  font-size: 0.8125rem;
+  color: var(--sl-color-gray-3, #5a5a5a);
+  line-height: 1.5;
+}
+
+.qs-guide-link {
+  display: inline-block;
+  margin-top: 1.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--sl-color-accent, #2549ff);
+  text-decoration: none !important;
+}
+
+.qs-guide-link:hover {
+  text-decoration: underline !important;
+}
+
+.ht-info-block {
+  border-left: 3px solid var(--sl-color-gray-3, #888);
+  padding: 12px 16px;
+  margin-bottom: 1rem;
+  border-radius: 0 8px 8px 0;
+}
+
+.ht-info-block-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--sl-color-gray-1, #1a1a1a);
+  margin: 0 0 2px !important;
+}
+
+.ht-info-block-desc {
+  font-size: 14px;
+  color: var(--sl-color-gray-2, #444);
+  line-height: 1.55;
+  margin: 0 !important;
+}
+
+/* ─── Phase-grouped Steps ────────────────────────────────────────────── */
+.ht-phase-steps > .ht-phase-label:first-child {
+  margin-top: 0;
+}
+
+.ht-phase-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--sl-color-gray-3, #5a5a5a);
+  border-bottom: 1px solid var(--sl-color-gray-5, #dcdcd8);
+  padding-bottom: 6px;
+  margin: 1.5rem 0 0.5rem !important;
+}
+
+.ht-phase-cont-2 .sl-steps { counter-reset: steps-counter 2 !important; }
+.ht-phase-cont-3 .sl-steps { counter-reset: steps-counter 3 !important; }
+.ht-phase-cont-4 .sl-steps { counter-reset: steps-counter 4 !important; }
+.ht-phase-cont-5 .sl-steps { counter-reset: steps-counter 5 !important; }
+.ht-phase-cont-6 .sl-steps { counter-reset: steps-counter 6 !important; }
+
+.ht-phase-cont-2,
+.ht-phase-cont-3,
+.ht-phase-cont-4,
+.ht-phase-cont-5,
+.ht-phase-cont-6 {
+  margin-top: 0 !important;
+}
+
+.ht-phase-steps .sl-steps {
+  margin-top: 0 !important;
+}
+
+.ht-format-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 10px !important;
+}
+
+.ht-format-card {
+  border: 1px solid var(--sl-color-gray-5, #dcdcd8);
+  border-radius: 8px;
+  padding: 10px 14px;
+  background: var(--sl-color-gray-6, #e8e8e5);
+}
+
+.ht-format-card-name {
+  font-size: 11px !important;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--sl-color-gray-3, #5a5a5a);
+  margin: 0 0 5px !important;
+}
+
+.ht-format-card-desc {
+  font-size: 0.85rem !important;
+  color: var(--sl-color-gray-2, #3a3a3a) !important;
+  line-height: 1.5;
+  margin: 0 !important;
+}
+
+/* ─── Format pills ──────────────────────────────────────────────────── */
+.ht-format-text {
+  font-size: 0.9rem;
+  color: var(--sl-color-gray-2);
+  margin-bottom: 1.25rem !important;
+  margin-top: 0 !important;
+}
+
+.ht-format-text strong {
+  color: var(--sl-color-gray-1);
+  font-weight: 600;
+}
+
+/* ─── Glossary accordion (how-to info blocks) ───────────────────────── */
+.ht-glossary {
+  border: 1px solid var(--sl-color-gray-5, #dcdcd8);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 1.25rem;
+  background: white;
+}
+:root[data-theme='dark'] .ht-glossary {
+  background: var(--sl-color-gray-7, #2a2a28);
+}
+
+.ht-glossary-item {
+  border-bottom: 1px solid var(--sl-color-gray-5, #dcdcd8);
+}
+
+.ht-glossary-item:last-child {
+  border-bottom: none;
+}
+
+.ht-glossary-trigger {
+  width: 100%;
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 11px 16px;
+  font-size: inherit;
+  font-weight: 600;
+  color: var(--sl-color-gray-1, #1a1a1a);
+  cursor: pointer;
+  user-select: none;
+  gap: 8px;
+  font-family: inherit;
+  text-align: left;
+}
+
+.ht-glossary-trigger::after {
+  content: '';
+  display: block;
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235a5a5a' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: contain;
+  transition: transform 0.2s ease;
+}
+
+.ht-glossary-item.open .ht-glossary-trigger {
+  color: var(--sl-color-accent, #2549ff);
+}
+
+.ht-glossary-item.open .ht-glossary-trigger::after {
+  transform: rotate(180deg);
+}
+
+.ht-glossary-body {
+  display: none;
+  padding: 0 16px 14px;
+  color: var(--sl-color-gray-2, #3a3a3a);
+  line-height: 1.6;
+  margin: 0 !important;
+}
+
+.ht-glossary-item.open .ht-glossary-body {
+  display: block;
+}
+
+.ht-glossary-body p {
+  color: var(--sl-color-gray-2, #3a3a3a) !important;
+  margin: 0 !important;
+  line-height: 1.6;
+}
+
+.ht-note-block {
+  background: var(--sl-color-gray-6, #e8e8e5);
+  border-left: 3px solid var(--sl-color-accent, #2549ff);
+  border-radius: 0 8px 8px 0;
+  padding: 12px 16px;
+  font-size: 0.875rem;
+  color: var(--sl-color-gray-2, #3a3a3a);
+  margin-bottom: 1.25rem;
+}
+
+.ht-note-block p {
+  font-size: 0.875rem !important;
+  margin: 0 !important;
+}
+
+.ht-card-tabbar {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  background: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  margin-bottom: 1.5rem;
+  width: 100% !important;
+}
+
+.ht-method-card {
+  display: flex !important;
+  flex-direction: column;
+  gap: 6px;
+  padding: 16px 18px !important;
+  background: white !important;
+  border-radius: 14px !important;
+  text-decoration: none !important;
+  border: 2px solid var(--sl-color-gray-5, #dcdcd8) !important;
+  color: inherit !important;
+  height: auto !important;
+  line-height: normal !important;
+}
+
+.ht-method-card:hover {
+  border-color: var(--sl-color-accent, #2549ff) !important;
+}
+
+.ht-method-card.qs-active {
+  border-color: var(--sl-color-accent, #2549ff) !important;
+  background: white !important;
+}
+
+.ht-method-card-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--sl-color-gray-3, #888);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 1.4;
+}
+
+.ht-method-card-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--sl-color-gray-1, #1a1a1a);
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 1.4;
+}
+
+.ht-method-card-desc {
+  font-size: 13px;
+  color: var(--sl-color-gray-2, #444);
+  line-height: 1.5;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
 .qs-tip {
   background: var(--sl-color-gray-6, #e8e8e5);
   border-left: 3px solid var(--sl-color-accent, #2549ff);
