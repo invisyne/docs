@@ -1,6 +1,8 @@
 ---
 title: "Forwarding to N+P Platform"
 description: "In addition to local recording on the Edge system, data can also be forwarded to other systems such as the N+P platform."
+sidebar:
+  order: 6
 ---
 
 :::note

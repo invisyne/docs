@@ -1,6 +1,8 @@
 ---
 title: "Weiterleitung an AWS (IoT)"
 description: "Damit ein Edge eine Verbindung mit dem IoT Core von AWS aufbauen kann, muss das Gerät in AWS ange"
+sidebar:
+  order: 5
 ---
 
 :::danger

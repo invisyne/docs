@@ -1,6 +1,8 @@
 ---
 title: "Configuring Data Recording"
 description: "- Determine the IP address of the field device - Determine the device type of the field device (e.g. Modbus, Simatic S7)"
+sidebar:
+  order: 2
 ---
 
 # Preparation

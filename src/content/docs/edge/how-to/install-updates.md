@@ -1,6 +1,8 @@
 ---
 title: "Installing Updates"
 description: "The Edge system is continuously developed. Improvements or new features are provided via update bundles."
+sidebar:
+  order: 4
 ---
 
 The Edge system is continuously developed. Improvements or new features are provided via update bundles. These are delivered digitally by your contact person.

@@ -1,0 +1,90 @@
+---
+title: "Eigenes HTTPS-Zertifikat installieren"
+description: "Beheben Sie die Browser-Sicherheitswarnung in Edge 2.22, indem Sie ein Zertifikat der Zertifizierungsstelle Ihrer Organisation installieren."
+sidebar:
+  order: 7
+  label: "Eigenes HTTPS-Zertifikat"
+  badge:
+    text: "2.22+"
+    variant: note
+---
+
+import { Steps } from '@astrojs/starlight/components';
+import certUploadSettings from '../../../../../assets/images/cert-upload-settings.png';
+import certUploadWizard from '../../../../../assets/images/cert-upload-wizard.png';
+import edgeSecure from '../../../../../assets/images/edge-secure.png';
+
+Ab Edge 2.22 wird die Weboberfläche standardmäßig über HTTPS bereitgestellt. Das Gerät verwendet ein selbstsigniertes Zertifikat, sodass Browser beim ersten Zugriff eine Sicherheitswarnung anzeigen. Die Verbindung ist in beiden Fällen verschlüsselt — die Warnung bedeutet lediglich, dass der Browser die Identität des Geräts nicht überprüfen kann. Hintergründe finden Sie unter [Sicherheit: Zertifikate](/de/edge/technical-reference/security-certificates).
+
+Um die Warnung dauerhaft zu beseitigen, installieren Sie ein Zertifikat, das von einer **Zertifizierungsstelle (CA) ausgestellt wurde, der Ihre Rechner bereits vertrauen** — in der Regel die eigene CA Ihrer Organisation. Das Beschaffen dieses Zertifikats und die Verwaltung des CA-Vertrauens sind Aufgabe Ihrer **IT-Abteilung** bzw. gemeinsam mit ihr durchzuführen. Diese Anleitung zeigt, wie Sie das Zertifikat auf dem Gerät installieren, sobald Sie es haben.
+
+:::note
+Sie haben kein Zertifikat? In den meisten Installationen können Sie die Warnung einfach übergehen — die Verbindung bleibt verschlüsselt (siehe [Sicherheit: Zertifikate](/de/edge/technical-reference/security-certificates)). Falls selbst die Warnung in Ihrer Umgebung nicht akzeptabel ist, siehe [HTTP erlauben](/de/edge/how-to/http-mode).
+:::
+
+## Was Sie benötigen
+
+Fordern Sie bei Ihrer IT-Abteilung ein Zertifikat an, das **für die IP-Adresse oder den Hostnamen des Geräts** ausgestellt ist, in einem der folgenden Formate:
+
+| Format | Was hochzuladen ist |
+|--------|---------------------|
+| PFX / PKCS#12 | die `.pfx`-Datei (plus Passwort, falls geschützt) |
+| PEM-Bündel | eine einzelne `.pem`-Datei mit Zertifikat **und** privatem Schlüssel |
+| PEM, getrennte Dateien | die Zertifikatsdatei **und** die Schlüsseldatei |
+
+Die IT stellt dieses Zertifikat aus der PKI Ihrer Organisation aus — zum Beispiel **Active Directory Certificate Services (AD CS)** oder einer anderen internen CA.
+
+:::note
+Wenn Ihre IT-Abteilung technische Fragen zu Zertifikaten für das Edge-Gerät hat, kann sie sich gerne an uns wenden.
+:::
+
+## Zertifikat hochladen
+
+### Über die Einstellungen
+
+<Steps>
+
+1. Die Edge-Weboberfläche öffnen und anmelden.
+
+2. Zu **Einstellungen** → **Netzwerkadapter** wechseln und den Tab **Sicherheit** öffnen.
+
+   <div class="screenshot-frame"><img src={certUploadSettings.src} alt="Zertifikat-Upload in Einstellungen, Netzwerkadapter, Tab Sicherheit" /></div>
+
+3. Das vorliegende Format auswählen, die Datei(en) wählen und das Passwort eingeben, falls die PFX-Datei geschützt ist.
+
+4. **Speichern** klicken. Das Zertifikat wird sofort übernommen — kein Neustart erforderlich.
+
+</Steps>
+
+### Über den Setup-Assistenten (bei der Ersteinrichtung)
+
+<Steps>
+
+1. Den Setup-Assistenten für das Edge-Gerät starten.
+
+2. Im Schritt **Netzwerkadapter** den Tab **Sicherheit** öffnen und das Zertifikat auf dieselbe Weise wie oben hochladen.
+
+   <div class="screenshot-frame"><img src={certUploadWizard.src} alt="Zertifikat-Upload im Netzwerkadapter-Schritt des Setup-Assistenten" /></div>
+
+3. Den Assistenten fortsetzen und abschließen.
+
+</Steps>
+
+:::tip
+Um jederzeit zum integrierten selbstsignierten Zertifikat des Geräts zurückzukehren, öffnen Sie denselben Tab **Sicherheit** und klicken auf **Zurücksetzen** — dadurch wird das hochgeladene Zertifikat entfernt.
+:::
+
+## Der ausstellenden CA auf Client-Rechnern vertrauen
+
+Damit der Browser das Zertifikat ohne Warnung akzeptiert, muss jeder Client-Rechner der CA vertrauen, die es ausgestellt hat. In einer verwalteten (**Active Directory**) Umgebung verteilt Ihre IT-Abteilung die CA in der Regel automatisch per Gruppenrichtlinie — Benutzer müssen dann nichts tun. Andernfalls importiert ein Administrator die CA einmalig auf jedem Rechner — wenn Ihr IT-Team die genauen Schritte benötigt, wenden Sie sich an uns.
+
+## Überprüfen
+
+Schließen Sie **alle** Browserfenster (Browser speichern Zertifikatsentscheidungen für die gesamte Sitzung — nur den Tab zu schließen reicht nicht), öffnen Sie den Browser erneut und rufen Sie das Gerät auf. Es sollte ein Schloss-Symbol ohne Warnung erscheinen.
+
+<div class="screenshot-frame"><img src={edgeSecure.src} alt="Sichere Verbindung mit Schloss-Symbol im Browser" /></div>
+
+**Falls die Warnung weiterhin erscheint, prüfen Sie:**
+- Die verwendete Adresse stimmt mit der IP-Adresse (oder dem Hostnamen) im Zertifikat überein.
+- Der Rechner vertraut der CA, die das Zertifikat ausgestellt hat — in einer verwalteten Umgebung bestätigen Sie mit der IT, dass die CA verteilt wurde.
+- Alle Browserfenster wurden vollständig geschlossen und neu geöffnet.

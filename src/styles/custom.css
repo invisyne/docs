@@ -51,6 +51,26 @@ h1, h2, h3, h4, h5, h6,
   --sl-color-accent-high: #0327ac;
 }
 
+/* ─── Note badge: lighter blue from design system ───────────────────── */
+:root {
+  --sl-badge-note-bg:     var(--md-sys-color-primary-container);
+  --sl-badge-note-border: var(--md-sys-color-primary);
+  --sl-badge-note-text:   var(--md-sys-color-on-primary-container);
+}
+
+/* ─── Sidebar badge: outline on inactive items so it reads as a tag ─── */
+.sidebar-content a:not([aria-current='page']) .sl-badge {
+  --sl-color-bg-badge: transparent;
+  --sl-color-border-badge: currentColor;
+  color: inherit;
+}
+
+/* ─── Inline badge in page content: breathing room below ────────────── */
+.sl-markdown-content .sl-badge {
+  display: block;
+  margin-bottom: 1.5rem;
+}
+
 /* ─── Sidebar: hide non-active product groups ───────────────────────── */
 /*
   Starlight renders top-level sidebar groups in ul.top-level > li.
@@ -64,10 +84,21 @@ h1, h2, h3, h4, h5, h6,
 .top-level > li:has(a[aria-current='page']) {
   margin-top: 0 !important;
 }
-/* PDF download link: visually separated from the section content above it. */
+/* PDF download link: visually separated from the section content above it.
+   The separator line floats in the margin via ::before so it never touches
+   the link's background box. */
 .sidebar-pdf-link {
-  margin-top: 1rem !important;
-  border-top: 1px solid var(--sl-color-hairline) !important;
+  margin-top: 2rem !important;
+  position: relative;
+}
+.sidebar-pdf-link::before {
+  content: '';
+  position: absolute;
+  top: -1rem;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--sl-color-hairline);
 }
 
 /* Lang/theme controls live in the header — hide Starlight's sidebar-footer duplicates */

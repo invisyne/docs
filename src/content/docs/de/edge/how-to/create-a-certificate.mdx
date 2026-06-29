@@ -1,0 +1,90 @@
+---
+title: "Zertifikate — IT-Referenz"
+description: "Referenz für IT-Teams: ein Zertifikat für ein Edge-Gerät mit OpenSSL erstellen und der ausstellenden CA auf Windows-Client-Rechnern vertrauen."
+sidebar:
+  hidden: true
+pagefind: false
+---
+
+import { Steps } from '@astrojs/starlight/components';
+import certmgrOpen from '../../../../../assets/images/certmgr-open.png';
+import certmgrTrustedRoot from '../../../../../assets/images/certmgr-trusted-root.png';
+import certmgrImportWizard from '../../../../../assets/images/certmgr-import-wizard.png';
+import caCertSave from '../../../../../assets/images/ca-cert-save.png';
+
+Diese Seite ist eine **optionale Referenz für IT-Teams**, die ein Zertifikat für ein Edge-Gerät benötigen, aber noch keine eigene Zertifizierungsstelle (CA) zur Ausstellung besitzen. Sie deckt zwei Aufgaben ab:
+
+- **Ein Zertifikat erstellen** mit OpenSSL, falls Ihre Organisation keine eigene CA hat.
+- **Der ausstellenden CA vertrauen** auf Windows-Client-Rechnern, falls sie nicht bereits verteilt ist.
+
+Wenn Ihre Organisation bereits eine PKI betreibt — zum Beispiel **Active Directory Certificate Services** — stellt diese das Zertifikat aus und verteilt die CA in der Regel automatisch (per Gruppenrichtlinie); dann benötigen Sie keinen der beiden Abschnitte. Um ein Zertifikat auf dem Gerät zu installieren, sobald Sie es haben, siehe [Eigenes HTTPS-Zertifikat installieren](/de/edge/how-to/https-certificate).
+
+## Ein Zertifikat mit OpenSSL erstellen
+
+Die folgenden Befehle sind für **OpenSSL 3.x** geschrieben (prüfen Sie Ihre Version mit `openssl version`); bei anderen Versionen können einzelne Optionen abweichen — konsultieren Sie die OpenSSL-Dokumentation. OpenSSL 3.x ist auf aktuellen Linux-Systemen Standard und unter Windows über Git for Windows oder eine eigenständige Installation (zum Beispiel mit `winget`) verfügbar. Ersetzen Sie `192.168.1.50` durchgehend durch die tatsächliche IP-Adresse des Geräts und `Example Org Edge CA` durch den Namen Ihrer Organisation.
+
+<Steps>
+
+1. **Erstellen Sie die CA Ihrer Organisation** (einmalig; für jedes Gerät wiederverwendbar).
+
+   ```bash
+   openssl req -x509 -newkey rsa:4096 -sha256 -days 3650 -nodes -keyout org-ca.key -out org-ca.crt -subj "/CN=Example Org Edge CA"
+   ```
+
+   `org-ca.crt` ist das öffentliche CA-Zertifikat, dem Ihre Client-Rechner vertrauen werden. **Halten Sie `org-ca.key` geheim** — wer ihn besitzt, kann Zertifikate im Namen Ihrer Organisation ausstellen.
+
+2. **Erstellen Sie einen privaten Schlüssel und eine Signieranforderung** für das Gerät und tragen Sie die IP-Adresse des Geräts in den Subject Alternative Name ein — Browser prüfen den SAN, nicht den `CN`.
+
+   ```bash
+   openssl req -newkey rsa:2048 -sha256 -nodes -keyout device.key -out device.csr -subj "/CN=192.168.1.50" -addext "subjectAltName=IP:192.168.1.50" -addext "extendedKeyUsage=serverAuth"
+   ```
+
+   Um statt einer IP-Adresse einen Hostnamen zu verwenden, schreiben Sie `-addext "subjectAltName=DNS:edge-device.example.local"`.
+
+3. **Signieren Sie die Anforderung mit Ihrer CA** und kopieren Sie dabei die angeforderten Erweiterungen in das Zertifikat.
+
+   ```bash
+   openssl x509 -req -in device.csr -CA org-ca.crt -CAkey org-ca.key -CAcreateserial -days 825 -sha256 -copy_extensions copyall -out device.crt
+   ```
+
+4. **(Optional) In eine einzelne PFX-Datei bündeln** für den Upload. Sie legen ein Passwort fest und geben es beim Upload erneut ein.
+
+   ```bash
+   openssl pkcs12 -export -inkey device.key -in device.crt -certfile org-ca.crt -out device.pfx
+   ```
+
+</Steps>
+
+Laden Sie entweder `device.pfx` oder die getrennten Dateien `device.crt` + `device.key` auf das Gerät hoch — siehe [Eigenes HTTPS-Zertifikat installieren](/de/edge/how-to/https-certificate). Stellen Sie anschließend sicher, dass die Client-Rechner `org-ca.crt` vertrauen (nächster Abschnitt).
+
+## Der CA auf Client-Rechnern vertrauen
+
+Wenn ein Client-Rechner der CA, die das Gerätezertifikat ausgestellt hat, noch nicht vertraut, kann ein Administrator die CA in den Windows-Zertifikatspeicher importieren. Chrome, Edge und Firefox unter Windows verwenden alle diesen Speicher, sodass ein Import alle drei abdeckt.
+
+<Steps>
+
+1. **Win + R** drücken, `certmgr.msc` eingeben und Enter drücken.
+
+   <div class="screenshot-frame"><img src={certmgrOpen.src} alt="Windows-Zertifikat-Manager" /></div>
+
+2. Im linken Bereich **Vertrauenswürdige Stammzertifizierungsstellen** aufklappen und **Zertifikate** auswählen.
+
+   <div class="screenshot-frame"><img src={certmgrTrustedRoot.src} alt="Speicher Vertrauenswürdige Stammzertifizierungsstellen" /></div>
+
+3. Rechtsklick auf **Vertrauenswürdige Stammzertifizierungsstellen** → **Alle Aufgaben** → **Importieren**.
+
+4. Im Zertifikat-Import-Assistenten **Weiter** klicken, dann zu Ihrem **CA-Zertifikat** navigieren (`org-ca.crt` bzw. die `.crt`/`.cer`-Datei Ihrer CA — nicht das Gerätezertifikat) und es auswählen.
+
+   <div class="screenshot-frame"><img src={certmgrImportWizard.src} alt="Zertifikat-Import-Assistent" /></div>
+
+5. Sicherstellen, dass der Speicher auf **Vertrauenswürdige Stammzertifizierungsstellen** gesetzt ist, dann **Weiter** → **Fertig stellen** klicken.
+
+6. Eine Sicherheitswarnung erscheint — **Ja** klicken, um der CA zu vertrauen.
+
+   <div class="screenshot-frame"><img src={caCertSave.src} alt="Sicherheitswarnung mit dem Namen der Example-Org-CA" /></div>
+
+</Steps>
+
+:::note
+Der Import in den Windows-Zertifikatspeicher erfordert lokale Administratorrechte, und Sie importieren das **CA**-Zertifikat — nicht das Gerätezertifikat. In einer verwalteten (Active Directory) Umgebung wird dies normalerweise per Gruppenrichtlinie an alle Rechner verteilt. **Firefox** liest den Windows-Speicher über `security.enterprise_roots.enabled`, das seit Firefox 68 standardmäßig aktiviert ist; falls Firefox weiterhin warnt, setzen Sie diesen Wert in `about:config` auf `true`.
+:::

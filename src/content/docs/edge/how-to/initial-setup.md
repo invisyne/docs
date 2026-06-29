@@ -1,6 +1,8 @@
 ---
 title: "Initial Setup"
 description: "This guide contains information for the initial setup of the Edge."
+sidebar:
+  order: 1
 ---
 
 This guide contains information for the initial setup of the Edge. A wizard will guide you through several steps. The Edge is not ready for operation until the wizard has been completed.

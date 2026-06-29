@@ -1,0 +1,90 @@
+---
+title: "Certificates — IT Reference"
+description: "Reference for IT teams: create a certificate for an Edge device with OpenSSL, and trust the issuing CA on Windows client machines."
+sidebar:
+  hidden: true
+pagefind: false
+---
+
+import { Steps } from '@astrojs/starlight/components';
+import certmgrOpen from '../../../../assets/images/certmgr-open.png';
+import certmgrTrustedRoot from '../../../../assets/images/certmgr-trusted-root.png';
+import certmgrImportWizard from '../../../../assets/images/certmgr-import-wizard.png';
+import caCertSave from '../../../../assets/images/ca-cert-save.png';
+
+This page is an **optional reference for IT teams** working with certificates for an Edge device. It covers two tasks:
+
+- **Creating a certificate** with OpenSSL, if your organization has no Certificate Authority (CA) of its own.
+- **Trusting the issuing CA** on Windows client machines, if it is not already distributed.
+
+If your organization already runs a PKI — for example **Active Directory Certificate Services** — it issues the certificate and usually distributes the CA automatically via group policy, so you may not need either section. To install a certificate on the device once you have it, see [Install a Custom HTTPS Certificate](/edge/how-to/https-certificate).
+
+## Create a certificate with OpenSSL
+
+The steps below show one straightforward way to create a small CA and use it to issue a certificate for the device. The commands below are written for **OpenSSL 3.x** (check yours with `openssl version`); on other versions some options may differ — consult the OpenSSL documentation. OpenSSL 3.x is standard on current Linux, and on Windows is available through Git for Windows or a standalone install (for example with `winget`). Replace `192.168.1.50` with the device's actual IP address throughout, and `Example Org Edge CA` with your own organization's name.
+
+<Steps>
+
+1. **Create your organization CA** (do this once; reuse it for every device).
+
+   ```bash
+   openssl req -x509 -newkey rsa:4096 -sha256 -days 3650 -nodes -keyout org-ca.key -out org-ca.crt -subj "/CN=Example Org Edge CA"
+   ```
+
+   `org-ca.crt` is the public CA certificate your client machines will trust. **Keep `org-ca.key` private** — anyone who has it can issue certificates in your organization's name.
+
+2. **Create a private key and signing request** for the device, putting the device's IP in the Subject Alternative Name — browsers check the SAN, not the `CN`.
+
+   ```bash
+   openssl req -newkey rsa:2048 -sha256 -nodes -keyout device.key -out device.csr -subj "/CN=192.168.1.50" -addext "subjectAltName=IP:192.168.1.50" -addext "extendedKeyUsage=serverAuth"
+   ```
+
+   To use a hostname instead of an IP, write `-addext "subjectAltName=DNS:edge-device.example.local"`.
+
+3. **Sign the request with your CA**, copying the requested extensions into the certificate.
+
+   ```bash
+   openssl x509 -req -in device.csr -CA org-ca.crt -CAkey org-ca.key -CAcreateserial -days 825 -sha256 -copy_extensions copyall -out device.crt
+   ```
+
+4. **(Optional) Bundle into a single PFX file** for upload. You'll set a password and enter it again during upload.
+
+   ```bash
+   openssl pkcs12 -export -inkey device.key -in device.crt -certfile org-ca.crt -out device.pfx
+   ```
+
+</Steps>
+
+Upload either `device.pfx`, or the separate `device.crt` + `device.key`, to the device — see [Install a Custom HTTPS Certificate](/edge/how-to/https-certificate). Then make sure client machines trust `org-ca.crt` (next section).
+
+## Trust the CA on client machines
+
+If a client machine does not already trust the CA that issued the device certificate, an administrator can import the CA into the Windows certificate store. Chrome, Edge, and Firefox on Windows all use this store, so one import covers all three.
+
+<Steps>
+
+1. Press **Win + R**, type `certmgr.msc`, and press Enter.
+
+   <div class="screenshot-frame"><img src={certmgrOpen.src} alt="Windows Certificate Manager" /></div>
+
+2. In the left panel, expand **Trusted Root Certification Authorities** and select **Certificates**.
+
+   <div class="screenshot-frame"><img src={certmgrTrustedRoot.src} alt="Trusted Root Certification Authorities store" /></div>
+
+3. Right-click **Trusted Root Certification Authorities** → **All Tasks** → **Import**.
+
+4. In the Certificate Import Wizard, click **Next**, then browse to your **CA certificate** (`org-ca.crt`, or the `.crt`/`.cer` file from your CA — not the device certificate) and select it.
+
+   <div class="screenshot-frame"><img src={certmgrImportWizard.src} alt="Certificate Import Wizard" /></div>
+
+5. Confirm the store is set to **Trusted Root Certification Authorities**, then click **Next** → **Finish**.
+
+6. A security confirmation appears — click **Yes** to trust the CA.
+
+   <div class="screenshot-frame"><img src={caCertSave.src} alt="Security warning showing the Example Org CA name" /></div>
+
+</Steps>
+
+:::note
+Importing into the Windows certificate store requires local administrator access, and you import the **CA** certificate — not the device certificate. In a managed (Active Directory) environment this is normally distributed to all machines via group policy. **Firefox** reads the Windows store via `security.enterprise_roots.enabled`, enabled by default since Firefox 68; if Firefox still warns, set that key to `true` in `about:config`.
+:::
