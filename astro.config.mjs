@@ -9,6 +9,12 @@ export default defineConfig({
 	// For an org page (github.com/ORG/ORG.github.io): site='https://ORG.github.io', no base needed
 	site: 'https://docs.invisyne.com',
 	redirects: {},
+	markdown: {
+		// Astro leaves this unset by default; @astrojs/mdx reads it directly to decide
+		// whether to enable GFM tables, so without this .mdx tables silently fall back
+		// to plain text while .md tables keep working via a different internal default.
+		gfm: true,
+	},
 	image: {
 		// Allow large animated GIFs (screen recordings) that exceed Sharp's default pixel limit
 		service: {

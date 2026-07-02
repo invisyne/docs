@@ -5,7 +5,7 @@ sidebar:
   order: 0
 ---
 
-Crawler.Companion besteht aus drei Hauptbereichen.
+Crawler.Companion besteht aus drei Hauptbereichen: dem Header mit Verbindungsstatus und Einstellungen, der Geräteliste mit allen im Netzwerk erkannten Edge-Geräten sowie dem Detailpanel zur Konfiguration eines einzelnen Geräts.
 
 <div class="screenshot-frame">
   <img src="/images/companion/geraeteansicht.png" alt="Crawler.Companion Oberflächen-Übersicht" />

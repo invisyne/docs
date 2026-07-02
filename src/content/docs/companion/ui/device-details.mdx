@@ -5,7 +5,7 @@ sidebar:
   order: 2
 ---
 
-Clicking a device in the list opens the detail panel on the right. It contains four tabs: **Details**, **Netzwerk Einstellungen**, **Update**, and **Export**.
+Clicking a device in the list opens the detail panel on the right. It contains four tabs: **Details**, **Netzwerkeinstellungen**, **Update**, and **Export**.
 
 <div class="screenshot-frame">
   <img src="/images/companion/geraete-detailansicht-neu.png" alt="Crawler.Companion device detail panel — Details tab" />
@@ -23,30 +23,39 @@ Clicking a device in the list opens the detail panel on the right. It contains f
 
     <div class="qs-panel">
 
-      | Field | Description |
-      |-------|-------------|
-      | **BMK/OKZ** | Device name as configured on the Edge device. |
-      | **WebUI** | Indicates whether the device's web interface is reachable. Click **WebUI** to open it in the browser. |
+      <table>
+        <thead><tr><th>Field</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><strong>BMK/OKZ</strong></td><td>Device name as configured on the Edge device.</td></tr>
+          <tr><td><strong>WebUI</strong></td><td>Indicates whether the device's web interface is reachable. Click <strong>WebUI</strong> to open it directly in the browser — no need to enter the IP address manually. Requires the Edge device to be on the same local network and reachable via HTTP.</td></tr>
+        </tbody>
+      </table>
 
     </div>
 
     <div class="qs-panel">
 
-      | Field | Description |
-      |-------|-------------|
-      | **Type** | Hardware platform, e.g. VMware Virtual Platform, Crawler Core. |
-      | **Seriennummer** | Unique identifier of the device hardware. |
-      | **MAC-Adresse 1** | MAC address of the X1 network adapter. |
-      | **MAC-Adresse 2** | MAC address of the X2 network adapter, if present. |
+      <table>
+        <thead><tr><th>Field</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Type</strong></td><td>Hardware platform, e.g. VMware Virtual Platform, Crawler Core.</td></tr>
+          <tr><td><strong>Seriennummer</strong></td><td>Unique identifier of the device hardware.</td></tr>
+          <tr><td><strong>MAC-Adresse 1</strong></td><td>MAC address of the X1 network adapter.</td></tr>
+          <tr><td><strong>MAC-Adresse 2</strong></td><td>MAC address of the X2 network adapter, if present.</td></tr>
+        </tbody>
+      </table>
 
     </div>
 
     <div class="qs-panel">
 
-      | Field | Description |
-      |-------|-------------|
-      | **Version** | Currently installed firmware version. |
-      | **Letztes Update** | Date and time of the last firmware update. |
+      <table>
+        <thead><tr><th>Field</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Version</strong></td><td>Currently installed firmware version.</td></tr>
+          <tr><td><strong>Letztes Update</strong></td><td>Date and time of the last firmware update.</td></tr>
+        </tbody>
+      </table>
 
     </div>
 
