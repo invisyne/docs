@@ -1,0 +1,71 @@
+---
+title: "Device List"
+description: "Overview of the Crawler.Companion device list — columns, status indicators, and header controls."
+sidebar:
+  order: 1
+---
+
+The device list is the main view of Crawler.Companion. It shows all Edge devices discovered on the local network, including unconfigured devices.
+
+<div class="qs-stepper">
+
+  <div class="qs-tabbar">
+    <a class="qs-tab" href="#">Columns</a>
+    <a class="qs-tab" href="#">Status</a>
+    <a class="qs-tab" href="#">Controls</a>
+  </div>
+
+  <div class="qs-panels">
+
+    <div class="qs-panel">
+
+      <div class="screenshot-frame">
+        <img src="/images/companion/geraeteansicht.png" alt="Crawler.Companion device list" />
+      </div>
+
+      | Column | Description |
+      |--------|-------------|
+      | **Name** | The device name as configured on the Edge device. |
+      | **Status** | Current operational state of the device. |
+      | **Firmware** | Installed firmware version. |
+      | **Hardware** | Hardware platform, e.g. Crawler VM, Crawler Core, SIEMENS IPC127E. |
+      | **Network X1** | IP address of the X1 network adapter. |
+      | **Network X2** | IP address of the X2 network adapter, if present. |
+      | **Web UI** | Indicates whether the device's web interface is reachable. Click the icon to open it in the browser. |
+
+    </div>
+
+    <div class="qs-panel">
+
+      Each device shows a colored status dot in the **Status** column.
+
+      | Status | Color | Meaning |
+      |--------|-------|---------|
+      | **OK** | Green | Device is reachable and fully operational. |
+      | **Einrichtung erforderlich** | Purple | Device is new and has not been set up yet. |
+      | **N/A** | Gray | Device is running an outdated firmware version and does not report a status. |
+      | **Unbekannt** | Gray | Device was discovered but its state cannot be determined. |
+
+
+    </div>
+
+    <div class="qs-panel">
+
+      The icons in the top-right corner of the device list provide two actions:
+
+      <div class="screenshot-frame" style="max-width: 420px">
+        <img src="/images/companion/steuer-elemente.png" alt="Device list controls — search and refresh" />
+      </div>
+
+      | Icon | Action |
+      |------|--------|
+      | Magnifying glass | Filter the device list by name or IP address. |
+      | Circular arrow | Manually rescan the network for devices. |
+
+      Clicking any row in the list opens the [Device Detail Panel](./device-details).
+
+    </div>
+
+  </div>
+
+</div>

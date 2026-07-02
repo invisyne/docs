@@ -1,0 +1,71 @@
+---
+title: "Geräteliste"
+description: "Übersicht der Crawler.Companion-Geräteliste — Spalten, Status-Indikatoren und Header-Steuerelemente."
+sidebar:
+  order: 1
+---
+
+Die Geräteliste ist die Hauptansicht von Crawler.Companion. Sie zeigt alle Edge-Geräte, die im lokalen Netzwerk erkannt wurden, einschließlich noch nicht eingerichteter Geräte.
+
+<div class="qs-stepper">
+
+  <div class="qs-tabbar">
+    <a class="qs-tab" href="#">Spalten</a>
+    <a class="qs-tab" href="#">Status</a>
+    <a class="qs-tab" href="#">Steuerelemente</a>
+  </div>
+
+  <div class="qs-panels">
+
+    <div class="qs-panel">
+
+      <div class="screenshot-frame">
+        <img src="/images/companion/geraeteansicht.png" alt="Crawler.Companion Geräteliste" />
+      </div>
+
+      | Spalte | Beschreibung |
+      |--------|--------------|
+      | **Name** | Der Gerätename, wie er auf dem Edge-Gerät konfiguriert ist. |
+      | **Status** | Aktueller Betriebszustand des Geräts. |
+      | **Firmware** | Installierte Firmware-Version. |
+      | **Hardware** | Hardware-Plattform, z. B. Crawler VM, Crawler Core, SIEMENS IPC127E. |
+      | **Network X1** | IP-Adresse des X1-Netzwerkadapters. |
+      | **Network X2** | IP-Adresse des X2-Netzwerkadapters, falls vorhanden. |
+      | **Web UI** | Zeigt an, ob die Web-Oberfläche des Geräts erreichbar ist. Klick auf das Symbol öffnet sie direkt im Browser. |
+
+    </div>
+
+    <div class="qs-panel">
+
+      Jedes Gerät zeigt einen farbigen Statuspunkt in der **Status**-Spalte.
+
+      | Status | Farbe | Bedeutung |
+      |--------|-------|-----------|
+      | **OK** | Grün | Gerät ist erreichbar und betriebsbereit. |
+      | **Einrichtung erforderlich** | Lila | Gerät ist neu und wurde noch nicht eingerichtet. |
+      | **N/A** | Grau | Gerät läuft mit einer veralteten Firmware-Version und meldet keinen Status. |
+      | **Unbekannt** | Grau | Gerät wurde erkannt, sein Zustand kann aber nicht bestimmt werden. |
+
+
+    </div>
+
+    <div class="qs-panel">
+
+      Die Icons oben rechts in der Geräteliste bieten zwei Aktionen:
+
+      <div class="screenshot-frame" style="max-width: 420px">
+        <img src="/images/companion/steuer-elemente.png" alt="Steuerelemente der Geräteliste — Suche und Aktualisieren" />
+      </div>
+
+      | Symbol | Aktion |
+      |--------|--------|
+      | Lupe | Geräteliste nach Name oder IP-Adresse filtern. |
+      | Kreispfeil | Netzwerk manuell nach Geräten durchsuchen. |
+
+      Ein Klick auf eine Zeile in der Liste öffnet die [Geräte-Detailansicht](./device-details).
+
+    </div>
+
+  </div>
+
+</div>
