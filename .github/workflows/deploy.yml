@@ -39,7 +39,7 @@ jobs:
       - name: Checkout release-notes
         uses: actions/checkout@v4
         with:
-          repository: invisyne/release-notes  # TODO: update with actual org/repo name
+          repository: invisyne/release-notes
           token: ${{ steps.app-token.outputs.token }}
           path: release-notes
 

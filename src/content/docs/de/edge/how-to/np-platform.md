@@ -28,7 +28,7 @@ Im erweiterten UI für Einrichtungen wird in der unteren linken Ecke die Version
    - **Adresse **&#x65;instellen: 
      - Klicken Sie im Bereich “Verbindung” auf das Stift-Symbol oben rechts.
 
-![](../../../../../assets/images/ve0x65iGBszJSnr2Sl4OO_b17532d1-a028-4aa5-b517-735aac98a249.png)
+![](../../../../../assets/images/edge/edge-nup-endpoint-connection.png)
 
 :::Paragraph{listStyleType="lower-roman" indent="2"}
 In dem sich öffnenden Dialog passen Sie das Protokoll, die Adresse, den Port an (z.B. mqtt, *plattform.nupis-rz.de*, 8883).
@@ -41,11 +41,11 @@ Klicken Sie auf “Speichern”.
 - **Benutzername **&#x75;nd **Passwort **&#x61;ngeben
   - Klicken Sie im Bereich “Login-Daten” auf das Stift-Symbol oben rechts.
 
-![](../../../../../assets/images/3THkOZa7DyGp1rHsys1Vv_37da128d-3b3f-4c28-9a56-f09d525a9bda.png)
+![](../../../../../assets/images/edge/edge-nup-endpoint-login-credentials.png)
 
 - Wählen Sie hier die Methode „Passwort“ aus.
 
-![](../../../../../assets/images/A9OwALE6Uz8DOJ_-hFzJS_581e51da-ba63-4aca-be98-dd43cce726c9.png)
+![](../../../../../assets/images/edge/edge-nup-endpoint-login-password-dialog.png)
 
 - Geben Sie die Ihnen zur Verfügung gestellten Informationen zu Nutzername und Passwort ein.
 - Speichern Sie die Eingaben
@@ -78,7 +78,7 @@ Die N+P-Plattform erfordert die Angabe verschiedener Einstellungen für jede Mes
 - Einheit der Messwerte
 - Zuordnung zur Anlage
 
-![](../../../../../assets/images/SlfzP4Ukx1XHGbKfcD1-t_7bfcff86-d857-46f7-9502-010564eca792.png)
+![](../../../../../assets/images/edge/edge-nup-measured-variable-edit.png)
 
 Diese Informationen müssen für jede Messgröße separat hinzugefügt werden. Um dies zu tun, wechseln Sie in den Bereich “**Alle Messgrößen”**. Navigieren Sie zu den entsprechenden Messgrößen und öffnen Sie den Einstellungsdialog, indem Sie auf das **Stift-Symbol** rechts neben der jeweiligen Messgröße klicken.
 

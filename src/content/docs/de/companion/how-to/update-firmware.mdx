@@ -6,6 +6,7 @@ sidebar:
 ---
 
 import { Steps } from '@astrojs/starlight/components';
+import firmwareUpdateImg from '../../../../../assets/images/companion/companion-firmware-update-tab.png';
 
 Crawler.Companion ermöglicht Firmware-Updates auf verbundenen Edge-Geräten — ohne direkten Zugriff auf die Web-Oberfläche des Geräts. Die Firmware-Datei wird zuerst aus dem Hub heruntergeladen und dann über Companion auf das Gerät eingespielt, das anschließend automatisch neu startet.
 
@@ -45,7 +46,7 @@ Crawler.Companion ermöglicht Firmware-Updates auf verbundenen Edge-Geräten —
        Unter **System aktualisieren** die Firmware-Datei (`.zip`) in die Drop-Zone ziehen oder auf **öffnen Sie eine Datei** klicken und die Datei auswählen.
 
        <div class="screenshot-frame">
-         <img src="/images/companion/geraete-firmware-update.png" alt="Companion Update-Tab mit Firmware-Drop-Zone" />
+         <img src={firmwareUpdateImg.src} alt="Companion Update-Tab mit Firmware-Drop-Zone" />
        </div>
 
     2. **Update starten**

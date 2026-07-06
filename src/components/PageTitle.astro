@@ -1,0 +1,45 @@
+---
+// Matches Starlight's own PageTitle.astro anchor id.
+const PAGE_TITLE_ID = '_top';
+
+const PRODUCTS = ['hub', 'edge', 'companion', 'deepview'];
+
+const segments = Astro.url.pathname.split('/').filter(Boolean);
+const product =
+  segments.length === 1 && PRODUCTS.includes(segments[0])
+    ? segments[0]
+    : segments.length === 2 && segments[0] === 'de' && PRODUCTS.includes(segments[1])
+      ? segments[1]
+      : null;
+
+const { entry } = Astro.locals.starlightRoute;
+---
+
+{product ? (
+  <div class="page-title-logo">
+    <img src={`/logos/${product}-light.svg`} alt={entry.data.title} class="dark:sl-hidden" />
+    <img src={`/logos/${product}-dark.svg`} alt={entry.data.title} class="light:sl-hidden" />
+  </div>
+) : (
+  <h1 id={PAGE_TITLE_ID}>{entry.data.title}</h1>
+)}
+
+<style>
+  @layer starlight.core {
+    h1 {
+      margin-top: 1rem;
+      font-size: var(--sl-text-h1);
+      line-height: var(--sl-line-height-headings);
+      font-weight: 600;
+      color: var(--sl-color-white);
+    }
+    .page-title-logo {
+      margin-top: 1rem;
+    }
+    .page-title-logo img {
+      height: 2.5rem;
+      width: auto;
+      display: block;
+    }
+  }
+</style>

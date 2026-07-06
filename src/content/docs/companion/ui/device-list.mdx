@@ -5,6 +5,9 @@ sidebar:
   order: 1
 ---
 
+import deviceListImg from '../../../../assets/images/companion/companion-device-list.png';
+import controlsImg from '../../../../assets/images/companion/companion-device-list-controls.png';
+
 The device list is the main view of Crawler.Companion. It shows all Edge devices discovered on the local network, including unconfigured devices.
 
 <div class="qs-stepper">
@@ -16,7 +19,7 @@ The device list is the main view of Crawler.Companion. It shows all Edge devices
   <div class="qs-panels">
     <div class="qs-panel">
       <div class="screenshot-frame">
-        <img src="/images/companion/geraeteansicht.png" alt="Crawler.Companion device list" />
+        <img src={deviceListImg.src} alt="Crawler.Companion device list" />
       </div>
       <table>
         <thead><tr><th>Column</th><th>Description</th></tr></thead>
@@ -46,7 +49,7 @@ The device list is the main view of Crawler.Companion. It shows all Edge devices
     <div class="qs-panel">
       <p>The icons in the top-right corner of the device list provide two actions:</p>
       <div class="screenshot-frame" style="max-width: 420px">
-        <img src="/images/companion/steuer-elemente.png" alt="Device list controls — search and refresh" />
+        <img src={controlsImg.src} alt="Device list controls — search and refresh" />
       </div>
       <table>
         <thead><tr><th>Icon</th><th>Action</th></tr></thead>

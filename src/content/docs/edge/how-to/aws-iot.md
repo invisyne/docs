@@ -85,7 +85,7 @@ Additional measured variables can be added.
 
 To automatically retrieve measured variables, the measured variable intended for transmission must be given a parameter. To do this, go to the list of measured variables for a device and open the editing dialog for the respective measured variable. Here you add an additional parameter with the identifier gateway\_aggregation.
 
-![](../../../../assets/images/Zf1sFrRI-o_2fofhEwEhG_75b4bffc-2c19-49a2-92fe-5bed121ef1e4.png)
+![](../../../../assets/images/edge/edge-gateway-aggregation-parameter.png)
 
 **Aggregation interval**
 
@@ -109,13 +109,13 @@ If the measurement point is to be transmitted raw (not aggregated), the value "0
 Due to a bug, parameters can no longer be completely deleted from a measured variable. To prevent the measured variable from being selected for the gateway, the value for the entry can be left **EMPTY**.
 :::
 
-![](../../../../assets/images/usOM1383pTcEx3KCCaQ2h_8d2c4afe-adb6-4733-ba79-62e1019c4365.png)
+![](../../../../assets/images/edge/edge-gateway-aggregation-parameter-empty.png)
 
 ### 2. Retrieving in the gateway
 
 To trigger automated retrieval, click the "Retrieve measured variables" button in the respective dispatcher.
 
-![](../../../../assets/images/bWMOYYHRn-q1wzaibKVzj_1b7428a9-badb-4931-b176-7f57f709a00f.png)
+![](../../../../assets/images/edge/edge-gateway-retrieve-button.png)
 
 After a brief moment, the previously marked measured variables will be configured in the dispatcher with the respective aggregation.
 

@@ -3,6 +3,11 @@ title: "Quickstart"
 description: "A quick tour of the main areas of Crawler.Companion."
 ---
 
+import deviceDetailImg from '../../../assets/images/companion/companion-device-detail-panel.png';
+import networkSettingsImg from '../../../assets/images/companion/companion-network-settings.png';
+import updateImg from '../../../assets/images/companion/companion-update-panel.png';
+import exportImg from '../../../assets/images/companion/companion-export-panel.png';
+
 A brief overview of what you can do with Crawler.Companion.
 
 <div class="qs-stepper">
@@ -19,7 +24,7 @@ A brief overview of what you can do with Crawler.Companion.
     <div class="qs-panel">
       <p>The main view lists all Edge devices found in your local network. Click any device row to open its detail panel, where you can view the device name, hardware type, firmware version, and current network configuration.</p>
       <div class="screenshot-frame">
-        <img src="/images/companion/companion-devices-detail.png" alt="Companion device detail panel" />
+        <img src={deviceDetailImg.src} alt="Companion device detail panel" />
       </div>
     </div>
 
@@ -27,7 +32,7 @@ A brief overview of what you can do with Crawler.Companion.
       <p>In the device detail panel, navigate to <strong>Network Settings</strong> to adjust the IP configuration of the selected device. You can switch between DHCP and static IP, and set the IP address, subnet mask, and gateway.</p>
       <p>Save your changes — the device will apply the new settings and restart if necessary.</p>
       <div class="screenshot-frame">
-        <img src="/images/companion/companion-network-settings.png" alt="Companion network settings panel" />
+        <img src={networkSettingsImg.src} alt="Companion network settings panel" />
       </div>
     </div>
 
@@ -35,14 +40,14 @@ A brief overview of what you can do with Crawler.Companion.
       <p>In the device detail panel, navigate to <strong>Update</strong> to install a new firmware version on the selected device. Select the desired version and start the update.</p>
       <div class="qs-tip">Make sure the device has a stable power supply during the update.</div>
       <div class="screenshot-frame">
-        <img src="/images/companion/companion-update.png" alt="Companion update panel" />
+        <img src={updateImg.src} alt="Companion update panel" />
       </div>
     </div>
 
     <div class="qs-panel">
       <p>Companion exports measurement data either by time range or by runs — defined measurement recording sessions stored on the device, each with a clear start and end. Data can be exported as a CSV file or transferred directly to DeepView, a data analysis tool for detailed signal visualization and complex charting.</p>
       <div class="screenshot-frame">
-        <img src="/images/companion/companion-export.png" alt="Companion export panel" />
+        <img src={exportImg.src} alt="Companion export panel" />
       </div>
       <div class="qs-export-grid">
         <div class="qs-export-col">

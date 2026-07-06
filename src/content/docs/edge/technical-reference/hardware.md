@@ -9,7 +9,7 @@ description: "- Intel® Atom E3940 Quadcore 1.80 GHz - 4GB RAM - 64GB FLASH - 2 
 
 ### Siemens SIMATIC IPC127E
 
-![](../../../../assets/images/OTQGLzEf5bo-j-yna8fhl_af58eaaa-0c81-44b5-9428-7ac6cff812b8.png)
+![](../../../../assets/images/edge/edge-hardware-simatic-ipc127e.png)
 
 - Intel® Atom E3940 Quadcore 1.80 GHz
 - 4GB RAM
@@ -27,20 +27,20 @@ description: "- Intel® Atom E3940 Quadcore 1.80 GHz - 4GB RAM - 64GB FLASH - 2 
 
 ### Mounting
 
-![](../../../../assets/images/Ej4po8CMx5JZBagyxY_cS_9183dcf4-8681-4ccf-aae4-a594f82a1a44.jfif)
+![](../../../../assets/images/edge/edge-hardware-mounting-overview.jfif)
 
 DIN rail: DIN bracket:
 
 DIN rail: Book mounting:
 
-![](../../../../assets/images/7JyTS-UVLL3xQ_XwL6nt7_499a35e9-4d13-47f7-a570-c29444d42d10.png)
+![](../../../../assets/images/edge/edge-hardware-din-bracket.png)
 
-![](../../../../assets/images/sYO_jkT6x_RPDD5O5Rnog_57068125-fdab-4039-9978-90383b0dba94.png)
+![](../../../../assets/images/edge/edge-hardware-book-mount.png)
 
 ---
 ### WAGO Edge Computer **752-9400**
 
-![](../../../../assets/images/9eU_34T7mYKzRnHqMt580_459897a2-4810-4f26-831e-4aa796b36ef0.png)
+![](../../../../assets/images/edge/edge-hardware-wago-752-9400.png)
 
 - Intel® Atom E3845 Quadcore 1.91 GHz
 - 4GB RAM

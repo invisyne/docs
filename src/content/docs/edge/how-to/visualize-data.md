@@ -22,7 +22,7 @@ sidebar:
   - [Tips for Designing Grafana Dashboards](https://www.percona.com/blog/designing-grafana-dashboards/)
   - …
 
-![](../../../../assets/images/mEJxXv-fIiPj5ye_5oWQQ_4ef10733-2865-4726-99ab-70c1d6cba655.png)
+![](../../../../assets/images/edge/edge-grafana-menu.png)
 
 :::note
 ℹ The Edge uses Grafana version 7.4.
@@ -35,7 +35,7 @@ No login is required to view previously configured dashboards. If you want to cr
 
 To log in, click the icon in the lower left area. You will then be prompted for a `username and password`.
 
-![](../../../../assets/images/32agWcXqkSoIr_ihLngAm_a610a4b9-56d0-4802-b533-5ea9436d77d7.gif)
+![](../../../../assets/images/edge/edge-grafana-viewer-vs-editor.gif)
 
 ## Creating dashboards
 
@@ -43,9 +43,9 @@ To create a new dashboard, click the "+" symbol in the left menu bar and select 
 
 You can now add content to the dashboard and configure advanced settings.
 
-![](../../../../assets/images/v-PF6ACKugWYgVL2vufIp_9b7a0d95-1c78-4029-82be-f8dfd8c4b5e7.png)
+![](../../../../assets/images/edge/edge-grafana-create-menu.png)
 
-![](../../../../assets/images/pI0Ss8kjtveIQd3WdcMKc_2a350a82-24c9-45cc-9d51-534372fb16aa.png)
+![](../../../../assets/images/edge/edge-grafana-save-dashboard.png)
 
 :::caution
 For the dashboard to persist, it must first be **saved**. To do so, click the 💾 symbol in the upper right area.
@@ -59,21 +59,21 @@ In the dialog that opens, you can give the dashboard a name (can be changed late
 
 Folders are used to organize dashboards. You can create as many folders as you like and assign dashboards to them.
 
-![](../../../../assets/images/UBxOfgr4f7qQ_u1OuwGLK_258ba3a0-24d8-45c7-99b7-e25a6234ef5e.gif)
+![](../../../../assets/images/edge/edge-grafana-dashboards-manage.gif)
 
 To create a folder, click the "+" symbol in the left menu and select "Folder" from the submenu.
 
 Enter the desired name for the folder and confirm with "Create".
 
-![](../../../../assets/images/g0MGUFIAINugOcd_gSDPf_6a18c1f6-ed48-4bd9-a17c-ad61c872fac8.png)
+![](../../../../assets/images/edge/edge-grafana-create-folder-menu.png)
 
-![](../../../../assets/images/dLspt0YbLdpmHIJ1p3Zto_62de681f-d95c-4329-a2c0-dd271ea2e8f4.png)
+![](../../../../assets/images/edge/edge-grafana-new-folder.png)
 
 ### Export/Import of dashboards
 
 You can export dashboards and import them on another device or for restoration.
 
-![](../../../../assets/images/pY8fJRbm7UDS-3f6ABJoQ_4273f10f-0b18-4624-b628-95db5f364dac.png)
+![](../../../../assets/images/edge/edge-grafana-export-icon.png)
 
 Open a dashboard that you want to **export**. Click the "Share" symbol in the upper left area (next to the title) and select the "Export" option. Use "Save to file" to download the dashboard (settings and panels) as a file.
 
@@ -85,19 +85,19 @@ To **import** an exported dashboard, first click the "+" symbol in the left menu
 
 A dashboard consists mainly of so-called panels. These can be created and configured individually.
 
-![](../../../../assets/images/HlERS388cP1Wbba7VFOyh_51d5dc27-a3cb-42e0-b6cb-928ab9854acc.png)
+![](../../../../assets/images/edge/edge-grafana-add-panel-icon.png)
 
 To create a new panel, click the "+" symbol in the upper right area (to the left of the save symbol).
 
 A new panel is always inserted at the top and can then be placed individually within the dashboard. Select "+ Add new panel" in the added box. You will be directed to the editor page for a panel. This area allows configuration of the data source and the display.
 
-![](../../../../assets/images/bCvzip4vhYgt_H5xLL8mR_5ad99297-d4e7-4ec6-8237-ff5befc7e1a3.gif)
+![](../../../../assets/images/edge/edge-grafana-add-panel.gif)
 
 ### Selecting a measured variable
 
 For data to be displayed in a panel, at least one measured variable must be selected. This is done in the lower area, below the display preview.
 
-![](../../../../assets/images/BTGVpGd3Ghsgq_9K6oT7n_ddfe4ece-7576-400e-8087-cb2f38e8a9de.png)
+![](../../../../assets/images/edge/edge-grafana-query-editor.png)
 
 1. **Select Measurement***:* Select source here. If this is not available for selection, no values have been recorded yet for configured measured variables. If you still want to set up the visualization, you can also enter source manually (note lowercase spelling).
 
@@ -113,17 +113,17 @@ Provided that values have already been recorded for the selected measured variab
 If the selection of the measured variable has not yet been completed (e.g. only the device has been selected), values will already be displayed in the preview. These are not correct and represent a combination of multiple measured variables. It is therefore crucial to have selected a measured variable ("variable") at the end.
 :::
 
-![](../../../../assets/images/C_t2FQzv6JqaX_2r_2GUb_f8bcc5fe-4faf-4db2-8019-15d0c5adaa88.gif)
+![](../../../../assets/images/edge/edge-grafana-select-measurement.gif)
 
 ### Measured variables of type "String"
 
 Measured variables that are stored in the Edge as a string `(e.g. S7_DWORD`, see *Specification: Protocols and Field Devices*) require a change to the "field" value. To do this, click on "value" in the "Select" area. Enter the text `"stringValue"` (⚠ note case sensitivity).
 
-![](../../../../assets/images/ACfznD9vgz55KoiKz1Mnn_ba9efcf4-6e6e-4e77-9487-2df8bfad28ab.png)
+![](../../../../assets/images/edge/edge-grafana-query-string-field.png)
 
 ### Changing and adjusting the display type ("Visualization")
 
-![](../../../../assets/images/jRQNreJaNDKnXsqWuR_hR_901184c9-836a-4718-adeb-eab11323d625.png)
+![](../../../../assets/images/edge/edge-grafana-visualization-picker.png)
 
 Grafana offers a variety of display options. These include charts (line, bar), individual values, gauges, or tables. Depending on the display type, different settings (axes, legend, colors, labels) can be configured. The official *documentation* and *tutorials* from Grafana are referenced here.
 

@@ -28,7 +28,7 @@ In the advanced UI for configurations, the version of the Edge is displayed in t
    - **Set address**:
      - In the "Connection" area, click the pencil icon in the top right.
 
-![](../../../../assets/images/ve0x65iGBszJSnr2Sl4OO_b17532d1-a028-4aa5-b517-735aac98a249.png)
+![](../../../../assets/images/edge/edge-nup-endpoint-connection.png)
 
    i. In the dialog that opens, adjust the protocol, address, and port (e.g. mqtt, *plattform.nupis-rz.de*, 8883).
 
@@ -37,11 +37,11 @@ In the advanced UI for configurations, the version of the Edge is displayed in t
 - **Enter username and password**
   - In the "Login credentials" area, click the pencil icon in the top right.
 
-![](../../../../assets/images/3THkOZa7DyGp1rHsys1Vv_37da128d-3b3f-4c28-9a56-f09d525a9bda.png)
+![](../../../../assets/images/edge/edge-nup-endpoint-login-credentials.png)
 
 - Select the "Password" method here.
 
-![](../../../../assets/images/A9OwALE6Uz8DOJ_-hFzJS_581e51da-ba63-4aca-be98-dd43cce726c9.png)
+![](../../../../assets/images/edge/edge-nup-endpoint-login-password-dialog.png)
 
 - Enter the username and password provided to you.
 - Save your entries.
@@ -74,7 +74,7 @@ The N+P platform requires the specification of various settings for each measure
 - Unit of the measured values
 - Assignment to the plant
 
-![](../../../../assets/images/SlfzP4Ukx1XHGbKfcD1-t_7bfcff86-d857-46f7-9502-010564eca792.png)
+![](../../../../assets/images/edge/edge-nup-measured-variable-edit.png)
 
 This information must be added separately for each measured variable. To do this, switch to the **"All measured variables"** area. Navigate to the corresponding measured variables and open the settings dialog by clicking the **pencil icon** to the right of the respective measured variable.
 

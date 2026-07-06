@@ -6,6 +6,7 @@ sidebar:
 ---
 
 import { Steps } from '@astrojs/starlight/components';
+import firmwareUpdateImg from '../../../../assets/images/companion/companion-firmware-update-tab.png';
 
 Crawler.Companion lets you update the firmware of connected Edge devices directly — without needing access to the device's web interface.
 
@@ -40,7 +41,7 @@ Crawler.Companion lets you update the firmware of connected Edge devices directl
        Under **System aktualisieren**, drag the firmware file (`.zip`) into the drop zone, or click **öffnen Sie eine Datei** and select the file.
 
        <div class="screenshot-frame">
-         <img src="/images/companion/geraete-firmware-update.png" alt="Companion Update tab showing firmware drop zone" />
+         <img src={firmwareUpdateImg.src} alt="Companion Update tab showing firmware drop zone" />
        </div>
 
     2. **Start the update**

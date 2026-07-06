@@ -33,6 +33,7 @@ export default defineConfig({
 				LanguageSelect: './src/components/LanguageSelect.astro',
 				ThemeSelect: './src/components/ThemeSelect.astro',
 				Sidebar: './src/components/Sidebar.astro',
+				PageTitle: './src/components/PageTitle.astro',
 			},
 			title: {
 				en: 'Documentation',

@@ -5,6 +5,10 @@ sidebar:
   order: 5
 ---
 
+import loginDialogImg from '../../../../../assets/images/companion/companion-hub-login-dialog.png';
+import connectionIndicatorImg from '../../../../../assets/images/companion/companion-hub-connection-indicator.png';
+import logoutMenuImg from '../../../../../assets/images/companion/companion-hub-logout-menu.png';
+
 Crawler.Companion kann ohne Hub-Login verwendet werden, um Geräte im lokalen Netzwerk zu verwalten. Eine Anmeldung mit einem Hub-Account schaltet zusätzliche Funktionen wie z. B. die **Deepview**-Exporte frei.
 
 <div class="qs-stepper">
@@ -21,7 +25,7 @@ Crawler.Companion kann ohne Hub-Login verwendet werden, um Geräte im lokalen Ne
       Auf **Hub-Verbindung** in der oberen Navigationsleiste klicken. Es erscheint ein Anmeldedialog.
 
       <div class="screenshot-frame">
-        <img src="/images/companion/anmelde-ui.png" alt="Hub-Anmeldedialog" />
+        <img src={loginDialogImg.src} alt="Hub-Anmeldedialog" />
       </div>
 
       <table>
@@ -36,7 +40,7 @@ Crawler.Companion kann ohne Hub-Login verwendet werden, um Geräte im lokalen Ne
       Auf **Anmelden** klicken. Der **Hub-Verbindung**-Indikator im Header leuchtet grün, wenn die Verbindung aktiv ist.
 
       <div class="screenshot-frame" style="max-width: 480px">
-        <img src="/images/companion/hub-verbindung.png" alt="Hub-Verbindungsindikator im Header" />
+        <img src={connectionIndicatorImg.src} alt="Hub-Verbindungsindikator im Header" />
       </div>
 
     </div>
@@ -46,7 +50,7 @@ Crawler.Companion kann ohne Hub-Login verwendet werden, um Geräte im lokalen Ne
       Das **Account-Symbol** (Initialen) oben rechts klicken. Ein Dropdown zeigt den angemeldeten Benutzer. Auf **Abmelden** klicken.
 
       <div class="screenshot-frame">
-        <img src="/images/companion/ausloggen-ui.png" alt="Account-Menü mit Abmelden-Option" />
+        <img src={logoutMenuImg.src} alt="Account-Menü mit Abmelden-Option" />
       </div>
 
     </div>
