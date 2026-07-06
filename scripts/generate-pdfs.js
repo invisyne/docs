@@ -167,7 +167,8 @@ const PRINT_CSS = `
   .section { page-break-before: always; }
   h1 { font-size: 20pt; border-bottom: 2px solid #e5e7eb; padding-bottom: 0.25em; margin-top: 0; }
   h2 { font-size: 15pt; page-break-before: always; page-break-after: avoid; }
-  .section > h1:first-child + h2 { page-break-before: avoid; }
+  .section > h1:first-child + h2,
+  .section > h1:first-child + .sl-heading-wrapper > h2 { page-break-before: avoid; }
   h3 { font-size: 12pt; }
   h4, h5, h6 { font-size: 10.5pt; }
   code {
