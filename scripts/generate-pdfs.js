@@ -62,7 +62,7 @@ const MIME = {
 };
 
 const PRODUCTS = [
-  { id: 'edge',      title: 'Invisyne Edge' },
+  { id: 'edge',      title: 'Invisyne Edge', headerTitle: 'Invisyne Edge (Crawler)' },
   { id: 'companion', title: 'Invisyne Companion' },
   { id: 'hub',       title: 'Invisyne Hub' },
 ];
@@ -159,14 +159,15 @@ const PRINT_CSS = `
     page-break-after: always;
     position: relative;
   }
-  .cover-logo { width: 260px; margin-bottom: 1.5em; }
-  .cover-logo svg { width: 100%; height: auto; display: block; }
+  .cover-logo { height: 60px; margin-bottom: 1.5em; }
+  .cover-logo svg { height: 100%; width: auto; display: block; }
   .cover p { font-size: 13pt; color: #6b7280; margin: 0; font-family: 'GT America Extended', -apple-system, sans-serif; }
   .cover-brand { position: absolute; bottom: 48px; width: 120px; opacity: 0.7; }
   .cover-brand svg { width: 100%; height: auto; display: block; }
   .section { page-break-before: always; }
   h1 { font-size: 20pt; border-bottom: 2px solid #e5e7eb; padding-bottom: 0.25em; margin-top: 0; }
   h2 { font-size: 15pt; page-break-before: always; page-break-after: avoid; }
+  .section > h1:first-child + h2 { page-break-before: avoid; }
   h3 { font-size: 12pt; }
   h4, h5, h6 { font-size: 10.5pt; }
   code {
@@ -258,6 +259,12 @@ const PRINT_CSS = `
   }
   ol, ul { padding-left: 1.5em; }
   li { margin: 0.2em 0; }
+  .sysreq-icon {
+    width: 80px;
+    height: auto;
+    color: #9ca3af;
+    opacity: 0.5;
+  }
   .chapter-divider {
     display: flex;
     align-items: center;
@@ -412,7 +419,7 @@ async function buildProductPDF(browser, product, lang) {
     printBackground: true,
     margin: { top: '2cm', right: '2cm', bottom: '2.5cm', left: '2cm' },
     displayHeaderFooter: true,
-    headerTemplate: `<div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:8pt;width:100%;text-align:center;color:#9ca3af;padding-top:8px;">${product.title} — ${lang.label}</div>`,
+    headerTemplate: `<div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:8pt;width:100%;text-align:center;color:#9ca3af;padding-top:8px;">${product.headerTitle || product.title} — ${lang.label}</div>`,
     footerTemplate: `<div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:8pt;width:100%;text-align:center;color:#9ca3af;padding-bottom:8px;"><span class="pageNumber"></span> / <span class="totalPages"></span></div>`,
   });
   await page.close();
