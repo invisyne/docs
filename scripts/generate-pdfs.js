@@ -10,7 +10,7 @@ import { createReadStream, existsSync, readdirSync, readFileSync } from 'node:fs
 import { mkdir, writeFile } from 'node:fs/promises';
 import { join, extname, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { slugify, computePageNumbers, renderDividerHtml, renderTocHtml } from './pdf-toc.js';
+import { computePageNumbers, renderDividerHtml, renderTocHtml, assignChapterIds } from './pdf-toc.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const DIST = join(__dirname, '../dist');
@@ -118,7 +118,8 @@ async function extractChapters(browser, url, prefix) {
         }
         const details = li.querySelector(':scope > details');
         if (!details) continue;
-        const title = details.querySelector(':scope > summary .group-label')?.textContent.trim() || '';
+        const summaryEl = details.querySelector(':scope > summary');
+        const title = summaryEl?.querySelector('.group-label')?.textContent.trim() || summaryEl?.textContent.trim() || '';
         const subUl = details.querySelector(':scope > ul');
         const pages = Array.from(subUl.querySelectorAll(':scope > li > a'))
           .filter(a => !a.classList.contains('sidebar-pdf-link'))
@@ -336,7 +337,11 @@ async function buildProductPDF(browser, product, lang) {
   const pathPrefix = lang.dir ? `/${lang.dir}/${product.id}` : `/${product.id}`;
   const indexUrl = `${BASE}${pathPrefix}/`;
 
-  const chapters = await extractChapters(browser, indexUrl, `${pathPrefix}/`);
+  const rawChapters = await extractChapters(browser, indexUrl, `${pathPrefix}/`);
+  if (rawChapters.length === 0) {
+    throw new Error(`No sidebar chapters found for ${product.title} (${lang.id}) at ${indexUrl} — the sidebar DOM structure may have changed`);
+  }
+  const chapters = assignChapterIds(rawChapters);
   console.log(`  ${chapters.length} top-level chapters`);
 
   const knownHrefs = new Set();
@@ -347,6 +352,7 @@ async function buildProductPDF(browser, product, lang) {
   for (const pagePath of findPages(basePath)) {
     const rel = pagePath.replace(basePath, '').replace(/index\.html$/, '');
     const pathname = `${pathPrefix}${rel}`;
+    if (pathname.endsWith('/download/')) continue; // the "Download PDF" link's own target page; deliberately excluded above
     if (!knownHrefs.has(pathname)) {
       console.warn(`  ! ${pathname} exists in dist but isn't linked from the sidebar — omitted from PDF`);
     }
@@ -371,12 +377,12 @@ async function buildProductPDF(browser, product, lang) {
   const bodyParts = [finalToc];
   for (const chapter of finalChapters) {
     if (chapter.type === 'group') {
-      bodyParts.push(renderDividerHtml(chapter.title));
+      bodyParts.push(renderDividerHtml(chapter.title, chapter.id));
       for (const p of chapter.pages) {
-        bodyParts.push(`<div class="section" id="${slugify(p.title)}">${pageContent.get(p.href)}</div>`);
+        bodyParts.push(`<div class="section" id="${p.id}">${pageContent.get(p.href)}</div>`);
       }
     } else {
-      bodyParts.push(`<div class="section" id="${slugify(chapter.title)}">${pageContent.get(chapter.href)}</div>`);
+      bodyParts.push(`<div class="section" id="${chapter.id}">${pageContent.get(chapter.href)}</div>`);
     }
   }
 
