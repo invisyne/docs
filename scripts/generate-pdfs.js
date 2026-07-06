@@ -310,6 +310,22 @@ async function extractContent(browser, url) {
     let html = await page.evaluate(() => {
       const title = document.querySelector('h1');
       const el = document.querySelector('.sl-markdown-content');
+      if (el) {
+        el.querySelectorAll('.qs-stepper').forEach(stepper => {
+          const tabs = Array.from(stepper.querySelectorAll('.qs-tabbar .qs-tab'));
+          const panels = Array.from(stepper.querySelectorAll('.qs-panels .qs-panel'));
+          tabs.forEach((tab, i) => {
+            const panel = panels[i];
+            if (!panel) return;
+            const titleEl = tab.querySelector('[class$="-title"]');
+            const heading = document.createElement('h2');
+            heading.textContent = (titleEl ? titleEl.textContent : tab.textContent).trim();
+            panel.insertBefore(heading, panel.firstChild);
+          });
+          const tabbar = stepper.querySelector('.qs-tabbar');
+          if (tabbar) tabbar.remove();
+        });
+      }
       const titleHtml = title ? `<h1>${title.innerHTML}</h1>` : '';
       return titleHtml + (el ? el.innerHTML : '');
     });
