@@ -17,7 +17,7 @@ Documentation is available in English (default) and German (`/de/`). Each produc
 - **Overview** — What the product is and how it fits into the Invisyne ecosystem
 - **Quickstart** — First-time setup guide
 - **UI Reference** — Description of all UI pages and their functions
-- **How-To Guides** — Task-oriented guides for specific operations (Companion and Edge only; Hub in progress)
+- **How-To Guides** — Task-oriented guides for specific operations
 - **Changelog** — Version history and release notes
 
 ## How It Works
@@ -45,6 +45,9 @@ npm run build
 
 # Generate PDFs (run after build, outputs to dist/downloads/)
 npm run generate-pdfs
+
+# Run unit tests
+npm test
 ```
 
 The dev server runs at `http://localhost:4321`.
@@ -68,7 +71,7 @@ description: How to do the thing.
 ---
 ```
 
-How-to guides are auto-discovered from the `how-to/` directories and added to the sidebar automatically.
+How-to guides are auto-discovered from the `how-to/` directories and added to the sidebar automatically — except for Hub, whose how-to guides are listed explicitly in `astro.config.mjs`'s sidebar config, so a new one also needs an entry added there.
 
 ## Deployment
 
@@ -80,7 +83,7 @@ Every push to `main` triggers the GitHub Actions workflow automatically — no m
 2. **Checkout release-notes** — The private repo is checked out into the build environment.
 3. **Generate changelogs** — `scripts/generate-changelogs.js` reads all public release notes and writes one changelog page per product (EN + DE). Files marked `-internal` and version folders marked `-upcoming` are excluded — they never appear in the published docs.
 4. **Build** — Astro compiles the full static site to `dist/`.
-5. **Generate PDFs** — `scripts/generate-pdfs.js` produces one PDF per product (`dist/downloads/edge.pdf`, `hub.pdf`, `companion.pdf`) via Puppeteer. PDFs are not committed to the repo.
+5. **Generate PDFs** — `scripts/generate-pdfs.js` produces one PDF per product and language (`dist/downloads/edge-en.pdf`, `edge-de.pdf`, `hub-en.pdf`, etc.) via Puppeteer, with chapter structure and a table of contents derived from the live sidebar. PDFs are not committed to the repo.
 6. **Deploy** — The `dist/` folder is deployed to GitHub Pages under the custom domain with HTTPS.
 
 ### Required secrets
