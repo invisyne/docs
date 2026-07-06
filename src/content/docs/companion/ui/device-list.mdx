@@ -1,0 +1,61 @@
+---
+title: "List of Edge Devices"
+description: "Overview of the Crawler.Companion device list — columns, status indicators, and header controls."
+sidebar:
+  order: 1
+---
+
+The device list is the main view of Crawler.Companion. It shows all Edge devices discovered on the local network, including unconfigured devices.
+
+<div class="qs-stepper">
+  <div class="qs-tabbar">
+    <a class="qs-tab" href="#">Columns</a>
+    <a class="qs-tab" href="#">Status</a>
+    <a class="qs-tab" href="#">Controls</a>
+  </div>
+  <div class="qs-panels">
+    <div class="qs-panel">
+      <div class="screenshot-frame">
+        <img src="/images/companion/geraeteansicht.png" alt="Crawler.Companion device list" />
+      </div>
+      <table>
+        <thead><tr><th>Column</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Name</strong></td><td>The device name as configured on the Edge device.</td></tr>
+          <tr><td><strong>Status</strong></td><td>Current operational state of the device.</td></tr>
+          <tr><td><strong>Firmware</strong></td><td>Installed firmware version.</td></tr>
+          <tr><td><strong>Hardware</strong></td><td>Hardware platform, e.g. Crawler VM, Crawler Core, SIEMENS IPC127E.</td></tr>
+          <tr><td><strong>Network X1</strong></td><td>IP address of the X1 network adapter.</td></tr>
+          <tr><td><strong>Network X2</strong></td><td>IP address of the X2 network adapter, if present.</td></tr>
+          <tr><td><strong>Web UI</strong></td><td>Indicates whether the device's web interface is reachable. Click the icon to open it in the browser.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="qs-panel">
+      <p>Each device shows a colored status dot in the <strong>Status</strong> column.</p>
+      <table>
+        <thead><tr><th>Status</th><th>Color</th><th>Meaning</th></tr></thead>
+        <tbody>
+          <tr><td><strong>OK</strong></td><td>Green</td><td>Device is reachable and fully operational.</td></tr>
+          <tr><td><strong>Einrichtung erforderlich</strong></td><td>Purple</td><td>Device is new and has not been set up yet.</td></tr>
+          <tr><td><strong>N/A</strong></td><td>Gray</td><td>Device is running an outdated firmware version and does not report a status.</td></tr>
+          <tr><td><strong>Unbekannt</strong></td><td>Gray</td><td>Device was discovered but its state cannot be determined.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="qs-panel">
+      <p>The icons in the top-right corner of the device list provide two actions:</p>
+      <div class="screenshot-frame" style="max-width: 420px">
+        <img src="/images/companion/steuer-elemente.png" alt="Device list controls — search and refresh" />
+      </div>
+      <table>
+        <thead><tr><th>Icon</th><th>Action</th></tr></thead>
+        <tbody>
+          <tr><td>Magnifying glass</td><td>Filter the device list by search term.</td></tr>
+          <tr><td>Circular arrow</td><td>Manually rescan the network for devices.</td></tr>
+        </tbody>
+      </table>
+      <p>Clicking any row in the list opens the <a href="./device-details">Device Detail Panel</a>.</p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,60 @@
+---
+title: "Network Settings"
+description: "Fields and options in the Network Settings tab of the Crawler.Companion detail panel."
+sidebar:
+  order: 3
+---
+
+The **Netzwerkeinstellungen** tab of the detail panel lets you configure how an Edge device connects to the network.
+
+:::note
+Signing in is required beforehand to, for example, change these settings — see [Login to Edge Device](/companion/ui/login-logout-edge).
+:::
+
+<div class="screenshot-frame">
+  <img src="/images/companion/geraete-netzwerkeinstellung.png" alt="Crawler.Companion — Network Settings tab" />
+</div>
+
+<div class="qs-stepper">
+
+  <div class="qs-tabbar">
+    <a class="qs-tab" href="#">Static IP</a>
+    <a class="qs-tab" href="#">DHCP</a>
+  </div>
+
+  <div class="qs-panels">
+
+    <div class="qs-panel">
+
+      <table>
+        <thead><tr><th>Field</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Use as primary adapter</strong></td><td>Determines which port Companion uses to communicate with the device.</td></tr>
+          <tr><td><strong>Configuration mode</strong></td><td>Set to Static IP — enter a fixed address manually.</td></tr>
+          <tr><td><strong>IP address</strong></td><td>Unique network address of the device.</td></tr>
+          <tr><td><strong>Subnet mask</strong></td><td>Defines the address range of the local network.</td></tr>
+          <tr><td><strong>Gateway</strong></td><td>Router address for communication outside the local network.</td></tr>
+          <tr><td><strong>DNS server</strong></td><td>Optional. Used for name resolution.</td></tr>
+        </tbody>
+      </table>
+
+    </div>
+
+    <div class="qs-panel">
+
+      <table>
+        <thead><tr><th>Field</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Use as primary adapter</strong></td><td>Determines which port Companion uses to communicate with the device.</td></tr>
+          <tr><td><strong>Configuration mode</strong></td><td>Set to DHCP — the device receives its IP address automatically from the network.</td></tr>
+          <tr><td><strong>DNS server</strong></td><td>Optional. Used for name resolution.</td></tr>
+        </tbody>
+      </table>
+
+    </div>
+
+  </div>
+
+</div>
+
+For a step-by-step guide on configuring network settings, see [Initial Setup](/companion/how-to/initial-setup).

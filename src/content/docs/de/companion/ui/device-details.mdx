@@ -1,0 +1,64 @@
+---
+title: "Gerätedetails"
+description: "Übersicht des Geräte-Detailpanels in Crawler.Companion — Felder im Tab Details."
+sidebar:
+  order: 2
+---
+
+Ein Klick auf ein Gerät in der Liste öffnet das Detailpanel auf der rechten Seite. Es enthält vier Tabs: **Details**, **Netzwerkeinstellungen**, **Update** und **Export**.
+
+<div class="screenshot-frame">
+  <img src="/images/companion/geraete-detailansicht-neu.png" alt="Crawler.Companion Geräte-Detailpanel — Tab Details" />
+</div>
+
+<div class="qs-stepper">
+
+  <div class="qs-tabbar">
+    <a class="qs-tab" href="#">Allgemein</a>
+    <a class="qs-tab" href="#">System</a>
+    <a class="qs-tab" href="#">Firmware</a>
+  </div>
+
+  <div class="qs-panels">
+
+    <div class="qs-panel">
+
+      <table>
+        <thead><tr><th>Feld</th><th>Beschreibung</th></tr></thead>
+        <tbody>
+          <tr><td><strong>BMK/OKZ</strong></td><td>Gerätename, wie er auf dem Edge-Gerät konfiguriert ist.</td></tr>
+          <tr><td><strong>WebUI</strong></td><td>Zeigt an, ob die Web-Oberfläche des Geräts erreichbar ist. Ein Klick auf <strong>WebUI</strong> öffnet sie direkt im Browser — ohne manuelle Eingabe der IP-Adresse. Voraussetzung: Das Edge-Gerät muss sich im selben lokalen Netzwerk befinden und über HTTP erreichbar sein.</td></tr>
+        </tbody>
+      </table>
+
+    </div>
+
+    <div class="qs-panel">
+
+      <table>
+        <thead><tr><th>Feld</th><th>Beschreibung</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Type</strong></td><td>Hardware-Plattform, z. B. VMware Virtual Platform, Crawler Core.</td></tr>
+          <tr><td><strong>Seriennummer</strong></td><td>Eindeutiger Bezeichner der Gerätehardware.</td></tr>
+          <tr><td><strong>MAC-Adresse 1</strong></td><td>MAC-Adresse des X1-Netzwerkadapters.</td></tr>
+          <tr><td><strong>MAC-Adresse 2</strong></td><td>MAC-Adresse des X2-Netzwerkadapters, falls vorhanden.</td></tr>
+        </tbody>
+      </table>
+
+    </div>
+
+    <div class="qs-panel">
+
+      <table>
+        <thead><tr><th>Feld</th><th>Beschreibung</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Version</strong></td><td>Aktuell installierte Firmware-Version.</td></tr>
+          <tr><td><strong>Letztes Update</strong></td><td>Datum und Uhrzeit des letzten Firmware-Updates.</td></tr>
+        </tbody>
+      </table>
+
+    </div>
+
+  </div>
+
+</div>

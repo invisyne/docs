@@ -1,0 +1,60 @@
+---
+title: "Netzwerkeinstellungen"
+description: 'Felder und Optionen im Tab „Netzwerkeinstellungen" des Crawler.Companion-Detailpanels.'
+sidebar:
+  order: 3
+---
+
+Der Tab **Netzwerkeinstellungen** im Detailpanel ermöglicht die Konfiguration der Netzwerkverbindung eines Edge-Geräts.
+
+:::note
+Um beispielsweise diese Einstellungen zu ändern, ist eine vorherige Anmeldung erforderlich — mehr dazu unter [Login am Edge-Gerät](/de/companion/ui/login-logout-edge).
+:::
+
+<div class="screenshot-frame">
+  <img src="/images/companion/geraete-netzwerkeinstellung.png" alt="Crawler.Companion — Tab Netzwerkeinstellungen" />
+</div>
+
+<div class="qs-stepper">
+
+  <div class="qs-tabbar">
+    <a class="qs-tab" href="#">Statische IP</a>
+    <a class="qs-tab" href="#">DHCP</a>
+  </div>
+
+  <div class="qs-panels">
+
+    <div class="qs-panel">
+
+      <table>
+        <thead><tr><th>Feld</th><th>Beschreibung</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Als primären Adapter verwenden</strong></td><td>Bestimmt, über welchen Port Companion auf das Gerät antwortet.</td></tr>
+          <tr><td><strong>Konfigurationsmodus</strong></td><td>Eingestellt auf Statische IP — feste Adresse manuell eingeben.</td></tr>
+          <tr><td><strong>IP-Adresse</strong></td><td>Eindeutige Netzwerkadresse des Geräts.</td></tr>
+          <tr><td><strong>Subnetzmaske</strong></td><td>Bestimmt den Adressbereich des lokalen Netzwerks.</td></tr>
+          <tr><td><strong>Gateway</strong></td><td>Router-Adresse für die Kommunikation außerhalb des lokalen Netzwerks.</td></tr>
+          <tr><td><strong>DNS-Server</strong></td><td>Optional. Wird für die Namensauflösung verwendet.</td></tr>
+        </tbody>
+      </table>
+
+    </div>
+
+    <div class="qs-panel">
+
+      <table>
+        <thead><tr><th>Feld</th><th>Beschreibung</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Als primären Adapter verwenden</strong></td><td>Bestimmt, über welchen Port Companion auf das Gerät antwortet.</td></tr>
+          <tr><td><strong>Konfigurationsmodus</strong></td><td>Eingestellt auf DHCP — das Gerät erhält seine IP-Adresse automatisch vom Netzwerk.</td></tr>
+          <tr><td><strong>DNS-Server</strong></td><td>Optional. Wird für die Namensauflösung verwendet.</td></tr>
+        </tbody>
+      </table>
+
+    </div>
+
+  </div>
+
+</div>
+
+Eine Schritt-für-Schritt-Anleitung zur Netzwerkkonfiguration findet sich unter [Ersteinrichtung](/de/companion/how-to/initial-setup).

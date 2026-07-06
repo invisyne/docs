@@ -1,0 +1,49 @@
+---
+title: "Login to Edge Device"
+description: "How to sign in and out of an Edge device in Crawler.Companion."
+sidebar:
+  order: 3.5
+---
+
+From Companion 1.3 onwards, a login is required to access settings, updates, and other protected functions on an Edge device. This login is separate from the Hub login and applies per device.
+
+<div class="qs-stepper">
+
+  <div class="qs-tabbar">
+    <a class="qs-tab" href="#">Sign in</a>
+    <a class="qs-tab" href="#">Sign out</a>
+  </div>
+
+  <div class="qs-panels">
+
+    <div class="qs-panel">
+
+      A lock icon in the top-right corner of the detail panel shows the current login state. Click it to open the login dialog.
+
+      <div class="screenshot-frame">
+        <img src="/images/companion/login-indicator.png" alt="Crawler.Companion — lock icon in the detail panel" />
+      </div>
+
+      Enter the device credentials and confirm. To stay signed in, enable **Stay signed in** — the password is then stored in the operating system keystore for the current OS user. The device is unlocked automatically on the next Companion start.
+
+      <div class="screenshot-frame" style="max-width: 680px">
+        <img src="/images/companion/login-form.png" alt="Crawler.Companion — Edge device login dialog" />
+      </div>
+
+    </div>
+
+    <div class="qs-panel">
+
+      When signed in, the lock icon turns green. Click it to sign out.
+
+      <div class="screenshot-frame">
+        <img src="/images/companion/login-indicator-unlocked.png" alt="Crawler.Companion — green lock icon, device authenticated" />
+      </div>
+
+      An explicit sign-out also removes any stored credentials from the OS keystore. Closing Companion ends all device sessions automatically, but does not remove stored credentials — the device will be unlocked again on the next start if **Stay signed in** was enabled.
+
+    </div>
+
+  </div>
+
+</div>
