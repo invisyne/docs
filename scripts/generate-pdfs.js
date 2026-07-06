@@ -231,6 +231,41 @@ const PRINT_CSS = `
   }
   ol, ul { padding-left: 1.5em; }
   li { margin: 0.2em 0; }
+  .chapter-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    text-align: center;
+  }
+  .chapter-divider h1 {
+    font-size: 26pt;
+    border-bottom: none;
+    margin: 0;
+  }
+  .toc h1 {
+    margin-bottom: 1em;
+  }
+  .toc-entry, .toc-subentry {
+    display: flex;
+    justify-content: space-between;
+    gap: 1em;
+    padding: 0.4em 0;
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px dotted #e5e7eb;
+  }
+  .toc-entry {
+    font-weight: 700;
+    font-size: 11pt;
+    margin-top: 0.6em;
+  }
+  .toc-subentry {
+    font-weight: 400;
+    font-size: 10pt;
+    padding-left: 1.5em;
+    border-bottom: 1px dotted #f3f4f6;
+  }
 `;
 
 async function extractContent(browser, url) {
