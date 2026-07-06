@@ -169,6 +169,7 @@ const PRINT_CSS = `
   h2 { font-size: 15pt; page-break-before: always; page-break-after: avoid; }
   .section > h1:first-child + h2,
   .section > h1:first-child + .sl-heading-wrapper > h2 { page-break-before: avoid; }
+  h2.qs-panel-title { page-break-before: avoid; }
   h3 { font-size: 12pt; }
   h4, h5, h6 { font-size: 10.5pt; }
   code {
@@ -319,6 +320,7 @@ async function extractContent(browser, url) {
             if (!panel) return;
             const titleEl = tab.querySelector('[class$="-title"]');
             const heading = document.createElement('h2');
+            heading.className = 'qs-panel-title';
             heading.textContent = (titleEl ? titleEl.textContent : tab.textContent).trim();
             panel.insertBefore(heading, panel.firstChild);
           });
