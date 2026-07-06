@@ -9,7 +9,7 @@
     "preview": "astro preview",
     "generate": "node scripts/generate-changelogs.js",
     "generate-pdfs": "node scripts/generate-pdfs.js",
-    "test": "node --test scripts/",
+    "test": "node --test",
     "astro": "astro"
   },
   "dependencies": {
