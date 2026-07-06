@@ -85,7 +85,7 @@ Es können weitere Messgrößen hinzugefügt werden.
 
 Zum automatisierten Beziehen von Messgrößen muss die für den Versand vorgesehenen Messgröße mit einem Parameter ausgestattet werden. Gehen Sie hierzu in die Auflistung der Messgrößen eines Geräts und öffnen den Bearbeitungs-Dialog für die jeweilige Messgröße. Hier fügen Sie einen weiteren Parameter mit dem Bezeichner gateway\_aggregation hinzu.
 
-![](../../../../../assets/images/Zf1sFrRI-o_2fofhEwEhG_75b4bffc-2c19-49a2-92fe-5bed121ef1e4.png)
+![](../../../../../assets/images/edge/edge-gateway-aggregation-parameter.png)
 
 **Aggregations-Intervall**
 
@@ -109,13 +109,13 @@ Soll die Messstelle roh (nicht aggregiert) übertragen werden, ist als Wert „0
 Aufgrund eines Bugs können Parameter nicht mehr aus einer Messgröße vollständig gelöscht werden. Damit dennoch die Messgröße nicht mehr für das Gateway selektiert ist, kann der Wert für den Eintrag **LEER **&#x67;elassen werden.
 :::
 
-![](../../../../../assets/images/usOM1383pTcEx3KCCaQ2h_8d2c4afe-adb6-4733-ba79-62e1019c4365.png)
+![](../../../../../assets/images/edge/edge-gateway-aggregation-parameter-empty.png)
 
 ### 2. Beziehen im Gateway
 
 Um das automatisierte Beziehen anzustoßen, klicken Sie im jeweiligen Dispatcher den Button „Messgrößen beziehen“.
 
-![](../../../../../assets/images/bWMOYYHRn-q1wzaibKVzj_1b7428a9-badb-4931-b176-7f57f709a00f.png)
+![](../../../../../assets/images/edge/edge-gateway-retrieve-button.png)
 
 Nach einem kurzen Moment werden die zuvor markierten Messgrößen dem Dispatcher mit der jeweiligen Aggregation eingerichtet.
 

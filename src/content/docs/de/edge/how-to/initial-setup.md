@@ -34,7 +34,7 @@ Mit dem Wizard wird die Erst-Konfiguration des Edge-Systems vorgenommen. Diese V
 ---
 ## Sprache
 
-![](../../../../../assets/images/x1alKZp6lyxr-fbTtpQGS_7f7e5f5a-bca8-49ab-98fc-4a2c4237de6b.png)
+![](../../../../../assets/images/edge/edge-setup-language.png)
 
 - Auswahl der Sprache
 - aktuelle Auswahl-Möglichkeiten: Deutsch und Englisch
@@ -44,7 +44,7 @@ Mit dem Wizard wird die Erst-Konfiguration des Edge-Systems vorgenommen. Diese V
 ---
 ## Bezeichnung und Orts-Kennzeichen
 
-![](../../../../../assets/images/a-OsD-8bXRxnwjsQCW8L0_263ac1d6-ad55-4e84-b3be-580a45f8c2dc.png)
+![](../../../../../assets/images/edge/edge-setup-basic-settings.png)
 
 - erfordeliche Angaben:
   - Name = Bezeichner im Netzwerk, in der Anzeige, und im Gateway 
@@ -58,7 +58,7 @@ Mit dem Wizard wird die Erst-Konfiguration des Edge-Systems vorgenommen. Diese V
 ---
 ## Sicherheit
 
-![](../../../../../assets/images/xFG8jzw_vn_exe19_2qxN_bd868d7a-2df6-423c-9a5e-bff2e4aec58f.png)
+![](../../../../../assets/images/edge/edge-setup-security.png)
 
 Im nächsten Schritt ist das Passwort für den Einstellungsbereich im Edge zu setzen. Dieses Passwort kann später geändert werden.
 
@@ -70,13 +70,13 @@ Im nächsten Schritt ist das Passwort für den Einstellungsbereich im Edge zu se
 ---
 ## Uhrzeit und Datum
 
-![](../../../../../assets/images/Rui9C5o0WnVl2PK7A2KcL_88b9f2f9-edb8-42cc-85a8-9f203d50ae05.png)
+![](../../../../../assets/images/edge/edge-setup-time-date.png)
 
 ### Allgemein
 
 - Manuell und automatisch (NTP-Server) wird unterstützt
 
-![](../../../../../assets/images/4rIBbIJzqOw3jY0-b5pm6_6da4de6f-8d64-4bb7-9f78-1957fafd8aee.png)
+![](../../../../../assets/images/edge/edge-setup-time-date-general.png)
 
 Modus kann umgeschaltet werden 
 
@@ -88,7 +88,7 @@ Modus kann umgeschaltet werden
 - Nutzung des angegebenen Servers, kann geändert werden
 - Voraussetzung: Server kann vom Edge erreicht werden (egal, welche `LAN-Adapter`)
 
-![](../../../../../assets/images/Ss9ye-RBXOTtskYXePN43_6ead054f-276a-408b-8f87-601a7a771231.png)
+![](../../../../../assets/images/edge/edge-setup-time-date-ntp.png)
 
 ### Manuell
 
@@ -96,12 +96,12 @@ Modus kann umgeschaltet werden
 - Uhrzeit und Datum können händisch angegeben werden
 - Uhrzeit bezieht sich auf die ausgewählten Zeitzone
 
-![](../../../../../assets/images/M9EB-z9cuRGbD2u2_nh5N_aadcc55a-537e-4386-a5bb-47297dab94ea.png)
+![](../../../../../assets/images/edge/edge-setup-time-date-manual.png)
 
 ---
 ## Netzwerk-Einstellungen
 
-![](../../../../../assets/images/V_Nczs6Jtzcz0s7MtbLnw_927a33c3-432e-4e37-9612-944e3067d72e.png)
+![](../../../../../assets/images/edge/edge-setup-network.png)
 
 - es gibt, je nach Gerät, mehrere Netzwerkadapter
 - Jeder Adapter hat eine voreinstellte IP bei der Auslieferung bzw. nach einem Zurücksetzen auf Werkseinstellungen
@@ -113,13 +113,13 @@ Modus kann umgeschaltet werden
 :::VerticalSplitItem
 **Siemens:** 
 
-![](../../../../../assets/images/3KF07gM4AtNX1tbb3PAAH_31d569fb-0578-4caf-9f6d-8208bf6c4fd9.jfif)
+![](../../../../../assets/images/edge/edge-setup-network-ports-siemens.jfif)
 :::
 
 :::VerticalSplitItem
 **WAGO:**
 
-![](../../../../../assets/images/h3TMS_WgYJdIBIdk17Z5U_8b3534a5-b223-486d-bdd6-2d00235f3dad.jfif)
+![](../../../../../assets/images/edge/edge-setup-network-ports-wago.jfif)
 :::
 ::::
 
@@ -136,7 +136,7 @@ Bei dem Einsatz als VM kann es zu Abweichungen bei der Anzahl der Netzwerkadapte
   - Standard-Gateway
   - de-/aktivieren von DHCP
 
-![](../../../../../assets/images/musrzhm8p20NsmpkeYVUa_d8b18e61-d175-41db-a216-09bb7ec893a4.png)
+![](../../../../../assets/images/edge/edge-setup-network-adapter.png)
 
 ### DNS + Domain
 
@@ -145,11 +145,11 @@ Bei dem Einsatz als VM kann es zu Abweichungen bei der Anzahl der Netzwerkadapte
 - es können bis zu 5 DNS angegeben werden
 - einzelne DNS können gelöscht werden
 
-![](../../../../../assets/images/jZZo3hKtul3yab7UoA8Tq_fb430aab-4258-43f4-bd31-94b4335c2ded.png)
+![](../../../../../assets/images/edge/edge-setup-network-dns.png)
 
 ---
 ## Abschließen
 
-![](../../../../../assets/images/xw_nuC9k3G67iwYiAPWQf_1afbc729-882a-414d-93ca-65c125ab77ae.png)
+![](../../../../../assets/images/edge/edge-setup-finish.png)
 
 Die Erst-Einrichtung ist abgeschlossen. Mit Drücken des „Abschließen“ Buttons wird der Edge neu gestartet. Es kann anschließend mit der Einrichtung der Datenaufzeichnung fortgesetzt werden.
