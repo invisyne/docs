@@ -139,7 +139,7 @@ const PRINT_CSS = `
   .cover-brand svg { width: 100%; height: auto; display: block; }
   .section { page-break-before: always; }
   h1 { font-size: 20pt; border-bottom: 2px solid #e5e7eb; padding-bottom: 0.25em; margin-top: 0; }
-  h2 { font-size: 15pt; }
+  h2 { font-size: 15pt; page-break-before: always; page-break-after: avoid; }
   h3 { font-size: 12pt; }
   h4, h5, h6 { font-size: 10.5pt; }
   code {
@@ -171,12 +171,63 @@ const PRINT_CSS = `
     color: #4b5563;
     background: #f9fafb;
   }
-  aside, [class*="aside"] {
+  .starlight-aside {
     border: 1px solid #d1d5db;
     border-radius: 6px;
     padding: 0.75em 1em;
     margin: 1em 0;
     background: #f9fafb;
+  }
+  .starlight-aside__title {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    font-weight: 600;
+    margin: 0 0 0.5em 0;
+  }
+  .starlight-aside__icon {
+    flex-shrink: 0;
+  }
+  .starlight-aside__content > *:last-child {
+    margin-bottom: 0;
+  }
+  .sl-anchor-link {
+    display: none;
+  }
+  .zoom-btn {
+    display: none;
+  }
+  [class$="-title"]:not(.site-title):not(.page-title) {
+    display: block;
+    font-weight: 700;
+    margin: 1em 0 0.3em;
+  }
+  .ts-table {
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    overflow: hidden;
+    margin: 1em 0;
+  }
+  .ts-header, .ts-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0.5em;
+    padding: 8px 12px;
+  }
+  .ts-header {
+    background: #f3f4f6;
+  }
+  .ts-header-cell {
+    font-size: 8pt;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .ts-row {
+    border-top: 1px solid #e5e7eb;
+  }
+  .ts-cell-problem {
+    font-weight: 600;
   }
   ol, ul { padding-left: 1.5em; }
   li { margin: 0.2em 0; }
@@ -187,8 +238,10 @@ async function extractContent(browser, url) {
   try {
     await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 20000 });
     let html = await page.evaluate(() => {
+      const title = document.querySelector('h1');
       const el = document.querySelector('.sl-markdown-content');
-      return el ? el.innerHTML : '';
+      const titleHtml = title ? `<h1>${title.innerHTML}</h1>` : '';
+      return titleHtml + (el ? el.innerHTML : '');
     });
     // Make root-relative asset URLs absolute so they load in the combined page
     html = html.replace(/src="\/((?!\/)[^"]*)"/g, `src="${BASE}/$1"`);
