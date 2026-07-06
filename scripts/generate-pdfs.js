@@ -4,11 +4,13 @@
  * Run after `npm run build`: node scripts/generate-pdfs.js
  */
 import puppeteer from 'puppeteer';
+import { PDFDocument } from 'pdf-lib';
 import { createServer } from 'node:http';
 import { createReadStream, existsSync, readdirSync, readFileSync } from 'node:fs';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { join, extname, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { computePageNumbers, renderDividerHtml, renderTocHtml, assignChapterIds } from './pdf-toc.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const DIST = join(__dirname, '../dist');
@@ -59,11 +61,8 @@ const MIME = {
   '.ico': 'image/x-icon',
 };
 
-// Must match sidebar section order in astro.config.mjs
-const SECTION_ORDER = ['', 'overview', 'quickstart', 'how-to', 'ui', 'faq', 'changelog'];
-
 const PRODUCTS = [
-  { id: 'edge',      title: 'Invisyne Edge' },
+  { id: 'edge',      title: 'Invisyne Edge', headerTitle: 'Invisyne Edge (Crawler)' },
   { id: 'companion', title: 'Invisyne Companion' },
   { id: 'hub',       title: 'Invisyne Hub' },
 ];
@@ -98,15 +97,43 @@ function findPages(dir) {
   return results;
 }
 
-function sortPages(pages, basePath) {
-  const base = basePath;
-  return pages.sort((a, b) => {
-    const rel = p => p.replace(base, '').replace(/\/?index\.html$/, '').replace(/^\//, '');
-    const section = p => rel(p).split('/')[0] || '';
-    const rank = p => { const i = SECTION_ORDER.indexOf(section(p)); return i === -1 ? 999 : i; };
-    if (rank(a) !== rank(b)) return rank(a) - rank(b);
-    return a.localeCompare(b);
-  });
+async function extractChapters(browser, url, prefix) {
+  const page = await browser.newPage();
+  try {
+    await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 20000 });
+    return await page.evaluate((prefix) => {
+      const groupDetails = Array.from(document.querySelectorAll('ul.top-level > li > details'))
+        .find(details => Array.from(details.querySelectorAll('a'))
+          .some(a => new URL(a.href).pathname.startsWith(prefix)));
+      if (!groupDetails) return [];
+      const productUl = groupDetails.querySelector(':scope > ul');
+      const chapters = [];
+      for (const li of productUl.children) {
+        const directA = li.querySelector(':scope > a');
+        if (directA) {
+          if (directA.classList.contains('sidebar-pdf-link')) continue;
+          const title = directA.querySelector('span')?.textContent.trim() || directA.textContent.trim();
+          chapters.push({ type: 'page', title, href: new URL(directA.href).pathname });
+          continue;
+        }
+        const details = li.querySelector(':scope > details');
+        if (!details) continue;
+        const summaryEl = details.querySelector(':scope > summary');
+        const title = summaryEl?.querySelector('.group-label')?.textContent.trim() || summaryEl?.textContent.trim() || '';
+        const subUl = details.querySelector(':scope > ul');
+        const pages = Array.from(subUl.querySelectorAll(':scope > li > a'))
+          .filter(a => !a.classList.contains('sidebar-pdf-link'))
+          .map(a => ({
+            title: a.querySelector('span')?.textContent.trim() || a.textContent.trim(),
+            href: new URL(a.href).pathname,
+          }));
+        chapters.push({ type: 'group', title, pages });
+      }
+      return chapters;
+    }, prefix);
+  } finally {
+    await page.close();
+  }
 }
 
 const PRINT_CSS = `
@@ -132,14 +159,17 @@ const PRINT_CSS = `
     page-break-after: always;
     position: relative;
   }
-  .cover-logo { width: 260px; margin-bottom: 1.5em; }
-  .cover-logo svg { width: 100%; height: auto; display: block; }
+  .cover-logo { height: 60px; margin-bottom: 1.5em; }
+  .cover-logo svg { height: 100%; width: auto; display: block; }
   .cover p { font-size: 13pt; color: #6b7280; margin: 0; font-family: 'GT America Extended', -apple-system, sans-serif; }
   .cover-brand { position: absolute; bottom: 48px; width: 120px; opacity: 0.7; }
   .cover-brand svg { width: 100%; height: auto; display: block; }
   .section { page-break-before: always; }
   h1 { font-size: 20pt; border-bottom: 2px solid #e5e7eb; padding-bottom: 0.25em; margin-top: 0; }
   h2 { font-size: 15pt; page-break-before: always; page-break-after: avoid; }
+  .section > h1:first-child + h2,
+  .section > h1:first-child + .sl-heading-wrapper > h2 { page-break-before: avoid; }
+  h2.qs-panel-title { page-break-before: avoid; }
   h3 { font-size: 12pt; }
   h4, h5, h6 { font-size: 10.5pt; }
   code {
@@ -202,6 +232,15 @@ const PRINT_CSS = `
     font-weight: 700;
     margin: 1em 0 0.3em;
   }
+  .doc-accordion-title {
+    border: none;
+    background: none;
+    padding: 0;
+    font: inherit;
+  }
+  .doc-accordion-arrow {
+    display: none;
+  }
   .ts-table {
     border: 1px solid #d1d5db;
     border-radius: 6px;
@@ -231,6 +270,54 @@ const PRINT_CSS = `
   }
   ol, ul { padding-left: 1.5em; }
   li { margin: 0.2em 0; }
+  .sysreq-icon {
+    width: 80px;
+    height: auto;
+    color: #9ca3af;
+    opacity: 0.5;
+  }
+  .role-deco-svg {
+    width: 56px;
+    height: 56px;
+    color: #9ca3af;
+    opacity: 0.3;
+    flex-shrink: 0;
+  }
+  .chapter-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    text-align: center;
+  }
+  .chapter-divider h1 {
+    font-size: 26pt;
+    border-bottom: none;
+    margin: 0;
+  }
+  .toc h1 {
+    margin-bottom: 1em;
+  }
+  .toc-entry, .toc-subentry {
+    display: flex;
+    justify-content: space-between;
+    gap: 1em;
+    padding: 0.4em 0;
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px dotted #e5e7eb;
+  }
+  .toc-entry {
+    font-weight: 700;
+    font-size: 11pt;
+    margin-top: 0.6em;
+  }
+  .toc-subentry {
+    font-weight: 400;
+    font-size: 10pt;
+    padding-left: 1.5em;
+    border-bottom: 1px dotted #f3f4f6;
+  }
 `;
 
 async function extractContent(browser, url) {
@@ -240,28 +327,109 @@ async function extractContent(browser, url) {
     let html = await page.evaluate(() => {
       const title = document.querySelector('h1');
       const el = document.querySelector('.sl-markdown-content');
+      if (el) {
+        el.querySelectorAll('.qs-stepper').forEach(stepper => {
+          const tabs = Array.from(stepper.querySelectorAll('.qs-tabbar .qs-tab'));
+          const panels = Array.from(stepper.querySelectorAll('.qs-panels .qs-panel'));
+          tabs.forEach((tab, i) => {
+            const panel = panels[i];
+            if (!panel) return;
+            const titleEl = tab.querySelector('[class$="-title"]');
+            const heading = document.createElement('h2');
+            heading.className = 'qs-panel-title';
+            heading.textContent = (titleEl ? titleEl.textContent : tab.textContent).trim();
+            panel.insertBefore(heading, panel.firstChild);
+          });
+          const tabbar = stepper.querySelector('.qs-tabbar');
+          if (tabbar) tabbar.remove();
+        });
+      }
       const titleHtml = title ? `<h1>${title.innerHTML}</h1>` : '';
       return titleHtml + (el ? el.innerHTML : '');
     });
     // Make root-relative asset URLs absolute so they load in the combined page
     html = html.replace(/src="\/((?!\/)[^"]*)"/g, `src="${BASE}/$1"`);
+    // Astro's optimized <img> markup lazy-loads by default, which never
+    // triggers for images outside Puppeteer's initial viewport — force
+    // every image to load immediately so it's actually there for page.pdf().
+    html = html.replace(/\sloading="lazy"/g, '');
     return html;
   } finally {
     await page.close();
   }
 }
 
-async function buildProductPDF(browser, product, lang, pages) {
-  const basePath = join(DIST, ...(lang.dir ? [lang.dir, product.id] : [product.id]));
-  const urlPrefix = lang.dir ? `${BASE}/${lang.dir}/${product.id}` : `${BASE}/${product.id}`;
+async function measurePageCount(browser, innerHtml) {
+  const page = await browser.newPage();
+  try {
+    const html = `<!DOCTYPE html><html><head><meta charset="utf-8"><style>${FONT_CSS}\n${PRINT_CSS}</style></head><body><div class="section">${innerHtml}</div></body></html>`;
+    await page.setContent(html, { waitUntil: 'networkidle2' });
+    const pdf = await page.pdf({
+      format: 'A4',
+      margin: { top: '2cm', right: '2cm', bottom: '2.5cm', left: '2cm' },
+      displayHeaderFooter: true,
+      headerTemplate: '<span></span>',
+      footerTemplate: '<span></span>',
+    });
+    const doc = await PDFDocument.load(pdf);
+    return doc.getPageCount();
+  } finally {
+    await page.close();
+  }
+}
 
-  const sections = [];
-  for (const pagePath of pages) {
-    const rel = pagePath.replace(basePath, '').replace('index.html', '');
-    const url = `${urlPrefix}${rel}`;
-    console.log(`  ${url}`);
-    const html = await extractContent(browser, url);
-    if (html) sections.push(html);
+async function buildProductPDF(browser, product, lang) {
+  const basePath = join(DIST, ...(lang.dir ? [lang.dir, product.id] : [product.id]));
+  const pathPrefix = lang.dir ? `/${lang.dir}/${product.id}` : `/${product.id}`;
+  const indexUrl = `${BASE}${pathPrefix}/`;
+
+  const rawChapters = await extractChapters(browser, indexUrl, `${pathPrefix}/`);
+  if (rawChapters.length === 0) {
+    throw new Error(`No sidebar chapters found for ${product.title} (${lang.id}) at ${indexUrl} — the sidebar DOM structure may have changed`);
+  }
+  const chapters = assignChapterIds(rawChapters);
+  console.log(`  ${chapters.length} top-level chapters`);
+
+  const knownHrefs = new Set();
+  for (const chapter of chapters) {
+    if (chapter.type === 'group') chapter.pages.forEach(p => knownHrefs.add(p.href));
+    else knownHrefs.add(chapter.href);
+  }
+  for (const pagePath of findPages(basePath)) {
+    const rel = pagePath.replace(basePath, '').replace(/index\.html$/, '');
+    const pathname = `${pathPrefix}${rel}`;
+    if (pathname.endsWith('/download/')) continue; // the "Download PDF" link's own target page; deliberately excluded above
+    if (!knownHrefs.has(pathname)) {
+      console.warn(`  ! ${pathname} exists in dist but isn't linked from the sidebar — omitted from PDF`);
+    }
+  }
+
+  const pageContent = new Map();
+  const pageCounts = new Map();
+  for (const href of knownHrefs) {
+    const html = await extractContent(browser, `${BASE}${href}`);
+    pageContent.set(href, html);
+    pageCounts.set(href, await measurePageCount(browser, html));
+  }
+
+  const heading = lang.id === 'de' ? 'Inhaltsverzeichnis' : 'Table of Contents';
+  const draftToc = renderTocHtml(chapters, { heading });
+  const tocPageCount = await measurePageCount(browser, draftToc);
+
+  const { chapters: finalChapters, totalPages } = computePageNumbers({ chapters, pageCounts, tocPageCount });
+  console.log(`  ${totalPages} pages`);
+  const finalToc = renderTocHtml(finalChapters, { heading });
+
+  const bodyParts = [finalToc];
+  for (const chapter of finalChapters) {
+    if (chapter.type === 'group') {
+      bodyParts.push(renderDividerHtml(chapter.title, chapter.id));
+      for (const p of chapter.pages) {
+        bodyParts.push(`<div class="section" id="${p.id}">${pageContent.get(p.href)}</div>`);
+      }
+    } else {
+      bodyParts.push(`<div class="section" id="${chapter.id}">${pageContent.get(chapter.href)}</div>`);
+    }
   }
 
   const productLogo = loadLogoSVG(product.id);
@@ -279,7 +447,7 @@ async function buildProductPDF(browser, product, lang, pages) {
     <p>${lang.label}</p>
     ${invisyneLogo ? `<div class="cover-brand">${invisyneLogo}</div>` : ''}
   </div>
-  ${sections.map(s => `<div class="section">${s}</div>`).join('\n')}
+  ${bodyParts.join('\n')}
 </body>
 </html>`;
 
@@ -290,8 +458,8 @@ async function buildProductPDF(browser, product, lang, pages) {
     printBackground: true,
     margin: { top: '2cm', right: '2cm', bottom: '2.5cm', left: '2cm' },
     displayHeaderFooter: true,
-    headerTemplate: `<div style="font-size:8pt;width:100%;text-align:center;color:#9ca3af;padding-top:8px;">${product.title} — ${lang.label}</div>`,
-    footerTemplate: `<div style="font-size:8pt;width:100%;text-align:center;color:#9ca3af;padding-bottom:8px;"><span class="pageNumber"></span> / <span class="totalPages"></span></div>`,
+    headerTemplate: `<div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:8pt;width:100%;text-align:center;color:#9ca3af;padding-top:8px;">${product.headerTitle || product.title} — ${lang.label}</div>`,
+    footerTemplate: `<div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:8pt;width:100%;text-align:center;color:#9ca3af;padding-bottom:8px;"><span class="pageNumber"></span> / <span class="totalPages"></span></div>`,
   });
   await page.close();
   return pdf;
@@ -318,9 +486,7 @@ async function main() {
           continue;
         }
         console.log(`\nGenerating ${product.title} (${lang.id}) PDF...`);
-        const pages = sortPages(findPages(basePath), basePath);
-        console.log(`  ${pages.length} pages`);
-        const pdf = await buildProductPDF(browser, product, lang, pages);
+        const pdf = await buildProductPDF(browser, product, lang);
         const outPath = join(DIST, 'downloads', `${product.id}-${lang.id}.pdf`);
         await writeFile(outPath, pdf);
         console.log(`  → dist/downloads/${product.id}-${lang.id}.pdf`);
