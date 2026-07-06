@@ -24,7 +24,7 @@ const deepviewHref  = isDE ? '/de/deepview'  : '/deepview';
 
   <nav class="product-nav">
     <a href={hubHref}       class="pnav" id="pnav-hub">Hub</a>
-    <a href={edgeHref}      class="pnav" id="pnav-edge">Edge</a>
+    <a href={edgeHref}      class="pnav" id="pnav-edge">Edge (Crawler)</a>
     <a href={companionHref} class="pnav" id="pnav-companion">Companion</a>
     <a href={deepviewHref}  class="pnav" id="pnav-deepview">Deepview</a>
   </nav>
@@ -143,6 +143,13 @@ const deepviewHref  = isDE ? '/de/deepview'  : '/deepview';
 
     .search-col {
       flex: 0 0 280px;
+    }
+
+    @media (max-width: 68.75rem) and (min-width: 50rem) {
+      /* Narrower desktop widths: "Edge (Crawler)" in the product nav leaves
+         less room than a fixed 280px search bar can spare before it starts
+         clipping the theme/language toggles. */
+      .search-col { flex: 0 0 180px; }
     }
 
     @media (max-width: 49.999rem) {
