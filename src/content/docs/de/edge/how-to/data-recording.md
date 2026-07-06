@@ -8,7 +8,7 @@ sidebar:
 # Vorbereitung
 
 - IP-Adresse des Feldgeräts bestimmen
-- Geräte-Typ vom Feldgerät bestimmen (z.B. Modbus, Simatic S7 → siehe “Unterstützte Geräte-Typen” \[TODO])
+- Geräte-Typ vom Feldgerät bestimmen (z.B. Modbus, Simatic S7)
 - Feld-Gerät mit dem Netzwerk des Edges verbinden
 
 ---
@@ -162,7 +162,6 @@ Neue Messstelle:
 ## Einzelne Messgröße bearbeiten oder löschen
 
 - Messgrößen identifiezieren / suchen
-  - TODO: Filter-Bereich erklären
 - inplace editieren
   - Name und Abtastrate (ms)
 

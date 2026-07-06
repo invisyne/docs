@@ -8,7 +8,7 @@ sidebar:
 # Preparation
 
 - Determine the IP address of the field device
-- Determine the device type of the field device (e.g. Modbus, Simatic S7 → see "Supported Device Types" \[TODO])
+- Determine the device type of the field device (e.g. Modbus, Simatic S7)
 - Connect the field device to the Edge's network
 
 ---
@@ -154,7 +154,6 @@ New measurement point:
 ## Editing or deleting a single measured variable
 
 - Identify / search for measured variables
-  - TODO: Explain filter area
 - Edit in place
   - Name and sampling rate (ms)
 
