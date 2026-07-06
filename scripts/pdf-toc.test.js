@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { slugify, computePageNumbers } from './pdf-toc.js';
+import { slugify, computePageNumbers, renderDividerHtml, renderTocHtml } from './pdf-toc.js';
 
 test('slugify lowercases and hyphenates', () => {
   assert.equal(slugify('UI Reference'), 'ui-reference');
@@ -80,4 +80,47 @@ test('computePageNumbers: throws when a page has no measured count', () => {
     }),
     /Missing page count for \/companion\//
   );
+});
+
+test('renderDividerHtml produces a section with a slugified id and the title as an h1', () => {
+  const html = renderDividerHtml('UI Reference');
+  assert.match(html, /class="section chapter-divider"/);
+  assert.match(html, /id="ui-reference"/);
+  assert.match(html, /<h1>UI Reference<\/h1>/);
+});
+
+test('renderTocHtml renders a placeholder page number when startPage is missing', () => {
+  const html = renderTocHtml(
+    [{ type: 'page', title: 'Overview', href: '/companion/' }],
+    { heading: 'Table of Contents' }
+  );
+  assert.match(html, /<h1>Table of Contents<\/h1>/);
+  assert.match(html, /href="#overview"/);
+  assert.match(html, /Overview/);
+  assert.match(html, />–</);
+});
+
+test('renderTocHtml renders real page numbers once present', () => {
+  const html = renderTocHtml(
+    [{ type: 'page', title: 'Overview', href: '/companion/', startPage: 3 }],
+    { heading: 'Table of Contents' }
+  );
+  assert.match(html, />3</);
+  assert.doesNotMatch(html, />–</);
+});
+
+test('renderTocHtml indents a group chapter\'s sub-pages under its own row', () => {
+  const html = renderTocHtml(
+    [{
+      type: 'group',
+      title: 'UI Reference',
+      startPage: 4,
+      pages: [{ title: 'Device List', href: '/companion/ui/device-list/', startPage: 5 }],
+    }],
+    { heading: 'Table of Contents' }
+  );
+  assert.match(html, /class="toc-entry"[^>]*href="#ui-reference"/);
+  assert.match(html, /class="toc-subentry"[^>]*href="#device-list"/);
+  assert.match(html, />4</);
+  assert.match(html, />5</);
 });
