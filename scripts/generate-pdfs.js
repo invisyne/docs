@@ -232,6 +232,15 @@ const PRINT_CSS = `
     font-weight: 700;
     margin: 1em 0 0.3em;
   }
+  .doc-accordion-title {
+    border: none;
+    background: none;
+    padding: 0;
+    font: inherit;
+  }
+  .doc-accordion-arrow {
+    display: none;
+  }
   .ts-table {
     border: 1px solid #d1d5db;
     border-radius: 6px;
@@ -266,6 +275,13 @@ const PRINT_CSS = `
     height: auto;
     color: #9ca3af;
     opacity: 0.5;
+  }
+  .role-deco-svg {
+    width: 56px;
+    height: 56px;
+    color: #9ca3af;
+    opacity: 0.3;
+    flex-shrink: 0;
   }
   .chapter-divider {
     display: flex;
