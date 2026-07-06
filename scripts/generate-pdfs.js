@@ -73,7 +73,7 @@ const LANGUAGES = [
 ];
 
 function startServer() {
-  return new Promise(resolve => {
+  return new Promise((resolve, reject) => {
     const server = createServer((req, res) => {
       let urlPath = req.url.split('?')[0];
       if (urlPath.endsWith('/')) urlPath += 'index.html';
@@ -82,6 +82,13 @@ function startServer() {
       if (!existsSync(filePath)) { res.writeHead(404); res.end('Not found'); return; }
       res.writeHead(200, { 'Content-Type': MIME[extname(filePath)] || 'application/octet-stream' });
       createReadStream(filePath).pipe(res);
+    });
+    server.on('error', err => {
+      if (err.code === 'EADDRINUSE') {
+        reject(new Error(`Port ${PORT} is already in use — stop whatever else is running on it (e.g. \`npm run dev\`) before running generate-pdfs.`));
+      } else {
+        reject(err);
+      }
     });
     server.listen(PORT, () => resolve(server));
   });
@@ -326,6 +333,8 @@ async function extractContent(browser, url) {
     await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 20000 });
     let html = await page.evaluate(() => {
       const title = document.querySelector('h1');
+      const logoTitle = document.querySelector('.page-title-logo img');
+      const titleText = title ? title.innerHTML : logoTitle ? logoTitle.getAttribute('alt') : null;
       const el = document.querySelector('.sl-markdown-content');
       if (el) {
         el.querySelectorAll('.qs-stepper').forEach(stepper => {
@@ -344,7 +353,7 @@ async function extractContent(browser, url) {
           if (tabbar) tabbar.remove();
         });
       }
-      const titleHtml = title ? `<h1>${title.innerHTML}</h1>` : '';
+      const titleHtml = titleText ? `<h1>${titleText}</h1>` : '';
       return titleHtml + (el ? el.innerHTML : '');
     });
     // Make root-relative asset URLs absolute so they load in the combined page
