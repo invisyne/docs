@@ -406,8 +406,8 @@ async function buildProductPDF(browser, product, lang) {
     printBackground: true,
     margin: { top: '2cm', right: '2cm', bottom: '2.5cm', left: '2cm' },
     displayHeaderFooter: true,
-    headerTemplate: `<div style="font-size:8pt;width:100%;text-align:center;color:#9ca3af;padding-top:8px;">${product.title} — ${lang.label}</div>`,
-    footerTemplate: `<div style="font-size:8pt;width:100%;text-align:center;color:#9ca3af;padding-bottom:8px;"><span class="pageNumber"></span> / <span class="totalPages"></span></div>`,
+    headerTemplate: `<div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:8pt;width:100%;text-align:center;color:#9ca3af;padding-top:8px;">${product.title} — ${lang.label}</div>`,
+    footerTemplate: `<div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:8pt;width:100%;text-align:center;color:#9ca3af;padding-bottom:8px;"><span class="pageNumber"></span> / <span class="totalPages"></span></div>`,
   });
   await page.close();
   return pdf;
