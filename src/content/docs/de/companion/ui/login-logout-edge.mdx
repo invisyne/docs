@@ -5,7 +5,7 @@ sidebar:
   order: 3.5
 ---
 
-Einige Aktionen am Edge-Gerät — z. B. das Ändern von Einstellungen — erfordern eine Authentifizierung mit den Gerätezugangsdaten. Dieser Login ist vom Hub-Login unabhängig und gilt pro Gerät.
+Ab Companion 1.3 ist ein Login erforderlich, um auf Einstellungen, Updates und andere geschützte Funktionen eines Edge-Geräts zuzugreifen. Dieser Login ist vom Hub-Login unabhängig und gilt pro Gerät.
 
 <div class="qs-stepper">
 
@@ -18,21 +18,29 @@ Einige Aktionen am Edge-Gerät — z. B. das Ändern von Einstellungen — erfor
 
     <div class="qs-panel">
 
-      Das Detailpanel eines Geräts öffnen und auf **Erweiterte Einstellungen** klicken. Ein Anmelde-Dialog erscheint. Gerätezugangsdaten eingeben und bestätigen.
+      Ein Schloss-Symbol oben rechts im Detailpanel zeigt den aktuellen Anmeldestatus. Darauf klicken, um den Anmeldedialog zu öffnen.
 
-      <div class="screenshot-frame" style="max-width: 420px">
-        <img src="/images/companion/edge-anmelden.png" alt="Crawler.Companion — Anmeldedialog am Edge-Gerät" />
+      <div class="screenshot-frame">
+        <img src="/images/companion/login-indicator.png" alt="Crawler.Companion — Schloss-Symbol im Detailpanel" />
+      </div>
+
+      Gerätezugangsdaten eingeben und bestätigen. Mit der Option **Angemeldet bleiben** wird das Passwort im Schlüsselspeicher des Betriebssystems für den aktuellen Betriebssystem-Benutzer gespeichert. Das Gerät wird beim nächsten Start von Companion automatisch entsperrt.
+
+      <div class="screenshot-frame" style="max-width: 680px">
+        <img src="/images/companion/login-form.png" alt="Crawler.Companion — Anmeldedialog am Edge-Gerät" />
       </div>
 
     </div>
 
     <div class="qs-panel">
 
-      Gerätesessions sind an die aktuelle Companion-Session gebunden. Das Schließen und erneute Öffnen von Companion meldet automatisch von allen Gerätesessions ab.
+      Nach der Anmeldung wechselt das Schloss-Symbol zu grün. Ein Klick darauf meldet ab.
 
       <div class="screenshot-frame">
-        <img src="/images/companion/edge-abmelden.png" alt="Crawler.Companion — Abmeldung am Edge-Gerät" />
+        <img src="/images/companion/login-indicator-unlocked.png" alt="Crawler.Companion — grünes Schloss, Gerät authentifiziert" />
       </div>
+
+      Eine explizite Abmeldung löscht auch die gespeicherten Zugangsdaten aus dem Schlüsselspeicher. Das Schließen von Companion beendet alle Gerätesessions automatisch, löscht jedoch keine gespeicherten Zugangsdaten — das Gerät wird beim nächsten Start erneut automatisch entsperrt, sofern **Angemeldet bleiben** aktiviert war.
 
     </div>
 

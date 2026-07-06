@@ -1,0 +1,53 @@
+---
+title: "Export"
+description: "Übersicht des Export-Tabs im Crawler.Companion-Detailpanel — Felder für zeitbasierten und Run-basierten Datenexport."
+sidebar:
+  order: 6
+---
+
+Der Tab **Export** ermöglicht den Export von Messdaten eines Edge-Geräts — entweder als CSV-Datei oder direkt nach Deepview. Gerät in der Liste auswählen und im Detailpanel auf den Tab **Export** klicken.
+
+<div class="screenshot-frame">
+  <img src="/images/companion/geraete-export.png" alt="Crawler.Companion — Tab Export" />
+</div>
+
+<div class="qs-stepper">
+
+  <div class="qs-tabbar">
+    <a class="qs-tab" href="#">Zeitraum</a>
+    <a class="qs-tab" href="#">Runs</a>
+  </div>
+
+  <div class="qs-panels">
+    <div class="qs-panel">
+      <table>
+        <thead><tr><th>Feld</th><th>Beschreibung</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Von</strong></td><td>Startdatum und -uhrzeit des Exportzeitraums.</td></tr>
+          <tr><td><strong>Bis</strong></td><td>Enddatum und -uhrzeit des Exportzeitraums.</td></tr>
+          <tr><td><strong>Export Format</strong></td><td>Auswahl zwischen <strong>CSV</strong> (wird als Datei gespeichert) oder <strong>Deepview</strong> (öffnet direkt im Browser).</td></tr>
+          <tr><td><strong>Speicherpfad</strong></td><td>Speicherort für CSV-Exporte. Über das Stift-Symbol kann ein anderer Ordner gewählt werden.</td></tr>
+          <tr><td><strong>Exportieren</strong></td><td>Startet den Export mit den gewählten Einstellungen.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="qs-panel">
+      <table>
+        <thead><tr><th>Feld</th><th>Beschreibung</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Run-Liste</strong></td><td>Alle abgeschlossenen Messläufe, die auf dem Gerät gespeichert sind, mit Startzeit, Endzeit und Dauer. Einen oder mehrere Runs auswählen.</td></tr>
+          <tr><td><strong>Export Format</strong></td><td>Auswahl zwischen <strong>CSV</strong> (jeder Run wird als separate Datei gespeichert) oder <strong>Deepview</strong> (öffnet direkt im Browser).</td></tr>
+          <tr><td><strong>Speicherpfad</strong></td><td>Speicherort für CSV-Exporte. Über das Stift-Symbol kann ein anderer Ordner gewählt werden.</td></tr>
+          <tr><td><strong>Exportieren</strong></td><td>Startet den Export mit den gewählten Einstellungen.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+:::note
+Die Deepview-Option ist nur verfügbar, wenn das Hub-Konto Zugang zu Deepview hat. Ist die Option ausgegraut, bitte den Administrator kontaktieren.
+:::
+
+Eine Schritt-für-Schritt-Anleitung findet sich unter [Daten exportieren](/de/companion/how-to/export-data).
