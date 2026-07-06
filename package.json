@@ -9,6 +9,7 @@
     "preview": "astro preview",
     "generate": "node scripts/generate-changelogs.js",
     "generate-pdfs": "node scripts/generate-pdfs.js",
+    "test": "node --test scripts/",
     "astro": "astro"
   },
   "dependencies": {
@@ -20,6 +21,7 @@
   },
   "devDependencies": {
     "@invisyne/design-tokens": "^0.2.0",
+    "pdf-lib": "^1.17.1",
     "puppeteer": "^22.0.0"
   },
   "overrides": {
