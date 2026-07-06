@@ -339,20 +339,10 @@ starlight-toc a {
   position: relative;
 }
 
-/* Panels: all stacked in same grid cell, height = tallest panel */
-.qs-panels {
-  display: grid;
-}
-
 .qs-panel {
-  grid-row: 1;
-  grid-column: 1;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.2s ease;
-  min-height: 0;
-  display: flex;
+  display: none;
   flex-direction: column;
+  min-height: 0;
   margin-top: 0 !important;
 }
 
@@ -362,7 +352,7 @@ starlight-toc a {
 }
 
 .qs-panel.qs-active {
-  opacity: 1;
+  display: flex;
   pointer-events: auto;
 }
 
@@ -1757,6 +1747,9 @@ starlight-toc a {
 }
 .sysreq-col:not(:first-child) {
   padding-left: 2rem;
+}
+.sysreq-col > p:empty {
+  display: none;
 }
 .sysreq-label {
   font-size: 0.7rem;
