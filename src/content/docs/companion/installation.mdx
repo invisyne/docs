@@ -4,6 +4,11 @@ description: "How to download Crawler.Companion from the Hub and launch it on Wi
 ---
 
 import { Steps } from '@astrojs/starlight/components';
+import downloadPageImg from '../../../assets/images/companion/companion-hub-download-page.png';
+import downloadButtonImg from '../../../assets/images/companion/companion-hub-download-button.png';
+import exeImg from '../../../assets/images/companion/companion-installer-exe.png';
+import warningImg from '../../../assets/images/companion/companion-windows-smartscreen-warning.png';
+import warningExpandedImg from '../../../assets/images/companion/companion-windows-smartscreen-expanded.png';
 
 Crawler.Companion does not require a traditional installation. Download the `.exe` file from the Hub and run it directly.
 
@@ -14,7 +19,7 @@ Crawler.Companion does not require a traditional installation. Download the `.ex
    Log in at [hub.invisyne.com](https://hub.invisyne.com) and navigate to the **Software** section. Locate the Companion version you want to use and click **Downloads und Details**.
 
    <div class="screenshot-frame">
-     <img src="/images/companion/companion_download.png" alt="Hub Software page with Companion version" />
+     <img src={downloadPageImg.src} alt="Hub Software page with Companion version" />
    </div>
 
 2. **Download the file**
@@ -22,7 +27,7 @@ Crawler.Companion does not require a traditional installation. Download the `.ex
    On the version detail page, click the **Download** button on the right side. A ZIP archive (e.g. `crawler.companion-v1.2.0.zip`) will be saved to your computer.
 
    <div class="screenshot-frame">
-     <img src="/images/companion/companion_download_button.png" alt="Download button on the version detail page" />
+     <img src={downloadButtonImg.src} alt="Download button on the version detail page" />
    </div>
 
 3. **Extract and run**
@@ -30,7 +35,7 @@ Crawler.Companion does not require a traditional installation. Download the `.ex
    Extract the ZIP archive and double-click the `.exe` file inside.
 
    <div class="screenshot-frame">
-     <img src="/images/companion/companion_exe.png" alt="Extracted companion exe file" />
+     <img src={exeImg.src} alt="Extracted companion exe file" />
    </div>
 
 4. **On Windows: confirm the security prompt**
@@ -38,13 +43,13 @@ Crawler.Companion does not require a traditional installation. Download the `.ex
    Windows SmartScreen may block the launch. Click **Weitere Informationen** (More info).
 
    <div class="screenshot-frame" style="max-width: 500px;">
-     <img src="/images/companion/companion_windows_warning.png" alt="Windows SmartScreen warning" />
+     <img src={warningImg.src} alt="Windows SmartScreen warning" />
    </div>
 
    Then click **Trotzdem ausführen** (Run anyway).
 
    <div class="screenshot-frame" style="max-width: 500px;">
-     <img src="/images/companion/companion_windows_warning_expanded.png" alt="Windows SmartScreen expanded with Run anyway button" />
+     <img src={warningExpandedImg.src} alt="Windows SmartScreen expanded with Run anyway button" />
    </div>
 
 5. **Companion opens**

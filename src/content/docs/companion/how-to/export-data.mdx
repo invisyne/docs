@@ -6,6 +6,8 @@ sidebar:
 ---
 
 import { Steps } from '@astrojs/starlight/components';
+import deepviewLinkImg from '../../../../assets/images/companion/companion-export-deepview-link.jpg';
+import exportRunsImg from '../../../../assets/images/companion/companion-export-runs.png';
 
 Crawler.Companion gives you two ways to get measurement data off an Edge device — without needing a browser or direct access to the device's web interface.
 
@@ -94,7 +96,7 @@ Both methods let you choose between two export formats:
              Under **Export Format**, select **CSV** or **Deepview**. For CSV, a **Speicherpfad** field appears showing the default save location. Click the pencil icon to choose a different folder.
 
              <div class="screenshot-frame" style="max-width: 680px">
-               <img src="/images/companion/exporter-deepview-link-zoom.jpg" alt="In Deepview öffnen button after export" />
+               <img src={deepviewLinkImg.src} alt="In Deepview öffnen button after export" />
              </div>
 
           </Steps>
@@ -162,7 +164,7 @@ Both methods let you choose between two export formats:
              Under **Export Format**, select **CSV** or **Deepview**. For CSV, a **Speicherpfad** field appears showing the default save location. Click the pencil icon to choose a different folder. With CSV, each selected run is saved as a separate file.
 
              <div class="screenshot-frame">
-               <img src="/images/companion/companion-export-runs.png" alt="Companion runs export with run selection" />
+               <img src={exportRunsImg.src} alt="Companion runs export with run selection" />
              </div>
 
           </Steps>

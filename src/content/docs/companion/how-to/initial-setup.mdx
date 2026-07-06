@@ -6,6 +6,7 @@ sidebar:
 ---
 
 import { Steps } from '@astrojs/starlight/components';
+import setupRequiredImg from '../../../../assets/images/companion/companion-device-setup-required.png';
 
 When a new Edge device is connected to the network, Crawler.Companion detects it automatically. Before the device can be used, it needs a network address that is reachable from your PC. This guide walks you through setting that up.
 
@@ -28,7 +29,7 @@ When a new Edge device is connected to the network, Crawler.Companion detects it
      Launch Crawler.Companion. It scans the network automatically. New devices appear in the device list with the status **Einrichtung erforderlich**.
 
      <div class="screenshot-frame">
-       <img src="/images/companion/einrichtung-erforderlich.png" alt="Device list showing a device with status Einrichtung erforderlich" />
+       <img src={setupRequiredImg.src} alt="Device list showing a device with status Einrichtung erforderlich" />
      </div>
 
   2. **Select the device**

@@ -5,6 +5,9 @@ sidebar:
   order: 1
 ---
 
+import deviceListImg from '../../../../../assets/images/companion/companion-device-list.png';
+import controlsImg from '../../../../../assets/images/companion/companion-device-list-controls.png';
+
 Die Geräteliste ist die Hauptansicht von Crawler.Companion. Sie zeigt alle Edge-Geräte, die im lokalen Netzwerk erkannt wurden, einschließlich noch nicht eingerichteter Geräte.
 
 <div class="qs-stepper">
@@ -16,7 +19,7 @@ Die Geräteliste ist die Hauptansicht von Crawler.Companion. Sie zeigt alle Edge
   <div class="qs-panels">
     <div class="qs-panel">
       <div class="screenshot-frame">
-        <img src="/images/companion/geraeteansicht.png" alt="Crawler.Companion Geräteliste" />
+        <img src={deviceListImg.src} alt="Crawler.Companion Geräteliste" />
       </div>
       <table>
         <thead><tr><th>Spalte</th><th>Beschreibung</th></tr></thead>
@@ -46,7 +49,7 @@ Die Geräteliste ist die Hauptansicht von Crawler.Companion. Sie zeigt alle Edge
     <div class="qs-panel">
       <p>Die Icons oben rechts in der Geräteliste bieten zwei Aktionen:</p>
       <div class="screenshot-frame" style="max-width: 420px">
-        <img src="/images/companion/steuer-elemente.png" alt="Steuerelemente der Geräteliste — Suche und Aktualisieren" />
+        <img src={controlsImg.src} alt="Steuerelemente der Geräteliste — Suche und Aktualisieren" />
       </div>
       <table>
         <thead><tr><th>Symbol</th><th>Aktion</th></tr></thead>

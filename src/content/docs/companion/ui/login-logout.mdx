@@ -5,6 +5,10 @@ sidebar:
   order: 5
 ---
 
+import loginDialogImg from '../../../../assets/images/companion/companion-hub-login-dialog.png';
+import connectionIndicatorImg from '../../../../assets/images/companion/companion-hub-connection-indicator.png';
+import logoutMenuImg from '../../../../assets/images/companion/companion-hub-logout-menu.png';
+
 Crawler.Companion can be used without a Hub login to manage devices on the local network. Signing in with a Hub account additionally enables extra features such as **Deepview** exports.
 
 <div class="qs-stepper">
@@ -21,7 +25,7 @@ Crawler.Companion can be used without a Hub login to manage devices on the local
       Click **Hub-Verbindung** in the top navigation bar. A login dialog appears.
 
       <div class="screenshot-frame">
-        <img src="/images/companion/anmelde-ui.png" alt="Hub login dialog" />
+        <img src={loginDialogImg.src} alt="Hub login dialog" />
       </div>
 
       <table>
@@ -36,7 +40,7 @@ Crawler.Companion can be used without a Hub login to manage devices on the local
       Click **Anmelden** to sign in. The **Hub-Verbindung** indicator in the header turns green when connected.
 
       <div class="screenshot-frame" style="max-width: 480px">
-        <img src="/images/companion/hub-verbindung.png" alt="Hub connection indicator in the header" />
+        <img src={connectionIndicatorImg.src} alt="Hub connection indicator in the header" />
       </div>
 
     </div>
@@ -46,7 +50,7 @@ Crawler.Companion can be used without a Hub login to manage devices on the local
       Click the **account icon** (initials) in the top-right corner. A dropdown appears showing the logged-in user. Click **Abmelden** to sign out.
 
       <div class="screenshot-frame">
-        <img src="/images/companion/ausloggen-ui.png" alt="Account menu with Abmelden option" />
+        <img src={logoutMenuImg.src} alt="Account menu with Abmelden option" />
       </div>
 
     </div>

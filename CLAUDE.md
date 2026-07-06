@@ -38,7 +38,7 @@ npm test                  # Run unit tests (scripts/*.test.js, via Node's built-
 - No Archbee components (`:::hint`, `WorkflowBlock`, etc.) — use Starlight equivalents:
   - `:::note`, `:::tip`, `:::caution`, `:::danger` for callouts
   - `<Steps>` component from `@astrojs/starlight/components` for step-by-step sequences
-- Images go in `src/assets/` and are referenced with relative paths
+- **Images:** `src/assets/images/{product}/` (`hub`, `edge`, `companion`) — never `public/images/`. Import them (`import x from '../../../assets/images/{product}/x.png'`) and render via `<img src={x.src} />`, so Astro's asset pipeline optimizes them (webp, hashed filenames, auto `width`/`height`). Filenames keep the product prefix even though it repeats the folder name (`hub-devices-list.png`, `edge-certmgr-open.png`) — this is deliberate, for cross-product searchability when browsing or grepping filenames outside their folder context. Name files for what they show, not the source screenshot tool's ID. All three products (Hub, Edge, Companion) are fully migrated — `public/images/` no longer holds any product screenshots.
 - Filenames use lowercase kebab-case
 - **Product naming:** The Edge device was historically called "Crawler". In body content, always write **Edge** — never "Edge (Crawler)" or just "Crawler". The full form "Edge (Crawler)" is reserved for top-level product-identification contexts: the sidebar group label (`astro.config.mjs`), the site's top product nav and mobile menu (`Header.astro`), and the PDF's running header. Do not change `Crawler.Companion` or `Crawler.Hub` — those are proper product names.
 

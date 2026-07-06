@@ -6,6 +6,8 @@ sidebar:
 ---
 
 import { Steps } from '@astrojs/starlight/components';
+import deepviewLinkImg from '../../../../../assets/images/companion/companion-export-deepview-link.jpg';
+import exportRunsImg from '../../../../../assets/images/companion/companion-export-runs.png';
 
 Edge-Geräte zeichnen Messdaten kontinuierlich auf. Crawler.Companion ermöglicht es, diese Daten direkt abzurufen und zu exportieren — ohne direkten Zugang zur Web-Oberfläche des Geräts.
 
@@ -83,7 +85,7 @@ Deepview ist ein browserbasiertes Analysetool, das Signaldaten als interaktive D
              Unter **Export Format** entweder **CSV** oder **Deepview** auswählen. Bei CSV erscheint ein **Speicherpfad**-Feld mit dem Standardspeicherort. Auf das Stift-Symbol klicken, um einen anderen Ordner auszuwählen.
 
              <div class="screenshot-frame" style="max-width: 680px">
-               <img src="/images/companion/exporter-deepview-link-zoom.jpg" alt="In Deepview öffnen Button nach dem Export" />
+               <img src={deepviewLinkImg.src} alt="In Deepview öffnen Button nach dem Export" />
              </div>
 
           </Steps>
@@ -151,7 +153,7 @@ Deepview ist ein browserbasiertes Analysetool, das Signaldaten als interaktive D
              Unter **Export Format** entweder **CSV** oder **Deepview** auswählen. Bei CSV erscheint ein **Speicherpfad**-Feld mit dem Standardspeicherort. Auf das Stift-Symbol klicken, um einen anderen Ordner auszuwählen. Bei CSV wird jeder ausgewählte Run als separate Datei gespeichert.
 
              <div class="screenshot-frame">
-               <img src="/images/companion/companion-export-runs.png" alt="Companion Runs-Export mit Run-Auswahl" />
+               <img src={exportRunsImg.src} alt="Companion Runs-Export mit Run-Auswahl" />
              </div>
 
           </Steps>
