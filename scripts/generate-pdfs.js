@@ -349,6 +349,10 @@ async function extractContent(browser, url) {
     });
     // Make root-relative asset URLs absolute so they load in the combined page
     html = html.replace(/src="\/((?!\/)[^"]*)"/g, `src="${BASE}/$1"`);
+    // Astro's optimized <img> markup lazy-loads by default, which never
+    // triggers for images outside Puppeteer's initial viewport — force
+    // every image to load immediately so it's actually there for page.pdf().
+    html = html.replace(/\sloading="lazy"/g, '');
     return html;
   } finally {
     await page.close();
