@@ -336,14 +336,17 @@ starlight-toc a {
 }
 
 .qs-panels {
-  position: relative;
+  display: grid;
 }
 
 .qs-panel {
-  display: none;
+  grid-area: 1 / 1;
+  display: flex;
   flex-direction: column;
   min-height: 0;
   margin-top: 0 !important;
+  visibility: hidden;
+  pointer-events: none;
 }
 
 .qs-panel > p:first-child,
@@ -352,7 +355,7 @@ starlight-toc a {
 }
 
 .qs-panel.qs-active {
-  display: flex;
+  visibility: visible;
   pointer-events: auto;
 }
 

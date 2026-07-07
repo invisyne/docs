@@ -1,0 +1,104 @@
+---
+title: Schnellstart
+description: Einstieg mit Edge — Web-Interface öffnen und einen ersten Blick auf das Dashboard werfen.
+---
+
+import dashboardImg from '../../../../assets/images/edge/dashboard.png';
+import aufzeichnungImg from '../../../../assets/images/edge/aufzeichnung.png';
+import nodeRedImg from '../../../../assets/images/edge/verarbeitung-nodered.png';
+import grafanaImg from '../../../../assets/images/edge/visualisierung-grafana.png';
+import weiterleitungImg from '../../../../assets/images/edge/weiterleitung.png';
+import einstellungenImg from '../../../../assets/images/edge/einstellungen.png';
+
+Ein kurzer Überblick über die wichtigsten Bereiche des Edge.
+
+<div class="qs-stepper">
+
+  <div class="qs-tabbar">
+    <a class="qs-tab" href="#">Startseite</a>
+    <a class="qs-tab" href="#">Visualisierung</a>
+    <a class="qs-tab" href="#">Aufzeichnung</a>
+    <a class="qs-tab" href="#">Verarbeitung</a>
+    <a class="qs-tab" href="#">Weiterleitung</a>
+    <a class="qs-tab" href="#">System</a>
+  </div>
+
+  <div class="qs-panels">
+
+    <div class="qs-panel">
+      <p>Zum Öffnen des Web-Interface die IP-Adresse des Edge-Geräts im Browser aufrufen — keine zusätzliche Software erforderlich. Nach der Verbindung erscheint die <strong>Startseite</strong>.</p>
+      <div class="screenshot-frame">
+        <img src={dashboardImg.src} alt="Edge Startseite" />
+      </div>
+      <p>Die Startseite bietet einen sofortigen Überblick über das Gerät und seine angeschlossenen Feldgeräte:</p>
+      <table>
+        <thead><tr><th>Element</th><th>Beschreibung</th></tr></thead>
+        <tbody>
+          <tr><td><strong>System</strong></td><td>Gerätename, Hersteller und Seriennummer. Über <em>Einstellungen</em> sind die Geräteeinstellungen erreichbar.</td></tr>
+          <tr><td><strong>Feldgeräte</strong></td><td>Zeigt die konfigurierten Datenquellen (Modbus, OPC, SIMATIC) mit der Anzahl verbundener Geräte je Quelle.</td></tr>
+          <tr><td><strong>+ Kachel</strong></td><td>Weitere Widgets zur Startseite hinzufügen.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="qs-panel">
+      <p>Ein Klick auf <strong>Visualisierung</strong> in der Sidebar öffnet direkt <strong>Grafana</strong> — eine browserbasierte Visualisierungsplattform, die auf dem Edge-Gerät läuft.</p>
+      <div class="screenshot-frame">
+        <img src={grafanaImg.src} alt="Grafana auf dem Edge" />
+      </div>
+      <p>Grafana ist auf dem Edge vorinstalliert und verbindet sich direkt mit den aufgezeichneten Messdaten. Vom Startbildschirm aus können bestehende Dashboards geöffnet oder neue erstellt werden, um Signaldaten als Diagramme, Gauges und Tabellen darzustellen.</p>
+      <div class="qs-tip">Grafana-Dashboards werden auf dem Gerät gespeichert. Eine Internetverbindung ist nicht erforderlich — alles läuft lokal auf dem Edge.</div>
+    </div>
+
+    <div class="qs-panel">
+      <p>Unter <strong>Aufzeichnung</strong> in der Sidebar wird die Messeinrichtung verwaltet. Feldgeräte lassen sich als Datenquellen hinzufügen und konfigurieren sowie die aufzuzeichnenden Messgrößen festlegen.</p>
+      <div class="screenshot-frame">
+        <img src={aufzeichnungImg.src} alt="Edge Aufzeichnung" />
+      </div>
+      <table>
+        <thead><tr><th>Bereich</th><th>Beschreibung</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Alle Messgrößen</strong></td><td>Alle verfügbaren Messgrößen der verbundenen Geräte durchsuchen.</td></tr>
+          <tr><td><strong>Alle Geräte</strong></td><td>Die auf diesem Edge registrierten Feldgeräte anzeigen und verwalten.</td></tr>
+          <tr><td><strong>+ Geräte hinzufügen</strong></td><td>Ein neues Feldgerät hinzufügen: Protokoll wählen (SIMATIC, Modbus, OPC UA) und Verbindungsparameter eingeben.</td></tr>
+        </tbody>
+      </table>
+      <div class="qs-tip">Jede Datenquelle benötigt die richtigen Verbindungsparameter. IP-Adresse und Slot-/Rack-Konfiguration der Steuerung sollten vor dem Hinzufügen eines Geräts bereitliegen.</div>
+    </div>
+
+    <div class="qs-panel">
+      <p>Ein Klick auf <strong>Verarbeitung</strong> in der Sidebar öffnet direkt <strong>Node-RED</strong> — einen browserbasierten Flow-Editor, der auf dem Edge-Gerät läuft.</p>
+      <div class="screenshot-frame">
+        <img src={nodeRedImg.src} alt="Node-RED Flow-Editor auf dem Edge" />
+      </div>
+      <p>Mit Node-RED lässt sich Datenverarbeitungslogik visuell aufbauen, indem Nodes zu Flows verbunden werden. Die Oberfläche besteht aus drei Bereichen:</p>
+      <table>
+        <thead><tr><th>Bereich</th><th>Beschreibung</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Node-Palette (links)</strong></td><td>Eine Bibliothek einsatzbereiter Nodes, gruppiert nach Kategorie: common, Funktion (function, switch, change, template …), network (MQTT, HTTP, WebSocket …) und weitere.</td></tr>
+          <tr><td><strong>Flow-Canvas (Mitte)</strong></td><td>Nodes aus der Palette auf den Canvas ziehen und verbinden, um die Verarbeitungslogik aufzubauen.</td></tr>
+          <tr><td><strong>Info-Panel (rechts)</strong></td><td>Zeigt die Flow-Struktur (Flows, Subflow, Global Configuration Nodes) sowie kontextsensitive Hilfe zum ausgewählten Node.</td></tr>
+        </tbody>
+      </table>
+      <div class="qs-tip">Mit einem Klick auf <strong>deploy</strong> oben rechts wird der Flow aktiviert. Änderungen werden erst nach dem Deployen wirksam.</div>
+    </div>
+
+    <div class="qs-panel">
+      <p>Unter <strong>Weiterleitung</strong> in der Sidebar wird festgelegt, wohin die aufgezeichneten Daten übertragen werden. Edge unterstützt die Weiterleitung an Crawler.Hub und an externe Systeme.</p>
+      <div class="screenshot-frame">
+        <img src={weiterleitungImg.src} alt="Edge Weiterleitung" />
+      </div>
+      <p>Jedes Weiterleitungsziel lässt sich unabhängig konfigurieren — Datenquellen und Variablen auswählen sowie Übertragungsintervall oder Auslöser festlegen.</p>
+      <div class="qs-tip">Das Zielsystem (Hub oder externer Endpunkt) muss vom Netzwerk des Edge-Geräts aus erreichbar sein, bevor die Weiterleitung aktiviert wird.</div>
+    </div>
+
+    <div class="qs-panel">
+      <p>Unter <strong>System → Einstellungen</strong> in der Sidebar sind alle Konfigurationsbereiche des Geräts in einer Übersicht zugänglich.</p>
+      <div class="screenshot-frame">
+        <img src={einstellungenImg.src} alt="Edge Einstellungsmenü" />
+      </div>
+    </div>
+
+  </div>
+
+</div>
