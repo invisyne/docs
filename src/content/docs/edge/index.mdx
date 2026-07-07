@@ -5,21 +5,86 @@ description: "The Edge is an extensible edge computing platform for capturing, e
 
 import edgeDeviceImg from '../../../assets/images/edge/edge-device.png';
 
-:::caution[Work in Progress]
-This section is currently being revised. Content may be incomplete or subject to change.
-:::
-
 <div class="page-hero">
-  <div class="page-hero-image" style="background: #fff;">
+  <div class="page-hero-image">
     <img src={edgeDeviceImg.src} alt="Edge device" style="object-fit: contain; object-position: center;" />
   </div>
   <div class="page-hero-text">
     <p class="page-hero-lead">Edge (Crawler) is a compact industrial edge computing device that captures, evaluates, visualizes, and forwards machine data in real time — directly at the source, without relying on a central server.</p>
+    <a href="/edge/quickstart" class="page-hero-cta">Get started →</a>
   </div>
 </div>
 
 <div class="page-hero-body">
-  <p>It combines control technology, gateway functionality, and a browser-based interface in a single unit, and works in both connected and air-gapped environments.</p>
-  <p>Edge (Crawler) comes with pre-installed connectivity for SIEMENS controllers and Modbus devices, and can be extended with additional functions such as condition monitoring or cloud connectivity.</p>
-  <p>Configuration and management is handled via the built-in web interface — accessible directly in the local network without additional software.</p>
+  <p>It combines control technology, gateway functionality, an integrated app concept, and a browser-based interface in a single unit — and works in both connected and air-gapped environments.</p>
+  <p>Edge (Crawler) comes with pre-installed connectivity for SIEMENS controllers, Modbus devices, and OPC UA. It can be extended with additional apps for specific use cases such as condition monitoring, load management, or cloud connectivity. Scalable from individual machines to enterprise-wide production digitalization.</p>
+</div>
+
+<div class="companion-intro">
+  <p class="companion-intro-overline">Edge (Crawler)</p>
+  <p class="companion-intro-lead">Industrial edge computing — from data capture to forwarding, all in one device.</p>
+  <p class="companion-intro-body">Edge devices run continuously at the machine and are managed via a browser-based web interface. Crawler.Companion can be used to configure and update multiple devices from a central location on the local network.</p>
+</div>
+
+## Functional Scope
+
+<div class="feature-grid">
+  <div class="feature-card">
+    <div class="feature-card-title">Machine Data Capture</div>
+    <p>Records data from connected machines and controllers in real time — continuously and without interruption.</p>
+  </div>
+  <div class="feature-card">
+    <div class="feature-card-title">Real-time Evaluation</div>
+    <p>Processes and visualizes captured data directly on the device, without requiring an external server.</p>
+  </div>
+  <div class="feature-card">
+    <div class="feature-card-title">Connectivity</div>
+    <p>Pre-installed drivers for SIEMENS controllers, Modbus devices, and OPC UA. Additional protocols can be added as needed.</p>
+  </div>
+  <div class="feature-card">
+    <div class="feature-card-title">Browser-based Interface</div>
+    <p>All configuration and monitoring is done via the built-in web interface — no additional software required.</p>
+  </div>
+  <div class="feature-card">
+    <div class="feature-card-title">Condition Monitoring</div>
+    <p>Optional extension for monitoring machine health and detecting anomalies based on continuously recorded data.</p>
+  </div>
+  <div class="feature-card">
+    <div class="feature-card-title">Extensible App Concept</div>
+    <p>Extend the device with additional apps for specific use cases — including condition monitoring, load management, cloud connectivity, and more.</p>
+  </div>
+</div>
+
+## Supported Platforms
+
+<div class="platform-grid">
+  <div class="platform-card">
+    <div class="platform-card-title">Siemens SIMATIC IPC127E</div>
+    <p>Industrial PC for control cabinet mounting. Fanless, compact form factor.</p>
+  </div>
+  <div class="platform-card">
+    <div class="platform-card-title">WAGO 752-9400</div>
+    <p>DIN rail controller. Suitable for space-constrained installations.</p>
+  </div>
+  <div class="platform-card">
+    <div class="platform-card-title">Virtual Machine</div>
+    <p>Run Edge as a VM for testing, evaluation, or server-based deployments.</p>
+  </div>
+</div>
+
+## Safety Notes
+
+<div class="security-grid">
+  <div class="security-item">
+    <div class="security-item-title">Network Changes</div>
+    <p>Incorrect network settings can make the device unreachable. Only edit these if you are familiar with IP addresses and subnet masks.</p>
+  </div>
+  <div class="security-item">
+    <div class="security-item-title">Firmware Updates</div>
+    <p>Ensure stable power supply to the Edge device before and during a firmware update.</p>
+  </div>
+  <div class="security-item">
+    <div class="security-item-title">Access Control</div>
+    <p>The web interface should only be accessible within the intended network. Restrict access where possible.</p>
+  </div>
 </div>

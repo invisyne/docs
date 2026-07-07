@@ -5,21 +5,86 @@ description: "Der Edge ist eine erweiterbare Edge-Computing-Plattform zur Erfass
 
 import edgeDeviceImg from '../../../../assets/images/edge/edge-device.png';
 
-:::caution[In Überarbeitung]
-Dieser Bereich befindet sich momentan in der Überarbeitung. Inhalte können unvollständig oder noch nicht final sein.
-:::
-
 <div class="page-hero">
-  <div class="page-hero-image" style="background: #fff;">
+  <div class="page-hero-image">
     <img src={edgeDeviceImg.src} alt="Edge-Gerät" style="object-fit: contain; object-position: center;" />
   </div>
   <div class="page-hero-text">
     <p class="page-hero-lead">Edge (Crawler) ist ein kompaktes industrielles Edge-Computing-Gerät, das Maschinendaten in Echtzeit erfasst, auswertet, visualisiert und weiterleitet — direkt an der Anlage, ohne zentralen Server.</p>
+    <a href="/de/edge/quickstart" class="page-hero-cta">Schnellstart →</a>
   </div>
 </div>
 
 <div class="page-hero-body">
-  <p>Es vereint Steuerungstechnik, Gateway-Funktionalität und eine browserbasierte Benutzeroberfläche in einem Gerät und funktioniert sowohl in vernetzten als auch in geschlossenen Umgebungen ohne Internetzugang.</p>
-  <p>Edge (Crawler) bringt vorinstallierte Konnektivität für SIEMENS-Steuerungen und Modbus-Geräte mit und lässt sich um weitere Funktionen wie Condition Monitoring oder Cloud-Anbindung erweitern.</p>
-  <p>Konfiguration und Verwaltung erfolgen über das integrierte Web-Interface — direkt im lokalen Netzwerk erreichbar, ohne zusätzliche Software.</p>
+  <p>Es vereint Steuerungstechnik, Gateway-Funktionalität, ein integriertes App-Konzept und eine browserbasierte Benutzeroberfläche in einem Gerät und funktioniert sowohl in vernetzten als auch in geschlossenen Umgebungen ohne Internetzugang.</p>
+  <p>Edge (Crawler) bringt vorinstallierte Konnektivität für SIEMENS-Steuerungen, Modbus-Geräte und OPC UA mit. Über zusätzliche Apps lässt es sich für spezifische Anwendungsfälle erweitern — etwa Condition Monitoring, Lastmanagement oder Cloud-Anbindung. Skalierbar von einzelnen Maschinen bis zur unternehmensweiten Produktionsdigitalisierung.</p>
+</div>
+
+<div class="companion-intro">
+  <p class="companion-intro-overline">Edge (Crawler)</p>
+  <p class="companion-intro-lead">Industrielles Edge Computing — von der Datenerfassung bis zur Weiterleitung, alles in einem Gerät.</p>
+  <p class="companion-intro-body">Edge-Geräte laufen kontinuierlich an der Anlage und werden über ein browserbasiertes Web-Interface verwaltet. Mit Crawler.Companion können mehrere Geräte zentral im lokalen Netzwerk konfiguriert und aktualisiert werden.</p>
+</div>
+
+## Funktionsumfang
+
+<div class="feature-grid">
+  <div class="feature-card">
+    <div class="feature-card-title">Maschinendatenerfassung</div>
+    <p>Zeichnet Daten von angeschlossenen Maschinen und Steuerungen in Echtzeit auf — kontinuierlich und ohne Unterbrechung.</p>
+  </div>
+  <div class="feature-card">
+    <div class="feature-card-title">Echtzeitauswertung</div>
+    <p>Verarbeitet und visualisiert erfasste Daten direkt auf dem Gerät, ohne externen Server.</p>
+  </div>
+  <div class="feature-card">
+    <div class="feature-card-title">Konnektivität</div>
+    <p>Vorinstallierte Treiber für SIEMENS-Steuerungen, Modbus-Geräte und OPC UA. Weitere Protokolle können bei Bedarf ergänzt werden.</p>
+  </div>
+  <div class="feature-card">
+    <div class="feature-card-title">Browserbasiertes Interface</div>
+    <p>Konfiguration und Monitoring erfolgen über das integrierte Web-Interface — keine zusätzliche Software erforderlich.</p>
+  </div>
+  <div class="feature-card">
+    <div class="feature-card-title">Condition Monitoring</div>
+    <p>Optionale Erweiterung zur Überwachung des Maschinenzustands und Erkennung von Anomalien auf Basis kontinuierlich erfasster Daten.</p>
+  </div>
+  <div class="feature-card">
+    <div class="feature-card-title">Erweiterbares App-Konzept</div>
+    <p>Das Gerät lässt sich über zusätzliche Apps für spezifische Anwendungsfälle erweitern — etwa Condition Monitoring, Lastmanagement oder Cloud-Anbindung.</p>
+  </div>
+</div>
+
+## Unterstützte Plattformen
+
+<div class="platform-grid">
+  <div class="platform-card">
+    <div class="platform-card-title">Siemens SIMATIC IPC127E</div>
+    <p>Industrie-PC zur Schaltschrankmontage. Lüfterlos, kompakte Bauform.</p>
+  </div>
+  <div class="platform-card">
+    <div class="platform-card-title">WAGO 752-9400</div>
+    <p>Hutschienen-Controller. Geeignet für platzkritische Installationen.</p>
+  </div>
+  <div class="platform-card">
+    <div class="platform-card-title">Virtuelle Maschine</div>
+    <p>Edge als VM betreiben — für Tests, Evaluierungen oder serverbasierte Deployments.</p>
+  </div>
+</div>
+
+## Sicherheitshinweise
+
+<div class="security-grid">
+  <div class="security-item">
+    <div class="security-item-title">Netzwerkeinstellungen</div>
+    <p>Falsche Netzwerkeinstellungen können das Gerät unerreichbar machen. Nur ändern, wenn IP-Adressen und Subnetzmasken bekannt sind.</p>
+  </div>
+  <div class="security-item">
+    <div class="security-item-title">Firmware-Updates</div>
+    <p>Vor und während eines Firmware-Updates auf stabile Stromversorgung des Edge-Geräts achten.</p>
+  </div>
+  <div class="security-item">
+    <div class="security-item-title">Zugriffskontrolle</div>
+    <p>Das Web-Interface sollte nur im vorgesehenen Netzwerk erreichbar sein. Zugriff wo möglich einschränken.</p>
+  </div>
 </div>
