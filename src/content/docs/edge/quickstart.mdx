@@ -84,7 +84,7 @@ A brief overview of what you can do with Edge.
     </div>
 
     <div class="qs-panel">
-      <p>Navigate to <strong>Data Transfer</strong> in the sidebar to configure how recorded data leaves the device. Edge supports forwarding to Crawler.Hub and to external systems.</p>
+      <p>Navigate to <strong>Data Transfer</strong> in the sidebar to configure the gateway that forwards recorded data. Edge can forward all recorded data — to Crawler.Hub, to external systems, or both.</p>
       <div class="screenshot-frame">
         <img src={weiterleitungImg.src} alt="Edge Data Transfer" />
       </div>
@@ -97,6 +97,21 @@ A brief overview of what you can do with Edge.
       <div class="screenshot-frame">
         <img src={einstellungenImg.src} alt="Edge Settings menu" />
       </div>
+      <table>
+        <thead><tr><th>Setting</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Time and Date</strong></td><td>Set the timezone, time, and date, or configure an NTP server.</td></tr>
+          <tr><td><strong>Gateway</strong></td><td>Various settings for the gateway.</td></tr>
+          <tr><td><strong>Network Adapter</strong></td><td>Configure the network adapter.</td></tr>
+          <tr><td><strong>System Status</strong></td><td>Lists the device's system services and their operating status.</td></tr>
+          <tr><td><strong>Database Management</strong></td><td>Manage the database server instances on the device.</td></tr>
+          <tr><td><strong>General</strong></td><td>General information about the device.</td></tr>
+          <tr><td><strong>System Control</strong></td><td>Reset the power supply or restore the system.</td></tr>
+          <tr><td><strong>Security</strong></td><td>Change the password.</td></tr>
+          <tr><td><strong>Notifications</strong></td><td>Configure notifications, e.g. Grafana alarms.</td></tr>
+          <tr><td><strong>Update</strong></td><td>Update the device and its installed services.</td></tr>
+        </tbody>
+      </table>
     </div>
 
   </div>

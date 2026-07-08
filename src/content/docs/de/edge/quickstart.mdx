@@ -10,7 +10,7 @@ import grafanaImg from '../../../../assets/images/edge/edge-quickstart-grafana.p
 import weiterleitungImg from '../../../../assets/images/edge/edge-quickstart-data-transfer.png';
 import einstellungenImg from '../../../../assets/images/edge/edge-quickstart-settings.png';
 
-Ein kurzer Überblick über die wichtigsten Bereiche des Edge.
+Ein kurzer Überblick über die wichtigsten Bereiche des Edge (Crawler).
 
 <div class="qs-stepper">
 
@@ -84,7 +84,7 @@ Ein kurzer Überblick über die wichtigsten Bereiche des Edge.
     </div>
 
     <div class="qs-panel">
-      <p>Unter <strong>Weiterleitung</strong> in der Sidebar wird festgelegt, wohin die aufgezeichneten Daten übertragen werden. Edge unterstützt die Weiterleitung an Crawler.Hub und an externe Systeme.</p>
+      <p>Unter <strong>Weiterleitung</strong> in der Sidebar wird das Gateway konfiguriert, über das aufgezeichnete Daten weitergeleitet werden. Edge kann alle aufgezeichneten Daten weiterleiten — an Crawler.Hub, an externe Systeme oder an beide.</p>
       <div class="screenshot-frame">
         <img src={weiterleitungImg.src} alt="Edge Weiterleitung" />
       </div>
@@ -97,6 +97,21 @@ Ein kurzer Überblick über die wichtigsten Bereiche des Edge.
       <div class="screenshot-frame">
         <img src={einstellungenImg.src} alt="Edge Einstellungsmenü" />
       </div>
+      <table>
+        <thead><tr><th>Einstellung</th><th>Beschreibung</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Uhrzeit und Datum</strong></td><td>Einrichtung von Zeitzone, Uhrzeit und Datum oder eines NTP-Servers.</td></tr>
+          <tr><td><strong>Gateway</strong></td><td>Verschiedene Einstellungen für das Gateway.</td></tr>
+          <tr><td><strong>Netzwerkadapter</strong></td><td>Konfiguration des Netzwerkadapters.</td></tr>
+          <tr><td><strong>Systemzustand</strong></td><td>Liste der System-Dienste des Geräts und deren Betriebszustand.</td></tr>
+          <tr><td><strong>Datenbankverwaltung</strong></td><td>Verwaltung der Datenbankserver-Instanzen auf dem Gerät.</td></tr>
+          <tr><td><strong>Allgemein</strong></td><td>Allgemeine Informationen über das Gerät.</td></tr>
+          <tr><td><strong>Systemsteuerung</strong></td><td>Zurücksetzen der Stromversorgung oder Wiederherstellen des Systems.</td></tr>
+          <tr><td><strong>Sicherheit</strong></td><td>Passwort ändern.</td></tr>
+          <tr><td><strong>Benachrichtigungen</strong></td><td>Benachrichtigungen konfigurieren, z. B. Alarme von Grafana.</td></tr>
+          <tr><td><strong>Update</strong></td><td>Aktualisierung des Geräts und der installierten Dienste.</td></tr>
+        </tbody>
+      </table>
     </div>
 
   </div>
