@@ -1,0 +1,119 @@
+---
+title: Quickstart
+description: Get started with Edge — open the web interface and take your first look at the dashboard.
+---
+
+import dashboardImg from '../../../assets/images/edge/edge-quickstart-home.png';
+import aufzeichnungImg from '../../../assets/images/edge/edge-quickstart-data-logging.png';
+import nodeRedImg from '../../../assets/images/edge/edge-quickstart-node-red.png';
+import grafanaImg from '../../../assets/images/edge/edge-quickstart-grafana.png';
+import weiterleitungImg from '../../../assets/images/edge/edge-quickstart-data-transfer.png';
+import einstellungenImg from '../../../assets/images/edge/edge-quickstart-settings.png';
+
+A brief overview of what you can do with Edge.
+
+<div class="qs-stepper">
+
+  <div class="qs-tabbar">
+    <a class="qs-tab" href="#">Home</a>
+    <a class="qs-tab" href="#">Visualization</a>
+    <a class="qs-tab" href="#">Data Logging</a>
+    <a class="qs-tab" href="#">Data Processing</a>
+    <a class="qs-tab" href="#">Data Transfer</a>
+    <a class="qs-tab" href="#">System</a>
+  </div>
+
+  <div class="qs-panels">
+
+    <div class="qs-panel">
+      <p>Open a browser and enter the IP address of your Edge device. The web interface opens directly — no additional software required. After connecting, you land on the <strong>Home</strong> screen.</p>
+      <div class="screenshot-frame">
+        <img src={dashboardImg.src} alt="Edge Home" />
+      </div>
+      <p>The Home screen gives you an immediate overview of the device and its connected field devices:</p>
+      <table>
+        <thead><tr><th>Element</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><strong>System</strong></td><td>Device name, manufacturer, and serial number. Click <em>Settings</em> to open device settings.</td></tr>
+          <tr><td><strong>Field Devices</strong></td><td>Lists configured data sources (Modbus, OPC, SIMATIC) with the number of connected devices per source.</td></tr>
+          <tr><td><strong>+ tile</strong></td><td>Add further widgets to your Home view.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="qs-panel">
+      <p>Clicking <strong>Visualization</strong> in the sidebar redirects you directly to <strong>Grafana</strong> — a browser-based visualization platform that runs on the Edge device.</p>
+      <div class="screenshot-frame">
+        <img src={grafanaImg.src} alt="Grafana on Edge" />
+      </div>
+      <p>Grafana is pre-installed on the Edge and connects directly to the recorded measurement data. From the home screen you can open existing dashboards or create new ones to visualize your signal data as charts, gauges, and tables.</p>
+      <div class="qs-tip">Grafana dashboards are stored on the device. No internet connection is required — everything runs locally on the Edge.</div>
+    </div>
+
+    <div class="qs-panel">
+      <p>Navigate to <strong>Data Logging</strong> in the sidebar to manage your measurement setup. Here you can add and configure field devices as data sources and define which measurement variables to record.</p>
+      <div class="screenshot-frame">
+        <img src={aufzeichnungImg.src} alt="Edge Data Logging" />
+      </div>
+      <table>
+        <thead><tr><th>Section</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><strong>All Variables</strong></td><td>Browse all available measurement variables across connected devices.</td></tr>
+          <tr><td><strong>All Devices</strong></td><td>View and manage the field devices registered on this Edge.</td></tr>
+          <tr><td><strong>+ Add Device</strong></td><td>Add a new field device by selecting the protocol (SIMATIC, Modbus, OPC UA) and entering the connection parameters.</td></tr>
+        </tbody>
+      </table>
+      <div class="qs-tip">Each data source (SIMATIC, Modbus, OPC UA) requires the correct connection parameters. Have the IP address and slot/rack configuration of your controller ready before adding a device.</div>
+    </div>
+
+    <div class="qs-panel">
+      <p>Clicking <strong>Data Processing</strong> in the sidebar redirects you directly to <strong>Node-RED</strong> — a browser-based flow editor that runs on the Edge device.</p>
+      <div class="screenshot-frame">
+        <img src={nodeRedImg.src} alt="Node-RED flow editor on Edge" />
+      </div>
+      <p>Node-RED lets you create data processing logic visually by connecting nodes into flows. The interface consists of three areas:</p>
+      <table>
+        <thead><tr><th>Area</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Node palette (left)</strong></td><td>A library of ready-to-use nodes grouped by category: common, Function (function, switch, change, template…), network (MQTT, HTTP, WebSocket…), and more.</td></tr>
+          <tr><td><strong>Flow canvas (center)</strong></td><td>Drag nodes from the palette onto the canvas and connect them to build your processing logic.</td></tr>
+          <tr><td><strong>Info panel (right)</strong></td><td>Shows the flow structure (Flows, Subflows, Global Configuration Nodes) and context-sensitive help for selected nodes.</td></tr>
+        </tbody>
+      </table>
+      <div class="qs-tip">Click <strong>deploy</strong> in the top-right corner to activate your flow. Changes only take effect after deploying.</div>
+    </div>
+
+    <div class="qs-panel">
+      <p>Navigate to <strong>Data Transfer</strong> in the sidebar to configure the gateway that forwards recorded data. Edge can forward all recorded data — to Crawler.Hub, to external systems, or both.</p>
+      <div class="screenshot-frame">
+        <img src={weiterleitungImg.src} alt="Edge Data Transfer" />
+      </div>
+      <p>Each forwarding target can be configured independently — define which data sources and variables to include, and set the transfer interval or trigger.</p>
+      <div class="qs-tip">Make sure the target system (Hub or external endpoint) is reachable from the Edge device's network before enabling forwarding.</div>
+    </div>
+
+    <div class="qs-panel">
+      <p>Navigate to <strong>System → Settings</strong> in the sidebar to open the settings menu. It provides access to all device configuration areas in one view.</p>
+      <div class="screenshot-frame">
+        <img src={einstellungenImg.src} alt="Edge Settings menu" />
+      </div>
+      <table>
+        <thead><tr><th>Setting</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Time and Date</strong></td><td>Set the timezone, time, and date, or configure an NTP server.</td></tr>
+          <tr><td><strong>Gateway</strong></td><td>Various settings for the gateway.</td></tr>
+          <tr><td><strong>Network Adapter</strong></td><td>Configure the network adapter.</td></tr>
+          <tr><td><strong>System Status</strong></td><td>Lists the device's system services and their operating status.</td></tr>
+          <tr><td><strong>Database Management</strong></td><td>Manage the database server instances on the device.</td></tr>
+          <tr><td><strong>General</strong></td><td>General information about the device.</td></tr>
+          <tr><td><strong>System Control</strong></td><td>Reset the power supply or restore the system.</td></tr>
+          <tr><td><strong>Security</strong></td><td>Change the password.</td></tr>
+          <tr><td><strong>Notifications</strong></td><td>Configure notifications, e.g. Grafana alarms.</td></tr>
+          <tr><td><strong>Update</strong></td><td>Update the device and its installed services.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+</div>
