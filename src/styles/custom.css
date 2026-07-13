@@ -443,6 +443,58 @@ starlight-toc a {
   text-decoration: none !important;
 }
 
+/* ─── Card tab bar variant ───────────────────────────────────────────── */
+.qs-cardbar {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  background: transparent;
+  border-radius: 0;
+  padding: 0;
+  width: 100%;
+  margin-bottom: 1.25rem;
+}
+
+.qs-cardbar .qs-tab {
+  border-radius: 10px;
+  border: 1px solid var(--sl-color-hairline);
+  padding: 16px 18px;
+  display: block;
+  background: var(--sl-color-bg-sidebar);
+  color: var(--sl-color-gray-1);
+  text-align: left;
+  white-space: normal;
+  height: auto;
+  font-weight: 400;
+}
+
+.qs-cardbar .qs-tab:hover {
+  border-color: var(--sl-color-gray-3);
+  background: var(--sl-color-gray-6);
+  color: var(--sl-color-gray-1);
+}
+
+.qs-cardbar .qs-tab.qs-active,
+.qs-cardbar .qs-tab.active {
+  border-color: var(--sl-color-gray-1) !important;
+  background: var(--sl-color-gray-1) !important;
+  color: var(--sl-color-bg) !important;
+}
+
+.qs-card-title {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.qs-card-desc {
+  display: block;
+  font-size: 13px;
+  opacity: 0.7;
+  line-height: 1.5;
+}
+
 /* ─── Split layout: text left, image carousel right ─────────────────── */
 
 .doc-split {
@@ -703,6 +755,75 @@ starlight-toc a {
   color: var(--sl-color-gray-2, #444);
   line-height: 1.55;
   margin: 0 !important;
+}
+
+/* ─── Overview Cards ────────────────────────────────────────────────── */
+.viz-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 1.25rem 0 2rem;
+}
+
+.viz-card {
+  background: var(--sl-color-bg-sidebar);
+  border: 1px solid var(--sl-color-hairline);
+  border-radius: 10px;
+  padding: 16px 18px;
+  text-decoration: none;
+  display: block;
+  transition: border-color 0.15s;
+}
+
+.viz-card:hover {
+  border-color: var(--sl-color-gray-3);
+  text-decoration: none;
+}
+
+.viz-card-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--sl-color-gray-1);
+  margin: 0 0 5px;
+}
+
+.viz-card-desc {
+  font-size: 13px;
+  color: var(--sl-color-gray-3);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ─── Definition List ───────────────────────────────────────────────── */
+.def-list {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  margin: 0.75rem 0 1rem;
+  border: 1px solid var(--sl-color-hairline);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.def-list-key,
+.def-list-val {
+  font-size: 0.875rem;
+  padding: 8px 14px;
+  border-bottom: 1px solid var(--sl-color-hairline);
+}
+
+.def-list-key:last-of-type,
+.def-list-val:last-of-type {
+  border-bottom: none;
+}
+
+.def-list-key {
+  color: var(--sl-color-gray-2);
+  white-space: nowrap;
+  background: var(--sl-color-gray-6);
+}
+
+.def-list-val {
+  color: var(--sl-color-gray-1);
 }
 
 /* ─── Phase-grouped Steps ────────────────────────────────────────────── */
@@ -1708,6 +1829,14 @@ starlight-toc a {
   border: 1px solid var(--sl-color-gray-5, #dcdcd8);
   margin-bottom: 2rem;
   margin-top: 1.5rem;
+}
+
+.screenshot-frame-sm {
+  max-width: 480px;
+}
+
+.screenshot-frame-xs {
+  max-width: 100px;
 }
 
 .screenshot-frame img {

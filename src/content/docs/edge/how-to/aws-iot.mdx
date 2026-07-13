@@ -1,0 +1,125 @@
+---
+title: "Forwarding to AWS (IoT)"
+description: "How to connect an Edge to AWS IoT Core — registering the device, converting the certificate, and configuring the gateway endpoint."
+sidebar:
+  order: 5
+---
+
+import aggregationParamImg from '../../../../assets/images/edge/edge-gateway-aggregation-parameter.png';
+import aggregationParamEmptyImg from '../../../../assets/images/edge/edge-gateway-aggregation-parameter-empty.png';
+import retrieveButtonImg from '../../../../assets/images/edge/edge-gateway-retrieve-button.png';
+
+:::note
+This feature is available as an optional add-on. Please contact us if you are interested in enabling AWS IoT forwarding for your Edge device.
+:::
+
+To connect an Edge to AWS IoT Core, the device must be registered in AWS and the Edge must be configured with a certificate. The certificate is used by the gateway endpoint to authenticate itself with AWS.
+
+<div class="qs-stepper">
+
+  <div class="qs-tabbar">
+    <a class="qs-tab" href="#">Create Thing</a>
+    <a class="qs-tab" href="#">Convert Certificate</a>
+    <a class="qs-tab" href="#">Configure Gateway</a>
+    <a class="qs-tab" href="#">Add Variables</a>
+  </div>
+
+  <div class="qs-panels">
+
+    <div class="qs-panel">
+
+## Creating a device (Thing) in IoT Core
+
+<ol>
+  <li>Log in to the AWS Console and navigate to AWS IoT Core.</li>
+  <li>Under <strong>Manage → Things</strong>, create a new device. The Thing name must match the <strong>Hostname</strong> of the Edge. Select a Thing Type.</li>
+  <li>Create a <strong>Device certificate</strong>. Download and store all certificate files securely — the certificate cannot be downloaded again after this step. Assign the appropriate IoT policies to the certificate.</li>
+</ol>
+
+    </div>
+
+    <div class="qs-panel">
+
+## Converting the certificate
+
+The certificate files downloaded from AWS are not in the format required by the Edge gateway endpoint. A `.pfx` file must be created from:
+
+- The private key (`...-private.pem.key`)
+- The device certificate (`...-certificate.pem.crt`)
+- The AWS root certificate (`AmazonRootCA1.pem`)
+
+**On Linux (WSL)**
+
+Navigate to the directory containing the downloaded certificate files and run:
+
+```bash
+openssl pkcs12 -export -in certificate.pem.crt -inkey private.pem.key -out THINGNAME_certificate.pfx -certfile AmazonRootCA1.pem
+```
+
+You will be prompted for an export password. This password must be provided to the Edge during certificate setup — store it securely alongside the certificate files.
+
+**On Windows (PowerShell)**
+
+The certificate and private key files must share the same base name with `.crt` and `.key` extensions respectively. Then run:
+
+```powershell
+certutil -mergepfx <certificate-name>.crt <result-name>.pfx
+```
+
+:::note
+Store all certificate files, the export password, and the device hostname in a secure location. The certificate cannot be re-downloaded from AWS.
+:::
+
+    </div>
+
+    <div class="qs-panel">
+
+## Configuring the gateway endpoint
+
+In the Edge UI, navigate to **System → Einstellungen → Gateway**. The configured endpoint is listed with its current connection status. Click on the endpoint to open its settings, then upload the `.pfx` certificate file under **Login-Daten** and save.
+
+    </div>
+
+    <div class="qs-panel">
+
+## Adding measured variables
+
+To include a measured variable in gateway forwarding, open the variable edit dialog and add a parameter with the identifier `gateway_aggregation`.
+
+<div class="screenshot-frame">
+  <img src={aggregationParamImg.src} alt="gateway_aggregation parameter in the variable edit dialog" />
+</div>
+
+Set the aggregation interval as a string literal:
+
+- `15s` — 15 seconds
+- `1m` — 1 minute
+- `2h` — 2 hours
+
+To forward raw (unaggregated) values, set the value to `0`.
+
+:::caution
+Due to a known issue, parameters cannot be fully deleted from a measured variable. To stop a variable from being forwarded, leave the `gateway_aggregation` value **empty** rather than deleting the parameter entry.
+:::
+
+<div class="screenshot-frame">
+  <img src={aggregationParamEmptyImg.src} alt="gateway_aggregation parameter with empty value" />
+</div>
+
+Once all variables are marked, click **Messgrößen beziehen** in the gateway dispatcher to trigger the automated import.
+
+<div class="screenshot-frame screenshot-frame-sm">
+  <img src={retrieveButtonImg.src} alt="Messgrößen beziehen button" />
+</div>
+
+The marked variables are then configured in the dispatcher with their respective aggregation intervals.
+
+:::note
+Automated retrieval only works when no measured variables are currently added to the gateway. If variables are already present, they must be removed first before retrieval can be triggered.
+:::
+
+    </div>
+
+  </div>
+
+</div>

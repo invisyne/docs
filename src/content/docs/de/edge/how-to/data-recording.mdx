@@ -1,0 +1,193 @@
+---
+title: "Einrichten der Datenaufzeichnung"
+description: "Schritt-für-Schritt-Anleitung zur Einrichtung der Datenaufzeichnung am Edge — vom Hinzufügen eines Feldgeräts bis zur Konfiguration der Messgrößen."
+sidebar:
+  order: 2
+---
+
+import addMenuImg from '../../../../../assets/images/edge/edge-device-add-menu.png';
+import addTypeImg from '../../../../../assets/images/edge/edge-device-add-type.png';
+import addDetailsImg from '../../../../../assets/images/edge/edge-device-add-details.png';
+import addTagsImg from '../../../../../assets/images/edge/edge-device-add-tags.png';
+import deviceListEditImg from '../../../../../assets/images/edge/edge-device-list-edit-icon.png';
+import measuredVariablesImg from '../../../../../assets/images/edge/edge-measured-variables-widget.png';
+import importSourceImg from '../../../../../assets/images/edge/edge-import-source-dialog.png';
+import deviceConnectedImg from '../../../../../assets/images/edge/edge-device-connected-status.png';
+import importCartImg from '../../../../../assets/images/edge/edge-import-cart-basket.png';
+import importConfigImg from '../../../../../assets/images/edge/edge-import-global-config.png';
+import variablenLinkImg from '../../../../../assets/images/edge/edge-device-details-variablen-link.png';
+import variableEditIconImg from '../../../../../assets/images/edge/edge-variable-edit-icon.png';
+import variableEditDialogImg from '../../../../../assets/images/edge/edge-variable-edit-dialog.png';
+import cartBadgeImg from '../../../../../assets/images/edge/edge-cart-badge-count.png';
+import cartSelectionImg from '../../../../../assets/images/edge/edge-cart-selection-list.png';
+import bulkEditDialogImg from '../../../../../assets/images/edge/edge-bulk-edit-dialog.png';
+import bulkEditMixedImg from '../../../../../assets/images/edge/edge-bulk-edit-mixed-values.png';
+
+<div class="qs-stepper">
+
+  <div class="qs-tabbar">
+    <a class="qs-tab" href="#">Vorbereitung</a>
+    <a class="qs-tab" href="#">Gerät hinzufügen</a>
+    <a class="qs-tab" href="#">Messgrößen einrichten</a>
+    <a class="qs-tab" href="#">Messgrößen anpassen</a>
+  </div>
+
+  <div class="qs-panels">
+
+    <div class="qs-panel">
+
+Vor der Einrichtung der Datenaufzeichnung sollten folgende Informationen zum Feldgerät vorliegen:
+
+- IP-Adresse des Feldgeräts
+- Gerätetyp (z. B. Modbus, Simatic S7)
+
+Das Feldgerät muss vor Beginn mit dem Netzwerk des Edge verbunden sein.
+
+    </div>
+
+    <div class="qs-panel">
+
+Im Hauptmenü auf **+ Geräte hinzufügen** navigieren und den passenden Gerätetyp auswählen.
+
+<div class="screenshot-frame screenshot-frame-sm">
+  <img src={addMenuImg.src} alt="Menü Geräte hinzufügen" />
+</div>
+
+<div class="screenshot-frame screenshot-frame-sm">
+  <img src={addTypeImg.src} alt="Gerätetyp auswählen" />
+</div>
+
+Nach der Auswahl des Typs werden die erforderlichen Verbindungsdaten eingegeben. Die verfügbaren Felder variieren je nach Gerätetyp:
+
+- Netzwerkadresse des Feldgeräts
+- Bezeichner — wird später bei der Einrichtung der Visualisierung benötigt; kann erst ab Version 2.7 geändert werden
+- Weitere gerätespezifische Angaben
+- Optional: Vorlage auswählen
+
+<div class="screenshot-frame">
+  <img src={addDetailsImg.src} alt="Verbindungsdaten eingeben" />
+</div>
+
+Optional können zusätzliche Metadaten in Form von Tags (Schlüssel-Wert-Paare) hinterlegt werden. Diese Informationen werden auf der Geräteseite angezeigt und haben innerhalb des Edge-Systems keine weitere Funktion.
+
+<div class="screenshot-frame">
+  <img src={addTagsImg.src} alt="Gerät Tags" />
+</div>
+
+    </div>
+
+    <div class="qs-panel">
+
+In der Geräteliste auf die Gerätezeile klicken, um die Geräteseite zu öffnen.
+
+<div class="screenshot-frame">
+  <img src={deviceListEditImg.src} alt="Geräteliste" />
+</div>
+
+**Import vom Gerät (nur für S7 symbolische Adressierung)**
+
+:::note
+Der Import der Messgrößen direkt vom Feldgerät wird aktuell nur für S7-Steuerungen mit symbolischer Adressierung unterstützt.
+:::
+
+:::note
+Bei großen SPS-Strukturen kann der Import fehlschlagen. Als Alternative steht der CSV-Import zur Verfügung.
+:::
+
+Vor dem Import muss eine Verbindung zum Feldgerät bestehen. Der Verbindungsstatus ist im Widget **Geräteverbindung** auf der Geräteseite einsehbar.
+
+<div class="screenshot-frame screenshot-frame-sm">
+  <img src={deviceConnectedImg.src} alt="Verbindungsstatus des Geräts" />
+</div>
+
+Auf der Geräteseite zeigt das Widget **Messgrößen** die Gesamtzahl der konfigurierten Messgrößen und wie viele davon aktuell aufgezeichnet werden. Über **Importieren** können Messgrößen vom Feldgerät oder aus einer CSV-Datei hinzugefügt werden.
+
+<div class="screenshot-frame screenshot-frame-sm">
+  <img src={measuredVariablesImg.src} alt="Messgrößen-Widget" />
+</div>
+
+<div class="screenshot-frame">
+  <img src={importSourceImg.src} alt="Importquelle auswählen" />
+</div>
+
+Mit **Von Gerät** werden Struktur und Messgrößen direkt vom Feldgerät abgerufen. Der Variablen-Browser zeigt anschließend alle verfügbaren Messgrößen an:
+
+- Bereits importierte Messgrößen sind grau hinterlegt
+- Messgrößen, die auf dem Edge eingerichtet sind, aber beim Import auf dem Feldgerät nicht gefunden wurden, sind gelb hinterlegt
+
+Alle gewünschten Messgrößen auswählen, dann den **Warenkorb** öffnen und auf **Alle importieren** klicken.
+
+<div class="screenshot-frame">
+  <img src={importCartImg.src} alt="Import Warenkorb" />
+</div>
+
+Vor der Bestätigung die gewünschte Konfiguration für die importierten Messgrößen festlegen.
+
+<div class="screenshot-frame">
+  <img src={importConfigImg.src} alt="Import-Konfiguration" />
+</div>
+
+    </div>
+
+    <div class="qs-panel">
+
+Um die Messgrößen eines Geräts aufzurufen, die Geräteseite öffnen und den Variablen-Link anklicken.
+
+<div class="screenshot-frame screenshot-frame-sm">
+  <img src={variablenLinkImg.src} alt="Variablen-Link auf der Geräteseite" />
+</div>
+
+Für eine Messgröße können folgende Einstellungen geändert werden:
+
+<div class="def-list">
+  <span class="def-list-key">Name</span><span class="def-list-val">Namensänderungen erfordern eine Anpassung in bestehenden Dashboards; der Name sollte innerhalb einer Gruppenebene eindeutig sein</span>
+  <span class="def-list-key">Abtastrate</span><span class="def-list-val">Bereich: 10 ms bis 500 h, Angabe in Millisekunden</span>
+  <span class="def-list-key">Aufzeichnung</span><span class="def-list-val">Aufzeichnung starten und stoppen</span>
+  <span class="def-list-key">Zeitstempel-Ausrichtung</span><span class="def-list-val">Aktivieren/deaktivieren</span>
+  <span class="def-list-key">Aufzeichnungs-Metriken</span><span class="def-list-val">Aktivieren/deaktivieren</span>
+  <span class="def-list-key">Tags</span><span class="def-list-val">Hinzufügen/entfernen</span>
+</div>
+
+**Einzelne Messgröße bearbeiten oder löschen**
+
+Name und Abtastrate können direkt im Variablen-Browser inline bearbeitet werden. Für alle weiteren Einstellungen das Bearbeiten-Symbol neben der Messgröße anklicken.
+
+<div class="screenshot-frame screenshot-frame-xs">
+  <img src={variableEditIconImg.src} alt="Bearbeiten-Symbol der Messgröße" />
+</div>
+
+<div class="screenshot-frame">
+  <img src={variableEditDialogImg.src} alt="Bearbeitungs-Dialog der Messgröße" />
+</div>
+
+:::note
+Das Löschen einer Messgröße entfernt es aus der Visualisierung. Bereits eingerichtete Panels können fehlerhafte oder keine Daten anzeigen. Die aufgezeichneten Daten werden nicht gelöscht — der belegte Speicherplatz wird nicht freigegeben.
+:::
+
+**Mehrere Messgrößen im Bulk bearbeiten oder löschen**
+
+Zur gleichzeitigen Bearbeitung oder Löschung mehrere Messgrößen im Variablen-Browser auswählen und dem Warenkorb hinzufügen. Ausgewählte Messgrößen werden farblich markiert; die Anzahl der ausgewählten Einträge wird am Warenkorb-Symbol angezeigt. Den Warenkorb öffnen, um die Auswahl zu prüfen und bei Bedarf anzupassen. Das Entfernen einer Messgröße aus dem Warenkorb löscht diese nicht.
+
+<div class="screenshot-frame">
+  <img src={cartSelectionImg.src} alt="Warenkorb Auswahlliste" />
+</div>
+
+Über **Alle bearbeiten** den Bulk-Bearbeitungs-Dialog öffnen. Einzelne Einstellungen können für alle ausgewählten Messgrößen gleichzeitig überschrieben werden.
+
+<div class="screenshot-frame">
+  <img src={bulkEditDialogImg.src} alt="Bulk-Bearbeitungs-Dialog" />
+</div>
+
+Wenn die aktuellen Werte in der Auswahl unterschiedlich sind, wird dies angezeigt.
+
+<div class="screenshot-frame">
+  <img src={bulkEditMixedImg.src} alt="Bulk-Bearbeitung mit gemischten Werten" />
+</div>
+
+Nach dem Übernehmen der Änderungen bleibt der Warenkorb für weitere Bearbeitungen geöffnet oder kann geschlossen werden.
+
+    </div>
+
+  </div>
+
+</div>

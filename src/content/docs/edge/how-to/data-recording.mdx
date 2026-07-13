@@ -1,0 +1,193 @@
+---
+title: "Configuring Data Recording"
+description: "Step-by-step guide for setting up data recording on the Edge — from adding a field device to configuring measured variables."
+sidebar:
+  order: 2
+---
+
+import addMenuImg from '../../../../assets/images/edge/edge-device-add-menu.png';
+import addTypeImg from '../../../../assets/images/edge/edge-device-add-type.png';
+import addDetailsImg from '../../../../assets/images/edge/edge-device-add-details.png';
+import addTagsImg from '../../../../assets/images/edge/edge-device-add-tags.png';
+import deviceListEditImg from '../../../../assets/images/edge/edge-device-list-edit-icon.png';
+import measuredVariablesImg from '../../../../assets/images/edge/edge-measured-variables-widget.png';
+import importSourceImg from '../../../../assets/images/edge/edge-import-source-dialog.png';
+import deviceConnectedImg from '../../../../assets/images/edge/edge-device-connected-status.png';
+import importCartImg from '../../../../assets/images/edge/edge-import-cart-basket.png';
+import importConfigImg from '../../../../assets/images/edge/edge-import-global-config.png';
+import variablenLinkImg from '../../../../assets/images/edge/edge-device-details-variablen-link.png';
+import variableEditIconImg from '../../../../assets/images/edge/edge-variable-edit-icon.png';
+import variableEditDialogImg from '../../../../assets/images/edge/edge-variable-edit-dialog.png';
+import cartBadgeImg from '../../../../assets/images/edge/edge-cart-badge-count.png';
+import cartSelectionImg from '../../../../assets/images/edge/edge-cart-selection-list.png';
+import bulkEditDialogImg from '../../../../assets/images/edge/edge-bulk-edit-dialog.png';
+import bulkEditMixedImg from '../../../../assets/images/edge/edge-bulk-edit-mixed-values.png';
+
+<div class="qs-stepper">
+
+  <div class="qs-tabbar">
+    <a class="qs-tab" href="#">Preparation</a>
+    <a class="qs-tab" href="#">Add device</a>
+    <a class="qs-tab" href="#">Set up variables</a>
+    <a class="qs-tab" href="#">Adjust variables</a>
+  </div>
+
+  <div class="qs-panels">
+
+    <div class="qs-panel">
+
+Before configuring data recording, the following information about the field device should be available:
+
+- IP address of the field device
+- Device type (e.g. Modbus, Simatic S7)
+
+The field device must be connected to the Edge network before proceeding.
+
+    </div>
+
+    <div class="qs-panel">
+
+In the main menu, navigate to **+ Add devices** and select the appropriate device type.
+
+<div class="screenshot-frame screenshot-frame-sm">
+  <img src={addMenuImg.src} alt="Add devices menu" />
+</div>
+
+<div class="screenshot-frame screenshot-frame-sm">
+  <img src={addTypeImg.src} alt="Device type selection" />
+</div>
+
+After selecting the type, enter the required connection details. The available fields vary depending on the device type:
+
+- Network address of the field device
+- Identifier — used later when setting up the visualization; can only be changed from version 2.7 onwards
+- Additional device-specific settings
+- Optional: select a template
+
+<div class="screenshot-frame">
+  <img src={addDetailsImg.src} alt="Device connection details" />
+</div>
+
+Optional metadata can be added in the form of tags (key-value pairs). This information is stored on the device page and has no further function within the Edge system.
+
+<div class="screenshot-frame">
+  <img src={addTagsImg.src} alt="Device tags" />
+</div>
+
+    </div>
+
+    <div class="qs-panel">
+
+In the device list, click on the device row to open the device page.
+
+<div class="screenshot-frame">
+  <img src={deviceListEditImg.src} alt="Device list" />
+</div>
+
+**Import from device (S7 symbolic addressing only)**
+
+:::note
+Importing measured variables directly from the field device is currently only supported for S7 controllers with symbolic addressing.
+:::
+
+:::note
+For large PLC structures, the import may fail. Use the CSV import as an alternative.
+:::
+
+Before importing, a connection to the field device must be established. The connection status is shown in the **Device connection** widget on the device page.
+
+<div class="screenshot-frame screenshot-frame-sm">
+  <img src={deviceConnectedImg.src} alt="Device connection status" />
+</div>
+
+On the device page, the **Measured variables** widget shows the total number of configured variables and how many are currently being recorded. Click **Import** to add variables from the field device or from a CSV file.
+
+<div class="screenshot-frame screenshot-frame-sm">
+  <img src={measuredVariablesImg.src} alt="Measured variables widget" />
+</div>
+
+<div class="screenshot-frame">
+  <img src={importSourceImg.src} alt="Import source dialog" />
+</div>
+
+Clicking **From device** retrieves the structure and measured variables directly from the field device. The Variable Browser then displays all available variables:
+
+- Variables already imported are highlighted in grey
+- Variables configured on the Edge but not found on the field device during import are highlighted in yellow
+
+Select all desired measured variables, then open the **Cart** and click **Import all**.
+
+<div class="screenshot-frame">
+  <img src={importCartImg.src} alt="Import cart" />
+</div>
+
+Before confirming, set the desired configuration for the imported variables.
+
+<div class="screenshot-frame">
+  <img src={importConfigImg.src} alt="Import configuration" />
+</div>
+
+    </div>
+
+    <div class="qs-panel">
+
+To access the measured variables of a device, open the device page and click the variables link.
+
+<div class="screenshot-frame screenshot-frame-sm">
+  <img src={variablenLinkImg.src} alt="Variables link on device page" />
+</div>
+
+The following settings can be changed for a measured variable:
+
+<div class="def-list">
+  <span class="def-list-key">Name</span><span class="def-list-val">Name changes require adjustments in existing dashboards; the name should be unique within its group level</span>
+  <span class="def-list-key">Sampling rate</span><span class="def-list-val">Range: 10 ms to 500 h, specified in milliseconds</span>
+  <span class="def-list-key">Recording</span><span class="def-list-val">Start and stop recording</span>
+  <span class="def-list-key">Timestamp alignment</span><span class="def-list-val">Enable/disable</span>
+  <span class="def-list-key">Recording metrics</span><span class="def-list-val">Enable/disable</span>
+  <span class="def-list-key">Tags</span><span class="def-list-val">Add/remove</span>
+</div>
+
+**Editing or deleting a single variable**
+
+Variables can be edited inline directly in the Variable Browser (name and sampling rate). For all other settings, open the edit dialog via the icon next to the variable.
+
+<div class="screenshot-frame screenshot-frame-xs">
+  <img src={variableEditIconImg.src} alt="Variable edit icon" />
+</div>
+
+<div class="screenshot-frame">
+  <img src={variableEditDialogImg.src} alt="Variable edit dialog" />
+</div>
+
+:::note
+Deleting a measured variable removes it from the visualization. Existing panels may display incorrect or no data. Recorded data is not deleted — used disk space is not freed.
+:::
+
+**Bulk editing or deleting**
+
+To edit or delete multiple variables at once, select them in the Variable Browser by adding them to the cart. Selected variables are highlighted in color; the number of selected items is shown on the cart icon. Open the cart to review and adjust the selection. Removing a variable from the cart does not delete it.
+
+<div class="screenshot-frame">
+  <img src={cartSelectionImg.src} alt="Cart selection list" />
+</div>
+
+Click **Edit all** to open the bulk edit dialog. Individual settings can be overwritten for all selected variables at once.
+
+<div class="screenshot-frame">
+  <img src={bulkEditDialogImg.src} alt="Bulk edit dialog" />
+</div>
+
+If the current values differ across the selection, this is indicated.
+
+<div class="screenshot-frame">
+  <img src={bulkEditMixedImg.src} alt="Bulk edit with mixed values" />
+</div>
+
+After applying changes, the cart remains open for further edits or can be closed.
+
+    </div>
+
+  </div>
+
+</div>

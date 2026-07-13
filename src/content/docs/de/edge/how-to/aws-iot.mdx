@@ -1,0 +1,125 @@
+---
+title: "Weiterleitung an AWS (IoT)"
+description: "Anleitung zur Anbindung des Edge an AWS IoT Core — Gerät registrieren, Zertifikat konvertieren und Gateway-Endpoint konfigurieren."
+sidebar:
+  order: 5
+---
+
+import aggregationParamImg from '../../../../../assets/images/edge/edge-gateway-aggregation-parameter.png';
+import aggregationParamEmptyImg from '../../../../../assets/images/edge/edge-gateway-aggregation-parameter-empty.png';
+import retrieveButtonImg from '../../../../../assets/images/edge/edge-gateway-retrieve-button.png';
+
+:::note
+Diese Funktion ist als optionales Erweiterungsmodul erhältlich. Bei Interesse an der AWS-IoT-Weiterleitung für Ihr Edge-Gerät nehmen Sie bitte Kontakt mit uns auf.
+:::
+
+Damit ein Edge eine Verbindung mit dem IoT Core von AWS aufbauen kann, muss das Gerät in AWS angelegt und am Edge mit einem Zertifikat konfiguriert werden. Das Zertifikat wird vom Gateway-Endpoint zur Authentifizierung gegenüber AWS verwendet.
+
+<div class="qs-stepper">
+
+  <div class="qs-tabbar">
+    <a class="qs-tab" href="#">Thing anlegen</a>
+    <a class="qs-tab" href="#">Zertifikat konvertieren</a>
+    <a class="qs-tab" href="#">Gateway konfigurieren</a>
+    <a class="qs-tab" href="#">Messgrößen hinzufügen</a>
+  </div>
+
+  <div class="qs-panels">
+
+    <div class="qs-panel">
+
+## Gerät (Thing) im IoT Core anlegen
+
+<ol>
+  <li>Im AWS Console Portal einloggen und zu AWS IoT Core navigieren.</li>
+  <li>Unter <strong>Manage → Things</strong> ein neues Gerät anlegen. Der Thing-Name muss mit dem <strong>Hostname</strong> des Edge übereinstimmen. Einen Thing Type auswählen.</li>
+  <li>Ein <strong>Device certificate</strong> erstellen. Alle Zertifikats-Dateien sicher aufbewahren — das Zertifikat kann nach diesem Schritt nicht erneut heruntergeladen werden. Dem Zertifikat die passenden IoT-Policies zuweisen.</li>
+</ol>
+
+    </div>
+
+    <div class="qs-panel">
+
+## Zertifikat konvertieren
+
+Die von AWS heruntergeladenen Zertifikats-Dateien liegen nicht im für den Edge-Gateway-Endpoint erforderlichen Format vor. Es muss eine `.pfx`-Datei erstellt werden aus:
+
+- Dem privaten Schlüssel (`...-private.pem.key`)
+- Dem Gerätezertifikat (`...-certificate.pem.crt`)
+- Dem AWS Root-Zertifikat (`AmazonRootCA1.pem`)
+
+**Unter Linux (WSL)**
+
+In das Verzeichnis mit den heruntergeladenen Zertifikats-Dateien wechseln und folgenden Befehl ausführen:
+
+```bash
+openssl pkcs12 -export -in certificate.pem.crt -inkey private.pem.key -out THINGNAME_certificate.pfx -certfile AmazonRootCA1.pem
+```
+
+Es wird ein Export-Passwort abgefragt. Dieses Passwort muss dem Edge bei der Zertifikats-Einrichtung mitgeteilt werden — es sollte zusammen mit den Zertifikats-Dateien sicher aufbewahrt werden.
+
+**Unter Windows (PowerShell)**
+
+Die Zertifikats- und Privat-Key-Datei müssen denselben Basisnamen tragen und die Dateiendungen `.crt` bzw. `.key` haben. Dann in der Shell ausführen:
+
+```powershell
+certutil -mergepfx <certificate-name>.crt <result-name>.pfx
+```
+
+:::note
+Alle Zertifikats-Dateien, das Export-Passwort und den Hostnamen des Geräts an einem sicheren Ort ablegen. Das Zertifikat kann nicht erneut von AWS heruntergeladen werden.
+:::
+
+    </div>
+
+    <div class="qs-panel">
+
+## Gateway-Endpoint konfigurieren
+
+Im Edge UI zu **System → Einstellungen → Gateway** navigieren. Der konfigurierte Endpoint wird mit seinem aktuellen Verbindungsstatus angezeigt. Auf den Endpoint klicken, um die Einstellungen zu öffnen, dann unter **Login-Daten** die `.pfx`-Zertifikats-Datei hochladen und speichern.
+
+    </div>
+
+    <div class="qs-panel">
+
+## Messgrößen hinzufügen
+
+Um eine Messgröße in die Gateway-Weiterleitung einzubeziehen, den Bearbeitungs-Dialog der Messgröße öffnen und einen Parameter mit dem Bezeichner `gateway_aggregation` hinzufügen.
+
+<div class="screenshot-frame">
+  <img src={aggregationParamImg.src} alt="gateway_aggregation-Parameter im Bearbeitungs-Dialog" />
+</div>
+
+Das Aggregations-Intervall wird als String-Literal angegeben:
+
+- `15s` — 15 Sekunden
+- `1m` — 1 Minute
+- `2h` — 2 Stunden
+
+Soll die Messgröße roh (nicht aggregiert) übertragen werden, den Wert auf `0` setzen.
+
+:::caution
+Aufgrund eines bekannten Fehlers können Parameter nicht vollständig aus einer Messgröße gelöscht werden. Um eine Messgröße nicht mehr weiterzuleiten, den Wert des Parameters `gateway_aggregation` **leer** lassen, anstatt den Eintrag zu löschen.
+:::
+
+<div class="screenshot-frame">
+  <img src={aggregationParamEmptyImg.src} alt="gateway_aggregation-Parameter mit leerem Wert" />
+</div>
+
+Sobald alle Messgrößen markiert sind, im Gateway-Dispatcher auf **Messgrößen beziehen** klicken, um den automatisierten Import auszulösen.
+
+<div class="screenshot-frame screenshot-frame-sm">
+  <img src={retrieveButtonImg.src} alt="Schaltfläche Messgrößen beziehen" />
+</div>
+
+Die markierten Messgrößen werden anschließend mit dem jeweiligen Aggregations-Intervall im Dispatcher eingerichtet.
+
+:::note
+Das automatisierte Beziehen ist nur möglich, solange noch keine Messgrößen im Gateway vorhanden sind. Sind bereits Messgrößen hinzugefügt, müssen diese zuerst entfernt werden, bevor der Abruf ausgelöst werden kann.
+:::
+
+    </div>
+
+  </div>
+
+</div>

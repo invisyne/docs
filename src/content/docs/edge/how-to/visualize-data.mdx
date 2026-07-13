@@ -1,0 +1,164 @@
+---
+title: "Visualizing Measured Values"
+description: "Step-by-step guide for setting up dashboards and panels in Grafana to visualize measured values recorded by the Edge."
+sidebar:
+  order: 3
+---
+
+import viewerEditorImg from '../../../../assets/images/edge/edge-grafana-viewer-vs-editor.gif';
+import createMenuImg from '../../../../assets/images/edge/edge-grafana-create-menu.png';
+import saveDashboardImg from '../../../../assets/images/edge/edge-grafana-save-dashboard.png';
+import dashboardsManageImg from '../../../../assets/images/edge/edge-grafana-dashboards-manage.gif';
+import createFolderMenuImg from '../../../../assets/images/edge/edge-grafana-create-folder-menu.png';
+import newFolderImg from '../../../../assets/images/edge/edge-grafana-new-folder.png';
+import exportIconImg from '../../../../assets/images/edge/edge-grafana-export-icon.png';
+import addPanelIconImg from '../../../../assets/images/edge/edge-grafana-add-panel-icon.png';
+import addPanelImg from '../../../../assets/images/edge/edge-grafana-add-panel.gif';
+import queryEditorImg from '../../../../assets/images/edge/edge-grafana-query-editor.png';
+import selectMeasurementImg from '../../../../assets/images/edge/edge-grafana-select-measurement.gif';
+import queryStringFieldImg from '../../../../assets/images/edge/edge-grafana-query-string-field.png';
+import visualizationPickerImg from '../../../../assets/images/edge/edge-grafana-visualization-picker.png';
+
+The Edge uses Grafana (version 7.4) as its visualization platform. Grafana supports a wide range of display types — charts, gauges, tables, and single-value panels — and allows multiple panels to be combined into dashboards.
+
+:::note
+Available from Edge version 2.7.1.
+:::
+
+<div class="qs-stepper">
+
+  <div class="qs-tabbar qs-cardbar">
+    <a class="qs-tab" href="#">
+      <span class="qs-card-title">Dashboards</span>
+      <span class="qs-card-desc">Create, organize, and save dashboards and folders.</span>
+    </a>
+    <a class="qs-tab" href="#">
+      <span class="qs-card-title">Panels & Variables</span>
+      <span class="qs-card-desc">Add panels and select measured variables for display.</span>
+    </a>
+    <a class="qs-tab" href="#">
+      <span class="qs-card-title">Export & Import</span>
+      <span class="qs-card-desc">Back up dashboards or transfer them to another device.</span>
+    </a>
+  </div>
+
+  <div class="qs-panels">
+
+    <div class="qs-panel">
+
+**Viewer vs. Editor**
+
+No login is required to view previously configured dashboards. To create or edit dashboards and panels, log in with an Editor account by clicking the icon in the lower left area and entering username and password.
+
+<div class="screenshot-frame">
+  <img src={viewerEditorImg.src} alt="Viewer vs. Editor login" />
+</div>
+
+**Creating a dashboard**
+
+In the left menu bar, click the **+** symbol and select **Dashboard**. A new page with a blank panel opens.
+
+<div class="screenshot-frame screenshot-frame-sm">
+  <img src={createMenuImg.src} alt="Create dashboard menu" />
+</div>
+
+:::note
+The dashboard must be **saved** before it will persist. Click the save symbol in the upper right area, assign a name, and optionally select a folder.
+:::
+
+<div class="screenshot-frame">
+  <img src={saveDashboardImg.src} alt="Save dashboard dialog" />
+</div>
+
+**Creating folders**
+
+Folders are used to organize dashboards. To create a folder, click the **+** symbol in the left menu and select **Folder**. Enter a name and confirm with **Create**.
+
+<div class="screenshot-frame">
+  <img src={dashboardsManageImg.src} alt="Manage dashboards" />
+</div>
+
+<div class="screenshot-frame screenshot-frame-sm">
+  <img src={createFolderMenuImg.src} alt="Create folder menu" />
+</div>
+
+<div class="screenshot-frame">
+  <img src={newFolderImg.src} alt="New folder dialog" />
+</div>
+
+    </div>
+
+    <div class="qs-panel">
+
+**Adding a panel**
+
+To add a new panel, click the **+** symbol in the upper right area of the dashboard (to the left of the save icon). Select **+ Add new panel** to open the panel editor.
+
+<div class="screenshot-frame screenshot-frame-xs">
+  <img src={addPanelIconImg.src} alt="Add panel icon" />
+</div>
+
+<div class="screenshot-frame">
+  <img src={addPanelImg.src} alt="Adding a panel" />
+</div>
+
+**Selecting a measured variable**
+
+At least one measured variable must be selected for data to appear in a panel. This is done in the lower area of the panel editor, below the display preview.
+
+<div class="screenshot-frame">
+  <img src={queryEditorImg.src} alt="Query editor" />
+</div>
+
+1. **Select Measurement** — select `source`. If unavailable, no values have been recorded yet. The source can also be entered manually (note: lowercase).
+2. **Select field device** — click **+** next to **WHERE**, select `device_name`, then choose the device.
+3. **Select folder** — click **+** again, select `group_*`, then choose the folder. Repeat until the target folder is reached.
+4. **Select variable** — click **+** again, select `variable`, and choose the measured variable from the list.
+
+:::note
+If the selection is incomplete (e.g. only the device has been selected), the preview may already show data. This data is not correct — always ensure a specific variable has been selected at the end.
+:::
+
+<div class="screenshot-frame">
+  <img src={selectMeasurementImg.src} alt="Selecting a measured variable" />
+</div>
+
+**Variables of type "String"**
+
+Variables stored as strings on the Edge (e.g. `S7_DWORD`) require a change to the **field** value. In the **Select** area, click on `value` and enter `stringValue` (note case sensitivity).
+
+<div class="screenshot-frame screenshot-frame-sm">
+  <img src={queryStringFieldImg.src} alt="String field configuration" />
+</div>
+
+**Changing the display type**
+
+Grafana provides a wide range of visualization types including line and bar charts, single-value displays, gauges, and tables. Display type and all associated settings are configured in the right-hand panel.
+
+<div class="screenshot-frame screenshot-frame-sm">
+  <img src={visualizationPickerImg.src} alt="Visualization type picker" />
+</div>
+
+For further reference, see the official [Grafana documentation](https://grafana.com/docs/grafana/v7.4/) and [tutorials](https://grafana.com/tutorials/).
+
+    </div>
+
+    <div class="qs-panel">
+
+**Exporting a dashboard**
+
+Open the dashboard to be exported. Click the **Share** icon in the upper left area (next to the title), select **Export**, and use **Save to file** to download the dashboard as a `.json` file.
+
+<div class="screenshot-frame screenshot-frame-xs">
+  <img src={exportIconImg.src} alt="Export icon" />
+</div>
+
+**Importing a dashboard**
+
+Click **+** in the left menu and select **Import**. Select the `.json` file, then adjust the name, folder, and UID as needed. If a dashboard with the same name or UID already exists, those fields must be changed or the existing dashboard can be overwritten.
+
+    </div>
+
+  </div>
+
+</div>
