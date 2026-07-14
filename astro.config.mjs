@@ -7,7 +7,8 @@ export default defineConfig({
 	// Set site and base for GitHub Pages.
 	// For a project page (github.com/ORG/REPO): site='https://ORG.github.io', base='/REPO'
 	// For an org page (github.com/ORG/ORG.github.io): site='https://ORG.github.io', no base needed
-	site: 'https://docs.invisyne.com',
+	// Overridable so the preview-deploy workflow can build against preview.docs.invisyne.com.
+	site: process.env.SITE_URL ?? 'https://docs.invisyne.com',
 	redirects: {},
 	markdown: {
 		// Astro leaves this unset by default; @astrojs/mdx reads it directly to decide
