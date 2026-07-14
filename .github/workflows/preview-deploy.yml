@@ -59,6 +59,12 @@ jobs:
         run: |
           printf 'User-agent: *\nDisallow: /\n' > dist/robots.txt
 
+      # public/CNAME is copied into dist/ verbatim during the build and contains the
+      # production domain — the gh-pages action only writes its own `cname` input when
+      # no CNAME file already exists, so it silently keeps the wrong one otherwise.
+      - name: Point CNAME at the preview domain
+        run: echo 'preview.docs.invisyne.com' > dist/CNAME
+
       - name: Push to docs-preview
         uses: peaceiris/actions-gh-pages@v4
         with:
@@ -66,7 +72,6 @@ jobs:
           external_repository: invisyne/docs-preview
           publish_branch: gh-pages
           publish_dir: ./dist
-          cname: preview.docs.invisyne.com
           user_name: 'github-actions[bot]'
           user_email: 'github-actions[bot]@users.noreply.github.com'
           commit_message: 'Preview deploy from ${{ github.ref_name }}'
