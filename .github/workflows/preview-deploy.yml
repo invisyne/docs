@@ -56,7 +56,8 @@ jobs:
       # Overwrites whatever robots.txt astro produced — the preview site should never
       # be crawled, independent of the noindex meta tag on individual pages.
       - name: Block all crawlers
-        run: printf 'User-agent: *\nDisallow: /\n' > dist/robots.txt
+        run: |
+          printf 'User-agent: *\nDisallow: /\n' > dist/robots.txt
 
       - name: Push to docs-preview
         uses: peaceiris/actions-gh-pages@v4
