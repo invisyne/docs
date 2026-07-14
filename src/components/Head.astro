@@ -2,6 +2,10 @@
 import type { Props } from '@astrojs/starlight/props';
 import Default from '@astrojs/starlight/components/Head.astro';
 import { ClientRouter } from 'astro:transitions';
+
+// Set by the preview-deploy workflow so preview builds never get indexed.
+const isPreviewBuild = process.env.PREVIEW_BUILD === 'true';
 ---
 <Default {...Astro.props} />
+{isPreviewBuild && <meta name="robots" content="noindex, nofollow" />}
 <ClientRouter />

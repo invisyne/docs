@@ -1,0 +1,71 @@
+name: Deploy Preview
+
+on:
+  push:
+    tags:
+      - 'preview-*'
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Generate a short-lived token via GitHub App to access the private
+      # release-notes repo. Same secrets as the production deploy workflow.
+      - name: Generate release-notes access token
+        id: app-token
+        uses: actions/create-github-app-token@v2
+        with:
+          app-id: ${{ secrets.RELEASE_NOTES_APP_ID }}
+          private-key: ${{ secrets.RELEASE_NOTES_APP_KEY }}
+          owner: invisyne
+          repositories: release-notes
+
+      - name: Checkout release-notes
+        uses: actions/checkout@v4
+        with:
+          repository: invisyne/release-notes
+          token: ${{ steps.app-token.outputs.token }}
+          path: release-notes
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@invisyne'
+
+      - run: npm ci
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # PREVIEW_BUILD flips the noindex meta tag on (see src/components/Head.astro).
+      # SITE_URL overrides astro.config.mjs's `site` so sitemap/canonical URLs point at
+      # preview.docs.invisyne.com instead of the production domain.
+      # PDF generation is skipped here — not needed for a partner content review.
+      - run: npm run build
+        env:
+          RELEASE_NOTES_PATH: release-notes
+          PREVIEW_BUILD: 'true'
+          SITE_URL: https://preview.docs.invisyne.com
+
+      # Overwrites whatever robots.txt astro produced — the preview site should never
+      # be crawled, independent of the noindex meta tag on individual pages.
+      - name: Block all crawlers
+        run: printf 'User-agent: *\nDisallow: /\n' > dist/robots.txt
+
+      - name: Push to docs-preview
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.PREVIEW_DEPLOY_TOKEN }}
+          external_repository: invisyne/docs-preview
+          publish_branch: gh-pages
+          publish_dir: ./dist
+          cname: preview.docs.invisyne.com
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
+          commit_message: 'Preview deploy from ${{ github.ref_name }}'
