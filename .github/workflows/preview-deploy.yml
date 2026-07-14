@@ -62,7 +62,7 @@ jobs:
       - name: Push to docs-preview
         uses: peaceiris/actions-gh-pages@v4
         with:
-          github_token: ${{ secrets.PREVIEW_DEPLOY_TOKEN }}
+          personal_token: ${{ secrets.PREVIEW_DEPLOY_TOKEN }}
           external_repository: invisyne/docs-preview
           publish_branch: gh-pages
           publish_dir: ./dist
