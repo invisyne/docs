@@ -9,6 +9,7 @@ import nodeRedImg from '../../../assets/images/edge/edge-quickstart-node-red.png
 import grafanaImg from '../../../assets/images/edge/edge-quickstart-grafana.png';
 import weiterleitungImg from '../../../assets/images/edge/edge-quickstart-data-transfer.png';
 import einstellungenImg from '../../../assets/images/edge/edge-quickstart-settings.png';
+import browserSecurityWarningImg from '../../../assets/images/edge/edge-browser-security-warning.png';
 
 A brief overview of what you can do with Edge.
 
@@ -27,6 +28,12 @@ A brief overview of what you can do with Edge.
 
     <div class="qs-panel">
       <p>Open a browser and enter the IP address of your Edge device. The web interface opens directly — no additional software required. After connecting, you land on the <strong>Home</strong> screen.</p>
+      :::note
+      The browser may show a security warning stating that the connection is not trusted. This is expected — the Edge uses a self-signed certificate by default. Confirm the exception in your browser to proceed. The connection is still encrypted. To remove the warning permanently, see [Custom HTTPS Certificate](/edge/how-to/https-certificate).
+      :::
+      <div class="screenshot-frame">
+        <img src={browserSecurityWarningImg.src} alt="Browser security warning for untrusted connection" />
+      </div>
       <div class="screenshot-frame">
         <img src={dashboardImg.src} alt="Edge Home" />
       </div>
@@ -47,6 +54,9 @@ A brief overview of what you can do with Edge.
         <img src={grafanaImg.src} alt="Grafana on Edge" />
       </div>
       <p>Grafana is pre-installed on the Edge and connects directly to the recorded measurement data. From the home screen you can open existing dashboards or create new ones to visualize your signal data as charts, gauges, and tables.</p>
+      :::note
+      The default Grafana login is **admin / admin**. You will be prompted to change the password on first login.
+      :::
       <div class="qs-tip">Grafana dashboards are stored on the device. No internet connection is required — everything runs locally on the Edge.</div>
     </div>
 
@@ -63,6 +73,9 @@ A brief overview of what you can do with Edge.
           <tr><td><strong>+ Add Device</strong></td><td>Add a new field device by selecting the protocol (SIMATIC, Modbus, OPC UA) and entering the connection parameters.</td></tr>
         </tbody>
       </table>
+      :::note
+      If the PLC is on a different network segment than the Edge, the default gateway must be correctly configured in the Edge network settings — otherwise the device will not be reachable.
+      :::
       <div class="qs-tip">Each data source (SIMATIC, Modbus, OPC UA) requires the correct connection parameters. Have the IP address and slot/rack configuration of your controller ready before adding a device.</div>
     </div>
 

@@ -9,6 +9,7 @@ import nodeRedImg from '../../../../assets/images/edge/edge-quickstart-node-red.
 import grafanaImg from '../../../../assets/images/edge/edge-quickstart-grafana.png';
 import weiterleitungImg from '../../../../assets/images/edge/edge-quickstart-data-transfer.png';
 import einstellungenImg from '../../../../assets/images/edge/edge-quickstart-settings.png';
+import browserSecurityWarningImg from '../../../../assets/images/edge/edge-browser-security-warning.png';
 
 Ein kurzer Überblick über die wichtigsten Bereiche des Edge (Crawler).
 
@@ -27,6 +28,12 @@ Ein kurzer Überblick über die wichtigsten Bereiche des Edge (Crawler).
 
     <div class="qs-panel">
       <p>Zum Öffnen des Web-Interface die IP-Adresse des Edge-Geräts im Browser aufrufen — keine zusätzliche Software erforderlich. Nach der Verbindung erscheint die <strong>Startseite</strong>.</p>
+      :::note
+      Der Browser zeigt möglicherweise eine Sicherheitswarnung an, dass die Verbindung nicht vertrauenswürdig ist. Dies ist erwartet — der Edge verwendet standardmäßig ein selbstsigniertes Zertifikat. Die Ausnahme im Browser bestätigen, um fortzufahren. Die Verbindung ist dennoch verschlüsselt. Um die Warnung dauerhaft zu beseitigen, siehe [Eigenes HTTPS-Zertifikat](/de/edge/how-to/https-certificate).
+      :::
+      <div class="screenshot-frame">
+        <img src={browserSecurityWarningImg.src} alt="Browser-Sicherheitswarnung bei nicht vertrauenswürdiger Verbindung" />
+      </div>
       <div class="screenshot-frame">
         <img src={dashboardImg.src} alt="Edge Startseite" />
       </div>
@@ -47,6 +54,9 @@ Ein kurzer Überblick über die wichtigsten Bereiche des Edge (Crawler).
         <img src={grafanaImg.src} alt="Grafana auf dem Edge" />
       </div>
       <p>Grafana ist auf dem Edge vorinstalliert und verbindet sich direkt mit den aufgezeichneten Messdaten. Vom Startbildschirm aus können bestehende Dashboards geöffnet oder neue erstellt werden, um Signaldaten als Diagramme, Gauges und Tabellen darzustellen.</p>
+      :::note
+      Das Standard-Login für Grafana lautet **admin / admin**. Beim ersten Anmelden wird ein Passwortwechsel verlangt.
+      :::
       <div class="qs-tip">Grafana-Dashboards werden auf dem Gerät gespeichert. Eine Internetverbindung ist nicht erforderlich — alles läuft lokal auf dem Edge.</div>
     </div>
 
@@ -63,6 +73,9 @@ Ein kurzer Überblick über die wichtigsten Bereiche des Edge (Crawler).
           <tr><td><strong>+ Geräte hinzufügen</strong></td><td>Ein neues Feldgerät hinzufügen: Protokoll wählen (SIMATIC, Modbus, OPC UA) und Verbindungsparameter eingeben.</td></tr>
         </tbody>
       </table>
+      :::note
+      Befindet sich die SPS in einem anderen Netzwerksegment als der Edge, muss das Standard-Gateway in den Netzwerkeinstellungen des Edge korrekt konfiguriert sein — andernfalls ist das Gerät nicht erreichbar.
+      :::
       <div class="qs-tip">Jede Datenquelle benötigt die richtigen Verbindungsparameter. IP-Adresse und Slot-/Rack-Konfiguration der Steuerung sollten vor dem Hinzufügen eines Geräts bereitliegen.</div>
     </div>
 

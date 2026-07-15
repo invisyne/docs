@@ -2,13 +2,23 @@
 title: "Installieren von Updates"
 description: "Schritt-für-Schritt-Anleitung zur Aktualisierung der Edge-Firmware und der installierten Dienste über ein Update-Bundle."
 sidebar:
-  order: 4
+  order: 5
 ---
 
 import { Steps } from '@astrojs/starlight/components';
 import settingsMenuImg from '../../../../../assets/images/edge/edge-settings-menu.png';
 import updateOverviewImg from '../../../../../assets/images/edge/edge-update-overview.png';
 import bundleDialogImg from '../../../../../assets/images/edge/edge-update-bundle-dialog.png';
+import bundleSelectedImg from '../../../../../assets/images/edge/edge-update-bundle-selected.png';
+import bundleUploadingImg from '../../../../../assets/images/edge/edge-update-bundle-uploading.png';
+import updateAvailableImg from '../../../../../assets/images/edge/edge-update-available.png';
+import updateDetailsExpandedImg from '../../../../../assets/images/edge/edge-update-details-expanded.png';
+import updateInstallConfirmImg from '../../../../../assets/images/edge/edge-update-install-confirm.png';
+import updateInstallingStartImg from '../../../../../assets/images/edge/edge-update-installing-start.png';
+import updateInstallingProgressImg from '../../../../../assets/images/edge/edge-update-installing-progress.png';
+import updateSuccessImg from '../../../../../assets/images/edge/edge-update-success.png';
+import grafanaDataGapImg from '../../../../../assets/images/edge/edge-grafana-update-data-gap.png';
+import updateRestartRequiredImg from '../../../../../assets/images/edge/edge-update-restart-required.png';
 
 Updates werden auf dem Edge durch das Hochladen eines Update-Bundles installiert — einer `.zip`-Datei, die von Invisyne bereitgestellt wird und die neue Firmware sowie aktualisierte Dienste enthält. Es gibt keinen automatischen Update-Mechanismus; jedes Update muss manuell hochgeladen werden.
 
@@ -32,22 +42,72 @@ Updates werden auf dem Edge durch das Hochladen eines Update-Bundles installiert
 
 3. **Update-Bundle hochladen**
 
-   Auf **Bundle Hochladen** klicken. Im erscheinenden Dialog auf **Bundle auswählen** klicken und die von Invisyne bereitgestellte `.zip`-Datei auswählen. Anschließend auf **Hochladen** klicken, um den Upload zu starten.
+   Auf **Bundle Hochladen** klicken. Im erscheinenden Dialog auf **Bundle auswählen** klicken und die von Invisyne bereitgestellte `.zip`-Datei auswählen.
 
    <div class="screenshot-frame screenshot-frame-sm">
-     <img src={bundleDialogImg.src} alt="Bundle-Upload-Dialog" />
+     <img src={bundleSelectedImg.src} alt="Bundle-Upload-Dialog mit ausgewählter Datei" />
    </div>
 
-4. **Update installieren**
+   Auf **Hochladen** klicken, um den Upload zu starten. Während der Übertragung wird ein Fortschrittsbalken angezeigt.
 
-   Nach dem Upload wird das verfügbare Update auf der Übersichtsseite angezeigt. Update-Hinweise und die Liste der zu aktualisierenden Komponenten prüfen, dann die Installation bestätigen.
+   <div class="screenshot-frame screenshot-frame-sm">
+     <img src={bundleUploadingImg.src} alt="Fortschritt des Bundle-Uploads" />
+   </div>
+
+4. **Update prüfen und installieren**
+
+   Nach Abschluss des Uploads wird das verfügbare Update in der Übersicht mit Versionshinweisen und Komponentenliste angezeigt. Auf **Weiter zur Aktualisierung** klicken, um die Aktualisierungsdetails zu öffnen.
+
+   <div class="screenshot-frame">
+     <img src={updateAvailableImg.src} alt="Update-Übersicht mit verfügbarem Update" />
+   </div>
+
+   Die Detailseite zeigt die Bundle-Hinweise und die im Update enthaltenen Komponenten. Einen Komponenteneintrag aufklappen, um die genaue Version und Beschreibung der Änderungen zu sehen.
+
+   <div class="screenshot-frame">
+     <img src={updateDetailsExpandedImg.src} alt="Aktualisierungsdetails mit aufgeklapptem Komponenteneintrag" />
+   </div>
+
+   In manchen Fällen wird ein **Neustart erforderlich**-Hinweis angezeigt — das bedeutet, dass das Gerät erst neu gestartet werden muss, bevor das Update installiert werden kann. Den Edge zuerst neu starten und anschließend zur Update-Seite zurückkehren.
+
+   <div class="screenshot-frame">
+     <img src={updateRestartRequiredImg.src} alt="Update-Seite mit Hinweis auf erforderlichen Neustart vor der Installation" />
+   </div>
+
+   Auf **Installation starten** klicken. Ein Bestätigungs-Dialog weist darauf hin, dass bestimmte Dienste während der Installation kurz nicht erreichbar sein können.
+
+   <div class="screenshot-frame screenshot-frame-sm">
+     <img src={updateInstallConfirmImg.src} alt="Bestätigungs-Dialog Installation starten" />
+   </div>
+
+   Der Installationsbildschirm zeigt den Fortschritt in Echtzeit — Komponenten und Installationsschritte werden nacheinander angezeigt.
+
+   <div class="screenshot-frame">
+     <img src={updateInstallingStartImg.src} alt="Laufende Aktualisierung — erste Installationsschritte" />
+   </div>
+
+   <div class="screenshot-frame">
+     <img src={updateInstallingProgressImg.src} alt="Laufende Aktualisierung — Komponenten werden installiert" />
+   </div>
 
    :::note
-   Der Edge startet während des Update-Vorgangs automatisch neu. Dieser Vorgang kann mehrere Minuten dauern. Das Gerät während dieser Zeit nicht vom Strom trennen.
+   Das Gerät während des Updates nicht vom Strom trennen. Der Edge kann im Rahmen des Update-Vorgangs automatisch neu starten.
    :::
+
+   Sobald alle Schritte abgeschlossen sind, erscheint eine Erfolgsmeldung. Auf **Bestätigen** klicken, um zur Übersicht zurückzukehren.
+
+   <div class="screenshot-frame">
+     <img src={updateSuccessImg.src} alt="Update erfolgreich installiert" />
+   </div>
 
 5. **Update überprüfen**
 
-   Nach dem Neustart zeigt die Update-Übersicht unter **Letztes erfolgreiches Update** die neu installierte Version sowie Datum und Liste der aktualisierten Komponenten.
+   Nach dem Neustart zeigt die Update-Übersicht unter **Letztes erfolgreiches Update** die neu installierte Version sowie Datum und Liste der aktualisierten Komponenten. Die neue Firmware-Version ist außerdem unten links in der Sidebar sichtbar.
+
+   Das Update lässt sich auch in Grafana bestätigen: Der Neustart des Geräts während des Updates führt zu einer Lücke in den aufgezeichneten Daten, die als weißer Bereich im Diagramm sichtbar ist.
+
+   <div class="screenshot-frame">
+     <img src={grafanaDataGapImg.src} alt="Datenlücke im Grafana-Diagramm durch Edge-Neustart beim Update" />
+   </div>
 
 </Steps>

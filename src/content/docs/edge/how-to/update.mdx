@@ -2,13 +2,23 @@
 title: "Installing Updates"
 description: "Step-by-step guide for updating the Edge firmware and installed services using an update bundle."
 sidebar:
-  order: 4
+  order: 5
 ---
 
 import { Steps } from '@astrojs/starlight/components';
 import settingsMenuImg from '../../../../assets/images/edge/edge-settings-menu.png';
 import updateOverviewImg from '../../../../assets/images/edge/edge-update-overview.png';
 import bundleDialogImg from '../../../../assets/images/edge/edge-update-bundle-dialog.png';
+import bundleSelectedImg from '../../../../assets/images/edge/edge-update-bundle-selected.png';
+import bundleUploadingImg from '../../../../assets/images/edge/edge-update-bundle-uploading.png';
+import updateAvailableImg from '../../../../assets/images/edge/edge-update-available.png';
+import updateDetailsExpandedImg from '../../../../assets/images/edge/edge-update-details-expanded.png';
+import updateInstallConfirmImg from '../../../../assets/images/edge/edge-update-install-confirm.png';
+import updateInstallingStartImg from '../../../../assets/images/edge/edge-update-installing-start.png';
+import updateInstallingProgressImg from '../../../../assets/images/edge/edge-update-installing-progress.png';
+import updateSuccessImg from '../../../../assets/images/edge/edge-update-success.png';
+import grafanaDataGapImg from '../../../../assets/images/edge/edge-grafana-update-data-gap.png';
+import updateRestartRequiredImg from '../../../../assets/images/edge/edge-update-restart-required.png';
 
 Updates are installed on the Edge by uploading an update bundle — a `.zip` file provided by Invisyne that contains the new firmware and service versions. There is no automatic update mechanism; each update must be uploaded manually.
 
@@ -16,7 +26,7 @@ Updates are installed on the Edge by uploading an update bundle — a `.zip` fil
 
 1. **Navigate to the Update page**
 
-   In the left sidebar, go to **System → Einstellungen**. On the settings overview, click the **Update** tile.
+   In the left sidebar, go to **System → Settings**. On the settings overview, click the **Update** tile.
 
    <div class="screenshot-frame">
      <img src={settingsMenuImg.src} alt="Settings menu overview" />
@@ -24,7 +34,7 @@ Updates are installed on the Edge by uploading an update bundle — a `.zip` fil
 
 2. **Check the current version**
 
-   The Update overview shows the currently installed version and a summary of all installed components. If no update bundle has been uploaded yet, the status reads **Kein verfügbares Update**.
+   The Update overview shows the currently installed version and a summary of all installed components. If no update bundle has been uploaded yet, the status reads **No update available**.
 
    <div class="screenshot-frame">
      <img src={updateOverviewImg.src} alt="Update overview" />
@@ -32,22 +42,72 @@ Updates are installed on the Edge by uploading an update bundle — a `.zip` fil
 
 3. **Upload the update bundle**
 
-   Click **Bundle Hochladen**. In the dialog that appears, click **Bundle auswählen** and select the `.zip` update file provided by Invisyne. Then click **Hochladen** to begin the upload.
+   Click **Upload Bundle**. In the dialog that appears, click **Select Bundle** and select the `.zip` update file provided by Invisyne.
 
    <div class="screenshot-frame screenshot-frame-sm">
-     <img src={bundleDialogImg.src} alt="Bundle upload dialog" />
+     <img src={bundleSelectedImg.src} alt="Bundle upload dialog with file selected" />
    </div>
 
-4. **Install the update**
+   Click **Upload** to start the upload. A progress bar is shown while the file is being transferred.
 
-   Once the bundle has been uploaded, the available update is displayed on the overview page. Review the update notes and the list of components to be updated, then confirm the installation.
+   <div class="screenshot-frame screenshot-frame-sm">
+     <img src={bundleUploadingImg.src} alt="Bundle upload progress" />
+   </div>
+
+4. **Review and install the update**
+
+   Once the upload is complete, the Update overview shows the available update with its release notes and component list. Click **Continue to Update** to open the update details.
+
+   <div class="screenshot-frame">
+     <img src={updateAvailableImg.src} alt="Update overview showing available update" />
+   </div>
+
+   The details page shows the bundle notes and the list of components included in the update. Expand a component entry to see the exact version and description of what will be installed.
+
+   <div class="screenshot-frame">
+     <img src={updateDetailsExpandedImg.src} alt="Update details with component entry expanded" />
+   </div>
+
+   In some cases the overview shows a **Restart required** warning — this means the device must be restarted before the update can be installed. Restart the Edge first, then return to the Update page to continue.
+
+   <div class="screenshot-frame">
+     <img src={updateRestartRequiredImg.src} alt="Update page showing restart required warning before installation" />
+   </div>
+
+   Click **Start Installation** to begin. A confirmation dialog warns that some services may be temporarily unreachable during the process.
+
+   <div class="screenshot-frame screenshot-frame-sm">
+     <img src={updateInstallConfirmImg.src} alt="Install confirmation dialog" />
+   </div>
+
+   The installation screen shows the progress in real time — components and installation steps are listed as they complete.
+
+   <div class="screenshot-frame">
+     <img src={updateInstallingStartImg.src} alt="Update installation in progress — initial steps" />
+   </div>
+
+   <div class="screenshot-frame">
+     <img src={updateInstallingProgressImg.src} alt="Update installation in progress — components being installed" />
+   </div>
 
    :::note
-   The Edge will restart automatically during the update process. This may take several minutes. Do not disconnect the device from the power supply during this time.
+   Do not disconnect the device from the power supply during the update. The Edge may restart automatically as part of the process.
    :::
+
+   Once all steps are complete, a success screen is shown. Click **Confirm** to return to the overview.
+
+   <div class="screenshot-frame">
+     <img src={updateSuccessImg.src} alt="Update successfully installed" />
+   </div>
 
 5. **Verify the update**
 
-   After the restart, the Update overview shows the newly installed version under **Letztes erfolgreiches Update**, along with the date and the list of updated components.
+   After the restart, the Update overview shows the newly installed version under **Last successful update**, along with the date and the list of updated components. The new firmware version is also visible in the bottom left corner of the sidebar.
+
+   The update can also be confirmed in Grafana: the device restart during the update causes a gap in the recorded data, visible as a white break in the chart.
+
+   <div class="screenshot-frame">
+     <img src={grafanaDataGapImg.src} alt="Data gap in Grafana chart caused by Edge restart during update" />
+   </div>
 
 </Steps>

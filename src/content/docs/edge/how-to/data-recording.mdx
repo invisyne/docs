@@ -2,13 +2,9 @@
 title: "Configuring Data Recording"
 description: "Step-by-step guide for setting up data recording on the Edge — from adding a field device to configuring measured variables."
 sidebar:
-  order: 2
+  order: 3
 ---
 
-import addMenuImg from '../../../../assets/images/edge/edge-device-add-menu.png';
-import addTypeImg from '../../../../assets/images/edge/edge-device-add-type.png';
-import addDetailsImg from '../../../../assets/images/edge/edge-device-add-details.png';
-import addTagsImg from '../../../../assets/images/edge/edge-device-add-tags.png';
 import deviceListEditImg from '../../../../assets/images/edge/edge-device-list-edit-icon.png';
 import measuredVariablesImg from '../../../../assets/images/edge/edge-measured-variables-widget.png';
 import importSourceImg from '../../../../assets/images/edge/edge-import-source-dialog.png';
@@ -22,14 +18,23 @@ import cartBadgeImg from '../../../../assets/images/edge/edge-cart-badge-count.p
 import cartSelectionImg from '../../../../assets/images/edge/edge-cart-selection-list.png';
 import bulkEditDialogImg from '../../../../assets/images/edge/edge-bulk-edit-dialog.png';
 import bulkEditMixedImg from '../../../../assets/images/edge/edge-bulk-edit-mixed-values.png';
+import importCsvImg from '../../../../assets/images/edge/edge-device-import-csv.png';
+import variableAddressFormatsImg from '../../../../assets/images/edge/edge-device-variable-address-formats.png';
+import variableCreateImg from '../../../../assets/images/edge/edge-device-variable-create.png';
+import variableConnectedImg from '../../../../assets/images/edge/edge-device-variable-connected.png';
+import perfOverviewImg from '../../../../assets/images/edge/edge-performance-analysis-overview.png';
+import perfStartImg from '../../../../assets/images/edge/edge-performance-analysis-start.png';
+import perfWarningImg from '../../../../assets/images/edge/edge-performance-analysis-warning.png';
+import perfRunningImg from '../../../../assets/images/edge/edge-performance-analysis-running.png';
+import perfResultsImg from '../../../../assets/images/edge/edge-performance-analysis-results.png';
 
 <div class="qs-stepper">
 
   <div class="qs-tabbar">
     <a class="qs-tab" href="#">Preparation</a>
-    <a class="qs-tab" href="#">Add device</a>
     <a class="qs-tab" href="#">Set up variables</a>
     <a class="qs-tab" href="#">Adjust variables</a>
+    <a class="qs-tab" href="#">Performance Analysis</a>
   </div>
 
   <div class="qs-panels">
@@ -41,38 +46,7 @@ Before configuring data recording, the following information about the field dev
 - IP address of the field device
 - Device type (e.g. Modbus, Simatic S7)
 
-The field device must be connected to the Edge network before proceeding.
-
-    </div>
-
-    <div class="qs-panel">
-
-In the main menu, navigate to **+ Add devices** and select the appropriate device type.
-
-<div class="screenshot-frame screenshot-frame-sm">
-  <img src={addMenuImg.src} alt="Add devices menu" />
-</div>
-
-<div class="screenshot-frame screenshot-frame-sm">
-  <img src={addTypeImg.src} alt="Device type selection" />
-</div>
-
-After selecting the type, enter the required connection details. The available fields vary depending on the device type:
-
-- Network address of the field device
-- Identifier — used later when setting up the visualization; can only be changed from version 2.7 onwards
-- Additional device-specific settings
-- Optional: select a template
-
-<div class="screenshot-frame">
-  <img src={addDetailsImg.src} alt="Device connection details" />
-</div>
-
-Optional metadata can be added in the form of tags (key-value pairs). This information is stored on the device page and has no further function within the Edge system.
-
-<div class="screenshot-frame">
-  <img src={addTagsImg.src} alt="Device tags" />
-</div>
+The field device must be connected to the Edge network and added in the Edge UI before proceeding. See [Adding a Field Device](/edge/how-to/add-field-device) for step-by-step instructions.
 
     </div>
 
@@ -108,6 +82,12 @@ On the device page, the **Measured variables** widget shows the total number of 
 
 <div class="screenshot-frame">
   <img src={importSourceImg.src} alt="Import source dialog" />
+</div>
+
+Clicking **From CSV file** allows importing variables from a CSV file — use this if the device import is not supported or fails for large PLC structures.
+
+<div class="screenshot-frame screenshot-frame-sm">
+  <img src={importCsvImg.src} alt="CSV import option" />
 </div>
 
 Clicking **From device** retrieves the structure and measured variables directly from the field device. The Variable Browser then displays all available variables:
@@ -185,6 +165,66 @@ If the current values differ across the selection, this is indicated.
 </div>
 
 After applying changes, the cart remains open for further edits or can be closed.
+
+**Manually creating a variable**
+
+Variables can also be created manually without an import. Click **+ Add variable** on the variable browser to open the creation dialog. Enter the variable name, address, data type, and sampling interval.
+
+<div class="screenshot-frame screenshot-frame-sm">
+  <img src={variableCreateImg.src} alt="Create measured variable dialog" />
+</div>
+
+The address format depends on the device type:
+
+<div class="screenshot-frame">
+  <img src={variableAddressFormatsImg.src} alt="Address format reference — S7 symbolic, S7 absolute, Modbus TCP" />
+</div>
+
+A correctly configured variable appears in the list with its type, address, sampling interval, and last recorded value.
+
+<div class="screenshot-frame">
+  <img src={variableConnectedImg.src} alt="Variable list showing a connected and recording variable" />
+</div>
+
+    </div>
+
+    <div class="qs-panel">
+
+The Performance Analysis tool tests whether the Edge is sampling variables at the configured rate. It checks that no values are missed or delayed — useful after setup or when adjusting sampling intervals.
+
+:::note
+Recording for the tested device is interrupted while a test is running. Do not run performance tests on a device that is actively recording production data.
+:::
+
+Open the device page and click **Performance Analysis** to open the analysis overview. The last test result is shown alongside the available test types.
+
+<div class="screenshot-frame">
+  <img src={perfOverviewImg.src} alt="Performance Analysis overview — test selection and last results" />
+</div>
+
+Click **Run test** under **Setpoint-Actual Comparison** to open the configuration dialog. Select a test duration using the slider (10 seconds to 30 minutes) and click **Start**.
+
+<div class="screenshot-frame screenshot-frame-sm">
+  <img src={perfStartImg.src} alt="Setpoint-Actual Comparison start dialog with duration slider" />
+</div>
+
+A warning is shown before the test starts confirming that recording will be interrupted.
+
+<div class="screenshot-frame screenshot-frame-sm">
+  <img src={perfWarningImg.src} alt="Warning: recording will be interrupted during the test" />
+</div>
+
+The test runs in the background and shows a progress indicator. Do not switch off the Edge or the data source while the test is running.
+
+<div class="screenshot-frame">
+  <img src={perfRunningImg.src} alt="Performance Analysis — test running with progress indicator" />
+</div>
+
+After completion, the results page shows a quality rating (color scale from red to green), the number of failed test runs, and key statistics including average, median, minimum, and maximum sampling rate.
+
+<div class="screenshot-frame">
+  <img src={perfResultsImg.src} alt="Performance Analysis results — quality rating and sampling rate statistics" />
+</div>
 
     </div>
 

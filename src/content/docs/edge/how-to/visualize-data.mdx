@@ -2,7 +2,7 @@
 title: "Visualizing Measured Values"
 description: "Step-by-step guide for setting up dashboards and panels in Grafana to visualize measured values recorded by the Edge."
 sidebar:
-  order: 3
+  order: 4
 ---
 
 import viewerEditorImg from '../../../../assets/images/edge/edge-grafana-viewer-vs-editor.gif';
@@ -18,6 +18,7 @@ import queryEditorImg from '../../../../assets/images/edge/edge-grafana-query-ed
 import selectMeasurementImg from '../../../../assets/images/edge/edge-grafana-select-measurement.gif';
 import queryStringFieldImg from '../../../../assets/images/edge/edge-grafana-query-string-field.png';
 import visualizationPickerImg from '../../../../assets/images/edge/edge-grafana-visualization-picker.png';
+import removeTagFilterImg from '../../../../assets/images/edge/edge-grafana-remove-tag-filter.png';
 
 The Edge uses Grafana (version 7.4) as its visualization platform. Grafana supports a wide range of display types — charts, gauges, tables, and single-value panels — and allows multiple panels to be combined into dashboards.
 
@@ -121,6 +122,14 @@ If the selection is incomplete (e.g. only the device has been selected), the pre
 
 <div class="screenshot-frame">
   <img src={selectMeasurementImg.src} alt="Selecting a measured variable" />
+</div>
+
+**Removing a tag filter**
+
+To remove a folder filter from a query, click the group entry you want to remove and select **— remove tag filter —** from the dropdown.
+
+<div class="screenshot-frame">
+  <img src={removeTagFilterImg.src} alt="Removing a tag filter in the Grafana query editor" />
 </div>
 
 **Variables of type "String"**

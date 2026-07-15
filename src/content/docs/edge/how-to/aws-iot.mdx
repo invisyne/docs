@@ -2,7 +2,7 @@
 title: "Forwarding to AWS (IoT)"
 description: "How to connect an Edge to AWS IoT Core — registering the device, converting the certificate, and configuring the gateway endpoint."
 sidebar:
-  order: 5
+  order: 6
 ---
 
 import aggregationParamImg from '../../../../assets/images/edge/edge-gateway-aggregation-parameter.png';
@@ -28,10 +28,8 @@ To connect an Edge to AWS IoT Core, the device must be registered in AWS and the
 
     <div class="qs-panel">
 
-## Creating a device (Thing) in IoT Core
-
 <ol>
-  <li>Log in to the AWS Console and navigate to AWS IoT Core.</li>
+  <li>Log in to the AWS Console and navigate to <strong>AWS IoT Core</strong>.</li>
   <li>Under <strong>Manage → Things</strong>, create a new device. The Thing name must match the <strong>Hostname</strong> of the Edge. Select a Thing Type.</li>
   <li>Create a <strong>Device certificate</strong>. Download and store all certificate files securely — the certificate cannot be downloaded again after this step. Assign the appropriate IoT policies to the certificate.</li>
 </ol>
@@ -39,8 +37,6 @@ To connect an Edge to AWS IoT Core, the device must be registered in AWS and the
     </div>
 
     <div class="qs-panel">
-
-## Converting the certificate
 
 The certificate files downloaded from AWS are not in the format required by the Edge gateway endpoint. A `.pfx` file must be created from:
 
@@ -74,15 +70,11 @@ Store all certificate files, the export password, and the device hostname in a s
 
     <div class="qs-panel">
 
-## Configuring the gateway endpoint
-
-In the Edge UI, navigate to **System → Einstellungen → Gateway**. The configured endpoint is listed with its current connection status. Click on the endpoint to open its settings, then upload the `.pfx` certificate file under **Login-Daten** and save.
+In the Edge UI, navigate to **System → Settings → Gateway**. The configured endpoint is listed with its current connection status. Click the endpoint to open its settings, then upload the `.pfx` certificate file under **Credentials** and save.
 
     </div>
 
     <div class="qs-panel">
-
-## Adding measured variables
 
 To include a measured variable in gateway forwarding, open the variable edit dialog and add a parameter with the identifier `gateway_aggregation`.
 
@@ -106,10 +98,10 @@ Due to a known issue, parameters cannot be fully deleted from a measured variabl
   <img src={aggregationParamEmptyImg.src} alt="gateway_aggregation parameter with empty value" />
 </div>
 
-Once all variables are marked, click **Messgrößen beziehen** in the gateway dispatcher to trigger the automated import.
+Once all variables are marked, click **Retrieve variables** in the gateway dispatcher to trigger the automated import.
 
 <div class="screenshot-frame screenshot-frame-sm">
-  <img src={retrieveButtonImg.src} alt="Messgrößen beziehen button" />
+  <img src={retrieveButtonImg.src} alt="Retrieve variables button" />
 </div>
 
 The marked variables are then configured in the dispatcher with their respective aggregation intervals.

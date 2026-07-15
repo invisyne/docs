@@ -11,9 +11,8 @@ import setupBasicImg from '../../../../../assets/images/edge/edge-setup-basic-se
 import setupSecurityImg from '../../../../../assets/images/edge/edge-setup-security.png';
 import setupTimeDateImg from '../../../../../assets/images/edge/edge-setup-time-date.png';
 import setupNetworkImg from '../../../../../assets/images/edge/edge-setup-network.png';
-import setupNetworkAdapterImg from '../../../../../assets/images/edge/edge-setup-network-adapter.png';
-import setupNetworkDnsImg from '../../../../../assets/images/edge/edge-setup-network-dns.png';
 import setupFinishImg from '../../../../../assets/images/edge/edge-setup-finish.png';
+import setupRestartImg from '../../../../../assets/images/edge/edge-setup-restart.png';
 
 <div class="qs-stepper">
 
@@ -34,7 +33,7 @@ import setupFinishImg from '../../../../../assets/images/edge/edge-setup-finish.
       | X1 | 192.168.0.5 |
       | X2 | 192.168.1.5 |
 
-      <p>Befindet sich der Edge in einem anderen Subnetz, ermöglicht das Discovery-Tool die Konfiguration des X1-Adapters, sodass die Web-Oberfläche erreichbar wird.</p>
+      <p>Befindet sich der Edge in einem anderen Subnetz, ermöglicht das Discovery-Tool die Konfiguration des X1-Adapters, sodass die Web-Oberfläche erreichbar wird. Das Discovery-Tool ist Teil von Crawler.Companion — siehe [Companion: Ersteinrichtung](/de/companion/how-to/initial-setup) für die Installationsanleitung.</p>
 
       <Steps>
 
@@ -42,7 +41,7 @@ import setupFinishImg from '../../../../../assets/images/edge/edge-setup-finish.
 
          Im ersten Schritt wird die Sprache der Benutzeroberfläche gewählt. Der Edge unterstützt Deutsch und Englisch. Die gewählte Sprache ist browserspezifisch und kann jederzeit geändert werden.
 
-         <div class="screenshot-frame">
+         <div class="screenshot-frame screenshot-frame-sm">
            <img src={setupLanguageImg.src} alt="Sprachauswahl" />
          </div>
 
@@ -54,7 +53,7 @@ import setupFinishImg from '../../../../../assets/images/edge/edge-setup-finish.
          Der Gerätename ist nach Abschluss der Ersteinrichtung unveränderlich. Eine nachträgliche Änderung ist nur nach einem Zurücksetzen auf Werkseinstellungen möglich. Der Name darf maximal 20 Zeichen umfassen; auf Sonderzeichen und Leerzeichen sollte verzichtet werden.
          :::
 
-         <div class="screenshot-frame">
+         <div class="screenshot-frame screenshot-frame-sm">
            <img src={setupBasicImg.src} alt="Name und Standortkennung" />
          </div>
 
@@ -66,7 +65,7 @@ import setupFinishImg from '../../../../../assets/images/edge/edge-setup-finish.
          Das Passwort muss mindestens 6 Zeichen lang sein.
          :::
 
-         <div class="screenshot-frame">
+         <div class="screenshot-frame screenshot-frame-sm">
            <img src={setupSecurityImg.src} alt="Sicherheitseinstellungen" />
          </div>
 
@@ -77,7 +76,7 @@ import setupFinishImg from '../../../../../assets/images/edge/edge-setup-finish.
          - **Automatisch (NTP)** — der Edge synchronisiert die Uhrzeit regelmäßig mit dem angegebenen NTP-Server. Voraussetzung ist, dass der Server vom Netzwerk des Edge aus erreichbar ist.
          - **Manuell** — Uhrzeit und Datum werden manuell eingegeben. Alle Zeitangaben beziehen sich auf die gewählte Zeitzone.
 
-         <div class="screenshot-frame">
+         <div class="screenshot-frame screenshot-frame-sm">
            <img src={setupTimeDateImg.src} alt="Uhrzeit und Datum" />
          </div>
 
@@ -89,7 +88,7 @@ import setupFinishImg from '../../../../../assets/images/edge/edge-setup-finish.
          Fehlerhafte Netzwerkeinstellungen können den Edge unerreichbar machen. Änderungen an diesen Einstellungen sollten nur vorgenommen werden, wenn das bestehende Netzwerkschema und die verwendeten Subnetz-Masken bekannt sind.
          :::
 
-         <div class="screenshot-frame">
+         <div class="screenshot-frame screenshot-frame-sm">
            <img src={setupNetworkImg.src} alt="Netzwerk-Übersicht" />
          </div>
 
@@ -97,8 +96,14 @@ import setupFinishImg from '../../../../../assets/images/edge/edge-setup-finish.
 
          Im letzten Schritt wird eine Zusammenfassung der vorgenommenen Einstellungen angezeigt. Nach der Prüfung auf **Abschließen** klicken — der Edge startet daraufhin neu. Dieser Vorgang kann einige Minuten in Anspruch nehmen. Nach dem Neustart ist das Gerät betriebsbereit und die Einrichtung der Datenaufzeichnung kann beginnen.
 
-         <div class="screenshot-frame">
+         <div class="screenshot-frame screenshot-frame-sm">
            <img src={setupFinishImg.src} alt="Einrichtung abgeschlossen" />
+         </div>
+
+         Nach dem Klick auf **Abschließen** startet der Edge automatisch neu. Während des Neustarts wird eine Statusmeldung angezeigt, die den Fortschritt zeigt und die Seite automatisch neu lädt, sobald das Gerät wieder erreichbar ist.
+
+         <div class="screenshot-frame screenshot-frame-sm">
+           <img src={setupRestartImg.src} alt="System Neustart" />
          </div>
 
       </Steps>

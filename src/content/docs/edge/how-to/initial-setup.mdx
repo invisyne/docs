@@ -10,11 +10,9 @@ import setupLanguageImg from '../../../../assets/images/edge/edge-setup-language
 import setupBasicImg from '../../../../assets/images/edge/edge-setup-basic-settings.png';
 import setupSecurityImg from '../../../../assets/images/edge/edge-setup-security.png';
 import setupTimeDateImg from '../../../../assets/images/edge/edge-setup-time-date.png';
-import setupTimeDateGeneralImg from '../../../../assets/images/edge/edge-setup-time-date-general.png';
 import setupNetworkImg from '../../../../assets/images/edge/edge-setup-network.png';
-import setupNetworkAdapterImg from '../../../../assets/images/edge/edge-setup-network-adapter.png';
-import setupNetworkDnsImg from '../../../../assets/images/edge/edge-setup-network-dns.png';
 import setupFinishImg from '../../../../assets/images/edge/edge-setup-finish.png';
+import setupRestartImg from '../../../../assets/images/edge/edge-setup-restart.png';
 
 <div class="qs-stepper">
 
@@ -35,7 +33,7 @@ import setupFinishImg from '../../../../assets/images/edge/edge-setup-finish.png
       | X1 | 192.168.0.5 |
       | X2 | 192.168.1.5 |
 
-      <p>If the Edge is located on a different subnet, the Discovery Tool can be used to configure the X1 adapter so that the web interface becomes accessible.</p>
+      <p>If the Edge is located on a different subnet, the Discovery Tool can be used to configure the X1 adapter so that the web interface becomes accessible. The Discovery Tool is part of Crawler.Companion — see [Companion: Initial Setup](/companion/how-to/initial-setup) for installation instructions.</p>
 
       <Steps>
 
@@ -43,7 +41,7 @@ import setupFinishImg from '../../../../assets/images/edge/edge-setup-finish.png
 
          The first step sets the display language for the web interface. The Edge supports German and English. This setting is browser-specific and can be changed at any time.
 
-         <div class="screenshot-frame">
+         <div class="screenshot-frame screenshot-frame-sm">
            <img src={setupLanguageImg.src} alt="Language selection" />
          </div>
 
@@ -55,7 +53,7 @@ import setupFinishImg from '../../../../assets/images/edge/edge-setup-finish.png
          The device name is permanent once the initial setup is complete. Changing it afterwards requires a factory reset. The name may contain a maximum of 20 characters; special characters and spaces should be avoided.
          :::
 
-         <div class="screenshot-frame">
+         <div class="screenshot-frame screenshot-frame-sm">
            <img src={setupBasicImg.src} alt="Name and location settings" />
          </div>
 
@@ -67,7 +65,7 @@ import setupFinishImg from '../../../../assets/images/edge/edge-setup-finish.png
          The password must be at least 6 characters long.
          :::
 
-         <div class="screenshot-frame">
+         <div class="screenshot-frame screenshot-frame-sm">
            <img src={setupSecurityImg.src} alt="Security settings" />
          </div>
 
@@ -78,7 +76,7 @@ import setupFinishImg from '../../../../assets/images/edge/edge-setup-finish.png
          - **Automatic (NTP)** — the Edge synchronizes its clock with the configured NTP server at regular intervals. The server must be reachable from the Edge network.
          - **Manual** — time and date are entered directly. All times refer to the selected time zone.
 
-         <div class="screenshot-frame">
+         <div class="screenshot-frame screenshot-frame-sm">
            <img src={setupTimeDateImg.src} alt="Time and date settings" />
          </div>
 
@@ -90,7 +88,7 @@ import setupFinishImg from '../../../../assets/images/edge/edge-setup-finish.png
          Incorrect network settings can render the Edge unreachable. These settings should only be modified by personnel familiar with the existing network configuration and subnet scheme.
          :::
 
-         <div class="screenshot-frame">
+         <div class="screenshot-frame screenshot-frame-sm">
            <img src={setupNetworkImg.src} alt="Network overview" />
          </div>
 
@@ -98,8 +96,14 @@ import setupFinishImg from '../../../../assets/images/edge/edge-setup-finish.png
 
          The final step displays a summary of all configured settings. After reviewing the summary, click **Finish** — the Edge will then restart. This process may take a few minutes. Once the device is back online, data recording can be configured.
 
-         <div class="screenshot-frame">
+         <div class="screenshot-frame screenshot-frame-sm">
            <img src={setupFinishImg.src} alt="Setup complete" />
+         </div>
+
+         After clicking **Finish**, the Edge restarts automatically. A status overlay is displayed during the restart and reloads the page automatically once the device is back online.
+
+         <div class="screenshot-frame screenshot-frame-sm">
+           <img src={setupRestartImg.src} alt="System restart" />
          </div>
 
       </Steps>

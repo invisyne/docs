@@ -2,7 +2,7 @@
 title: "Visualisieren von Messwerten"
 description: "Schritt-für-Schritt-Anleitung zur Einrichtung von Dashboards und Panels in Grafana zur Visualisierung der vom Edge aufgezeichneten Messwerte."
 sidebar:
-  order: 3
+  order: 4
 ---
 
 import viewerEditorImg from '../../../../../assets/images/edge/edge-grafana-viewer-vs-editor.gif';
@@ -18,6 +18,7 @@ import queryEditorImg from '../../../../../assets/images/edge/edge-grafana-query
 import selectMeasurementImg from '../../../../../assets/images/edge/edge-grafana-select-measurement.gif';
 import queryStringFieldImg from '../../../../../assets/images/edge/edge-grafana-query-string-field.png';
 import visualizationPickerImg from '../../../../../assets/images/edge/edge-grafana-visualization-picker.png';
+import removeTagFilterImg from '../../../../../assets/images/edge/edge-grafana-remove-tag-filter.png';
 
 Der Edge nutzt Grafana (Version 7.4) als Visualisierungsplattform. Grafana unterstützt eine Vielzahl von Anzeigetypen — Diagramme, Gauges, Tabellen und Einzelwert-Panels — und ermöglicht die Kombination mehrerer Panels in Dashboards.
 
@@ -121,6 +122,14 @@ Wurde die Auswahl noch nicht vollständig abgeschlossen (z. B. wurde nur das Ger
 
 <div class="screenshot-frame">
   <img src={selectMeasurementImg.src} alt="Messgröße auswählen" />
+</div>
+
+**Tag-Filter entfernen**
+
+Um einen Ordner-Filter aus einer Abfrage zu entfernen, auf den betreffenden Gruppeneintrag klicken und **— remove tag filter —** aus dem Dropdown auswählen.
+
+<div class="screenshot-frame">
+  <img src={removeTagFilterImg.src} alt="Tag-Filter im Grafana-Query-Editor entfernen" />
 </div>
 
 **Messgrößen vom Typ „String"**
