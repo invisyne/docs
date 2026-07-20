@@ -85,7 +85,11 @@ git tag release-$(date +%Y-%m-%d)   # or any release-* name, e.g. release-hub-la
 git push origin release-$(date +%Y-%m-%d)
 ```
 
+Or, in Claude Code: `/publish-release` (optionally `/publish-release hub-launch` for a descriptive suffix instead of today's date). Handles the clean-tree check, the `main` checkout, and the tag push for you.
+
 Pushing the tag triggers the same build/deploy pipeline described below. This is intentional: it decouples "merged and ready" from "live on docs.invisyne.com", the same way the preview environment (`preview-*` tags) already works. If you're adding content for a specific product, coordinate the release tag with that product's release timing rather than shipping docs changes the moment they're merged.
+
+For a preview deploy that doesn't touch production, use `preview-*` tags the same way, or `/publish-preview` in Claude Code. Unlike a release, this tags whatever branch is currently checked out, since previews are usually for content that hasn't merged to `main` yet.
 
 ### What happens on a release tag push
 
