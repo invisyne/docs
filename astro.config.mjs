@@ -230,7 +230,11 @@ export default defineConfig({
 								{ label: 'Keyboard Shortcuts', translations: { de: 'Keyboard Shortcuts' }, slug: 'deepview/keyboard-shortcuts' },
 							],
 						},
-						{ label: 'Technical Reference', translations: { de: 'Technische Referenz' }, slug: 'deepview/technical-reference' },
+						{
+							label: 'Technical Reference',
+							translations: { de: 'Technische Referenz' },
+							autogenerate: { directory: 'deepview/technical-reference' },
+						},
 					],
 				},
 			],
