@@ -1949,6 +1949,12 @@ starlight-toc a {
   object-position: top left;
   display: block;
 }
+.page-hero-image--centered {
+  height: 480px;
+}
+.page-hero-image--centered img {
+  object-position: center;
+}
 .page-hero-text {
   padding: 0 2rem 2.5rem 2.5rem;
   display: flex;
