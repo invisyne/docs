@@ -153,7 +153,6 @@ export default defineConfig({
 						{
 							label: 'Analysis',
 							translations: { de: 'Analysis' },
-							collapsed: true,
 							items: [
 								{ label: 'Overview', translations: { de: 'Übersicht' }, slug: 'deepview/analysis' },
 								{ label: 'Add Data Sets', translations: { de: 'Add Data Sets' }, slug: 'deepview/analysis/add-data-sets' },
@@ -161,7 +160,6 @@ export default defineConfig({
 								{
 									label: 'Functions',
 									translations: { de: 'Functions' },
-									collapsed: true,
 									items: [
 										{ label: 'Overview', translations: { de: 'Übersicht' }, slug: 'deepview/analysis/functions' },
 										{ label: 'Functions Overview', translations: { de: 'Functions Overview' }, slug: 'deepview/analysis/functions/functions-overview' },
@@ -172,7 +170,6 @@ export default defineConfig({
 								{
 									label: 'Dataset Modes',
 									translations: { de: 'Dataset Modes' },
-									collapsed: true,
 									items: [
 										{ label: 'Overview', translations: { de: 'Übersicht' }, slug: 'deepview/analysis/dataset-modes' },
 										{ label: 'Overlay', translations: { de: 'Overlay' }, slug: 'deepview/analysis/dataset-modes/overlay' },
@@ -183,13 +180,11 @@ export default defineConfig({
 								{
 									label: 'Plot Types',
 									translations: { de: 'Plot Types' },
-									collapsed: true,
 									items: [
 										{ label: 'Overview', translations: { de: 'Übersicht' }, slug: 'deepview/analysis/plot-types' },
 										{
 											label: 'Time Series',
 											translations: { de: 'Time Series' },
-											collapsed: true,
 											items: [
 												{ label: 'Overview', translations: { de: 'Übersicht' }, slug: 'deepview/analysis/plot-types/time-series' },
 												{ label: 'Axes', translations: { de: 'Axes' }, slug: 'deepview/analysis/plot-types/time-series/axes' },
