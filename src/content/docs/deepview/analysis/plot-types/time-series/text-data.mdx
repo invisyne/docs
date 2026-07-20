@@ -1,0 +1,40 @@
+---
+title: "Text data"
+description: "Visualize text signals in a Time Series plot and convert between text and numeric values."
+sidebar:
+  order: 7
+---
+
+You can recognize text signals by their `Text` datatype.
+
+{/* Screenshot: signal marked with the Text datatype in the signal list */}
+
+Text signals can be added to Time Series plots. They don't show up as an extra line on the plot, but their value at the cursor is displayed along with the other cursor values.
+
+{/* Screenshot: text signal value shown in the cursor values table */}
+
+## Converting between number and text signals
+
+If you want to visualize how a text signal evolves over time, you can create a function to convert the different text values to numbers and plot that function. A similar formula can be used to create a text signal from a discrete numeric signal.
+
+Here's an example that converts a discrete `state_code` signal to a text signal `state_name` (using PostgreSQL syntax — see [Custom functions](/deepview/analysis/functions/custom-functions)):
+
+Text to number:
+
+```sql
+CASE
+    WHEN [[state_name]] = 'Fault' THEN -1
+    WHEN [[state_name]] = 'Idle' THEN 0
+    ELSE 1
+END
+```
+
+Number to text:
+
+```sql
+CASE
+    WHEN ([[state_code]]::int) = 0 THEN 'Idle'
+    WHEN ([[state_code]]::int) = 1 THEN 'Running'
+    ELSE 'Fault'
+END
+```

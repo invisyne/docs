@@ -1,0 +1,31 @@
+---
+title: "Chain"
+description: "Aufeinanderfolgende Aufzeichnungen zu einer durchgängigen Zeitachse verbinden."
+sidebar:
+  order: 4
+---
+
+Habt ihr mehrere aufeinanderfolgende Aufzeichnungen — etwa eine auf mehrere Dateien aufgeteilte Aufzeichnung, oder mehrere Durchläufe desselben Tests — reiht Chain sie auf der Zeitachse hintereinander an, sodass sie als eine durchgängige Zeitachse erscheinen.
+
+## Chain aktivieren
+
+Wählt beim Visualisieren mehrerer Datensätze **Chain** im Dialog, oder wechselt jederzeit über den **Datasets**-Dialog (unten links im Tab) dorthin. Eure Datensätze werden nun hintereinander angeordnet, sodass ihr sie als eine ununterbrochene Messung durchscrollen könnt.
+
+{/* Screenshot: mehrere Datensätze hintereinander auf der Zeitachse angeordnet */}
+
+## Datensätze auswählen und anordnen
+
+Öffnet **Organise datasets** (Button im Datasets-Dialog, oder <kbd>i</kbd>). Im Chain-Modus hat jeder Datensatz eine Checkbox — die gewünschten anhaken und über die Pfeile rechts die Reihenfolge ändern. Die Reihenfolge bestimmt, in welcher Reihenfolge die Datensätze auf der Zeitachse erscheinen.
+
+{/* Screenshot: Organise-datasets-Dialog im Chain-Modus mit Sortierpfeilen */}
+
+## Zeitachse konfigurieren
+
+- **First timestamp** — die ursprüngliche Startzeit des Datensatzes
+- **Auto-align** — reiht Datensätze mit relativer Zeitbasis automatisch hintereinander; Datensätze mit absoluter Zeitbasis behalten ihre ursprüngliche Position
+- **Delta offset** — zusätzlicher Offset in Sekunden, um eine Lücke zwischen zwei Aufzeichnungen hinzuzufügen oder zu entfernen; alternativ per Abstand zwischen zwei Cursorn visuell setzen
+- **Result first timestamp** — die Startzeit des Datensatzes, nachdem alle Offsets angewendet wurden
+
+Offsets lassen sich über das Zahnrad-Symbol neben **Datasets** oder im Dialog **Organise datasets** festlegen.
+
+{/* Screenshot: Zeitachsen-Einstellungen für aneinandergereihte Datensätze */}

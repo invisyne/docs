@@ -1,0 +1,40 @@
+---
+title: "Limits and Stacking"
+description: "Configure y-axis limits and how signal groups are stacked or linked in a Time Series plot."
+sidebar:
+  order: 4
+---
+
+## Limits
+
+Limits are the parts of the y-axis that Deepview visualizes. There are two limit types: the **min limit** and the **max limit**.
+
+Deepview visualizes the data points within the min and max limit. The min and max limit can be set for every signal separately.
+
+{/* Screenshot: setting min and max limits for a signal */}
+
+## Stacking
+
+Each signal group also has a **position** on a plot, which you can change.
+
+If you select one signal or a signal group, you can see drag handles on the axis. These allow you to change the position of your signal. Playing with positions allows you to make visually clean plots.
+
+{/* Screenshot: drag handles for repositioning a signal group */}
+
+By default, in Time Series plots, all signals and signal groups added to a plot are added with their limits aligned to the top and bottom of the plot. This means the graphs are stacked over one another.
+
+If you want to automatically stack the graphs on top of each other, click the **Stack All Signals** button in the top bar.
+
+{/* Screenshot: "Stack All Signals" button in the top bar */}
+
+After clicking the **Stack All Signals** button, the signals are stacked over one another in the plot.
+
+{/* Screenshot: signals stacked over one another after clicking "Stack All Signals" */}
+
+## Linking limits
+
+**Link** multiple signals if you want their limits and positions to always be the same. This turns these signals into a signal group (see [Signal Settings](/deepview/analysis/plot-types/time-series/signal-settings)).
+
+Linked signals share the same y-axis. Select multiple signals (<kbd>ctrl/cmd</kbd> + left mouse click) and click the link button.
+
+{/* Screenshot: linking multiple selected signals into a signal group */}

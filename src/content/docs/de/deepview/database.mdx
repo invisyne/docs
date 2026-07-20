@@ -1,0 +1,129 @@
+---
+title: "Database"
+description: "Datensätze in der Data Library durchsuchen, filtern und auswählen."
+sidebar:
+  order: 2
+---
+
+Um zur Database zu gelangen, klickt in der linken Navigationsleiste auf das Database-Icon.
+
+{/* Screenshot: Database-Icon in der linken Navigationsleiste */}
+
+## Ordnerstruktur
+
+Deepview bietet eine flexible Ordnerstruktur, die ihr anhand von Metadatenfeldern konfigurieren könnt, um eure Datensätze zu organisieren.
+
+{/* Screenshot: konfigurierte Ordnerstruktur in der Data Library */}
+
+Navigiert zu **Settings → Connection → Metadata → Library folder structure**, um sie einzurichten.
+
+- Wählt ein oder mehrere Metadatenfelder, um mehrere Ordnerebenen zu erstellen
+- Optional: den Wert eines Metadatenfelds an einem bestimmten Zeichen aufteilen, um Unterebenen zu erzeugen
+
+{/* Screenshot: Konfiguration der Library-Ordnerstruktur */}
+
+Soll eure Deepview-Ordnerstruktur ein `Folder`-Metadatenfeld widerspiegeln, wählt `Folder` als Ordnerebene und setzt `/` als Split-Zeichen.
+
+{/* Screenshot: Ordnerebenen-Konfiguration anhand des Folder-Metadatenfelds */}
+
+## Spalten und Sortierung ändern
+
+In der Data Library seht ihr eine Liste aller in eurer Datenbank identifizierten Datensätze.
+
+Ihr könnt ändern, welche Spalten in der Datensatzliste angezeigt werden, indem ihr auf einen Spaltentitel klickt.
+
+{/* Screenshot: Spaltenauswahl in der Datensatzliste */}
+
+Klickt auf die Pfeile neben einem Spaltentitel, um die Sortierung der Datensätze zu ändern.
+
+{/* Screenshot: Sortierpfeile neben einem Spaltentitel */}
+
+## Datensätze filtern und suchen
+
+Eine weitere nützliche Möglichkeit, eure Datensätze zu durchsuchen, ist die Suchleiste links von der Datenliste.
+
+{/* Screenshot: Suchleiste links von der Datenliste */}
+
+Es gibt mehrere Wege, um nach Datensätzen zu suchen:
+
+- Tippt einen Text ein, um die Datensätze danach zu filtern
+- Legt einen Zeitbereich fest — nur Datensätze, deren Startzeit in diesem Bereich liegt, werden angezeigt
+- Wählt bestimmte Werte für eines der Metadatenfelder
+
+### Advanced Search
+
+Mit Advanced Search findet ihr alle Datensätze, deren Signalwerte einer oder mehreren angegebenen Bedingungen entsprechen.
+
+Um eine Advanced-Search-Abfrage zu erstellen, wählt zunächst einen Referenz-Datensatz — das teilt Deepview mit, welche Signalnamen verfügbar sind. Danach könnt ihr Filter hinzufügen. Jeder Filter besteht aus:
+
+- **Signal** — ein beliebiges Signal aus dem Referenz-Datensatz, eine im Workspace definierte Function, oder ein selbst eingegebener Signalname, falls er nicht Teil des Referenz-Datensatzes ist
+- **Operator** — verfügbar sind `>`, `>=`, `<`, `<=`, `==` und `≠`
+- **Value** — aktuell werden nur numerische Werte unterstützt
+
+Ihr könnt mehrere Filter hinzufügen — nur Datensätze, die alle Filter erfüllen, werden zurückgegeben. Advanced Search sucht nach Datensätzen, die jeden Filter einzeln irgendwann im Datensatz erfüllen, nicht notwendigerweise alle zum selben Zeitpunkt.
+
+{/* Screenshot: Konfiguration der Advanced-Search-Filter */}
+
+Klickt auf **Run**, um die Advanced Search zu starten. Das kann etwas dauern, da es sich um eine komplexe Operation auf einer potenziell sehr großen Datenmenge handelt.
+
+Advanced Search wird auf alle Datensätze angewendet, die euren übrigen Suchkriterien entsprechen (Zeitbereich und Metadatenauswahl). Ändern sich diese Einstellungen oder die Filterwerte, werden eure Advanced-Search-Ergebnisse veraltet, und Deepview erinnert euch daran, die Suche erneut auszuführen.
+
+{/* Screenshot: Hinweis auf veraltete Advanced-Search-Ergebnisse */}
+
+Um alle Filter in der Suchleiste zu löschen, klickt auf den runden Pfeil neben dem Suchtitel.
+
+{/* Screenshot: Filter-zurücksetzen-Button neben dem Suchtitel */}
+
+## Daten auswählen
+
+Daten auszuwählen ist einfach — klickt auf die Checkbox neben einem Datensatz.
+
+{/* Screenshot: Checkbox-Auswahl neben einem Datensatz */}
+
+Um alle Daten in eurer Datenliste auszuwählen, klickt auf die Checkbox oben in der Datensatzliste.
+
+{/* Screenshot: Checkbox "alle auswählen" oben in der Datensatzliste */}
+
+Ausgewählte Datensätze erscheinen unten rechts auf eurem Bildschirm, unter **Selected datasets**.
+
+{/* Screenshot: Bereich "Selected datasets" unten rechts */}
+
+Nach der Auswahl eurer Daten klickt auf **Visualise**, um in eure Daten einzutauchen.
+
+{/* Screenshot: Button "Visualise" */}
+
+## Bereits visualisierte Daten
+
+Sind Daten im aktuell geöffneten Projekt bereits visualisiert, erscheint ein Graph-Icon neben dem Datensatz.
+
+{/* Screenshot: Graph-Icon neben einem bereits visualisierten Datensatz */}
+
+## Signal Metadata
+
+Klickt ihr auf einen Datensatz, zeigt der Bereich rechts im Bildschirm einen Überblick aller verfügbaren Informationen dazu — das nennt man auch **Metadata**.
+
+{/* Screenshot: Metadata-Bereich für einen ausgewählten Datensatz */}
+
+Wollt ihr diese Metadata für eure gesamte Datenliste anzeigen, könnt ihr ändern, welche Spalten angezeigt werden (siehe [Spalten und Sortierung ändern](#spalten-und-sortierung-ändern) oben). Das erlaubt auch, danach zu sortieren.
+
+## Metadata konfigurieren
+
+Als Admin könnt ihr in der Settings-Ansicht konfigurieren:
+
+- welche Datenspalten als Metadata gelten sollen
+- wie diese Metadata-Spalten dargestellt werden
+- welche Metadata standardmäßig in der Library-Ansicht angezeigt werden, und in welcher Reihenfolge
+
+Hier könnt ihr außerdem ändern, welche Felder bei der Definition von Datensätzen berücksichtigt werden — das ändert, welche Datensätze in der Data Library erscheinen.
+
+{/* Screenshot: Metadata-Konfiguration in Settings */}
+
+## Leere Library
+
+{/* Screenshot: leere Data Library */}
+
+Ist die Library leer, liefert eure Datenverbindung wahrscheinlich noch keine Daten oder ist nicht eingerichtet — wendet euch an eure Invisyne-Administration.
+
+Es kann auch bedeuten, dass ein Filter aktiv ist und keine Datensätze eurer Auswahl entsprechen. Setzt in diesem Fall euren Filter zurück, indem ihr in der linken Toolbar auf **Clear Filter** klickt.
+
+{/* Screenshot: Button "Clear Filter" in der linken Toolbar */}

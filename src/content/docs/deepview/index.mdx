@@ -5,10 +5,6 @@ description: "Deepview is Invisyne's analysis tool for root-cause analysis and h
 
 import timeseriesViewImg from '../../../assets/images/deepview/deepview-timeseries-view.png';
 
-:::caution[Coming soon]
-Deepview is currently under development. This page will be updated as the product becomes available.
-:::
-
 <div class="page-hero">
   <div class="page-hero-image">
     <img src={timeseriesViewImg.src} alt="Deepview time-series signal view with multiple stacked plots" />
@@ -21,3 +17,48 @@ Deepview is currently under development. This page will be updated as the produc
 <div class="page-hero-body">
   <p>Connected to the contextual data model of Hub, Deepview turns raw sensor recordings into structured findings. It is designed to help teams answer the questions that matter operationally: why a machine failed, whether a measured value falls within normal bounds, and what changed between two production runs.</p>
 </div>
+
+## Powered by Marple
+
+Deepview is built on our partner Marple's analysis platform. This partnership brings you the analysis capabilities described here, seamlessly integrated into Invisyne.
+
+{/* Marple logo: small lockup next to the "Powered by Marple" wordmark */}
+
+## Why Deepview
+
+Analyzing high-frequency test and measurement data usually means engineers writing one-off scripts to load a file, plot a few signals, and repeat the process by hand for every new question. Deepview replaces that with a web-based workspace built specifically for time-series data: connect once, then explore interactively — no re-running scripts for every new question.
+
+Deepview reads data directly from the databases behind Hub, so there is no separate export or file-handling step between recording a signal on the Edge device and analyzing it.
+
+## Who Deepview is for
+
+Deepview is built for engineers and service teams working with sensor data from industrial machines — commissioning engineers validating a new installation, service technicians diagnosing a fault, or engineering leads comparing performance across a fleet of machines.
+
+## Frequently asked questions
+
+<details>
+<summary>What data sources does Deepview support?</summary>
+
+Deepview connects to the time-series and asset data managed by Hub. There is nothing to configure — your data is already connected when you open Deepview.
+
+</details>
+
+<details>
+<summary>Can I combine data from multiple machines in one view?</summary>
+
+Yes — Deepview is designed to let you bring signals from several Edge devices into the same analysis, so you can compare an entire installation rather than one machine at a time.
+
+</details>
+
+<details>
+<summary>Does Deepview use AI?</summary>
+
+Deepview includes AI-assisted features, such as automatically suggesting visualizations based on what you are looking at and answering questions about your data directly. We continue to expand these capabilities.
+
+</details>
+
+{/* Decided: pricing and support contact are intentionally omitted here.
+Pricing has its own page on invisyne.com, not part of the docs. Feedback/
+support will route through Invisyne's own channel (not Marple's
+support@/sales@marpledata.com or the in-app Gleap widget) — channel TBD,
+add once decided. */}

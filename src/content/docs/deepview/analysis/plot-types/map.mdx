@@ -1,0 +1,67 @@
+---
+title: "Map"
+description: "Visualize geographical data by plotting latitude and longitude signals on a map."
+sidebar:
+  order: 2
+---
+
+The Map plot is used to represent geographical data.
+
+To use the plot, drag and drop a latitude and longitude signal expressed in degrees onto the plot.
+
+{/* Screenshot: map plot with a trajectory plotted from latitude/longitude signals */}
+
+## Zoom
+
+You can zoom and pan the data using the +/- icons or by dragging and scrolling in the plot.
+
+- To zoom out and view the **entire dataset**, click the house icon at the top-right of the plot.
+- To zoom in on the **current data point**, click the loupe icon, also at the top-right of the plot.
+
+{/* Screenshot: house and loupe icons at the top-right of the map plot */}
+
+## Other settings
+
+Click the settings wheel at the top-right of the plot to configure it.
+
+{/* Screenshot: map plot settings wheel */}
+
+### Resample input signals
+
+Similar to the Scatter plot, you can resample the input signals to align their time bases for consistent analysis.
+
+### Bullet size
+
+Adjust the bullet size to your preferred dimensions, making data points easier to see clearly.
+
+### Show full trajectory
+
+Choose whether to display all data points or only the one corresponding to the current cursor position on the timeline.
+
+### Set latitude and longitude offset
+
+If the longitude or latitude values don't align correctly with the map, you can apply an offset to adjust their positioning.
+
+### Filters
+
+To filter out outliers, add a control signal and set an offset value to hide unwanted data points.
+
+## Color signal
+
+Add a third signal (e.g. speed) and define lower and upper bounds to dynamically color data points based on that signal's values — adding an extra layer of insight to your visualization.
+
+### Background
+
+The default map is [OpenStreetMap](https://www.openstreetmap.org/). You can switch between a standard, satellite, or dark map, and adjust the opacity for better visibility.
+
+You can also add a **custom background**:
+
+1. Click the **settings wheel** at the top-right.
+2. Enable **"Use Custom Background"**.
+3. Upload your file.
+
+{/* Screenshot: custom background upload option */}
+
+### Overlays
+
+Enhance your map by adding overlays, such as **facility boundaries or geofences**, for extra context.

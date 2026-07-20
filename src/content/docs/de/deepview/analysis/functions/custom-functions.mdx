@@ -1,0 +1,24 @@
+---
+title: "Custom functions"
+description: "Eigene Berechnungen mit PostgreSQL-Syntax und Signalreferenzen schreiben."
+sidebar:
+  order: 3
+---
+
+Custom functions nutzen PostgreSQL-Syntax. Setzt Signalnamen in Klammern und Anführungszeichen, z. B. `['SignalName']` — alternativ könnt ihr rechts nach einem Signal suchen und dessen Namen anklicken, um ihn direkt in die Formel einzufügen.
+
+{/* Screenshot: Custom-Function-Editor mit Signalsuche rechts */}
+
+Eine Vorschau des resultierenden Signals wird rot im Vorschaufenster angezeigt.
+
+Rechts könnt ihr konfigurieren:
+
+- **Name**, **Description**, **Unit**
+- **Resample** der Zeitbasis des Eingangssignals, um Signale mit unterschiedlichen Zeitbasen in derselben Function zu kombinieren — siehe [Resampling](/de/deepview/analysis/resampling)
+- Mit **Star** markieren, damit die Function standardmäßig auch für andere Nutzer im Workspace erscheint (nicht markierte Functions sieht nur der Nutzer, der sie erstellt hat)
+
+{/* Screenshot: Function-Einstellungen (Name, Description, Unit, Resample, Star) */}
+
+Jede in PostgreSQL verfügbare Function kann genutzt werden. Für gängige Fälle stehen vorgefertigte Bausteine bereit — anklicken und die benötigten Signale oder Ausdrücke ausfüllen.
+
+{/* Screenshot: Liste der Bausteine */}

@@ -1,0 +1,50 @@
+---
+title: "Overview Dashboards"
+description: "Alle eure Datensätze in einer einzigen Ansicht, mit Number-, Table-, Pie-, Bar- und Scatter-Plots."
+sidebar:
+  order: 5
+---
+
+Overview Dashboards befinden sich in aktiver Weiterentwicklung — Vorschläge und Feedback sind willkommen.
+
+Overview Dashboards sind eines der leistungsfähigsten Features von Deepview: Sie erlauben es, mit allen euren Datensätzen in einer einzigen Ansicht zu arbeiten. Ihr könnt zum Beispiel ein Dashboard bauen, um den Fortschritt einer Testkampagne zu verfolgen:
+
+{/* Screenshot: Overview Dashboard zur Verfolgung einer Testkampagne */}
+
+## Plot-Typen
+
+{/* Screenshot: Auswahl des Plot-Typs für ein Overview Dashboard */}
+
+Aktuell werden folgende Plot-Typen unterstützt:
+
+- **Number Plots** — zeigen einen aggregierten Wert über alle Datensätze, z. B. Gesamtlaufzeit [h]
+- **Table-, Pie- und Bar-Plots** — zeigen mehrere Aggregatwerte, gruppiert nach einem zweiten Wert, z. B. durchschnittliche Motortemperatur bei niedriger, mittlerer und hoher Last
+- **Scatter Plots** — zeigen zwei Aggregate als einzelnen Punkt pro Datensatz, z. B. maximale Vibration vs. maximale Temperatur für jeden Datensatz
+
+Scatter Plots lassen sich nutzen, um Ausreißer zu identifizieren — klickt auf das Visualize-Icon, um einen Datensatz für eine tiefere Analyse zu öffnen.
+
+{/* Screenshot: Drill-down in einen Datensatz aus einem Scatter Plot im Overview Dashboard */}
+
+Ihr könnt eure Plots auf Basis von Folgendem erstellen:
+
+- Rohsignalwerten aus euren Datensätzen, z. B. `speed`, `temperature`
+- Aus Rohsignalen abgeleiteten Math Channels, z. B. `temperature_fahrenheit` — siehe [Functions](/de/deepview/analysis/functions)
+- Datensatz-Metadata, z. B. `operator`, `location`
+
+## Filtering
+
+Overview Dashboards erlauben es, die anzuzeigenden Datensätze auf drei Ebenen zu filtern:
+
+1. **Saved Filters** — trefft eine primäre Auswahl, welche Datensätze im Dashboard erscheinen sollen
+2. **Ad-hoc Filters** — nützlich, um schnell in eine Teilmenge der Daten einzutauchen; werden zurückgesetzt, sobald ihr das Dashboard neu öffnet
+3. **Plot Filters** — zusätzliche Filterung auf Plot-Ebene; werden ebenfalls als Teil der Dashboard-Definition gespeichert
+
+{/* Screenshot: drei Filterebenen in einem Overview Dashboard */}
+
+## Tabs
+
+Verteilt eure Plots über mehrere Tabs für einen besseren Überblick.
+
+Im Edit-Modus könnt ihr Tabs hinzufügen, löschen, umbenennen und duplizieren.
+
+{/* Screenshot: Overview Dashboard mit mehreren Tabs */}

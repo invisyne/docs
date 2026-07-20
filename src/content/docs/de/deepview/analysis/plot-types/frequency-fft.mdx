@@ -1,0 +1,50 @@
+---
+title: "Frequency (FFT)"
+description: "Signale per FFT im Frequenzbereich plotten, mit Power-Spectral-Density- und Log-Skalen-Option."
+sidebar:
+  order: 3
+---
+
+Der Frequency-Plot verhält und sieht ähnlich aus wie der Time-Series-Plot.
+
+Er nutzt FFT, um den ausgewählten Zeitbereich im Frequenzbereich zu plotten. Deepview geht dabei von einer konstanten Abtastrate und keinen fehlenden Datenpunkten aus — andernfalls ist der Plot möglicherweise nicht vollständig genau.
+
+{/* Screenshot: Frequency-(FFT)-Plot */}
+
+## Toolbar
+
+### Signal-Styling ändern
+
+Ihr könnt Farbe oder Strichstil der Signale im Plot ändern.
+
+### Frequenzbereich
+
+Ihr könnt den Frequenzbereich des Plots festlegen. Wie beim Time-Series-Plot könnt ihr auch mit der rechten Maustaste klicken und ziehen (eine Auswahl treffen), um hineinzuzoomen.
+
+### Zwischen Einheiten wechseln
+
+Ihr könnt die Einheit der X-Achse ändern. Das spiegelt den Plot.
+
+## Weitere Einstellungen
+
+Hinter dem Einstellungsrad gibt es drei weitere Einstellungen, die sich ein- und ausschalten lassen.
+
+{/* Screenshot: weitere Einstellungen hinter dem Einstellungsrad */}
+
+### Skala ändern
+
+Schaltet dies ein, um die Y-Achse logarithmisch zu skalieren. Standardmäßig ist die Skala linear.
+
+### PSD (Power Spectral Density)
+
+Schaltet dies ein, um den Plot als Power-Spectral-Density-Plot darzustellen — nützlich zur Analyse zufälliger oder verrauschter Signale, deren Energie sich über viele Frequenzen verteilt.
+
+Standardmäßig zeigt der FFT-Plot die Amplitude.
+
+### DC-Offset entfernen
+
+Entfernt die Gleichstrom-(DC-)Komponente bzw. den Nullfrequenz-Anteil des Signals aus dem Plot.
+
+### Resolution Factor
+
+Dieser Wert legt fest, wie viele benachbarte Punkte in einem Frequenz-Bin gemittelt werden. Erhöht ihr den Wert, werden benachbarte Frequenz-Bins gemittelt, was den Frequenzbereich glättet.

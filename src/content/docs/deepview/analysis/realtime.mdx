@@ -1,0 +1,36 @@
+---
+title: "Realtime"
+description: "Visualize live data as it comes in, with adjustable refresh rate."
+sidebar:
+  order: 10
+---
+
+Deepview supports visualizing realtime data.
+
+If a data set is realtime, the realtime metadata field is `True`, and a blue checkmark shows in the data library.
+
+{/* Screenshot: realtime checkmark in the data library */}
+
+## Live mode
+
+If you select a realtime data set to visualize, the time axis updates automatically and new data appears. A **Live** banner shows at the top-left of the screen to indicate the data is live.
+
+{/* Screenshot: "Live" banner at the top-left of the screen */}
+
+## Refresh rate
+
+By default, the refresh rate is 1s. To change it, click the dropdown next to the Live banner and set the desired refresh rate.
+
+Next to the refresh rate, you'll see in grey the maximum view of data you can visualize at the chosen refresh rate.
+
+{/* Screenshot: refresh rate dropdown with maximum view shown in grey */}
+
+## Disable live mode
+
+To disable the live view of realtime data, set the refresh rate to `None`. The Live banner then shows the *Resume* status.
+
+{/* Screenshot: Live banner showing "Resume" status */}
+
+You can now analyze the data from the realtime data set like any other data set. Resume live mode by selecting a refresh rate other than `None`.
+
+Easily toggling live mode on and off, and treating realtime data like any other data set, is very powerful.

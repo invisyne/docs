@@ -1,0 +1,36 @@
+---
+title: "State"
+description: "Zeigt den Zustand eines oder mehrerer Signale über die Zeit anhand bedingter Farbregeln an."
+sidebar:
+  order: 6
+---
+
+State-Plots zeigen den Zustand eines oder mehrerer Signale über die Zeit, indem sie unterschiedlichen Wertebedingungen Farben zuweisen. Jedes Signal erscheint als horizontaler Balken, dessen Farbe den Zustand des Signals zu jedem Zeitpunkt anzeigt.
+
+{/* Screenshot: State-Plot mit farbigen horizontalen Balken */}
+
+### Zustandsfarben definieren
+
+Ihr könnt **Farbregeln** anhand von Bedingungen definieren, etwa:
+
+- Signalwert < X
+- Signalwert > X
+- Signalwert = X
+
+Jede Regel weist bei Erfüllung ihrer Bedingung eine bestimmte Farbe und ein Label zu.
+
+### Signale hinzufügen
+
+Ihr könnt beliebig viele Signale per Drag-and-Drop zu einem State-Plot hinzufügen. Jedes Signal hat seine eigene Zeile mit eigenen Zustandsregeln.
+
+### Plot-Einstellungen
+
+In den Plot-Einstellungen könnt ihr:
+
+- Cursor-Werte ein- oder ausblenden
+- Labels ein- oder ausblenden
+- Ein Signal auswählen, um dessen bedingte Farbregeln zu konfigurieren
+
+Farbregeln werden **von oben nach unten** ausgewertet. Der Plot wendet für jeden Zeitbereich die **erste zutreffende Regel** an.
+
+{/* Screenshot: State-Plot-Einstellungen mit Farbregeln */}

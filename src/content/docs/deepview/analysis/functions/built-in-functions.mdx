@@ -1,0 +1,24 @@
+---
+title: "Built-in functions"
+description: "Ready-made functions available for most data connections, with their parameters."
+sidebar:
+  order: 2
+---
+
+In the **Create signal** dialog, select the **Built-in** function type, choose the signal you want to apply it to, and fill in the required parameters.
+
+{/* Screenshot: "Create signal" dialog with Built-in function type selected */}
+
+| Function | Description | Parameters |
+|---|---|---|
+| Moving Aggregate | Moving aggregate of a signal | Aggregate — the type of moving aggregate; Window Size — number of samples to average over |
+| Cumulative Sum | Cumulative sum of a signal | Gain — the gain of the signal |
+| Integral | Integral of a signal using the midpoint rule | Gain — the gain of the signal |
+| Linear Calibration | Linear calibration of a signal | Gain — the gain of the signal; Offset — the offset of the signal |
+| Clip | Backwards finite difference of a signal, i.e. v(t) − v(t−1) | Gain — the gain of the signal |
+| Derivative | Backwards discrete derivative of a signal, i.e. (v(t) − v(t−1)) / dt | Gain — the gain of the signal |
+| Remove outliers, stddev | Remove outliers of a signal using standard deviation | Std — the standard deviation of the signal |
+| Remove outliers, fixed limits | Remove outliers of a signal using fixed limits | Min, Max |
+| Sample shift | Shift a signal by a number of samples | Shift — number of samples to shift the signal by |
+| Zeroing | Offset the signal to be 0 at the first data point inside the zoom range | — |
+| Time | Select the time axis of a signal | — |
