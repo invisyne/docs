@@ -155,7 +155,7 @@ export default defineConfig({
 							label: 'UI Reference',
 							translations: { de: 'Benutzeroberfläche' },
 							items: [
-								{ label: 'Overview Dashboards', translations: { de: 'Overview Dashboards' }, slug: 'deepview/overview-dashboards' },
+								{ label: 'Overview', translations: { de: 'Übersicht' }, slug: 'deepview/overview-dashboards' },
 								{
 									label: 'Analysis',
 									translations: { de: 'Analysis' },
