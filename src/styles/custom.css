@@ -233,6 +233,9 @@ site-search button[data-open-modal] {
 .sidebar details details details details a {
   padding-inline-start: 3.25rem !important;
 }
+.sidebar details details details details details a {
+  padding-inline-start: 4rem !important;
+}
 
 /* Group headers (summary) need the same staircase as their sibling leaf
    links — a nested group like "Functions" should sit at the same indent
@@ -249,6 +252,39 @@ site-search button[data-open-modal] {
 }
 .sidebar details details details details details summary {
   padding-inline-start: 3.25rem !important;
+}
+.sidebar details details details details details details summary {
+  padding-inline-start: 4rem !important;
+}
+
+/* Re-enable native collapse/expand from "Analysis" downward — the
+   "always static, no collapse arrow" rule further down this file is
+   right for the shallow product > flat-group pattern (Hub > UI
+   Reference), but a permanently-expanded 4-level-deep tree (Analysis >
+   Plot Types > Time Series > page) is unreadable.
+   A summary's own containing <details> counts toward its chain (see
+   the indentation comment above), so "Analysis" itself needs 3
+   `details` to match — its own + UI Reference's + Deepview's — not 2,
+   which would incorrectly also catch "UI Reference" (2: its own +
+   Deepview's). Paired with `collapsed: true` on these five groups in
+   astro.config.mjs, so they start closed. Higher selector specificity
+   (more `details` repeated) beats the unscoped rules further down
+   regardless of source order. */
+.sidebar details details details:not([open]) > :not(summary) {
+  display: none !important;
+}
+.sidebar details details details summary {
+  pointer-events: auto !important;
+  cursor: pointer !important;
+}
+.sidebar details details details summary svg,
+.sidebar details details details summary .caret {
+  display: inline-block !important;
+}
+.sidebar details details details summary .large {
+  font-weight: 400 !important;
+  font-size: var(--sl-text-sm) !important;
+  color: inherit !important;
 }
 
 /* Extra clearance when sidebar is open: push content past the 20px toggle button */
