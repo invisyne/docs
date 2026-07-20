@@ -34,13 +34,11 @@ A **Thing** is the logical representation of the Edge device in AWS IoT Core. Th
   <li>Log in to the AWS Console and navigate to <strong>AWS IoT Core</strong>.</li>
   <li>Under <strong>Manage → Things</strong>, click <strong>Create things</strong> and select <strong>Create a single thing</strong>.</li>
   <li>Enter the Edge <strong>Hostname</strong> as the Thing name. Optionally select or create a <strong>Thing Type</strong> to categorize the device.</li>
-  <li><span>On the certificate step, choose <strong>Auto-generate a new certificate (recommended)</strong>. After creation, download all files immediately — the private key cannot be downloaded again after this step. Save the following:</span>
-    <ul>
+  <li><span>On the certificate step, choose <strong>Auto-generate a new certificate (recommended)</strong>. After creation, download all files immediately — the private key cannot be downloaded again after this step. Save the following:</span><ul>
       <li><code>*-certificate.pem.crt</code> — the device certificate</li>
       <li><code>*-private.pem.key</code> — the private key</li>
       <li><code>AmazonRootCA1.pem</code> — the AWS root CA (download link shown in the creation dialog)</li>
-    </ul>
-  </li>
+    </ul></li>
   <li>Attach an IoT policy to the certificate. The policy must grant at minimum: <code>iot:Connect</code>, <code>iot:Publish</code>, <code>iot:Subscribe</code>, and <code>iot:Receive</code>. If no suitable policy exists, create one under <strong>Security → Policies</strong> first.</li>
 </ol>
 
