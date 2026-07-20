@@ -100,10 +100,14 @@ const currentPath = Astro.url.pathname;
 
   /* Product logo swapped in for the top-level group label text (see script
      below) — sized to the sidebar row's line-height, not the source SVG's
-     own dimensions. */
+     own dimensions. `display` is deliberately NOT set here: Starlight's
+     dark:sl-hidden/light:sl-hidden utility classes (used to show only the
+     matching theme's logo) live in @layer starlight.utils, and an
+     unlayered `display` on the same element would always win over a
+     layered one regardless of specificity — hiding neither logo, or both
+     showing at once, depending on rule order. */
   :global(.sidebar .product-logo) {
-    display: block;
-    height: 1.65rem;
+    height: 1.35rem;
     width: auto;
   }
   /* Separator below the logo row, ahead of the product's own page links */
@@ -171,28 +175,35 @@ const currentPath = Astro.url.pathname;
   }
 
   const PRODUCT_LOGOS: Record<string, string> = {
-    'Hub': '/logos/hub-black.svg',
-    'Edge (Crawler)': '/logos/edge-black.svg',
-    'Companion': '/logos/companion-black.svg',
-    'Deepview': '/logos/deepview-black.svg',
+    'Hub': 'hub',
+    'Edge (Crawler)': 'edge',
+    'Companion': 'companion',
+    'Deepview': 'deepview',
   };
 
   // Swaps the top-level sidebar group label text (Hub, Edge (Crawler),
-  // Companion, Deepview) for the product's black wordmark logo. Matched by
-  // exact text rather than DOM position, since Starlight re-renders the
-  // sidebar on every astro:page-load and there's no other stable hook here —
-  // none of the nested group labels (Analysis, Functions, ...) collide with
-  // these names, so exact-match is safe.
+  // Companion, Deepview) for the product's wordmark logo — one image per
+  // theme, shown/hidden via Starlight's own dark:sl-hidden/light:sl-hidden
+  // utility classes, same pattern as PageTitle.astro's product overview
+  // logo. Matched by exact text rather than DOM position, since Starlight
+  // re-renders the sidebar on every astro:page-load and there's no other
+  // stable hook here — none of the nested group labels (Analysis,
+  // Functions, ...) collide with these names, so exact-match is safe.
   function initProductLogos() {
     document.querySelectorAll('.sidebar summary .large').forEach((el) => {
       const label = el.textContent?.trim();
       if (!label || !(label in PRODUCT_LOGOS) || (el as HTMLElement).dataset.logoApplied) return;
       (el as HTMLElement).dataset.logoApplied = '1';
-      const img = document.createElement('img');
-      img.src = PRODUCT_LOGOS[label];
-      img.alt = label;
-      img.className = 'product-logo';
-      el.replaceChildren(img);
+      const product = PRODUCT_LOGOS[label];
+      const light = document.createElement('img');
+      light.src = `/logos/${product}-black.svg`;
+      light.alt = label;
+      light.className = 'product-logo dark:sl-hidden';
+      const dark = document.createElement('img');
+      dark.src = `/logos/${product}-white.svg`;
+      dark.alt = label;
+      dark.className = 'product-logo light:sl-hidden';
+      el.replaceChildren(light, dark);
     });
   }
 
