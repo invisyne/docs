@@ -9,7 +9,7 @@ In many Deepview features, multiple signals must be combined: in functions, scat
 
 Some tools don't allow you to combine signals with different time bases. In Deepview, this is solved by **resampling** the signals.
 
-{/* Screenshot: settings component to specify how to resample */}
+![](../../../../assets/images/deepview/deepview-analysis-resampling-1.png)
 
 When multiple signals must be combined, you can select how it's done:
 
@@ -21,9 +21,9 @@ When multiple signals must be combined, you can select how it's done:
 
 When using `off`, all signals are joined on their exact timestamp. If all signals have data points with **exactly matching timestamps** (down to the nanosecond), the resulting signal also has a data point at those timestamps. Data points with a timestamp that doesn't occur in all original signals are ignored in the resulting signal.
 
-{/* Screenshot: resampling "off" with signals that have exactly matching timestamps */}
+![](../../../../assets/images/deepview/deepview-analysis-resampling-2.png)
 
-{/* Screenshot: resampling "off" with signals that have slightly differing timestamps */}
+![](../../../../assets/images/deepview/deepview-analysis-resampling-3.png)
 
 Benefits:
 
@@ -54,21 +54,21 @@ Forward fill ensures no data is invented, and integer signals remain integers.
 
 The figures below show what happens depending on the selected frequency:
 
-{/* Screenshot: upsampling at the frequency of the slowest signal */}
+![](../../../../assets/images/deepview/deepview-analysis-resampling-4.png)
 
-{/* Screenshot: upsampling at an intermediate frequency */}
+![](../../../../assets/images/deepview/deepview-analysis-resampling-5.png)
 
-{/* Screenshot: upsampling at the frequency of the fastest signal */}
+![](../../../../assets/images/deepview/deepview-analysis-resampling-6.png)
 
-{/* Screenshot: upsampling at a frequency higher than the fastest signal */}
+![](../../../../assets/images/deepview/deepview-analysis-resampling-7.png)
 
 ### Upsampling not implemented
 
 For some less commonly used database connections, upsampling isn't yet implemented, and resampling uses the raw signal data instead. For these connections, `auto` automatically uses the **lowest frequency** — setting a higher frequency won't result in more data.
 
-{/* Screenshot: resampling at the frequency of the slowest signal */}
+![](../../../../assets/images/deepview/deepview-analysis-resampling-8.png)
 
-{/* Screenshot: resampling at the frequency of the fastest signal */}
+![](../../../../assets/images/deepview/deepview-analysis-resampling-9.png)
 
 ## Selecting the right frequency
 
@@ -76,3 +76,15 @@ In most cases, it's best to let `auto` determine the optimal frequency. In the f
 
 - All your data has the **exact same timestamp** (e.g. it comes from CSV files or the same group within an MDF file) — it's safe to use `off`
 - You have a very complex plot with many functions and/or filters that takes a while to load, and you're interested in a **quick insight** rather than exact data — decrease the suggested frequency; you might lose some data, but the plot loads faster
+
+
+{/* UNMATCHED extra screenshot found on live page, no marker to replace */}
+![](../../../../assets/images/deepview/deepview-analysis-resampling-1.png)
+![](../../../../assets/images/deepview/deepview-analysis-resampling-2.png)
+![](../../../../assets/images/deepview/deepview-analysis-resampling-3.png)
+![](../../../../assets/images/deepview/deepview-analysis-resampling-4.png)
+![](../../../../assets/images/deepview/deepview-analysis-resampling-5.png)
+![](../../../../assets/images/deepview/deepview-analysis-resampling-6.png)
+![](../../../../assets/images/deepview/deepview-analysis-resampling-7.png)
+![](../../../../assets/images/deepview/deepview-analysis-resampling-8.png)
+![](../../../../assets/images/deepview/deepview-analysis-resampling-9.png)

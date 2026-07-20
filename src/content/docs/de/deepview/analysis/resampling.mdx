@@ -9,7 +9,7 @@ In vielen Deepview-Funktionen müssen mehrere Signale kombiniert werden: in Func
 
 Manche Tools erlauben es nicht, Signale mit unterschiedlichen Zeitbasen zu kombinieren. In Deepview wird das durch **Resampling** der Signale gelöst.
 
-{/* Screenshot: Einstellungskomponente zur Festlegung der Resampling-Methode */}
+![](../../../../../assets/images/deepview/deepview-analysis-resampling-1.png)
 
 Müssen mehrere Signale kombiniert werden, könnt ihr wählen, wie das geschieht:
 
@@ -21,9 +21,9 @@ Müssen mehrere Signale kombiniert werden, könnt ihr wählen, wie das geschieht
 
 Bei `off` werden alle Signale anhand ihres exakten Timestamps zusammengeführt. Haben alle Signale Datenpunkte mit **exakt übereinstimmenden Timestamps** (bis auf die Nanosekunde), hat das Ergebnis-Signal ebenfalls einen Datenpunkt zu diesen Timestamps. Datenpunkte mit einem Timestamp, der nicht in allen Ausgangssignalen vorkommt, werden im Ergebnis-Signal ignoriert.
 
-{/* Screenshot: Resampling "off" mit exakt übereinstimmenden Timestamps */}
+![](../../../../../assets/images/deepview/deepview-analysis-resampling-2.png)
 
-{/* Screenshot: Resampling "off" mit leicht abweichenden Timestamps */}
+![](../../../../../assets/images/deepview/deepview-analysis-resampling-3.png)
 
 Vorteile:
 
@@ -54,21 +54,21 @@ Forward Fill sorgt dafür, dass keine Daten erfunden werden und Integer-Signale 
 
 Die folgenden Abbildungen zeigen, was je nach gewählter Frequenz passiert:
 
-{/* Screenshot: Upsampling mit der Frequenz des langsamsten Signals */}
+![](../../../../../assets/images/deepview/deepview-analysis-resampling-4.png)
 
-{/* Screenshot: Upsampling mit einer mittleren Frequenz */}
+![](../../../../../assets/images/deepview/deepview-analysis-resampling-5.png)
 
-{/* Screenshot: Upsampling mit der Frequenz des schnellsten Signals */}
+![](../../../../../assets/images/deepview/deepview-analysis-resampling-6.png)
 
-{/* Screenshot: Upsampling mit einer höheren Frequenz als der des schnellsten Signals */}
+![](../../../../../assets/images/deepview/deepview-analysis-resampling-7.png)
 
 ### Upsampling nicht implementiert
 
 Für einige seltener genutzte Datenbankverbindungen ist Upsampling noch nicht implementiert, und Resampling nutzt stattdessen die Rohdaten des Signals. Für diese Verbindungen verwendet `auto` automatisch die **niedrigste Frequenz** — eine höhere Frequenz einzustellen liefert keine zusätzlichen Daten.
 
-{/* Screenshot: Resampling mit der Frequenz des langsamsten Signals */}
+![](../../../../../assets/images/deepview/deepview-analysis-resampling-8.png)
 
-{/* Screenshot: Resampling mit der Frequenz des schnellsten Signals */}
+![](../../../../../assets/images/deepview/deepview-analysis-resampling-9.png)
 
 ## Die richtige Frequenz wählen
 
@@ -76,3 +76,15 @@ In den meisten Fällen ist es am besten, `auto` die optimale Frequenz bestimmen 
 
 - Alle eure Daten haben **exakt denselben Timestamp** (z. B. aus CSV-Dateien oder derselben Gruppe innerhalb einer MDF-Datei) — dann könnt ihr bedenkenlos `off` nutzen
 - Ihr habt einen sehr komplexen Plot mit vielen Functions und/oder Filtern, der eine Weile zum Laden braucht, und euch interessiert eher ein **schneller Überblick** als exakte Daten — verringert die vorgeschlagene Frequenz; ihr verliert dabei etwas Daten, aber der Plot lädt schneller
+
+
+{/* UNMATCHED extra screenshot found on live page, no marker to replace */}
+![](../../../../../assets/images/deepview/deepview-analysis-resampling-1.png)
+![](../../../../../assets/images/deepview/deepview-analysis-resampling-2.png)
+![](../../../../../assets/images/deepview/deepview-analysis-resampling-3.png)
+![](../../../../../assets/images/deepview/deepview-analysis-resampling-4.png)
+![](../../../../../assets/images/deepview/deepview-analysis-resampling-5.png)
+![](../../../../../assets/images/deepview/deepview-analysis-resampling-6.png)
+![](../../../../../assets/images/deepview/deepview-analysis-resampling-7.png)
+![](../../../../../assets/images/deepview/deepview-analysis-resampling-8.png)
+![](../../../../../assets/images/deepview/deepview-analysis-resampling-9.png)
