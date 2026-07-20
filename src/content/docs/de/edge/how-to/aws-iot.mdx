@@ -34,11 +34,13 @@ Ein **Thing** ist die logische Repräsentation des Edge-Geräts in AWS IoT Core.
   <li>Im AWS Console Portal einloggen und zu <strong>AWS IoT Core</strong> navigieren.</li>
   <li>Unter <strong>Manage → Things</strong> auf <strong>Create things</strong> klicken und <strong>Create a single thing</strong> auswählen.</li>
   <li>Den <strong>Hostnamen</strong> des Edge als Thing-Name eingeben. Optional einen <strong>Thing Type</strong> zur Kategorisierung des Geräts auswählen oder erstellen.</li>
-  <li><span>Beim Zertifikats-Schritt <strong>Auto-generate a new certificate (recommended)</strong> auswählen. Nach der Erstellung alle Dateien sofort herunterladen — der private Schlüssel kann danach nicht erneut heruntergeladen werden. Folgende Dateien sichern:</span><ul>
+  <li><span>Beim Zertifikats-Schritt <strong>Auto-generate a new certificate (recommended)</strong> auswählen. Nach der Erstellung alle Dateien sofort herunterladen — der private Schlüssel kann danach nicht erneut heruntergeladen werden. Folgende Dateien sichern:</span>
+    <ul>
       <li><code>*-certificate.pem.crt</code> — das Gerätezertifikat</li>
       <li><code>*-private.pem.key</code> — der private Schlüssel</li>
       <li><code>AmazonRootCA1.pem</code> — das AWS Root-CA-Zertifikat (Download-Link im Erstellungsdialog)</li>
-    </ul></li>
+    </ul>
+  </li>
   <li>Dem Zertifikat eine IoT-Policy zuweisen. Die Policy muss mindestens folgende Berechtigungen enthalten: <code>iot:Connect</code>, <code>iot:Publish</code>, <code>iot:Subscribe</code> und <code>iot:Receive</code>. Falls noch keine passende Policy vorhanden ist, diese zuvor unter <strong>Security → Policies</strong> anlegen.</li>
 </ol>
 
