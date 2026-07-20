@@ -41,12 +41,15 @@ import perfResultsImg from '../../../../../assets/images/edge/edge-performance-a
 
     <div class="qs-panel">
 
-Vor der Einrichtung der Datenaufzeichnung sollten folgende Informationen zum Feldgerät vorliegen:
+Datenaufzeichnung bezeichnet den Prozess, bei dem der Edge Verbindungen zu Feldgeräten aufbaut, konfigurierte Prozessvariablen in einem definierten Abtastintervall ausliest und die gemessenen Werte in einer internen Zeitreihendatenbank speichert. Diese gespeicherten Werte dienen als Datenquelle für Grafana-Dashboards und können optional an externe Plattformen wie AWS IoT Core weitergeleitet werden.
 
-- IP-Adresse des Feldgeräts
-- Gerätetyp (z. B. Modbus, Simatic S7)
+Bevor Messgrößen konfiguriert werden können, muss das Feldgerät bereits im Edge angelegt sein und eine Verbindung bestehen. Folgende Informationen sollten vorliegen:
 
-Das Feldgerät muss vor Beginn mit dem Netzwerk des Edge verbunden und im Edge UI angelegt sein. Eine Schritt-für-Schritt-Anleitung dazu findet sich unter [Feldgerät hinzufügen](/de/edge/how-to/add-field-device).
+- **IP-Adresse** des Feldgeräts
+- **Gerätetyp** (Modbus TCP, OPC UA oder Siemens SIMATIC S7)
+- **Variablenadressen oder -struktur**: Für die manuelle Eingabe oder den CSV-Import werden die Adressen der aufzuzeichnenden Messgrößen benötigt (Adressformate siehe [Protokolle und Feldgeräte](/de/edge/technical-reference/protocols)); für S7-Steuerungen mit symbolischer Adressierung reicht eine aktive Verbindung zur SPS — der integrierte Import-Browser ruft die Variablenstruktur direkt vom Gerät ab.
+
+Eine Schritt-für-Schritt-Anleitung zum Anlegen und Verbinden des Feldgeräts findet sich unter [Feldgerät hinzufügen](/de/edge/how-to/add-field-device).
 
     </div>
 
@@ -95,17 +98,19 @@ Mit **Von Gerät** werden Struktur und Messgrößen direkt vom Feldgerät abgeru
 - Bereits importierte Messgrößen sind grau hinterlegt
 - Messgrößen, die auf dem Edge eingerichtet sind, aber beim Import auf dem Feldgerät nicht gefunden wurden, sind gelb hinterlegt
 
-Alle gewünschten Messgrößen auswählen, dann den **Warenkorb** öffnen und auf **Alle importieren** klicken.
+Alle gewünschten Messgrößen auswählen und dem **Warenkorb** hinzufügen. Der Warenkorb fungiert als Auswahl-Puffer — Messgrößen können schrittweise beim Navigieren durch die Variablenstruktur hinzugefügt und die gesamte Auswahl vor der Bestätigung geprüft werden. Sobald die Auswahl vollständig ist, den Warenkorb öffnen und auf **Alle importieren** klicken.
 
 <div class="screenshot-frame">
   <img src={importCartImg.src} alt="Import Warenkorb" />
 </div>
 
-Vor der Bestätigung die gewünschte Konfiguration für die importierten Messgrößen festlegen.
+Vor der Bestätigung die gewünschte Konfiguration für die importierten Messgrößen festlegen — Abtastintervall, Aufzeichnungsstatus und Zeitstempel-Ausrichtung können für alle importierten Messgrößen gleichzeitig global gesetzt werden.
 
 <div class="screenshot-frame">
   <img src={importConfigImg.src} alt="Import-Konfiguration" />
 </div>
+
+Auf **Importieren** klicken, um den Vorgang zu bestätigen. Die importierten Messgrößen werden sofort zum Gerät hinzugefügt und beginnen mit der Aufzeichnung im konfigurierten Abtastintervall.
 
     </div>
 
@@ -123,8 +128,8 @@ Für eine Messgröße können folgende Einstellungen geändert werden:
   <span class="def-list-key">Name</span><span class="def-list-val">Namensänderungen erfordern eine Anpassung in bestehenden Dashboards; der Name sollte innerhalb einer Gruppenebene eindeutig sein</span>
   <span class="def-list-key">Abtastrate</span><span class="def-list-val">Bereich: 10 ms bis 500 h, Angabe in Millisekunden</span>
   <span class="def-list-key">Aufzeichnung</span><span class="def-list-val">Aufzeichnung starten und stoppen</span>
-  <span class="def-list-key">Zeitstempel-Ausrichtung</span><span class="def-list-val">Aktivieren/deaktivieren</span>
-  <span class="def-list-key">Aufzeichnungs-Metriken</span><span class="def-list-val">Aktivieren/deaktivieren</span>
+  <span class="def-list-key">Zeitstempel-Ausrichtung</span><span class="def-list-val">Wenn aktiviert, wird der Zeitstempel jedes aufgezeichneten Werts auf das nächste Vielfache des Abtastintervalls gerundet. Dadurch werden Samples verschiedener Messgrößen auf ein gemeinsames Zeitraster ausgerichtet, was den direkten Vergleich in Grafana vereinfacht.</span>
+  <span class="def-list-key">Aufzeichnungs-Metriken</span><span class="def-list-val">Wenn aktiviert, werden interne Leistungszähler zusammen mit dem gemessenen Wert gespeichert — z. B. tatsächliche vs. erwartete Sample-Anzahl pro Intervall. Hilfreich zur Diagnose von Timing-Problemen oder zur Bewertung der Aufzeichnungsqualität.</span>
   <span class="def-list-key">Tags</span><span class="def-list-val">Hinzufügen/entfernen</span>
 </div>
 
@@ -225,6 +230,8 @@ Nach Abschluss zeigt die Ergebnisseite eine Qualitätsbewertung (Farbskala von R
 <div class="screenshot-frame">
   <img src={perfResultsImg.src} alt="Performance-Analyse Ergebnisse — Qualitätsbewertung und Abtastraten-Statistik" />
 </div>
+
+Ist die Qualitätsbewertung **schlecht** (rot oder orange), liegen die häufigsten Ursachen in einem zu kurzen Abtastintervall im Verhältnis zur Netzwerkumlaufzeit zum Feldgerät oder in einer zu hohen Anzahl gleichzeitig aufgezeichneter Messgrößen. In diesen Fällen empfiehlt es sich, das Abtastintervall zu erhöhen, die Anzahl der aktiv aufzeichnenden Messgrößen am Gerät zu reduzieren oder den Test für einzelne Messgrößen auszuführen, um den Engpass zu isolieren. Bleibt das Problem nach Anpassung der Konfiguration bestehen, wenden Sie sich an den Support.
 
     </div>
 

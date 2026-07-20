@@ -18,7 +18,7 @@ HTTP is served **alongside** HTTPS, not instead of it:
 - **Allow HTTP off (default):** requests over HTTP are redirected to HTTPS, so all traffic is encrypted.
 - **Allow HTTP on:** requests over HTTP are served over HTTP, while HTTPS continues to work as before. Clients that connect over HTTP are simply no longer redirected.
 
-:::danger
+:::note
 **Allowing HTTP turns off transport encryption for HTTP connections. Understand the risks before enabling it.**
 
 - **Everything travels in clear text** — login credentials, session tokens, configuration, and data sent over HTTP can be read by anyone on the network.

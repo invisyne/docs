@@ -1,0 +1,53 @@
+---
+title: "Sicherheit: Zertifikate"
+description: "Warum die Edge-Weboberfläche HTTPS verwendet, warum Browser eine Zertifikatswarnung anzeigen und was dagegen zu tun ist."
+sidebar:
+  badge:
+    text: "2.22+"
+    variant: note
+---
+
+Ab Edge 2.22 wird die Weboberfläche standardmäßig über **HTTPS** bereitgestellt. Das bedeutet: Die gesamte Kommunikation zwischen Browser und Edge-Gerät ist verschlüsselt.
+
+:::note
+Die Browserwarnung beim ersten Zugriff betrifft die **Identitätsprüfung, nicht die Verschlüsselung**. Die Verbindung ist in jedem Fall verschlüsselt. Der Browser kann lediglich nicht automatisch bestätigen, *wer* sich am anderen Ende befindet — nicht, dass der Kanal unsicher ist.
+:::
+
+## Warum der Browser eine Warnung anzeigt
+
+Das Edge-Gerät präsentiert standardmäßig ein **selbstsigniertes Zertifikat**. Da Browser dieses nicht auf eine öffentliche Zertifizierungsstelle (CA) zurückführen können, zeigen sie eine Warnung an.
+
+Ein öffentlich vertrauenswürdiges Zertifikat (z. B. von Let's Encrypt) ist für typische Edge-Installationen keine Option:
+
+- Öffentliche CAs stellen Zertifikate nur für **öffentlich auflösbare Domainnamen** aus — Edge-Geräte werden normalerweise über eine **IP-Adresse** im privaten Netzwerk erreicht
+- Die Domain-Validierung erfordert **Internetzugang**, über den viele Edge-Netzwerke nicht verfügen
+
+## Das Standardzertifikat
+
+<div class="def-list">
+  <span class="def-list-key">Generiert</span><span class="def-list-val">Einmalig beim ersten Start; wird nie automatisch erneuert</span>
+  <span class="def-list-key">Ändert sich mit</span><span class="def-list-val">Nichts — ein stabiles Zertifikat sorgt für vorhersehbares Browser-Verhalten</span>
+  <span class="def-list-key">Verschlüsselungsstärke</span><span class="def-list-val">Identisch mit einem öffentlich vertrauenswürdigen Zertifikat</span>
+</div>
+
+## Umgang mit der Warnung
+
+**Option 1 — Warnung übergehen** (für die meisten Fälle empfohlen)
+
+Keine Einrichtung erforderlich. Die Verbindung bleibt verschlüsselt. Jeder Browser bietet die Möglichkeit fortzufahren; danach merkt er sich die Entscheidung für dieses Gerät.
+
+**Option 2 — Eigenes Zertifikat installieren**
+
+Wenn Ihre Organisation über eine interne CA verfügt (z. B. Active Directory Certificate Services), können Sie ein Zertifikat installieren, dem Ihre Rechner bereits vertrauen. Die Warnung entfällt vollständig, HTTPS bleibt aktiv.
+
+→ [Eigenes HTTPS-Zertifikat installieren](/de/edge/how-to/https-certificate)
+
+## HTTP erlauben (optional)
+
+Wenn HTTPS in Ihrer Umgebung unpraktikabel ist, kann mit **HTTP erlauben** die Oberfläche zusätzlich zu HTTPS auch über HTTP bereitgestellt werden. HTTP-Anfragen werden dann nicht mehr auf HTTPS umgeleitet.
+
+:::caution
+Bei aktiviertem HTTP erlauben entfällt die Transportverschlüsselung für Clients, die sich über HTTP verbinden. Nur in isolierten Netzwerken und nach Rücksprache mit der IT- oder Sicherheitsabteilung verwenden.
+:::
+
+→ [HTTP erlauben](/de/edge/how-to/http-mode)

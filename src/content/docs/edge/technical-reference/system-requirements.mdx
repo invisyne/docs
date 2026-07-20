@@ -1,0 +1,68 @@
+---
+title: "System Requirements"
+description: "Limits and requirements for Edge deployments — field devices, variables, network ports, and browser support."
+---
+
+import StatTiles from '../../../../components/StatTiles.astro';
+
+<StatTiles tiles={[
+  { label: "Field devices", value: "3", sub: "max. connected" },
+  { label: "Variables", value: "100", sub: "recommended at 100 ms" },
+  { label: "Sampling interval", value: "100 ms", sub: "validated minimum" },
+]} />
+
+Higher variable counts or shorter sampling intervals may be possible depending on network conditions and device load, but are not validated.
+
+## Network ports
+
+The following ports must be open between the Edge and the respective field devices:
+
+<div style="overflow-x:auto">
+<table style="width:100%;border-collapse:collapse;font-size:14px">
+  <thead>
+    <tr>
+      <th style="text-align:left;font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:0.05em;color:var(--sl-color-gray-3);padding:0 12px 8px 0;border-bottom:0.5px solid var(--sl-color-gray-5)">Connector</th>
+      <th style="text-align:left;font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:0.05em;color:var(--sl-color-gray-3);padding:0 12px 8px 0;border-bottom:0.5px solid var(--sl-color-gray-5)">Protocol</th>
+      <th style="text-align:left;font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:0.05em;color:var(--sl-color-gray-3);padding:0 0 8px 0;border-bottom:0.5px solid var(--sl-color-gray-5)">Port</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="padding:10px 12px 10px 0;border-bottom:0.5px solid var(--sl-color-gray-5)">Siemens SIMATIC (S7)</td>
+      <td style="padding:10px 12px 10px 0;border-bottom:0.5px solid var(--sl-color-gray-5)"><span style="font-size:12px;font-weight:500;padding:2px 8px;border-radius:20px;background:var(--sl-color-blue-low);color:var(--sl-color-blue-high)">TCP</span></td>
+      <td style="padding:10px 0;border-bottom:0.5px solid var(--sl-color-gray-5);font-family:var(--sl-font-mono)">102</td>
+    </tr>
+    <tr>
+      <td style="padding:10px 12px 10px 0;border-bottom:0.5px solid var(--sl-color-gray-5)">Modbus TCP</td>
+      <td style="padding:10px 12px 10px 0;border-bottom:0.5px solid var(--sl-color-gray-5)"><span style="font-size:12px;font-weight:500;padding:2px 8px;border-radius:20px;background:var(--sl-color-blue-low);color:var(--sl-color-blue-high)">TCP</span></td>
+      <td style="padding:10px 0;border-bottom:0.5px solid var(--sl-color-gray-5);font-family:var(--sl-font-mono)">502</td>
+    </tr>
+    <tr>
+      <td style="padding:10px 12px 10px 0;border-bottom:0.5px solid var(--sl-color-gray-5)">OPC UA</td>
+      <td style="padding:10px 12px 10px 0;border-bottom:0.5px solid var(--sl-color-gray-5)"><span style="font-size:12px;font-weight:500;padding:2px 8px;border-radius:20px;background:var(--sl-color-blue-low);color:var(--sl-color-blue-high)">TCP</span></td>
+      <td style="padding:10px 0;border-bottom:0.5px solid var(--sl-color-gray-5)"><span style="font-family:var(--sl-font-mono)">4840</span> <span style="font-size:12px;color:var(--sl-color-gray-3)">default; configurable</span></td>
+    </tr>
+    <tr>
+      <td style="padding:10px 12px 10px 0">MQTT</td>
+      <td style="padding:10px 12px 10px 0"><span style="font-size:12px;font-weight:500;padding:2px 8px;border-radius:20px;background:var(--sl-color-blue-low);color:var(--sl-color-blue-high)">TCP</span></td>
+      <td style="padding:10px 0"><span style="font-family:var(--sl-font-mono)">1883</span> <span style="font-size:12px;color:var(--sl-color-gray-3)">/ 8883 (TLS)</span></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+:::note
+On networks with a real-time bus (e.g. PROFINET), Edge data packets are handled with low priority and may be delayed relative to real-time traffic. This can affect the accuracy of the configured sampling intervals.
+:::
+
+## Browser support
+
+<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:0.5rem">
+  <span style="font-size:13px;color:var(--sl-color-gray-2);background:var(--sl-color-gray-6);border-radius:20px;padding:4px 12px">Chrome</span>
+  <span style="font-size:13px;color:var(--sl-color-gray-2);background:var(--sl-color-gray-6);border-radius:20px;padding:4px 12px">Edge</span>
+  <span style="font-size:13px;color:var(--sl-color-gray-2);background:var(--sl-color-gray-6);border-radius:20px;padding:4px 12px">Opera</span>
+  <span style="font-size:13px;color:var(--sl-color-gray-2);background:var(--sl-color-gray-6);border-radius:20px;padding:4px 12px">Brave</span>
+  <span style="font-size:13px;color:var(--sl-color-gray-2);background:var(--sl-color-gray-6);border-radius:20px;padding:4px 12px">Vivaldi</span>
+  <span style="font-size:13px;color:var(--sl-color-gray-2);background:var(--sl-color-gray-6);border-radius:20px;padding:4px 12px">Arc</span>
+  <span style="font-size:13px;color:var(--sl-color-gray-2);background:var(--sl-color-gray-6);border-radius:20px;padding:4px 12px">Firefox</span>
+</div>

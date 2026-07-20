@@ -18,7 +18,7 @@ HTTP wird **zusätzlich** zu HTTPS bereitgestellt, nicht anstelle davon:
 - **HTTP erlauben aus (Standard):** Über HTTP eingehende Anfragen werden auf HTTPS umgeleitet, sodass der gesamte Datenverkehr verschlüsselt ist.
 - **HTTP erlauben ein:** Über HTTP eingehende Anfragen werden über HTTP bedient, während HTTPS weiterhin wie bisher funktioniert. Clients, die sich über HTTP verbinden, werden lediglich nicht mehr umgeleitet.
 
-:::danger
+:::note
 **Das Erlauben von HTTP deaktiviert die Transportverschlüsselung für HTTP-Verbindungen. Machen Sie sich die Risiken bewusst, bevor Sie es aktivieren.**
 
 - **Alles wird im Klartext übertragen** — Anmeldedaten, Sitzungs-Tokens, Konfiguration und über HTTP gesendete Daten können von jedem im Netzwerk gelesen werden.

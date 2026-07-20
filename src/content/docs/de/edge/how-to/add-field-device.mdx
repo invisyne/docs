@@ -24,6 +24,8 @@ import tiaPutGetImg from '../../../../../assets/images/edge/edge-simatic-tia-put
 import tiaDbAddressesImg from '../../../../../assets/images/edge/edge-simatic-tia-db-addresses.png';
 import tiaDbNoOptimizedImg from '../../../../../assets/images/edge/edge-simatic-tia-db-no-optimized-access.png';
 
+Feldgeräte sind die industriellen Steuerungen, Sensoren und Gateways, von denen der Edge Prozessdaten ausliest. Bevor Messgrößen eines Geräts zur Aufzeichnung konfiguriert werden können, muss das Gerät im Edge angelegt und eine erfolgreiche Verbindung hergestellt sein. Der Edge unterstützt drei Verbindungsprotokolle: **Modbus TCP**, **OPC UA** und **Siemens SIMATIC (S7)** — im entsprechenden Tab unten die Einrichtungsschritte aufrufen.
+
 Im Hauptmenü zu **Aufzeichnung** navigieren und auf **+ Geräte hinzufügen** klicken.
 
 <div class="screenshot-frame screenshot-frame-sm">
@@ -37,7 +39,8 @@ Einen der folgenden Gerätetypen auswählen, um die Einrichtungsschritte zu sehe
   <div class="qs-tabbar">
     <a class="qs-tab" href="#">Modbus TCP</a>
     <a class="qs-tab" href="#">OPC</a>
-    <a class="qs-tab" href="#">Siemens SIMATIC</a>
+    <a class="qs-tab" href="#">SIMATIC — Symbolisch</a>
+    <a class="qs-tab" href="#">SIMATIC — Absolut</a>
     <a class="qs-tab" href="#">Gesicherte Verbindung</a>
   </div>
 
@@ -56,19 +59,19 @@ Verbindungsdetails eingeben:
 - **Adresse** — IP-Adresse des Modbus-Geräts
 - **Geräte-Name** — zur Identifikation des Geräts innerhalb des Edge
 - **Port** — Standardwert ist 502
-- **Modbus RTU** — aktivieren, wenn das Gerät die RTU-Protokollvariante über TCP verwendet. Bei Aktivierung erscheint ein zusätzliches Feld **Unit ID** zur Identifikation des Geräts am Bus.
+- **Modbus RTU** — aktivieren, wenn das Feldgerät das Modbus-RTU-Protokoll verwendet. Modbus RTU ist die ältere Modbus-Variante mit Master/Slave-Architektur — der Edge agiert dabei als Modbus Master und fragt die angeschlossenen Feldgeräte (Slaves) ab. Bei Aktivierung erscheint ein zusätzliches Feld **Slave-ID** zur Identifikation des Zielgeräts am Bus.
 
 <div class="screenshot-frame">
   <img src={addModbusConfigImg.src} alt="Modbus TCP Konfigurationsformular" />
 </div>
 
-Mit aktiviertem **Modbus RTU** erscheint das Unit-ID-Feld:
+Mit aktiviertem **Modbus RTU** erscheint das Feld **Slave-ID**:
 
 <div class="screenshot-frame">
-  <img src={addModbusRtuImg.src} alt="Modbus TCP Konfiguration mit aktiviertem RTU und Unit-ID-Feld" />
+  <img src={addModbusRtuImg.src} alt="Modbus TCP Konfiguration mit aktiviertem RTU und Slave-ID-Feld" />
 </div>
 
-Optional kann eine **Strukturvorlage** ausgewählt werden, um das Gerät mit einem vordefinierten Satz von Messgrößen vorzubefüllen. Im nächsten Schritt können optional Tags als Metadaten hinterlegt werden.
+Optional kann eine **Strukturvorlage** ausgewählt werden. Strukturvorlagen enthalten eine vordefinierte Messgröße-Liste für gängige Gerätemodelle und werden beim Anlegen des Geräts automatisch angewendet, sodass Messgrößen nicht einzeln hinzugefügt werden müssen. Falls keine passende Vorlage vorhanden ist, können Messgrößen nach dem Anlegen des Geräts manuell hinzugefügt oder importiert werden. Im nächsten Schritt können optional Tags als Metadaten hinterlegt werden.
 
 <div class="screenshot-frame">
   <img src={addTagsImg.src} alt="Gerät Tags — optionale Metadaten" />
@@ -88,11 +91,57 @@ Verbindungsdetails eingeben:
 
 - **Adresse** — IP-Adresse oder Hostname des OPC-Servers
 - **Geräte-Name** — zur Identifikation des Geräts innerhalb des Edge
-- **Port** — Standardwert ist 4840
+- **Port** — Standardwert ist 4840; der tatsächliche Port hängt von der OPC-UA-Server-Konfiguration im SPS-Projekt ab und kann abweichen
 - **Gesicherte Geräteverbindung** — aktivieren, wenn der OPC-Server eine Authentifizierung erfordert. Bei Aktivierung erscheinen Felder für **Nutzername** und **Passwort**.
 
 <div class="screenshot-frame">
   <img src={addOpcConfigImg.src} alt="OPC Konfigurationsformular mit Feldern für gesicherte Verbindung" />
+</div>
+
+:::note
+Informationen zur Konfiguration des OPC-UA-Servers im Siemens TIA Portal sind der Siemens-Dokumentation zu entnehmen.
+:::
+
+Im nächsten Schritt können optional Tags als Metadaten hinterlegt werden.
+
+<div class="screenshot-frame">
+  <img src={addTagsImg.src} alt="Gerät Tags — optionale Metadaten" />
+</div>
+
+    </div>
+
+    <div class="qs-panel">
+
+**Siemens SIMATIC** auswählen und auf **Nächste** klicken.
+
+<div class="screenshot-frame">
+  <img src={addTypeSimaticImg.src} alt="Gerätetyp auswählen — Siemens SIMATIC" />
+</div>
+
+**Symbolische Adressierung nutzen** aktivieren. Die symbolische Adressierung wird für **S7-1200 und S7-1500** unterstützt und ermöglicht es dem Edge, Variablennamen und Datenbaustein-Strukturen direkt von der SPS zu lesen — ohne manuelles Nachschlagen von Adressen.
+
+Verbindungsdetails eingeben:
+
+- **Adresse** — IP-Adresse der SIMATIC-Steuerung
+- **Geräte-Name** — zur Identifikation des Geräts innerhalb des Edge
+- **Symbolische Adressierung nutzen** — aktiviert
+- **Gesicherte Geräteverbindung** — aktivieren, wenn die SPS einen Zugriffsschutz konfiguriert hat. Bei Aktivierung erscheint ein **Passwort**-Feld. Hinweise zur Einrichtung auf SPS-Seite sind im Tab **Gesicherte Verbindung** beschrieben.
+
+<div class="screenshot-frame">
+  <img src={addSimaticConfigImg.src} alt="Siemens SIMATIC Konfigurationsformular mit aktivierter symbolischer Adressierung" />
+</div>
+
+**Hinweise aus dem TIA Portal**
+
+<div class="def-list">
+  <span class="def-list-key">IP-Adresse</span><span class="def-list-val">TIA Portal → SPS-Eigenschaften → PROFINET-Schnittstelle → Ethernet-Adressen</span>
+  <span class="def-list-key">Zugriffsschutz-Passwort</span><span class="def-list-val">TIA Portal → SPS-Eigenschaften → Schutz &amp; Sicherheit → Zugriffsschutz. Das im Edge eingetragene Passwort muss mit dem für die Lese- oder HMI-Zugriffsebene konfigurierten Passwort im TIA Portal übereinstimmen.</span>
+</div>
+
+Variablennamen und Datenbaustein-Strukturen werden direkt von der SPS gelesen. Die Variablen und ihre Datentypen sind im TIA Portal unter den Programmbausteinen sichtbar.
+
+<div class="screenshot-frame">
+  <img src={tiaDatablockImg.src} alt="TIA Portal — Datenbaustein mit Variablenstruktur" />
 </div>
 
 Im nächsten Schritt können optional Tags als Metadaten hinterlegt werden.
@@ -111,50 +160,39 @@ Im nächsten Schritt können optional Tags als Metadaten hinterlegt werden.
   <img src={addTypeSimaticImg.src} alt="Gerätetyp auswählen — Siemens SIMATIC" />
 </div>
 
+**Symbolische Adressierung nutzen** deaktivieren. Die Felder **Slotnummer** und **Gestellnummer** erscheinen. Die absolute Adressierung wird für **S7-300- und S7-400**-Steuerungen verwendet, die keine symbolische Adressierung unterstützen. Sie kann auch für S7-1200 und S7-1500 verwendet werden, wenn symbolische Adressierung nicht erforderlich ist.
+
+:::note
+Gesicherte Verbindungen (Zugriffsschutz) werden für S7-300/400-Steuerungen nicht unterstützt.
+:::
+
 Verbindungsdetails eingeben:
 
 - **Adresse** — IP-Adresse der SIMATIC-Steuerung
 - **Geräte-Name** — zur Identifikation des Geräts innerhalb des Edge
-- **Symbolische Adressierung nutzen** — aktivieren, wenn die SPS symbolische Variablenadressierung verwendet (TIA Portal). Bei Deaktivierung werden absolute Adressen verwendet.
-- **Gesicherte Geräteverbindung** — aktivieren, wenn die SPS einen Zugriffsschutz konfiguriert hat. Bei Aktivierung erscheint ein **Passwort**-Feld.
+- **Symbolische Adressierung nutzen** — deaktiviert
+- **Slotnummer** — gibt an, an welcher Position die CPU oder der Kommunikationsprozessor im Baugruppenträger gesteckt ist. Typischerweise **2** bei S7-300/400. Zu finden in der Hardwarekonfiguration im TIA Portal oder SIMATIC Manager.
+- **Gestellnummer** — gibt an, in welchem Baugruppenträger die CPU eingebaut ist. In **95 % der Fälle ist dies 0** — der Hauptbaugruppenträger, in dem die CPU sitzt. Bei redundanten CPU-Konfigurationen die Gestellnummer der aktuell aktiven CPU verwenden.
 
 <div class="screenshot-frame">
-  <img src={addSimaticConfigImg.src} alt="Siemens SIMATIC Konfigurationsformular mit symbolischer Adressierung und gesicherter Verbindung" />
+  <img src={addSimaticNoSymbolicImg.src} alt="Siemens SIMATIC Konfigurationsformular mit absoluter Adressierung — Slotnummer und Gestellnummer sichtbar" />
 </div>
 
-Wenn **Symbolische Adressierung nutzen** deaktiviert ist, erscheinen stattdessen die Felder **Slotnummer** und **Gestellnummer** — diese sind für die absolute Adressierung der SPS erforderlich.
+**Slotnummer und Gestellnummer nachschlagen**
 
-<div class="screenshot-frame">
-  <img src={addSimaticNoSymbolicImg.src} alt="Siemens SIMATIC Konfigurationsformular ohne symbolische Adressierung — Slotnummer und Gestellnummer sichtbar" />
-</div>
+Slotnummer und Gestellnummer können in der Hardwarekonfiguration des Projekts nachgeschlagen werden. Die Hardwarekonfiguration im **TIA Portal** öffnen (oder im **SIMATIC Manager** bei S7-300/400-Projekten) und die CPU in der Rack-Ansicht lokalisieren.
 
-**Hinweise aus dem TIA Portal**
+**PUT/GET-Kommunikation aktivieren (nur S7-1200 / S7-1500)**
 
-<div class="def-list">
-  <span class="def-list-key">IP-Adresse</span><span class="def-list-val">TIA Portal → SPS-Eigenschaften → PROFINET-Schnittstelle → Ethernet-Adressen</span>
-  <span class="def-list-key">Symbolische Adressierung</span><span class="def-list-val">Unterstützt für S7-1200 und S7-1500. Erfordert aktivierten PUT/GET-Zugriff: TIA Portal → SPS-Eigenschaften → Schutz &amp; Sicherheit → Verbindungsmechanismen → „Zugriff über PUT/GET-Kommunikation von Partner erlauben"</span>
-  <span class="def-list-key">Slotnummer</span><span class="def-list-val">Wird für absolute Adressierung verwendet (S7-300/400). Der CPU-Slot ist in der Regel <strong>2</strong>. Zu finden in der TIA Portal Hardwarekonfiguration des Baugruppenträgers.</span>
-  <span class="def-list-key">Gestellnummer</span><span class="def-list-val">In der Regel <strong>0</strong> für den Hauptbaugruppenträger. Bei mehreren Baugruppenträgern in der TIA Portal Hardwareansicht nachschlagen.</span>
-  <span class="def-list-key">Zugriffsschutz-Passwort</span><span class="def-list-val">TIA Portal → SPS-Eigenschaften → Schutz &amp; Sicherheit → Zugriffsschutz. Das hier eingetragene Passwort muss mit dem für die HMI- oder Lesezugriffsebene konfigurierten Passwort übereinstimmen.</span>
-</div>
-
-**Symbolische Adressierung — PUT/GET-Zugriff aktivieren**
-
-Im TIA Portal die SPS-Eigenschaften öffnen und zu **Schutz &amp; Sicherheit → Verbindungsmechanismen** navigieren. Die Option **Zugriff über PUT/GET-Kommunikation durch remoten Partner erlauben** aktivieren.
+Bei Verwendung der absoluten Adressierung mit einer S7-1200 oder S7-1500 muss die PUT/GET-Kommunikation im TIA Portal aktiviert werden. Die SPS-Eigenschaften öffnen und zu **Schutz &amp; Sicherheit → Verbindungsmechanismen** navigieren. Die Option **Zugriff über PUT/GET-Kommunikation durch remoten Partner erlauben** aktivieren.
 
 <div class="screenshot-frame">
   <img src={tiaPutGetImg.src} alt="TIA Portal — PUT/GET-Kommunikationszugriff aktivieren" />
 </div>
 
-Bei aktivierter symbolischer Adressierung werden Variablennamen und Datenbaustein-Strukturen direkt von der SPS gelesen. Die Variablen und ihre Datentypen sind im TIA Portal unter den Programmbausteinen sichtbar.
+**Optimierten Bausteinzugriff deaktivieren**
 
-<div class="screenshot-frame">
-  <img src={tiaDatablockImg.src} alt="TIA Portal — Datenbaustein mit Variablenstruktur" />
-</div>
-
-**Absolute Adressierung — optimierten Bausteinzugriff deaktivieren**
-
-Für die absolute Adressierung (S7-300/400 oder S7-1200/1500 ohne symbolische Adressierung) muss der **Optimierte Bausteinzugriff** im Datenbaustein deaktiviert sein. Die Datenbaustein-Eigenschaften im TIA Portal öffnen, zu **Attribute** wechseln und **Optimierter Bausteinzugriff** deaktivieren.
+Für die absolute Adressierung muss der **Optimierte Bausteinzugriff** im Datenbaustein deaktiviert sein. Die Datenbaustein-Eigenschaften im TIA Portal öffnen, zu **Attribute** wechseln und **Optimierter Bausteinzugriff** deaktivieren.
 
 <div class="screenshot-frame">
   <img src={tiaDbNoOptimizedImg.src} alt="TIA Portal — Datenbaustein-Attribute mit deaktiviertem optimierten Bausteinzugriff" />
@@ -182,32 +220,37 @@ Alle drei Gerätetypen unterstützen eine gesicherte Verbindung mit Passwortschu
   <img src={addSecuredConnectionImg.src} alt="Toggle Gesicherte Geräteverbindung mit Passwortfeld im Gerät-hinzufügen-Assistenten" />
 </div>
 
-**Zugriffsschutz im TIA Portal konfigurieren (Siemens SIMATIC)**
+**OPC UA — Benutzername/Passwort im TIA Portal konfigurieren**
 
-Der Zugriffsschutz muss auf SPS-Seite konfiguriert sein, bevor eine gesicherte Verbindung vom Edge aufgebaut werden kann.
+Wenn der OPC-UA-Server im TIA Portal Authentifizierung erfordert, muss auf der Steuerungsseite Folgendes eingerichtet sein:
 
-**S7-1200 / S7-1500:**
-
-1. Die SPS im TIA Portal öffnen und zu **Eigenschaften → Schutz &amp; Sicherheit → Zugriffsschutz** navigieren.
-2. Zugriffsschutz auf **Lesezugriff** oder **HMI-Zugriff** (oder höhere Einschränkung) setzen.
-3. Ein Passwort für die gewählte Zugriffsebene vergeben.
-4. Konfiguration kompilieren und auf die SPS laden.
-
-Das im Edge eingetragene Passwort muss mit dem Passwort für die **Lese-** oder **HMI-Zugriffsebene** im TIA Portal übereinstimmen.
+1. Im TIA Portal die SPS öffnen und zu **Eigenschaften → OPC UA → Server** navigieren.
+2. Den **OPC-UA-Server aktivieren** (falls noch nicht aktiv).
+3. Unter **Sicherheit** eine Sicherheitsrichtlinie aktivieren — mindestens **Basic256Sha256** mit Modus **Sign & Encrypt** wird empfohlen.
+4. Unter **Authentifizierung** die Option **Benutzername und Passwort** aktivieren.
+5. Einen Benutzer anlegen: Unter **Benutzerverwaltung** einen neuen Eintrag mit Benutzername und Passwort hinzufügen. Diese Zugangsdaten werden im Edge im Formular **Gesicherte Geräteverbindung** eingetragen.
+6. Die aktualisierte SPS-Konfiguration kompilieren und laden.
 
 :::note
-Damit der Edge SIMATIC-Connector Daten lesen kann, muss mindestens **Lesezugriff** erlaubt sein. Ist die SPS auf **Vollzugriff (kein Schutz)** eingestellt, ist kein Passwort erforderlich und der Toggle für die gesicherte Verbindung muss nicht aktiviert werden.
+Die genaue Menüstruktur kann je nach TIA Portal-Version leicht abweichen. Bei Fragen zur OPC-UA-Konfiguration im TIA Portal wenden Sie sich an Ihren Siemens-Ansprechpartner oder an uns.
 :::
 
-**S7-300 / S7-400:**
+**Zugriffsschutz im TIA Portal konfigurieren — SIMATIC Symbolisch (S7-1200 / S7-1500)**
 
-1. Die CPU-Eigenschaften im TIA Portal (oder STEP 7) öffnen und zu **Eigenschaften → Schutz** navigieren.
-2. Eine Schutzstufe wählen und das entsprechende Passwort vergeben.
-3. Die aktualisierte Konfiguration auf die SPS laden.
+Für SIMATIC-Steuerungen mit symbolischer Adressierung wird der Zugriffsschutz über die Zugriffsschutz-Einstellungen im TIA Portal konfiguriert. Der Edge verwendet das Passwort der konfigurierten Schutzebene zur Authentifizierung.
+
+1. Im TIA Portal die SPS öffnen und zu **Eigenschaften → Schutz &amp; Sicherheit → Zugriffsschutz** navigieren.
+2. Die Schutzebene auswählen — **Lesezugriff** erlaubt ausschließlich lesenden Zugriff und ist für den Edge ausreichend. **HMI-Zugriff** gewährt etwas umfangreichere Berechtigungen und kann ebenfalls verwendet werden.
+3. Ein Passwort für die gewählte Schutzebene vergeben. Dieses Passwort wird im Edge im Feld **Gesicherte Geräteverbindung** eingetragen.
+4. Die aktualisierte SPS-Konfiguration kompilieren und laden.
+
+:::note
+Ist die SPS auf **Vollzugriff (kein Schutz)** eingestellt, ist kein Passwort erforderlich und der Toggle für die gesicherte Verbindung muss nicht aktiviert werden.
+:::
 
 **Verbindungsfehler „only secured connection"**
 
-Dieser Fehler erscheint, wenn die gesicherte Verbindung beim Erstellen des Geräts nicht eingerichtet wurde. Um das nachträglich zu beheben, die folgenden Schritte ausführen.
+Dieser Fehler bedeutet, dass auf der SPS ein Zugriffsschutz aktiv ist, die **Gesicherte Geräteverbindung** beim Anlegen des Geräts jedoch nicht aktiviert wurde.
 
 <div class="screenshot-frame screenshot-frame-sm">
   <img src={connectionErrorImg.src} alt="Geräteverbindung-Widget mit Fehler 'only secured connection'" />

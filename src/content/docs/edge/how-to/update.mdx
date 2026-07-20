@@ -19,6 +19,7 @@ import updateInstallingProgressImg from '../../../../assets/images/edge/edge-upd
 import updateSuccessImg from '../../../../assets/images/edge/edge-update-success.png';
 import grafanaDataGapImg from '../../../../assets/images/edge/edge-grafana-update-data-gap.png';
 import updateRestartRequiredImg from '../../../../assets/images/edge/edge-update-restart-required.png';
+import settingsRestartImg from '../../../../assets/images/edge/edge-settings-restart.png';
 
 Updates are installed on the Edge by uploading an update bundle — a `.zip` file provided by Invisyne that contains the new firmware and service versions. There is no automatic update mechanism; each update must be uploaded manually.
 
@@ -68,11 +69,19 @@ Updates are installed on the Edge by uploading an update bundle — a `.zip` fil
      <img src={updateDetailsExpandedImg.src} alt="Update details with component entry expanded" />
    </div>
 
-   In some cases the overview shows a **Restart required** warning — this means the device must be restarted before the update can be installed. Restart the Edge first, then return to the Update page to continue.
+   In some cases the overview shows a **Restart required** warning — this means the device must be restarted before the update can be installed.
 
    <div class="screenshot-frame">
      <img src={updateRestartRequiredImg.src} alt="Update page showing restart required warning before installation" />
    </div>
+
+   To restart, go to **System → Settings** and click **Restart**. This performs a software restart of the Edge services.
+
+   <div class="screenshot-frame screenshot-frame-sm">
+     <img src={settingsRestartImg.src} alt="Restart button in Settings" />
+   </div>
+
+   After the restart, return to the Update page to continue.
 
    Click **Start Installation** to begin. A confirmation dialog warns that some services may be temporarily unreachable during the process.
 

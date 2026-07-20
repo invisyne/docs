@@ -41,12 +41,15 @@ import perfResultsImg from '../../../../assets/images/edge/edge-performance-anal
 
     <div class="qs-panel">
 
-Before configuring data recording, the following information about the field device should be available:
+Data recording is the mechanism by which the Edge connects to field devices, reads configured process variables at a defined sampling interval, and stores the measured values in its internal time-series database. These stored values serve as the data source for Grafana dashboards and can optionally be forwarded to external platforms such as AWS IoT Core.
 
-- IP address of the field device
-- Device type (e.g. Modbus, Simatic S7)
+Before variables can be configured, the field device must already be added to the Edge and a connection must be established. The following information should be available:
 
-The field device must be connected to the Edge network and added in the Edge UI before proceeding. See [Adding a Field Device](/edge/how-to/add-field-device) for step-by-step instructions.
+- **IP address** of the field device
+- **Device type** (Modbus TCP, OPC UA, or Siemens SIMATIC S7)
+- **Variable addresses or structure**: for manual entry or CSV-based import, the addresses of the variables to be recorded (see [Protocols and Field Devices](/edge/technical-reference/protocols) for address formats); for S7 controllers with symbolic addressing, a live connection to the PLC is sufficient — the built-in import browser retrieves the variable structure directly from the device.
+
+See [Adding a Field Device](/edge/how-to/add-field-device) for step-by-step instructions on adding and connecting the device before proceeding.
 
     </div>
 
@@ -95,17 +98,19 @@ Clicking **From device** retrieves the structure and measured variables directly
 - Variables already imported are highlighted in grey
 - Variables configured on the Edge but not found on the field device during import are highlighted in yellow
 
-Select all desired measured variables, then open the **Cart** and click **Import all**.
+Select all desired measured variables and add them to the **Cart**. The cart acts as a selection buffer — variables can be added incrementally as you navigate through the device's variable structure, and the full selection can be reviewed before the import is confirmed. Once the selection is complete, open the cart and click **Import all**.
 
 <div class="screenshot-frame">
   <img src={importCartImg.src} alt="Import cart" />
 </div>
 
-Before confirming, set the desired configuration for the imported variables.
+Before confirming, set the desired configuration for the imported variables — sampling interval, recording state, and timestamp alignment can all be applied globally to all imported variables at once.
 
 <div class="screenshot-frame">
   <img src={importConfigImg.src} alt="Import configuration" />
 </div>
+
+Click **Import** to confirm. The imported variables are added to the device immediately and begin recording at the configured sampling interval.
 
     </div>
 
@@ -123,8 +128,8 @@ The following settings can be changed for a measured variable:
   <span class="def-list-key">Name</span><span class="def-list-val">Name changes require adjustments in existing dashboards; the name should be unique within its group level</span>
   <span class="def-list-key">Sampling rate</span><span class="def-list-val">Range: 10 ms to 500 h, specified in milliseconds</span>
   <span class="def-list-key">Recording</span><span class="def-list-val">Start and stop recording</span>
-  <span class="def-list-key">Timestamp alignment</span><span class="def-list-val">Enable/disable</span>
-  <span class="def-list-key">Recording metrics</span><span class="def-list-val">Enable/disable</span>
+  <span class="def-list-key">Timestamp alignment</span><span class="def-list-val">When enabled, the timestamp of each recorded value is snapped to the nearest multiple of the sampling interval, aligning samples from different variables to a common time grid. This makes side-by-side comparison of variables in Grafana more accurate.</span>
+  <span class="def-list-key">Recording metrics</span><span class="def-list-val">When enabled, internal performance counters are stored alongside the measured value — for example, actual vs. expected sample counts per interval. Useful for diagnosing timing issues or evaluating recording quality.</span>
   <span class="def-list-key">Tags</span><span class="def-list-val">Add/remove</span>
 </div>
 
@@ -225,6 +230,8 @@ After completion, the results page shows a quality rating (color scale from red 
 <div class="screenshot-frame">
   <img src={perfResultsImg.src} alt="Performance Analysis results — quality rating and sampling rate statistics" />
 </div>
+
+If the quality rating is **poor** (red or orange), the most common causes are a sampling interval that is too short relative to the network round-trip time to the field device, or a high number of simultaneously recorded variables exceeding the available bandwidth. In these cases, consider increasing the sampling interval, reducing the number of actively recorded variables on the device, or running the test on individual variables to isolate the bottleneck. Contact support if the issue persists after adjusting the configuration.
 
     </div>
 

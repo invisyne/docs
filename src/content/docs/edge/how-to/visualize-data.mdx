@@ -20,7 +20,9 @@ import queryStringFieldImg from '../../../../assets/images/edge/edge-grafana-que
 import visualizationPickerImg from '../../../../assets/images/edge/edge-grafana-visualization-picker.png';
 import removeTagFilterImg from '../../../../assets/images/edge/edge-grafana-remove-tag-filter.png';
 
-The Edge uses Grafana (version 7.4) as its visualization platform. Grafana supports a wide range of display types — charts, gauges, tables, and single-value panels — and allows multiple panels to be combined into dashboards.
+The Edge uses Grafana (version 7.4) as its built-in visualization platform. Grafana is organized into **dashboards**, each containing one or more **panels**. Each panel queries a specific measured variable from the Edge's internal database and renders the values using a selected display type — time-series charts, gauges, stat panels, tables, and more. Dashboards can be organized into folders, making it easy to structure views by field device, production line, or any other grouping.
+
+No login is required to view existing dashboards. Creating, editing, or deleting dashboards and panels requires logging in with an **Editor** account.
 
 :::note
 Available from Edge version 2.7.1.

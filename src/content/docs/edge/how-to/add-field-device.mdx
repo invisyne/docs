@@ -24,6 +24,8 @@ import tiaPutGetImg from '../../../../assets/images/edge/edge-simatic-tia-put-ge
 import tiaDbAddressesImg from '../../../../assets/images/edge/edge-simatic-tia-db-addresses.png';
 import tiaDbNoOptimizedImg from '../../../../assets/images/edge/edge-simatic-tia-db-no-optimized-access.png';
 
+Field devices are the industrial controllers, sensors, and gateways from which the Edge reads process data. Before a device's variables can be configured for recording, the device must be added to the Edge and a successful connection must be established. The Edge supports three connection protocols: **Modbus TCP**, **OPC UA**, and **Siemens SIMATIC (S7)** — select the tab for the relevant protocol below.
+
 In the main menu, navigate to **Data Recording** and click **+ Add devices**.
 
 <div class="screenshot-frame screenshot-frame-sm">
@@ -37,7 +39,8 @@ Select one of the following device types to see the setup steps.
   <div class="qs-tabbar">
     <a class="qs-tab" href="#">Modbus TCP</a>
     <a class="qs-tab" href="#">OPC</a>
-    <a class="qs-tab" href="#">Siemens SIMATIC</a>
+    <a class="qs-tab" href="#">SIMATIC — Symbolic</a>
+    <a class="qs-tab" href="#">SIMATIC — Absolute</a>
     <a class="qs-tab" href="#">Secured Connection</a>
   </div>
 
@@ -56,19 +59,19 @@ Enter the connection details:
 - **Address** — IP address of the Modbus device
 - **Device name** — used to identify the device within the Edge
 - **Port** — default is 502
-- **Modbus RTU** — enable if the device uses the RTU protocol variant over TCP. When enabled, an additional **Unit ID** field appears to identify the device on the bus.
+- **Modbus RTU** — enable if the field device uses the Modbus RTU protocol. Modbus RTU is the older Modbus variant and uses a master/slave architecture — the Edge acts as the Modbus Master and polls the connected field devices (slaves). When enabled, an additional **Slave ID** field appears to identify the target device on the bus.
 
 <div class="screenshot-frame">
   <img src={addModbusConfigImg.src} alt="Modbus TCP configuration form" />
 </div>
 
-With **Modbus RTU** enabled, a Unit ID field appears:
+With **Modbus RTU** enabled, a **Slave ID** field appears:
 
 <div class="screenshot-frame">
-  <img src={addModbusRtuImg.src} alt="Modbus TCP configuration with RTU enabled and Unit ID field" />
+  <img src={addModbusRtuImg.src} alt="Modbus TCP configuration with RTU enabled and Slave ID field" />
 </div>
 
-Optionally, a **template** can be selected to pre-populate the device with a predefined set of variables. Optional metadata can be added as tags in the next step.
+Optionally, a **template** can be selected. Templates contain a predefined list of variables for common device models and are applied automatically when the device is created, eliminating the need to add variables individually. If no suitable template is available, variables can be added or imported after device creation. Optional metadata can be added as tags in the next step.
 
 <div class="screenshot-frame">
   <img src={addTagsImg.src} alt="Device tags — optional metadata" />
@@ -88,11 +91,57 @@ Enter the connection details:
 
 - **Address** — IP address or hostname of the OPC server
 - **Device name** — used to identify the device within the Edge
-- **Port** — default is 4840
+- **Port** — default is 4840; the actual port depends on the OPC UA server configuration in the PLC project and may differ
 - **Secured device connection** — enable if the OPC server requires authentication. When enabled, **Username** and **Password** fields appear.
 
 <div class="screenshot-frame">
   <img src={addOpcConfigImg.src} alt="OPC configuration form with secured connection fields" />
+</div>
+
+:::note
+For information on configuring the OPC UA server in Siemens TIA Portal, refer to the Siemens documentation.
+:::
+
+Optional metadata can be added as tags in the next step.
+
+<div class="screenshot-frame">
+  <img src={addTagsImg.src} alt="Device tags — optional metadata" />
+</div>
+
+    </div>
+
+    <div class="qs-panel">
+
+Select **Siemens SIMATIC** and click **Next**.
+
+<div class="screenshot-frame">
+  <img src={addTypeSimaticImg.src} alt="Device type selection — Siemens SIMATIC" />
+</div>
+
+Enable **Symbolic addressing**. Symbolic addressing is supported for **S7-1200 and S7-1500** and allows the Edge to read variable names and data block structures directly from the PLC — no manual address lookup required.
+
+Enter the connection details:
+
+- **Address** — IP address of the SIMATIC controller
+- **Device name** — used to identify the device within the Edge
+- **Symbolic addressing** — enabled
+- **Secured device connection** — enable if the PLC has access protection configured. A **Password** field appears when enabled. See the **Secured Connection** tab for PLC-side setup instructions.
+
+<div class="screenshot-frame">
+  <img src={addSimaticConfigImg.src} alt="Siemens SIMATIC configuration form with symbolic addressing enabled" />
+</div>
+
+**TIA Portal reference**
+
+<div class="def-list">
+  <span class="def-list-key">IP address</span><span class="def-list-val">TIA Portal → PLC properties → PROFINET interface → Ethernet addresses</span>
+  <span class="def-list-key">Access protection password</span><span class="def-list-val">TIA Portal → PLC properties → Protection &amp; Security → Access level. The password entered in Edge must match the password configured for the read or HMI access level in TIA Portal.</span>
+</div>
+
+Variable names and data block structures are read directly from the PLC. The variables and their data types are visible in TIA Portal under the program blocks.
+
+<div class="screenshot-frame">
+  <img src={tiaDatablockImg.src} alt="TIA Portal — data block with variable structure" />
 </div>
 
 Optional metadata can be added as tags in the next step.
@@ -111,50 +160,39 @@ Select **Siemens SIMATIC** and click **Next**.
   <img src={addTypeSimaticImg.src} alt="Device type selection — Siemens SIMATIC" />
 </div>
 
+Disable **Symbolic addressing**. The fields **Slot number** and **Rack number** appear. Absolute addressing is used for **S7-300 and S7-400** controllers, which do not support symbolic addressing. It can also be used with S7-1200 and S7-1500 if symbolic addressing is not required.
+
+:::note
+Secured connections (access protection) are not supported for S7-300/400 controllers.
+:::
+
 Enter the connection details:
 
 - **Address** — IP address of the SIMATIC controller
 - **Device name** — used to identify the device within the Edge
-- **Symbolic addressing** — enable if the PLC uses symbolic variable addressing (TIA Portal). When disabled, absolute addresses are used instead.
-- **Secured device connection** — enable if the PLC has access protection configured. A **Password** field appears when enabled.
+- **Symbolic addressing** — disabled
+- **Slot number** — specifies the position of the CPU or communication processor within the rack. Typically **2** for S7-300/400. Found in the hardware configuration in TIA Portal or SIMATIC Manager.
+- **Rack number** — specifies the rack in which the CPU is installed. In **95% of cases this is 0** — the main rack where the CPU is located. In redundant CPU configurations, use the rack number of the currently active CPU.
 
 <div class="screenshot-frame">
-  <img src={addSimaticConfigImg.src} alt="Siemens SIMATIC configuration form with symbolic addressing and secured connection enabled" />
+  <img src={addSimaticNoSymbolicImg.src} alt="Siemens SIMATIC configuration form with absolute addressing — slot and rack number fields visible" />
 </div>
 
-If **Symbolic addressing** is disabled, the fields **Slot number** and **Rack number** appear instead — these are required for absolute addressing of the PLC.
+**Finding slot and rack number**
 
-<div class="screenshot-frame">
-  <img src={addSimaticNoSymbolicImg.src} alt="Siemens SIMATIC configuration form without symbolic addressing — slot and rack number fields visible" />
-</div>
+The slot and rack number can be found in the hardware configuration of the project. Open the hardware configuration in **TIA Portal** (or **SIMATIC Manager** for S7-300/400 projects) and locate the CPU in the rack view.
 
-**TIA Portal reference**
+**Enabling PUT/GET communication (S7-1200 / S7-1500 only)**
 
-<div class="def-list">
-  <span class="def-list-key">IP address</span><span class="def-list-val">TIA Portal → PLC properties → PROFINET interface → Ethernet addresses</span>
-  <span class="def-list-key">Symbolic addressing</span><span class="def-list-val">Supported for S7-1200 and S7-1500. Requires PUT/GET access to be enabled: TIA Portal → PLC properties → Protection &amp; Security → Connection mechanisms → "Permit access with PUT/GET communication from remote partner"</span>
-  <span class="def-list-key">Slot number</span><span class="def-list-val">Used for absolute addressing (S7-300/400). The CPU slot is typically <strong>2</strong>. Found in TIA Portal under the hardware configuration of the rack.</span>
-  <span class="def-list-key">Rack number</span><span class="def-list-val">Usually <strong>0</strong> for the main rack. For multi-rack configurations, check the TIA Portal hardware view.</span>
-  <span class="def-list-key">Access protection password</span><span class="def-list-val">TIA Portal → PLC properties → Protection &amp; Security → Access level. The password entered here must match the one configured for the HMI or read access level.</span>
-</div>
-
-**Symbolic addressing — enabling PUT/GET access**
-
-In TIA Portal, open the PLC properties and navigate to **Protection &amp; Security → Connection mechanisms**. Enable **Permit access with PUT/GET communication from remote partner**.
+When using absolute addressing with an S7-1200 or S7-1500, PUT/GET communication must be enabled in TIA Portal. Open the PLC properties and navigate to **Protection &amp; Security → Connection mechanisms**. Enable **Permit access with PUT/GET communication from remote partner**.
 
 <div class="screenshot-frame">
   <img src={tiaPutGetImg.src} alt="TIA Portal — enabling PUT/GET communication access" />
 </div>
 
-With symbolic addressing enabled, variable names and data block structures are read directly from the PLC. The data block variables and their types are visible in TIA Portal under the program blocks.
+**Disabling optimized block access**
 
-<div class="screenshot-frame">
-  <img src={tiaDatablockImg.src} alt="TIA Portal — data block with variable structure" />
-</div>
-
-**Absolute addressing — disabling optimized block access**
-
-For absolute addressing (S7-300/400 or S7-1200/1500 without symbolic addressing), the data block must have **Optimized block access** disabled. Open the data block properties in TIA Portal, go to **Attributes**, and uncheck **Optimized block access**.
+For absolute addressing, the data block must have **Optimized block access** disabled. Open the data block properties in TIA Portal, go to **Attributes**, and uncheck **Optimized block access**.
 
 <div class="screenshot-frame">
   <img src={tiaDbNoOptimizedImg.src} alt="TIA Portal — data block attributes with optimized block access disabled" />
@@ -182,32 +220,35 @@ All three device types support a secured connection with password protection. If
   <img src={addSecuredConnectionImg.src} alt="Secured device connection toggle with password field in the add-device wizard" />
 </div>
 
-**Configuring access protection in TIA Portal (Siemens SIMATIC)**
+**OPC UA — Configuring username/password authentication in TIA Portal**
 
-Access protection must be configured on the PLC side before a secured connection can be established from the Edge.
+If the OPC UA server in TIA Portal requires authentication, the following must be configured on the controller side:
 
-**S7-1200 / S7-1500:**
-
-1. Open the PLC in TIA Portal and go to **Properties → Protection &amp; Security → Access level**.
-2. Set the access level to **Read access** or **HMI access** (or higher restriction).
-3. Enter a password for the selected access level.
-4. Compile and download the configuration to the PLC.
-
-The password entered in Edge must match the password set for the **read** or **HMI** access level in TIA Portal.
+1. In TIA Portal, open the PLC and navigate to **Properties → OPC UA → Server**.
+2. Enable the **OPC UA server** if it is not already active.
+3. Under **Security**, enable a security policy — at minimum **Basic256Sha256** with mode **Sign & Encrypt** is recommended.
+4. Under **Authentication**, enable the **Username and password** option.
+5. Add a user: under **User management**, create a new entry with a username and password. These credentials are entered in the Edge **Secured device connection** fields.
+6. Compile and download the updated PLC configuration.
 
 :::note
-For the Edge SIMATIC connector to read data, at minimum **Read access** must be permitted. If the PLC is set to **Full access (no protection)**, no password is required and the secured connection toggle does not need to be enabled.
+The exact menu structure may vary slightly depending on the TIA Portal version. If you have questions about OPC UA configuration in TIA Portal, contact your Siemens representative or reach out to us.
 :::
 
-**S7-300 / S7-400:**
+**Configuring access protection in TIA Portal — SIMATIC Symbolic (S7-1200 / S7-1500)**
 
-1. Open the CPU properties in TIA Portal (or STEP 7) and go to **Properties → Protection**.
-2. Select a protection level and set the corresponding password.
-3. Download the updated configuration to the PLC.
+For SIMATIC controllers using symbolic addressing, access protection is managed through the access level settings in TIA Portal. The Edge authenticates using the password assigned to the configured access level.
+
+1. In TIA Portal, open the PLC and navigate to **Properties → Protection &amp; Security → Access level**.
+2. Select the protection level — **Read access** permits read-only access and is sufficient for the Edge to retrieve data. **HMI access** grants slightly broader permissions and can also be used.
+3. Enter a password for the selected access level. This is the password that will be entered in the Edge **Secured device connection** field.
+4. Compile and download the updated PLC configuration.
+
+:::note
+If the PLC is set to **Full access (no protection)**, no password is required and the secured connection toggle does not need to be enabled.
+:::
 
 **If the connection fails with "only secured connection"**
-
-This error appears when the secured connection option was not configured during device creation. To fix it afterwards, follow the steps below.
 
 This error means the device has access protection enabled, but **Secured device connection** was not activated when the device was added.
 

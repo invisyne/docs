@@ -19,6 +19,7 @@ import updateInstallingProgressImg from '../../../../../assets/images/edge/edge-
 import updateSuccessImg from '../../../../../assets/images/edge/edge-update-success.png';
 import grafanaDataGapImg from '../../../../../assets/images/edge/edge-grafana-update-data-gap.png';
 import updateRestartRequiredImg from '../../../../../assets/images/edge/edge-update-restart-required.png';
+import settingsRestartImg from '../../../../../assets/images/edge/edge-settings-restart.png';
 
 Updates werden auf dem Edge durch das Hochladen eines Update-Bundles installiert — einer `.zip`-Datei, die von Invisyne bereitgestellt wird und die neue Firmware sowie aktualisierte Dienste enthält. Es gibt keinen automatischen Update-Mechanismus; jedes Update muss manuell hochgeladen werden.
 
@@ -68,11 +69,19 @@ Updates werden auf dem Edge durch das Hochladen eines Update-Bundles installiert
      <img src={updateDetailsExpandedImg.src} alt="Aktualisierungsdetails mit aufgeklapptem Komponenteneintrag" />
    </div>
 
-   In manchen Fällen wird ein **Neustart erforderlich**-Hinweis angezeigt — das bedeutet, dass das Gerät erst neu gestartet werden muss, bevor das Update installiert werden kann. Den Edge zuerst neu starten und anschließend zur Update-Seite zurückkehren.
+   In manchen Fällen wird ein **Neustart erforderlich**-Hinweis angezeigt — das bedeutet, dass das Gerät erst neu gestartet werden muss, bevor das Update installiert werden kann.
 
    <div class="screenshot-frame">
      <img src={updateRestartRequiredImg.src} alt="Update-Seite mit Hinweis auf erforderlichen Neustart vor der Installation" />
    </div>
+
+   Zum Neustarten zu **System → Einstellungen** navigieren und auf **Neu starten** klicken. Dies führt einen Software-Neustart der Edge-Dienste durch.
+
+   <div class="screenshot-frame screenshot-frame-sm">
+     <img src={settingsRestartImg.src} alt="Neu-starten-Schaltfläche in den Einstellungen" />
+   </div>
+
+   Nach dem Neustart zur Update-Seite zurückkehren und fortfahren.
 
    Auf **Installation starten** klicken. Ein Bestätigungs-Dialog weist darauf hin, dass bestimmte Dienste während der Installation kurz nicht erreichbar sein können.
 

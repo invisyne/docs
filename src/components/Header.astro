@@ -355,6 +355,12 @@ const deepviewHref  = isDE ? '/de/deepview'  : '/deepview';
         img.addEventListener('mouseleave', (e) => { if (e.relatedTarget !== btn && !btn.contains(e.relatedTarget)) btn.style.opacity = '0'; });
         btn.addEventListener('mouseleave', () => { btn.style.opacity = '0'; });
       });
+      document.querySelectorAll('.ic-img-wrap').forEach(wrap => {
+        if (wrap.querySelector('.zoom-btn')) return;
+        const img = wrap.querySelector('img');
+        if (!img) return;
+        wrap.appendChild(makeZoomBtn(img));
+      });
       document.querySelectorAll('.doc-acc-img-wrap').forEach(wrap => {
         if (wrap.querySelector('.zoom-btn')) return;
         const img = wrap.querySelector('img');

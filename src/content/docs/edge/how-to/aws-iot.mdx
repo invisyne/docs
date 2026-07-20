@@ -28,10 +28,20 @@ To connect an Edge to AWS IoT Core, the device must be registered in AWS and the
 
     <div class="qs-panel">
 
+A **Thing** is the logical representation of the Edge device in AWS IoT Core. The Thing name is used to identify the device within AWS and must exactly match the **Hostname** configured on the Edge (visible under **System → Settings → Device**).
+
 <ol>
   <li>Log in to the AWS Console and navigate to <strong>AWS IoT Core</strong>.</li>
-  <li>Under <strong>Manage → Things</strong>, create a new device. The Thing name must match the <strong>Hostname</strong> of the Edge. Select a Thing Type.</li>
-  <li>Create a <strong>Device certificate</strong>. Download and store all certificate files securely — the certificate cannot be downloaded again after this step. Assign the appropriate IoT policies to the certificate.</li>
+  <li>Under <strong>Manage → Things</strong>, click <strong>Create things</strong> and select <strong>Create a single thing</strong>.</li>
+  <li>Enter the Edge <strong>Hostname</strong> as the Thing name. Optionally select or create a <strong>Thing Type</strong> to categorize the device.</li>
+  <li><span>On the certificate step, choose <strong>Auto-generate a new certificate (recommended)</strong>. After creation, download all files immediately — the private key cannot be downloaded again after this step. Save the following:</span>
+    <ul>
+      <li><code>*-certificate.pem.crt</code> — the device certificate</li>
+      <li><code>*-private.pem.key</code> — the private key</li>
+      <li><code>AmazonRootCA1.pem</code> — the AWS root CA (download link shown in the creation dialog)</li>
+    </ul>
+  </li>
+  <li>Attach an IoT policy to the certificate. The policy must grant at minimum: <code>iot:Connect</code>, <code>iot:Publish</code>, <code>iot:Subscribe</code>, and <code>iot:Receive</code>. If no suitable policy exists, create one under <strong>Security → Policies</strong> first.</li>
 </ol>
 
     </div>
@@ -70,11 +80,32 @@ Store all certificate files, the export password, and the device hostname in a s
 
     <div class="qs-panel">
 
-In the Edge UI, navigate to **System → Settings → Gateway**. The configured endpoint is listed with its current connection status. Click the endpoint to open its settings, then upload the `.pfx` certificate file under **Credentials** and save.
+The gateway endpoint connects the Edge to AWS IoT Core over MQTT with TLS authentication. Before configuring it in the Edge, locate the device data endpoint in the AWS Console.
+
+**Find the AWS IoT endpoint URL**
+
+In the AWS Console, navigate to **AWS IoT Core → Settings**. The **Device data endpoint** field shows the hostname used for device connections — it takes the form `xxxxxxxxxxxxxxx-ats.iot.<region>.amazonaws.com`.
+
+**Configure the endpoint in the Edge**
+
+1. In the Edge UI, navigate to **System → Settings → Gateway**.
+2. The page lists the configured gateway endpoint and its current connection status.
+3. Click the endpoint to open its configuration.
+4. Under **Endpoint**, enter the AWS IoT device data endpoint URL.
+5. Under **Credentials**, upload the `.pfx` certificate file and enter the export password set during the conversion step.
+6. Click **Save**. The connection status updates automatically — a green indicator confirms a successful connection to AWS IoT Core.
+
+:::note
+If the connection fails to establish, verify that the IoT policy attached to the certificate grants the permissions `iot:Connect`, `iot:Publish`, `iot:Subscribe`, and `iot:Receive`; that the Thing name in AWS matches the Edge hostname exactly; and that the `.pfx` export password is correct.
+:::
 
     </div>
 
     <div class="qs-panel">
+
+Gateway forwarding is configured on a per-variable basis. Each variable that should be forwarded to AWS must have a `gateway_aggregation` parameter set. Variables without this parameter are not forwarded, regardless of whether they are being recorded locally.
+
+**Aggregation** controls how the Edge summarizes recorded values before sending them to AWS IoT Core. Using an aggregation interval (e.g. `1m`) reduces the number of MQTT messages sent to AWS, which directly affects data transfer volume and AWS IoT message costs. When an interval is set, the Edge computes the average of all sampled values within that period and publishes a single message per interval. Setting the value to `0` forwards every recorded sample individually without aggregation — use this only when raw sample fidelity is required, as it significantly increases message volume.
 
 To include a measured variable in gateway forwarding, open the variable edit dialog and add a parameter with the identifier `gateway_aggregation`.
 

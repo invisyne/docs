@@ -1363,10 +1363,30 @@ starlight-toc a {
   z-index: 6;
 }
 
+.ic-img-wrap .zoom-btn {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 32px;
+  height: 32px;
+  background: rgba(0,0,0,0.55);
+  border: none;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.15s;
+  color: #fff;
+  z-index: 10;
+}
+
 .screenshot-frame:hover .zoom-btn,
 .page-hero-image:hover .zoom-btn,
 .companion-banner:hover .zoom-btn,
-.qs-img-slide:hover .zoom-btn {
+.qs-img-slide:hover .zoom-btn,
+.ic-img-wrap:hover .zoom-btn {
   opacity: 1;
 }
 
@@ -2597,3 +2617,38 @@ html:not([data-has-sidebar]) .sl-container > * + * {
   color: var(--sl-color-accent);
   transform: translateX(3px);
 }
+
+/* StatTiles component — force consistent sizing against Starlight content resets */
+.st-tile {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 4px !important;
+  margin-top: 0 !important;
+}
+.st-label,
+.st-value,
+.st-sub {
+  display: block !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+/* Table support indicators — geometric SVG icons */
+.tbl-yes, .tbl-no {
+  display: inline-block;
+  width: 13px;
+  height: 13px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  vertical-align: middle;
+}
+.tbl-yes {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpolyline points='1,6 4,10 11,2' stroke='%23555' stroke-width='1.5' fill='none' stroke-linecap='square' stroke-linejoin='miter'/%3E%3C/svg%3E");
+}
+.tbl-no {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cline x1='1' y1='1' x2='11' y2='11' stroke='%23333' stroke-width='1.5' stroke-linecap='square'/%3E%3Cline x1='11' y1='1' x2='1' y2='11' stroke='%23333' stroke-width='1.5' stroke-linecap='square'/%3E%3C/svg%3E");
+}
+
+.st-label { line-height: 1.3 !important; }
+.st-value { line-height: 1.2 !important; }
+.st-sub   { line-height: 1.3 !important; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
