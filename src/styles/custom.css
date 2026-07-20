@@ -1950,6 +1950,7 @@ starlight-toc a {
   display: block;
 }
 .page-hero-image--centered {
+  height: auto;
   min-height: 480px;
 }
 .page-hero-image--centered img {
