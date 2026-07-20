@@ -155,6 +155,7 @@ export default defineConfig({
 							label: 'UI Reference',
 							translations: { de: 'Benutzeroberfläche' },
 							items: [
+								{ label: 'Home', translations: { de: 'Startseite' }, slug: 'deepview/projects' },
 								{ label: 'Overview', translations: { de: 'Übersicht' }, slug: 'deepview/overview-dashboards' },
 								{
 									label: 'Analysis',
@@ -229,7 +230,6 @@ export default defineConfig({
 								},
 								{ label: 'Database', translations: { de: 'Datenbank' }, slug: 'deepview/database' },
 								{ label: 'Reports', translations: { de: 'Berichte' }, slug: 'deepview/reports' },
-								{ label: 'Projects', translations: { de: 'Projekte' }, slug: 'deepview/projects' },
 								{ label: 'Workspace Customization', translations: { de: 'Arbeitsbereich anpassen' }, slug: 'deepview/workspace-customization' },
 								{ label: 'User Preferences', translations: { de: 'Benutzereinstellungen' }, slug: 'deepview/user-preferences' },
 								{ label: 'Keyboard Shortcuts', translations: { de: 'Tastenkürzel' }, slug: 'deepview/keyboard-shortcuts' },
