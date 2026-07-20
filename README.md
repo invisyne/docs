@@ -22,7 +22,7 @@ Documentation is available in English (default) and German (`/de/`). Each produc
 
 ## How It Works
 
-The site is built with [Starlight](https://starlight.astro.build/) (Astro) and deployed to GitHub Pages via GitHub Actions on every push to `main`.
+The site is built with [Starlight](https://starlight.astro.build/) (Astro) and deployed to GitHub Pages via GitHub Actions whenever a `release-*` tag is pushed. Merging to `main` builds the site as a PR check but does **not** deploy — see [Deployment](#deployment) below.
 
 **Changelogs are generated automatically** from the private [`invisyne/release-notes`](https://github.com/invisyne/release-notes) repository at build time. Only public release notes are included — internal notes are never pulled into this repo. Upcoming (unreleased) versions are excluded.
 
@@ -75,9 +75,19 @@ How-to guides are auto-discovered from the `how-to/` directories and added to th
 
 ## Deployment
 
-Every push to `main` triggers the GitHub Actions workflow automatically — no manual steps, no tool login required.
+Merging a PR into `main` does **not** deploy anything — it only runs the build as a PR check, so broken builds are caught before merge. Production deploys are a separate, deliberate step: push a `release-*` tag.
 
-### What happens on push
+### Releasing to production
+
+```bash
+git checkout main && git pull
+git tag release-$(date +%Y-%m-%d)   # or any release-* name, e.g. release-hub-launch
+git push origin release-$(date +%Y-%m-%d)
+```
+
+Pushing the tag triggers the same build/deploy pipeline described below. This is intentional: it decouples "merged and ready" from "live on docs.invisyne.com", the same way the preview environment (`preview-*` tags) already works. If you're adding content for a specific product, coordinate the release tag with that product's release timing rather than shipping docs changes the moment they're merged.
+
+### What happens on a release tag push
 
 1. **Generate release-notes token** — A short-lived GitHub App token is created to access the private `invisyne/release-notes` repo. No stored passwords; the token expires after the run.
 2. **Checkout release-notes** — The private repo is checked out into the build environment.
@@ -85,6 +95,8 @@ Every push to `main` triggers the GitHub Actions workflow automatically — no m
 4. **Build** — Astro compiles the full static site to `dist/`.
 5. **Generate PDFs** — `scripts/generate-pdfs.js` produces one PDF per product and language (`dist/downloads/edge-en.pdf`, `edge-de.pdf`, `hub-en.pdf`, etc.) via Puppeteer, with chapter structure and a table of contents derived from the live sidebar. PDFs are not committed to the repo.
 6. **Deploy** — The `dist/` folder is deployed to GitHub Pages under the custom domain with HTTPS.
+
+A manual re-deploy (e.g. to pick up an infrastructure change without new content) can also be triggered via `workflow_dispatch` from the Actions tab.
 
 ### Required secrets
 
