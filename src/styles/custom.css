@@ -210,10 +210,28 @@ site-search button[data-open-modal] {
   display: none !important;
 }
 
-/* Sidebar sub-items indentation */
-.sidebar details > ul > li > a,
+/* Sidebar indentation.
+   Starlight's own defaults already put a page's top-level links (1 details
+   ancestor, e.g. Hub's own "Overview") flush with the group headers beside
+   them — both `a` and `summary` share the same base
+   --sl-sidebar-item-padding-inline. No override needed there: a product's
+   own flat pages (Level 2 — direct children of the product itself, Level 1)
+   shouldn't get a distinct indent of their own.
+   Real indentation starts once a page is nested inside an actual subgroup
+   (2+ details ancestors, e.g. Hub > UI Reference > "Login/Authentication",
+   or Deepview > Analysis > "Add Data Sets"), and increases one step per
+   further level — up to 4 ancestors for Deepview's
+   Analysis > Plot Types > Time Series > page. Each added `details` in the
+   selector raises specificity, so the most-nested matching rule always
+   wins over shallower ones without relying on source order. */
 .sidebar details details a {
   padding-inline-start: 1.75rem !important;
+}
+.sidebar details details details a {
+  padding-inline-start: 2.5rem !important;
+}
+.sidebar details details details details a {
+  padding-inline-start: 3.25rem !important;
 }
 
 /* Extra clearance when sidebar is open: push content past the 20px toggle button */
