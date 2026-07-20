@@ -210,10 +210,23 @@ site-search button[data-open-modal] {
   display: none !important;
 }
 
-/* Sidebar sub-items indentation */
+/* Sidebar sub-items indentation.
+   `details details a` etc. are descendant selectors, so they match ANY
+   ancestor depth, not an exact one — without depth-specific rules below,
+   every nesting level past 1 would render at the same indentation. Every
+   sidebar group used to be at most 2 levels deep (product > flat group >
+   page), so this never mattered until Deepview's Analysis > Plot Types >
+   Time Series > page (4 levels). More `details` in the selector means more
+   specificity, so each deeper rule naturally wins over the shallower one. */
 .sidebar details > ul > li > a,
 .sidebar details details a {
   padding-inline-start: 1.75rem !important;
+}
+.sidebar details details details a {
+  padding-inline-start: 2.5rem !important;
+}
+.sidebar details details details details a {
+  padding-inline-start: 3.25rem !important;
 }
 
 /* Extra clearance when sidebar is open: push content past the 20px toggle button */
