@@ -234,15 +234,6 @@ site-search button[data-open-modal] {
   padding-inline-start: 3.25rem !important;
 }
 
-/* Distinguish the top-level product name (Hub, Deepview, ...) from nested
-   subgroup headers (Analysis, Functions, Time Series, Benutzeroberfläche,
-   ...) now that both sit at the same indentation — font size is the
-   differentiator instead. Top-level headers keep Starlight's unmodified
-   .large size; anything nested one level or more shrinks down. */
-.sidebar details details > summary .large {
-  font-size: var(--sl-text-sm);
-}
-
 /* Extra clearance when sidebar is open: push content past the 20px toggle button */
 @media (min-width: 50rem) {
   :root:not(.sidebar-hidden) .main-frame {
