@@ -210,15 +210,20 @@ site-search button[data-open-modal] {
   display: none !important;
 }
 
-/* Sidebar sub-items indentation.
-   `details details a` etc. are descendant selectors, so they match ANY
-   ancestor depth, not an exact one — without depth-specific rules below,
-   every nesting level past 1 would render at the same indentation. Every
-   sidebar group used to be at most 2 levels deep (product > flat group >
-   page), so this never mattered until Deepview's Analysis > Plot Types >
-   Time Series > page (4 levels). More `details` in the selector means more
-   specificity, so each deeper rule naturally wins over the shallower one. */
-.sidebar details > ul > li > a,
+/* Sidebar indentation.
+   Starlight's own defaults already put a page's top-level links (1 details
+   ancestor, e.g. Hub's own "Overview") flush with the group headers beside
+   them — both `a` and `summary` share the same base
+   --sl-sidebar-item-padding-inline. No override needed there: a product's
+   own flat pages (Level 2 — direct children of the product itself, Level 1)
+   shouldn't get a distinct indent of their own.
+   Real indentation starts once a page is nested inside an actual subgroup
+   (2+ details ancestors, e.g. Hub > UI Reference > "Login/Authentication",
+   or Deepview > Analysis > "Add Data Sets"), and increases one step per
+   further level — up to 4 ancestors for Deepview's
+   Analysis > Plot Types > Time Series > page. Each added `details` in the
+   selector raises specificity, so the most-nested matching rule always
+   wins over shallower ones without relying on source order. */
 .sidebar details details a {
   padding-inline-start: 1.75rem !important;
 }
@@ -227,6 +232,15 @@ site-search button[data-open-modal] {
 }
 .sidebar details details details details a {
   padding-inline-start: 3.25rem !important;
+}
+
+/* Distinguish the top-level product name (Hub, Deepview, ...) from nested
+   subgroup headers (Analysis, Functions, Time Series, Benutzeroberfläche,
+   ...) now that both sit at the same indentation — font size is the
+   differentiator instead. Top-level headers keep Starlight's unmodified
+   .large size; anything nested one level or more shrinks down. */
+.sidebar details details > summary .large {
+  font-size: var(--sl-text-sm);
 }
 
 /* Extra clearance when sidebar is open: push content past the 20px toggle button */
