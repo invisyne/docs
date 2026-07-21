@@ -1942,6 +1942,11 @@ starlight-toc a {
   position: relative;
   height: 340px;
 }
+.page-hero-image--tall {
+  height: auto;
+  aspect-ratio: 2304 / 1296;
+  align-self: start;
+}
 .page-hero-image img {
   width: 100%;
   height: 100%;
