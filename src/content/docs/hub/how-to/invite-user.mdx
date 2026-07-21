@@ -1,12 +1,12 @@
 ---
 title: "Manage Users"
-description: "How to create user accounts and manage roles in Hub."
+description: "How to create, invite, and manage user accounts and roles in Hub."
 ---
 
 import { Steps } from '@astrojs/starlight/components';
 
 :::note
-Both actions require an **Admin** role.
+All actions on this page require an **Admin** role.
 :::
 
 ## Create a New User
@@ -18,13 +18,37 @@ Both actions require an **Admin** role.
 
 3. **Enter the email address** — Enter the new user's email address.
 
-4. **Set a password** — Set an initial password for the user.
+4. **Enter the name** — Enter the new user's first and last name.
 
-5. **Enter the name** — Enter the new user's first and last name.
+5. **Select a role** — Choose either **Admin** (full access, including user management) or **User** (standard access to devices and software).
 
-6. **Select a role** — Choose either **Admin** (full access, including user management) or **User** (standard access to devices and software).
+6. **Confirm** — Click **Create**. The account is created without a password — invite the user to grant them access (see below).
+</Steps>
 
-7. **Confirm** — Click **Create**. The account is active immediately — the user can now log in with their credentials.
+## Invite a New User
+
+New accounts have no password set — the user can only log in after being invited.
+
+<Steps>
+1. **Go to Users** — Click **Users** in the top navigation bar.
+
+2. **Find the user** — Locate the user in the list.
+
+3. **Click Invite** — Click **Invite** next to the user's entry. Hub sends them an email containing a reset code.
+
+4. **User sets a password** — The user opens the email, follows the link to the password recovery page, enters the reset code, and sets their own password. They can now log in.
+</Steps>
+
+## Resend an Invitation
+
+If a user didn't receive the invitation email or their reset code expired, you can send a new one.
+
+<Steps>
+1. **Go to Users** — Click **Users** in the top navigation bar.
+
+2. **Find the user** — Locate the user in the list. Users who haven't set a password yet are shown as not yet active.
+
+3. **Click Resend Invitation** — Click **Resend Invitation** next to the user's entry. This invalidates any previous reset code and sends a new invitation email.
 </Steps>
 
 ## Change a User's Role
