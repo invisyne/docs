@@ -1,0 +1,412 @@
+---
+title: Changelog
+description: Release notes for Deepview.
+---
+
+## 3.8.1
+
+*2026-07-14*
+
+### Highlights
+
+> A small security fix for session handling.
+
+---
+
+### Bug Fixes
+
+- **Refresh token buffer removed** — Fixed an edge case in session token refresh handling.
+
+---
+
+## 3.8.0
+
+*2026-07-13*
+
+### Highlights
+
+> Deepview 3.8 adds figure export with extended options and batch exporting, and fixes several authentication and reporting issues.
+
+---
+
+### New Features
+
+- **Export figures** — Extended export options (filename, zoom, pixels, dark mode, cursors, time zone, segments), the ability to edit plot settings before exporting, and saved export settings.
+- **Batch export figures** — Export figures from multiple projects, tabs, and plots at once, using shared general settings (export settings and full-range/zoom-range).
+
+### Bug Fixes
+
+- **Authentication via Entra ID & Cognito** — Custom logout redirects are now supported, and expired token refresh no longer fails.
+- **Reports** — Fixed reports that were failing to generate, and fixed the automation token disappearing when pressing Escape.
+
+---
+
+## 3.7.1
+
+*2026-06-24*
+
+### Highlights
+
+> A patch fixing an issue with automatic axis scaling.
+
+---
+
+### Bug Fixes
+
+- **Autoscale axes** — Fixed an issue where autoscaling axes did not behave correctly.
+
+---
+
+## 3.7.0
+
+*2026-06-22*
+
+### Highlights
+
+> Deepview 3.7 introduces Dataset Modes for combining multiple data sets in one view, simplified custom signal queries, and experimental AI-assisted analysis.
+
+---
+
+### New Features
+
+- **Dataset Modes** — Merge or chain multiple data sets together, with a clearer UI for choosing how to visualize them and an improved "restore previous session" dialog.
+- **Simplified custom function queries**
+- **AI-assisted analysis (beta)** — Generate an analysis plot or a report summary automatically.
+- **Auto-generate a report from a project**
+
+### Bug Fixes
+
+- Fixed exporting a list of empty signals.
+- Fixed a white screen shown on the function library when it contained broken functions.
+- Added Ctrl+S to save Overview Dashboards.
+- Added a link to the MATLAB/Python SDK in the Export data dialog.
+
+---
+
+## 3.6.2
+
+*2026-06-09*
+
+### Highlights
+
+> An experimental AI-assisted feature for summarizing data in a report.
+
+---
+
+### New Features
+
+- **AI-assisted analysis (experimental)** — Generate a report summary automatically.
+
+### Bug Fixes
+
+None.
+
+---
+
+## 3.6.1
+
+*2026-06-05*
+
+### Highlights
+
+> An experimental AI-assisted feature for generating plots.
+
+---
+
+### New Features
+
+- **AI-assisted analysis (experimental)** — Generate an analysis plot automatically.
+
+### Bug Fixes
+
+None.
+
+---
+
+## 3.6.0
+
+*2026-05-27*
+
+### Highlights
+
+> Deepview 3.6 improves the Time Series legend, Overview Dashboards, and Reports, and adds custom default plot colors.
+
+---
+
+### New Features
+
+- **Analysis** — A configurable legend position for Time Series plots (sidebar, floating, below, or hidden), an improved "organise data sets" dialog, and an improved "restore session" dialog.
+- **Overview Dashboards** — Tabs, feedback when using unsupported text signals, and the option to exclude realtime data sets.
+- **Reports** — Use data set metadata directly in report text.
+- **Workspace Customization** — Set custom default colors for plots and projects.
+- **User Preferences** — Choose colors for overlaid data sets.
+
+### Bug Fixes
+
+- Fixed table sorting in Overview Dashboards to account for exponents.
+- Fixed empty plots in distance mode after switching tabs.
+- Made the plot type selector scrollable.
+- Fixed reports containing empty plots.
+
+---
+
+## 3.5.1
+
+*2026-05-22*
+
+### Highlights
+
+> A patch fixing a data export issue.
+
+---
+
+### Bug Fixes
+
+- **Data exports** — Fixed an issue causing some data exports to fail.
+
+---
+
+## 3.5.0
+
+*2025-05-12*
+
+### Highlights
+
+> Deepview 3.5 introduces automated reporting — reports can now be generated and delivered automatically whenever new data arrives.
+
+---
+
+### New Features
+
+- **Automated reports** — Automatically generate a report whenever a new data set is uploaded, and receive it by email, Slack, or Teams. Report layouts can now use columns, support undo/redo (Ctrl+Z/Y), and confirm when a template is saved.
+
+### Bug Fixes
+
+- **Analysis** — Fixed missing annotations when loading multiple data sets, fixed annotations not being removed when the user who created them is deleted, stopped adding signals to a plot when opening or closing a signal group, and improved the display of State plots in overlay mode.
+- **Database** — Data set sorting is now remembered, and fixed the "default columns" connection setting.
+- **Overview Dashboards** — Added a color legend to Scatter plots, fixed a white screen on dashboards with many Scatter plots, and dashboard owners can now reset the metric cache.
+
+---
+
+## 3.4.2
+
+*2026-04-21*
+
+### Highlights
+
+> A compatibility patch for older operating systems.
+
+---
+
+### Bug Fixes
+
+- **Compatibility** — Fixed compatibility with older operating systems.
+
+---
+
+## 3.4.0
+
+*2026-04-17*
+
+### Highlights
+
+> Deepview 3.4 adds full-featured Reports across all plot types, a new InfluxDB 2 connection, and several Overview Dashboard and export improvements.
+
+---
+
+### New Features
+
+- **Reports** — Support for all plot types, plots in generated PDFs now link back to the corresponding project, templates can combine plots from multiple projects, and plot configuration is saved with the report.
+- **Overview Dashboards** — Sort bar, pie, and table charts; first/last aggregate functions; clear failed values.
+- **InfluxDB 2 connection**
+- **Frequency (FFT) plot smoothing**
+- **Custom map tile servers**
+- **Open plots in full screen**
+- **Choose the timestamp unit when exporting data**
+
+### Bug Fixes
+
+- Fixed function signals in Trino connections.
+- Improved live cursor stability.
+- Faster loading for large Overview Dashboards.
+- Constant or empty signals are now hidden in the signal list.
+- Various report layout and performance fixes.
+- License page improvements.
+
+---
+
+## 3.3.5
+
+*2026-03-31*
+
+### Highlights
+
+> A patch fixing a query issue for Trino connections.
+
+---
+
+### Bug Fixes
+
+- **Trino connections** — Fixed the sample-shift query.
+
+---
+
+## 3.3.4
+
+*2026-03-30*
+
+### Highlights
+
+> Deepview 3.3.4 introduces Reports (beta) — build report templates from your analysis projects and generate them manually.
+
+---
+
+### New Features
+
+- **Reports (beta)** — Create report templates based on analysis projects, and manually create and download reports.
+- **Analysis** — First/last aggregate values in table and number plots, custom labels on number/bar chart plots, and the ability to select and drag multiple signals at once. Added a data set metadata plot.
+
+### Bug Fixes
+
+- **Performance** — Faster loading of the Analysis tab for Map plots, and debounced title editing in Overview Dashboards.
+- Fixed table plots with long signal names.
+- Fixed a tooltip getting stuck on Scatter plots in dashboards after clicking a legend entry.
+- Fixed "refresh data sets" in the data set browser.
+- Fixed signal format retaining an outdated state in table plot settings.
+
+---
+
+## 3.2.3
+
+*2026-03-18*
+
+### Highlights
+
+> A performance patch for Map plots.
+
+---
+
+### Bug Fixes
+
+- **Map plots** — Improved performance.
+
+---
+
+## 3.2.2
+
+*2026-03-12*
+
+### Highlights
+
+> Adds a new connection type for InfluxDB v1.8.
+
+---
+
+### New Features
+
+- **InfluxDB v1.8 connection**
+
+### Bug Fixes
+
+None.
+
+---
+
+## 3.2.1
+
+*2026-03-09*
+
+### New Features
+
+- **Trino connections** — Connect without HTTPS.
+
+### Bug Fixes
+
+- Removed the "create private workspaces" option.
+
+---
+
+## 3.2.0
+
+*2026-03-04*
+
+### Highlights
+
+> Deepview 3.2 adds table sorting and lets you reuse query test results across custom functions.
+
+---
+
+### New Features
+
+- **Sortable tables**
+- **Reuse query test results** — Use the result of one custom function query test in another.
+
+### Bug Fixes
+
+- Signal search now remembers glob settings.
+- Fixed advanced search failing to load.
+- Fixed dashboard metrics not always fully loading.
+
+---
+
+## 3.1.0
+
+*2026-02-13*
+
+### Highlights
+
+> Deepview 3.1 adds a new Message plot type and a Trino connection.
+
+---
+
+### New Features
+
+- **Message plot**
+- **Trino connection**
+- **Dashboard calculation on cold storage data**
+- **Support for built-in functions on ClickHouse connections**
+
+### Bug Fixes
+
+- Added the ability to duplicate a dashboard.
+- Admins can now delete old custom functions, even if still referenced by a project.
+
+---
+
+## 3.0.1
+
+*2026-02-02*
+
+### Highlights
+
+> A patch restricting extremely large CSV exports.
+
+---
+
+### Bug Fixes
+
+- **CSV export** — Restricted extreme export sizes to prevent failures.
+
+---
+
+## 3.0.0
+
+*2026-01-22*
+
+### Highlights
+
+> Deepview 3.0 improves multi-axis handling in Time Series plots and adds admin-only user management.
+
+---
+
+### New Features
+
+- **Time Series** — Multiple x-axes are now shown by default in compare mode, and data point markers can be hidden.
+- **User management** — A configuration option to allow only superusers to add new users.
+
+### Bug Fixes
+
+- Fixed a disk memory issue affecting large CSV exports.
+- A data set is now highlighted by default in the data set library.
+- Improved satellite map background resolution.
+- Fixed the "start time" data set filter in the data set library.

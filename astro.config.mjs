@@ -151,6 +151,7 @@ export default defineConfig({
 					items: [
 						{ label: 'Overview', translations: { de: 'Übersicht' }, slug: 'deepview' },
 						{ label: 'Quickstart', translations: { de: 'Schnellstart' }, slug: 'deepview/quickstart' },
+						{ label: 'Changelog', translations: { de: 'Changelog' }, slug: 'deepview/changelog' },
 						{
 							label: 'UI Reference',
 							translations: { de: 'Benutzeroberfläche' },
