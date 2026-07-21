@@ -158,6 +158,13 @@ site-search button[data-open-modal] {
   font-weight: 300;
 }
 
+/* Standalone screenshots (a paragraph containing nothing but an image) sit
+   right on top of the surrounding text otherwise — the default block gap
+   (16px) reads as cramped next to a full-width screenshot. */
+.sl-markdown-content p:has(> img:only-child) {
+  margin-block: 2rem !important;
+}
+
 .sl-markdown-content strong {
   font-weight: 600;
 }
