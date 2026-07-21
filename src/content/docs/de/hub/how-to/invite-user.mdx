@@ -1,12 +1,12 @@
 ---
 title: "Benutzer verwalten"
-description: "So legen Sie Benutzerkonten an und verwalten Rollen in Hub."
+description: "So legen Sie Benutzerkonten an, laden Benutzer ein und verwalten Rollen in Hub."
 ---
 
 import { Steps } from '@astrojs/starlight/components';
 
 :::note
-Beide Aktionen erfordern die Rolle **Admin**.
+Alle Aktionen auf dieser Seite erfordern die Rolle **Admin**.
 :::
 
 ## Neuen Benutzer anlegen
@@ -18,13 +18,37 @@ Beide Aktionen erfordern die Rolle **Admin**.
 
 3. **E-Mail-Adresse eingeben** — Geben Sie die E-Mail-Adresse des neuen Benutzers ein.
 
-4. **Passwort vergeben** — Legen Sie ein initiales Passwort für den Benutzer fest.
+4. **Name eingeben** — Geben Sie Vor- und Nachnamen des neuen Benutzers ein.
 
-5. **Name eingeben** — Geben Sie Vor- und Nachnamen des neuen Benutzers ein.
+5. **Rolle auswählen** — Wählen Sie entweder **Admin** (voller Zugriff einschließlich Benutzerverwaltung) oder **Benutzer** (Standardzugriff auf Geräte und Software).
 
-6. **Rolle auswählen** — Wählen Sie entweder **Admin** (voller Zugriff einschließlich Benutzerverwaltung) oder **Benutzer** (Standardzugriff auf Geräte und Software).
+6. **Bestätigen** — Klicken Sie auf **Anlegen**. Das Konto wird ohne Passwort angelegt — laden Sie den Benutzer ein, um ihm Zugang zu gewähren (siehe unten).
+</Steps>
 
-7. **Bestätigen** — Klicken Sie auf **Anlegen**. Das Konto ist sofort aktiv — der Benutzer kann sich nun mit seinen Zugangsdaten einloggen.
+## Benutzer einladen
+
+Neu angelegte Konten haben kein Passwort — der Benutzer kann sich erst nach einer Einladung anmelden.
+
+<Steps>
+1. **Zu Benutzer navigieren** — Klicken Sie auf **Benutzer** in der oberen Navigationsleiste.
+
+2. **Benutzer finden** — Suchen Sie den Benutzer in der Liste.
+
+3. **Auf Einladen klicken** — Klicken Sie auf **Einladen** neben dem Eintrag des Benutzers. Hub schickt ihm eine E-Mail mit einem Reset-Code.
+
+4. **Benutzer legt Passwort fest** — Der Benutzer öffnet die E-Mail, folgt dem Link zur Seite zum Zurücksetzen des Passworts, gibt den Reset-Code ein und legt sein eigenes Passwort fest. Er kann sich nun anmelden.
+</Steps>
+
+## Einladung erneut senden
+
+Wenn ein Benutzer die Einladungs-E-Mail nicht erhalten hat oder der Reset-Code abgelaufen ist, können Sie eine neue senden.
+
+<Steps>
+1. **Zu Benutzer navigieren** — Klicken Sie auf **Benutzer** in der oberen Navigationsleiste.
+
+2. **Benutzer finden** — Suchen Sie den Benutzer in der Liste. Benutzer, die noch kein Passwort festgelegt haben, werden als noch nicht aktiv angezeigt.
+
+3. **Auf Einladung erneut senden klicken** — Klicken Sie auf **Einladung erneut senden** neben dem Eintrag des Benutzers. Dadurch wird ein zuvor gesendeter Reset-Code ungültig, und eine neue Einladungs-E-Mail wird verschickt.
 </Steps>
 
 ## Benutzerrolle ändern
