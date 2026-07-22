@@ -26,9 +26,9 @@ Open the project in SIMATIC Manager and navigate to **Blocks → HW Config** to 
 If more than one communication processor is present in the rack, make sure to select the slot of the one that is physically cabled to the Edge device.
 :::
 
-## Disabling optimized block access
+## Optimized block access
 
-For absolute addressing, each data block that the Edge reads from must have **Optimized block access** disabled. Open the data block in SIMATIC Manager, go to **Attributes**, and uncheck **Optimierter Bausteinzugriff** (Optimized block access).
+For absolute addressing, each data block that the Edge reads from must have **Optimized block access** disabled. Open the data block in SIMATIC Manager, go to **Attributes**, and make sure the **Optimierter Bausteinzugriff** (Optimized block access) checkbox is unchecked.
 
 <div class="screenshot-frame">
   <img src={dbAttributesImg.src} alt="SIMATIC Manager — data block attributes with optimized block access enabled" />
