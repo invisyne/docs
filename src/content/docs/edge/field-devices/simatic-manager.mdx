@@ -28,7 +28,7 @@ If more than one communication processor is present in the rack, make sure to se
 
 ## Optimized block access
 
-For absolute addressing, each data block that the Edge reads from must have **Optimized block access** disabled. Open the data block in SIMATIC Manager, go to **Attributes**, and make sure the **Optimierter Bausteinzugriff** (Optimized block access) checkbox is unchecked.
+Open the data block in SIMATIC Manager and go to **Attributes**. The **Optimierter Bausteinzugriff** (Optimized block access) checkbox must be enabled — this is required for the Edge to access the data block's variables via absolute addressing.
 
 <div class="screenshot-frame">
   <img src={dbAttributesImg.src} alt="SIMATIC Manager — data block attributes with optimized block access enabled" />

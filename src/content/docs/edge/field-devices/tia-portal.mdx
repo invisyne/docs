@@ -44,17 +44,18 @@ Open the PLC properties and navigate to **Protection & Security → Connection m
   <img src={tiaPutGetImg.src} alt="TIA Portal — enabling PUT/GET communication access" />
 </div>
 
-## Optimized block access (absolute addressing only)
+## Data block attributes
 
-For absolute addressing, each data block that the Edge reads from must have **Optimized block access** disabled.
+Open the data block properties in TIA Portal and go to **Attributes**. The relevant settings depend on the connection type being used:
 
-Open the data block properties in TIA Portal, go to **Attributes**, and uncheck **Optimized block access**.
+- **Absolute addressing** — **Optimized block access** must be disabled. This ensures each variable gets a fixed byte offset that can be used as the address in the Edge.
+- **OPC UA** — **Data block accessible via OPC UA** must be enabled for the data block to be readable via the OPC UA server.
 
 <div class="screenshot-frame">
-  <img src={tiaDbNoOptimizedImg.src} alt="TIA Portal — data block attributes with optimized block access disabled" />
+  <img src={tiaDbNoOptimizedImg.src} alt="TIA Portal — data block attributes" />
 </div>
 
-With optimized access disabled, each variable is assigned a fixed byte offset. This offset is visible in the data block view and is used as the address in the Edge (e.g. `DB10.DBX0.0`).
+With optimized access disabled, each variable is assigned a fixed byte offset visible in the data block view, which is used as the address in the Edge for absolute addressing (e.g. `DB10.DBX0.0`).
 
 <div class="screenshot-frame">
   <img src={tiaDbAddressesImg.src} alt="TIA Portal — data block with absolute addresses (byte offsets)" />

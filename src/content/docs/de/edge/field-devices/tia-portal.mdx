@@ -44,17 +44,18 @@ Die SPS-Eigenschaften öffnen und zu **Schutz &amp; Sicherheit → Verbindungsme
   <img src={tiaPutGetImg.src} alt="TIA Portal — PUT/GET-Kommunikationszugriff aktivieren" />
 </div>
 
-## Optimierter Bausteinzugriff (nur absolute Adressierung)
+## Datenbaustein-Attribute
 
-Für die absolute Adressierung muss bei jedem Datenbaustein, den der Edge ausliest, der **Optimierte Bausteinzugriff** deaktiviert sein.
+Die Datenbaustein-Eigenschaften im TIA Portal öffnen und zu **Attribute** wechseln. Je nach verwendetem Verbindungstyp sind folgende Einstellungen relevant:
 
-Die Datenbaustein-Eigenschaften im TIA Portal öffnen, zu **Attribute** wechseln und **Optimierter Bausteinzugriff** deaktivieren.
+- **Absolute Adressierung** — **Optimierter Bausteinzugriff** muss deaktiviert sein. Nur so erhält jede Variable einen festen Byte-Offset, der als Adresse im Edge verwendet werden kann.
+- **OPC UA** — **Datenbaustein erreichbar über OPC UA** muss aktiviert sein, damit der Datenbaustein über den OPC-UA-Server des Edge ausgelesen werden kann.
 
 <div class="screenshot-frame">
   <img src={tiaDbNoOptimizedImg.src} alt="TIA Portal — Datenbaustein-Attribute mit deaktiviertem optimierten Bausteinzugriff" />
 </div>
 
-Mit deaktiviertem optimierten Zugriff erhält jede Variable einen festen Byte-Offset, der in der Datenbaustein-Ansicht sichtbar ist und als Adresse im Edge verwendet wird (z. B. `DB10.DBX0.0`).
+Mit deaktiviertem optimierten Zugriff erhält jede Variable einen festen Byte-Offset, der in der Datenbaustein-Ansicht sichtbar ist und bei der absoluten Adressierung im Edge als Adresse eingetragen wird (z. B. `DB10.DBX0.0`).
 
 <div class="screenshot-frame">
   <img src={tiaDbAddressesImg.src} alt="TIA Portal — Datenbaustein mit absoluten Adressen (Byte-Offsets)" />
