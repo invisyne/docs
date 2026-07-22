@@ -1,0 +1,412 @@
+---
+title: Changelog
+description: Versionshinweise für Deepview.
+---
+
+## 3.8.1
+
+*2026-07-14*
+
+### Highlights
+
+> Eine kleine Sicherheitskorrektur für die Sitzungsverwaltung.
+
+---
+
+### Fehlerbehebungen
+
+- **Refresh-Token-Puffer entfernt** — Ein Randfall bei der Aktualisierung von Sitzungs-Tokens wurde behoben.
+
+---
+
+## 3.8.0
+
+*2026-07-13*
+
+### Highlights
+
+> Deepview 3.8 bringt den Export von Diagrammen mit erweiterten Optionen und Batch-Export, sowie Korrekturen bei Authentifizierung und Berichten.
+
+---
+
+### Neue Funktionen
+
+- **Diagramme exportieren** — Erweiterte Export-Optionen (Dateiname, Zoom, Pixel, Dark Mode, Cursor, Zeitzone, Segmente), Bearbeiten der Plot-Einstellungen vor dem Export sowie gespeicherte Export-Einstellungen.
+- **Batch-Export von Diagrammen** — Diagramme aus mehreren Projekten, Tabs und Plots gleichzeitig exportieren, mit gemeinsamen allgemeinen Einstellungen (Export-Einstellungen und voller Bereich/Zoom-Bereich).
+
+### Fehlerbehebungen
+
+- **Authentifizierung via Entra ID & Cognito** — Individuelle Logout-Weiterleitungen werden jetzt unterstützt, und das Aktualisieren abgelaufener Tokens schlägt nicht mehr fehl.
+- **Berichte** — Fehlgeschlagene Berichtserstellung sowie ein verschwindendes Automatisierungs-Token beim Drücken von Escape wurden behoben.
+
+---
+
+## 3.7.1
+
+*2026-06-24*
+
+### Highlights
+
+> Ein Patch zur Behebung eines Problems bei der automatischen Achsenskalierung.
+
+---
+
+### Fehlerbehebungen
+
+- **Achsen automatisch skalieren** — Ein Fehler bei der automatischen Achsenskalierung wurde behoben.
+
+---
+
+## 3.7.0
+
+*2026-06-22*
+
+### Highlights
+
+> Deepview 3.7 führt Datensatz-Modi zum Kombinieren mehrerer Datensätze in einer Ansicht ein, vereinfacht individuelle Signal-Abfragen und bringt experimentelle KI-gestützte Analyse.
+
+---
+
+### Neue Funktionen
+
+- **Datensatz-Modi** — Mehrere Datensätze zusammenführen oder verketten, mit klarerer Oberfläche zur Auswahl der Visualisierung und einem verbesserten Dialog zum Wiederherstellen der letzten Sitzung.
+- **Vereinfachte individuelle Funktionsabfragen**
+- **KI-gestützte Analyse (Beta)** — Automatisch einen Analyse-Plot oder eine Berichtszusammenfassung erzeugen.
+- **Bericht automatisch aus einem Projekt generieren**
+
+### Fehlerbehebungen
+
+- Export einer Liste leerer Signale behoben.
+- Weißer Bildschirm in der Funktionsbibliothek bei defekten Funktionen behoben.
+- Strg+S zum Speichern von Overview Dashboards ergänzt.
+- Link zum MATLAB/Python-SDK im Dialog „Daten exportieren" ergänzt.
+
+---
+
+## 3.6.2
+
+*2026-06-09*
+
+### Highlights
+
+> Eine experimentelle KI-gestützte Funktion zum Zusammenfassen von Daten in einem Bericht.
+
+---
+
+### Neue Funktionen
+
+- **KI-gestützte Analyse (experimentell)** — Automatisch eine Berichtszusammenfassung erzeugen.
+
+### Fehlerbehebungen
+
+Keine.
+
+---
+
+## 3.6.1
+
+*2026-06-05*
+
+### Highlights
+
+> Eine experimentelle KI-gestützte Funktion zum Erzeugen von Plots.
+
+---
+
+### Neue Funktionen
+
+- **KI-gestützte Analyse (experimentell)** — Automatisch einen Analyse-Plot erzeugen.
+
+### Fehlerbehebungen
+
+Keine.
+
+---
+
+## 3.6.0
+
+*2026-05-27*
+
+### Highlights
+
+> Deepview 3.6 verbessert die Legende der Zeitreihen-Plots, Overview Dashboards und Berichte, und ergänzt individuelle Standardfarben für Plots.
+
+---
+
+### Neue Funktionen
+
+- **Analyse** — Konfigurierbare Position der Legende bei Zeitreihen-Plots (Seitenleiste, schwebend, unterhalb oder ausgeblendet), ein verbesserter Dialog zum Organisieren von Datensätzen sowie ein verbesserter Dialog zum Wiederherstellen einer Sitzung.
+- **Overview Dashboards** — Tabs, Rückmeldung bei nicht unterstützten Textsignalen, und die Option, Realtime-Datensätze auszuschließen.
+- **Berichte** — Datensatz-Metadaten direkt im Berichtstext verwenden.
+- **Arbeitsbereich anpassen** — Individuelle Standardfarben für Plots und Projekte festlegen.
+- **Benutzereinstellungen** — Farben für überlagerte Datensätze auswählen.
+
+### Fehlerbehebungen
+
+- Tabellensortierung in Overview Dashboards berücksichtigt jetzt Exponenten korrekt.
+- Leere Plots im Distanz-Modus nach Tab-Wechsel behoben.
+- Plot-Typ-Auswahl ist jetzt scrollbar.
+- Berichte mit leeren Plots behoben.
+
+---
+
+## 3.5.1
+
+*2026-05-22*
+
+### Highlights
+
+> Ein Patch zur Behebung eines Problems beim Datenexport.
+
+---
+
+### Fehlerbehebungen
+
+- **Datenexporte** — Ein Fehler, der zu fehlgeschlagenen Datenexporten führte, wurde behoben.
+
+---
+
+## 3.5.0
+
+*2025-05-12*
+
+### Highlights
+
+> Deepview 3.5 führt automatisierte Berichte ein — Berichte können jetzt automatisch erzeugt und verschickt werden, sobald neue Daten eintreffen.
+
+---
+
+### Neue Funktionen
+
+- **Automatisierte Berichte** — Automatisch einen Bericht erzeugen, sobald ein neuer Datensatz hochgeladen wird, und ihn per E-Mail, Slack oder Teams erhalten. Berichts-Layouts unterstützen jetzt Spalten, Rückgängig/Wiederholen (Strg+Z/Y), und eine Bestätigung beim Speichern einer Vorlage.
+
+### Fehlerbehebungen
+
+- **Analyse** — Fehlende Annotationen beim Laden mehrerer Datensätze behoben, Annotationen werden nicht mehr entfernt, wenn die erstellende Person gelöscht wird, Signale werden beim Öffnen/Schließen einer Signalgruppe nicht mehr ungewollt zu einem Plot hinzugefügt, und die Darstellung von State-Plots im Overlay-Modus wurde verbessert.
+- **Datenbank** — Die Sortierung von Datensätzen wird jetzt gespeichert, und die Verbindungseinstellung „Standardspalten" wurde behoben.
+- **Overview Dashboards** — Farblegende für Scatter-Plots ergänzt, weißer Bildschirm bei Dashboards mit vielen Scatter-Plots behoben, und Dashboard-Eigentümer können jetzt den Metrik-Cache zurücksetzen.
+
+---
+
+## 3.4.2
+
+*2026-04-21*
+
+### Highlights
+
+> Ein Kompatibilitäts-Patch für ältere Betriebssysteme.
+
+---
+
+### Fehlerbehebungen
+
+- **Kompatibilität** — Kompatibilität mit älteren Betriebssystemen wiederhergestellt.
+
+---
+
+## 3.4.0
+
+*2026-04-17*
+
+### Highlights
+
+> Deepview 3.4 bringt vollständige Berichte für alle Plot-Typen, eine neue InfluxDB-2-Verbindung sowie diverse Verbesserungen an Overview Dashboards und Export.
+
+---
+
+### Neue Funktionen
+
+- **Berichte** — Unterstützung für alle Plot-Typen, Plots in erzeugten PDFs verlinken jetzt zum zugehörigen Projekt, Vorlagen können Plots aus mehreren Projekten kombinieren, und die Plot-Konfiguration wird mit dem Bericht gespeichert.
+- **Overview Dashboards** — Sortierbare Balken-, Kreis- und Tabellen-Diagramme; Erste/Letzte-Aggregatfunktionen; fehlerhafte Werte bereinigen.
+- **InfluxDB-2-Verbindung**
+- **Glättung von Frequenz-Plots (FFT)**
+- **Individuelle Kartenkachel-Server**
+- **Plots im Vollbild öffnen**
+- **Zeitstempel-Einheit beim Datenexport wählen**
+
+### Fehlerbehebungen
+
+- Funktionssignale in Trino-Verbindungen behoben.
+- Stabilität des Live-Cursors verbessert.
+- Schnelleres Laden großer Overview Dashboards.
+- Konstante oder leere Signale werden jetzt in der Signalliste ausgeblendet.
+- Diverse Verbesserungen an Berichts-Layout und Performance.
+- Verbesserungen an der Lizenzseite.
+
+---
+
+## 3.3.5
+
+*2026-03-31*
+
+### Highlights
+
+> Ein Patch zur Behebung eines Abfrageproblems bei Trino-Verbindungen.
+
+---
+
+### Fehlerbehebungen
+
+- **Trino-Verbindungen** — Sample-Shift-Abfrage behoben.
+
+---
+
+## 3.3.4
+
+*2026-03-30*
+
+### Highlights
+
+> Deepview 3.3.4 führt Berichte (Beta) ein — Berichtsvorlagen aus euren Analyse-Projekten erstellen und manuell generieren.
+
+---
+
+### Neue Funktionen
+
+- **Berichte (Beta)** — Berichtsvorlagen basierend auf Analyse-Projekten erstellen sowie Berichte manuell erzeugen und herunterladen.
+- **Analyse** — Erste/Letzte-Aggregatwerte in Tabellen- und Zahlen-Plots, individuelle Beschriftungen bei Zahlen-/Balken-Diagrammen, sowie mehrere Signale gleichzeitig auswählen und per Drag-and-Drop verschieben. Datensatz-Metadaten-Plot ergänzt.
+
+### Fehlerbehebungen
+
+- **Performance** — Schnelleres Laden des Analyse-Tabs bei Map-Plots, und verzögerte Titel-Eingabe in Overview Dashboards.
+- Tabellen-Plots mit langen Signalnamen behoben.
+- Hängenbleibender Tooltip bei Scatter-Plots in Dashboards nach Klick auf einen Legendeneintrag behoben.
+- „Datensätze aktualisieren" in der Datensatz-Übersicht behoben.
+- Veralteter Zustand des Signalformats in den Tabellen-Plot-Einstellungen behoben.
+
+---
+
+## 3.2.3
+
+*2026-03-18*
+
+### Highlights
+
+> Ein Performance-Patch für Map-Plots.
+
+---
+
+### Fehlerbehebungen
+
+- **Map-Plots** — Performance verbessert.
+
+---
+
+## 3.2.2
+
+*2026-03-12*
+
+### Highlights
+
+> Ergänzt einen neuen Verbindungstyp für InfluxDB v1.8.
+
+---
+
+### Neue Funktionen
+
+- **InfluxDB-v1.8-Verbindung**
+
+### Fehlerbehebungen
+
+Keine.
+
+---
+
+## 3.2.1
+
+*2026-03-09*
+
+### Neue Funktionen
+
+- **Trino-Verbindungen** — Verbindung ohne HTTPS möglich.
+
+### Fehlerbehebungen
+
+- Option „Private Workspaces erstellen" entfernt.
+
+---
+
+## 3.2.0
+
+*2026-03-04*
+
+### Highlights
+
+> Deepview 3.2 ergänzt sortierbare Tabellen und erlaubt die Wiederverwendung von Abfrage-Testergebnissen.
+
+---
+
+### Neue Funktionen
+
+- **Sortierbare Tabellen**
+- **Abfrage-Testergebnisse wiederverwenden** — Das Ergebnis eines Tests einer individuellen Funktion in einem anderen Test verwenden.
+
+### Fehlerbehebungen
+
+- Signalsuche merkt sich jetzt Glob-Einstellungen.
+- Fehlerhaftes Laden der erweiterten Suche behoben.
+- Unvollständig geladene Dashboard-Metriken behoben.
+
+---
+
+## 3.1.0
+
+*2026-02-13*
+
+### Highlights
+
+> Deepview 3.1 ergänzt einen neuen Message-Plot-Typ und eine Trino-Verbindung.
+
+---
+
+### Neue Funktionen
+
+- **Message-Plot**
+- **Trino-Verbindung**
+- **Dashboard-Berechnung auf Cold-Storage-Daten**
+- **Unterstützung für integrierte Funktionen bei ClickHouse-Verbindungen**
+
+### Fehlerbehebungen
+
+- Dashboards können jetzt dupliziert werden.
+- Admins können jetzt alte individuelle Funktionen löschen, auch wenn sie noch in einem Projekt verwendet werden.
+
+---
+
+## 3.0.1
+
+*2026-02-02*
+
+### Highlights
+
+> Ein Patch zur Beschränkung extrem großer CSV-Exporte.
+
+---
+
+### Fehlerbehebungen
+
+- **CSV-Export** — Extrem große Exportgrößen werden jetzt beschränkt, um Fehlschläge zu vermeiden.
+
+---
+
+## 3.0.0
+
+*2026-01-22*
+
+### Highlights
+
+> Deepview 3.0 verbessert die Mehrachsen-Darstellung bei Zeitreihen-Plots und ergänzt eine Admin-only-Benutzerverwaltung.
+
+---
+
+### Neue Funktionen
+
+- **Zeitreihen** — Im Vergleichsmodus werden standardmäßig mehrere x-Achsen angezeigt, und Datenpunkt-Marker können ausgeblendet werden.
+- **Benutzerverwaltung** — Konfigurationsoption, um das Anlegen neuer Benutzer auf Superuser zu beschränken.
+
+### Fehlerbehebungen
+
+- Speicherproblem bei großen CSV-Exporten behoben.
+- Ein Datensatz wird jetzt standardmäßig in der Datensatz-Bibliothek hervorgehoben.
+- Auflösung des Satelliten-Kartenhintergrunds verbessert.
+- Datensatzfilter „Startzeit" in der Datensatz-Bibliothek behoben.
