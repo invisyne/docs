@@ -13,6 +13,8 @@ import setupTimeDateImg from '../../../../../assets/images/edge/edge-setup-time-
 import setupNetworkImg from '../../../../../assets/images/edge/edge-setup-network.png';
 import setupFinishImg from '../../../../../assets/images/edge/edge-setup-finish.png';
 import setupRestartImg from '../../../../../assets/images/edge/edge-setup-restart.png';
+import hwWagoX1X2Img from '../../../../../assets/images/edge/edge-hw-wago-x1-x2.png';
+import hwSimaticX1X2Img from '../../../../../assets/images/edge/edge-hw-simatic-x1-x2.png';
 
 <div class="qs-stepper">
 
@@ -32,6 +34,15 @@ import setupRestartImg from '../../../../../assets/images/edge/edge-setup-restar
       |---------|-------------|
       | X1 | 192.168.0.5 |
       | X2 | 192.168.1.5 |
+
+      <p>Die Bezeichnungen <strong>X1</strong> und <strong>X2</strong> sind direkt am Gerät aufgedruckt. Auf die korrekte Zuordnung achten — je nach Hardware-Variante befinden sich die Anschlüsse an unterschiedlichen Positionen.</p>
+
+      <div class="screenshot-frame" style="max-width: 480px;">
+        <img src={hwWagoX1X2Img.src} alt="WAGO 752-9400 — X1- und X2-Anschlüsse" />
+      </div>
+      <div class="screenshot-frame" style="max-width: 320px;">
+        <img src={hwSimaticX1X2Img.src} alt="Edge-Variante 2 — X1- und X2-Anschlüsse" />
+      </div>
 
       <p>Befindet sich der Edge in einem anderen Subnetz, ermöglicht das Discovery-Tool die Konfiguration des X1-Adapters, sodass die Web-Oberfläche erreichbar wird. Das Discovery-Tool ist Teil von Crawler.Companion — siehe [Companion: Ersteinrichtung](/de/companion/how-to/initial-setup) für die Installationsanleitung.</p>
 

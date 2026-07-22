@@ -19,10 +19,6 @@ import passwordDialogImg from '../../../../assets/images/edge/edge-device-edit-p
 import addTagsImg from '../../../../assets/images/edge/edge-device-add-tags.png';
 import addSimaticNoSymbolicImg from '../../../../assets/images/edge/edge-device-add-simatic-no-symbolic.png';
 import addSecuredConnectionImg from '../../../../assets/images/edge/edge-device-add-secured-connection.png';
-import tiaDatablockImg from '../../../../assets/images/edge/edge-simatic-tia-datablock.png';
-import tiaPutGetImg from '../../../../assets/images/edge/edge-simatic-tia-put-get.png';
-import tiaDbAddressesImg from '../../../../assets/images/edge/edge-simatic-tia-db-addresses.png';
-import tiaDbNoOptimizedImg from '../../../../assets/images/edge/edge-simatic-tia-db-no-optimized-access.png';
 
 Field devices are the industrial controllers, sensors, and gateways from which the Edge reads process data. Before a device's variables can be configured for recording, the device must be added to the Edge and a successful connection must be established. The Edge supports three connection protocols: **Modbus TCP**, **OPC UA**, and **Siemens SIMATIC (S7)** — select the tab for the relevant protocol below.
 
@@ -71,7 +67,9 @@ With **Modbus RTU** enabled, a **Slave ID** field appears:
   <img src={addModbusRtuImg.src} alt="Modbus TCP configuration with RTU enabled and Slave ID field" />
 </div>
 
-Optionally, a **template** can be selected. Templates contain a predefined list of variables for common device models and are applied automatically when the device is created, eliminating the need to add variables individually. If no suitable template is available, variables can be added or imported after device creation. Optional metadata can be added as tags in the next step.
+Optionally, a **template** can be selected. Templates contain a predefined list of variables for common device models and are applied automatically when the device is created, eliminating the need to add variables individually. If no suitable template is available, variables can be added manually or imported via CSV after device creation. See [Setting Up Data Recording](/edge/how-to/data-recording) for import instructions.
+
+Optional metadata can be added as tags in the next step.
 
 <div class="screenshot-frame">
   <img src={addTagsImg.src} alt="Device tags — optional metadata" />
@@ -91,7 +89,7 @@ Enter the connection details:
 
 - **Address** — IP address or hostname of the OPC server
 - **Device name** — used to identify the device within the Edge
-- **Port** — default is 4840; the actual port depends on the OPC UA server configuration in the PLC project and may differ
+- **Port** — default is 4840; the actual port is configurable in TIA Portal under the OPC UA server settings (**Server Addresses**) and may differ
 - **Secured device connection** — enable if the OPC server requires authentication. When enabled, **Username** and **Password** fields appear.
 
 <div class="screenshot-frame">
@@ -99,8 +97,10 @@ Enter the connection details:
 </div>
 
 :::note
-For information on configuring the OPC UA server in Siemens TIA Portal, refer to the Siemens documentation.
+For the OPC UA server to be reachable, the **General** access checkbox in the TIA Portal OPC UA server settings must be enabled — this applies regardless of whether a secured connection is used. An OPC UA license must also be entered in TIA Portal; depending on the license tier, the number of variables that can be configured is limited. Refer to the Siemens documentation for the variable limits for your CPU model.
 :::
+
+Variables can be imported directly from the device or via CSV. See [Setting Up Data Recording](/edge/how-to/data-recording) for import instructions.
 
 Optional metadata can be added as tags in the next step.
 
@@ -138,11 +138,7 @@ Enter the connection details:
   <span class="def-list-key">Access protection password</span><span class="def-list-val">TIA Portal → PLC properties → Protection &amp; Security → Access level. The password entered in Edge must match the password configured for the read or HMI access level in TIA Portal.</span>
 </div>
 
-Variable names and data block structures are read directly from the PLC. The variables and their data types are visible in TIA Portal under the program blocks.
-
-<div class="screenshot-frame">
-  <img src={tiaDatablockImg.src} alt="TIA Portal — data block with variable structure" />
-</div>
+Variables are read directly from the PLC. They can be imported using the device import or via CSV. See [Setting Up Data Recording](/edge/how-to/data-recording) for import instructions.
 
 Optional metadata can be added as tags in the next step.
 
@@ -171,8 +167,8 @@ Enter the connection details:
 - **Address** — IP address of the SIMATIC controller
 - **Device name** — used to identify the device within the Edge
 - **Symbolic addressing** — disabled
-- **Slot number** — specifies the position of the CPU or communication processor within the rack. Typically **2** for S7-300/400. Found in the hardware configuration in TIA Portal or SIMATIC Manager.
-- **Rack number** — specifies the rack in which the CPU is installed. In **95% of cases this is 0** — the main rack where the CPU is located. In redundant CPU configurations, use the rack number of the currently active CPU.
+- **Slot number** — the position of the CPU or communication processor within the rack (profile rail). This is **not always 2** — if an additional communication processor is installed, enter the slot number of the processor that is physically connected to the Edge, not the CPU itself. The correct slot can be found in the hardware configuration in TIA Portal or SIMATIC Manager.
+- **Rack number** — the rack (profile rail / Profilschiene) in which the CPU is installed. In **95% of cases this is 0** — the main rack. In redundant CPU configurations, use the rack number of the currently active CPU.
 
 <div class="screenshot-frame">
   <img src={addSimaticNoSymbolicImg.src} alt="Siemens SIMATIC configuration form with absolute addressing — slot and rack number fields visible" />
@@ -180,29 +176,11 @@ Enter the connection details:
 
 **Finding slot and rack number**
 
-The slot and rack number can be found in the hardware configuration of the project. Open the hardware configuration in **TIA Portal** (or **SIMATIC Manager** for S7-300/400 projects) and locate the CPU in the rack view.
+The slot and rack number can be found in the hardware configuration of the project. Open the hardware configuration in **TIA Portal** (or **SIMATIC Manager** for S7-300/400 projects) and locate the CPU or communication processor in the rack view. For step-by-step instructions, see [TIA Portal](/edge/field-devices/tia-portal) or [SIMATIC Manager](/edge/field-devices/simatic-manager).
 
-**Enabling PUT/GET communication (S7-1200 / S7-1500 only)**
+For TIA Portal-specific configuration required for absolute addressing (enabling PUT/GET communication, disabling optimized block access), see [TIA Portal](/edge/field-devices/tia-portal).
 
-When using absolute addressing with an S7-1200 or S7-1500, PUT/GET communication must be enabled in TIA Portal. Open the PLC properties and navigate to **Protection &amp; Security → Connection mechanisms**. Enable **Permit access with PUT/GET communication from remote partner**.
-
-<div class="screenshot-frame">
-  <img src={tiaPutGetImg.src} alt="TIA Portal — enabling PUT/GET communication access" />
-</div>
-
-**Disabling optimized block access**
-
-For absolute addressing, the data block must have **Optimized block access** disabled. Open the data block properties in TIA Portal, go to **Attributes**, and uncheck **Optimized block access**.
-
-<div class="screenshot-frame">
-  <img src={tiaDbNoOptimizedImg.src} alt="TIA Portal — data block attributes with optimized block access disabled" />
-</div>
-
-With optimized access disabled, each variable gets a fixed byte offset visible in the data block view, which is used as the address in the Edge (e.g. `DB10.DBX0.0`).
-
-<div class="screenshot-frame">
-  <img src={tiaDbAddressesImg.src} alt="TIA Portal — data block with absolute addresses (byte offsets)" />
-</div>
+Variables can be added manually or imported via CSV. See [Setting Up Data Recording](/edge/how-to/data-recording) for import instructions.
 
 Optional metadata can be added as tags in the next step.
 
@@ -219,6 +197,10 @@ All three device types support a secured connection with password protection. If
 <div class="screenshot-frame">
   <img src={addSecuredConnectionImg.src} alt="Secured device connection toggle with password field in the add-device wizard" />
 </div>
+
+:::note
+Password protection (secured connection) is only available for **OPC UA** and **SIMATIC Symbolic** (S7-1200 / S7-1500). Modbus TCP and SIMATIC Absolute (S7-300/400) do not support access protection.
+:::
 
 **OPC UA — Configuring username/password authentication in TIA Portal**
 

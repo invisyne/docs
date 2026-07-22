@@ -19,10 +19,6 @@ import passwordDialogImg from '../../../../../assets/images/edge/edge-device-edi
 import addTagsImg from '../../../../../assets/images/edge/edge-device-add-tags.png';
 import addSimaticNoSymbolicImg from '../../../../../assets/images/edge/edge-device-add-simatic-no-symbolic.png';
 import addSecuredConnectionImg from '../../../../../assets/images/edge/edge-device-add-secured-connection.png';
-import tiaDatablockImg from '../../../../../assets/images/edge/edge-simatic-tia-datablock.png';
-import tiaPutGetImg from '../../../../../assets/images/edge/edge-simatic-tia-put-get.png';
-import tiaDbAddressesImg from '../../../../../assets/images/edge/edge-simatic-tia-db-addresses.png';
-import tiaDbNoOptimizedImg from '../../../../../assets/images/edge/edge-simatic-tia-db-no-optimized-access.png';
 
 Feldgeräte sind die industriellen Steuerungen, Sensoren und Gateways, von denen der Edge Prozessdaten ausliest. Bevor Messgrößen eines Geräts zur Aufzeichnung konfiguriert werden können, muss das Gerät im Edge angelegt und eine erfolgreiche Verbindung hergestellt sein. Der Edge unterstützt drei Verbindungsprotokolle: **Modbus TCP**, **OPC UA** und **Siemens SIMATIC (S7)** — im entsprechenden Tab unten die Einrichtungsschritte aufrufen.
 
@@ -71,7 +67,9 @@ Mit aktiviertem **Modbus RTU** erscheint das Feld **Slave-ID**:
   <img src={addModbusRtuImg.src} alt="Modbus TCP Konfiguration mit aktiviertem RTU und Slave-ID-Feld" />
 </div>
 
-Optional kann eine **Strukturvorlage** ausgewählt werden. Strukturvorlagen enthalten eine vordefinierte Messgröße-Liste für gängige Gerätemodelle und werden beim Anlegen des Geräts automatisch angewendet, sodass Messgrößen nicht einzeln hinzugefügt werden müssen. Falls keine passende Vorlage vorhanden ist, können Messgrößen nach dem Anlegen des Geräts manuell hinzugefügt oder importiert werden. Im nächsten Schritt können optional Tags als Metadaten hinterlegt werden.
+Optional kann eine **Strukturvorlage** ausgewählt werden. Strukturvorlagen enthalten eine vordefinierte Messgröße-Liste für gängige Gerätemodelle und werden beim Anlegen des Geräts automatisch angewendet. Falls keine passende Vorlage vorhanden ist, können Messgrößen nach dem Anlegen des Geräts manuell hinzugefügt oder per CSV importiert werden. Hinweise zum Import sind unter [Datenaufzeichnung einrichten](/de/edge/how-to/data-recording) beschrieben.
+
+Im nächsten Schritt können optional Tags als Metadaten hinterlegt werden.
 
 <div class="screenshot-frame">
   <img src={addTagsImg.src} alt="Gerät Tags — optionale Metadaten" />
@@ -91,7 +89,7 @@ Verbindungsdetails eingeben:
 
 - **Adresse** — IP-Adresse oder Hostname des OPC-Servers
 - **Geräte-Name** — zur Identifikation des Geräts innerhalb des Edge
-- **Port** — Standardwert ist 4840; der tatsächliche Port hängt von der OPC-UA-Server-Konfiguration im SPS-Projekt ab und kann abweichen
+- **Port** — Standardwert ist 4840; der tatsächliche Port ist im TIA Portal unter den OPC-UA-Server-Einstellungen (**Server-Adressen**) konfigurierbar und kann abweichen
 - **Gesicherte Geräteverbindung** — aktivieren, wenn der OPC-Server eine Authentifizierung erfordert. Bei Aktivierung erscheinen Felder für **Nutzername** und **Passwort**.
 
 <div class="screenshot-frame">
@@ -99,8 +97,10 @@ Verbindungsdetails eingeben:
 </div>
 
 :::note
-Informationen zur Konfiguration des OPC-UA-Servers im Siemens TIA Portal sind der Siemens-Dokumentation zu entnehmen.
+Damit der OPC-UA-Server erreichbar ist, muss im TIA Portal unter den OPC-UA-Server-Einstellungen der Haken bei **Allgemein** gesetzt sein — dies gilt unabhängig davon, ob eine gesicherte Verbindung verwendet wird. Außerdem muss eine OPC-UA-Lizenz im TIA Portal eingetragen sein. Je nach Lizenzstufe ist die Anzahl der konfigurierbaren Variablen begrenzt — die genauen Limits sind der Siemens-Dokumentation für das jeweilige CPU-Modell zu entnehmen.
 :::
+
+Messgrößen können direkt vom Gerät oder per CSV importiert werden. Hinweise zum Import sind unter [Datenaufzeichnung einrichten](/de/edge/how-to/data-recording) beschrieben.
 
 Im nächsten Schritt können optional Tags als Metadaten hinterlegt werden.
 
@@ -138,11 +138,7 @@ Verbindungsdetails eingeben:
   <span class="def-list-key">Zugriffsschutz-Passwort</span><span class="def-list-val">TIA Portal → SPS-Eigenschaften → Schutz &amp; Sicherheit → Zugriffsschutz. Das im Edge eingetragene Passwort muss mit dem für die Lese- oder HMI-Zugriffsebene konfigurierten Passwort im TIA Portal übereinstimmen.</span>
 </div>
 
-Variablennamen und Datenbaustein-Strukturen werden direkt von der SPS gelesen. Die Variablen und ihre Datentypen sind im TIA Portal unter den Programmbausteinen sichtbar.
-
-<div class="screenshot-frame">
-  <img src={tiaDatablockImg.src} alt="TIA Portal — Datenbaustein mit Variablenstruktur" />
-</div>
+Variablen werden direkt von der SPS gelesen. Sie können über den Geräteimport oder per CSV importiert werden. Hinweise zum Import sind unter [Datenaufzeichnung einrichten](/de/edge/how-to/data-recording) beschrieben.
 
 Im nächsten Schritt können optional Tags als Metadaten hinterlegt werden.
 
@@ -171,8 +167,8 @@ Verbindungsdetails eingeben:
 - **Adresse** — IP-Adresse der SIMATIC-Steuerung
 - **Geräte-Name** — zur Identifikation des Geräts innerhalb des Edge
 - **Symbolische Adressierung nutzen** — deaktiviert
-- **Slotnummer** — gibt an, an welcher Position die CPU oder der Kommunikationsprozessor im Baugruppenträger gesteckt ist. Typischerweise **2** bei S7-300/400. Zu finden in der Hardwarekonfiguration im TIA Portal oder SIMATIC Manager.
-- **Gestellnummer** — gibt an, in welchem Baugruppenträger die CPU eingebaut ist. In **95 % der Fälle ist dies 0** — der Hauptbaugruppenträger, in dem die CPU sitzt. Bei redundanten CPU-Konfigurationen die Gestellnummer der aktuell aktiven CPU verwenden.
+- **Slotnummer** — die Position der CPU oder des Kommunikationsprozessors im Baugruppenträger (Profilschiene). Die Slotnummer ist **nicht immer 2** — wenn ein zusätzlicher Kommunikationsprozessor gesteckt ist, muss die Slotnummer des Prozessors angegeben werden, der physikalisch mit dem Edge verbunden ist, nicht die der CPU selbst. Den korrekten Slot in der Hardwarekonfiguration im TIA Portal oder SIMATIC Manager nachschlagen.
+- **Gestellnummer** — der Baugruppenträger (Profilschiene), in dem die CPU eingebaut ist. In **95 % der Fälle ist dies 0** — der Hauptbaugruppenträger. Bei redundanten CPU-Konfigurationen die Gestellnummer der aktuell aktiven CPU verwenden.
 
 <div class="screenshot-frame">
   <img src={addSimaticNoSymbolicImg.src} alt="Siemens SIMATIC Konfigurationsformular mit absoluter Adressierung — Slotnummer und Gestellnummer sichtbar" />
@@ -180,29 +176,11 @@ Verbindungsdetails eingeben:
 
 **Slotnummer und Gestellnummer nachschlagen**
 
-Slotnummer und Gestellnummer können in der Hardwarekonfiguration des Projekts nachgeschlagen werden. Die Hardwarekonfiguration im **TIA Portal** öffnen (oder im **SIMATIC Manager** bei S7-300/400-Projekten) und die CPU in der Rack-Ansicht lokalisieren.
+Slotnummer und Gestellnummer können in der Hardwarekonfiguration des Projekts nachgeschlagen werden. Die Hardwarekonfiguration im **TIA Portal** öffnen (oder im **SIMATIC Manager** bei S7-300/400-Projekten) und die CPU bzw. den Kommunikationsprozessor in der Rack-Ansicht lokalisieren. Eine Schritt-für-Schritt-Anleitung ist unter [TIA Portal](/de/edge/field-devices/tia-portal) oder [SIMATIC Manager](/de/edge/field-devices/simatic-manager) beschrieben.
 
-**PUT/GET-Kommunikation aktivieren (nur S7-1200 / S7-1500)**
+Für die TIA-Portal-seitige Konfiguration bei absoluter Adressierung (PUT/GET-Kommunikation aktivieren, optimierten Bausteinzugriff deaktivieren) siehe [TIA Portal](/de/edge/field-devices/tia-portal).
 
-Bei Verwendung der absoluten Adressierung mit einer S7-1200 oder S7-1500 muss die PUT/GET-Kommunikation im TIA Portal aktiviert werden. Die SPS-Eigenschaften öffnen und zu **Schutz &amp; Sicherheit → Verbindungsmechanismen** navigieren. Die Option **Zugriff über PUT/GET-Kommunikation durch remoten Partner erlauben** aktivieren.
-
-<div class="screenshot-frame">
-  <img src={tiaPutGetImg.src} alt="TIA Portal — PUT/GET-Kommunikationszugriff aktivieren" />
-</div>
-
-**Optimierten Bausteinzugriff deaktivieren**
-
-Für die absolute Adressierung muss der **Optimierte Bausteinzugriff** im Datenbaustein deaktiviert sein. Die Datenbaustein-Eigenschaften im TIA Portal öffnen, zu **Attribute** wechseln und **Optimierter Bausteinzugriff** deaktivieren.
-
-<div class="screenshot-frame">
-  <img src={tiaDbNoOptimizedImg.src} alt="TIA Portal — Datenbaustein-Attribute mit deaktiviertem optimierten Bausteinzugriff" />
-</div>
-
-Mit deaktiviertem optimierten Zugriff erhält jede Variable einen festen Byte-Offset, der in der Datenbaustein-Ansicht sichtbar ist und als Adresse im Edge verwendet wird (z. B. `DB10.DBX0.0`).
-
-<div class="screenshot-frame">
-  <img src={tiaDbAddressesImg.src} alt="TIA Portal — Datenbaustein mit absoluten Adressen (Byte-Offsets)" />
-</div>
+Messgrößen können manuell hinzugefügt oder per CSV importiert werden. Hinweise zum Import sind unter [Datenaufzeichnung einrichten](/de/edge/how-to/data-recording) beschrieben.
 
 Im nächsten Schritt können optional Tags als Metadaten hinterlegt werden.
 
@@ -219,6 +197,10 @@ Alle drei Gerätetypen unterstützen eine gesicherte Verbindung mit Passwortschu
 <div class="screenshot-frame">
   <img src={addSecuredConnectionImg.src} alt="Toggle Gesicherte Geräteverbindung mit Passwortfeld im Gerät-hinzufügen-Assistenten" />
 </div>
+
+:::note
+Passwortschutz (gesicherte Verbindung) wird nur für **OPC UA** und **SIMATIC Symbolisch** (S7-1200 / S7-1500) unterstützt. Modbus TCP und SIMATIC Absolut (S7-300/400) unterstützen keinen Zugriffsschutz.
+:::
 
 **OPC UA — Benutzername/Passwort im TIA Portal konfigurieren**
 

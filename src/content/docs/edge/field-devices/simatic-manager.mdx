@@ -1,0 +1,35 @@
+---
+title: "SIMATIC Manager"
+description: "PLC-side configuration in Siemens SIMATIC Manager for connecting S7-300 and S7-400 controllers to the Edge."
+sidebar:
+  order: 2
+---
+
+import dbAttributesImg from '../../../../assets/images/edge/edge-simatic-manager-db-attributes.png';
+
+This page covers the controller-side configuration in SIMATIC Manager for **S7-300 and S7-400** controllers. For S7-1200/1500 with TIA Portal, see [TIA Portal](/edge/field-devices/tia-portal).
+
+:::note
+Secured connections (access protection) are not supported for S7-300/400 controllers. Absolute addressing is the only supported addressing mode for these controller families.
+:::
+
+## Finding the slot and rack number
+
+The **slot number** and **rack number** required when adding the device in the Edge can be found in the hardware configuration (HW Config) in SIMATIC Manager.
+
+Open the project in SIMATIC Manager and navigate to **Blocks → HW Config** to open the hardware configuration. Locate the CPU or communication processor in the rack view:
+
+- **Slot number** — the position of the CPU or communication processor in the rack. This is **not always 2**. If an additional communication processor is installed, enter the slot of the processor that is physically connected to the Edge — not the CPU slot.
+- **Rack number** (Gestellnummer / Profilschiene) — indicates which rack the module is installed in. In most installations this is **0** (the main rack).
+
+:::note
+If more than one communication processor is present in the rack, make sure to select the slot of the one that is physically cabled to the Edge device.
+:::
+
+## Disabling optimized block access
+
+For absolute addressing, each data block that the Edge reads from must have **Optimized block access** disabled. Open the data block in SIMATIC Manager, go to **Attributes**, and uncheck **Optimierter Bausteinzugriff** (Optimized block access).
+
+<div class="screenshot-frame">
+  <img src={dbAttributesImg.src} alt="SIMATIC Manager — data block attributes with optimized block access enabled" />
+</div>

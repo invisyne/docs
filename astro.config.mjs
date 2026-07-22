@@ -72,6 +72,11 @@ export default defineConfig({
 							autogenerate: { directory: 'edge/how-to' },
 						},
 						{
+							label: 'Field Devices',
+							translations: { de: 'Feldgeräte' },
+							autogenerate: { directory: 'edge/field-devices' },
+						},
+						{
 							label: 'Technical Reference',
 							translations: { de: 'Technische Referenz' },
 							autogenerate: { directory: 'edge/technical-reference' },

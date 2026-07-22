@@ -1,0 +1,114 @@
+---
+title: "TIA Portal"
+description: "PLC-side configuration in Siemens TIA Portal for connecting S7-1200 and S7-1500 controllers to the Edge."
+sidebar:
+  order: 1
+---
+
+import tiaPutGetImg from '../../../../assets/images/edge/edge-simatic-tia-put-get.png';
+import tiaDbNoOptimizedImg from '../../../../assets/images/edge/edge-simatic-tia-db-no-optimized-access.png';
+import tiaDbAddressesImg from '../../../../assets/images/edge/edge-simatic-tia-db-addresses.png';
+import rackProfilschieneImg from '../../../../assets/images/edge/edge-tia-rack-profilschiene.png';
+import rackSlotnummerImg from '../../../../assets/images/edge/edge-tia-rack-slotnummer.png';
+import rackCommProcessorImg from '../../../../assets/images/edge/edge-tia-rack-comm-processor.png';
+import accessControlImg from '../../../../assets/images/edge/edge-tia-access-control.png';
+import opcServerAddressesImg from '../../../../assets/images/edge/edge-tia-opc-server-addresses.png';
+import opcSecurityPoliciesImg from '../../../../assets/images/edge/edge-tia-opc-security-policies.png';
+import opcLicenseImg from '../../../../assets/images/edge/edge-tia-opc-license.png';
+
+This page covers the controller-side configuration in TIA Portal for **S7-1200 and S7-1500** controllers. For S7-300/400 with SIMATIC Manager, see [SIMATIC Manager](/edge/field-devices/simatic-manager).
+
+## Finding the slot and rack number (absolute addressing)
+
+The **slot number** and **rack number** required when adding a SIMATIC device to the Edge can be found in the hardware configuration in TIA Portal.
+
+Open the hardware configuration and locate the CPU or communication processor in the rack view. The **rack number** corresponds to the label of the **profile rail (Profilschiene)** shown in the rack view — in the example below it is **Profilschiene_0**.
+
+<img src={rackProfilschieneImg.src} alt="TIA Portal rack view — Profilschiene_0 highlighted" style="max-width: 100%; display: block; margin: 1rem 0;" />
+
+The **slot number** is the position of the module in the rack, as shown below.
+
+<img src={rackSlotnummerImg.src} alt="TIA Portal rack view — slot number indicated by arrow" style="max-width: 100%; display: block; margin: 1rem 0;" />
+
+If an additional communication processor is installed, enter its slot number — not the CPU slot. In the example below, a communication processor (CM 1542-1_1) is installed at slot 2; since the Edge is physically connected to this processor, **slot 2** is the value to enter.
+
+<img src={rackCommProcessorImg.src} alt="TIA Portal rack view — communication processor CM 1542-1_1 at slot 2" style="max-width: 100%; display: block; margin: 1rem 0;" />
+
+## Enabling PUT/GET communication (absolute addressing only)
+
+When using absolute addressing with an S7-1200 or S7-1500, PUT/GET communication must be enabled in TIA Portal.
+
+Open the PLC properties and navigate to **Protection & Security → Connection mechanisms**. Enable **Permit access with PUT/GET communication from remote partner**.
+
+<div class="screenshot-frame">
+  <img src={tiaPutGetImg.src} alt="TIA Portal — enabling PUT/GET communication access" />
+</div>
+
+## Disabling optimized block access (absolute addressing only)
+
+For absolute addressing, each data block that the Edge reads from must have **Optimized block access** disabled.
+
+Open the data block properties in TIA Portal, go to **Attributes**, and uncheck **Optimized block access**.
+
+<div class="screenshot-frame">
+  <img src={tiaDbNoOptimizedImg.src} alt="TIA Portal — data block attributes with optimized block access disabled" />
+</div>
+
+With optimized access disabled, each variable is assigned a fixed byte offset. This offset is visible in the data block view and is used as the address in the Edge (e.g. `DB10.DBX0.0`).
+
+<div class="screenshot-frame">
+  <img src={tiaDbAddressesImg.src} alt="TIA Portal — data block with absolute addresses (byte offsets)" />
+</div>
+
+## Access protection (symbolic addressing)
+
+Access protection is configured in TIA Portal under **Properties → Protection & Security → Access control**. If the controller is set to **Full access (no protection)**, no password is required — the secured connection toggle in the Edge does not need to be enabled in this case.
+
+<div class="screenshot-frame">
+  <img src={accessControlImg.src} alt="TIA Portal — Access control with Full access (no protection) selected" />
+</div>
+
+To secure the connection with a password, select one of the following protection levels instead:
+
+- **Read access** — read-only; sufficient for the Edge to retrieve data
+- **HMI access** — slightly broader permissions; can also be used
+
+Then enter a password for the selected level, compile and download the updated PLC configuration. This password is entered in the Edge **Secured device connection** field.
+
+## OPC UA server configuration
+
+For OPC UA connections, the OPC UA server in TIA Portal must be properly configured under **Properties → OPC UA → Server**.
+
+**Enabling the server and configuring the port**
+
+Enable the **OPC UA server**. The **General** access checkbox must be enabled for the server to be reachable — this applies regardless of whether anonymous or authenticated access is used. The default port is **4840** and is shown under **Server Addresses**; it can be changed there if needed.
+
+<div class="screenshot-frame">
+  <img src={opcServerAddressesImg.src} alt="TIA Portal — OPC UA server settings with OPC UA server enabled and server address shown" />
+</div>
+
+**License and variable limits**
+
+An OPC UA license must be entered in TIA Portal for the OPC UA server to function. The required license type is shown under **Runtime Licenses → OPC UA**. Depending on the license tier, the number of variables that can be configured is limited — refer to the Siemens documentation for the exact limits: [S7-1200](https://docs.tia.siemens.cloud/r/en-us/v20/configuring-automation-systems/using-opc-ua-communication-s7-1200-s7-1500-s7-1500t/using-the-s7-1200-cpu-as-an-opc-ua-server-s7-1200/configuring-the-opc-ua-server-s7-1200/license-for-opc-ua-s7-1200) · [S7-1500](https://docs.tia.siemens.cloud/r/en-us/v20/configuring-automation-systems/using-opc-ua-communication-s7-1200-s7-1500-s7-1500t/using-the-s7-1500-as-an-opc-ua-server-s7-1500-s7-1500t/configuring-the-opc-ua-server-s7-1500-s7-1500t/license-for-opc-ua-s7-1500-s7-1500t).
+
+<div class="screenshot-frame">
+  <img src={opcLicenseImg.src} alt="TIA Portal — OPC UA runtime license: required license type and acquired license shown" />
+</div>
+
+**Security policies (username/password authentication)**
+
+If the Edge connects using a secured device connection, a security policy must be enabled under **Secure Channel**. At minimum **Basic256Sha256 — Sign & Encrypt** is recommended.
+
+<div class="screenshot-frame">
+  <img src={opcSecurityPoliciesImg.src} alt="TIA Portal — OPC UA Secure Channel security policies" />
+</div>
+
+Then configure authentication:
+
+1. Under **Authentication**, enable the **Username and password** option.
+2. Under **User management**, add a user with the credentials to be entered in the Edge.
+3. Compile and download the updated PLC configuration.
+
+:::note
+The exact menu structure may vary slightly depending on the TIA Portal version.
+:::
