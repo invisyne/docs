@@ -46,13 +46,13 @@ jobs:
 
       # PREVIEW_BUILD flips the noindex meta tag on (see src/components/Head.astro).
       # SITE_URL overrides astro.config.mjs's `site` so sitemap/canonical URLs point at
-      # preview.docs.invisyne.com instead of the production domain.
+      # docs-preview.invisyne.com instead of the production domain.
       # PDF generation is skipped here — not needed for a partner content review.
       - run: npm run build
         env:
           RELEASE_NOTES_PATH: release-notes
           PREVIEW_BUILD: 'true'
-          SITE_URL: https://preview.docs.invisyne.com
+          SITE_URL: https://docs-preview.invisyne.com
 
       # Overwrites whatever robots.txt astro produced — the preview site should never
       # be crawled, independent of the noindex meta tag on individual pages.
