@@ -3,6 +3,51 @@ title: "Schnellstart"
 description: "In wenigen Minuten startklar mit Deepview."
 ---
 
-:::caution[Demnächst verfügbar]
-Deepview befindet sich derzeit in der Entwicklung. Diese Seite wird aktualisiert, sobald das Produkt verfügbar ist.
-:::
+import overviewImg from '../../../../assets/images/deepview/deepview-overview.png';
+import signalListImg from '../../../../assets/images/deepview/deepview-analysis-signal-list-4.gif';
+import databaseImg from '../../../../assets/images/deepview/deepview-database-1.png';
+
+In wenigen Minuten startklar mit Deepview.
+
+<div class="qs-stepper">
+
+  <div class="qs-tabbar">
+    <a class="qs-tab" href="#">Daten öffnen</a>
+    <a class="qs-tab" href="#">Analyse-Workspace</a>
+    <a class="qs-tab" href="#">Signale hinzufügen</a>
+    <a class="qs-tab" href="#">Weitere Daten finden</a>
+  </div>
+
+  <div class="qs-panels">
+
+    <div class="qs-panel">
+      <p>Deepview öffnet sich direkt aus Crawler.Companion — ein separater Login ist nicht nötig. Exportiert einen Zeitraum oder einen Run von einem Edge-Gerät und wählt <strong>Deepview</strong> als Export Format. Die vollständige Anleitung dazu steht unter <a href="/de/companion/how-to/export-data/">Export Data</a>.</p>
+      <p>Nach Abschluss des Exports auf <strong>In Deepview öffnen</strong> klicken, um die Daten direkt im Browser zu öffnen.</p>
+      <div class="qs-tip">Deepview-Zugriff muss für den Hub-Account freigeschaltet sein. Ist die Option in Companion ausgegraut, wendet euch an eure Administration.</div>
+    </div>
+
+    <div class="qs-panel">
+      <p>Deepview öffnet sich mit den exportierten Daten bereits geladen. Signale erscheinen als Plots im Hauptbereich, links zeigt die <strong>Signal List</strong> alle im Datensatz verfügbaren Signale.</p>
+      <div class="screenshot-frame">
+        <img src={overviewImg.src} alt="Deepview-Analyse-Workspace mit Zeitreihen- und Streudiagrammen" />
+      </div>
+    </div>
+
+    <div class="qs-panel">
+      <p>Doppelklickt ein Signal in der Signal List, oder zieht es per Drag-and-Drop auf einen Plot, um es zu visualisieren.</p>
+      <div class="screenshot-frame">
+        <img src={signalListImg.src} alt="Ein Signal per Drag-and-Drop zu einem Plot hinzufügen" />
+      </div>
+    </div>
+
+    <div class="qs-panel">
+      <p>Um weitere Aufzeichnungen zu erkunden, klickt auf das <strong>Database</strong>-Icon in der linken Navigationsleiste. Dort werden alle verfügbaren Datensätze aufgelistet, durchsuch- und filterbar nach Zeitraum oder Metadaten.</p>
+      <div class="screenshot-frame">
+        <img src={databaseImg.src} alt="Deepview-Database-Ansicht mit verfügbaren Datensätzen" />
+      </div>
+      <p>Eine vollständige Übersicht aller Anleitungen findet ihr im Bereich <a href="/de/deepview/analysis/">Analysis</a>.</p>
+    </div>
+
+  </div>
+
+</div>

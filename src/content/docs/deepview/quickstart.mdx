@@ -3,6 +3,51 @@ title: "Quickstart"
 description: "Get started with Deepview in a few minutes."
 ---
 
-:::caution[Coming soon]
-Deepview is currently under development. This page will be updated as the product becomes available.
-:::
+import overviewImg from '../../../assets/images/deepview/deepview-overview.png';
+import signalListImg from '../../../assets/images/deepview/deepview-analysis-signal-list-4.gif';
+import databaseImg from '../../../assets/images/deepview/deepview-database-1.png';
+
+Get up and running with Deepview in minutes.
+
+<div class="qs-stepper">
+
+  <div class="qs-tabbar">
+    <a class="qs-tab" href="#">Open Your Data</a>
+    <a class="qs-tab" href="#">Analysis Workspace</a>
+    <a class="qs-tab" href="#">Add Signals</a>
+    <a class="qs-tab" href="#">Find More Data</a>
+  </div>
+
+  <div class="qs-panels">
+
+    <div class="qs-panel">
+      <p>Deepview opens directly from Crawler.Companion — there is no separate login. Export a time range or a run from an Edge device and select <strong>Deepview</strong> as the export format. See <a href="/companion/how-to/export-data/">Export Data</a> for the full walkthrough.</p>
+      <p>Once the export finishes, click <strong>In Deepview öffnen</strong> to open the data directly in your browser.</p>
+      <div class="qs-tip">Deepview access must be enabled for your Hub account. If the Deepview option is grayed out in Companion, contact your administrator.</div>
+    </div>
+
+    <div class="qs-panel">
+      <p>Deepview opens with your exported data already loaded. Signals appear as plots in the main workspace, with the <strong>Signal List</strong> on the left showing every signal available in the data set.</p>
+      <div class="screenshot-frame">
+        <img src={overviewImg.src} alt="Deepview analysis workspace with time-series and scatter plots" />
+      </div>
+    </div>
+
+    <div class="qs-panel">
+      <p>Double-click a signal in the Signal List, or drag and drop it onto a plot, to visualize it.</p>
+      <div class="screenshot-frame">
+        <img src={signalListImg.src} alt="Adding a signal to a plot by drag and drop" />
+      </div>
+    </div>
+
+    <div class="qs-panel">
+      <p>To explore other recordings, click the <strong>Database</strong> icon in the left navigation bar. It lists every data set available to you, and lets you search and filter by time range or metadata.</p>
+      <div class="screenshot-frame">
+        <img src={databaseImg.src} alt="Deepview database view listing available data sets" />
+      </div>
+      <p>For a full overview of all guides, visit the <a href="/deepview/analysis/">Analysis</a> section.</p>
+    </div>
+
+  </div>
+
+</div>
