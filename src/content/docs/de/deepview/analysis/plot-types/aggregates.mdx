@@ -54,15 +54,21 @@ Es gibt zwei Arten, die Daten zu gruppieren:
 - **Unique** — erstellt eine Gruppe für jeden eindeutigen Wert des Signals; ideal für diskrete oder Text-Signale
 - **Bins** — legt manuell den **Bin Range** (den Bereich der Y-Achsen-Werte des Signals, der berücksichtigt wird) und die **Bin Size** (die Einheit, in die der Bereich unterteilt wird) fest; nützlich bei kontinuierlichen Signalen
 
-Ein Beispiel: Ist das Aggregate-Format ein Balkendiagramm und das Aggregat der Durchschnitt der Motortemperatur (`avg(m.engine.temperature)`), erhaltet ihr ein Balkendiagramm mit der Verteilung der durchschnittlichen Motortemperatur pro Zyklus.
+Ein Beispiel: Gruppiert nach dem Signal `m.lap`.
 
 ![](../../../../../../assets/images/deepview/deepview-analysis-plot-types-aggregates-4.png)
 
-Wollt ihr die durchschnittliche Motortemperatur abhängig von der Motordrehzahl sehen, gruppiert nach dem Motordrehzahl-Signal und legt Bin-Limits und -Breite entsprechend fest.
+Ist das Aggregate-Format ein Balkendiagramm und das Aggregat der Durchschnitt der Motortemperatur (`avg(m.engine.temperature)`), erhaltet ihr ein Balkendiagramm mit der Verteilung der durchschnittlichen Motortemperatur pro Zyklus.
 
 ![](../../../../../../assets/images/deepview/deepview-analysis-plot-types-aggregates-5.png)
 
+Wollt ihr die durchschnittliche Motortemperatur abhängig von der Motordrehzahl sehen, gruppiert nach dem Motordrehzahl-Signal und legt Bin-Limits und -Breite entsprechend fest.
+
 ![](../../../../../../assets/images/deepview/deepview-analysis-plot-types-aggregates-6.png)
+
+Ihr erhaltet folgendes Balkendiagramm.
+
+![](../../../../../../assets/images/deepview/deepview-analysis-plot-types-aggregates-7.png)
 
 Ihr könnt außerdem die verschiedenen Eingangssignale resamplen, um Signale mit unterschiedlichen Zeitbasen gemeinsam zu nutzen. Details siehe [Resampling](/de/deepview/analysis/resampling).
 
@@ -74,10 +80,10 @@ Habt ihr ein Balkendiagramm zur Visualisierung eures Aggregats gewählt, könnt 
 
 Ihr könnt Textdaten zur Gruppierung in Balkendiagrammen und Tabellen nutzen — die Werte werden dabei als Labels im Plot verwendet.
 
-![](../../../../../../assets/images/deepview/deepview-analysis-plot-types-aggregates-7.png)
+Gruppiert in einer Tabelle:
 
 ![](../../../../../../assets/images/deepview/deepview-analysis-plot-types-aggregates-8.png)
 
+Gruppiert in einem Balkendiagramm:
 
-{/* UNMATCHED extra screenshot found on live page, no marker to replace */}
 ![](../../../../../../assets/images/deepview/deepview-analysis-plot-types-aggregates-9.png)

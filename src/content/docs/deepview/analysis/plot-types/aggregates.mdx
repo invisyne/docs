@@ -54,15 +54,21 @@ There are two ways to group the data:
 - **Unique** — creates a group for each unique value in the signal; great for discrete or text signals
 - **Bins** — manually define the **bin range** (the range of the signal's y-axis values to include) and the **bin size** (the unit by which the range is divided); useful for continuous signals
 
-Consider the following example: if the aggregate format is a bar chart, and the aggregate is the average of the engine temperature (`avg(m.engine.temperature)`), you get a bar chart showing the distribution of the average engine temperature per cycle.
+Consider the following example: group by the `m.lap` signal.
 
 ![](../../../../../assets/images/deepview/deepview-analysis-plot-types-aggregates-4.png)
 
-If you want to see the average engine temperature depending on the engine speed, group by the engine speed signal and set the bin limits and width accordingly.
+If the aggregate format is a bar chart, and the aggregate is the average of the engine temperature (`avg(m.engine.temperature)`), you get a bar chart showing the distribution of the average engine temperature per cycle.
 
 ![](../../../../../assets/images/deepview/deepview-analysis-plot-types-aggregates-5.png)
 
+If you want to see the average engine temperature depending on the engine speed, group by the engine speed signal and set the bin limits and width accordingly.
+
 ![](../../../../../assets/images/deepview/deepview-analysis-plot-types-aggregates-6.png)
+
+You get the following bar chart.
+
+![](../../../../../assets/images/deepview/deepview-analysis-plot-types-aggregates-7.png)
 
 You can also resample the different input signals, so you can use signals with different time bases together. See [Resampling](/deepview/analysis/resampling) for more details.
 
@@ -74,10 +80,10 @@ If you chose a bar chart to visualize your aggregate, you can also set the width
 
 You can use text data to group in bar charts and tables — the values are used as labels in the plot.
 
-![](../../../../../assets/images/deepview/deepview-analysis-plot-types-aggregates-7.png)
+Grouped in a table:
 
 ![](../../../../../assets/images/deepview/deepview-analysis-plot-types-aggregates-8.png)
 
+Grouped in a bar chart:
 
-{/* UNMATCHED extra screenshot found on live page, no marker to replace */}
 ![](../../../../../assets/images/deepview/deepview-analysis-plot-types-aggregates-9.png)
