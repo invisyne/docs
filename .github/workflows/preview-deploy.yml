@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: read
+  id-token: write # required for AWS OIDC (no stored credentials)
 
 jobs:
   build-and-deploy:
@@ -45,13 +46,13 @@ jobs:
 
       # PREVIEW_BUILD flips the noindex meta tag on (see src/components/Head.astro).
       # SITE_URL overrides astro.config.mjs's `site` so sitemap/canonical URLs point at
-      # preview.docs.invisyne.com instead of the production domain.
+      # docs-preview.invisyne.com instead of the production domain.
       # PDF generation is skipped here — not needed for a partner content review.
       - run: npm run build
         env:
           RELEASE_NOTES_PATH: release-notes
           PREVIEW_BUILD: 'true'
-          SITE_URL: https://preview.docs.invisyne.com
+          SITE_URL: https://docs-preview.invisyne.com
 
       # Overwrites whatever robots.txt astro produced — the preview site should never
       # be crawled, independent of the noindex meta tag on individual pages.
@@ -59,19 +60,27 @@ jobs:
         run: |
           printf 'User-agent: *\nDisallow: /\n' > dist/robots.txt
 
-      # public/CNAME is copied into dist/ verbatim during the build and contains the
-      # production domain — the gh-pages action only writes its own `cname` input when
-      # no CNAME file already exists, so it silently keeps the wrong one otherwise.
-      - name: Point CNAME at the preview domain
-        run: echo 'preview.docs.invisyne.com' > dist/CNAME
+      # CNAME is a GitHub Pages concept only — not needed for S3, the custom domain
+      # routing happens entirely via CloudFront (see CR-1057, hub-infrastructure).
+      - name: Remove GitHub Pages CNAME artifact
+        run: rm -f dist/CNAME
 
-      - name: Push to docs-preview
-        uses: peaceiris/actions-gh-pages@v4
+      # OIDC federation — no stored AWS credentials. Role and its trust policy
+      # (scoped to this repo) are created in CR-1057 (hub-infrastructure).
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
         with:
-          personal_token: ${{ secrets.PREVIEW_DEPLOY_TOKEN }}
-          external_repository: invisyne/docs-preview
-          publish_branch: gh-pages
-          publish_dir: ./dist
-          user_name: 'github-actions[bot]'
-          user_email: 'github-actions[bot]@users.noreply.github.com'
-          commit_message: 'Preview deploy from ${{ github.ref_name }}'
+          role-to-assume: ${{ vars.PREVIEW_AWS_ROLE_ARN }}
+          aws-region: eu-central-1
+
+      - name: Sync to S3
+        run: aws s3 sync dist/ "s3://${{ vars.PREVIEW_S3_BUCKET }}" --delete
+
+      # Not required for functionality (S3 content is already updated), but avoids
+      # serving stale cached pages until CloudFront's default TTL expires.
+      - name: Invalidate CloudFront cache
+        if: vars.PREVIEW_CLOUDFRONT_DISTRIBUTION_ID != ''
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id "${{ vars.PREVIEW_CLOUDFRONT_DISTRIBUTION_ID }}" \
+            --paths '/*'
