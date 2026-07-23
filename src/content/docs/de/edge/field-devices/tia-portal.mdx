@@ -16,6 +16,11 @@ import opcServerAddressesImg from '../../../../../assets/images/edge/edge-tia-op
 import opcSecurityPoliciesImg from '../../../../../assets/images/edge/edge-tia-opc-security-policies.png';
 import opcLicenseImg from '../../../../../assets/images/edge/edge-tia-opc-license.png';
 import simaticDbAttributesImg from '../../../../../assets/images/edge/edge-simatic-manager-db-attributes.png';
+import opcUserRolesImg from '../../../../../assets/images/edge/edge-tia-opc-user-roles.png';
+import opcRoleRightsImg from '../../../../../assets/images/edge/edge-tia-opc-role-rights.png';
+import opcUserAnonymousImg from '../../../../../assets/images/edge/edge-tia-opc-user-anonymous.png';
+import opcGeneralSettingsImg from '../../../../../assets/images/edge/edge-tia-opc-general-settings.png';
+import tiaSymbolicDbNamesImg from '../../../../../assets/images/edge/edge-tia-symbolic-db-names.png';
 
 Den passenden Tab für den verwendeten Verbindungstyp auswählen.
 
@@ -38,15 +43,15 @@ Die absolute Adressierung ist für **S7-300/400** (SIMATIC Manager) sowie option
 
 Die **Slotnummer** und **Gestellnummer** sind in der Hardwarekonfiguration des Projekts zu finden. Die Hardwarekonfiguration im TIA Portal öffnen und die CPU oder den Kommunikationsprozessor in der Rack-Ansicht lokalisieren. Die **Gestellnummer** entspricht der Bezeichnung der **Profilschiene** in der Rack-Ansicht — im abgebildeten Beispiel lautet sie **Profilschiene_0**.
 
-<img src={rackProfilschieneImg.src} alt="TIA Portal Rack-Ansicht — Profilschiene_0 markiert" style="max-width: 100%; display: block; margin: 1rem 0;" />
+<img src={rackProfilschieneImg.src} alt="TIA Portal Rack-Ansicht — Profilschiene_0 markiert" style="max-width: 65%; display: block; margin: 1rem 0;" />
 
 Die **Slotnummer** ist die Position des Moduls im Baugruppenträger, wie im folgenden Bild zu sehen.
 
-<img src={rackSlotnummerImg.src} alt="TIA Portal Rack-Ansicht — Slotnummer mit Pfeil markiert" style="max-width: 100%; display: block; margin: 1rem 0;" />
+<img src={rackSlotnummerImg.src} alt="TIA Portal Rack-Ansicht — Slotnummer mit Pfeil markiert" style="max-width: 65%; display: block; margin: 1rem 0;" />
 
 Ist ein zusätzlicher Kommunikationsprozessor verbaut, ist dessen Slot als Slotnummer einzutragen — nicht der Slot der CPU. Im folgenden Beispiel ist ein Kommunikationsprozessor (CM 1542-1_1) in Slot 2 eingebaut; der Edge ist physikalisch an diesen angeschlossen, daher ist **Slot 2** als Slotnummer anzugeben.
 
-<img src={rackCommProcessorImg.src} alt="TIA Portal Rack-Ansicht — Kommunikationsprozessor CM 1542-1_1 in Slot 2" style="max-width: 100%; display: block; margin: 1rem 0;" />
+<img src={rackCommProcessorImg.src} alt="TIA Portal Rack-Ansicht — Kommunikationsprozessor CM 1542-1_1 in Slot 2" style="max-width: 65%; display: block; margin: 1rem 0;" />
 
 :::note
 Bei S7-300/400-Projekten sind Slotnummer und Gestellnummer in der Hardwarekonfiguration (HW Konfig) im SIMATIC Manager zu finden — die Rack-Ansicht ist identisch aufgebaut.
@@ -84,26 +89,19 @@ Im SIMATIC Manager den Datenbaustein öffnen und zu **Attribute** wechseln. Der 
 
 Die symbolische Adressierung ist für **S7-1200- und S7-1500**-Steuerungen verfügbar. Der Edge liest Variablennamen und Datenbaustein-Strukturen direkt aus der SPS aus — ein manuelles Nachschlagen von Adressen ist nicht erforderlich.
 
-**Zugriffsschutz**
-
-Der Zugriffsschutz wird im TIA Portal unter **Eigenschaften → Schutz &amp; Sicherheit → Zugriffssteuerung** konfiguriert. Ist die Steuerung auf **Vollzugriff (kein Schutz)** eingestellt, ist kein Passwort erforderlich — der Toggle für die gesicherte Verbindung im Edge muss in diesem Fall nicht aktiviert werden.
+Der Edge übernimmt die Variablenstruktur so, wie sie im Datenbaustein angelegt ist — einschließlich verschachtelter Strukturen (z. B. `LiveWerte.IncreasingInt_1`).
 
 <div class="screenshot-frame">
-  <img src={accessControlImg.src} alt="TIA Portal — Zugriffssteuerung mit ausgewähltem Vollzugriff (kein Schutz)" />
+  <img src={tiaSymbolicDbNamesImg.src} alt="TIA Portal — Datenbaustein mit Variablennamen für symbolische Adressierung" />
 </div>
 
-Soll die Verbindung mit Passwortschutz gesichert werden, eine der folgenden Schutzebenen auswählen:
-
-- **Lesezugriff** — nur lesender Zugriff; ausreichend für den Edge
-- **HMI-Zugriff** — etwas umfangreichere Berechtigungen; kann ebenfalls verwendet werden
-
-Anschließend ein Passwort für die gewählte Ebene vergeben, die SPS-Konfiguration kompilieren und laden. Dieses Passwort wird im Edge im Feld **Gesicherte Geräteverbindung** eingetragen.
+Den Zugriffsschutz im Tab <a href="#" data-tab-link="3">Security</a> konfigurieren.
 
     </div>
 
     <div class="qs-panel">
 
-Für OPC-UA-Verbindungen muss der OPC-UA-Server im TIA Portal unter **Eigenschaften → OPC UA → Server** konfiguriert sein.
+Für OPC-UA-Verbindungen muss der OPC-UA-Server im TIA Portal in den SPS-Eigenschaften unter **OPC UA** aktiviert und konfiguriert sein.
 
 **Server aktivieren und Port konfigurieren**
 
@@ -111,6 +109,14 @@ Den **OPC-UA-Server aktivieren**. Der Haken bei **Allgemein** muss gesetzt sein,
 
 <div class="screenshot-frame">
   <img src={opcServerAddressesImg.src} alt="TIA Portal — OPC-UA-Server-Einstellungen mit aktiviertem Server und angezeigter Server-Adresse" />
+</div>
+
+**Abtastintervall**
+
+Das **Kleinste Abtastintervall** unter **OPC UA → Allgemein → Subscriptions** gibt vor, wie schnell OPC-UA-Variablen maximal aktualisiert werden. Ist der Wert auf 1000 ms eingestellt, kann der Edge die Variablen nicht schneller als alle 1000 ms abfragen — der Wert sollte daher auf die gewünschte Abfragefrequenz abgestimmt sein.
+
+<div class="screenshot-frame">
+  <img src={opcGeneralSettingsImg.src} alt="TIA Portal — OPC UA Allgemein: Kleinstes Abtastintervall unter Subscriptions" />
 </div>
 
 **Lizenz und Variablenlimits**
@@ -129,23 +135,58 @@ Damit ein Datenbaustein über OPC UA ausgelesen werden kann, muss in den Datenba
   <img src={tiaDbNoOptimizedImg.src} alt="TIA Portal — Datenbaustein-Attribute: Datenbaustein erreichbar über OPC UA aktiviert" />
 </div>
 
+**Benutzerverwaltung (Passwort-Authentifizierung)**
+
+Soll der Edge mit Benutzername und Passwort verbinden, müssen unter **Security-Einstellungen → Benutzer und Rollen** ein Benutzer und eine Rolle eingerichtet werden.
+
+1. Unter **Rollen** die **OPC-Rule** anlegen und ihr das Recht **OPC UA-Server-Zugriff** zuweisen.
+
+<div class="screenshot-frame">
+  <img src={opcRoleRightsImg.src} alt="TIA Portal — Rollen: OPC-Rule mit zugewiesenem Recht OPC UA-Server-Zugriff" />
+</div>
+
+2. Unter **Benutzer** einen neuen Benutzer anlegen, ein Passwort vergeben und die **OPC-Rule** zuweisen. Den Benutzer **Anonymous** dabei deaktivieren oder entfernen — nur so ist der Passwortschutz wirksam.
+
+<div class="screenshot-frame">
+  <img src={opcUserAnonymousImg.src} alt="TIA Portal — Benutzer und Rollen: Anonymous deaktiviert, OPC-Benutzer mit Passwort und zugewiesener OPC-Rule" />
+</div>
+
+<div class="screenshot-frame">
+  <img src={opcUserRolesImg.src} alt="TIA Portal — Benutzer und Rollen: Zugewiesene Rechte des OPC-Benutzers mit OPC UA-Server-Zugriff" />
+</div>
+
+3. Die aktualisierte SPS-Konfiguration kompilieren und laden.
+
+Die Zugangsdaten dieses Benutzers werden anschließend im Edge im Feld **Gesicherte Geräteverbindung** eingetragen.
+
     </div>
 
     <div class="qs-panel">
 
-**Security Policies (Benutzername/Passwort-Authentifizierung)**
+**Zugriffsschutz (symbolische Adressierung)**
 
-Wenn der Edge über eine gesicherte Geräteverbindung verbindet, muss unter **Secure Channel** eine Security Policy aktiviert sein. Mindestens **Basic256Sha256 — Signieren &amp; Verschlüsseln** wird empfohlen.
+Der Zugriffsschutz wird im TIA Portal unter **Eigenschaften → Schutz &amp; Sicherheit → Zugriffssteuerung** konfiguriert. Ist die Steuerung auf **Vollzugriff (kein Schutz)** eingestellt, ist kein Passwort erforderlich — der Toggle für die gesicherte Verbindung im Edge muss in diesem Fall nicht aktiviert werden.
+
+<div class="screenshot-frame">
+  <img src={accessControlImg.src} alt="TIA Portal — Zugriffssteuerung mit ausgewähltem Vollzugriff (kein Schutz)" />
+</div>
+
+Soll die Verbindung mit Passwortschutz gesichert werden, eine der folgenden Schutzebenen auswählen:
+
+- **Lesezugriff** — nur lesender Zugriff; ausreichend für den Edge
+- **HMI-Zugriff** — etwas umfangreichere Berechtigungen; kann ebenfalls verwendet werden
+
+Anschließend ein Passwort für die gewählte Ebene vergeben, die SPS-Konfiguration kompilieren und laden. Dieses Passwort wird im Edge im Feld **Gesicherte Geräteverbindung** eingetragen.
+
+**Security Policies (OPC UA)**
+
+Für OPC-UA-Verbindungen mit Benutzername/Passwort muss unter **OPC UA → Server → Secure Channel** eine Security Policy aktiviert sein. Mindestens **Basic256Sha256 — Signieren &amp; Verschlüsseln** wird empfohlen.
 
 <div class="screenshot-frame">
   <img src={opcSecurityPoliciesImg.src} alt="TIA Portal — OPC-UA Secure Channel Security Policies" />
 </div>
 
-Anschließend die Authentifizierung konfigurieren:
-
-1. Unter **Authentifizierung** die Option **Benutzername und Passwort** aktivieren.
-2. Unter **Benutzerverwaltung** einen Benutzer mit den Zugangsdaten anlegen, die im Edge eingetragen werden.
-3. Die aktualisierte SPS-Konfiguration kompilieren und laden.
+Unter **Authentifizierung** ebenfalls die Option **Benutzername und Passwort** aktivieren, anschließend die SPS-Konfiguration kompilieren und laden.
 
 :::note
 Die genaue Menüstruktur kann je nach TIA Portal-Version leicht abweichen.

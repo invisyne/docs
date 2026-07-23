@@ -379,6 +379,25 @@ const deepviewHref  = isDE ? '/de/deepview'  : '/deepview';
   // Event delegation: one persistent listener handles all tab clicks,
   // regardless of when the DOM was built or swapped by View Transitions.
   document.addEventListener('click', (e: MouseEvent) => {
+    // [data-tab-link="N"] on any element → activate tab at index N within the same stepper.
+    const tabLink = (e.target as HTMLElement).closest<HTMLElement>('[data-tab-link]');
+    if (tabLink) {
+      e.preventDefault();
+      const targetIndex = parseInt(tabLink.getAttribute('data-tab-link')!, 10);
+      const stepper = tabLink.closest<HTMLElement>('.qs-stepper');
+      if (stepper && !isNaN(targetIndex)) {
+        const tabs   = Array.from(stepper.querySelectorAll<HTMLElement>(':scope > .qs-tabbar > .qs-tab'));
+        const panels = Array.from(stepper.querySelectorAll<HTMLElement>(':scope > .qs-panels > .qs-panel'));
+        if (targetIndex >= 0 && targetIndex < tabs.length) {
+          panels.forEach((p, i) => p.classList.toggle('qs-active', i === targetIndex));
+          tabs.forEach((t, i)   => t.classList.toggle('qs-active', i === targetIndex));
+          const stepperIdx = Array.from(document.querySelectorAll('.qs-stepper')).indexOf(stepper);
+          sessionStorage.setItem(`qs-tab:${location.pathname}:${stepperIdx}`, String(targetIndex));
+        }
+      }
+      return;
+    }
+
     const tab = (e.target as HTMLElement).closest<HTMLElement>('.qs-tab');
     if (!tab) return;
     e.preventDefault();
