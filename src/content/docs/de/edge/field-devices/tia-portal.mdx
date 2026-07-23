@@ -1,6 +1,6 @@
 ---
 title: "TIA Portal"
-description: "Steuerungsseitige Konfiguration im Siemens TIA Portal für die Anbindung von S7-1200- und S7-1500-Steuerungen an den Edge."
+description: "Steuerungsseitige Konfiguration im Siemens TIA Portal und SIMATIC Manager für die Anbindung von SIMATIC-Steuerungen an den Edge."
 sidebar:
   order: 1
 ---
@@ -15,14 +15,28 @@ import accessControlImg from '../../../../../assets/images/edge/edge-tia-access-
 import opcServerAddressesImg from '../../../../../assets/images/edge/edge-tia-opc-server-addresses.png';
 import opcSecurityPoliciesImg from '../../../../../assets/images/edge/edge-tia-opc-security-policies.png';
 import opcLicenseImg from '../../../../../assets/images/edge/edge-tia-opc-license.png';
+import simaticDbAttributesImg from '../../../../../assets/images/edge/edge-simatic-manager-db-attributes.png';
 
-Diese Seite beschreibt die steuerungsseitige Konfiguration im TIA Portal für **S7-1200- und S7-1500**-Steuerungen. Für S7-300/400 mit SIMATIC Manager, siehe [SIMATIC Manager](/de/edge/field-devices/simatic-manager).
+Den passenden Tab für den verwendeten Verbindungstyp auswählen.
 
-## Slotnummer und Gestellnummer nachschlagen (absolute Adressierung)
+<div class="qs-stepper">
 
-**Slotnummer** und **Gestellnummer**, die beim Hinzufügen eines SIMATIC-Geräts im Edge angegeben werden müssen, sind in der Hardwarekonfiguration im TIA Portal zu finden.
+  <div class="qs-tabbar">
+    <a class="qs-tab" href="#">Siemens — Absolut</a>
+    <a class="qs-tab" href="#">Siemens — Symbolisch</a>
+    <a class="qs-tab" href="#">OPC UA</a>
+    <a class="qs-tab" href="#">Security</a>
+  </div>
 
-Die Hardwarekonfiguration öffnen und die CPU oder den Kommunikationsprozessor in der Rack-Ansicht lokalisieren. Die **Gestellnummer** entspricht der Bezeichnung der **Profilschiene** in der Rack-Ansicht — im abgebildeten Beispiel lautet sie **Profilschiene_0**.
+  <div class="qs-panels">
+
+    <div class="qs-panel">
+
+Die absolute Adressierung ist für **S7-300/400** (SIMATIC Manager) sowie optional für **S7-1200/1500** (TIA Portal) verfügbar.
+
+**Slotnummer und Gestellnummer nachschlagen**
+
+Die **Slotnummer** und **Gestellnummer** sind in der Hardwarekonfiguration des Projekts zu finden. Die Hardwarekonfiguration im TIA Portal öffnen und die CPU oder den Kommunikationsprozessor in der Rack-Ansicht lokalisieren. Die **Gestellnummer** entspricht der Bezeichnung der **Profilschiene** in der Rack-Ansicht — im abgebildeten Beispiel lautet sie **Profilschiene_0**.
 
 <img src={rackProfilschieneImg.src} alt="TIA Portal Rack-Ansicht — Profilschiene_0 markiert" style="max-width: 100%; display: block; margin: 1rem 0;" />
 
@@ -34,34 +48,43 @@ Ist ein zusätzlicher Kommunikationsprozessor verbaut, ist dessen Slot als Slotn
 
 <img src={rackCommProcessorImg.src} alt="TIA Portal Rack-Ansicht — Kommunikationsprozessor CM 1542-1_1 in Slot 2" style="max-width: 100%; display: block; margin: 1rem 0;" />
 
-## PUT/GET-Kommunikation aktivieren (nur absolute Adressierung)
+:::note
+Bei S7-300/400-Projekten sind Slotnummer und Gestellnummer in der Hardwarekonfiguration (HW Konfig) im SIMATIC Manager zu finden — die Rack-Ansicht ist identisch aufgebaut.
+:::
 
-Bei Verwendung der absoluten Adressierung mit einer S7-1200 oder S7-1500 muss die PUT/GET-Kommunikation im TIA Portal aktiviert werden.
+**PUT/GET-Kommunikation aktivieren (nur S7-1200 / S7-1500)**
 
-Die SPS-Eigenschaften öffnen und zu **Schutz &amp; Sicherheit → Verbindungsmechanismen** navigieren. Die Option **Zugriff über PUT/GET-Kommunikation durch remoten Partner erlauben** aktivieren.
+Bei Verwendung der absoluten Adressierung mit einer S7-1200 oder S7-1500 muss die PUT/GET-Kommunikation im TIA Portal aktiviert werden. Die SPS-Eigenschaften öffnen und zu **Schutz &amp; Sicherheit → Verbindungsmechanismen** navigieren. Die Option **Zugriff über PUT/GET-Kommunikation durch remoten Partner erlauben** aktivieren.
 
 <div class="screenshot-frame">
   <img src={tiaPutGetImg.src} alt="TIA Portal — PUT/GET-Kommunikationszugriff aktivieren" />
 </div>
 
-## Datenbaustein-Attribute
+**Datenbaustein-Attribute (TIA Portal)**
 
-Die Datenbaustein-Eigenschaften im TIA Portal öffnen und zu **Attribute** wechseln. Je nach verwendetem Verbindungstyp sind folgende Einstellungen relevant:
+Die Datenbaustein-Eigenschaften im TIA Portal öffnen und zu **Attribute** wechseln. Der **Optimierte Bausteinzugriff** muss deaktiviert sein — nur so erhält jede Variable einen festen Byte-Offset, der als Adresse im Edge verwendet werden kann.
 
-- **Absolute Adressierung** — **Optimierter Bausteinzugriff** muss deaktiviert sein. Nur so erhält jede Variable einen festen Byte-Offset, der als Adresse im Edge verwendet werden kann.
-- **OPC UA** — **Datenbaustein erreichbar über OPC UA** muss aktiviert sein, damit der Datenbaustein über den OPC-UA-Server des Edge ausgelesen werden kann.
-
-<div class="screenshot-frame">
-  <img src={tiaDbNoOptimizedImg.src} alt="TIA Portal — Datenbaustein-Attribute mit deaktiviertem optimierten Bausteinzugriff" />
-</div>
-
-Mit deaktiviertem optimierten Zugriff erhält jede Variable einen festen Byte-Offset, der in der Datenbaustein-Ansicht sichtbar ist und bei der absoluten Adressierung im Edge als Adresse eingetragen wird (z. B. `DB10.DBX0.0`).
+Mit deaktiviertem optimierten Zugriff ist jeder Variable ein fester Byte-Offset zugewiesen, der in der Datenbaustein-Ansicht sichtbar ist und als Adresse im Edge eingetragen wird (z. B. `DB10.DBX0.0`).
 
 <div class="screenshot-frame">
   <img src={tiaDbAddressesImg.src} alt="TIA Portal — Datenbaustein mit absoluten Adressen (Byte-Offsets)" />
 </div>
 
-## Zugriffsschutz (symbolische Adressierung)
+**Datenbaustein-Attribute (SIMATIC Manager)**
+
+Im SIMATIC Manager den Datenbaustein öffnen und zu **Attribute** wechseln. Der Haken bei **Optimierter Bausteinzugriff** muss gesetzt sein — nur so sind die Variablen des Datenbausteins für den Edge über absolute Adressierung erreichbar.
+
+<div class="screenshot-frame">
+  <img src={simaticDbAttributesImg.src} alt="SIMATIC Manager — Datenbaustein-Attribute mit aktiviertem optimierten Bausteinzugriff" />
+</div>
+
+    </div>
+
+    <div class="qs-panel">
+
+Die symbolische Adressierung ist für **S7-1200- und S7-1500**-Steuerungen verfügbar. Der Edge liest Variablennamen und Datenbaustein-Strukturen direkt aus der SPS aus — ein manuelles Nachschlagen von Adressen ist nicht erforderlich.
+
+**Zugriffsschutz**
 
 Der Zugriffsschutz wird im TIA Portal unter **Eigenschaften → Schutz &amp; Sicherheit → Zugriffssteuerung** konfiguriert. Ist die Steuerung auf **Vollzugriff (kein Schutz)** eingestellt, ist kein Passwort erforderlich — der Toggle für die gesicherte Verbindung im Edge muss in diesem Fall nicht aktiviert werden.
 
@@ -76,9 +99,11 @@ Soll die Verbindung mit Passwortschutz gesichert werden, eine der folgenden Schu
 
 Anschließend ein Passwort für die gewählte Ebene vergeben, die SPS-Konfiguration kompilieren und laden. Dieses Passwort wird im Edge im Feld **Gesicherte Geräteverbindung** eingetragen.
 
-## OPC-UA-Server konfigurieren
+    </div>
 
-Für OPC-UA-Verbindungen muss der OPC-UA-Server im TIA Portal unter **Eigenschaften → OPC UA → Server** korrekt konfiguriert sein.
+    <div class="qs-panel">
+
+Für OPC-UA-Verbindungen muss der OPC-UA-Server im TIA Portal unter **Eigenschaften → OPC UA → Server** konfiguriert sein.
 
 **Server aktivieren und Port konfigurieren**
 
@@ -95,6 +120,18 @@ Für den Betrieb des OPC-UA-Servers muss im TIA Portal eine OPC-UA-Lizenz einget
 <div class="screenshot-frame">
   <img src={opcLicenseImg.src} alt="TIA Portal — OPC-UA-Runtime-Lizenz: benötigter und erworbener Lizenztyp" />
 </div>
+
+**Datenbaustein erreichbar über OPC UA**
+
+Damit ein Datenbaustein über OPC UA ausgelesen werden kann, muss in den Datenbaustein-Attributen der Haken bei **Datenbaustein erreichbar über OPC UA** gesetzt sein. Den Datenbaustein im TIA Portal öffnen und zu **Attribute** wechseln.
+
+<div class="screenshot-frame">
+  <img src={tiaDbNoOptimizedImg.src} alt="TIA Portal — Datenbaustein-Attribute: Datenbaustein erreichbar über OPC UA aktiviert" />
+</div>
+
+    </div>
+
+    <div class="qs-panel">
 
 **Security Policies (Benutzername/Passwort-Authentifizierung)**
 
@@ -113,3 +150,9 @@ Anschließend die Authentifizierung konfigurieren:
 :::note
 Die genaue Menüstruktur kann je nach TIA Portal-Version leicht abweichen.
 :::
+
+    </div>
+
+  </div>
+
+</div>
