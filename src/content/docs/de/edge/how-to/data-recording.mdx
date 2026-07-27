@@ -32,9 +32,10 @@ import perfResultsImg from '../../../../../assets/images/edge/edge-performance-a
 
   <div class="qs-tabbar">
     <a class="qs-tab" href="#">Vorbereitung</a>
-    <a class="qs-tab" href="#">Messgrößen einrichten</a>
-    <a class="qs-tab" href="#">Messgrößen anpassen</a>
-    <a class="qs-tab" href="#">Performance-Analyse</a>
+    <a class="qs-tab" href="#">Messgrößen Importieren</a>
+    <a class="qs-tab" href="#">Messgrößen CSV Import</a>
+    <a class="qs-tab" href="#">Messgrößen Manuell</a>
+    <a class="qs-tab" href="#">Performance Test</a>
   </div>
 
   <div class="qs-panels">
@@ -55,21 +56,19 @@ Eine Schritt-für-Schritt-Anleitung zum Anlegen und Verbinden des Feldgeräts fi
 
     <div class="qs-panel">
 
+:::note
+Der Import der Messgrößen direkt vom Feldgerät wird aktuell nur für S7-Steuerungen mit symbolischer Adressierung unterstützt. Für alle anderen Gerätetypen steht der [CSV-Import](#) oder das [manuelle Anlegen](#) zur Verfügung.
+:::
+
+:::note
+Bei großen SPS-Strukturen kann der Geräteimport fehlschlagen. In diesem Fall den CSV-Import verwenden.
+:::
+
 In der Geräteliste auf die Gerätezeile klicken, um die Geräteseite zu öffnen.
 
 <div class="screenshot-frame">
   <img src={deviceListEditImg.src} alt="Geräteliste" />
 </div>
-
-**Import vom Gerät (nur für S7 symbolische Adressierung)**
-
-:::note
-Der Import der Messgrößen direkt vom Feldgerät wird aktuell nur für S7-Steuerungen mit symbolischer Adressierung unterstützt.
-:::
-
-:::note
-Bei großen SPS-Strukturen kann der Import fehlschlagen. Als Alternative steht der CSV-Import zur Verfügung.
-:::
 
 Vor dem Import muss eine Verbindung zum Feldgerät bestehen. Der Verbindungsstatus ist im Widget **Geräteverbindung** auf der Geräteseite einsehbar.
 
@@ -83,17 +82,13 @@ Auf der Geräteseite zeigt das Widget **Messgrößen** die Gesamtzahl der konfig
   <img src={measuredVariablesImg.src} alt="Messgrößen-Widget" />
 </div>
 
+**Von Gerät** auswählen, um Struktur und Messgrößen direkt vom Feldgerät abzurufen.
+
 <div class="screenshot-frame">
-  <img src={importSourceImg.src} alt="Importquelle auswählen" />
+  <img src={importSourceImg.src} alt="Importquelle auswählen — Von Gerät" />
 </div>
 
-Mit **Aus CSV-Datei** können Messgrößen aus einer CSV-Datei importiert werden — als Alternative, wenn der Geräteimport nicht unterstützt wird oder bei großen SPS-Strukturen fehlschlägt.
-
-<div class="screenshot-frame screenshot-frame-sm">
-  <img src={importCsvImg.src} alt="CSV-Import-Option" />
-</div>
-
-Mit **Von Gerät** werden Struktur und Messgrößen direkt vom Feldgerät abgerufen. Der Variablen-Browser zeigt anschließend alle verfügbaren Messgrößen an:
+Der Variablen-Browser zeigt anschließend alle verfügbaren Messgrößen an:
 
 - Bereits importierte Messgrößen sind grau hinterlegt
 - Messgrößen, die auf dem Edge eingerichtet sind, aber beim Import auf dem Feldgerät nicht gefunden wurden, sind gelb hinterlegt
@@ -116,11 +111,68 @@ Auf **Importieren** klicken, um den Vorgang zu bestätigen. Die importierten Mes
 
     <div class="qs-panel">
 
+Der CSV-Import ermöglicht das Anlegen von Messgrößen über eine Tabellendatei — geeignet für alle Gerätetypen und als Alternative, wenn der Geräteimport nicht verfügbar ist oder bei großen SPS-Strukturen fehlschlägt.
+
+Auf der Geräteseite das Widget **Messgrößen** öffnen, auf **Importieren** klicken und **Aus CSV-Datei** auswählen.
+
+<div class="screenshot-frame">
+  <img src={importSourceImg.src} alt="Importquelle auswählen — Aus CSV-Datei" />
+</div>
+
+<div class="screenshot-frame screenshot-frame-sm">
+  <img src={importCsvImg.src} alt="CSV-Import-Option" />
+</div>
+
+**Aufbau der CSV-Datei**
+
+Die CSV-Datei muss eine Kopfzeile mit den Spaltennamen enthalten. Eine Vorlage kann direkt über die Import-Oberfläche heruntergeladen werden. Folgende Spalten werden unterstützt:
+
+<div class="def-list">
+  <span class="def-list-key">name</span><span class="def-list-val">Name der Messgröße — muss innerhalb einer Gruppenebene eindeutig sein</span>
+  <span class="def-list-key">address</span><span class="def-list-val">Adresse der Variablen im gerätespezifischen Format (siehe Adressformate unten)</span>
+  <span class="def-list-key">dataType</span><span class="def-list-val">Datentyp der Variablen, z. B. <code>Bool</code>, <code>Int</code>, <code>Real</code>, <code>String</code></span>
+  <span class="def-list-key">samplingInterval</span><span class="def-list-val">Abtastintervall in Millisekunden, z. B. <code>1000</code></span>
+  <span class="def-list-key">recording</span><span class="def-list-val"><code>true</code> oder <code>false</code> — ob die Messgröße sofort mit der Aufzeichnung beginnt</span>
+  <span class="def-list-key">timestampAlignment</span><span class="def-list-val"><code>true</code> oder <code>false</code> — ob der Zeitstempel auf das nächste Vielfache des Abtastintervalls gerundet wird</span>
+</div>
+
+**Adressformate nach Gerätetyp**
+
+<div class="screenshot-frame">
+  <img src={variableAddressFormatsImg.src} alt="Adressformat-Referenz — S7 symbolisch, S7 absolut, Modbus TCP" />
+</div>
+
+    </div>
+
+    <div class="qs-panel">
+
 Um die Messgrößen eines Geräts aufzurufen, die Geräteseite öffnen und den Variablen-Link anklicken.
 
 <div class="screenshot-frame screenshot-frame-sm">
   <img src={variablenLinkImg.src} alt="Variablen-Link auf der Geräteseite" />
 </div>
+
+**Messgröße manuell anlegen**
+
+Messgrößen können ohne Import manuell angelegt werden. Im Variablen-Browser auf **+ Messgröße hinzufügen** klicken, um den Anlegen-Dialog zu öffnen. Name, Adresse, Datentyp und Abtastintervall eingeben.
+
+<div class="screenshot-frame screenshot-frame-sm">
+  <img src={variableCreateImg.src} alt="Dialog Messgröße anlegen" />
+</div>
+
+Das Adressformat hängt vom Gerätetyp ab:
+
+<div class="screenshot-frame">
+  <img src={variableAddressFormatsImg.src} alt="Adressformat-Referenz — S7 symbolisch, S7 absolut, Modbus TCP" />
+</div>
+
+Eine korrekt konfigurierte Messgröße erscheint in der Liste mit Typ, Adresse, Abtastintervall und zuletzt aufgezeichnetem Wert.
+
+<div class="screenshot-frame">
+  <img src={variableConnectedImg.src} alt="Messgröße-Liste mit verbundener und aufzeichnender Messgröße" />
+</div>
+
+**Einzelne Messgröße bearbeiten oder löschen**
 
 Für eine Messgröße können folgende Einstellungen geändert werden:
 
@@ -132,8 +184,6 @@ Für eine Messgröße können folgende Einstellungen geändert werden:
   <span class="def-list-key">Aufzeichnungs-Metriken</span><span class="def-list-val">Wenn aktiviert, werden interne Leistungszähler zusammen mit dem gemessenen Wert gespeichert — z. B. tatsächliche vs. erwartete Sample-Anzahl pro Intervall. Hilfreich zur Diagnose von Timing-Problemen oder zur Bewertung der Aufzeichnungsqualität.</span>
   <span class="def-list-key">Tags</span><span class="def-list-val">Hinzufügen/entfernen</span>
 </div>
-
-**Einzelne Messgröße bearbeiten oder löschen**
 
 Name und Abtastrate können direkt im Variablen-Browser inline bearbeitet werden. Für alle weiteren Einstellungen das Bearbeiten-Symbol neben der Messgröße anklicken.
 
@@ -170,26 +220,6 @@ Wenn die aktuellen Werte in der Auswahl unterschiedlich sind, wird dies angezeig
 </div>
 
 Nach dem Übernehmen der Änderungen bleibt der Warenkorb für weitere Bearbeitungen geöffnet oder kann geschlossen werden.
-
-**Messgröße manuell anlegen**
-
-Messgrößen können auch ohne Import manuell angelegt werden. Im Variablen-Browser auf **+ Messgröße hinzufügen** klicken, um den Anlegen-Dialog zu öffnen. Name, Adresse, Datentyp und Abtastintervall eingeben.
-
-<div class="screenshot-frame screenshot-frame-sm">
-  <img src={variableCreateImg.src} alt="Dialog Messgröße anlegen" />
-</div>
-
-Das Adressformat hängt vom Gerätetyp ab:
-
-<div class="screenshot-frame">
-  <img src={variableAddressFormatsImg.src} alt="Adressformat-Referenz — S7 symbolisch, S7 absolut, Modbus TCP" />
-</div>
-
-Eine korrekt konfigurierte Messgröße erscheint in der Liste mit Typ, Adresse, Abtastintervall und zuletzt aufgezeichnetem Wert.
-
-<div class="screenshot-frame">
-  <img src={variableConnectedImg.src} alt="Messgröße-Liste mit verbundener und aufzeichnender Messgröße" />
-</div>
 
     </div>
 

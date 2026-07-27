@@ -192,6 +192,16 @@ Under **Authentication**, also enable the **Username and password** option, then
 The exact menu structure may vary slightly depending on the TIA Portal version.
 :::
 
+**Anonymous access and password protection (OPC UA)**
+
+By default, the **Anonymous** user is active in the OPC UA server — connections without credentials are accepted. As long as Anonymous is active, any configured password has no effect because the server still allows anonymous connections.
+
+To enforce password protection, **Anonymous** must be disabled or removed. Only then is the OPC UA server accessible exclusively with username and password. The **HMI Operator** role can be used as an example — this is the legacy name for the PLC user.
+
+<div class="screenshot-frame">
+  <img src={opcUserAnonymousImg.src} alt="TIA Portal — Users and roles: Anonymous disabled, OPC user with password and OPC role assigned" />
+</div>
+
     </div>
 
   </div>
