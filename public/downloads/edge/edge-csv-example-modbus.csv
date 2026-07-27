@@ -1,0 +1,7 @@
+Messgroessenname;Aktiv;Abtastrate (ms);Datentyp (SPS);Datentyp (Crawler);Gruppe;Adresse;Tags
+TestInt;true;5000;INT16;FLOAT;VariableType;READ_HOLDING_REGISTER 1;
+TestUInt;true;5000;UINT16;FLOAT;VariableType;READ_HOLDING_REGISTER 2;
+TestLInt;true;5000;INT32;FLOAT;VariableType;READ_HOLDING_REGISTER 3;
+TestLUInt;true;5000;UINT32;FLOAT;VariableType;READ_HOLDING_REGISTER 5;
+TestReal;true;5000;FLOAT;FLOAT;VariableType;READ_HOLDING_REGISTER 7;
+TestBool;true;5000;BOOLEAN;FLOAT;VariableType;READ_HOLDING_REGISTER 9;

@@ -57,11 +57,15 @@ See [Adding a Field Device](/edge/how-to/add-field-device) for step-by-step inst
     <div class="qs-panel">
 
 :::note
-Importing measured variables directly from the field device is currently only supported for S7 controllers with symbolic addressing. For all other device types, use the [CSV import](#) or [manual setup](#).
+Importing measured variables directly from the field device is supported for **OPC UA** and **SIMATIC with symbolic addressing**. For all other device types, use the [CSV import](#) or [manual setup](#).
 :::
 
 :::note
 For large PLC structures, the device import may fail. Use the CSV import as an alternative.
+:::
+
+:::note
+The import function is only available once the device is connected.
 :::
 
 In the device list, click on the device row to open the device page.
@@ -123,21 +127,49 @@ On the device page, open the **Measured variables** widget, click **Import**, an
 
 **CSV file structure**
 
-The CSV file must include a header row with column names. A template can be downloaded directly from the import interface. The following columns are supported:
+The CSV file uses **semicolon (`;`)** as the delimiter and must be UTF-8 encoded. The first row contains the column headers — spelling and spacing must match exactly.
+
+```
+Messgroessenname;Aktiv;Abtastrate (ms);Datentyp (SPS);Datentyp (Crawler);Gruppe;Adresse;Tags
+```
 
 <div class="def-list">
-  <span class="def-list-key">name</span><span class="def-list-val">Variable name — must be unique within its group level</span>
-  <span class="def-list-key">address</span><span class="def-list-val">Variable address in the device-specific format (see address formats below)</span>
-  <span class="def-list-key">dataType</span><span class="def-list-val">Data type of the variable, e.g. <code>Bool</code>, <code>Int</code>, <code>Real</code>, <code>String</code></span>
-  <span class="def-list-key">samplingInterval</span><span class="def-list-val">Sampling interval in milliseconds, e.g. <code>1000</code></span>
-  <span class="def-list-key">recording</span><span class="def-list-val"><code>true</code> or <code>false</code> — whether the variable starts recording immediately after import</span>
-  <span class="def-list-key">timestampAlignment</span><span class="def-list-val"><code>true</code> or <code>false</code> — whether the timestamp is snapped to the nearest multiple of the sampling interval</span>
+  <span class="def-list-key">Messgroessenname</span><span class="def-list-val">Variable name — must be unique within its group level</span>
+  <span class="def-list-key">Aktiv</span><span class="def-list-val"><code>true</code> or <code>false</code> — whether recording starts immediately after import</span>
+  <span class="def-list-key">Abtastrate (ms)</span><span class="def-list-val">Sampling interval in milliseconds, e.g. <code>1000</code></span>
+  <span class="def-list-key">Datentyp (SPS)</span><span class="def-list-val">PLC-side data type of the variable, e.g. <code>S7_Real</code>, <code>S7_Bool</code>, <code>S7_Int</code>, <code>FLOAT</code>, <code>BOOLEAN</code></span>
+  <span class="def-list-key">Datentyp (Crawler)</span><span class="def-list-val">Edge-side data type — typically <code>FLOAT</code> for numeric values or <code>STRING</code> for text and time values</span>
+  <span class="def-list-key">Gruppe</span><span class="def-list-val">Group name for organizing variables in the Variable Browser, e.g. <code>Motor1</code> or <code>PAC0</code></span>
+  <span class="def-list-key">Adresse</span><span class="def-list-val">Variable address in the device-specific format (see address formats below)</span>
+  <span class="def-list-key">Tags</span><span class="def-list-val">Optional tags, comma-separated — can be left empty</span>
 </div>
 
 **Address formats by device type**
 
 <div class="screenshot-frame">
   <img src={variableAddressFormatsImg.src} alt="Address format reference — S7 symbolic, S7 absolute, Modbus TCP" />
+</div>
+
+**Example files**
+
+The following files can be used as templates or for testing the CSV import:
+
+<div class="csv-downloads">
+  <a href="/downloads/edge/edge-csv-example-s7-symbolisch.csv" class="csv-download-card">
+    <span class="csv-download-icon">↓</span>
+    <span class="csv-download-label">S7 symbolic (TIA Portal)</span>
+    <span class="csv-download-badge">CSV</span>
+  </a>
+  <a href="/downloads/edge/edge-csv-example-s7-absolut.csv" class="csv-download-card">
+    <span class="csv-download-icon">↓</span>
+    <span class="csv-download-label">S7 absolute (S7-300/400 and TIA Portal)</span>
+    <span class="csv-download-badge">CSV</span>
+  </a>
+  <a href="/downloads/edge/edge-csv-example-modbus.csv" class="csv-download-card">
+    <span class="csv-download-icon">↓</span>
+    <span class="csv-download-label">Modbus TCP</span>
+    <span class="csv-download-badge">CSV</span>
+  </a>
 </div>
 
     </div>
@@ -151,6 +183,10 @@ To access the measured variables of a device, open the device page and click the
 </div>
 
 **Manually creating a variable**
+
+:::note
+Before variables can be created manually, the device must have at least one **root group** (top-level group). Without a root group, the **+ Add variable** button is not available. A group can be created via **+ Add group** directly in the Variable Browser.
+:::
 
 Variables can also be created without an import. Click **+ Add variable** in the Variable Browser to open the creation dialog. Enter the variable name, address, data type, and sampling interval.
 
