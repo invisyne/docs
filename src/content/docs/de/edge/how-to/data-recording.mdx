@@ -22,6 +22,9 @@ import importCsvImg from '../../../../../assets/images/edge/edge-device-import-c
 import variableAddressFormatsImg from '../../../../../assets/images/edge/edge-device-variable-address-formats.png';
 import variableCreateImg from '../../../../../assets/images/edge/edge-device-variable-create.png';
 import variableConnectedImg from '../../../../../assets/images/edge/edge-device-variable-connected.png';
+import variableBrowserEmptyImg from '../../../../../assets/images/edge/edge-variable-browser-empty.png';
+import variableGroupCreateImg from '../../../../../assets/images/edge/edge-variable-group-create.png';
+import variableCreateDialogImg from '../../../../../assets/images/edge/edge-variable-create-dialog.png';
 import perfOverviewImg from '../../../../../assets/images/edge/edge-performance-analysis-overview.png';
 import perfStartImg from '../../../../../assets/images/edge/edge-performance-analysis-start.png';
 import perfWarningImg from '../../../../../assets/images/edge/edge-performance-analysis-warning.png';
@@ -186,14 +189,28 @@ Um die Messgrößen eines Geräts aufzurufen, die Geräteseite öffnen und den V
 
 **Messgröße manuell anlegen**
 
-:::note
-Bevor Messgrößen manuell angelegt werden können, muss im Gerät mindestens eine **Root-Gruppe** (oberste Gruppenebene) vorhanden sein. Ohne Root-Gruppe ist der Button **+ Messgröße hinzufügen** nicht verfügbar. Eine Gruppe kann über **+ Gruppe hinzufügen** direkt im Variablen-Browser angelegt werden.
-:::
+Beim manuellen Anlegen von Messgrößen muss zwingend zuerst eine **Root-Gruppe** (oberste Gruppenebene) im Gerät vorhanden sein. Ohne Root-Gruppe ist das Anlegen von Messgrößen nicht möglich.
 
-Messgrößen können ohne Import manuell angelegt werden. Im Variablen-Browser auf **+ Messgröße hinzufügen** klicken, um den Anlegen-Dialog zu öffnen. Name, Adresse, Datentyp und Abtastintervall eingeben.
+**Schritt 1 — Root-Gruppe anlegen**
 
-<div class="screenshot-frame screenshot-frame-sm">
-  <img src={variableCreateImg.src} alt="Dialog Messgröße anlegen" />
+Im Variablen-Browser des Geräts erscheint zunächst nur das Gerät ohne Gruppen oder Messgrößen.
+
+<div class="screenshot-frame">
+  <img src={variableBrowserEmptyImg.src} alt="Leerer Variablen-Browser — noch keine Gruppen vorhanden" />
+</div>
+
+Auf das **+**-Symbol neben dem Gerät klicken, um eine neue Gruppe anzulegen. Name der Gruppe eingeben und auf **Erstellen** klicken.
+
+<div class="screenshot-frame">
+  <img src={variableGroupCreateImg.src} alt="Dialog Gruppe anlegen" />
+</div>
+
+**Schritt 2 — Messgröße hinzufügen**
+
+Sobald mindestens eine Gruppe vorhanden ist, die Gruppe auswählen und auf **+ Messgröße hinzufügen** klicken. Name, Adresse, Datentyp und Abtastintervall eingeben.
+
+<div class="screenshot-frame">
+  <img src={variableCreateDialogImg.src} alt="Dialog Messgröße anlegen" />
 </div>
 
 Das Adressformat hängt vom Gerätetyp ab:

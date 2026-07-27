@@ -22,6 +22,9 @@ import importCsvImg from '../../../../assets/images/edge/edge-device-import-csv.
 import variableAddressFormatsImg from '../../../../assets/images/edge/edge-device-variable-address-formats.png';
 import variableCreateImg from '../../../../assets/images/edge/edge-device-variable-create.png';
 import variableConnectedImg from '../../../../assets/images/edge/edge-device-variable-connected.png';
+import variableBrowserEmptyImg from '../../../../assets/images/edge/edge-variable-browser-empty.png';
+import variableGroupCreateImg from '../../../../assets/images/edge/edge-variable-group-create.png';
+import variableCreateDialogImg from '../../../../assets/images/edge/edge-variable-create-dialog.png';
 import perfOverviewImg from '../../../../assets/images/edge/edge-performance-analysis-overview.png';
 import perfStartImg from '../../../../assets/images/edge/edge-performance-analysis-start.png';
 import perfWarningImg from '../../../../assets/images/edge/edge-performance-analysis-warning.png';
@@ -184,14 +187,28 @@ To access the measured variables of a device, open the device page and click the
 
 **Manually creating a variable**
 
-:::note
-Before variables can be created manually, the device must have at least one **root group** (top-level group). Without a root group, the **+ Add variable** button is not available. A group can be created via **+ Add group** directly in the Variable Browser.
-:::
+Before variables can be created manually, at least one **root group** (top-level group) must exist in the device. Without a root group, adding variables is not possible.
 
-Variables can also be created without an import. Click **+ Add variable** in the Variable Browser to open the creation dialog. Enter the variable name, address, data type, and sampling interval.
+**Step 1 — Create a root group**
 
-<div class="screenshot-frame screenshot-frame-sm">
-  <img src={variableCreateImg.src} alt="Create measured variable dialog" />
+The Variable Browser initially shows only the device with no groups or variables.
+
+<div class="screenshot-frame">
+  <img src={variableBrowserEmptyImg.src} alt="Empty Variable Browser — no groups yet" />
+</div>
+
+Click the **+** icon next to the device to create a new group. Enter the group name and click **Create**.
+
+<div class="screenshot-frame">
+  <img src={variableGroupCreateImg.src} alt="Create group dialog" />
+</div>
+
+**Step 2 — Add a variable**
+
+Once at least one group exists, select the group and click **+ Add variable**. Enter the variable name, address, data type, and sampling interval.
+
+<div class="screenshot-frame">
+  <img src={variableCreateDialogImg.src} alt="Create measured variable dialog" />
 </div>
 
 The address format depends on the device type:
