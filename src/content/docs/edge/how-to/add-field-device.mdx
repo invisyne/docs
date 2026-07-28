@@ -1,0 +1,257 @@
+---
+title: "Adding a Field Device"
+description: "Step-by-step guide for adding a field device to the Edge — covers Modbus TCP, OPC, and Siemens SIMATIC."
+sidebar:
+  order: 2
+---
+
+import addMenuImg from '../../../../assets/images/edge/edge-device-add-menu.png';
+import addTypeModbusImg from '../../../../assets/images/edge/edge-device-add-type-modbus.png';
+import addTypeOpcImg from '../../../../assets/images/edge/edge-device-add-type-opc.png';
+import addTypeSimaticImg from '../../../../assets/images/edge/edge-device-add-type-simatic.png';
+import addModbusConfigImg from '../../../../assets/images/edge/edge-device-add-modbus-config.png';
+import addModbusRtuImg from '../../../../assets/images/edge/edge-device-add-modbus-rtu.png';
+import addOpcConfigImg from '../../../../assets/images/edge/edge-device-add-opc-config.png';
+import addSimaticConfigImg from '../../../../assets/images/edge/edge-device-add-simatic-config.png';
+import connectionErrorImg from '../../../../assets/images/edge/edge-device-connection-error-secured.png';
+import passwordButtonImg from '../../../../assets/images/edge/edge-device-details-password-button.png';
+import passwordDialogImg from '../../../../assets/images/edge/edge-device-edit-password-dialog.png';
+import addTagsImg from '../../../../assets/images/edge/edge-device-add-tags.png';
+import addSimaticNoSymbolicImg from '../../../../assets/images/edge/edge-device-add-simatic-no-symbolic.png';
+import addSecuredConnectionImg from '../../../../assets/images/edge/edge-device-add-secured-connection.png';
+
+Field devices are the industrial controllers, sensors, and gateways from which the Edge reads process data. Before a device's variables can be configured for recording, the device must be added to the Edge and a successful connection must be established. The Edge supports three connection protocols: **Modbus TCP**, **OPC UA**, and **Siemens SIMATIC (S7)** — select the tab for the relevant protocol below.
+
+In the main menu, navigate to **Data Recording** and click **+ Add devices**.
+
+<div class="screenshot-frame screenshot-frame-sm">
+  <img src={addMenuImg.src} alt="Add devices menu" />
+</div>
+
+Select one of the following device types to see the setup steps.
+
+<div class="qs-stepper">
+
+  <div class="qs-tabbar">
+    <a class="qs-tab" href="#">Modbus TCP</a>
+    <a class="qs-tab" href="#">OPC</a>
+    <a class="qs-tab" href="#">SIMATIC — Symbolic</a>
+    <a class="qs-tab" href="#">SIMATIC — Absolute</a>
+    <a class="qs-tab" href="#">Secured Connection</a>
+  </div>
+
+  <div class="qs-panels">
+
+    <div class="qs-panel">
+
+Select **Modbus TCP** and click **Next**.
+
+<div class="screenshot-frame">
+  <img src={addTypeModbusImg.src} alt="Device type selection — Modbus TCP" />
+</div>
+
+Enter the connection details:
+
+- **Address** — IP address of the Modbus device
+- **Device name** — used to identify the device within the Edge
+- **Port** — default is 502
+- **Modbus RTU** — enable if the field device uses the Modbus RTU protocol. Modbus RTU is the older Modbus variant and uses a master/slave architecture — the Edge acts as the Modbus Master and polls the connected field devices (slaves). When enabled, an additional **Slave ID** field appears to identify the target device on the bus.
+
+<div class="screenshot-frame">
+  <img src={addModbusConfigImg.src} alt="Modbus TCP configuration form" />
+</div>
+
+With **Modbus RTU** enabled, a **Slave ID** field appears:
+
+<div class="screenshot-frame">
+  <img src={addModbusRtuImg.src} alt="Modbus TCP configuration with RTU enabled and Slave ID field" />
+</div>
+
+Optionally, a **template** can be selected. Templates contain a predefined list of variables for common device models and are applied automatically when the device is created, eliminating the need to add variables individually. If no suitable template is available, variables can be added manually or imported via CSV after device creation. See [Setting Up Data Recording](/edge/how-to/data-recording) for import instructions.
+
+Optional metadata can be added as tags in the next step.
+
+<div class="screenshot-frame">
+  <img src={addTagsImg.src} alt="Device tags — optional metadata" />
+</div>
+
+    </div>
+
+    <div class="qs-panel">
+
+Select **OPC** and click **Next**.
+
+<div class="screenshot-frame">
+  <img src={addTypeOpcImg.src} alt="Device type selection — OPC" />
+</div>
+
+Enter the connection details:
+
+- **Address** — IP address or hostname of the OPC server
+- **Device name** — used to identify the device within the Edge
+- **Port** — default is 4840; the actual port is configurable in TIA Portal under the OPC UA server settings (**Server Addresses**) and may differ
+- **Secured device connection** — enable if the OPC server requires authentication. When enabled, **Username** and **Password** fields appear.
+
+<div class="screenshot-frame">
+  <img src={addOpcConfigImg.src} alt="OPC configuration form with secured connection fields" />
+</div>
+
+:::note
+For the OPC UA server to be reachable, the **General** access checkbox in the TIA Portal OPC UA server settings must be enabled — this applies regardless of whether a secured connection is used. An OPC UA license must also be entered in TIA Portal; depending on the license tier, the number of variables that can be configured is limited. Refer to the Siemens documentation for the variable limits for your CPU model.
+:::
+
+Variables can be imported directly from the device or via CSV. See [Setting Up Data Recording](/edge/how-to/data-recording) for import instructions.
+
+Optional metadata can be added as tags in the next step.
+
+<div class="screenshot-frame">
+  <img src={addTagsImg.src} alt="Device tags — optional metadata" />
+</div>
+
+    </div>
+
+    <div class="qs-panel">
+
+Select **Siemens SIMATIC** and click **Next**.
+
+<div class="screenshot-frame">
+  <img src={addTypeSimaticImg.src} alt="Device type selection — Siemens SIMATIC" />
+</div>
+
+Enable **Symbolic addressing**. Symbolic addressing is supported for **S7-1200 and S7-1500** and allows the Edge to read variable names and data block structures directly from the PLC — no manual address lookup required.
+
+Enter the connection details:
+
+- **Address** — IP address of the SIMATIC controller
+- **Device name** — used to identify the device within the Edge
+- **Symbolic addressing** — enabled
+- **Secured device connection** — enable if the PLC has access protection configured. A **Password** field appears when enabled. See the **Secured Connection** tab for PLC-side setup instructions.
+
+<div class="screenshot-frame">
+  <img src={addSimaticConfigImg.src} alt="Siemens SIMATIC configuration form with symbolic addressing enabled" />
+</div>
+
+**TIA Portal reference**
+
+<div class="def-list">
+  <span class="def-list-key">IP address</span><span class="def-list-val">TIA Portal → PLC properties → PROFINET interface → Ethernet addresses</span>
+  <span class="def-list-key">Access protection password</span><span class="def-list-val">TIA Portal → PLC properties → Protection &amp; Security → Access level. The password entered in Edge must match the password configured for the read or HMI access level in TIA Portal.</span>
+</div>
+
+Variables are read directly from the PLC. They can be imported using the device import or via CSV. See [Setting Up Data Recording](/edge/how-to/data-recording) for import instructions.
+
+Optional metadata can be added as tags in the next step.
+
+<div class="screenshot-frame">
+  <img src={addTagsImg.src} alt="Device tags — optional metadata" />
+</div>
+
+    </div>
+
+    <div class="qs-panel">
+
+Select **Siemens SIMATIC** and click **Next**.
+
+<div class="screenshot-frame">
+  <img src={addTypeSimaticImg.src} alt="Device type selection — Siemens SIMATIC" />
+</div>
+
+Disable **Symbolic addressing**. The fields **Slot number** and **Rack number** appear. Absolute addressing is used for **S7-300 and S7-400** controllers, which do not support symbolic addressing. It can also be used with S7-1200 and S7-1500 if symbolic addressing is not required.
+
+:::note
+Secured connections (access protection) are not supported for S7-300/400 controllers.
+:::
+
+Enter the connection details:
+
+- **Address** — IP address of the SIMATIC controller
+- **Device name** — used to identify the device within the Edge
+- **Symbolic addressing** — disabled
+- **Slot number** — the position of the CPU or communication processor within the rack (profile rail). This is **not always 2** — if an additional communication processor is installed, enter the slot number of the processor that is physically connected to the Edge, not the CPU itself. The correct slot can be found in the hardware configuration in TIA Portal or SIMATIC Manager.
+- **Rack number** — the rack (profile rail / Profilschiene) in which the CPU is installed. In **95% of cases this is 0** — the main rack. In redundant CPU configurations, use the rack number of the currently active CPU.
+
+<div class="screenshot-frame">
+  <img src={addSimaticNoSymbolicImg.src} alt="Siemens SIMATIC configuration form with absolute addressing — slot and rack number fields visible" />
+</div>
+
+**Finding slot and rack number**
+
+The slot and rack number can be found in the hardware configuration of the project. Open the hardware configuration in **TIA Portal** (or **SIMATIC Manager** for S7-300/400 projects) and locate the CPU or communication processor in the rack view. For step-by-step instructions, see [TIA Portal &amp; SIMATIC Manager](/edge/field-devices/tia-portal).
+
+For TIA Portal-specific configuration required for absolute addressing (enabling PUT/GET communication, disabling optimized block access), see [TIA Portal](/edge/field-devices/tia-portal).
+
+Variables can be added manually or imported via CSV. See [Setting Up Data Recording](/edge/how-to/data-recording) for import instructions.
+
+Optional metadata can be added as tags in the next step.
+
+<div class="screenshot-frame">
+  <img src={addTagsImg.src} alt="Device tags — optional metadata" />
+</div>
+
+    </div>
+
+    <div class="qs-panel">
+
+All three device types support a secured connection with password protection. If the field device requires a password, enable the **Secured device connection** toggle in step 2 of the add-device wizard and enter the password.
+
+<div class="screenshot-frame">
+  <img src={addSecuredConnectionImg.src} alt="Secured device connection toggle with password field in the add-device wizard" />
+</div>
+
+:::note
+Password protection (secured connection) is only available for **OPC UA** and **SIMATIC Symbolic** (S7-1200 / S7-1500). Modbus TCP and SIMATIC Absolute (S7-300/400) do not support access protection.
+:::
+
+**OPC UA — Configuring username/password authentication in TIA Portal**
+
+If the OPC UA server in TIA Portal requires authentication, the following must be configured on the controller side:
+
+1. In TIA Portal, open the PLC and navigate to **Properties → OPC UA → Server**.
+2. Enable the **OPC UA server** if it is not already active.
+3. Under **Security**, enable a security policy — at minimum **Basic256Sha256** with mode **Sign & Encrypt** is recommended.
+4. Under **Authentication**, enable the **Username and password** option.
+5. Add a user: under **User management**, create a new entry with a username and password. These credentials are entered in the Edge **Secured device connection** fields.
+6. Compile and download the updated PLC configuration.
+
+:::note
+The exact menu structure may vary slightly depending on the TIA Portal version. If you have questions about OPC UA configuration in TIA Portal, contact your Siemens representative or reach out to us.
+:::
+
+**Configuring access protection in TIA Portal — SIMATIC Symbolic (S7-1200 / S7-1500)**
+
+For SIMATIC controllers using symbolic addressing, access protection is managed through the access level settings in TIA Portal. The Edge authenticates using the password assigned to the configured access level.
+
+1. In TIA Portal, open the PLC and navigate to **Properties → Protection &amp; Security → Access level**.
+2. Select the protection level — **Read access** permits read-only access and is sufficient for the Edge to retrieve data. **HMI access** grants slightly broader permissions and can also be used.
+3. Enter a password for the selected access level. This is the password that will be entered in the Edge **Secured device connection** field.
+4. Compile and download the updated PLC configuration.
+
+:::note
+If the PLC is set to **Full access (no protection)**, no password is required and the secured connection toggle does not need to be enabled.
+:::
+
+**If the connection fails with "only secured connection"**
+
+This error means the device has access protection enabled, but **Secured device connection** was not activated when the device was added.
+
+<div class="screenshot-frame screenshot-frame-sm">
+  <img src={connectionErrorImg.src} alt="Device connection widget showing 'only secured connection' error" />
+</div>
+
+To fix this, open the device page and click **Edit password** in the **Security** section.
+
+<div class="screenshot-frame">
+  <img src={passwordButtonImg.src} alt="Device details page — Edit password button in the Security section" />
+</div>
+
+Enable the **Secured device connection** toggle and enter the password, then click **Save**.
+
+<div class="screenshot-frame">
+  <img src={passwordDialogImg.src} alt="Edit password dialog with secured connection toggle and password field" />
+</div>
+
+    </div>
+
+  </div>
+
+</div>

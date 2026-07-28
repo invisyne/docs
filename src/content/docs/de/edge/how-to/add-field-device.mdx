@@ -1,0 +1,257 @@
+---
+title: "Feldgerät hinzufügen"
+description: "Schritt-für-Schritt-Anleitung zum Hinzufügen eines Feldgeräts am Edge — für Modbus TCP, OPC und Siemens SIMATIC."
+sidebar:
+  order: 2
+---
+
+import addMenuImg from '../../../../../assets/images/edge/edge-device-add-menu.png';
+import addTypeModbusImg from '../../../../../assets/images/edge/edge-device-add-type-modbus.png';
+import addTypeOpcImg from '../../../../../assets/images/edge/edge-device-add-type-opc.png';
+import addTypeSimaticImg from '../../../../../assets/images/edge/edge-device-add-type-simatic.png';
+import addModbusConfigImg from '../../../../../assets/images/edge/edge-device-add-modbus-config.png';
+import addModbusRtuImg from '../../../../../assets/images/edge/edge-device-add-modbus-rtu.png';
+import addOpcConfigImg from '../../../../../assets/images/edge/edge-device-add-opc-config.png';
+import addSimaticConfigImg from '../../../../../assets/images/edge/edge-device-add-simatic-config.png';
+import connectionErrorImg from '../../../../../assets/images/edge/edge-device-connection-error-secured.png';
+import passwordButtonImg from '../../../../../assets/images/edge/edge-device-details-password-button.png';
+import passwordDialogImg from '../../../../../assets/images/edge/edge-device-edit-password-dialog.png';
+import addTagsImg from '../../../../../assets/images/edge/edge-device-add-tags.png';
+import addSimaticNoSymbolicImg from '../../../../../assets/images/edge/edge-device-add-simatic-no-symbolic.png';
+import addSecuredConnectionImg from '../../../../../assets/images/edge/edge-device-add-secured-connection.png';
+
+Feldgeräte sind die industriellen Steuerungen, Sensoren und Gateways, von denen der Edge Prozessdaten ausliest. Bevor Messgrößen eines Geräts zur Aufzeichnung konfiguriert werden können, muss das Gerät im Edge angelegt und eine erfolgreiche Verbindung hergestellt sein. Der Edge unterstützt drei Verbindungsprotokolle: **Modbus TCP**, **OPC UA** und **Siemens SIMATIC (S7)** — im entsprechenden Tab unten die Einrichtungsschritte aufrufen.
+
+Im Hauptmenü zu **Aufzeichnung** navigieren und auf **+ Geräte hinzufügen** klicken.
+
+<div class="screenshot-frame screenshot-frame-sm">
+  <img src={addMenuImg.src} alt="Menü Geräte hinzufügen" />
+</div>
+
+Einen der folgenden Gerätetypen auswählen, um die Einrichtungsschritte zu sehen.
+
+<div class="qs-stepper">
+
+  <div class="qs-tabbar">
+    <a class="qs-tab" href="#">Modbus TCP</a>
+    <a class="qs-tab" href="#">OPC</a>
+    <a class="qs-tab" href="#">SIMATIC — Symbolisch</a>
+    <a class="qs-tab" href="#">SIMATIC — Absolut</a>
+    <a class="qs-tab" href="#">Gesicherte Verbindung</a>
+  </div>
+
+  <div class="qs-panels">
+
+    <div class="qs-panel">
+
+**Modbus TCP** auswählen und auf **Nächste** klicken.
+
+<div class="screenshot-frame">
+  <img src={addTypeModbusImg.src} alt="Gerätetyp auswählen — Modbus TCP" />
+</div>
+
+Verbindungsdetails eingeben:
+
+- **Adresse** — IP-Adresse des Modbus-Geräts
+- **Geräte-Name** — zur Identifikation des Geräts innerhalb des Edge
+- **Port** — Standardwert ist 502
+- **Modbus RTU** — aktivieren, wenn das Feldgerät das Modbus-RTU-Protokoll verwendet. Modbus RTU ist die ältere Modbus-Variante mit Master/Slave-Architektur — der Edge agiert dabei als Modbus Master und fragt die angeschlossenen Feldgeräte (Slaves) ab. Bei Aktivierung erscheint ein zusätzliches Feld **Slave-ID** zur Identifikation des Zielgeräts am Bus.
+
+<div class="screenshot-frame">
+  <img src={addModbusConfigImg.src} alt="Modbus TCP Konfigurationsformular" />
+</div>
+
+Mit aktiviertem **Modbus RTU** erscheint das Feld **Slave-ID**:
+
+<div class="screenshot-frame">
+  <img src={addModbusRtuImg.src} alt="Modbus TCP Konfiguration mit aktiviertem RTU und Slave-ID-Feld" />
+</div>
+
+Optional kann eine **Strukturvorlage** ausgewählt werden. Strukturvorlagen enthalten eine vordefinierte Messgröße-Liste für gängige Gerätemodelle und werden beim Anlegen des Geräts automatisch angewendet. Falls keine passende Vorlage vorhanden ist, können Messgrößen nach dem Anlegen des Geräts manuell hinzugefügt oder per CSV importiert werden. Hinweise zum Import sind unter [Datenaufzeichnung einrichten](/de/edge/how-to/data-recording) beschrieben.
+
+Im nächsten Schritt können optional Tags als Metadaten hinterlegt werden.
+
+<div class="screenshot-frame">
+  <img src={addTagsImg.src} alt="Gerät Tags — optionale Metadaten" />
+</div>
+
+    </div>
+
+    <div class="qs-panel">
+
+**OPC** auswählen und auf **Nächste** klicken.
+
+<div class="screenshot-frame">
+  <img src={addTypeOpcImg.src} alt="Gerätetyp auswählen — OPC" />
+</div>
+
+Verbindungsdetails eingeben:
+
+- **Adresse** — IP-Adresse oder Hostname des OPC-Servers
+- **Geräte-Name** — zur Identifikation des Geräts innerhalb des Edge
+- **Port** — Standardwert ist 4840; der tatsächliche Port ist im TIA Portal unter den OPC-UA-Server-Einstellungen (**Server-Adressen**) konfigurierbar und kann abweichen
+- **Gesicherte Geräteverbindung** — aktivieren, wenn der OPC-Server eine Authentifizierung erfordert. Bei Aktivierung erscheinen Felder für **Nutzername** und **Passwort**.
+
+<div class="screenshot-frame">
+  <img src={addOpcConfigImg.src} alt="OPC Konfigurationsformular mit Feldern für gesicherte Verbindung" />
+</div>
+
+:::note
+Damit der OPC-UA-Server erreichbar ist, muss im TIA Portal unter den OPC-UA-Server-Einstellungen der Haken bei **Allgemein** gesetzt sein — dies gilt unabhängig davon, ob eine gesicherte Verbindung verwendet wird. Außerdem muss eine OPC-UA-Lizenz im TIA Portal eingetragen sein. Je nach Lizenzstufe ist die Anzahl der konfigurierbaren Variablen begrenzt — die genauen Limits sind der Siemens-Dokumentation für das jeweilige CPU-Modell zu entnehmen.
+:::
+
+Messgrößen können direkt vom Gerät oder per CSV importiert werden. Hinweise zum Import sind unter [Datenaufzeichnung einrichten](/de/edge/how-to/data-recording) beschrieben.
+
+Im nächsten Schritt können optional Tags als Metadaten hinterlegt werden.
+
+<div class="screenshot-frame">
+  <img src={addTagsImg.src} alt="Gerät Tags — optionale Metadaten" />
+</div>
+
+    </div>
+
+    <div class="qs-panel">
+
+**Siemens SIMATIC** auswählen und auf **Nächste** klicken.
+
+<div class="screenshot-frame">
+  <img src={addTypeSimaticImg.src} alt="Gerätetyp auswählen — Siemens SIMATIC" />
+</div>
+
+**Symbolische Adressierung nutzen** aktivieren. Die symbolische Adressierung wird für **S7-1200 und S7-1500** unterstützt und ermöglicht es dem Edge, Variablennamen und Datenbaustein-Strukturen direkt von der SPS zu lesen — ohne manuelles Nachschlagen von Adressen.
+
+Verbindungsdetails eingeben:
+
+- **Adresse** — IP-Adresse der SIMATIC-Steuerung
+- **Geräte-Name** — zur Identifikation des Geräts innerhalb des Edge
+- **Symbolische Adressierung nutzen** — aktiviert
+- **Gesicherte Geräteverbindung** — aktivieren, wenn die SPS einen Zugriffsschutz konfiguriert hat. Bei Aktivierung erscheint ein **Passwort**-Feld. Hinweise zur Einrichtung auf SPS-Seite sind im Tab **Gesicherte Verbindung** beschrieben.
+
+<div class="screenshot-frame">
+  <img src={addSimaticConfigImg.src} alt="Siemens SIMATIC Konfigurationsformular mit aktivierter symbolischer Adressierung" />
+</div>
+
+**Hinweise aus dem TIA Portal**
+
+<div class="def-list">
+  <span class="def-list-key">IP-Adresse</span><span class="def-list-val">TIA Portal → SPS-Eigenschaften → PROFINET-Schnittstelle → Ethernet-Adressen</span>
+  <span class="def-list-key">Zugriffsschutz-Passwort</span><span class="def-list-val">TIA Portal → SPS-Eigenschaften → Schutz &amp; Sicherheit → Zugriffsschutz. Das im Edge eingetragene Passwort muss mit dem für die Lese- oder HMI-Zugriffsebene konfigurierten Passwort im TIA Portal übereinstimmen.</span>
+</div>
+
+Variablen werden direkt von der SPS gelesen. Sie können über den Geräteimport oder per CSV importiert werden. Hinweise zum Import sind unter [Datenaufzeichnung einrichten](/de/edge/how-to/data-recording) beschrieben.
+
+Im nächsten Schritt können optional Tags als Metadaten hinterlegt werden.
+
+<div class="screenshot-frame">
+  <img src={addTagsImg.src} alt="Gerät Tags — optionale Metadaten" />
+</div>
+
+    </div>
+
+    <div class="qs-panel">
+
+**Siemens SIMATIC** auswählen und auf **Nächste** klicken.
+
+<div class="screenshot-frame">
+  <img src={addTypeSimaticImg.src} alt="Gerätetyp auswählen — Siemens SIMATIC" />
+</div>
+
+**Symbolische Adressierung nutzen** deaktivieren. Die Felder **Slotnummer** und **Gestellnummer** erscheinen. Die absolute Adressierung wird für **S7-300- und S7-400**-Steuerungen verwendet, die keine symbolische Adressierung unterstützen. Sie kann auch für S7-1200 und S7-1500 verwendet werden, wenn symbolische Adressierung nicht erforderlich ist.
+
+:::note
+Gesicherte Verbindungen (Zugriffsschutz) werden für S7-300/400-Steuerungen nicht unterstützt.
+:::
+
+Verbindungsdetails eingeben:
+
+- **Adresse** — IP-Adresse der SIMATIC-Steuerung
+- **Geräte-Name** — zur Identifikation des Geräts innerhalb des Edge
+- **Symbolische Adressierung nutzen** — deaktiviert
+- **Slotnummer** — die Position der CPU oder des Kommunikationsprozessors im Baugruppenträger (Profilschiene). Die Slotnummer ist **nicht immer 2** — wenn ein zusätzlicher Kommunikationsprozessor gesteckt ist, muss die Slotnummer des Prozessors angegeben werden, der physikalisch mit dem Edge verbunden ist, nicht die der CPU selbst. Den korrekten Slot in der Hardwarekonfiguration im TIA Portal oder SIMATIC Manager nachschlagen.
+- **Gestellnummer** — der Baugruppenträger (Profilschiene), in dem die CPU eingebaut ist. In **95 % der Fälle ist dies 0** — der Hauptbaugruppenträger. Bei redundanten CPU-Konfigurationen die Gestellnummer der aktuell aktiven CPU verwenden.
+
+<div class="screenshot-frame">
+  <img src={addSimaticNoSymbolicImg.src} alt="Siemens SIMATIC Konfigurationsformular mit absoluter Adressierung — Slotnummer und Gestellnummer sichtbar" />
+</div>
+
+**Slotnummer und Gestellnummer nachschlagen**
+
+Slotnummer und Gestellnummer können in der Hardwarekonfiguration des Projekts nachgeschlagen werden. Die Hardwarekonfiguration im **TIA Portal** öffnen (oder im **SIMATIC Manager** bei S7-300/400-Projekten) und die CPU bzw. den Kommunikationsprozessor in der Rack-Ansicht lokalisieren. Eine Schritt-für-Schritt-Anleitung ist unter [TIA Portal &amp; SIMATIC Manager](/de/edge/field-devices/tia-portal) beschrieben.
+
+Für die TIA-Portal-seitige Konfiguration bei absoluter Adressierung (PUT/GET-Kommunikation aktivieren, optimierten Bausteinzugriff deaktivieren) siehe [TIA Portal](/de/edge/field-devices/tia-portal).
+
+Messgrößen können manuell hinzugefügt oder per CSV importiert werden. Hinweise zum Import sind unter [Datenaufzeichnung einrichten](/de/edge/how-to/data-recording) beschrieben.
+
+Im nächsten Schritt können optional Tags als Metadaten hinterlegt werden.
+
+<div class="screenshot-frame">
+  <img src={addTagsImg.src} alt="Gerät Tags — optionale Metadaten" />
+</div>
+
+    </div>
+
+    <div class="qs-panel">
+
+Alle drei Gerätetypen unterstützen eine gesicherte Verbindung mit Passwortschutz. Wenn das Feldgerät ein Passwort erfordert, in Schritt 2 des Assistenten den Toggle **Gesicherte Geräteverbindung** aktivieren und das Passwort eingeben.
+
+<div class="screenshot-frame">
+  <img src={addSecuredConnectionImg.src} alt="Toggle Gesicherte Geräteverbindung mit Passwortfeld im Gerät-hinzufügen-Assistenten" />
+</div>
+
+:::note
+Passwortschutz (gesicherte Verbindung) wird nur für **OPC UA** und **SIMATIC Symbolisch** (S7-1200 / S7-1500) unterstützt. Modbus TCP und SIMATIC Absolut (S7-300/400) unterstützen keinen Zugriffsschutz.
+:::
+
+**OPC UA — Benutzername/Passwort im TIA Portal konfigurieren**
+
+Wenn der OPC-UA-Server im TIA Portal Authentifizierung erfordert, muss auf der Steuerungsseite Folgendes eingerichtet sein:
+
+1. Im TIA Portal die SPS öffnen und zu **Eigenschaften → OPC UA → Server** navigieren.
+2. Den **OPC-UA-Server aktivieren** (falls noch nicht aktiv).
+3. Unter **Sicherheit** eine Sicherheitsrichtlinie aktivieren — mindestens **Basic256Sha256** mit Modus **Sign & Encrypt** wird empfohlen.
+4. Unter **Authentifizierung** die Option **Benutzername und Passwort** aktivieren.
+5. Einen Benutzer anlegen: Unter **Benutzerverwaltung** einen neuen Eintrag mit Benutzername und Passwort hinzufügen. Diese Zugangsdaten werden im Edge im Formular **Gesicherte Geräteverbindung** eingetragen.
+6. Die aktualisierte SPS-Konfiguration kompilieren und laden.
+
+:::note
+Die genaue Menüstruktur kann je nach TIA Portal-Version leicht abweichen. Bei Fragen zur OPC-UA-Konfiguration im TIA Portal wenden Sie sich an Ihren Siemens-Ansprechpartner oder an uns.
+:::
+
+**Zugriffsschutz im TIA Portal konfigurieren — SIMATIC Symbolisch (S7-1200 / S7-1500)**
+
+Für SIMATIC-Steuerungen mit symbolischer Adressierung wird der Zugriffsschutz über die Zugriffsschutz-Einstellungen im TIA Portal konfiguriert. Der Edge verwendet das Passwort der konfigurierten Schutzebene zur Authentifizierung.
+
+1. Im TIA Portal die SPS öffnen und zu **Eigenschaften → Schutz &amp; Sicherheit → Zugriffsschutz** navigieren.
+2. Die Schutzebene auswählen — **Lesezugriff** erlaubt ausschließlich lesenden Zugriff und ist für den Edge ausreichend. **HMI-Zugriff** gewährt etwas umfangreichere Berechtigungen und kann ebenfalls verwendet werden.
+3. Ein Passwort für die gewählte Schutzebene vergeben. Dieses Passwort wird im Edge im Feld **Gesicherte Geräteverbindung** eingetragen.
+4. Die aktualisierte SPS-Konfiguration kompilieren und laden.
+
+:::note
+Ist die SPS auf **Vollzugriff (kein Schutz)** eingestellt, ist kein Passwort erforderlich und der Toggle für die gesicherte Verbindung muss nicht aktiviert werden.
+:::
+
+**Verbindungsfehler „only secured connection"**
+
+Dieser Fehler bedeutet, dass auf der SPS ein Zugriffsschutz aktiv ist, die **Gesicherte Geräteverbindung** beim Anlegen des Geräts jedoch nicht aktiviert wurde.
+
+<div class="screenshot-frame screenshot-frame-sm">
+  <img src={connectionErrorImg.src} alt="Geräteverbindung-Widget mit Fehler 'only secured connection'" />
+</div>
+
+Die Geräteseite öffnen und im Bereich **Sicherheit** auf **Passwort bearbeiten** klicken.
+
+<div class="screenshot-frame">
+  <img src={passwordButtonImg.src} alt="Gerätedetails-Seite — Passwort bearbeiten Button im Sicherheitsbereich" />
+</div>
+
+Den Toggle **Gesicherte Geräteverbindung** aktivieren, das Passwort eingeben und auf **Speichern** klicken.
+
+<div class="screenshot-frame">
+  <img src={passwordDialogImg.src} alt="Passwort bearbeiten Dialog mit Toggle und Passwortfeld" />
+</div>
+
+    </div>
+
+  </div>
+
+</div>

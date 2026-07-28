@@ -1,0 +1,126 @@
+---
+title: "Initial Setup"
+description: "Step-by-step guide for the initial setup of the Edge using the built-in setup wizard."
+sidebar:
+  order: 1
+---
+
+import { Steps } from '@astrojs/starlight/components';
+import setupLanguageImg from '../../../../assets/images/edge/edge-setup-language.png';
+import setupBasicImg from '../../../../assets/images/edge/edge-setup-basic-settings.png';
+import setupSecurityImg from '../../../../assets/images/edge/edge-setup-security.png';
+import setupTimeDateImg from '../../../../assets/images/edge/edge-setup-time-date.png';
+import setupNetworkImg from '../../../../assets/images/edge/edge-setup-network.png';
+import setupFinishImg from '../../../../assets/images/edge/edge-setup-finish.png';
+import setupRestartImg from '../../../../assets/images/edge/edge-setup-restart.png';
+import hwWagoX1X2Img from '../../../../assets/images/edge/edge-hw-wago-x1-x2.png';
+import hwSimaticX1X2Img from '../../../../assets/images/edge/edge-hw-simatic-x1-x2.png';
+
+<div class="qs-stepper">
+
+  <div class="qs-tabbar">
+    <a class="qs-tab" href="#">Manual</a>
+    <a class="qs-tab" href="#" style="opacity: 0.45; pointer-events: none;">AI Assistant <span style="font-size: 0.7em; border: 1px solid currentColor; border-radius: 99px; padding: 1px 6px; margin-left: 4px;">coming soon</span></a>
+  </div>
+
+  <div class="qs-panels">
+
+    <div class="qs-panel">
+
+      <p>The initial setup of the Edge is guided by a built-in wizard that starts automatically on first use. The wizard must be completed in full before the device is operational. Once finished, the Edge restarts automatically — this process may take a few minutes.</p>
+      <p>To access the web interface, open a browser (Chrome, Edge, or Firefox recommended) and enter the device's IP address. The factory-preset IP addresses are:</p>
+
+      | Adapter | Default IP |
+      |---------|------------|
+      | X1 | 192.168.0.5 |
+      | X2 | 192.168.1.5 |
+
+      <p>The labels <strong>X1</strong> and <strong>X2</strong> are printed directly on the device. Make sure to connect the cable to the correct port — the position of the connectors varies depending on the hardware variant.</p>
+
+      <div class="screenshot-frame" style="max-width: 480px;">
+        <img src={hwWagoX1X2Img.src} alt="WAGO 752-9400 — X1 and X2 connectors" />
+      </div>
+      <div class="screenshot-frame" style="max-width: 320px;">
+        <img src={hwSimaticX1X2Img.src} alt="Edge variant 2 — X1 and X2 connectors" />
+      </div>
+
+      <p>If the Edge is located on a different subnet, the Discovery Tool can be used to configure the X1 adapter so that the web interface becomes accessible. The Discovery Tool is part of Crawler.Companion — see [Companion: Initial Setup](/companion/how-to/initial-setup) for installation instructions.</p>
+
+      <Steps>
+
+      1. **Language**
+
+         The first step sets the display language for the web interface. The Edge supports German and English. This setting is browser-specific and can be changed at any time.
+
+         <div class="screenshot-frame screenshot-frame-sm">
+           <img src={setupLanguageImg.src} alt="Language selection" />
+         </div>
+
+      2. **Name and Location**
+
+         In this step, the device receives a unique name along with optional location identifiers. The location fields are used for organizational purposes within the network and can be updated at any time.
+
+         :::note
+         The device name is permanent once the initial setup is complete. Changing it afterwards requires a factory reset. The name may contain a maximum of 20 characters; special characters and spaces should be avoided.
+         :::
+
+         <div class="screenshot-frame screenshot-frame-sm">
+           <img src={setupBasicImg.src} alt="Name and location settings" />
+         </div>
+
+      3. **Security**
+
+         In this step, a password is set for the settings area of the Edge. The password protects access to the device configuration and can be changed at any time after setup.
+
+         :::note
+         The password must be at least 6 characters long.
+         :::
+
+         <div class="screenshot-frame screenshot-frame-sm">
+           <img src={setupSecurityImg.src} alt="Security settings" />
+         </div>
+
+      4. **Time and Date**
+
+         In this step, the time zone and synchronization mode are configured. The Edge supports both manual time entry and automatic synchronization via an NTP server.
+
+         - **Automatic (NTP)** — the Edge synchronizes its clock with the configured NTP server at regular intervals. The server must be reachable from the Edge network.
+         - **Manual** — time and date are entered directly. All times refer to the selected time zone.
+
+         <div class="screenshot-frame screenshot-frame-sm">
+           <img src={setupTimeDateImg.src} alt="Time and date settings" />
+         </div>
+
+      5. **Network Settings**
+
+         In this step, the network adapters of the Edge are configured. Depending on the hardware variant, up to two adapters are available, each with a factory-preset IP address. IP address, subnet mask, default gateway, and DHCP can be configured independently for each adapter. Domain and DNS servers can be set across all adapters; up to five DNS entries are supported.
+
+         :::note
+         Incorrect network settings can render the Edge unreachable. These settings should only be modified by personnel familiar with the existing network configuration and subnet scheme.
+         :::
+
+         <div class="screenshot-frame screenshot-frame-sm">
+           <img src={setupNetworkImg.src} alt="Network overview" />
+         </div>
+
+      6. **Finish**
+
+         The final step displays a summary of all configured settings. After reviewing the summary, click **Finish** — the Edge will then restart. This process may take a few minutes. Once the device is back online, data recording can be configured.
+
+         <div class="screenshot-frame screenshot-frame-sm">
+           <img src={setupFinishImg.src} alt="Setup complete" />
+         </div>
+
+         After clicking **Finish**, the Edge restarts automatically. A status overlay is displayed during the restart and reloads the page automatically once the device is back online.
+
+         <div class="screenshot-frame screenshot-frame-sm">
+           <img src={setupRestartImg.src} alt="System restart" />
+         </div>
+
+      </Steps>
+
+    </div>
+
+  </div>
+
+</div>

@@ -1,0 +1,142 @@
+﻿---
+title: "Forwarding to AWS (IoT)"
+description: "How to connect an Edge to AWS IoT Core — registering the device, converting the certificate, and configuring the gateway endpoint."
+sidebar:
+  order: 6
+---
+
+import aggregationParamImg from '../../../../assets/images/edge/edge-gateway-aggregation-parameter.png';
+import aggregationParamEmptyImg from '../../../../assets/images/edge/edge-gateway-aggregation-parameter-empty.png';
+import retrieveButtonImg from '../../../../assets/images/edge/edge-gateway-retrieve-button.png';
+
+:::note
+This feature is available as an optional add-on. Please contact us if you are interested in enabling AWS IoT forwarding for your Edge device.
+:::
+
+To connect an Edge to AWS IoT Core, the device must be registered in AWS and the Edge must be configured with a certificate. The certificate is used by the gateway endpoint to authenticate itself with AWS.
+
+<div class="qs-stepper">
+
+  <div class="qs-tabbar">
+    <a class="qs-tab" href="#">Create Thing</a>
+    <a class="qs-tab" href="#">Convert Certificate</a>
+    <a class="qs-tab" href="#">Configure Gateway</a>
+    <a class="qs-tab" href="#">Add Variables</a>
+  </div>
+
+  <div class="qs-panels">
+
+    <div class="qs-panel">
+
+A **Thing** is the logical representation of the Edge device in AWS IoT Core. The Thing name is used to identify the device within AWS and must exactly match the **Hostname** configured on the Edge (visible under **System → Settings → Device**).
+
+<ol>
+  <li>Log in to the AWS Console and navigate to <strong>AWS IoT Core</strong>.</li>
+  <li>Under <strong>Manage → Things</strong>, click <strong>Create things</strong> and select <strong>Create a single thing</strong>.</li>
+  <li>Enter the Edge <strong>Hostname</strong> as the Thing name. Optionally select or create a <strong>Thing Type</strong> to categorize the device.</li>
+  <li>On the certificate step, choose <strong>Auto-generate a new certificate (recommended)</strong>. After creation, download all files immediately — the private key cannot be downloaded again after this step. Save: <code>{'*'}-certificate.pem.crt</code> (device certificate), <code>{'*'}-private.pem.key</code> (private key), and <code>AmazonRootCA1.pem</code> (AWS root CA — download link shown in the creation dialog).</li>
+  <li>Attach an IoT policy to the certificate. The policy must grant at minimum: <code>iot:Connect</code>, <code>iot:Publish</code>, <code>iot:Subscribe</code>, and <code>iot:Receive</code>. If no suitable policy exists, create one under <strong>Security → Policies</strong> first.</li>
+</ol>
+
+    </div>
+
+    <div class="qs-panel">
+
+The certificate files downloaded from AWS are not in the format required by the Edge gateway endpoint. A `.pfx` file must be created from:
+
+- The private key (`...-private.pem.key`)
+- The device certificate (`...-certificate.pem.crt`)
+- The AWS root certificate (`AmazonRootCA1.pem`)
+
+**On Linux (WSL)**
+
+Navigate to the directory containing the downloaded certificate files and run:
+
+```bash
+openssl pkcs12 -export -in certificate.pem.crt -inkey private.pem.key -out THINGNAME_certificate.pfx -certfile AmazonRootCA1.pem
+```
+
+You will be prompted for an export password. This password must be provided to the Edge during certificate setup — store it securely alongside the certificate files.
+
+**On Windows (PowerShell)**
+
+The certificate and private key files must share the same base name with `.crt` and `.key` extensions respectively. Then run:
+
+```powershell
+certutil -mergepfx <certificate-name>.crt <result-name>.pfx
+```
+
+:::note
+Store all certificate files, the export password, and the device hostname in a secure location. The certificate cannot be re-downloaded from AWS.
+:::
+
+    </div>
+
+    <div class="qs-panel">
+
+The gateway endpoint connects the Edge to AWS IoT Core over MQTT with TLS authentication. Before configuring it in the Edge, locate the device data endpoint in the AWS Console.
+
+**Find the AWS IoT endpoint URL**
+
+In the AWS Console, navigate to **AWS IoT Core → Settings**. The **Device data endpoint** field shows the hostname used for device connections — it takes the form `xxxxxxxxxxxxxxx-ats.iot.<region>.amazonaws.com`.
+
+**Configure the endpoint in the Edge**
+
+1. In the Edge UI, navigate to **System → Settings → Gateway**.
+2. The page lists the configured gateway endpoint and its current connection status.
+3. Click the endpoint to open its configuration.
+4. Under **Endpoint**, enter the AWS IoT device data endpoint URL.
+5. Under **Credentials**, upload the `.pfx` certificate file and enter the export password set during the conversion step.
+6. Click **Save**. The connection status updates automatically — a green indicator confirms a successful connection to AWS IoT Core.
+
+:::note
+If the connection fails to establish, verify that the IoT policy attached to the certificate grants the permissions `iot:Connect`, `iot:Publish`, `iot:Subscribe`, and `iot:Receive`; that the Thing name in AWS matches the Edge hostname exactly; and that the `.pfx` export password is correct.
+:::
+
+    </div>
+
+    <div class="qs-panel">
+
+Gateway forwarding is configured on a per-variable basis. Each variable that should be forwarded to AWS must have a `gateway_aggregation` parameter set. Variables without this parameter are not forwarded, regardless of whether they are being recorded locally.
+
+**Aggregation** controls how the Edge summarizes recorded values before sending them to AWS IoT Core. Using an aggregation interval (e.g. `1m`) reduces the number of MQTT messages sent to AWS, which directly affects data transfer volume and AWS IoT message costs. When an interval is set, the Edge computes the average of all sampled values within that period and publishes a single message per interval. Setting the value to `0` forwards every recorded sample individually without aggregation — use this only when raw sample fidelity is required, as it significantly increases message volume.
+
+To include a measured variable in gateway forwarding, open the variable edit dialog and add a parameter with the identifier `gateway_aggregation`.
+
+<div class="screenshot-frame">
+  <img src={aggregationParamImg.src} alt="gateway_aggregation parameter in the variable edit dialog" />
+</div>
+
+Set the aggregation interval as a string literal:
+
+- `15s` — 15 seconds
+- `1m` — 1 minute
+- `2h` — 2 hours
+
+To forward raw (unaggregated) values, set the value to `0`.
+
+:::caution
+Due to a known issue, parameters cannot be fully deleted from a measured variable. To stop a variable from being forwarded, leave the `gateway_aggregation` value **empty** rather than deleting the parameter entry.
+:::
+
+<div class="screenshot-frame">
+  <img src={aggregationParamEmptyImg.src} alt="gateway_aggregation parameter with empty value" />
+</div>
+
+Once all variables are marked, click **Retrieve variables** in the gateway dispatcher to trigger the automated import.
+
+<div class="screenshot-frame screenshot-frame-sm">
+  <img src={retrieveButtonImg.src} alt="Retrieve variables button" />
+</div>
+
+The marked variables are then configured in the dispatcher with their respective aggregation intervals.
+
+:::note
+Automated retrieval only works when no measured variables are currently added to the gateway. If variables are already present, they must be removed first before retrieval can be triggered.
+:::
+
+    </div>
+
+  </div>
+
+</div>

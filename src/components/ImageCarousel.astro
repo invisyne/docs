@@ -1,0 +1,156 @@
+---
+interface Props {
+  images: { src: string; alt: string; label: string; description?: string }[];
+}
+const { images } = Astro.props;
+const id = 'carousel-' + Math.random().toString(36).slice(2, 7);
+---
+
+<div class="ic-wrapper" data-carousel={id}>
+  <div class="ic-track">
+    {images.map((img) => (
+      <div class="ic-slide">
+        <div class="ic-img-center">
+          <div class="ic-img-wrap">
+            <img src={img.src} alt={img.alt} />
+          </div>
+        </div>
+        <div class="ic-label">{img.label}</div>
+        {img.description && <div class="ic-desc">{img.description}</div>}
+      </div>
+    ))}
+  </div>
+  {images.length > 1 && (
+    <div class="ic-bar-track">
+      <div class="ic-bar-thumb"></div>
+    </div>
+  )}
+</div>
+
+<style>
+  .ic-wrapper {
+    border: 0.5px solid var(--sl-color-gray-5);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+    user-select: none;
+  }
+  .ic-track {
+    display: flex;
+    transition: transform 0.3s ease;
+  }
+  .ic-slide {
+    flex: 0 0 100%;
+  }
+  .ic-img-center {
+    text-align: center;
+  }
+  .ic-img-wrap {
+    display: inline-block;
+    position: relative;
+    max-width: 100%;
+  }
+  .ic-slide img {
+    display: block;
+    max-width: 100%;
+    max-height: 300px;
+    width: auto;
+    height: auto;
+    margin: 0;
+  }
+  .ic-label {
+    padding: 0.75rem 1rem;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--sl-color-gray-2);
+    border-top: 0.5px solid var(--sl-color-gray-5);
+  }
+  .ic-desc {
+    padding: 0 1rem 0.75rem;
+    font-size: 13px;
+    color: var(--sl-color-gray-3);
+  }
+  .ic-bar-track {
+    height: 3px;
+    background: var(--sl-color-gray-6);
+    cursor: pointer;
+    position: relative;
+  }
+  .ic-bar-thumb {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: var(--sl-color-gray-2);
+    border-radius: 2px;
+    transition: left 0.3s ease;
+    cursor: grab;
+  }
+  .ic-bar-thumb:active {
+    cursor: grabbing;
+  }
+</style>
+
+<script>
+  function initCarousels() {
+    document.querySelectorAll('[data-carousel]').forEach((wrapper) => {
+    const track = wrapper.querySelector('.ic-track') as HTMLElement;
+    const slides = wrapper.querySelectorAll('.ic-slide');
+    const barTrack = wrapper.querySelector('.ic-bar-track') as HTMLElement;
+    const thumb = wrapper.querySelector('.ic-bar-thumb') as HTMLElement;
+    const total = slides.length;
+    let current = 0;
+
+    if (!thumb) return;
+
+    const thumbWidth = 100 / total;
+    thumb.style.width = thumbWidth + '%';
+
+    function go(index: number) {
+      current = Math.max(0, Math.min(index, total - 1));
+      track.style.transform = `translateX(-${current * 100}%)`;
+      thumb.style.left = (current * thumbWidth) + '%';
+    }
+
+    barTrack.addEventListener('click', (e: MouseEvent) => {
+      const rect = barTrack.getBoundingClientRect();
+      const ratio = (e.clientX - rect.left) / rect.width;
+      go(Math.floor(ratio * total));
+    });
+
+    let dragging = false;
+    let startX = 0;
+    let startSlide = 0;
+
+    thumb.addEventListener('mousedown', (e: MouseEvent) => {
+      dragging = true;
+      startX = e.clientX;
+      startSlide = current;
+      e.preventDefault();
+    });
+
+    document.addEventListener('mousemove', (e: MouseEvent) => {
+      if (!dragging) return;
+      const rect = barTrack.getBoundingClientRect();
+      const delta = (e.clientX - startX) / rect.width;
+      go(startSlide + Math.round(delta * total));
+    });
+
+    document.addEventListener('mouseup', () => { dragging = false; });
+
+    thumb.addEventListener('touchstart', (e: TouchEvent) => {
+      startX = e.touches[0].clientX;
+      startSlide = current;
+    });
+
+    thumb.addEventListener('touchmove', (e: TouchEvent) => {
+      const rect = barTrack.getBoundingClientRect();
+      const delta = (e.touches[0].clientX - startX) / rect.width;
+      go(startSlide + Math.round(delta * total));
+    });
+    });
+  }
+
+  initCarousels();
+  document.addEventListener('astro:page-load', initCarousels);
+</script>

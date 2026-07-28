@@ -10,7 +10,7 @@ sidebar:
 ---
 
 import { Steps } from '@astrojs/starlight/components';
-import certUploadSettings from '../../../../../assets/images/edge/edge-cert-upload-settings.png';
+import certSecurityTab from '../../../../../assets/images/edge/edge-cert-security-tab.png';
 import certUploadWizard from '../../../../../assets/images/edge/edge-cert-upload-wizard.png';
 import edgeSecure from '../../../../../assets/images/edge/edge-secure.png';
 
@@ -48,9 +48,11 @@ Wenn Ihre IT-Abteilung technische Fragen zu Zertifikaten für das Edge-Gerät ha
 
 2. Zu **Einstellungen** → **Netzwerkadapter** wechseln und den Tab **Sicherheit** öffnen.
 
-   <div class="screenshot-frame"><img src={certUploadSettings.src} alt="Zertifikat-Upload in Einstellungen, Netzwerkadapter, Tab Sicherheit" /></div>
+   Der Tab ist in zwei Bereiche unterteilt. **Aktuelles Zertifikat** zeigt das derzeit aktive Zertifikat — Subject, Quelle, Gültigkeitszeitraum und Subject Alternative Names — sowie die Schaltfläche **Zurücksetzen**, um jederzeit zum integrierten selbstsignierten Zertifikat zurückzukehren. Darunter befindet sich **Eigenes Zertifikat**, wo das eigene Zertifikat hochgeladen wird. Die Links **Wie?** und **Warum?** neben dem Abschnittstitel öffnen Hilfeseiten zum Bezug eines Zertifikats und zu den Gründen dafür.
 
-3. Das vorliegende Format auswählen, die Datei(en) wählen und das Passwort eingeben, falls die PFX-Datei geschützt ist.
+   <div class="screenshot-frame"><img src={certSecurityTab.src} alt="Tab Sicherheit: Informationen zum aktuellen Zertifikat und Formular für das eigene Zertifikat" /></div>
+
+3. Unter **Eigenes Zertifikat** das vorliegende Format auswählen, die Datei(en) wählen und das Passwort eingeben, falls die PFX-Datei geschützt ist.
 
 4. **Speichern** klicken. Das Zertifikat wird sofort übernommen — kein Neustart erforderlich.
 
@@ -71,7 +73,7 @@ Wenn Ihre IT-Abteilung technische Fragen zu Zertifikaten für das Edge-Gerät ha
 </Steps>
 
 :::tip
-Um jederzeit zum integrierten selbstsignierten Zertifikat des Geräts zurückzukehren, öffnen Sie denselben Tab **Sicherheit** und klicken auf **Zurücksetzen** — dadurch wird das hochgeladene Zertifikat entfernt.
+Um jederzeit zum integrierten selbstsignierten Zertifikat des Geräts zurückzukehren, öffnen Sie denselben Tab **Sicherheit** und klicken auf **Zurücksetzen** neben der Überschrift **Aktuelles Zertifikat** — dadurch wird das hochgeladene Zertifikat entfernt.
 :::
 
 ## Der ausstellenden CA auf Client-Rechnern vertrauen

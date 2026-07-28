@@ -10,7 +10,7 @@ sidebar:
 ---
 
 import { Steps } from '@astrojs/starlight/components';
-import certUploadSettings from '../../../../assets/images/edge/edge-cert-upload-settings.png';
+import certSecurityTab from '../../../../assets/images/edge/edge-cert-security-tab.png';
 import certUploadWizard from '../../../../assets/images/edge/edge-cert-upload-wizard.png';
 import edgeSecure from '../../../../assets/images/edge/edge-secure.png';
 
@@ -48,11 +48,13 @@ If your IT department has technical questions about certificates for the Edge de
 
 2. Go to **Settings** → **Network Adapter** and open the **Security** tab.
 
-   <div class="screenshot-frame"><img src={certUploadSettings.src} alt="Certificate upload in Settings, Network Adapter, Security tab" /></div>
+   The tab has two sections. **Aktuelles Zertifikat** shows the currently active certificate — its Subject, Source (Quelle), validity dates, and Subject Alternative Names — and a **Zurücksetzen** button to revert to the built-in self-signed certificate. Below it, **Eigenes Zertifikat** is where you upload your own certificate. The **Wie?** and **Warum?** links next to the heading open help pages on obtaining a certificate and the reasons for using one.
 
-3. Choose the format you have, select the file(s), and enter the password if your PFX is protected.
+   <div class="screenshot-frame"><img src={certSecurityTab.src} alt="Security tab: current certificate info and custom certificate upload form" /></div>
 
-4. Click **Save**. The certificate is applied immediately — no restart required.
+3. Under **Eigenes Zertifikat**, choose the format you have, select the file(s), and enter the password if your PFX is protected.
+
+4. Click **Speichern**. The certificate is applied immediately — no restart required.
 
 </Steps>
 
@@ -71,7 +73,7 @@ If your IT department has technical questions about certificates for the Edge de
 </Steps>
 
 :::tip
-To return to the device's built-in self-signed certificate at any time, open the same **Security** tab and click **Reset to default** — this removes the uploaded certificate.
+To return to the device's built-in self-signed certificate at any time, open the same **Security** tab and click **Zurücksetzen** next to the **Aktuelles Zertifikat** heading — this removes the uploaded certificate.
 :::
 
 ## Trust the issuing CA on client machines

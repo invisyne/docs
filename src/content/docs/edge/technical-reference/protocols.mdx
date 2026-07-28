@@ -1,0 +1,166 @@
+---
+title: "Protocols and Field Devices"
+description: "Supported field device protocols — Siemens S7, OPC UA, and Modbus TCP — including data types and address formats."
+---
+
+:::note
+For step-by-step instructions on adding a field device, see [Adding a Field Device](/edge/how-to/add-field-device).
+:::
+
+<div class="qs-stepper">
+
+  <div class="qs-tabbar">
+    <a class="qs-tab" href="#">Siemens S7</a>
+    <a class="qs-tab" href="#">OPC UA</a>
+    <a class="qs-tab" href="#">Modbus TCP</a>
+  </div>
+
+  <div class="qs-panels">
+
+    <div class="qs-panel">
+
+Supported controller families:
+
+<ul>
+  <li>S7-300 / S7-400</li>
+  <li>S7-1200 / S7-1500 (TIA Portal, symbolic and absolute addressing)</li>
+</ul>
+
+#### Address formats for manual entry
+
+When variables are entered manually via the UI or imported via CSV, the following address formats apply.
+
+**Absolute addressing**
+
+Structure: `DB<Nr>.DB<B|W|D|X><ByteOffset>.<BitOffset>`
+
+<ul>
+  <li>The operand type (DBB, DBD, DBX, DBW) can be used interchangeably — it is for readability only</li>
+  <li>The bit offset is optional and may be omitted together with the separating period</li>
+  <li>Spaces must be removed</li>
+</ul>
+
+Examples: `DB9.DBX200.2` (bit 2 of byte 200 in DB 9), `DB30.DBW558` (byte 558 in DB 30)
+
+**Symbolic addressing**
+
+Structure: `PLC.Blocks.<DataBlock>.<Variable>`, always starting with `PLC.Blocks.`
+
+<ul>
+  <li>Names containing a period must be enclosed in double quotes: <code>"My.Name"</code></li>
+  <li>A double quote inside a name is escaped by doubling it: <code>"My""Name"</code></li>
+  <li>Case-sensitive</li>
+</ul>
+
+Examples: `PLC.Blocks.TestDB.MyVariable`, `PLC.Blocks.TestDB."My.Structure".MyVariable`, `PLC.Blocks.TestDB.Array.Element[28]`
+
+:::note
+Invalid addresses — common with manual entry — silently prevent data access. Using the import function avoids this: variables are correctly formatted and escaped automatically.
+:::
+
+#### Supported data types
+
+<details>
+<summary>Show data type table</summary>
+<div>
+
+| Edge VarType | Edge InfluxType | Bits | Symbolic | Absolute | S7-300/400 | S7-1200 | S7-1500 |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| **Binary numbers** | | | | | | | |
+| S7_Bool | FLOAT | 1 | <span class="tbl-yes"></span> | <span class="tbl-yes"></span> | <span class="tbl-yes"></span> | <span class="tbl-yes"></span> | <span class="tbl-yes"></span> |
+| S7_Byte | FLOAT | 8 | <span class="tbl-yes"></span> | <span class="tbl-yes"></span> | <span class="tbl-yes"></span> | <span class="tbl-yes"></span> | <span class="tbl-yes"></span> |
+| S7_Word | FLOAT | 16 | <span class="tbl-yes"></span> | <span class="tbl-yes"></span> | <span class="tbl-yes"></span> | <span class="tbl-yes"></span> | <span class="tbl-yes"></span> |
+| S7_DWord | FLOAT | 32 | <span class="tbl-yes"></span> | <span class="tbl-yes"></span> | <span class="tbl-yes"></span> | <span class="tbl-yes"></span> | <span class="tbl-yes"></span> |
+| S7_LWord | FLOAT | 64 | <span class="tbl-yes"></span> | <span class="tbl-yes"></span> | | | <span class="tbl-yes"></span> |
+| **Integers** | | | | | | | |
+| S7_SInt | FLOAT | 8 | <span class="tbl-yes"></span> | <span class="tbl-yes"></span> | | <span class="tbl-yes"></span> | <span class="tbl-yes"></span> |
+| S7_Int | FLOAT | 16 | <span class="tbl-yes"></span> | <span class="tbl-yes"></span> | <span class="tbl-yes"></span> | <span class="tbl-yes"></span> | <span class="tbl-yes"></span> |
+| S7_DInt | FLOAT | 32 | <span class="tbl-yes"></span> | <span class="tbl-yes"></span> | <span class="tbl-yes"></span> | <span class="tbl-yes"></span> | <span class="tbl-yes"></span> |
+| S7_USInt | FLOAT | 8 | <span class="tbl-yes"></span> | <span class="tbl-yes"></span> | | <span class="tbl-yes"></span> | <span class="tbl-yes"></span> |
+| S7_UInt | FLOAT | 16 | <span class="tbl-yes"></span> | <span class="tbl-yes"></span> | | <span class="tbl-yes"></span> | <span class="tbl-yes"></span> |
+| S7_UDInt | FLOAT | 32 | <span class="tbl-yes"></span> | <span class="tbl-yes"></span> | | <span class="tbl-yes"></span> | <span class="tbl-yes"></span> |
+| S7_LInt | FLOAT | 64 | <span class="tbl-yes"></span> | <span class="tbl-yes"></span> | | | <span class="tbl-yes"></span> |
+| S7_ULInt | FLOAT | 64 | <span class="tbl-yes"></span> | <span class="tbl-yes"></span> | | | <span class="tbl-yes"></span> |
+| **Floating-point numbers** | | | | | | | |
+| S7_Real | FLOAT | 32 | <span class="tbl-yes"></span> | <span class="tbl-yes"></span> | <span class="tbl-yes"></span> | <span class="tbl-yes"></span> | <span class="tbl-yes"></span> |
+| S7_LReal | FLOAT | 64 | <span class="tbl-yes"></span> | <span class="tbl-yes"></span> | | <span class="tbl-yes"></span> | <span class="tbl-yes"></span> |
+| **Times** | | | | | | | |
+| S7_S5Time | STRING | 16 | <span class="tbl-yes"></span> | <span class="tbl-yes"></span> | <span class="tbl-yes"></span> | | <span class="tbl-yes"></span> |
+| S7_Time | STRING | 32 | <span class="tbl-yes"></span> | <span class="tbl-yes"></span> | <span class="tbl-yes"></span> | <span class="tbl-yes"></span> | <span class="tbl-yes"></span> |
+| S7_LTime | STRING | 64 | <span class="tbl-yes"></span> | <span class="tbl-yes"></span> | | | <span class="tbl-yes"></span> |
+| **Date and time** | | | | | | | |
+| S7_Date | STRING | 16 | <span class="tbl-yes"></span> | <span class="tbl-yes"></span> | <span class="tbl-yes"></span> | <span class="tbl-yes"></span> | <span class="tbl-yes"></span> |
+| S7_Time_Of_Day | STRING | 32 | <span class="tbl-yes"></span> | <span class="tbl-yes"></span> | <span class="tbl-yes"></span> | <span class="tbl-yes"></span> | <span class="tbl-yes"></span> |
+| S7_LTOD | STRING | 64 | <span class="tbl-yes"></span> | <span class="tbl-yes"></span> | | | <span class="tbl-yes"></span> |
+| S7_Date_And_Time | STRING | 64 | <span class="tbl-yes"></span> | <span class="tbl-yes"></span> | <span class="tbl-yes"></span> | | <span class="tbl-yes"></span> |
+| S7_LDT | STRING | 64 | <span class="tbl-yes"></span> | <span class="tbl-yes"></span> | | | <span class="tbl-yes"></span> |
+| S7_DTL | STRING | 96 | <span class="tbl-yes"></span> | <span class="tbl-yes"></span> | | <span class="tbl-yes"></span> | <span class="tbl-yes"></span> |
+| **Characters** | | | | | | | |
+| S7_Char | STRING | 8 | <span class="tbl-yes"></span> | <span class="tbl-yes"></span> | <span class="tbl-yes"></span> | <span class="tbl-yes"></span> | <span class="tbl-yes"></span> |
+| S7_WChar | STRING | 16 | <span class="tbl-yes"></span> | <span class="tbl-yes"></span> | | <span class="tbl-yes"></span> | <span class="tbl-yes"></span> |
+| S7_String | STRING | n+2 bytes | <span class="tbl-yes"></span> | <span class="tbl-yes"></span> | <span class="tbl-yes"></span> | <span class="tbl-yes"></span> | <span class="tbl-yes"></span> |
+| S7_WString | STRING | n+2 words | <span class="tbl-yes"></span> | <span class="tbl-yes"></span> | | <span class="tbl-yes"></span> | <span class="tbl-yes"></span> |
+| **Arrays** | | | | | | | |
+| S7_Array | <span class="tbl-no"></span> | <span class="tbl-no"></span> | <span class="tbl-yes"></span> | <span class="tbl-yes"></span> | <span class="tbl-yes"></span> (max 6 dims, 32,767 bytes) | <span class="tbl-yes"></span> (max 6 dims, 65,535 bytes) | <span class="tbl-yes"></span> (max 6 dims, 16,777,216 bytes) |
+| **Pointers** | | | | | | | |
+| Pointer | <span class="tbl-no"></span> | 48 | <span class="tbl-no"></span> | <span class="tbl-no"></span> | <span class="tbl-yes"></span> | | <span class="tbl-yes"></span> |
+| Any | <span class="tbl-no"></span> | 80 | <span class="tbl-no"></span> | <span class="tbl-no"></span> | <span class="tbl-yes"></span> | | <span class="tbl-yes"></span> |
+| Variant | <span class="tbl-no"></span> | 0 | <span class="tbl-no"></span> | <span class="tbl-no"></span> | | <span class="tbl-yes"></span> | <span class="tbl-yes"></span> |
+
+</div>
+</details>
+
+    </div>
+
+    <div class="qs-panel">
+
+OPC UA is supported for reading measured values from OPC UA servers. Full feature support is currently guaranteed for **Siemens** OPC UA servers.
+
+| Property | Value |
+| --- | --- |
+| Protocol | OPC UA |
+| Default port | 4840 (configurable in PLC project) |
+| Authentication | Anonymous or username / password |
+
+    </div>
+
+    <div class="qs-panel">
+
+| Property | Details |
+| --- | --- |
+| Supported functions | READ_COIL, READ_DISCRETE_INPUT, READ_INPUT_REGISTER, READ_HOLDING_REGISTER |
+| Default port | 502 |
+| Slave ID (Modbus RTU) | Configurable; default = 1 |
+| Byte order | Big-endian or little-endian (default); applies to data types larger than 16 bits |
+
+:::note
+Byte order cannot currently be configured in the UI. Contact support if a non-default byte order is required.
+:::
+
+#### Supported data types
+
+<details>
+<summary>Show data type table</summary>
+<div>
+
+| Data type | Notes |
+| --- | --- |
+| BOOLEAN | Bit-level access only (READ_COIL, READ_DISCRETE_INPUT) |
+| INT16 | |
+| UINT16 | |
+| INT32 | |
+| UINT32 | |
+| INT64 | |
+| UINT64 | |
+| FLOAT | |
+| DOUBLE | |
+| STRING | 8 characters by default; contact support for a different length |
+
+</div>
+</details>
+
+    </div>
+
+  </div>
+
+</div>

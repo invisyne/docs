@@ -1,0 +1,142 @@
+﻿---
+title: "Weiterleitung an AWS (IoT)"
+description: "Anleitung zur Anbindung des Edge an AWS IoT Core — Gerät registrieren, Zertifikat konvertieren und Gateway-Endpoint konfigurieren."
+sidebar:
+  order: 6
+---
+
+import aggregationParamImg from '../../../../../assets/images/edge/edge-gateway-aggregation-parameter.png';
+import aggregationParamEmptyImg from '../../../../../assets/images/edge/edge-gateway-aggregation-parameter-empty.png';
+import retrieveButtonImg from '../../../../../assets/images/edge/edge-gateway-retrieve-button.png';
+
+:::note
+Diese Funktion ist als optionales Erweiterungsmodul erhältlich. Bei Interesse an der AWS-IoT-Weiterleitung für Ihr Edge-Gerät nehmen Sie bitte Kontakt mit uns auf.
+:::
+
+Damit ein Edge eine Verbindung mit dem IoT Core von AWS aufbauen kann, muss das Gerät in AWS angelegt und am Edge mit einem Zertifikat konfiguriert werden. Das Zertifikat wird vom Gateway-Endpoint zur Authentifizierung gegenüber AWS verwendet.
+
+<div class="qs-stepper">
+
+  <div class="qs-tabbar">
+    <a class="qs-tab" href="#">Thing anlegen</a>
+    <a class="qs-tab" href="#">Zertifikat konvertieren</a>
+    <a class="qs-tab" href="#">Gateway konfigurieren</a>
+    <a class="qs-tab" href="#">Messgrößen hinzufügen</a>
+  </div>
+
+  <div class="qs-panels">
+
+    <div class="qs-panel">
+
+Ein **Thing** ist die logische Repräsentation des Edge-Geräts in AWS IoT Core. Der Thing-Name wird zur Identifikation des Geräts innerhalb von AWS verwendet und muss exakt mit dem **Hostnamen** übereinstimmen, der am Edge konfiguriert ist (einsehbar unter **System → Einstellungen → Gerät**).
+
+<ol>
+  <li>Im AWS Console Portal einloggen und zu <strong>AWS IoT Core</strong> navigieren.</li>
+  <li>Unter <strong>Manage → Things</strong> auf <strong>Create things</strong> klicken und <strong>Create a single thing</strong> auswählen.</li>
+  <li>Den <strong>Hostnamen</strong> des Edge als Thing-Name eingeben. Optional einen <strong>Thing Type</strong> zur Kategorisierung des Geräts auswählen oder erstellen.</li>
+  <li>Beim Zertifikats-Schritt <strong>Auto-generate a new certificate (recommended)</strong> auswählen. Nach der Erstellung alle Dateien sofort herunterladen — der private Schlüssel kann danach nicht erneut heruntergeladen werden. Benötigt werden: <code>{'*'}-certificate.pem.crt</code> (Gerätezertifikat), <code>{'*'}-private.pem.key</code> (privater Schlüssel) und <code>AmazonRootCA1.pem</code> (AWS Root-CA-Zertifikat — Download-Link im Erstellungsdialog).</li>
+  <li>Dem Zertifikat eine IoT-Policy zuweisen. Die Policy muss mindestens folgende Berechtigungen enthalten: <code>iot:Connect</code>, <code>iot:Publish</code>, <code>iot:Subscribe</code> und <code>iot:Receive</code>. Falls noch keine passende Policy vorhanden ist, diese zuvor unter <strong>Security → Policies</strong> anlegen.</li>
+</ol>
+
+    </div>
+
+    <div class="qs-panel">
+
+Die von AWS heruntergeladenen Zertifikats-Dateien liegen nicht im für den Edge-Gateway-Endpoint erforderlichen Format vor. Es muss eine `.pfx`-Datei erstellt werden aus:
+
+- Dem privaten Schlüssel (`...-private.pem.key`)
+- Dem Gerätezertifikat (`...-certificate.pem.crt`)
+- Dem AWS Root-Zertifikat (`AmazonRootCA1.pem`)
+
+**Unter Linux (WSL)**
+
+In das Verzeichnis mit den heruntergeladenen Zertifikats-Dateien wechseln und folgenden Befehl ausführen:
+
+```bash
+openssl pkcs12 -export -in certificate.pem.crt -inkey private.pem.key -out THINGNAME_certificate.pfx -certfile AmazonRootCA1.pem
+```
+
+Es wird ein Export-Passwort abgefragt. Dieses Passwort muss dem Edge bei der Zertifikats-Einrichtung mitgeteilt werden — es sollte zusammen mit den Zertifikats-Dateien sicher aufbewahrt werden.
+
+**Unter Windows (PowerShell)**
+
+Die Zertifikats- und Privat-Key-Datei müssen denselben Basisnamen tragen und die Dateiendungen `.crt` bzw. `.key` haben. Dann in der Shell ausführen:
+
+```powershell
+certutil -mergepfx <certificate-name>.crt <result-name>.pfx
+```
+
+:::note
+Alle Zertifikats-Dateien, das Export-Passwort und den Hostnamen des Geräts an einem sicheren Ort ablegen. Das Zertifikat kann nicht erneut von AWS heruntergeladen werden.
+:::
+
+    </div>
+
+    <div class="qs-panel">
+
+Der Gateway-Endpoint verbindet den Edge mit AWS IoT Core über MQTT mit TLS-Authentifizierung. Vor der Konfiguration im Edge den Geräte-Daten-Endpoint in der AWS Console ermitteln.
+
+**AWS-IoT-Endpoint-URL ermitteln**
+
+In der AWS Console zu **AWS IoT Core → Settings** navigieren. Das Feld **Device data endpoint** zeigt den Hostnamen für Geräteverbindungen — er hat die Form `xxxxxxxxxxxxxxx-ats.iot.<region>.amazonaws.com`.
+
+**Endpoint im Edge konfigurieren**
+
+1. Im Edge UI zu **System → Einstellungen → Gateway** navigieren.
+2. Die Seite zeigt den konfigurierten Gateway-Endpoint mit seinem aktuellen Verbindungsstatus.
+3. Auf den Endpoint klicken, um die Konfiguration zu öffnen.
+4. Unter **Endpoint** die AWS-IoT-Geräte-Daten-Endpoint-URL eingeben.
+5. Unter **Login-Daten** die `.pfx`-Zertifikats-Datei hochladen und das beim Konvertierungsschritt festgelegte Export-Passwort eingeben.
+6. Auf **Speichern** klicken. Der Verbindungsstatus aktualisiert sich automatisch — ein grüner Indikator bestätigt eine erfolgreiche Verbindung zu AWS IoT Core.
+
+:::note
+Falls keine Verbindung aufgebaut werden kann: Prüfen, ob die dem Zertifikat zugewiesene IoT-Policy die Berechtigungen `iot:Connect`, `iot:Publish`, `iot:Subscribe` und `iot:Receive` enthält, ob der Thing-Name in AWS exakt mit dem Edge-Hostnamen übereinstimmt, und ob das `.pfx`-Export-Passwort korrekt ist.
+:::
+
+    </div>
+
+    <div class="qs-panel">
+
+Die Gateway-Weiterleitung wird pro Messgröße konfiguriert. Jede Messgröße, die an AWS weitergeleitet werden soll, muss einen Parameter `gateway_aggregation` besitzen. Messgrößen ohne diesen Parameter werden nicht weitergeleitet — unabhängig davon, ob sie lokal aufgezeichnet werden.
+
+**Aggregation** steuert, wie der Edge aufgezeichnete Werte zusammenfasst, bevor er sie an AWS IoT Core sendet. Die Verwendung eines Aggregations-Intervalls (z. B. `1m`) reduziert die Anzahl der MQTT-Nachrichten an AWS, was sich direkt auf das Datenvolumen und die AWS-IoT-Nachrichtenkosten auswirkt. Bei gesetztem Intervall berechnet der Edge den Durchschnitt aller Samples innerhalb dieses Zeitraums und veröffentlicht eine einzelne Nachricht pro Intervall. Der Wert `0` deaktiviert die Aggregation und leitet jeden aufgezeichneten Sample-Wert einzeln weiter — dies sollte nur verwendet werden, wenn die volle Messauflösung benötigt wird, da es das Nachrichtenvolumen deutlich erhöht.
+
+Um eine Messgröße in die Gateway-Weiterleitung einzubeziehen, den Bearbeitungs-Dialog der Messgröße öffnen und einen Parameter mit dem Bezeichner `gateway_aggregation` hinzufügen.
+
+<div class="screenshot-frame">
+  <img src={aggregationParamImg.src} alt="gateway_aggregation-Parameter im Bearbeitungs-Dialog" />
+</div>
+
+Das Aggregations-Intervall wird als String-Literal angegeben:
+
+- `15s` — 15 Sekunden
+- `1m` — 1 Minute
+- `2h` — 2 Stunden
+
+Soll die Messgröße roh (nicht aggregiert) übertragen werden, den Wert auf `0` setzen.
+
+:::caution
+Aufgrund eines bekannten Fehlers können Parameter nicht vollständig aus einer Messgröße gelöscht werden. Um eine Messgröße nicht mehr weiterzuleiten, den Wert des Parameters `gateway_aggregation` **leer** lassen, anstatt den Eintrag zu löschen.
+:::
+
+<div class="screenshot-frame">
+  <img src={aggregationParamEmptyImg.src} alt="gateway_aggregation-Parameter mit leerem Wert" />
+</div>
+
+Sobald alle Messgrößen markiert sind, im Gateway-Dispatcher auf **Messgrößen beziehen** klicken, um den automatisierten Import auszulösen.
+
+<div class="screenshot-frame screenshot-frame-sm">
+  <img src={retrieveButtonImg.src} alt="Schaltfläche Messgrößen beziehen" />
+</div>
+
+Die markierten Messgrößen werden anschließend mit dem jeweiligen Aggregations-Intervall im Dispatcher eingerichtet.
+
+:::note
+Das automatisierte Beziehen ist nur möglich, solange noch keine Messgrößen im Gateway vorhanden sind. Sind bereits Messgrößen hinzugefügt, müssen diese zuerst entfernt werden, bevor der Abruf ausgelöst werden kann.
+:::
+
+    </div>
+
+  </div>
+
+</div>
