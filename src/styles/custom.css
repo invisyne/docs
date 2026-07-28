@@ -884,9 +884,25 @@ starlight-toc a {
 
 .def-list-key,
 .def-list-val {
-  font-size: 0.875rem;
-  padding: 8px 14px;
+  font-size: var(--sl-text-body-sm);
+  padding: 9px 14px;
   border-bottom: 1px solid var(--sl-color-hairline);
+}
+
+.def-list-group {
+  grid-column: 1 / -1;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--sl-color-gray-2);
+  background: var(--sl-color-gray-5);
+  padding: 10px 14px 9px;
+  border-bottom: 1px solid var(--sl-color-hairline);
+}
+
+.def-list-group:not(:first-child) {
+  border-top: 1px solid var(--sl-color-hairline);
 }
 
 .def-list-key:last-of-type,
