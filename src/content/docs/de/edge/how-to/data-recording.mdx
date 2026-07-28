@@ -1,0 +1,331 @@
+---
+title: "Einrichten der Datenaufzeichnung"
+description: "Schritt-für-Schritt-Anleitung zur Einrichtung der Datenaufzeichnung am Edge — vom Hinzufügen eines Feldgeräts bis zur Konfiguration der Messgrößen."
+sidebar:
+  order: 3
+---
+
+import deviceListEditImg from '../../../../../assets/images/edge/edge-device-list-edit-icon.png';
+import measuredVariablesImg from '../../../../../assets/images/edge/edge-measured-variables-widget.png';
+import importSourceImg from '../../../../../assets/images/edge/edge-import-source-dialog.png';
+import deviceConnectedImg from '../../../../../assets/images/edge/edge-device-connected-status.png';
+import importCartImg from '../../../../../assets/images/edge/edge-import-cart-basket.png';
+import importConfigImg from '../../../../../assets/images/edge/edge-import-global-config.png';
+import variablenLinkImg from '../../../../../assets/images/edge/edge-device-details-variablen-link.png';
+import variableEditIconImg from '../../../../../assets/images/edge/edge-variable-edit-icon.png';
+import variableEditDialogImg from '../../../../../assets/images/edge/edge-variable-edit-dialog.png';
+import cartBadgeImg from '../../../../../assets/images/edge/edge-cart-badge-count.png';
+import cartSelectionImg from '../../../../../assets/images/edge/edge-cart-selection-list.png';
+import bulkEditDialogImg from '../../../../../assets/images/edge/edge-bulk-edit-dialog.png';
+import bulkEditMixedImg from '../../../../../assets/images/edge/edge-bulk-edit-mixed-values.png';
+import importCsvImg from '../../../../../assets/images/edge/edge-device-import-csv.png';
+import variableAddressFormatsImg from '../../../../../assets/images/edge/edge-device-variable-address-formats.png';
+import variableCreateImg from '../../../../../assets/images/edge/edge-device-variable-create.png';
+import variableConnectedImg from '../../../../../assets/images/edge/edge-device-variable-connected.png';
+import variableBrowserEmptyImg from '../../../../../assets/images/edge/edge-variable-browser-empty.png';
+import variableGroupCreateImg from '../../../../../assets/images/edge/edge-variable-group-create.png';
+import variableCreateDialogImg from '../../../../../assets/images/edge/edge-variable-create-dialog.png';
+import perfOverviewImg from '../../../../../assets/images/edge/edge-performance-analysis-overview.png';
+import perfStartImg from '../../../../../assets/images/edge/edge-performance-analysis-start.png';
+import perfWarningImg from '../../../../../assets/images/edge/edge-performance-analysis-warning.png';
+import perfRunningImg from '../../../../../assets/images/edge/edge-performance-analysis-running.png';
+import perfResultsImg from '../../../../../assets/images/edge/edge-performance-analysis-results.png';
+
+<div class="qs-stepper">
+
+  <div class="qs-tabbar">
+    <a class="qs-tab" href="#">Vorbereitung</a>
+    <a class="qs-tab" href="#">Messgrößen Importieren</a>
+    <a class="qs-tab" href="#">Messgrößen CSV Import</a>
+    <a class="qs-tab" href="#">Messgrößen Manuell</a>
+    <a class="qs-tab" href="#">Performance Test</a>
+  </div>
+
+  <div class="qs-panels">
+
+    <div class="qs-panel">
+
+Datenaufzeichnung bezeichnet den Prozess, bei dem der Edge Verbindungen zu Feldgeräten aufbaut, konfigurierte Prozessvariablen in einem definierten Abtastintervall ausliest und die gemessenen Werte in einer internen Zeitreihendatenbank speichert. Diese gespeicherten Werte dienen als Datenquelle für Grafana-Dashboards und können optional an externe Plattformen wie AWS IoT Core weitergeleitet werden.
+
+Bevor Messgrößen konfiguriert werden können, muss das Feldgerät bereits im Edge angelegt sein und eine Verbindung bestehen. Folgende Informationen sollten vorliegen:
+
+- **IP-Adresse** des Feldgeräts
+- **Gerätetyp** (Modbus TCP, OPC UA oder Siemens SIMATIC S7)
+- **Variablenadressen oder -struktur**: Für die manuelle Eingabe oder den CSV-Import werden die Adressen der aufzuzeichnenden Messgrößen benötigt (Adressformate siehe [Protokolle und Feldgeräte](/de/edge/technical-reference/protocols)); für S7-Steuerungen mit symbolischer Adressierung reicht eine aktive Verbindung zur SPS — der integrierte Import-Browser ruft die Variablenstruktur direkt vom Gerät ab.
+
+Eine Schritt-für-Schritt-Anleitung zum Anlegen und Verbinden des Feldgeräts findet sich unter [Feldgerät hinzufügen](/de/edge/how-to/add-field-device).
+
+    </div>
+
+    <div class="qs-panel">
+
+:::note
+Der Import der Messgrößen direkt vom Feldgerät wird für **OPC UA** und **SIMATIC mit symbolischer Adressierung** unterstützt. Für alle anderen Gerätetypen steht der [CSV-Import](#) oder das [manuelle Anlegen](#) zur Verfügung.
+:::
+
+
+:::note
+Die Importfunktion ist erst verfügbar, wenn das Gerät verbunden ist.
+:::
+
+In der Geräteliste auf die Gerätezeile klicken, um die Geräteseite zu öffnen.
+
+<div class="screenshot-frame">
+  <img src={deviceListEditImg.src} alt="Geräteliste" />
+</div>
+
+Vor dem Import muss eine Verbindung zum Feldgerät bestehen. Der Verbindungsstatus ist im Widget **Geräteverbindung** auf der Geräteseite einsehbar.
+
+<div class="screenshot-frame screenshot-frame-sm">
+  <img src={deviceConnectedImg.src} alt="Verbindungsstatus des Geräts" />
+</div>
+
+Auf der Geräteseite zeigt das Widget **Messgrößen** die Gesamtzahl der konfigurierten Messgrößen und wie viele davon aktuell aufgezeichnet werden. Über **Importieren** können Messgrößen vom Feldgerät oder aus einer CSV-Datei hinzugefügt werden.
+
+<div class="screenshot-frame screenshot-frame-sm">
+  <img src={measuredVariablesImg.src} alt="Messgrößen-Widget" />
+</div>
+
+**Von Gerät** auswählen, um Struktur und Messgrößen direkt vom Feldgerät abzurufen.
+
+<div class="screenshot-frame">
+  <img src={importSourceImg.src} alt="Importquelle auswählen — Von Gerät" />
+</div>
+
+Der Variablen-Browser zeigt anschließend alle verfügbaren Messgrößen an:
+
+- Bereits importierte Messgrößen sind grau hinterlegt
+- Messgrößen, die auf dem Edge eingerichtet sind, aber beim Import auf dem Feldgerät nicht gefunden wurden, sind gelb hinterlegt
+
+Alle gewünschten Messgrößen auswählen und dem **Warenkorb** hinzufügen. Der Warenkorb fungiert als Auswahl-Puffer — Messgrößen können schrittweise beim Navigieren durch die Variablenstruktur hinzugefügt und die gesamte Auswahl vor der Bestätigung geprüft werden. Sobald die Auswahl vollständig ist, den Warenkorb öffnen und auf **Alle importieren** klicken.
+
+<div class="screenshot-frame">
+  <img src={importCartImg.src} alt="Import Warenkorb" />
+</div>
+
+Vor der Bestätigung die gewünschte Konfiguration für die importierten Messgrößen festlegen — Abtastintervall, Aufzeichnungsstatus und Zeitstempel-Ausrichtung können für alle importierten Messgrößen gleichzeitig global gesetzt werden.
+
+<div class="screenshot-frame">
+  <img src={importConfigImg.src} alt="Import-Konfiguration" />
+</div>
+
+Auf **Importieren** klicken, um den Vorgang zu bestätigen. Die importierten Messgrößen werden sofort zum Gerät hinzugefügt und beginnen mit der Aufzeichnung im konfigurierten Abtastintervall.
+
+    </div>
+
+    <div class="qs-panel">
+
+Der CSV-Import ermöglicht das Anlegen von Messgrößen über eine Tabellendatei — geeignet für alle Gerätetypen und als Alternative, wenn der Geräteimport nicht verfügbar ist oder bei großen SPS-Strukturen fehlschlägt.
+
+Auf der Geräteseite das Widget **Messgrößen** öffnen, auf **Importieren** klicken und **Aus CSV-Datei** auswählen.
+
+<div class="screenshot-frame">
+  <img src={importSourceImg.src} alt="Importquelle auswählen — Aus CSV-Datei" />
+</div>
+
+<div class="screenshot-frame screenshot-frame-sm">
+  <img src={importCsvImg.src} alt="CSV-Import-Option" />
+</div>
+
+**Aufbau der CSV-Datei**
+
+Die CSV-Datei verwendet **Semikolon (`;`)** als Trennzeichen und muss UTF-8-kodiert sein. Die erste Zeile enthält die Spaltenköpfe — Groß-/Kleinschreibung und Leerzeichen müssen exakt übereinstimmen.
+
+```
+Messgroessenname;Aktiv;Abtastrate (ms);Datentyp (SPS);Datentyp (Crawler);Gruppe;Adresse;Tags
+```
+
+<div class="def-list">
+  <span class="def-list-key">Messgroessenname</span><span class="def-list-val">Name der Messgröße — muss innerhalb einer Gruppenebene eindeutig sein</span>
+  <span class="def-list-key">Aktiv</span><span class="def-list-val"><code>true</code> oder <code>false</code> — ob die Aufzeichnung nach dem Import sofort startet</span>
+  <span class="def-list-key">Abtastrate (ms)</span><span class="def-list-val">Abtastintervall in Millisekunden, z. B. <code>1000</code></span>
+  <span class="def-list-key">Datentyp (SPS)</span><span class="def-list-val">Datentyp der Variablen auf der SPS-Seite, z. B. <code>S7_Real</code>, <code>S7_Bool</code>, <code>S7_Int</code>, <code>FLOAT</code>, <code>BOOLEAN</code></span>
+  <span class="def-list-key">Datentyp (Crawler)</span><span class="def-list-val">Datentyp auf Edge-Seite — in der Regel <code>FLOAT</code> für Zahlenwerte oder <code>STRING</code> für Text- und Zeitwerte</span>
+  <span class="def-list-key">Gruppe</span><span class="def-list-val">Gruppenname zur Strukturierung der Messgrößen im Variablen-Browser, z. B. <code>Motor1</code> oder <code>PAC0</code></span>
+  <span class="def-list-key">Adresse</span><span class="def-list-val">Adresse der Variablen im gerätespezifischen Format (siehe Adressformate unten)</span>
+  <span class="def-list-key">Tags</span><span class="def-list-val">Optionale Tags, kommagetrennt — kann leer bleiben</span>
+</div>
+
+**Beispiel (S7 absolut)**
+
+```
+Messgroessenname;Aktiv;Abtastrate (ms);Datentyp (SPS);Datentyp (Crawler);Gruppe;Adresse;Tags
+Temperatur;true;1000;S7_Real;FLOAT;Kessel1;DB10.DBD4.0;
+Ventil_auf;true;500;S7_Bool;FLOAT;Kessel1;DB10.DBX0.0;
+Drehzahl;false;2000;S7_DInt;FLOAT;Antriebe;DB20.DBD0.0;
+```
+
+Fertige Beispieldateien für alle Gerätetypen stehen weiter unten zum Download bereit.
+
+**Adressformate nach Gerätetyp**
+
+<div class="screenshot-frame">
+  <img src={variableAddressFormatsImg.src} alt="Adressformat-Referenz — S7 symbolisch, S7 absolut, Modbus TCP" />
+</div>
+
+**Beispieldateien zum Download**
+
+Die folgenden Dateien können direkt als Vorlage verwendet oder zum Testen des CSV-Imports genutzt werden:
+
+<div class="csv-downloads">
+  <a href="/downloads/edge/edge-csv-example-s7-symbolisch.csv" class="csv-download-card">
+    <span class="csv-download-icon">↓</span>
+    <span class="csv-download-label">S7 symbolisch (TIA Portal)</span>
+    <span class="csv-download-badge">CSV</span>
+  </a>
+  <a href="/downloads/edge/edge-csv-example-s7-absolut.csv" class="csv-download-card">
+    <span class="csv-download-icon">↓</span>
+    <span class="csv-download-label">S7 absolut (S7-300/400 und TIA Portal)</span>
+    <span class="csv-download-badge">CSV</span>
+  </a>
+  <a href="/downloads/edge/edge-csv-example-modbus.csv" class="csv-download-card">
+    <span class="csv-download-icon">↓</span>
+    <span class="csv-download-label">Modbus TCP</span>
+    <span class="csv-download-badge">CSV</span>
+  </a>
+</div>
+
+    </div>
+
+    <div class="qs-panel">
+
+Um die Messgrößen eines Geräts aufzurufen, die Geräteseite öffnen und den Variablen-Link anklicken.
+
+<div class="screenshot-frame screenshot-frame-sm">
+  <img src={variablenLinkImg.src} alt="Variablen-Link auf der Geräteseite" />
+</div>
+
+**Messgröße manuell anlegen**
+
+Beim manuellen Anlegen von Messgrößen muss zwingend zuerst eine **Root-Gruppe** (oberste Gruppenebene) im Gerät vorhanden sein. Ohne Root-Gruppe ist das Anlegen von Messgrößen nicht möglich.
+
+**Schritt 1 — Root-Gruppe anlegen**
+
+Im Variablen-Browser des Geräts erscheint zunächst nur das Gerät ohne Gruppen oder Messgrößen.
+
+<div class="screenshot-frame">
+  <img src={variableBrowserEmptyImg.src} alt="Leerer Variablen-Browser — noch keine Gruppen vorhanden" />
+</div>
+
+Auf das **+**-Symbol neben dem Gerät klicken, um eine neue Gruppe anzulegen. Name der Gruppe eingeben und auf **Erstellen** klicken.
+
+<div class="screenshot-frame">
+  <img src={variableGroupCreateImg.src} alt="Dialog Gruppe anlegen" />
+</div>
+
+**Schritt 2 — Messgröße hinzufügen**
+
+Sobald mindestens eine Gruppe vorhanden ist, die Gruppe auswählen und auf **+ Messgröße hinzufügen** klicken. Name, Adresse, Datentyp und Abtastintervall eingeben.
+
+<div class="screenshot-frame">
+  <img src={variableCreateDialogImg.src} alt="Dialog Messgröße anlegen" />
+</div>
+
+Das Adressformat hängt vom Gerätetyp ab:
+
+<div class="screenshot-frame">
+  <img src={variableAddressFormatsImg.src} alt="Adressformat-Referenz — S7 symbolisch, S7 absolut, Modbus TCP" />
+</div>
+
+Eine korrekt konfigurierte Messgröße erscheint in der Liste mit Typ, Adresse, Abtastintervall und zuletzt aufgezeichnetem Wert.
+
+<div class="screenshot-frame">
+  <img src={variableConnectedImg.src} alt="Messgröße-Liste mit verbundener und aufzeichnender Messgröße" />
+</div>
+
+**Einzelne Messgröße bearbeiten oder löschen**
+
+Für eine Messgröße können folgende Einstellungen geändert werden:
+
+<div class="def-list">
+  <span class="def-list-key">Name</span><span class="def-list-val">Namensänderungen erfordern eine Anpassung in bestehenden Dashboards; der Name sollte innerhalb einer Gruppenebene eindeutig sein</span>
+  <span class="def-list-key">Abtastrate</span><span class="def-list-val">Bereich: 10 ms bis 500 h, Angabe in Millisekunden</span>
+  <span class="def-list-key">Aufzeichnung</span><span class="def-list-val">Aufzeichnung starten und stoppen</span>
+  <span class="def-list-key">Zeitstempel-Ausrichtung</span><span class="def-list-val">Wenn aktiviert, wird der Zeitstempel jedes aufgezeichneten Werts auf das nächste Vielfache des Abtastintervalls gerundet. Dadurch werden Samples verschiedener Messgrößen auf ein gemeinsames Zeitraster ausgerichtet, was den direkten Vergleich in Grafana vereinfacht.</span>
+  <span class="def-list-key">Aufzeichnungs-Metriken</span><span class="def-list-val">Wenn aktiviert, werden interne Leistungszähler zusammen mit dem gemessenen Wert gespeichert — z. B. tatsächliche vs. erwartete Sample-Anzahl pro Intervall. Hilfreich zur Diagnose von Timing-Problemen oder zur Bewertung der Aufzeichnungsqualität.</span>
+  <span class="def-list-key">Tags</span><span class="def-list-val">Hinzufügen/entfernen</span>
+</div>
+
+Name und Abtastrate können direkt im Variablen-Browser inline bearbeitet werden. Für alle weiteren Einstellungen das Bearbeiten-Symbol neben der Messgröße anklicken.
+
+<div class="screenshot-frame screenshot-frame-xs">
+  <img src={variableEditIconImg.src} alt="Bearbeiten-Symbol der Messgröße" />
+</div>
+
+<div class="screenshot-frame">
+  <img src={variableEditDialogImg.src} alt="Bearbeitungs-Dialog der Messgröße" />
+</div>
+
+:::note
+Das Löschen einer Messgröße entfernt es aus der Visualisierung. Bereits eingerichtete Panels können fehlerhafte oder keine Daten anzeigen. Die aufgezeichneten Daten werden nicht gelöscht — der belegte Speicherplatz wird nicht freigegeben.
+:::
+
+**Mehrere Messgrößen im Bulk bearbeiten oder löschen**
+
+Zur gleichzeitigen Bearbeitung oder Löschung mehrere Messgrößen im Variablen-Browser auswählen und dem Warenkorb hinzufügen. Ausgewählte Messgrößen werden farblich markiert; die Anzahl der ausgewählten Einträge wird am Warenkorb-Symbol angezeigt. Den Warenkorb öffnen, um die Auswahl zu prüfen und bei Bedarf anzupassen. Das Entfernen einer Messgröße aus dem Warenkorb löscht diese nicht.
+
+<div class="screenshot-frame">
+  <img src={cartSelectionImg.src} alt="Warenkorb Auswahlliste" />
+</div>
+
+Über **Alle bearbeiten** den Bulk-Bearbeitungs-Dialog öffnen. Einzelne Einstellungen können für alle ausgewählten Messgrößen gleichzeitig überschrieben werden.
+
+<div class="screenshot-frame">
+  <img src={bulkEditDialogImg.src} alt="Bulk-Bearbeitungs-Dialog" />
+</div>
+
+Wenn die aktuellen Werte in der Auswahl unterschiedlich sind, wird dies angezeigt.
+
+<div class="screenshot-frame">
+  <img src={bulkEditMixedImg.src} alt="Bulk-Bearbeitung mit gemischten Werten" />
+</div>
+
+Nach dem Übernehmen der Änderungen bleibt der Warenkorb für weitere Bearbeitungen geöffnet oder kann geschlossen werden.
+
+    </div>
+
+    <div class="qs-panel">
+
+Die Performance-Analyse prüft, ob der Edge Messgrößen im konfigurierten Intervall abtastet. Sie überprüft, ob keine Werte verpasst oder verzögert werden — sinnvoll nach der Einrichtung oder bei Änderungen an den Abtastintervallen.
+
+:::note
+Die Aufzeichnung des getesteten Geräts wird während eines Tests unterbrochen. Performance-Tests nicht an einem Gerät durchführen, das aktiv Produktionsdaten aufzeichnet.
+:::
+
+Die Geräteseite öffnen und auf **Performance-Analyse** klicken, um die Analyseübersicht zu öffnen. Das letzte Testergebnis wird zusammen mit den verfügbaren Testtypen angezeigt.
+
+<div class="screenshot-frame">
+  <img src={perfOverviewImg.src} alt="Performance-Analyse Übersicht — Testauswahl und letztes Ergebnis" />
+</div>
+
+Unter **Soll-Ist-Vergleich** auf **Test Durchführen** klicken, um den Konfigurationsdialog zu öffnen. Testdauer über den Schieberegler wählen (10 Sekunden bis 30 Minuten) und auf **Starten** klicken.
+
+<div class="screenshot-frame screenshot-frame-sm">
+  <img src={perfStartImg.src} alt="Soll-Ist-Vergleich starten — Konfigurationsdialog mit Dauer-Schieberegler" />
+</div>
+
+Vor dem Start erscheint ein Hinweis, der bestätigt, dass die Aufzeichnung während des Tests unterbrochen wird.
+
+<div class="screenshot-frame screenshot-frame-sm">
+  <img src={perfWarningImg.src} alt="Hinweis: Aufzeichnung wird während des Tests unterbrochen" />
+</div>
+
+Der Test läuft im Hintergrund und zeigt einen Fortschrittsindikator. Edge und Datenquelle während des Tests nicht abschalten.
+
+<div class="screenshot-frame">
+  <img src={perfRunningImg.src} alt="Performance-Analyse — laufender Test mit Fortschrittsanzeige" />
+</div>
+
+Nach Abschluss zeigt die Ergebnisseite eine Qualitätsbewertung (Farbskala von Rot bis Grün), die Anzahl der fehlgeschlagenen Testläufe sowie Kennzahlen wie durchschnittliche, mediane, minimale und maximale Abtastrate.
+
+<div class="screenshot-frame">
+  <img src={perfResultsImg.src} alt="Performance-Analyse Ergebnisse — Qualitätsbewertung und Abtastraten-Statistik" />
+</div>
+
+Ist die Qualitätsbewertung **schlecht** (rot oder orange), liegen die häufigsten Ursachen in einem zu kurzen Abtastintervall im Verhältnis zur Netzwerkumlaufzeit zum Feldgerät oder in einer zu hohen Anzahl gleichzeitig aufgezeichneter Messgrößen. In diesen Fällen empfiehlt es sich, das Abtastintervall zu erhöhen, die Anzahl der aktiv aufzeichnenden Messgrößen am Gerät zu reduzieren oder den Test für einzelne Messgrößen auszuführen, um den Engpass zu isolieren. Bleibt das Problem nach Anpassung der Konfiguration bestehen, wenden Sie sich an den Support.
+
+    </div>
+
+  </div>
+
+</div>

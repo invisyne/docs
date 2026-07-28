@@ -1,0 +1,105 @@
+---
+title: "Hardware"
+description: "Unterstützte Hardware-Plattformen für den Edge — Siemens SIMATIC IPC127E, WAGO 752-9400 und virtuelle Maschine."
+---
+
+import simaticImg from '../../../../../assets/images/edge/edge-hardware-simatic-ipc127e.png';
+import mountingImg from '../../../../../assets/images/edge/edge-hardware-mounting-overview.jpg';
+import dinBracketImg from '../../../../../assets/images/edge/edge-hardware-din-bracket.png';
+import bookMountImg from '../../../../../assets/images/edge/edge-hardware-book-mount.png';
+import wagoImg from '../../../../../assets/images/edge/edge-hardware-wago-752-9400.png';
+import ImageCarousel from '../../../../../components/ImageCarousel.astro';
+
+<div class="qs-stepper">
+
+  <div class="qs-tabbar">
+    <a class="qs-tab" href="#">Siemens SIMATIC IPC127E</a>
+    <a class="qs-tab" href="#">WAGO 752-9400</a>
+    <a class="qs-tab" href="#">Virtuelle Maschine</a>
+  </div>
+
+  <div class="qs-panels">
+
+    <div class="qs-panel">
+
+<ImageCarousel images={[
+  { src: simaticImg.src, alt: "Siemens SIMATIC IPC127E", label: "SIMATIC IPC127E", description: "Lüfterloser Industrie-PC von Siemens, eingesetzt als Edge-Hardware-Plattform." },
+  { src: mountingImg.src, alt: "Montage-Übersicht", label: "Montage-Übersicht", description: "Der IPC127E kann in zwei Ausrichtungen auf einer Hutschiene montiert werden." },
+  { src: dinBracketImg.src, alt: "DIN-Halterung", label: "Hutschiene — DIN-Halterung", description: "Standard-Halterung: Das Gerät liegt flach an der Schiene." },
+  { src: bookMountImg.src, alt: "Buchmontage", label: "Hutschiene — Buchmontage", description: "Buchmontage: Das Gerät steht aufrecht, parallel zur Schiene. Spart horizontalen Platz." },
+]} />
+
+<div class="def-list">
+  <span style="grid-column:1/-1;font-size:11px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:var(--sl-color-gray-3);margin-top:0.5rem;">Prozessor</span>
+  <span class="def-list-key">CPU</span><span class="def-list-val">Intel® Atom E3940 Quadcore 1.6 GHz</span>
+  <span style="grid-column:1/-1;font-size:11px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:var(--sl-color-gray-3);margin-top:0.75rem;">Speicher</span>
+  <span class="def-list-key">RAM</span><span class="def-list-val">4 GB</span>
+  <span class="def-list-key">Flash</span><span class="def-list-val">64 GB</span>
+  <span style="grid-column:1/-1;font-size:11px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:var(--sl-color-gray-3);margin-top:0.75rem;">Anschlüsse</span>
+  <span class="def-list-key">Ethernet</span><span class="def-list-val">2 × RJ45 (X1 P1, X2 P1)</span>
+  <span class="def-list-key">USB</span><span class="def-list-val">2 × USB 3.0</span>
+  <span class="def-list-key">Video</span><span class="def-list-val">DisplayPort</span>
+  <span style="grid-column:1/-1;font-size:11px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:var(--sl-color-gray-3);margin-top:0.75rem;">Abmessungen</span>
+  <span class="def-list-key">Breite</span><span class="def-list-val">85 mm / 3.346 in</span>
+  <span class="def-list-key">Höhe</span><span class="def-list-val">104 mm / 4.094 in</span>
+  <span class="def-list-key">Tiefe</span><span class="def-list-val">41 mm / 1.614 in</span>
+  <span style="grid-column:1/-1;font-size:11px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:var(--sl-color-gray-3);margin-top:0.75rem;">Netzwerkadapter-Zuordnung</span>
+  <span class="def-list-key">X1 P1</span><span class="def-list-val">Adapter 1 (eth0) — primäre Schnittstelle, typischerweise mit dem IT/OT-Netzwerk verbunden</span>
+  <span class="def-list-key">X2 P1</span><span class="def-list-val">Adapter 2 (eth1) — sekundäre Schnittstelle, typischerweise mit dem Feldgeräte-Netzwerk verbunden</span>
+</div>
+
+:::note
+Die Port-Beschriftungen **X1 P1** und **X2 P1** sind am Gerätegehäuse neben den RJ45-Buchsen aufgedruckt und im Foto oben sichtbar.
+:::
+
+    </div>
+
+    <div class="qs-panel">
+
+<ImageCarousel images={[
+  { src: wagoImg.src, alt: "WAGO Edge Computer 752-9400", label: "WAGO Edge Computer 752-9400", description: "Lüfterloser Industrie-PC von WAGO. Wird in Buchmontage auf einer Hutschiene befestigt." },
+]} />
+
+<div class="def-list">
+  <span style="grid-column:1/-1;font-size:11px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:var(--sl-color-gray-3);margin-top:0.5rem;">Prozessor</span>
+  <span class="def-list-key">CPU</span><span class="def-list-val">Intel® Atom E3845 Quadcore 1.91 GHz</span>
+  <span style="grid-column:1/-1;font-size:11px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:var(--sl-color-gray-3);margin-top:0.75rem;">Speicher</span>
+  <span class="def-list-key">RAM</span><span class="def-list-val">4 GB DDR3L</span>
+  <span class="def-list-key">Flash</span><span class="def-list-val">64 GB mSATA</span>
+  <span style="grid-column:1/-1;font-size:11px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:var(--sl-color-gray-3);margin-top:0.75rem;">Anschlüsse</span>
+  <span class="def-list-key">Ethernet</span><span class="def-list-val">2 × RJ45 1000BASE-T (X1, X2)</span>
+  <span class="def-list-key">USB</span><span class="def-list-val">3 × USB 2.0, 1 × USB 3.0</span>
+  <span class="def-list-key">Video</span><span class="def-list-val">HDMI, DisplayPort</span>
+  <span style="grid-column:1/-1;font-size:11px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:var(--sl-color-gray-3);margin-top:0.75rem;">Abmessungen</span>
+  <span class="def-list-key">Breite</span><span class="def-list-val">40 mm / 1.575 in</span>
+  <span class="def-list-key">Höhe</span><span class="def-list-val">150 mm / 5.906 in</span>
+  <span class="def-list-key">Tiefe</span><span class="def-list-val">105 mm / 4.134 in</span>
+  <span style="grid-column:1/-1;font-size:11px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:var(--sl-color-gray-3);margin-top:0.75rem;">Netzwerkadapter-Zuordnung</span>
+  <span class="def-list-key">X1</span><span class="def-list-val">Adapter 1 (eth0) — primäre Schnittstelle, typischerweise mit dem IT/OT-Netzwerk verbunden</span>
+  <span class="def-list-key">X2</span><span class="def-list-val">Adapter 2 (eth1) — sekundäre Schnittstelle, typischerweise mit dem Feldgeräte-Netzwerk verbunden</span>
+</div>
+
+:::note
+Montage ist fest verbaut; nur Buchmontage möglich.
+:::
+
+    </div>
+
+    <div class="qs-panel">
+
+:::note
+Aktuell wird ausschließlich **VMware** unterstützt.
+:::
+
+<div class="def-list">
+  <span style="grid-column:1/-1;font-size:11px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:var(--sl-color-gray-3);margin-top:0.5rem;">Mindestanforderungen</span>
+  <span class="def-list-key">CPU</span><span class="def-list-val">4 Kerne, 1.8 GHz</span>
+  <span class="def-list-key">RAM</span><span class="def-list-val">4 GB</span>
+  <span class="def-list-key">Festplatte</span><span class="def-list-val">64 GB</span>
+</div>
+
+    </div>
+
+  </div>
+
+</div>

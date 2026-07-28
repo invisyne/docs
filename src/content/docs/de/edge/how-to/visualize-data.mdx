@@ -1,0 +1,175 @@
+---
+title: "Visualisieren von Messwerten"
+description: "Schritt-für-Schritt-Anleitung zur Einrichtung von Dashboards und Panels in Grafana zur Visualisierung der vom Edge aufgezeichneten Messwerte."
+sidebar:
+  order: 4
+---
+
+import viewerEditorImg from '../../../../../assets/images/edge/edge-grafana-viewer-vs-editor.gif';
+import createMenuImg from '../../../../../assets/images/edge/edge-grafana-create-menu.png';
+import saveDashboardImg from '../../../../../assets/images/edge/edge-grafana-save-dashboard.png';
+import dashboardsManageImg from '../../../../../assets/images/edge/edge-grafana-dashboards-manage.gif';
+import createFolderMenuImg from '../../../../../assets/images/edge/edge-grafana-create-folder-menu.png';
+import newFolderImg from '../../../../../assets/images/edge/edge-grafana-new-folder.png';
+import exportIconImg from '../../../../../assets/images/edge/edge-grafana-export-icon.png';
+import addPanelIconImg from '../../../../../assets/images/edge/edge-grafana-add-panel-icon.png';
+import addPanelImg from '../../../../../assets/images/edge/edge-grafana-add-panel.gif';
+import queryEditorImg from '../../../../../assets/images/edge/edge-grafana-query-editor.png';
+import selectMeasurementImg from '../../../../../assets/images/edge/edge-grafana-select-measurement.gif';
+import queryStringFieldImg from '../../../../../assets/images/edge/edge-grafana-query-string-field.png';
+import visualizationPickerImg from '../../../../../assets/images/edge/edge-grafana-visualization-picker.png';
+import removeTagFilterImg from '../../../../../assets/images/edge/edge-grafana-remove-tag-filter.png';
+
+Der Edge nutzt Grafana (Version 7.4) als integrierte Visualisierungsplattform. Grafana ist in **Dashboards** gegliedert, die jeweils ein oder mehrere **Panels** enthalten. Jedes Panel fragt eine bestimmte Messgröße aus der internen Datenbank des Edge ab und stellt die Werte im gewählten Anzeigetyp dar — Zeitreihendiagramme, Gauges, Stat-Panels, Tabellen und weitere. Dashboards können in Ordnern strukturiert werden, zum Beispiel nach Feldgerät oder Produktionslinie.
+
+Für die Anzeige vorhandener Dashboards ist keine Anmeldung erforderlich. Das Erstellen, Bearbeiten oder Löschen von Dashboards und Panels erfordert eine Anmeldung mit einem **Editor-Account**.
+
+:::note
+Verfügbar ab Edge-Version 2.7.1.
+:::
+
+<div class="qs-stepper">
+
+  <div class="qs-tabbar qs-cardbar">
+    <a class="qs-tab" href="#">
+      <span class="qs-card-title">Dashboards</span>
+      <span class="qs-card-desc">Dashboards und Ordner erstellen, verwalten und speichern.</span>
+    </a>
+    <a class="qs-tab" href="#">
+      <span class="qs-card-title">Panels & Messgrößen</span>
+      <span class="qs-card-desc">Panels anlegen und Messgrößen für die Anzeige auswählen.</span>
+    </a>
+    <a class="qs-tab" href="#">
+      <span class="qs-card-title">Export & Import</span>
+      <span class="qs-card-desc">Dashboards sichern oder auf ein anderes Gerät übertragen.</span>
+    </a>
+  </div>
+
+  <div class="qs-panels">
+
+    <div class="qs-panel">
+
+**Viewer vs. Editor**
+
+Für die Anzeige eingerichteter Dashboards ist keine Anmeldung erforderlich. Zum Erstellen oder Bearbeiten von Dashboards und Panels muss man sich mit einem Editor-Account anmelden. Das Login-Symbol befindet sich im unteren linken Bereich.
+
+<div class="screenshot-frame">
+  <img src={viewerEditorImg.src} alt="Viewer vs. Editor Anmeldung" />
+</div>
+
+**Dashboard erstellen**
+
+In der linken Menü-Leiste auf das **+**-Symbol klicken und **Dashboard** auswählen. Eine neue Seite mit einem leeren Panel wird geöffnet.
+
+<div class="screenshot-frame screenshot-frame-sm">
+  <img src={createMenuImg.src} alt="Dashboard erstellen Menü" />
+</div>
+
+:::note
+Das Dashboard muss **gespeichert** werden, damit es dauerhaft erhalten bleibt. Auf das Speichern-Symbol im oberen rechten Bereich klicken, einen Namen vergeben und optional einen Ordner auswählen.
+:::
+
+<div class="screenshot-frame">
+  <img src={saveDashboardImg.src} alt="Dashboard speichern Dialog" />
+</div>
+
+**Ordner erstellen**
+
+Ordner dienen der Sortierung von Dashboards. Zur Erstellung eines Ordners auf das **+**-Symbol im linken Menü klicken und **Folder** auswählen. Den gewünschten Namen eingeben und mit **Create** bestätigen.
+
+<div class="screenshot-frame">
+  <img src={dashboardsManageImg.src} alt="Dashboards verwalten" />
+</div>
+
+<div class="screenshot-frame screenshot-frame-sm">
+  <img src={createFolderMenuImg.src} alt="Ordner erstellen Menü" />
+</div>
+
+<div class="screenshot-frame">
+  <img src={newFolderImg.src} alt="Neuer Ordner Dialog" />
+</div>
+
+    </div>
+
+    <div class="qs-panel">
+
+**Panel anlegen**
+
+Zum Hinzufügen eines neuen Panels auf das **+**-Symbol im oberen rechten Bereich des Dashboards klicken (links neben dem Speichern-Symbol). Über **+ Add new panel** wird der Panel-Editor geöffnet.
+
+<div class="screenshot-frame screenshot-frame-xs">
+  <img src={addPanelIconImg.src} alt="Panel hinzufügen Symbol" />
+</div>
+
+<div class="screenshot-frame">
+  <img src={addPanelImg.src} alt="Panel anlegen" />
+</div>
+
+**Messgröße auswählen**
+
+Damit Daten in einem Panel angezeigt werden, muss mindestens eine Messgröße ausgewählt werden. Dies erfolgt im unteren Bereich des Panel-Editors, unterhalb der Anzeige-Vorschau.
+
+<div class="screenshot-frame">
+  <img src={queryEditorImg.src} alt="Query-Editor" />
+</div>
+
+1. **Select Measurement** — `source` auswählen. Steht diese Option nicht zur Verfügung, wurden noch keine Werte aufgezeichnet. Die Eingabe kann auch manuell erfolgen (Kleinschreibung beachten).
+2. **Feldgerät wählen** — auf **+** neben **WHERE** klicken, `device_name` auswählen, dann das gewünschte Gerät wählen.
+3. **Ordner wählen** — erneut auf **+** klicken, `group_*` auswählen, dann den Ordner wählen. Diesen Schritt wiederholen, bis der Ziel-Ordner erreicht ist.
+4. **Messgröße wählen** — erneut auf **+** klicken, `variable` auswählen und die gewünschte Messgröße aus der Liste wählen.
+
+:::note
+Wurde die Auswahl noch nicht vollständig abgeschlossen (z. B. wurde nur das Gerät ausgewählt), werden in der Vorschau möglicherweise bereits Werte angezeigt. Diese sind nicht korrekt — am Ende muss immer eine konkrete Messgröße ausgewählt sein.
+:::
+
+<div class="screenshot-frame">
+  <img src={selectMeasurementImg.src} alt="Messgröße auswählen" />
+</div>
+
+**Tag-Filter entfernen**
+
+Um einen Ordner-Filter aus einer Abfrage zu entfernen, auf den betreffenden Gruppeneintrag klicken und **— remove tag filter —** aus dem Dropdown auswählen.
+
+<div class="screenshot-frame">
+  <img src={removeTagFilterImg.src} alt="Tag-Filter im Grafana-Query-Editor entfernen" />
+</div>
+
+**Messgrößen vom Typ „String"**
+
+Messgrößen, die im Edge als String gespeichert werden (z. B. `S7_DWORD`), erfordern eine Änderung des Werts **field**. Im Bereich **Select** auf `value` klicken und `stringValue` eingeben (Groß-/Kleinschreibung beachten).
+
+<div class="screenshot-frame screenshot-frame-sm">
+  <img src={queryStringFieldImg.src} alt="String-Feld Konfiguration" />
+</div>
+
+**Anzeigetyp ändern**
+
+Grafana bietet diverse Anzeigetypen: Linien- und Balkendiagramme, Einzelwert-Panels, Gauges und Tabellen. Anzeigetyp und alle zugehörigen Einstellungen werden im rechten Bereich des Panel-Editors konfiguriert.
+
+<div class="screenshot-frame screenshot-frame-sm">
+  <img src={visualizationPickerImg.src} alt="Anzeigetyp auswählen" />
+</div>
+
+Weiterführende Informationen bietet die offizielle [Grafana-Dokumentation](https://grafana.com/docs/grafana/v7.4/) sowie die [Tutorials](https://grafana.com/tutorials/).
+
+    </div>
+
+    <div class="qs-panel">
+
+**Dashboard exportieren**
+
+Das zu exportierende Dashboard öffnen. Auf das **Share**-Symbol im oberen linken Bereich klicken (neben dem Titel), **Export** auswählen und mit **Save to file** das Dashboard als `.json`-Datei herunterladen.
+
+<div class="screenshot-frame screenshot-frame-xs">
+  <img src={exportIconImg.src} alt="Export-Symbol" />
+</div>
+
+**Dashboard importieren**
+
+Auf **+** im linken Menü klicken und **Import** auswählen. Die `.json`-Datei auswählen, dann Name, Ordner und UID anpassen. Existiert bereits ein Dashboard mit gleichem Namen oder gleicher UID, müssen diese Angaben geändert oder das bestehende Dashboard überschrieben werden.
+
+    </div>
+
+  </div>
+
+</div>

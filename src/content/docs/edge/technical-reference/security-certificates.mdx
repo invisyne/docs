@@ -1,0 +1,53 @@
+---
+title: "Security Certificates"
+description: "Why the Edge web interface uses HTTPS, why browsers show a certificate warning, and what to do about it."
+sidebar:
+  badge:
+    text: "2.22+"
+    variant: note
+---
+
+From Edge 2.22, the web interface is served over **HTTPS** by default. This means all communication between your browser and the Edge device is encrypted.
+
+:::note
+The browser warning that appears on first access is about **identity verification, not encryption**. The connection is encrypted regardless. The browser is telling you it cannot automatically verify *who* is at the other end — not that the channel is insecure.
+:::
+
+## Why the browser shows a warning
+
+The Edge device presents a **self-signed certificate** by default. Browsers cannot trace this back to a public Certificate Authority (CA), so they warn you.
+
+A publicly trusted certificate (e.g. from Let's Encrypt) is not an option for a typical Edge deployment:
+
+- Public CAs only issue certificates for **publicly resolvable domain names** — Edge devices are normally reached by **IP address** on a private network
+- Domain validation requires **internet access**, which many Edge networks do not have
+
+## The default certificate
+
+<div class="def-list">
+  <span class="def-list-key">Generated</span><span class="def-list-val">Once at first boot; never regenerated automatically</span>
+  <span class="def-list-key">Changes with</span><span class="def-list-val">Nothing — a stable certificate keeps browser behaviour predictable</span>
+  <span class="def-list-key">Encryption strength</span><span class="def-list-val">Identical to a publicly trusted certificate</span>
+</div>
+
+## What to do about the warning
+
+**Option 1 — Proceed past the warning** (recommended for most cases)
+
+No setup required. The connection stays encrypted. Every browser lets you continue; once you do, it remembers the decision for that device.
+
+**Option 2 — Install a custom certificate**
+
+If your organisation has an internal CA (e.g. Active Directory Certificate Services), you can install a certificate your machines already trust. The warning disappears entirely, with HTTPS still active.
+
+→ [Install a Custom HTTPS Certificate](/edge/how-to/https-certificate)
+
+## Allow HTTP (optional)
+
+If HTTPS is impractical in your environment, you can enable **Allow HTTP** to serve the interface over HTTP alongside HTTPS. Requests over HTTP are no longer redirected to HTTPS.
+
+:::caution
+Enabling Allow HTTP removes transport encryption for clients connecting over HTTP. Only use this on isolated networks, and discuss with your IT or security team first.
+:::
+
+→ [Allow HTTP](/edge/how-to/http-mode)

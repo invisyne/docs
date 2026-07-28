@@ -521,6 +521,58 @@ starlight-toc a {
   text-decoration: none !important;
 }
 
+/* ─── Card tab bar variant ───────────────────────────────────────────── */
+.qs-cardbar {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  background: transparent;
+  border-radius: 0;
+  padding: 0;
+  width: 100%;
+  margin-bottom: 1.25rem;
+}
+
+.qs-cardbar .qs-tab {
+  border-radius: 10px;
+  border: 1px solid var(--sl-color-hairline);
+  padding: 16px 18px;
+  display: block;
+  background: var(--sl-color-bg-sidebar);
+  color: var(--sl-color-gray-1);
+  text-align: left;
+  white-space: normal;
+  height: auto;
+  font-weight: 400;
+}
+
+.qs-cardbar .qs-tab:hover {
+  border-color: var(--sl-color-gray-3);
+  background: var(--sl-color-gray-6);
+  color: var(--sl-color-gray-1);
+}
+
+.qs-cardbar .qs-tab.qs-active,
+.qs-cardbar .qs-tab.active {
+  border-color: var(--sl-color-gray-1) !important;
+  background: var(--sl-color-gray-1) !important;
+  color: var(--sl-color-bg) !important;
+}
+
+.qs-card-title {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.qs-card-desc {
+  display: block;
+  font-size: 13px;
+  opacity: 0.7;
+  line-height: 1.5;
+}
+
 /* ─── Split layout: text left, image carousel right ─────────────────── */
 
 .doc-split {
@@ -781,6 +833,75 @@ starlight-toc a {
   color: var(--sl-color-gray-2, #444);
   line-height: 1.55;
   margin: 0 !important;
+}
+
+/* ─── Overview Cards ────────────────────────────────────────────────── */
+.viz-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 1.25rem 0 2rem;
+}
+
+.viz-card {
+  background: var(--sl-color-bg-sidebar);
+  border: 1px solid var(--sl-color-hairline);
+  border-radius: 10px;
+  padding: 16px 18px;
+  text-decoration: none;
+  display: block;
+  transition: border-color 0.15s;
+}
+
+.viz-card:hover {
+  border-color: var(--sl-color-gray-3);
+  text-decoration: none;
+}
+
+.viz-card-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--sl-color-gray-1);
+  margin: 0 0 5px;
+}
+
+.viz-card-desc {
+  font-size: 13px;
+  color: var(--sl-color-gray-3);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ─── Definition List ───────────────────────────────────────────────── */
+.def-list {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  margin: 0.75rem 0 1rem;
+  border: 1px solid var(--sl-color-hairline);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.def-list-key,
+.def-list-val {
+  font-size: 0.875rem;
+  padding: 8px 14px;
+  border-bottom: 1px solid var(--sl-color-hairline);
+}
+
+.def-list-key:last-of-type,
+.def-list-val:last-of-type {
+  border-bottom: none;
+}
+
+.def-list-key {
+  color: var(--sl-color-gray-2);
+  white-space: nowrap;
+  background: var(--sl-color-gray-6);
+}
+
+.def-list-val {
+  color: var(--sl-color-gray-1);
 }
 
 /* ─── Phase-grouped Steps ────────────────────────────────────────────── */
@@ -1320,10 +1441,30 @@ starlight-toc a {
   z-index: 6;
 }
 
+.ic-img-wrap .zoom-btn {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 32px;
+  height: 32px;
+  background: rgba(0,0,0,0.55);
+  border: none;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.15s;
+  color: #fff;
+  z-index: 10;
+}
+
 .screenshot-frame:hover .zoom-btn,
 .page-hero-image:hover .zoom-btn,
 .companion-banner:hover .zoom-btn,
-.qs-img-slide:hover .zoom-btn {
+.qs-img-slide:hover .zoom-btn,
+.ic-img-wrap:hover .zoom-btn {
   opacity: 1;
 }
 
@@ -1786,6 +1927,14 @@ starlight-toc a {
   border: 1px solid var(--sl-color-gray-5, #dcdcd8);
   margin-bottom: 2rem;
   margin-top: 1.5rem;
+}
+
+.screenshot-frame-sm {
+  max-width: 480px;
+}
+
+.screenshot-frame-xs {
+  max-width: 100px;
 }
 
 .screenshot-frame img {
@@ -2545,4 +2694,84 @@ html:not([data-has-sidebar]) .sl-container > * + * {
 .product-card:hover .product-card-arrow {
   color: var(--sl-color-accent);
   transform: translateX(3px);
+}
+
+/* StatTiles component — force consistent sizing against Starlight content resets */
+.st-tile {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 4px !important;
+  margin-top: 0 !important;
+}
+.st-label,
+.st-value,
+.st-sub {
+  display: block !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+/* Table support indicators — geometric SVG icons */
+.tbl-yes, .tbl-no {
+  display: inline-block;
+  width: 13px;
+  height: 13px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  vertical-align: middle;
+}
+.tbl-yes {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpolyline points='1,6 4,10 11,2' stroke='%23555' stroke-width='1.5' fill='none' stroke-linecap='square' stroke-linejoin='miter'/%3E%3C/svg%3E");
+}
+.tbl-no {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cline x1='1' y1='1' x2='11' y2='11' stroke='%23333' stroke-width='1.5' stroke-linecap='square'/%3E%3Cline x1='11' y1='1' x2='1' y2='11' stroke='%23333' stroke-width='1.5' stroke-linecap='square'/%3E%3C/svg%3E");
+}
+
+.st-label { line-height: 1.3 !important; }
+.st-value { line-height: 1.2 !important; }
+.st-sub   { line-height: 1.3 !important; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+
+/* CSV download cards */
+.csv-downloads {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 1rem 0;
+}
+.csv-download-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border: 1px solid var(--sl-color-gray-5);
+  border-radius: 6px;
+  text-decoration: none !important;
+  color: var(--sl-color-text) !important;
+  background: var(--sl-color-bg-sidebar);
+  transition: border-color 0.15s, background 0.15s;
+}
+.csv-download-card:hover {
+  border-color: var(--sl-color-accent);
+  background: var(--sl-color-bg-nav);
+}
+.csv-download-icon {
+  font-size: 1.1rem;
+  flex-shrink: 0;
+  opacity: 0.7;
+}
+.csv-download-label {
+  flex: 1;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+.csv-download-badge {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--sl-color-text-accent);
+  background: var(--sl-color-accent-low);
+  padding: 2px 6px;
+  border-radius: 4px;
+  flex-shrink: 0;
 }

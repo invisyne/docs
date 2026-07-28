@@ -9,6 +9,7 @@ import nodeRedImg from '../../../assets/images/edge/edge-quickstart-node-red.png
 import grafanaImg from '../../../assets/images/edge/edge-quickstart-grafana.png';
 import weiterleitungImg from '../../../assets/images/edge/edge-quickstart-data-transfer.png';
 import einstellungenImg from '../../../assets/images/edge/edge-quickstart-settings.png';
+import browserSecurityWarningImg from '../../../assets/images/edge/edge-browser-security-warning.png';
 
 A brief overview of what you can do with Edge.
 
@@ -27,6 +28,12 @@ A brief overview of what you can do with Edge.
 
     <div class="qs-panel">
       <p>Open a browser and enter the IP address of your Edge device. The web interface opens directly — no additional software required. After connecting, you land on the <strong>Home</strong> screen.</p>
+      :::note
+      The browser may show a security warning stating that the connection is not trusted. This is expected — the Edge uses a self-signed certificate by default. Confirm the exception in your browser to proceed. The connection is still encrypted. To remove the warning permanently, see [Custom HTTPS Certificate](/edge/how-to/https-certificate).
+      :::
+      <div class="screenshot-frame">
+        <img src={browserSecurityWarningImg.src} alt="Browser security warning for untrusted connection" />
+      </div>
       <div class="screenshot-frame">
         <img src={dashboardImg.src} alt="Edge Home" />
       </div>
@@ -47,6 +54,9 @@ A brief overview of what you can do with Edge.
         <img src={grafanaImg.src} alt="Grafana on Edge" />
       </div>
       <p>Grafana is pre-installed on the Edge and connects directly to the recorded measurement data. From the home screen you can open existing dashboards or create new ones to visualize your signal data as charts, gauges, and tables.</p>
+      :::note
+      The default Grafana login is **admin / admin**. You will be prompted to change the password on first login.
+      :::
       <div class="qs-tip">Grafana dashboards are stored on the device. No internet connection is required — everything runs locally on the Edge.</div>
     </div>
 
@@ -63,6 +73,9 @@ A brief overview of what you can do with Edge.
           <tr><td><strong>+ Add Device</strong></td><td>Add a new field device by selecting the protocol (SIMATIC, Modbus, OPC UA) and entering the connection parameters.</td></tr>
         </tbody>
       </table>
+      :::note
+      If the PLC is on a different network segment than the Edge, the default gateway must be correctly configured in the Edge network settings — otherwise the device will not be reachable.
+      :::
       <div class="qs-tip">Each data source (SIMATIC, Modbus, OPC UA) requires the correct connection parameters. Have the IP address and slot/rack configuration of your controller ready before adding a device.</div>
     </div>
 
@@ -84,11 +97,14 @@ A brief overview of what you can do with Edge.
     </div>
 
     <div class="qs-panel">
-      <p>Navigate to <strong>Data Transfer</strong> in the sidebar to configure the gateway that forwards recorded data. Edge can forward all recorded data — to Crawler.Hub, to external systems, or both.</p>
+      <p>Navigate to <strong>Data Transfer</strong> in the sidebar to configure the gateway that forwards recorded data to Invisyne Hub or external systems.</p>
+      :::note
+      Currently, only one forwarding destination is supported at a time in Invisyne Hub.
+      :::
       <div class="screenshot-frame">
         <img src={weiterleitungImg.src} alt="Edge Data Transfer" />
       </div>
-      <p>Each forwarding target can be configured independently — define which data sources and variables to include, and set the transfer interval or trigger.</p>
+      <p>The forwarding target can be configured independently — define which data sources and variables to include, and set the transfer interval or trigger.</p>
       <div class="qs-tip">Make sure the target system (Hub or external endpoint) is reachable from the Edge device's network before enabling forwarding.</div>
     </div>
 
@@ -104,12 +120,12 @@ A brief overview of what you can do with Edge.
           <tr><td><strong>Gateway</strong></td><td>Various settings for the gateway.</td></tr>
           <tr><td><strong>Network Adapter</strong></td><td>Configure the network adapter.</td></tr>
           <tr><td><strong>System Status</strong></td><td>Lists the device's system services and their operating status.</td></tr>
-          <tr><td><strong>Database Management</strong></td><td>Manage the database server instances on the device.</td></tr>
+          <tr><td><strong>Database Management</strong></td><td>Configure the retention period for recorded measurement data.</td></tr>
           <tr><td><strong>General</strong></td><td>General information about the device.</td></tr>
-          <tr><td><strong>System Control</strong></td><td>Reset the power supply or restore the system.</td></tr>
+          <tr><td><strong>System Control</strong></td><td>Restart the system or reset the device to factory settings.</td></tr>
           <tr><td><strong>Security</strong></td><td>Change the password.</td></tr>
-          <tr><td><strong>Notifications</strong></td><td>Configure notifications, e.g. Grafana alarms.</td></tr>
-          <tr><td><strong>Update</strong></td><td>Update the device and its installed services.</td></tr>
+          <tr><td><strong>Notifications</strong></td><td>Configure SMTP settings to send Grafana alarms by email.</td></tr>
+          <tr><td><strong>Update</strong></td><td>Update the Edge software and its installed services.</td></tr>
         </tbody>
       </table>
     </div>

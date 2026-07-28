@@ -1,0 +1,126 @@
+---
+title: "Ersteinrichtung"
+description: "Schritt-für-Schritt-Anleitung zur Ersteinrichtung des Edge über den integrierten Einrichtungs-Assistenten."
+sidebar:
+  order: 1
+---
+
+import { Steps } from '@astrojs/starlight/components';
+import setupLanguageImg from '../../../../../assets/images/edge/edge-setup-language.png';
+import setupBasicImg from '../../../../../assets/images/edge/edge-setup-basic-settings.png';
+import setupSecurityImg from '../../../../../assets/images/edge/edge-setup-security.png';
+import setupTimeDateImg from '../../../../../assets/images/edge/edge-setup-time-date.png';
+import setupNetworkImg from '../../../../../assets/images/edge/edge-setup-network.png';
+import setupFinishImg from '../../../../../assets/images/edge/edge-setup-finish.png';
+import setupRestartImg from '../../../../../assets/images/edge/edge-setup-restart.png';
+import hwWagoX1X2Img from '../../../../../assets/images/edge/edge-hw-wago-x1-x2.png';
+import hwSimaticX1X2Img from '../../../../../assets/images/edge/edge-hw-simatic-x1-x2.png';
+
+<div class="qs-stepper">
+
+  <div class="qs-tabbar">
+    <a class="qs-tab" href="#">Manuell</a>
+    <a class="qs-tab" href="#" style="opacity: 0.45; pointer-events: none;">KI-Assistent <span style="font-size: 0.7em; border: 1px solid currentColor; border-radius: 99px; padding: 1px 6px; margin-left: 4px;">demnächst</span></a>
+  </div>
+
+  <div class="qs-panels">
+
+    <div class="qs-panel">
+
+      <p>Die Ersteinrichtung des Edge erfolgt über einen integrierten Assistenten, der bei der ersten Inbetriebnahme automatisch startet. Der Assistent muss vollständig abgeschlossen werden, bevor das Gerät betriebsbereit ist. Nach Abschluss startet der Edge automatisch neu — dieser Vorgang kann einige Minuten in Anspruch nehmen.</p>
+      <p>Zum Aufrufen der Web-Oberfläche einen Browser öffnen (empfohlen: Chrome, Edge oder Firefox) und die IP-Adresse des Geräts eingeben. Die werkseitig voreingestellten IP-Adressen lauten:</p>
+
+      | Adapter | Standard-IP |
+      |---------|-------------|
+      | X1 | 192.168.0.5 |
+      | X2 | 192.168.1.5 |
+
+      <p>Die Bezeichnungen <strong>X1</strong> und <strong>X2</strong> sind direkt am Gerät aufgedruckt. Auf die korrekte Zuordnung achten — je nach Hardware-Variante befinden sich die Anschlüsse an unterschiedlichen Positionen.</p>
+
+      <div class="screenshot-frame" style="max-width: 480px;">
+        <img src={hwWagoX1X2Img.src} alt="WAGO 752-9400 — X1- und X2-Anschlüsse" />
+      </div>
+      <div class="screenshot-frame" style="max-width: 320px;">
+        <img src={hwSimaticX1X2Img.src} alt="Edge-Variante 2 — X1- und X2-Anschlüsse" />
+      </div>
+
+      <p>Befindet sich der Edge in einem anderen Subnetz, ermöglicht das Discovery-Tool die Konfiguration des X1-Adapters, sodass die Web-Oberfläche erreichbar wird. Das Discovery-Tool ist Teil von Crawler.Companion — siehe [Companion: Ersteinrichtung](/de/companion/how-to/initial-setup) für die Installationsanleitung.</p>
+
+      <Steps>
+
+      1. **Sprache**
+
+         Im ersten Schritt wird die Sprache der Benutzeroberfläche gewählt. Der Edge unterstützt Deutsch und Englisch. Die gewählte Sprache ist browserspezifisch und kann jederzeit geändert werden.
+
+         <div class="screenshot-frame screenshot-frame-sm">
+           <img src={setupLanguageImg.src} alt="Sprachauswahl" />
+         </div>
+
+      2. **Name und Standortkennung**
+
+         Im zweiten Schritt erhält das Gerät einen eindeutigen Namen sowie optionale Standortkennzeichnungen. Die Standortfelder dienen der Zuordnung innerhalb des Netzwerks und können nachträglich angepasst werden.
+
+         :::note
+         Der Gerätename ist nach Abschluss der Ersteinrichtung unveränderlich. Eine nachträgliche Änderung ist nur nach einem Zurücksetzen auf Werkseinstellungen möglich. Der Name darf maximal 20 Zeichen umfassen; auf Sonderzeichen und Leerzeichen sollte verzichtet werden.
+         :::
+
+         <div class="screenshot-frame screenshot-frame-sm">
+           <img src={setupBasicImg.src} alt="Name und Standortkennung" />
+         </div>
+
+      3. **Sicherheit**
+
+         In diesem Schritt wird das Passwort für den Einstellungsbereich des Edge festgelegt. Das Passwort schützt den Zugang zu den Gerätekonfigurationen und kann nach der Einrichtung jederzeit geändert werden.
+
+         :::note
+         Das Passwort muss mindestens 6 Zeichen lang sein.
+         :::
+
+         <div class="screenshot-frame screenshot-frame-sm">
+           <img src={setupSecurityImg.src} alt="Sicherheitseinstellungen" />
+         </div>
+
+      4. **Uhrzeit und Datum**
+
+         In diesem Schritt werden Zeitzone und Synchronisationsmodus konfiguriert. Der Edge unterstützt sowohl die manuelle Zeiteingabe als auch die automatische Synchronisation über einen NTP-Server.
+
+         - **Automatisch (NTP)** — der Edge synchronisiert die Uhrzeit regelmäßig mit dem angegebenen NTP-Server. Voraussetzung ist, dass der Server vom Netzwerk des Edge aus erreichbar ist.
+         - **Manuell** — Uhrzeit und Datum werden manuell eingegeben. Alle Zeitangaben beziehen sich auf die gewählte Zeitzone.
+
+         <div class="screenshot-frame screenshot-frame-sm">
+           <img src={setupTimeDateImg.src} alt="Uhrzeit und Datum" />
+         </div>
+
+      5. **Netzwerk-Einstellungen**
+
+         In diesem Schritt werden die Netzwerkadapter des Edge konfiguriert. Je nach Hardware-Variante sind am Gerät bis zu zwei Adapter verfügbar, die jeweils über eine werkseitig voreingestellte IP-Adresse verfügen. Für jeden Adapter lassen sich IP-Adresse, Subnetz-Maske, Standard-Gateway und DHCP unabhängig voneinander konfigurieren. Domain und DNS-Server können adapterübergreifend festgelegt werden; es sind bis zu fünf DNS-Einträge möglich.
+
+         :::note
+         Fehlerhafte Netzwerkeinstellungen können den Edge unerreichbar machen. Änderungen an diesen Einstellungen sollten nur vorgenommen werden, wenn das bestehende Netzwerkschema und die verwendeten Subnetz-Masken bekannt sind.
+         :::
+
+         <div class="screenshot-frame screenshot-frame-sm">
+           <img src={setupNetworkImg.src} alt="Netzwerk-Übersicht" />
+         </div>
+
+      6. **Abschließen**
+
+         Im letzten Schritt wird eine Zusammenfassung der vorgenommenen Einstellungen angezeigt. Nach der Prüfung auf **Abschließen** klicken — der Edge startet daraufhin neu. Dieser Vorgang kann einige Minuten in Anspruch nehmen. Nach dem Neustart ist das Gerät betriebsbereit und die Einrichtung der Datenaufzeichnung kann beginnen.
+
+         <div class="screenshot-frame screenshot-frame-sm">
+           <img src={setupFinishImg.src} alt="Einrichtung abgeschlossen" />
+         </div>
+
+         Nach dem Klick auf **Abschließen** startet der Edge automatisch neu. Während des Neustarts wird eine Statusmeldung angezeigt, die den Fortschritt zeigt und die Seite automatisch neu lädt, sobald das Gerät wieder erreichbar ist.
+
+         <div class="screenshot-frame screenshot-frame-sm">
+           <img src={setupRestartImg.src} alt="System Neustart" />
+         </div>
+
+      </Steps>
+
+    </div>
+
+  </div>
+
+</div>
