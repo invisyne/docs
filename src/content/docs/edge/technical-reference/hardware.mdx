@@ -1,6 +1,8 @@
 ---
 title: "Hardware"
-description: "Supported hardware platforms for the Edge — Siemens SIMATIC IPC127E, WAGO 752-9400, and virtual machine."
+description: "Supported hardware platforms for the Edge — Siemens SIMATIC IPC127E and WAGO 752-9400."
+sidebar:
+  order: 2
 ---
 
 import simaticImg from '../../../../assets/images/edge/edge-hardware-simatic-ipc127e.png';
@@ -15,7 +17,6 @@ import ImageCarousel from '../../../../components/ImageCarousel.astro';
   <div class="qs-tabbar">
     <a class="qs-tab" href="#">Siemens SIMATIC IPC127E</a>
     <a class="qs-tab" href="#">WAGO 752-9400</a>
-    <a class="qs-tab" href="#">Virtual Machine</a>
   </div>
 
   <div class="qs-panels">
@@ -30,20 +31,20 @@ import ImageCarousel from '../../../../components/ImageCarousel.astro';
 ]} />
 
 <div class="def-list">
-  <span style="grid-column:1/-1;font-size:11px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:var(--sl-color-gray-3);margin-top:0.5rem;">Processor</span>
+  <span class="def-list-group">Processor</span>
   <span class="def-list-key">CPU</span><span class="def-list-val">Intel® Atom E3940 Quadcore 1.6 GHz</span>
-  <span style="grid-column:1/-1;font-size:11px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:var(--sl-color-gray-3);margin-top:0.75rem;">Memory</span>
+  <span class="def-list-group">Memory</span>
   <span class="def-list-key">RAM</span><span class="def-list-val">4 GB</span>
   <span class="def-list-key">Storage</span><span class="def-list-val">64 GB Flash</span>
-  <span style="grid-column:1/-1;font-size:11px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:var(--sl-color-gray-3);margin-top:0.75rem;">Connectivity</span>
+  <span class="def-list-group">Connectivity</span>
   <span class="def-list-key">Ethernet</span><span class="def-list-val">2 × RJ45 (X1 P1, X2 P1)</span>
   <span class="def-list-key">USB</span><span class="def-list-val">2 × USB 3.0</span>
   <span class="def-list-key">Display</span><span class="def-list-val">DisplayPort</span>
-  <span style="grid-column:1/-1;font-size:11px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:var(--sl-color-gray-3);margin-top:0.75rem;">Dimensions</span>
+  <span class="def-list-group">Dimensions</span>
   <span class="def-list-key">Width</span><span class="def-list-val">85 mm / 3.346 in</span>
   <span class="def-list-key">Height</span><span class="def-list-val">104 mm / 4.094 in</span>
   <span class="def-list-key">Depth</span><span class="def-list-val">41 mm / 1.614 in</span>
-  <span style="grid-column:1/-1;font-size:11px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:var(--sl-color-gray-3);margin-top:0.75rem;">Network adapter assignment</span>
+  <span class="def-list-group">Network adapter assignment</span>
   <span class="def-list-key">X1 P1</span><span class="def-list-val">Adapter 1 (eth0) — primary interface, typically connected to the IT/OT network</span>
   <span class="def-list-key">X2 P1</span><span class="def-list-val">Adapter 2 (eth1) — secondary interface, typically connected to the field device network</span>
 </div>
@@ -61,20 +62,20 @@ The port labels **X1 P1** and **X2 P1** are printed on the device housing next t
 ]} />
 
 <div class="def-list">
-  <span style="grid-column:1/-1;font-size:11px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:var(--sl-color-gray-3);margin-top:0.5rem;">Processor</span>
+  <span class="def-list-group">Processor</span>
   <span class="def-list-key">CPU</span><span class="def-list-val">Intel® Atom E3845 Quadcore 1.91 GHz</span>
-  <span style="grid-column:1/-1;font-size:11px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:var(--sl-color-gray-3);margin-top:0.75rem;">Memory</span>
+  <span class="def-list-group">Memory</span>
   <span class="def-list-key">RAM</span><span class="def-list-val">4 GB DDR3L</span>
   <span class="def-list-key">Storage</span><span class="def-list-val">64 GB mSATA</span>
-  <span style="grid-column:1/-1;font-size:11px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:var(--sl-color-gray-3);margin-top:0.75rem;">Connectivity</span>
+  <span class="def-list-group">Connectivity</span>
   <span class="def-list-key">Ethernet</span><span class="def-list-val">2 × RJ45 1000BASE-T (X1, X2)</span>
   <span class="def-list-key">USB</span><span class="def-list-val">3 × USB 2.0, 1 × USB 3.0</span>
   <span class="def-list-key">Display</span><span class="def-list-val">HDMI, DisplayPort</span>
-  <span style="grid-column:1/-1;font-size:11px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:var(--sl-color-gray-3);margin-top:0.75rem;">Dimensions</span>
+  <span class="def-list-group">Dimensions</span>
   <span class="def-list-key">Width</span><span class="def-list-val">40 mm / 1.575 in</span>
   <span class="def-list-key">Height</span><span class="def-list-val">150 mm / 5.906 in</span>
   <span class="def-list-key">Depth</span><span class="def-list-val">105 mm / 4.134 in</span>
-  <span style="grid-column:1/-1;font-size:11px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:var(--sl-color-gray-3);margin-top:0.75rem;">Network adapter assignment</span>
+  <span class="def-list-group">Network adapter assignment</span>
   <span class="def-list-key">X1</span><span class="def-list-val">Adapter 1 (eth0) — primary interface, typically connected to the IT/OT network</span>
   <span class="def-list-key">X2</span><span class="def-list-val">Adapter 2 (eth1) — secondary interface, typically connected to the field device network</span>
 </div>
@@ -82,21 +83,6 @@ The port labels **X1 P1** and **X2 P1** are printed on the device housing next t
 :::note
 Mounting is fixed; book mount only.
 :::
-
-    </div>
-
-    <div class="qs-panel">
-
-:::note
-Currently only **VMware** is supported.
-:::
-
-<div class="def-list">
-  <span style="grid-column:1/-1;font-size:11px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:var(--sl-color-gray-3);margin-top:0.5rem;">Minimum requirements</span>
-  <span class="def-list-key">CPU</span><span class="def-list-val">4 cores, 1.8 GHz</span>
-  <span class="def-list-key">RAM</span><span class="def-list-val">4 GB</span>
-  <span class="def-list-key">Disk</span><span class="def-list-val">64 GB</span>
-</div>
 
     </div>
 

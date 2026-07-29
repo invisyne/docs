@@ -1,6 +1,8 @@
 ---
 title: "Protokolle und Feldgeräte"
 description: "Unterstützte Feldgeräte-Protokolle — Siemens S7, OPC UA und Modbus TCP — einschließlich Datentypen und Adressformaten."
+sidebar:
+  order: 3
 ---
 
 :::note
@@ -60,10 +62,6 @@ Ungültige Adressen — wie sie bei manueller Eingabe häufig entstehen — verh
 
 #### Unterstützte Datentypen
 
-<details>
-<summary>Datentyptabelle anzeigen</summary>
-<div>
-
 | Edge VarType | Edge InfluxType | Bits | Symbolisch | Absolut | S7-300/400 | S7-1200 | S7-1500 |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | **Binärzahlen** | | | | | | | |
@@ -107,9 +105,6 @@ Ungültige Adressen — wie sie bei manueller Eingabe häufig entstehen — verh
 | Any | <span class="tbl-no"></span> | 80 | <span class="tbl-no"></span> | <span class="tbl-no"></span> | <span class="tbl-yes"></span> | | <span class="tbl-yes"></span> |
 | Variant | <span class="tbl-no"></span> | 0 | <span class="tbl-no"></span> | <span class="tbl-no"></span> | | <span class="tbl-yes"></span> | <span class="tbl-yes"></span> |
 
-</div>
-</details>
-
     </div>
 
     <div class="qs-panel">
@@ -121,7 +116,6 @@ OPC UA wird für das Lesen von Messgrößen aus OPC-UA-Servern unterstützt. Vol
 | Protokoll | OPC UA |
 | Standard-Port | 4840 (konfigurierbar im SPS-Projekt) |
 | Authentifizierung | Anonym oder Benutzername / Passwort |
-
 
     </div>
 
@@ -140,10 +134,6 @@ Die Byte-Reihenfolge kann aktuell nicht über das UI konfiguriert werden. Bei Be
 
 #### Unterstützte Datentypen
 
-<details>
-<summary>Datentyptabelle anzeigen</summary>
-<div>
-
 | Datentyp | Hinweis |
 | --- | --- |
 | BOOLEAN | Nur für Bit-Zugriffsmethoden (READ_COIL, READ_DISCRETE_INPUT) |
@@ -156,10 +146,6 @@ Die Byte-Reihenfolge kann aktuell nicht über das UI konfiguriert werden. Bei Be
 | FLOAT | |
 | DOUBLE | |
 | STRING | Standardmäßig 8 Zeichen; andere Länge auf Anfrage beim Support |
-
-</div>
-</details>
-
 
     </div>
 
