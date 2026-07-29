@@ -28,9 +28,6 @@ A brief overview of what you can do with Edge.
 
     <div class="qs-panel">
       <p>Open a browser and enter the IP address of your Edge device. The web interface opens directly — no additional software required. After connecting, you land on the <strong>Home</strong> screen.</p>
-      :::note
-      The browser may show a security warning stating that the connection is not trusted. This is expected — the Edge uses a self-signed certificate by default. Confirm the exception in your browser to proceed. The connection is still encrypted. To remove the warning permanently, see [Custom HTTPS Certificate](/edge/how-to/https-certificate).
-      :::
       <div class="screenshot-frame">
         <img src={dashboardImg.src} alt="Edge Home" />
       </div>
@@ -43,7 +40,9 @@ A brief overview of what you can do with Edge.
           <tr><td><strong>+ tile</strong></td><td>Add further widgets to your Home view.</td></tr>
         </tbody>
       </table>
-      <p>For reference, this is the browser security warning described above:</p>
+      :::note
+      The browser may show a security warning stating that the connection is not trusted. This is expected — the Edge uses a self-signed certificate by default. Confirm the exception in your browser to proceed. The connection is still encrypted. To remove the warning permanently, see [Custom HTTPS Certificate](/edge/how-to/https-certificate).
+      :::
       <div class="screenshot-frame">
         <img src={browserSecurityWarningImg.src} alt="Browser security warning for untrusted connection" />
       </div>

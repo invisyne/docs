@@ -28,9 +28,6 @@ Ein kurzer Überblick über die wichtigsten Bereiche des Edge (Crawler).
 
     <div class="qs-panel">
       <p>Zum Öffnen des Web-Interface die IP-Adresse des Edge-Geräts im Browser aufrufen — keine zusätzliche Software erforderlich. Nach der Verbindung erscheint die <strong>Startseite</strong>.</p>
-      :::note
-      Der Browser zeigt möglicherweise eine Sicherheitswarnung an, dass die Verbindung nicht vertrauenswürdig ist. Dies ist erwartet — der Edge verwendet standardmäßig ein selbstsigniertes Zertifikat. Die Ausnahme im Browser bestätigen, um fortzufahren. Die Verbindung ist dennoch verschlüsselt. Um die Warnung dauerhaft zu beseitigen, siehe [Eigenes HTTPS-Zertifikat](/de/edge/how-to/https-certificate).
-      :::
       <div class="screenshot-frame">
         <img src={dashboardImg.src} alt="Edge Startseite" />
       </div>
@@ -43,7 +40,9 @@ Ein kurzer Überblick über die wichtigsten Bereiche des Edge (Crawler).
           <tr><td><strong>+ Kachel</strong></td><td>Weitere Widgets zur Startseite hinzufügen.</td></tr>
         </tbody>
       </table>
-      <p>Zur Orientierung — so sieht die oben beschriebene Browser-Sicherheitswarnung aus:</p>
+      :::note
+      Der Browser zeigt möglicherweise eine Sicherheitswarnung an, dass die Verbindung nicht vertrauenswürdig ist. Dies ist erwartet — der Edge verwendet standardmäßig ein selbstsigniertes Zertifikat. Die Ausnahme im Browser bestätigen, um fortzufahren. Die Verbindung ist dennoch verschlüsselt. Um die Warnung dauerhaft zu beseitigen, siehe [Eigenes HTTPS-Zertifikat](/de/edge/how-to/https-certificate).
+      :::
       <div class="screenshot-frame">
         <img src={browserSecurityWarningImg.src} alt="Browser-Sicherheitswarnung bei nicht vertrauenswürdiger Verbindung" />
       </div>
