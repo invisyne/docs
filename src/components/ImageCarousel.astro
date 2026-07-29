@@ -3,26 +3,38 @@ interface Props {
   images: { src: string; alt: string; label: string; description?: string }[];
 }
 const { images } = Astro.props;
-const id = 'carousel-' + Math.random().toString(36).slice(2, 7);
 ---
 
-<div class="ic-wrapper" data-carousel={id}>
-  <div class="ic-track">
-    {images.map((img) => (
-      <div class="ic-slide">
-        <div class="ic-img-center">
-          <div class="ic-img-wrap">
-            <img src={img.src} alt={img.alt} />
-          </div>
+{/* `not-content` opts out of Starlight's `* + *` margin-top rule, which would
+    otherwise push every thumbnail and caption 1rem down from its sibling. */}
+<div class="ic-wrapper not-content">
+  <div class="ic-stage">
+    {images.map((img, i) => (
+      <div class="ic-slide" data-active={i === 0 ? '' : null}>
+        <div class="ic-img">
+          <img src={img.src} alt={img.alt} />
         </div>
-        <div class="ic-label">{img.label}</div>
-        {img.description && <div class="ic-desc">{img.description}</div>}
+        <div class="ic-caption">
+          <div class="ic-label">{img.label}</div>
+          {img.description && <div class="ic-desc">{img.description}</div>}
+        </div>
       </div>
     ))}
   </div>
+
   {images.length > 1 && (
-    <div class="ic-bar-track">
-      <div class="ic-bar-thumb"></div>
+    <div class="ic-thumbs">
+      {images.map((img, i) => (
+        <button
+          class="ic-thumb"
+          type="button"
+          aria-label={img.label}
+          aria-pressed={i === 0 ? 'true' : 'false'}
+          data-active={i === 0 ? '' : null}
+        >
+          <img src={img.src} alt="" />
+        </button>
+      ))}
     </div>
   )}
 </div>
@@ -33,121 +45,127 @@ const id = 'carousel-' + Math.random().toString(36).slice(2, 7);
     border-radius: 12px;
     overflow: hidden;
     margin-bottom: 1.5rem;
-    user-select: none;
   }
-  .ic-track {
-    display: flex;
-    transition: transform 0.3s ease;
+
+  /* Slides are grid-stacked so the box keeps the height of its tallest
+     entry — switching images never shifts the page below. */
+  .ic-stage {
+    display: grid;
   }
+
+  /* Hidden via opacity, not visibility: `visibility` is inherited, so a
+     `visibility: visible` child would escape the `.qs-panel` tab hiding. */
   .ic-slide {
-    flex: 0 0 100%;
+    grid-area: 1 / 1;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 1.25rem;
+    padding: 1rem;
   }
-  .ic-img-center {
-    text-align: center;
+  .ic-slide[data-active] {
+    opacity: 1;
+    pointer-events: auto;
   }
-  .ic-img-wrap {
-    display: inline-block;
-    position: relative;
-    max-width: 100%;
+
+  .ic-img {
+    flex: 0 1 auto;
+    background: #fff;
+    border: 0.5px solid var(--sl-color-gray-5);
+    border-radius: 8px;
+    padding: 8px;
   }
-  .ic-slide img {
+  .ic-img img {
     display: block;
     max-width: 100%;
-    max-height: 300px;
+    max-height: 260px;
     width: auto;
     height: auto;
     margin: 0;
   }
+
+  .ic-caption {
+    flex: 1 1 200px;
+  }
   .ic-label {
-    padding: 0.75rem 1rem;
-    font-size: 14px;
+    font-size: 0.95rem;
     font-weight: 500;
     color: var(--sl-color-gray-2);
-    border-top: 0.5px solid var(--sl-color-gray-5);
   }
   .ic-desc {
-    padding: 0 1rem 0.75rem;
-    font-size: 13px;
+    margin-top: 0.35rem;
+    font-size: 0.9rem;
     color: var(--sl-color-gray-3);
   }
-  .ic-bar-track {
-    height: 3px;
+
+  .ic-thumbs {
+    display: flex;
+    gap: 8px;
+    padding: 10px 1rem;
+    overflow-x: auto;
     background: var(--sl-color-gray-6);
+    border-top: 0.5px solid var(--sl-color-gray-5);
+  }
+  .ic-thumb {
+    flex: 0 0 auto;
+    width: 68px;
+    height: 50px;
+    padding: 3px;
+    background: #fff;
+    border: 1px solid var(--sl-color-gray-5);
+    border-radius: 6px;
     cursor: pointer;
-    position: relative;
+    opacity: 0.6;
+    transition:
+      opacity 0.15s ease,
+      border-color 0.15s ease;
   }
-  .ic-bar-thumb {
-    position: absolute;
-    top: 0;
-    left: 0;
+  .ic-thumb:hover {
+    opacity: 1;
+  }
+  .ic-thumb[data-active] {
+    opacity: 1;
+    border-color: var(--sl-color-gray-2);
+    box-shadow: 0 0 0 1px var(--sl-color-gray-2);
+  }
+  .ic-thumb img {
+    display: block;
+    width: 100%;
     height: 100%;
-    background: var(--sl-color-gray-2);
-    border-radius: 2px;
-    transition: left 0.3s ease;
-    cursor: grab;
-  }
-  .ic-bar-thumb:active {
-    cursor: grabbing;
+    object-fit: contain;
+    margin: 0;
   }
 </style>
 
 <script>
   function initCarousels() {
-    document.querySelectorAll('[data-carousel]').forEach((wrapper) => {
-    const track = wrapper.querySelector('.ic-track') as HTMLElement;
-    const slides = wrapper.querySelectorAll('.ic-slide');
-    const barTrack = wrapper.querySelector('.ic-bar-track') as HTMLElement;
-    const thumb = wrapper.querySelector('.ic-bar-thumb') as HTMLElement;
-    const total = slides.length;
-    let current = 0;
+    document.querySelectorAll('.ic-wrapper').forEach((wrapper) => {
+      const slides = wrapper.querySelectorAll<HTMLElement>('.ic-slide');
+      const thumbs = wrapper.querySelectorAll<HTMLElement>('.ic-thumb');
+      if (thumbs.length < 2) return;
 
-    if (!thumb) return;
+      function go(index: number) {
+        slides.forEach((el, i) => el.toggleAttribute('data-active', i === index));
+        thumbs.forEach((el, i) => {
+          el.toggleAttribute('data-active', i === index);
+          el.setAttribute('aria-pressed', String(i === index));
+        });
+      }
 
-    const thumbWidth = 100 / total;
-    thumb.style.width = thumbWidth + '%';
-
-    function go(index: number) {
-      current = Math.max(0, Math.min(index, total - 1));
-      track.style.transform = `translateX(-${current * 100}%)`;
-      thumb.style.left = (current * thumbWidth) + '%';
-    }
-
-    barTrack.addEventListener('click', (e: MouseEvent) => {
-      const rect = barTrack.getBoundingClientRect();
-      const ratio = (e.clientX - rect.left) / rect.width;
-      go(Math.floor(ratio * total));
-    });
-
-    let dragging = false;
-    let startX = 0;
-    let startSlide = 0;
-
-    thumb.addEventListener('mousedown', (e: MouseEvent) => {
-      dragging = true;
-      startX = e.clientX;
-      startSlide = current;
-      e.preventDefault();
-    });
-
-    document.addEventListener('mousemove', (e: MouseEvent) => {
-      if (!dragging) return;
-      const rect = barTrack.getBoundingClientRect();
-      const delta = (e.clientX - startX) / rect.width;
-      go(startSlide + Math.round(delta * total));
-    });
-
-    document.addEventListener('mouseup', () => { dragging = false; });
-
-    thumb.addEventListener('touchstart', (e: TouchEvent) => {
-      startX = e.touches[0].clientX;
-      startSlide = current;
-    });
-
-    thumb.addEventListener('touchmove', (e: TouchEvent) => {
-      const rect = barTrack.getBoundingClientRect();
-      const delta = (e.touches[0].clientX - startX) / rect.width;
-      go(startSlide + Math.round(delta * total));
-    });
+      thumbs.forEach((thumb, i) => {
+        thumb.addEventListener('click', () => go(i));
+        thumb.addEventListener('keydown', (e: KeyboardEvent) => {
+          const dir = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+          if (!dir) return;
+          e.preventDefault();
+          const next = (i + dir + thumbs.length) % thumbs.length;
+          go(next);
+          thumbs[next].focus();
+        });
+      });
     });
   }
 
