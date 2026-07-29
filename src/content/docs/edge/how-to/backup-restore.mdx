@@ -1,0 +1,97 @@
+---
+title: "Backup & Restore"
+description: "Step-by-step guide for creating, downloading, and restoring a configuration backup on the Edge."
+sidebar:
+  order: 10
+---
+
+import backupSettingsMenuImg from '../../../../assets/images/edge/edge-backup-settings-menu.png';
+import backupOverviewImg from '../../../../assets/images/edge/edge-backup-overview.png';
+import backupCreateDialogImg from '../../../../assets/images/edge/edge-backup-create-dialog.png';
+import backupCreateLoadingImg from '../../../../assets/images/edge/edge-backup-create-success.png';
+import backupCreateSuccessImg from '../../../../assets/images/edge/edge-backup-create-loading.png';
+import backupRestoreServicesImg from '../../../../assets/images/edge/edge-backup-restore-services.png';
+import backupRestoreSuccessImg from '../../../../assets/images/edge/edge-backup-restore-success.png';
+import backupSetupRestoreImg from '../../../../assets/images/edge/edge-backup-setup-restore.png';
+import backupSetupRestoreDialogImg from '../../../../assets/images/edge/edge-backup-setup-restore-dialog.png';
+import backupSetupRestoreServicesImg from '../../../../assets/images/edge/edge-backup-setup-restore-services.png';
+
+Backup & Restore lets you save the Edge configuration and restore it on the same or a different device. The backup feature is available under **Settings → Backup**.
+
+<div class="screenshot-frame">
+  <img src={backupSettingsMenuImg.src} alt="Edge Settings — Backup tile in the settings menu" />
+</div>
+
+:::note
+The backup covers the **configuration** of the Edge only (Node-RED, Grafana dashboards, login credentials, network settings, etc.). Recorded measurement data (InfluxDB) is not included in the backup.
+:::
+
+## Creating a backup
+
+The **Configuration backup** section shows information about the most recent backup: retention period, date of last backup, and file size. Use **Download backup** to download the most recent backup directly.
+
+<div class="screenshot-frame">
+  <img src={backupOverviewImg.src} alt="Backup overview — Configuration backup and Restore sections" />
+</div>
+
+Click **Create backup** to generate a new backup. In the dialog, select the services to include in the backup, then click **Create backup** again.
+
+<div class="screenshot-frame screenshot-frame-sm">
+  <img src={backupCreateDialogImg.src} alt="Create backup dialog — service selection" />
+</div>
+
+The backup is being created — this may take a moment.
+
+<div class="screenshot-frame screenshot-frame-sm">
+  <img src={backupCreateLoadingImg.src} alt="Backup creation in progress — loading indicator" />
+</div>
+
+A confirmation message appears when the backup is complete.
+
+<div class="screenshot-frame screenshot-frame-sm">
+  <img src={backupCreateSuccessImg.src} alt="Confirmation: backup created successfully" />
+</div>
+
+The backup can then be saved locally using **Download backup**.
+
+## Restoring a configuration
+
+#### Restoring on a running Edge
+
+On the Backup page, under **Restore**, click **Upload backup file** and select the backup file to restore. After uploading, the services included in the backup are displayed.
+
+:::note
+If the backup includes the **Network service**, the IP address of the Edge may change after the restore. The new IP address is shown directly in the dialog — make a note of it before starting the restore.
+:::
+
+<div class="screenshot-frame screenshot-frame-sm">
+  <img src={backupRestoreServicesImg.src} alt="Restore — services and new IP address warning" />
+</div>
+
+Click **Restore backup**. Some services require a restart — the restore will only take full effect after the Edge has restarted.
+
+<div class="screenshot-frame screenshot-frame-sm">
+  <img src={backupRestoreSuccessImg.src} alt="Confirmation: restore completed successfully" />
+</div>
+
+#### Restoring on a factory-reset Edge
+
+After a factory reset, the Edge starts with the setup wizard. A configuration can be applied directly from here without completing the full setup.
+
+<div class="screenshot-frame screenshot-frame-sm">
+  <img src={backupSetupRestoreImg.src} alt="Setup wizard — apply configuration option" />
+</div>
+
+Click **Apply configuration**, then select **Upload backup file**.
+
+<div class="screenshot-frame screenshot-frame-sm">
+  <img src={backupSetupRestoreDialogImg.src} alt="Apply configuration — upload backup file" />
+</div>
+
+After uploading, the services to be restored are displayed. The network service is not restored in this case — network settings remain at their default values.
+
+<div class="screenshot-frame screenshot-frame-sm">
+  <img src={backupSetupRestoreServicesImg.src} alt="Apply configuration — services and network settings note" />
+</div>
+
+Click **Restore** to apply the configuration.

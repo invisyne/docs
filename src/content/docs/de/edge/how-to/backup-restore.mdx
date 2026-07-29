@@ -1,0 +1,97 @@
+---
+title: "Backup & Restore durchführen"
+description: "Schritt-für-Schritt-Anleitung zum Erstellen, Herunterladen und Wiederherstellen eines Konfigurations-Backups auf dem Edge."
+sidebar:
+  order: 10
+---
+
+import backupSettingsMenuImg from '../../../../../assets/images/edge/edge-backup-settings-menu.png';
+import backupOverviewImg from '../../../../../assets/images/edge/edge-backup-overview.png';
+import backupCreateDialogImg from '../../../../../assets/images/edge/edge-backup-create-dialog.png';
+import backupCreateLoadingImg from '../../../../../assets/images/edge/edge-backup-create-success.png';
+import backupCreateSuccessImg from '../../../../../assets/images/edge/edge-backup-create-loading.png';
+import backupRestoreServicesImg from '../../../../../assets/images/edge/edge-backup-restore-services.png';
+import backupRestoreSuccessImg from '../../../../../assets/images/edge/edge-backup-restore-success.png';
+import backupSetupRestoreImg from '../../../../../assets/images/edge/edge-backup-setup-restore.png';
+import backupSetupRestoreDialogImg from '../../../../../assets/images/edge/edge-backup-setup-restore-dialog.png';
+import backupSetupRestoreServicesImg from '../../../../../assets/images/edge/edge-backup-setup-restore-services.png';
+
+Das Backup & Restore ermöglicht es, die Konfiguration des Edge zu sichern und auf demselben oder einem anderen Gerät wiederherzustellen. Die Backup-Funktion ist über **Einstellungen → Backup** erreichbar.
+
+<div class="screenshot-frame">
+  <img src={backupSettingsMenuImg.src} alt="Edge Einstellungen — Backup-Kachel im Einstellungsmenü" />
+</div>
+
+:::note
+Das Backup sichert ausschließlich die **Konfiguration** des Edge (Node-RED, Grafana-Dashboards, Login-Daten, Netzwerkeinstellungen usw.). Aufgezeichnete Messdaten (InfluxDB) sind nicht im Backup enthalten.
+:::
+
+## Backup erstellen
+
+Auf der Backup-Seite werden unter **Konfiguration sichern** die Informationen zum letzten Backup angezeigt: Aufbewahrungsdauer, Zeitpunkt der letzten Sicherung und Größe. Mit **Backup herunterladen** kann das zuletzt erstellte Backup direkt heruntergeladen werden.
+
+<div class="screenshot-frame">
+  <img src={backupOverviewImg.src} alt="Backup-Übersicht — Konfiguration sichern und Wiederherstellung" />
+</div>
+
+Auf **Backup erstellen** klicken, um ein neues Backup zu erzeugen. Im Dialog die gewünschten Services auswählen, die im Backup enthalten sein sollen, und erneut auf **Backup erstellen** klicken.
+
+<div class="screenshot-frame screenshot-frame-sm">
+  <img src={backupCreateDialogImg.src} alt="Dialog Backup erstellen — Service-Auswahl" />
+</div>
+
+Das Backup wird erstellt — dies kann einen Moment dauern.
+
+<div class="screenshot-frame screenshot-frame-sm">
+  <img src={backupCreateLoadingImg.src} alt="Backup wird erstellt — Ladeindikator" />
+</div>
+
+Nach Abschluss erscheint eine Bestätigung.
+
+<div class="screenshot-frame screenshot-frame-sm">
+  <img src={backupCreateSuccessImg.src} alt="Bestätigung: Backup erfolgreich erstellt" />
+</div>
+
+Das erstellte Backup kann anschließend über **Backup herunterladen** gespeichert werden.
+
+## Konfiguration wiederherstellen
+
+#### Wiederherstellung auf einem laufenden Edge
+
+Auf der Backup-Seite unter **Wiederherstellung** auf **Backupdatei hochladen** klicken und die gewünschte Backup-Datei auswählen. Nach dem Hochladen werden die im Backup enthaltenen Services angezeigt.
+
+:::note
+Enthält das Backup den **Network-Service**, kann sich die IP-Adresse des Edge nach der Wiederherstellung ändern. Der Hinweis auf die neue IP-Adresse wird direkt im Dialog angezeigt — diese notieren, bevor die Wiederherstellung gestartet wird.
+:::
+
+<div class="screenshot-frame screenshot-frame-sm">
+  <img src={backupRestoreServicesImg.src} alt="Wiederherstellung — Services und Hinweis auf neue IP-Adresse" />
+</div>
+
+Auf **Backup wiederherstellen** klicken. Einige Services erfordern einen Neustart — die Wiederherstellung wird erst nach dem Neustart vollständig wirksam.
+
+<div class="screenshot-frame screenshot-frame-sm">
+  <img src={backupRestoreSuccessImg.src} alt="Bestätigung: Wiederherstellung erfolgreich abgeschlossen" />
+</div>
+
+#### Wiederherstellung auf einem frisch zurückgesetzten Edge
+
+Nach einem Zurücksetzen auf Werkseinstellungen startet der Edge mit dem Einrichtungsassistenten. Hier kann direkt eine Konfiguration eingespielt werden, ohne den Assistenten vollständig zu durchlaufen.
+
+<div class="screenshot-frame screenshot-frame-sm">
+  <img src={backupSetupRestoreImg.src} alt="Einrichtungsassistent — Konfiguration einspielen" />
+</div>
+
+Auf **Konfiguration einspielen** klicken und dann **Backupdatei hochladen** wählen.
+
+<div class="screenshot-frame screenshot-frame-sm">
+  <img src={backupSetupRestoreDialogImg.src} alt="Konfiguration einspielen — Backupdatei hochladen" />
+</div>
+
+Nach dem Hochladen werden die wiederherzustellenden Services angezeigt. Der Network-Service wird in diesem Fall nicht wiederhergestellt — die Netzwerkeinstellungen bleiben auf Standardwerten.
+
+<div class="screenshot-frame screenshot-frame-sm">
+  <img src={backupSetupRestoreServicesImg.src} alt="Konfiguration einspielen — Services und Hinweis zu Netzwerkeinstellungen" />
+</div>
+
+Auf **Wiederherstellen** klicken, um die Konfiguration einzuspielen.
