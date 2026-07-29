@@ -58,6 +58,14 @@ h1, h2, h3, h4, h5, h6,
   --sl-badge-note-text:   var(--md-sys-color-on-primary-container);
 }
 
+/* ─── Sidebar badge: small and superscripted, so the label stays dominant ─ */
+.sidebar-content .sl-badge {
+  font-size: 0.65rem;
+  line-height: 1.4;
+  padding: 0 4px;
+  vertical-align: 0.3em;
+}
+
 /* ─── Sidebar badge: outline on inactive items so it reads as a tag ─── */
 .sidebar-content a:not([aria-current='page']) .sl-badge {
   --sl-color-bg-badge: transparent;
