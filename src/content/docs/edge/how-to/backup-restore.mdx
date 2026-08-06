@@ -58,10 +58,10 @@ The backup can then be saved locally using **Download backup**.
 
 #### Restoring on a running Edge
 
-On the Backup page, under **Restore**, click **Upload backup file** and select the backup file to restore. After uploading, the services included in the backup are displayed.
+On the Backup page, under **Restore**, click **Upload backup file** and select the backup file to restore. After uploading, the services included in the backup are displayed. All included services will overwrite the existing configuration on the device.
 
 :::note
-If the backup includes the **Network service**, the IP address of the Edge may change after the restore. The new IP address is shown directly in the dialog — make a note of it before starting the restore.
+If the backup includes the **Network service**, the IP address of the Edge may change after the restore. The new IP address is shown directly in the dialog — make a note of it before starting the restore. Services that are not needed can be removed from the list before confirming.
 :::
 
 <div class="screenshot-frame screenshot-frame-sm">
@@ -88,10 +88,14 @@ Click **Apply configuration**, then select **Upload backup file**.
   <img src={backupSetupRestoreDialogImg.src} alt="Apply configuration — upload backup file" />
 </div>
 
-After uploading, the services to be restored are displayed. The network service is not restored in this case — network settings remain at their default values.
+After uploading, the services to be restored are displayed. All included services will overwrite the existing configuration on the device. If the backup includes the **Network service**, an additional warning with the new IP address is shown.
+
+:::note
+Before restoring, check which services are included in the backup. Services that are not needed can be removed from the list before confirming.
+:::
 
 <div class="screenshot-frame screenshot-frame-sm">
-  <img src={backupSetupRestoreServicesImg.src} alt="Apply configuration — services and network settings note" />
+  <img src={backupRestoreServicesImg.src} alt="Apply configuration — Network service with new IP address warning" />
 </div>
 
 Click **Restore** to apply the configuration.

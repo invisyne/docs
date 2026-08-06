@@ -58,10 +58,10 @@ Das erstellte Backup kann anschließend über **Backup herunterladen** gespeiche
 
 #### Wiederherstellung auf einem laufenden Edge
 
-Auf der Backup-Seite unter **Wiederherstellung** auf **Backupdatei hochladen** klicken und die gewünschte Backup-Datei auswählen. Nach dem Hochladen werden die im Backup enthaltenen Services angezeigt.
+Auf der Backup-Seite unter **Wiederherstellung** auf **Backupdatei hochladen** klicken und die gewünschte Backup-Datei auswählen. Nach dem Hochladen werden die im Backup enthaltenen Services angezeigt. Alle enthaltenen Services überschreiben die jeweils bestehende Konfiguration auf dem Gerät.
 
 :::note
-Enthält das Backup den **Network-Service**, kann sich die IP-Adresse des Edge nach der Wiederherstellung ändern. Der Hinweis auf die neue IP-Adresse wird direkt im Dialog angezeigt — diese notieren, bevor die Wiederherstellung gestartet wird.
+Enthält das Backup den **Network-Service**, kann sich die IP-Adresse des Edge nach der Wiederherstellung ändern. Der Hinweis auf die neue IP-Adresse wird direkt im Dialog angezeigt — diese notieren, bevor die Wiederherstellung gestartet wird. Nicht benötigte Services können vor der Wiederherstellung aus der Liste entfernt werden.
 :::
 
 <div class="screenshot-frame screenshot-frame-sm">
@@ -88,10 +88,14 @@ Auf **Konfiguration einspielen** klicken und dann **Backupdatei hochladen** wäh
   <img src={backupSetupRestoreDialogImg.src} alt="Konfiguration einspielen — Backupdatei hochladen" />
 </div>
 
-Nach dem Hochladen werden die wiederherzustellenden Services angezeigt. Der Network-Service wird in diesem Fall nicht wiederhergestellt — die Netzwerkeinstellungen bleiben auf Standardwerten.
+Nach dem Hochladen werden die wiederherzustellenden Services angezeigt. Alle enthaltenen Services überschreiben die jeweils bestehende Konfiguration auf dem Gerät. Enthält das Backup den **Network-Service**, erscheint zusätzlich ein Hinweis mit der neuen IP-Adresse.
+
+:::note
+Vor dem Wiederherstellen prüfen, welche Services im Backup enthalten sind. Nicht benötigte Services können vor der Wiederherstellung aus der Liste entfernt werden.
+:::
 
 <div class="screenshot-frame screenshot-frame-sm">
-  <img src={backupSetupRestoreServicesImg.src} alt="Konfiguration einspielen — Services und Hinweis zu Netzwerkeinstellungen" />
+  <img src={backupRestoreServicesImg.src} alt="Konfiguration einspielen — Network-Service mit Hinweis auf neue IP-Adresse" />
 </div>
 
 Auf **Wiederherstellen** klicken, um die Konfiguration einzuspielen.
