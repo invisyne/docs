@@ -1,0 +1,122 @@
+---
+title: "Backup & Restore durchführen"
+description: "Schritt-für-Schritt-Anleitung zum Sichern und Wiederherstellen von Messdaten und Konfiguration in Crawler.Companion."
+sidebar:
+  order: 4
+---
+
+import backupMessdatenDatepickerImg from '../../../../../assets/images/companion/companion-backup-messdaten-datepicker.png';
+import backupMessdatenProgressImg from '../../../../../assets/images/companion/companion-backup-messdaten-progress.png';
+import backupMessdatenSuccessImg from '../../../../../assets/images/companion/companion-backup-messdaten-success.png';
+import backupMessdatenRestoreEntryImg from '../../../../../assets/images/companion/companion-backup-messdaten-restore-entry.png';
+import backupConfigOverviewImg from '../../../../../assets/images/companion/companion-backup-config-overview.png';
+import backupConfigProgressImg from '../../../../../assets/images/companion/companion-backup-config-progress.png';
+import backupConfigSuccessImg from '../../../../../assets/images/companion/companion-backup-config-success.png';
+
+Crawler.Companion ermöglicht das Sichern und Wiederherstellen von Messdaten und Gerätekonfiguration direkt aus der Oberfläche heraus. Die Backup-Funktion ist über den **Backup**-Tab im Geräte-Detailpanel erreichbar.
+
+<div class="qs-stepper">
+
+  <div class="qs-tabbar">
+    <a class="qs-tab" href="#">Messdaten sichern</a>
+    <a class="qs-tab" href="#">Messdaten wiederherstellen</a>
+    <a class="qs-tab" href="#">Konfiguration sichern</a>
+    <a class="qs-tab" href="#">Konfiguration wiederherstellen</a>
+  </div>
+
+  <div class="qs-panels">
+
+    <div class="qs-panel">
+
+Ein Gerät in der Geräteliste anklicken, um das Detailpanel zu öffnen. Den Tab **Backup** wählen und sicherstellen, dass der Reiter **Messdaten** aktiv ist.
+
+#### Gesamtes Backup erstellen
+
+Auf **Backup starten** klicken. Das Backup umfasst alle aufgezeichneten Messdaten des Crawlers.
+
+#### Backup auf Zeitraum begrenzen
+
+Den Schalter **Nach Zeitraum filtern** aktivieren. Es erscheinen Felder für Von- und Bis-Datum/-Uhrzeit.
+
+<div class="screenshot-frame screenshot-frame-sm">
+  <img src={backupMessdatenDatepickerImg.src} alt="Backup erstellen — Zeitraum-Filter mit Datepicker" />
+</div>
+
+Den gewünschten Zeitraum eingeben und auf **Backup starten** klicken. Ein Fortschrittsbalken zeigt den Verlauf an.
+
+<div class="screenshot-frame screenshot-frame-sm">
+  <img src={backupMessdatenProgressImg.src} alt="Backup läuft — Fortschrittsanzeige" />
+</div>
+
+Nach Abschluss erscheint eine grüne Bestätigung. Das Backup liegt im konfigurierten Speicherpfad.
+
+<div class="screenshot-frame screenshot-frame-sm">
+  <img src={backupMessdatenSuccessImg.src} alt="Backup abgeschlossen — Bestätigung" />
+</div>
+
+    </div>
+
+    <div class="qs-panel">
+
+Ein Gerät in der Geräteliste anklicken, um das Detailpanel zu öffnen. Den Tab **Backup** wählen und sicherstellen, dass der Reiter **Messdaten** aktiv ist.
+
+Unter **Messdaten wiederherstellen** den Bereich **Aus externem Ordner wiederherstellen…** aufklappen. Die gefundenen Backups werden aufgelistet — jeder Eintrag zeigt Datum, Größe, Pfad, Shards und Messdaten-Zeitraum.
+
+<div class="screenshot-frame screenshot-frame-sm">
+  <img src={backupMessdatenRestoreEntryImg.src} alt="Messdaten wiederherstellen — Backup-Eintrag auswählen" />
+</div>
+
+Das gewünschte Backup per Klick auswählen (blauer Punkt erscheint). Optional den Schalter **Messdaten ersetzen** aktivieren, wenn bestehende Messdaten für denselben Zeitraum überschrieben werden sollen.
+
+Auf **Messdaten wiederherstellen** klicken, um die Wiederherstellung zu starten.
+
+:::note
+Der Speicherpfad gibt an, in welchem lokalen Verzeichnis Companion nach Backups sucht. Falls kein Backup angezeigt wird, den Speicherpfad prüfen und ggf. auf das Verzeichnis mit den Backup-Dateien anpassen.
+:::
+
+    </div>
+
+    <div class="qs-panel">
+
+Ein Gerät in der Geräteliste anklicken, um das Detailpanel zu öffnen. Den Tab **Backup** wählen und den Reiter **Konfiguration** aktivieren.
+
+Unter **Konfiguration sichern** die gewünschten Bestandteile per Checkbox auswählen. Optional einen Kommentar eingeben, um das Backup zu beschreiben.
+
+<div class="screenshot-frame screenshot-frame-sm">
+  <img src={backupConfigOverviewImg.src} alt="Konfiguration sichern — Auswahl der Backup-Bestandteile" />
+</div>
+
+Auf **Konfiguration sichern** klicken. Ein Fortschrittsbalken zeigt den Verlauf an.
+
+<div class="screenshot-frame screenshot-frame-sm">
+  <img src={backupConfigProgressImg.src} alt="Konfiguration wird gesichert — Fortschrittsanzeige" />
+</div>
+
+Nach Abschluss erscheint eine grüne Bestätigung. Das Backup liegt im konfigurierten Speicherpfad.
+
+<div class="screenshot-frame screenshot-frame-sm">
+  <img src={backupConfigSuccessImg.src} alt="Konfiguration erfolgreich gesichert — Bestätigung" />
+</div>
+
+    </div>
+
+    <div class="qs-panel">
+
+Ein Gerät in der Geräteliste anklicken, um das Detailpanel zu öffnen. Den Tab **Backup** wählen und den Reiter **Konfiguration** aktivieren.
+
+Unter **Konfiguration wiederherstellen** ein Backup auswählen:
+
+- **Aus vorhandenen Geräte-Backups:** Die im Speicherpfad gefundenen Backups für dieses Gerät werden direkt aufgelistet. Ein Backup per Klick auswählen.
+- **Aus externer Datei:** Den Bereich **Aus externer Datei wiederherstellen…** aufklappen und die Backup-Datei hochladen.
+
+Auf **Konfiguration wiederherstellen** klicken, um die Wiederherstellung zu starten.
+
+:::note
+Alle im Backup enthaltenen Bestandteile überschreiben die jeweils bestehende Konfiguration auf dem Gerät. Wenn das Backup die **Network Settings** enthält, kann sich die IP-Adresse des Crawlers nach der Wiederherstellung ändern. Nicht benötigte Bestandteile können vor dem Wiederherstellen durch Abwählen der entsprechenden Checkboxen ausgeschlossen werden.
+:::
+
+    </div>
+
+  </div>
+
+</div>

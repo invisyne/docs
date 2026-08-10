@@ -1,0 +1,122 @@
+---
+title: "Backup & Restore"
+description: "Step-by-step guide for backing up and restoring measurement data and configuration in Crawler.Companion."
+sidebar:
+  order: 4
+---
+
+import backupMessdatenDatepickerImg from '../../../../assets/images/companion/companion-backup-messdaten-datepicker.png';
+import backupMessdatenProgressImg from '../../../../assets/images/companion/companion-backup-messdaten-progress.png';
+import backupMessdatenSuccessImg from '../../../../assets/images/companion/companion-backup-messdaten-success.png';
+import backupMessdatenRestoreEntryImg from '../../../../assets/images/companion/companion-backup-messdaten-restore-entry.png';
+import backupConfigOverviewImg from '../../../../assets/images/companion/companion-backup-config-overview.png';
+import backupConfigProgressImg from '../../../../assets/images/companion/companion-backup-config-progress.png';
+import backupConfigSuccessImg from '../../../../assets/images/companion/companion-backup-config-success.png';
+
+Crawler.Companion lets you back up and restore both measurement data and device configuration directly from the interface. The backup feature is available under the **Backup** tab in the device detail panel.
+
+<div class="qs-stepper">
+
+  <div class="qs-tabbar">
+    <a class="qs-tab" href="#">Back up measurement data</a>
+    <a class="qs-tab" href="#">Restore measurement data</a>
+    <a class="qs-tab" href="#">Save configuration</a>
+    <a class="qs-tab" href="#">Restore configuration</a>
+  </div>
+
+  <div class="qs-panels">
+
+    <div class="qs-panel">
+
+Click a device in the device list to open the detail panel. Select the **Backup** tab and make sure the **Messdaten** sub-tab is active.
+
+#### Back up all data
+
+Click **Backup starten**. The backup includes all recorded measurement data for the Crawler.
+
+#### Back up a specific time range
+
+Enable the **Nach Zeitraum filtern** toggle. Von (from) and Bis (to) date/time fields appear.
+
+<div class="screenshot-frame screenshot-frame-sm">
+  <img src={backupMessdatenDatepickerImg.src} alt="Create backup — time range filter with date picker" />
+</div>
+
+Enter the desired time range and click **Backup starten**. A progress bar shows the status.
+
+<div class="screenshot-frame screenshot-frame-sm">
+  <img src={backupMessdatenProgressImg.src} alt="Backup running — progress indicator" />
+</div>
+
+A green confirmation message appears when the backup is complete. The backup file is saved in the configured storage path.
+
+<div class="screenshot-frame screenshot-frame-sm">
+  <img src={backupMessdatenSuccessImg.src} alt="Backup complete — confirmation" />
+</div>
+
+    </div>
+
+    <div class="qs-panel">
+
+Click a device in the device list to open the detail panel. Select the **Backup** tab and make sure the **Messdaten** sub-tab is active.
+
+Under **Messdaten wiederherstellen**, expand the **Aus externem Ordner wiederherstellen…** section. Available backups are listed — each entry shows date, size, path, shards, and measurement data time range.
+
+<div class="screenshot-frame screenshot-frame-sm">
+  <img src={backupMessdatenRestoreEntryImg.src} alt="Restore measurement data — select a backup entry" />
+</div>
+
+Click the desired backup to select it (a blue dot appears). Optionally enable the **Messdaten ersetzen** toggle if existing measurement data for the same time range should be overwritten.
+
+Click **Messdaten wiederherstellen** to start the restore.
+
+:::note
+The storage path determines which local directory Companion searches for backups. If no backup appears in the list, check the storage path and adjust it to the directory containing the backup files.
+:::
+
+    </div>
+
+    <div class="qs-panel">
+
+Click a device in the device list to open the detail panel. Select the **Backup** tab and activate the **Konfiguration** sub-tab.
+
+Under **Konfiguration sichern**, check the components to include in the backup. Optionally add a comment to describe the backup.
+
+<div class="screenshot-frame screenshot-frame-sm">
+  <img src={backupConfigOverviewImg.src} alt="Save configuration — component selection" />
+</div>
+
+Click **Konfiguration sichern**. A progress bar shows the status.
+
+<div class="screenshot-frame screenshot-frame-sm">
+  <img src={backupConfigProgressImg.src} alt="Saving configuration — progress indicator" />
+</div>
+
+A green confirmation message appears when the backup is complete. The backup file is saved in the configured storage path.
+
+<div class="screenshot-frame screenshot-frame-sm">
+  <img src={backupConfigSuccessImg.src} alt="Configuration saved successfully — confirmation" />
+</div>
+
+    </div>
+
+    <div class="qs-panel">
+
+Click a device in the device list to open the detail panel. Select the **Backup** tab and activate the **Konfiguration** sub-tab.
+
+Under **Konfiguration wiederherstellen**, select a backup to restore:
+
+- **From existing device backups:** Backups found in the storage path for this device are listed directly. Click a backup to select it.
+- **From an external file:** Expand the **Aus externer Datei wiederherstellen…** section and upload the backup file.
+
+Click **Konfiguration wiederherstellen** to start the restore.
+
+:::note
+All components included in the backup overwrite the existing configuration on the device. If the backup includes **Network Settings**, the IP address of the Crawler may change after the restore. To exclude components you don't need, deselect the corresponding checkboxes before confirming.
+:::
+
+    </div>
+
+  </div>
+
+</div>

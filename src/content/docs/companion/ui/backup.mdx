@@ -1,0 +1,108 @@
+---
+title: "Backup & Restore"
+description: "Overview of the Backup tab in the Crawler.Companion device detail panel — measurement data backup and configuration backup."
+sidebar:
+  order: 3.3
+---
+
+import backupOverviewImg from '../../../../assets/images/companion/companion-backup-overview.png';
+import backupMessdatenDatepickerImg from '../../../../assets/images/companion/companion-backup-messdaten-datepicker.png';
+import backupMessdatenRestoreEntryImg from '../../../../assets/images/companion/companion-backup-messdaten-restore-entry.png';
+import backupSpeicherpfadImg from '../../../../assets/images/companion/companion-backup-speicherpfad.png';
+import backupConfigOverviewImg from '../../../../assets/images/companion/companion-backup-config-overview.png';
+
+The **Backup** tab in the device detail panel contains two sections: **Messdaten** (measurement data) and **Konfiguration** (configuration). Each section has its own storage path for backup files.
+
+<div class="screenshot-frame">
+  <img src={backupOverviewImg.src} alt="Crawler.Companion — Backup tab with Messdaten section" />
+</div>
+
+<div class="qs-stepper">
+
+  <div class="qs-tabbar">
+    <a class="qs-tab" href="#">Messdaten</a>
+    <a class="qs-tab" href="#">Konfiguration</a>
+  </div>
+
+  <div class="qs-panels">
+
+    <div class="qs-panel">
+
+#### Create backup
+
+Saves all measurement data from the Crawler as an archive in the configured storage path.
+
+| Element | Description |
+|---|---|
+| **Nach Zeitraum filtern** | Toggle — when enabled, Von (from) and Bis (to) date/time fields appear. Only measurement data within this time range is included in the backup. |
+| **Von / Bis** | Time range selector with date picker. Only visible when „Nach Zeitraum filtern" is enabled. |
+| **Backup starten** | Starts the backup. A progress bar shows the status. While running, **Backup abbrechen** appears as an alternative. |
+
+<div class="screenshot-frame screenshot-frame-sm">
+  <img src={backupMessdatenDatepickerImg.src} alt="Create backup — time range filter with date picker" />
+</div>
+
+#### Restore measurement data
+
+Restores measurement data from an existing backup.
+
+| Element | Description |
+|---|---|
+| **Aus externem Ordner wiederherstellen…** | Expandable section — lists backups found in the storage path. Each entry shows date, size, path, shards, and measurement data time range. Click an entry to select it (blue dot). |
+| **Messdaten ersetzen** | Toggle — when enabled, existing measurement data for the same time range is overwritten. When disabled, the restored data is added alongside existing data. |
+| **Messdaten wiederherstellen** | Starts the restore. Only active when a backup is selected. |
+
+<div class="screenshot-frame screenshot-frame-sm">
+  <img src={backupMessdatenRestoreEntryImg.src} alt="Restore measurement data — backup entry selected" />
+</div>
+
+#### Storage path
+
+Shows the local path where measurement data backups are stored. Click the pencil icon to change the path.
+
+<div class="screenshot-frame screenshot-frame-sm">
+  <img src={backupSpeicherpfadImg.src} alt="Storage path for measurement data backups" />
+</div>
+
+    </div>
+
+    <div class="qs-panel">
+
+#### Save configuration
+
+Creates a backup of the device configuration. Each component can be included or excluded individually.
+
+| Element | Description |
+|---|---|
+| **Date & Time Settings** | Date and time settings of the device. |
+| **Network Settings** | Network configuration (IP addresses, DNS, etc.). |
+| **Crawler Settings** | Device-specific Crawler settings. |
+| **Node-RED** | Node-RED flows and configuration. |
+| **Grafana (Dashboards)** | Grafana dashboards. |
+| **Login Credentials** | Login credentials of the device. |
+| **Kommentar (optional)** | Free-text field for a description of the backup. |
+| **Konfiguration sichern** | Starts the backup. A progress bar shows the status. |
+
+<div class="screenshot-frame screenshot-frame-sm">
+  <img src={backupConfigOverviewImg.src} alt="Save configuration — component selection" />
+</div>
+
+#### Restore configuration
+
+Restores a saved device configuration.
+
+| Element | Description |
+|---|---|
+| **Aus externer Datei wiederherstellen…** | Expandable section — allows uploading a configuration file from outside the storage path. |
+| Device backups | Below the upload section, existing backups for this device are listed. Click a backup to select it. |
+| **Konfiguration wiederherstellen** | Starts the restore using the selected backup. Only active when a backup is selected. |
+
+#### Storage path
+
+Shows the local path where configuration backups are stored. Click the pencil icon to change the path.
+
+    </div>
+
+  </div>
+
+</div>
