@@ -1,0 +1,154 @@
+---
+title: "Materialverfolgung & Runs einrichten"
+description: "Schritt-für-Schritt-Anleitung zum Einrichten der Materialverfolgung und von Runs im Edge."
+---
+
+import { Steps } from '@astrojs/starlight/components';
+import mattWizardStep1Img from '../../../../../assets/images/edge/edge-mattrack-wizard-step1.png';
+import mattWizardStep2NewImg from '../../../../../assets/images/edge/edge-mattrack-wizard-step2-new.png';
+import mattWizardAusloeserImg from '../../../../../assets/images/edge/edge-mattrack-wizard-ausloeser.png';
+import mattWizardMessgroessenImg from '../../../../../assets/images/edge/edge-mattrack-wizard-messgroessen.png';
+import mattWizardStep2FilledImg from '../../../../../assets/images/edge/edge-mattrack-wizard-step2-filled.png';
+import mattSuccessImg from '../../../../../assets/images/edge/edge-mattrack-success.png';
+import mattAufzeichnungenImg from '../../../../../assets/images/edge/edge-mattrack-aufzeichnungen.png';
+import mattAufzeichnungenCompletedImg from '../../../../../assets/images/edge/edge-mattrack-aufzeichnungen-completed.png';
+import runsAnlegenWizardImg from '../../../../../assets/images/edge/edge-runs-anlegen-wizard.png';
+import runsAnlegenMessgroessenImg from '../../../../../assets/images/edge/edge-runs-anlegen-messgroessen.png';
+import runsConfigImg from '../../../../../assets/images/edge/edge-runs-config.png';
+import runsListImg from '../../../../../assets/images/edge/edge-runs-list.png';
+
+Die Messgrößen-Seite eines Geräts (**Aufzeichnung → Geräte → [Gerät]**) enthält die Tabs **Materialverfolgung** und **Runs**.
+
+<div class="qs-stepper">
+
+  <div class="qs-tabbar">
+    <a class="qs-tab" href="#">Materialverfolgung einrichten</a>
+    <a class="qs-tab" href="#">Run einrichten</a>
+  </div>
+
+  <div class="qs-panels">
+
+    <div class="qs-panel">
+
+Die Materialverfolgung ermöglicht die lückenlose Rückverfolgung von Werkstücken durch definierte Zonen und Stationen eines Fertigungsprozesses.
+
+<Steps>
+
+1. **Prozessdefinition anlegen**
+
+   Im Tab **Materialverfolgung** auf **+ Neue Prozessdefinition** klicken. Im ersten Schritt des Assistenten einen eindeutigen Namen vergeben. Die Beschreibung ist optional. Anschließend auf **Anlegen** klicken.
+
+   <div class="screenshot-frame screenshot-frame-sm">
+     <img src={mattWizardStep1Img.src} alt="Materialverfolgung erstellen — Schritt 1: Prozessdefinition" />
+   </div>
+
+2. **Erste Zone/Station benennen**
+
+   Nach dem Anlegen öffnet sich automatisch Schritt 2: die Zonen-/Stationsdefinition. Einen eindeutigen Namen für die erste Zone/Station eingeben. Die Zonen-/Stations-Nr. wird automatisch vergeben.
+
+   :::note
+   Die Reihenfolge der Zonen/Stationen ergibt sich aus der Zonen-/Stations-Nr. Sie wird beim Anlegen fortlaufend vergeben und bestimmt, in welcher Reihenfolge Werkstücke die Stationen durchlaufen sollen.
+   :::
+
+   <div class="screenshot-frame screenshot-frame-sm">
+     <img src={mattWizardStep2NewImg.src} alt="Zonen-/Stationsdefinition — neue Zone/Station anlegen" />
+   </div>
+
+3. **Auslöser auswählen**
+
+   Auf **Auslöser auswählen** klicken. Im Variablen-Browser die Messgröße auswählen, deren Wertänderung das Eintreten eines Werkstücks signalisiert.
+
+   <div class="screenshot-frame">
+     <img src={mattWizardAusloeserImg.src} alt="Auslöser-Messgröße auswählen — Variablen-Browser" />
+   </div>
+
+4. **Messgrößen hinzufügen**
+
+   Auf **Messgrößen hinzufügen** klicken und alle Variablen auswählen, deren Werte für Werkstücke an dieser Station aufgezeichnet werden sollen.
+
+   <div class="screenshot-frame">
+     <img src={mattWizardMessgroessenImg.src} alt="Messgrößen hinzufügen — Variablen-Browser" />
+   </div>
+
+5. **Zone/Station speichern**
+
+   Auf **Anlegen** klicken. Nach dem Speichern erscheint kurz eine grüne Erfolgsmeldung.
+
+   <div class="screenshot-frame screenshot-frame-sm">
+     <img src={mattWizardStep2FilledImg.src} alt="Zone/Station mit konfiguriertem Auslöser und zugeordneten Messgrößen" />
+   </div>
+
+   <div class="screenshot-frame screenshot-frame-sm">
+     <img src={mattSuccessImg.src} alt="Erfolgreich gespeichert — Bestätigungsmeldung" />
+   </div>
+
+   Für weitere Zonen/Stationen auf **+ Neue Zone/Station** klicken und Schritte 2–4 wiederholen. Die letzte Station mit **Ist letzte Station** markieren.
+
+5. **Aufzeichnungen abrufen**
+
+   In der Seitenleiste auf **Aufzeichnungen** unter der Prozessdefinition klicken. Solange ein Werkstück noch in Bearbeitung ist, erscheint der Status **RUNNING**.
+
+   <div class="screenshot-frame">
+     <img src={mattAufzeichnungenImg.src} alt="Aufzeichnungen — Werkstück mit Status RUNNING" />
+   </div>
+
+   Sobald das Werkstück die letzte Station (Exit-Gate) durchlaufen hat, wechselt der Status auf **COMPLETED**.
+
+   <div class="screenshot-frame">
+     <img src={mattAufzeichnungenCompletedImg.src} alt="Aufzeichnungen — Werkstücke mit Status COMPLETED" />
+   </div>
+
+   Einzelne Aufzeichnungen können über das CSV-Symbol heruntergeladen werden. Eine Übersicht aller Felder befindet sich in der [UI-Referenz](/de/edge/ui/material-tracking).
+
+</Steps>
+
+    </div>
+
+    <div class="qs-panel">
+
+Runs ermöglichen die messgrößenbasierte oder zeitgesteuerte Aufzeichnung von Variablenwerten. Ein Run wird durch eine Start- und eine Stopbedingung begrenzt.
+
+<Steps>
+
+1. **Run anlegen**
+
+   Im Tab **Runs** auf **+ Run Erstellen** klicken. Einen eindeutigen Namen vergeben und den Typ wählen: **Messgrößenbasiert** oder **Zeitbasiert**.
+
+   Unter **Auslöser & Bedingung** jeweils Messgröße, Operator und Schwellwert für die Start- und Stopbedingung auswählen.
+
+   <div class="screenshot-frame screenshot-frame-sm">
+     <img src={runsAnlegenWizardImg.src} alt="Run anlegen — Name, Typ und Auslöser" />
+   </div>
+
+2. **Messgrößen auswählen**
+
+   Im dritten Schritt auf **Messgrößen hinzufügen** klicken und alle Variablen auswählen, die während des Runs aufgezeichnet werden sollen.
+
+   <div class="screenshot-frame screenshot-frame-sm">
+     <img src={runsAnlegenMessgroessenImg.src} alt="Run anlegen — Messgrößen auswählen" />
+   </div>
+
+3. **Run speichern und aktivieren**
+
+   Auf **Speichern** klicken. Den Run in der Seitenleiste auswählen und über den **Aktiv**-Schalter aktivieren — erst dann zeichnet er auf.
+
+   <div class="screenshot-frame">
+     <img src={runsConfigImg.src} alt="Run-Konfiguration — Aktiv-Schalter und Trigger-Tabelle" />
+   </div>
+
+4. **Aufzeichnungen abrufen**
+
+   In der Seitenleiste unter dem Run auf **Runs** klicken, um alle Aufzeichnungen anzuzeigen. Einzelne Aufzeichnungen können über das CSV-Symbol heruntergeladen werden.
+
+   <div class="screenshot-frame">
+     <img src={runsListImg.src} alt="Runs-Liste — abgeschlossene Aufzeichnungen" />
+   </div>
+
+</Steps>
+
+    </div>
+
+  </div>
+
+</div>
+

@@ -1,0 +1,154 @@
+---
+title: "Set Up Material Tracking & Runs"
+description: "Step-by-step guide for setting up Material Tracking and Runs in Edge."
+---
+
+import { Steps } from '@astrojs/starlight/components';
+import mattWizardStep1Img from '../../../../assets/images/edge/edge-mattrack-wizard-step1.png';
+import mattWizardStep2NewImg from '../../../../assets/images/edge/edge-mattrack-wizard-step2-new.png';
+import mattWizardAusloeserImg from '../../../../assets/images/edge/edge-mattrack-wizard-ausloeser.png';
+import mattWizardMessgroessenImg from '../../../../assets/images/edge/edge-mattrack-wizard-messgroessen.png';
+import mattWizardStep2FilledImg from '../../../../assets/images/edge/edge-mattrack-wizard-step2-filled.png';
+import mattSuccessImg from '../../../../assets/images/edge/edge-mattrack-success.png';
+import mattAufzeichnungenImg from '../../../../assets/images/edge/edge-mattrack-aufzeichnungen.png';
+import mattAufzeichnungenCompletedImg from '../../../../assets/images/edge/edge-mattrack-aufzeichnungen-completed.png';
+import runsAnlegenWizardImg from '../../../../assets/images/edge/edge-runs-anlegen-wizard.png';
+import runsAnlegenMessgroessenImg from '../../../../assets/images/edge/edge-runs-anlegen-messgroessen.png';
+import runsConfigImg from '../../../../assets/images/edge/edge-runs-config.png';
+import runsListImg from '../../../../assets/images/edge/edge-runs-list.png';
+
+The measurement page of a device (**Recording → Devices → [Device]**) includes the **Materialverfolgung** and **Runs** tabs.
+
+<div class="qs-stepper">
+
+  <div class="qs-tabbar">
+    <a class="qs-tab" href="#">Set Up Material Tracking</a>
+    <a class="qs-tab" href="#">Set Up a Run</a>
+  </div>
+
+  <div class="qs-panels">
+
+    <div class="qs-panel">
+
+Material Tracking provides end-to-end traceability of workpieces through defined zones and stations in a manufacturing process.
+
+<Steps>
+
+1. **Create a process definition**
+
+   In the **Materialverfolgung** tab, click **+ Neue Prozessdefinition**. Enter a unique name — the description is optional. Click **Create**.
+
+   <div class="screenshot-frame screenshot-frame-sm">
+     <img src={mattWizardStep1Img.src} alt="Create Material Tracking — Step 1: Process Definition" />
+   </div>
+
+2. **Name the first zone/station**
+
+   Step 2 opens automatically after creating the process definition. Enter a unique name for the first zone/station. The zone/station number is assigned automatically.
+
+   :::note
+   The zone/station number determines the order in which workpieces are expected to pass through the stations — it is assigned sequentially as new zones/stations are added.
+   :::
+
+   <div class="screenshot-frame screenshot-frame-sm">
+     <img src={mattWizardStep2NewImg.src} alt="Zone/Station Definition — adding a new zone/station" />
+   </div>
+
+3. **Select a trigger**
+
+   Click **Select trigger**. In the variable browser, select the variable whose value change signals a workpiece entering this zone/station.
+
+   <div class="screenshot-frame">
+     <img src={mattWizardAusloeserImg.src} alt="Select trigger measurement variable — variable browser" />
+   </div>
+
+4. **Add measurements**
+
+   Click **Add measurements** and select all variables whose values should be recorded for workpieces at this station.
+
+   <div class="screenshot-frame">
+     <img src={mattWizardMessgroessenImg.src} alt="Add measurements — variable browser" />
+   </div>
+
+5. **Save the zone/station**
+
+   Click **Create**. A green confirmation message briefly appears.
+
+   <div class="screenshot-frame screenshot-frame-sm">
+     <img src={mattWizardStep2FilledImg.src} alt="Zone/Station with configured trigger and assigned measurements" />
+   </div>
+
+   <div class="screenshot-frame screenshot-frame-sm">
+     <img src={mattSuccessImg.src} alt="Successfully saved — confirmation message" />
+   </div>
+
+   To add more zones/stations, click **+ New Zone/Station** and repeat steps 2–4. Mark the final station with **Is last station**.
+
+5. **View recordings**
+
+   In the sidebar, click **Aufzeichnungen** under the process definition. While a workpiece is still being processed, the status shows as **RUNNING**.
+
+   <div class="screenshot-frame">
+     <img src={mattAufzeichnungenImg.src} alt="Recordings — workpiece with status RUNNING" />
+   </div>
+
+   Once the workpiece has passed through the last station (exit gate), the status changes to **COMPLETED**.
+
+   <div class="screenshot-frame">
+     <img src={mattAufzeichnungenCompletedImg.src} alt="Recordings — workpieces with status COMPLETED" />
+   </div>
+
+   Individual recordings can be downloaded via the CSV icon. For a full field reference, see the [UI Reference](/edge/ui/material-tracking).
+
+</Steps>
+
+    </div>
+
+    <div class="qs-panel">
+
+Runs enable measurement-based or time-based recording of variable values. A run is bounded by a start condition and a stop condition.
+
+<Steps>
+
+1. **Create a run**
+
+   In the **Runs** tab, click **+ Run Erstellen**. Enter a unique name and select the type: **Messgrößenbasiert** (measurement-based) or **Zeitbasiert** (time-based).
+
+   Under **Auslöser & Bedingung**, select the variable, operator, and threshold value for both the start and stop conditions.
+
+   <div class="screenshot-frame screenshot-frame-sm">
+     <img src={runsAnlegenWizardImg.src} alt="Create run — name, type, and trigger" />
+   </div>
+
+2. **Select measurements**
+
+   In the third step, click **Messgrößen hinzufügen** and select all variables to be recorded during the run.
+
+   <div class="screenshot-frame screenshot-frame-sm">
+     <img src={runsAnlegenMessgroessenImg.src} alt="Create run — select measurements" />
+   </div>
+
+3. **Save and activate the run**
+
+   Click **Save**. Select the run in the sidebar and enable it using the **Active** toggle — only active runs record data.
+
+   <div class="screenshot-frame">
+     <img src={runsConfigImg.src} alt="Run configuration — Active toggle and trigger table" />
+   </div>
+
+4. **View recordings**
+
+   Click **Runs** under the run entry in the sidebar to see all recordings. Individual recordings can be downloaded via the CSV icon.
+
+   <div class="screenshot-frame">
+     <img src={runsListImg.src} alt="Runs list — completed recordings" />
+   </div>
+
+</Steps>
+
+    </div>
+
+  </div>
+
+</div>
+
