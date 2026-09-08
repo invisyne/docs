@@ -2706,6 +2706,12 @@ html:not([data-has-sidebar]) .sl-container > * + * {
   line-height: 1.5;
 }
 
+.product-card-powered {
+  font-size: 0.75rem;
+  color: var(--sl-color-gray-3);
+  margin: -0.5rem 0 0;
+}
+
 .product-card-desc {
   flex: 1;
   font-size: 0.875rem;

@@ -42,6 +42,7 @@ npm test                  # Run unit tests (scripts/*.test.js, via Node's built-
   - **When adding any new image:** name it correctly at creation time — product prefix + descriptive kebab-case name (e.g. `edge-hero-dashboard.png`, not `dashboard.png` or a source-tool ID) — don't wait to be asked to fix it afterward.
 - Filenames use lowercase kebab-case
 - **Product naming:** The Edge device was historically called "Crawler". In body content, always write **Edge** — never "Edge (Crawler)" or just "Crawler". The full form "Edge (Crawler)" is reserved for top-level product-identification contexts: the sidebar group label (`astro.config.mjs`), the site's top product nav and mobile menu (`Header.astro`), and the PDF's running header. Do not change `Crawler.Companion` or `Crawler.Hub` — those are proper product names.
+- **Deepview naming:** always **Deepview** — never "DeepView" or "Deep View". Deepview is built on **Marple Insight** (partner product, https://www.marpledata.com/marple-insight). The attribution "powered by Marple Insight" belongs on product-identification surfaces only — the Deepview overview page (subtitle under the logo in `PageTitle.astro` and the `## Powered by Marple Insight` section), the landing-page product card, and the overview page's frontmatter `description`. In ordinary body content write just **Deepview**.
 
 ## Changelog Generation
 
