@@ -100,6 +100,12 @@ Material Tracking provides end-to-end traceability of workpieces through defined
 
    Individual recordings can be downloaded via the CSV icon. For a full field reference, see the [UI Reference](/edge/ui/material-tracking).
 
+   :::note
+   **Status ERROR:** A recording switches to ERROR if the workpiece did not reach all stations within the expected time (timeout) or if the trigger signal was lost. The recording is kept with all data collected up to that point and can still be downloaded as a CSV.
+
+   If ERROR recordings appear repeatedly, check that all PLC variables are connected and that the trigger variable is reliably signalling workpiece entry at each station.
+   :::
+
 </Steps>
 
     </div>

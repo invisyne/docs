@@ -100,6 +100,12 @@ Die Materialverfolgung ermöglicht die lückenlose Rückverfolgung von Werkstüc
 
    Einzelne Aufzeichnungen können über das CSV-Symbol heruntergeladen werden. Eine Übersicht aller Felder befindet sich in der [UI-Referenz](/de/edge/ui/material-tracking).
 
+   :::note
+   **Status ERROR:** Eine Aufzeichnung wechselt auf ERROR, wenn das Werkstück nicht alle Stationen innerhalb der erwarteten Zeit durchlaufen hat (Timeout) oder das Auslöser-Signal ausgefallen ist. Die Aufzeichnung bleibt mit allen bis dahin gesammelten Daten erhalten und kann weiterhin als CSV heruntergeladen werden.
+
+   Treten ERROR-Aufzeichnungen regelmäßig auf, prüfen, ob alle PLC-Variablen verbunden sind und ob die Auslöser-Variable das Eintreten von Werkstücken an jeder Station zuverlässig signalisiert.
+   :::
+
 </Steps>
 
     </div>
