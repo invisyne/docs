@@ -167,17 +167,6 @@ export default defineConfig({
 										{ label: 'Add Data Sets', translations: { de: 'Datensätze hinzufügen' }, slug: 'deepview/analysis/add-data-sets' },
 										{ label: 'Signal List', translations: { de: 'Signalliste' }, slug: 'deepview/analysis/signal-list' },
 										{
-											label: 'Functions',
-											translations: { de: 'Funktionen' },
-											collapsed: true,
-											items: [
-												{ label: 'Overview', translations: { de: 'Übersicht' }, slug: 'deepview/analysis/functions' },
-												{ label: 'Functions Overview', translations: { de: 'Funktionsübersicht' }, slug: 'deepview/analysis/functions/functions-overview' },
-												{ label: 'Built-in functions', translations: { de: 'Integrierte Funktionen' }, slug: 'deepview/analysis/functions/built-in-functions' },
-												{ label: 'Custom functions', translations: { de: 'Benutzerdefinierte Funktionen' }, slug: 'deepview/analysis/functions/custom-functions' },
-											],
-										},
-										{
 											label: 'Dataset Modes',
 											translations: { de: 'Datensatz-Modi' },
 											collapsed: true,
@@ -227,6 +216,17 @@ export default defineConfig({
 										{ label: 'Export image', translations: { de: 'Bild exportieren' }, slug: 'deepview/analysis/export-image' },
 										{ label: 'Resampling', translations: { de: 'Resampling' }, slug: 'deepview/analysis/resampling' },
 										{ label: 'Annotations', translations: { de: 'Anmerkungen' }, slug: 'deepview/analysis/annotations' },
+									],
+								},
+								{
+									label: 'Functions',
+									translations: { de: 'Funktionen' },
+									collapsed: true,
+									items: [
+										{ label: 'Overview', translations: { de: 'Übersicht' }, slug: 'deepview/functions' },
+										{ label: 'Functions Overview', translations: { de: 'Funktionsübersicht' }, slug: 'deepview/functions/overview' },
+										{ label: 'Built-in functions', translations: { de: 'Integrierte Funktionen' }, slug: 'deepview/functions/built-in-functions' },
+										{ label: 'Custom functions', translations: { de: 'Benutzerdefinierte Funktionen' }, slug: 'deepview/functions/custom-functions' },
 									],
 								},
 								{ label: 'Database', translations: { de: 'Datenbank' }, slug: 'deepview/database' },

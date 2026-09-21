@@ -20,35 +20,59 @@ Ihr könnt die Daten mit den +/--Symbolen zoomen und schwenken, oder durch Ziehe
 
 ![](../../../../../../assets/images/deepview/deepview-analysis-plot-types-map-2.png)
 
-## Weitere Einstellungen
+## Mehrere Trajektorien
 
-Klickt oben rechts im Plot auf das Einstellungsrad, um ihn zu konfigurieren.
+Eine Trajektorie ist die Kombination aus einem Latitude- und einem Longitude-Signal. Ihr könnt mehrere Trajektorien auf derselben Karte darstellen.
+
+Dadurch lässt sich im [Overlay](/de/deepview/analysis/dataset-modes/overlay)-Modus auch dieselbe Trajektorie über verschiedene Datensätze hinweg vergleichen.
+
+{/* Screenshot: Map-Plot mit mehreren gleichzeitig dargestellten Trajektorien */}
+
+Um eine weitere hinzuzufügen, klickt in den Einstellungen auf **Add another trajectory**. Trajektorien lassen sich außerdem löschen, umbenennen und im Plot ausblenden.
+
+Sind mehrere Trajektorien definiert, zoomt die Ansicht des gesamten Datensatzes so weit heraus, bis jede Trajektorie vollständig sichtbar ist.
+
+## Einstellungen je Trajektorie
+
+Die folgenden Einstellungen gelten jeweils für eine einzelne Trajektorie.
 
 ![](../../../../../../assets/images/deepview/deepview-analysis-plot-types-map-3.png)
 
-### Eingangssignale resamplen
+### Latitude- und Longitude-Signal
 
-Wie beim Scatter-Plot könnt ihr die Eingangssignale resamplen, um ihre Zeitbasis für eine konsistente Analyse anzugleichen.
+Stimmen die Longitude- oder Latitude-Werte nicht korrekt mit der Karte überein, könnt ihr einen Offset anwenden, um die Positionierung anzupassen.
 
-### Bullet-Größe
+### Color-Signal
 
-Passt die Bullet-Größe nach euren Wünschen an, damit Datenpunkte klarer erkennbar sind.
+Fügt ein drittes Signal hinzu (z. B. Motortemperatur) und legt untere und obere Grenzwerte fest, um Datenpunkte dynamisch anhand dieses Signals einzufärben — das liefert eine zusätzliche Informationsebene in eurer Visualisierung.
+
+### Filter
+
+Um Ausreißer zu filtern, fügt ein Kontrollsignal hinzu und legt einen Offset-Wert fest, um unerwünschte Datenpunkte auszublenden.
 
 ### Vollständige Trajektorie anzeigen
 
 Legt fest, ob alle Datenpunkte angezeigt werden sollen, oder nur der Datenpunkt an der aktuellen Cursor-Position auf der Zeitachse.
 
-### Latitude- und Longitude-Offset festlegen
+### Eingangssignale resamplen
 
-Stimmen die Longitude- oder Latitude-Werte nicht korrekt mit der Karte überein, könnt ihr einen Offset anwenden, um die Positionierung anzupassen.
+Wie beim Scatter-Plot könnt ihr die Eingangssignale resamplen, um ihre Zeitbasis für eine konsistente Analyse anzugleichen. Mehr dazu unter [Resampling](/de/deepview/analysis/resampling).
 
-### Filters
+### Bullet-Größe und Deckkraft
 
-Um Ausreißer zu filtern, fügt ein Kontrollsignal hinzu und legt einen Offset-Wert fest, um unerwünschte Datenpunkte auszublenden.
+Passt die Bullet-Größe nach euren Wünschen an, damit Datenpunkte klarer erkennbar sind. Über die Deckkraft stellt ihr ein, wie prominent ein Signal im Plot erscheint.
 
-## Color-Signal
+## Legende
 
-Fügt ein drittes Signal hinzu (z. B. Speed) und legt untere und obere Grenzwerte fest, um Datenpunkte dynamisch anhand dieses Signals einzufärben — das liefert eine zusätzliche Informationsebene in eurer Visualisierung.
+Jede Trajektorie erscheint als eigener Eintrag in der Legende.
+
+{/* Screenshot: Legende des Map-Plots mit einem Eintrag je Trajektorie */}
+
+- Zieht Signale per Drag-and-Drop aus der Signalliste in die Legende, um ein Signal zu ersetzen.
+- Klickt auf eine Zeile in der Legende, um die zugehörige Trajektorie hervorzuheben.
+- Die Legende kann unten links, unten rechts, über die volle Breite ober- oder unterhalb des Plots stehen — oder ganz ausgeblendet werden.
+
+## Weitere Einstellungen
 
 ### Hintergrund
 
@@ -64,4 +88,4 @@ Ihr könnt außerdem einen **eigenen Hintergrund** hinzufügen:
 
 ### Overlays
 
-Erweitert eure Karte um Overlays, z. B. **Anlagengrenzen oder Geofences**, für zusätzlichen Kontext.
+Erweitert eure Karte um Overlays. Die Option **Show airspaces** blendet Luftraumgrenzen als zusätzliche Kontextebene über die Karte ein.

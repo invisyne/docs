@@ -20,35 +20,59 @@ You can zoom and pan the data using the +/- icons or by dragging and scrolling i
 
 ![](../../../../../assets/images/deepview/deepview-analysis-plot-types-map-2.png)
 
-## Other settings
+## Multiple trajectories
 
-Click the settings wheel at the top-right of the plot to configure it.
+A trajectory is the combination of a latitude signal and a longitude signal. You can plot several trajectories on the same map.
+
+This also means that in [Overlay](/deepview/analysis/dataset-modes/overlay) mode, you can compare the same trajectory across different data sets.
+
+{/* Screenshot: map plot showing several trajectories at once */}
+
+To add one, click **Add another trajectory** in the settings. Trajectories can also be deleted, renamed, and hidden from the plot.
+
+When several trajectories are defined, zooming out to the entire data set zooms out far enough for every trajectory to be fully visible.
+
+## Per trajectory settings
+
+The following settings apply to each trajectory individually.
 
 ![](../../../../../assets/images/deepview/deepview-analysis-plot-types-map-3.png)
 
-### Resample input signals
-
-Similar to the Scatter plot, you can resample the input signals to align their time bases for consistent analysis.
-
-### Bullet size
-
-Adjust the bullet size to your preferred dimensions, making data points easier to see clearly.
-
-### Show full trajectory
-
-Choose whether to display all data points or only the one corresponding to the current cursor position on the timeline.
-
-### Set latitude and longitude offset
+### Latitude and longitude signal
 
 If the longitude or latitude values don't align correctly with the map, you can apply an offset to adjust their positioning.
+
+### Color signal
+
+Add a third signal (e.g. motor temperature) and define lower and upper bounds to dynamically color data points based on that signal's values — adding an extra layer of insight to your visualization.
 
 ### Filters
 
 To filter out outliers, add a control signal and set an offset value to hide unwanted data points.
 
-## Color signal
+### Show full trajectory
 
-Add a third signal (e.g. speed) and define lower and upper bounds to dynamically color data points based on that signal's values — adding an extra layer of insight to your visualization.
+Choose whether to display all data points or only the one corresponding to the current cursor position on the timeline.
+
+### Resample input signals
+
+Similar to the Scatter plot, you can resample the input signals to align their time bases for consistent analysis. See [Resampling](/deepview/analysis/resampling) for more information.
+
+### Bullet size and opacity
+
+Adjust the bullet size to your preferred dimensions, making data points easier to see clearly. Adjusting the opacity makes a signal more or less prominent on the plot.
+
+## Legend
+
+Each trajectory appears as a separate entry in the legend.
+
+{/* Screenshot: map plot legend with one entry per trajectory */}
+
+- Drag and drop signals from the signal list into the legend to update a signal.
+- Click a row in the legend to highlight the corresponding trajectory.
+- The legend can sit in the bottom-left or bottom-right corner, span the full width above or below the plot, or be hidden entirely.
+
+## Other settings
 
 ### Background
 
@@ -64,4 +88,4 @@ You can also add a **custom background**:
 
 ### Overlays
 
-Enhance your map by adding overlays, such as **facility boundaries or geofences**, for extra context.
+Enhance your map by adding overlays. The **Show airspaces** option overlays airspace boundaries onto the map for extra context.
