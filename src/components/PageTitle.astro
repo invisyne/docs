@@ -19,6 +19,14 @@ const { entry } = Astro.locals.starlightRoute;
   <div class="page-title-logo">
     <img src={`/logos/${product}-light.svg`} alt={entry.data.title} class="dark:sl-hidden" />
     <img src={`/logos/${product}-dark.svg`} alt={entry.data.title} class="light:sl-hidden" />
+    {product === 'deepview' && (
+      <p class="page-title-powered">
+        powered by{' '}
+        <a href="https://www.marpledata.com/marple-insight" target="_blank" rel="noopener">
+          Marple Insight
+        </a>
+      </p>
+    )}
   </div>
 ) : (
   <h1 id={PAGE_TITLE_ID}>{entry.data.title}</h1>
@@ -40,6 +48,27 @@ const { entry } = Astro.locals.starlightRoute;
       height: 2.5rem;
       width: auto;
       display: block;
+    }
+    .page-title-powered {
+      margin: 0.5rem 0 0;
+      font-size: 0.8125rem;
+      line-height: 1.4;
+      color: var(--sl-color-gray-3);
+    }
+    .page-title-powered a {
+      color: var(--sl-color-white);
+      font-weight: 600;
+      text-decoration: none;
+      border-bottom: 1px solid var(--sl-color-gray-5);
+    }
+    .page-title-powered a:hover {
+      color: var(--sl-color-accent);
+      border-bottom-color: currentColor;
+    }
+    .page-title-powered a::after {
+      content: ' ↗';
+      font-weight: 400;
+      color: var(--sl-color-gray-3);
     }
   }
 </style>
