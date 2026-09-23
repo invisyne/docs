@@ -1,4 +1,4 @@
-name: Build & Push Docker Image
+name: Build & Push Docker Image to ECR
 
 on:
   push:
@@ -8,7 +8,8 @@ on:
 
 permissions:
   contents: read
-  packages: write
+  id-token: write
+  packages: read
 
 jobs:
   docker:
@@ -16,18 +17,41 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Log in to GitHub Container Registry
-        uses: docker/login-action@v3
+      - name: Generate release-notes access token
+        id: app-token
+        uses: actions/create-github-app-token@v2
         with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          app-id: ${{ secrets.RELEASE_NOTES_APP_ID }}
+          private-key: ${{ secrets.RELEASE_NOTES_APP_KEY }}
+          owner: invisyne
+          repositories: release-notes
+
+      - name: Checkout release-notes
+        uses: actions/checkout@v4
+        with:
+          repository: invisyne/release-notes
+          token: ${{ steps.app-token.outputs.token }}
+          path: release-notes
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::343781770623:role/github-actions-invisyne-docs-ecr
+          aws-region: eu-central-1
+
+      - name: Log in to Amazon ECR
+        id: ecr-login
+        uses: aws-actions/amazon-ecr-login@v2
 
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
           context: .
           push: true
-          tags: ghcr.io/${{ github.repository }}:${{ github.ref_name }},ghcr.io/${{ github.repository }}:latest
-          build-args: |
+          tags: |
+            343781770623.dkr.ecr.eu-central-1.amazonaws.com/invisyne-docs:${{ github.ref_name }}
+            343781770623.dkr.ecr.eu-central-1.amazonaws.com/invisyne-docs:latest
+          secrets: |
             GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}
+          build-args: |
+            RELEASE_NOTES_PATH=release-notes

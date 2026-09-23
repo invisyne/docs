@@ -1,3 +1,5 @@
+# syntax=docker/dockerfile:1
+
 # Stage 1: build
 FROM node:22-bookworm-slim AS builder
 
@@ -25,20 +27,25 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
     PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium
 
-ARG GITHUB_TOKEN
-
 WORKDIR /app
 
 COPY package*.json .npmrc ./
-RUN echo "//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}" >> .npmrc \
+
+# Mount the GitHub token as a secret so it never appears in image layers or logs
+RUN --mount=type=secret,id=GITHUB_TOKEN \
+    echo "//npm.pkg.github.com/:_authToken=$(cat /run/secrets/GITHUB_TOKEN)" >> .npmrc \
  && npm ci \
  && rm -f .npmrc
 
 COPY . .
 
-# Build site + generate PDFs
-# Changelogs are skipped when no release-notes repo is provided (RELEASE_NOTES_PATH unset)
-RUN mkdir -p /release-notes && RELEASE_NOTES_PATH=/release-notes node scripts/generate-changelogs.js || true \
+ARG RELEASE_NOTES_PATH=
+# If a release-notes path is provided, use it; otherwise skip changelog generation
+RUN if [ -n "$RELEASE_NOTES_PATH" ]; then \
+      RELEASE_NOTES_PATH="$RELEASE_NOTES_PATH" node scripts/generate-changelogs.js; \
+    else \
+      mkdir -p /release-notes && RELEASE_NOTES_PATH=/release-notes node scripts/generate-changelogs.js || true; \
+    fi \
  && npx astro build \
  && npm run generate-pdfs
 
