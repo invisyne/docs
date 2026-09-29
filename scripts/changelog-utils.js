@@ -33,3 +33,8 @@ export function processFile(raw, datePattern) {
 
   return { body, releaseDate };
 }
+
+export function latestVersion(markdown) {
+  const versions = [...markdown.matchAll(/^## (\d+(?:\.\d+)+)\s*$/gm)].map(m => m[1]);
+  return versions.length ? versions.sort(semverCompare)[0] : null;
+}

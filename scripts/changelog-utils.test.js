@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { semverCompare, processFile } from './changelog-utils.js';
+import { semverCompare, processFile, latestVersion } from './changelog-utils.js';
 
 test('semverCompare sorts versions newest-first', () => {
   const versions = ['1.0.0', '2.0.0', '1.5.0'];
@@ -55,4 +55,13 @@ test('processFile strips a leading horizontal rule left over from the source str
   const raw = '# Title\n\n**Released:** 2026-06-29\n\n---\n\n## Highlights\n\nBody.';
   const { body } = processFile(raw, EN_DATE);
   assert.ok(body.startsWith('### Highlights'));
+});
+
+test('latestVersion returns the highest version heading', () => {
+  const md = '---\ntitle: Changelog\n---\n\n## 2.9.0\n\n### Bug Fixes\n\n## 2.10.0\n\n## 2.8.1\n';
+  assert.equal(latestVersion(md), '2.10.0');
+});
+
+test('latestVersion returns null when there is no version heading', () => {
+  assert.equal(latestVersion('## Highlights\n\nNothing here.'), null);
 });

@@ -241,6 +241,7 @@ export default defineConfig({
 							translations: { de: 'Technische Referenz' },
 							autogenerate: { directory: 'deepview/technical-reference' },
 						},
+						{ label: 'Download PDF', translations: { de: 'PDF herunterladen' }, slug: 'deepview/download', attrs: { class: 'sidebar-pdf-link' } },
 					],
 				},
 			],

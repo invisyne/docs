@@ -61,6 +61,8 @@ Run `node scripts/generate-changelogs.js [path]` directly to regenerate. Default
 - Scrapes that product's chapter structure directly from the live sidebar HTML (never a hand-maintained order list — the old one drifted out of sync with reality and was removed).
 - Renders every page in isolation first to measure its real page count (via `pdf-lib`), then computes real page numbers for a table of contents (two-pass render, since Chromium's print pipeline can't answer "what page will this land on" ahead of time).
 - Gives grouped sidebar sections (e.g. UI Reference, How-To's) their own chapter divider page; flat sections (Overview, Quickstart, Changelog) start directly with their content.
+- Flattens nested sidebar sub-groups (e.g. Deepview's Analysis › Plot Types › …) into their top-level chapter in sidebar order; TOC entries get the group path as a prefix.
+- Prints the product version on the cover, in the running header and in the PDF title — taken from the highest `## x.y.z` heading in the product's `changelog.md(x)`; fails fast if none is found.
 - Transforms known interactive components that don't degrade well without the site's own CSS/JS into flat print-friendly markup — e.g. `.qs-stepper` tab bars become a heading per panel (see Architecture Notes below).
 
 The pure page-number/HTML-generation logic lives in `scripts/pdf-toc.js` (unit-tested, `scripts/pdf-toc.test.js`); the Puppeteer/browser-driving orchestration stays in `generate-pdfs.js` itself.

@@ -11,10 +11,12 @@ import { mkdir, writeFile } from 'node:fs/promises';
 import { join, extname, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { computePageNumbers, renderDividerHtml, renderTocHtml, assignChapterIds } from './pdf-toc.js';
+import { latestVersion } from './changelog-utils.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const DIST = join(__dirname, '../dist');
 const DESIGN_TOKENS_DIR = join(__dirname, '../node_modules/@invisyne/design-tokens');
+const DOCS_DIR = join(__dirname, '../src/content/docs');
 const PORT = 4322;
 const BASE = `http://localhost:${PORT}`;
 
@@ -36,6 +38,15 @@ function buildFontCSS() {
       : `url("data:font/woff2;base64,${woff2b64}") format("woff2")`;
     return `@font-face { font-family: 'GT America Extended'; src: ${src}; font-weight: ${weight}; font-style: normal; font-display: swap; }`;
   }).filter(Boolean).join('\n');
+}
+
+function productVersion(productId) {
+  const file = ['changelog.md', 'changelog.mdx'].map(f => join(DOCS_DIR, productId, f)).find(existsSync);
+  const version = file && latestVersion(readFileSync(file, 'utf-8'));
+  if (!version) {
+    throw new Error(`No version found for ${productId} — expected a "## x.y.z" heading in ${join(DOCS_DIR, productId)}/changelog.md(x)`);
+  }
+  return version;
 }
 
 function loadLogoSVG(product, variant = 'wordmark-color-pos') {
@@ -65,6 +76,7 @@ const PRODUCTS = [
   { id: 'edge',      title: 'Invisyne Edge', headerTitle: 'Invisyne Edge (Crawler)' },
   { id: 'companion', title: 'Invisyne Companion' },
   { id: 'hub',       title: 'Invisyne Hub' },
+  { id: 'deepview',  title: 'Invisyne Deepview' },
 ];
 
 const LANGUAGES = [
@@ -127,13 +139,22 @@ async function extractChapters(browser, url, prefix) {
         if (!details) continue;
         const summaryEl = details.querySelector(':scope > summary');
         const title = summaryEl?.querySelector('.group-label')?.textContent.trim() || summaryEl?.textContent.trim() || '';
-        const subUl = details.querySelector(':scope > ul');
-        const pages = Array.from(subUl.querySelectorAll(':scope > li > a'))
-          .filter(a => !a.classList.contains('sidebar-pdf-link'))
-          .map(a => ({
-            title: a.querySelector('span')?.textContent.trim() || a.textContent.trim(),
-            href: new URL(a.href).pathname,
-          }));
+        // Nested sub-groups (e.g. Deepview's Analysis › Plot Types › …) are flattened
+        // into the top-level chapter in sidebar order, prefixed with their group path.
+        const collectPages = (ul, path) => Array.from(ul.children).flatMap(child => {
+          const a = child.querySelector(':scope > a');
+          if (a) {
+            if (a.classList.contains('sidebar-pdf-link')) return [];
+            const pageTitle = a.querySelector('span')?.textContent.trim() || a.textContent.trim();
+            return [{ title: [...path, pageTitle].join(' › '), href: new URL(a.href).pathname }];
+          }
+          const sub = child.querySelector(':scope > details');
+          if (!sub) return [];
+          const subSummary = sub.querySelector(':scope > summary');
+          const subTitle = subSummary?.querySelector('.group-label')?.textContent.trim() || subSummary?.textContent.trim() || '';
+          return collectPages(sub.querySelector(':scope > ul'), [...path, subTitle]);
+        });
+        const pages = collectPages(details.querySelector(':scope > ul'), []);
         chapters.push({ type: 'group', title, pages });
       }
       return chapters;
@@ -169,6 +190,7 @@ const PRINT_CSS = `
   .cover-logo { height: 60px; margin-bottom: 1.5em; }
   .cover-logo svg { height: 100%; width: auto; display: block; }
   .cover p { font-size: 13pt; color: #6b7280; margin: 0; font-family: 'GT America Extended', -apple-system, sans-serif; }
+  .cover p.cover-version { font-size: 11pt; margin-top: 0.4em; }
   .cover-brand { position: absolute; bottom: 48px; width: 120px; opacity: 0.7; }
   .cover-brand svg { width: 100%; height: auto; display: block; }
   .section { page-break-before: always; }
@@ -388,6 +410,7 @@ async function measurePageCount(browser, innerHtml) {
 }
 
 async function buildProductPDF(browser, product, lang) {
+  const version = productVersion(product.id);
   const basePath = join(DIST, ...(lang.dir ? [lang.dir, product.id] : [product.id]));
   const pathPrefix = lang.dir ? `/${lang.dir}/${product.id}` : `/${product.id}`;
   const indexUrl = `${BASE}${pathPrefix}/`;
@@ -447,13 +470,14 @@ async function buildProductPDF(browser, product, lang) {
 <html lang="${lang.id}">
 <head>
   <meta charset="utf-8">
-  <title>${product.title}</title>
+  <title>${product.title} ${version} — ${lang.label}</title>
   <style>${FONT_CSS}\n${PRINT_CSS}</style>
 </head>
 <body>
   <div class="cover">
     ${productLogo ? `<div class="cover-logo">${productLogo}</div>` : `<h1>${product.title}</h1>`}
     <p>${lang.label}</p>
+    <p class="cover-version">Version ${version}</p>
     ${invisyneLogo ? `<div class="cover-brand">${invisyneLogo}</div>` : ''}
   </div>
   ${bodyParts.join('\n')}
@@ -467,7 +491,7 @@ async function buildProductPDF(browser, product, lang) {
     printBackground: true,
     margin: { top: '2cm', right: '2cm', bottom: '2.5cm', left: '2cm' },
     displayHeaderFooter: true,
-    headerTemplate: `<div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:8pt;width:100%;text-align:center;color:#9ca3af;padding-top:8px;">${product.headerTitle || product.title} — ${lang.label}</div>`,
+    headerTemplate: `<div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:8pt;width:100%;text-align:center;color:#9ca3af;padding-top:8px;">${product.headerTitle || product.title} ${version} — ${lang.label}</div>`,
     footerTemplate: `<div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:8pt;width:100%;text-align:center;color:#9ca3af;padding-bottom:8px;"><span class="pageNumber"></span> / <span class="totalPages"></span></div>`,
   });
   await page.close();
