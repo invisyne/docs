@@ -221,7 +221,10 @@ const PRINT_CSS = `
   img { max-width: 100%; height: auto; display: block; margin: 1em 0; }
   table { border-collapse: collapse; width: 100%; margin: 1em 0; font-size: 9.5pt; }
   th { background: #f9fafb; font-weight: 600; }
-  th, td { border: 1px solid #d1d5db; padding: 6px 10px; text-align: left; vertical-align: top; }
+  th, td { border: 1px solid #d1d5db; padding: 6px 8px; text-align: left; vertical-align: top; }
+  .tbl-yes, .tbl-no { display: inline-block; width: 13px; height: 13px; background-size: contain; background-repeat: no-repeat; background-position: center; vertical-align: middle; }
+  .tbl-yes { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpolyline points='1,6 4,10 11,2' stroke='%23555' stroke-width='1.5' fill='none' stroke-linecap='square' stroke-linejoin='miter'/%3E%3C/svg%3E"); }
+  .tbl-no { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cline x1='1' y1='1' x2='11' y2='11' stroke='%23333' stroke-width='1.5' stroke-linecap='square'/%3E%3Cline x1='11' y1='1' x2='1' y2='11' stroke='%23333' stroke-width='1.5' stroke-linecap='square'/%3E%3C/svg%3E"); }
   a { color: #2563eb; text-decoration: none; }
   blockquote {
     border-left: 4px solid #e5e7eb;
@@ -495,6 +498,12 @@ async function buildProductPDF(browser, product, lang) {
     footerTemplate: `<div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;font-size:8pt;width:100%;text-align:center;color:#9ca3af;padding-bottom:8px;"><span class="pageNumber"></span> / <span class="totalPages"></span></div>`,
   });
   await page.close();
+  // Anything wider than the printable area makes Chromium shrink the whole
+  // document, which silently shifts every TOC page number measured in isolation.
+  const actualPages = (await PDFDocument.load(pdf)).getPageCount();
+  if (actualPages !== totalPages) {
+    throw new Error(`${product.title} (${lang.id}): rendered ${actualPages} pages but TOC assumes ${totalPages} — page numbers would be wrong (likely content overflowing the page width)`);
+  }
   return pdf;
 }
 
