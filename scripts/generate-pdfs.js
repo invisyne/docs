@@ -49,6 +49,13 @@ function productVersion(productId) {
   return version;
 }
 
+function isSidebarHidden(pathname) {
+  const base = join(DOCS_DIR, pathname.replace(/^\/|\/$/g, ''));
+  const file = [`${base}.md`, `${base}.mdx`, join(base, 'index.md'), join(base, 'index.mdx')].find(existsSync);
+  const frontmatter = file && readFileSync(file, 'utf-8').match(/^---\n([\s\S]*?)\n---/)?.[1];
+  return /^sidebar:\s*\n\s+hidden:\s*true\b/m.test(frontmatter ?? '');
+}
+
 function loadLogoSVG(product, variant = 'wordmark-color-pos') {
   const path = join(DESIGN_TOKENS_DIR, 'logos', product, `${product}-${variant}.svg`);
   return existsSync(path) ? readFileSync(path, 'utf-8') : '';
@@ -434,7 +441,7 @@ async function buildProductPDF(browser, product, lang) {
     const rel = pagePath.replace(basePath, '').replace(/index\.html$/, '');
     const pathname = `${pathPrefix}${rel}`;
     if (pathname.endsWith('/download/')) continue; // the "Download PDF" link's own target page; deliberately excluded above
-    if (!knownHrefs.has(pathname)) {
+    if (!knownHrefs.has(pathname) && !isSidebarHidden(pathname)) {
       console.warn(`  ! ${pathname} exists in dist but isn't linked from the sidebar — omitted from PDF`);
     }
   }
