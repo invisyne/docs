@@ -2712,6 +2712,15 @@ html:not([data-has-sidebar]) .sl-container > * + * {
   margin: -0.5rem 0 0;
 }
 
+.product-card-powered img {
+  height: 1.35em;
+  width: auto;
+  vertical-align: -0.3em;
+}
+
+.product-card-powered .logo-dark { display: inline; }
+:root[data-theme='light'] .product-card-powered .logo-light { display: inline; }
+
 .product-card-desc {
   flex: 1;
   font-size: 0.875rem;
