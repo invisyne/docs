@@ -1,0 +1,188 @@
+---
+title: "Materialverfolgung"
+description: "Referenz der Materialverfolgung und Runs im Edge — Prozessdefinitionen, Zonen/Stationen, Aufzeichnungen und Runs."
+sidebar:
+  order: 1
+---
+
+import mattWizardStep1Img from '../../../../../assets/images/edge/edge-mattrack-wizard-step1.png';
+import mattWizardStep2FilledImg from '../../../../../assets/images/edge/edge-mattrack-wizard-step2-filled.png';
+import mattConfigOverviewImg from '../../../../../assets/images/edge/edge-mattrack-config-overview.png';
+import mattStationDetailImg from '../../../../../assets/images/edge/edge-mattrack-station-detail.png';
+import mattAufzeichnungenCompletedImg from '../../../../../assets/images/edge/edge-mattrack-aufzeichnungen-completed.png';
+import runsOverviewImg from '../../../../../assets/images/edge/edge-runs-overview.png';
+import runsConfigImg from '../../../../../assets/images/edge/edge-runs-config.png';
+import runsConfigAlarmImg from '../../../../../assets/images/edge/edge-runs-config-alarm.png';
+import runsListImg from '../../../../../assets/images/edge/edge-runs-list.png';
+
+Die Messgrößen-Seite eines Geräts (**Aufzeichnung → Geräte → Gerätename**) enthält drei Tabs: **Messgrößen**, **Runs** und **Materialverfolgung**.
+
+<div class="qs-stepper">
+
+  <div class="qs-tabbar">
+    <a class="qs-tab" href="#">Materialverfolgung</a>
+    <a class="qs-tab" href="#">Runs</a>
+  </div>
+
+  <div class="qs-panels">
+
+    <div class="qs-panel">
+
+Die Materialverfolgung ermöglicht die lückenlose Rückverfolgung von Werkstücken durch definierte Zonen und Stationen eines Fertigungsprozesses.
+
+#### Konfigurationsübersicht
+
+Die linke Seitenleiste zeigt alle angelegten Prozessdefinitionen. Ein Klick auf eine Prozessdefinition klappt sie auf und zeigt die Untereinträge **Konfiguration** und **Aufzeichnungen**. Die Konfigurationsansicht listet alle Zonen/Stationen der Prozessdefinition.
+
+<div class="screenshot-frame">
+  <img src={mattConfigOverviewImg.src} alt="Materialverfolgung — Konfigurationsübersicht" />
+</div>
+
+| Spalte | Beschreibung |
+|---|---|
+| **Name** | Name der Zone/Station. |
+| **Beschreibung** | Optionale Beschreibung. |
+| **Variablen** | Anzahl der konfigurierten Variablen (Auslöser + Messgrößen). |
+
+Über **Bearbeiten** rechts oben öffnet sich der Bearbeitungs-Assistent. Über **+ Neue Prozessdefinition** wird eine neue Prozessdefinition angelegt.
+
+#### Station-Detailansicht
+
+Ein Klick auf eine Zone/Station in der Seitenleiste zeigt deren Variablen-Tabelle.
+
+<div class="screenshot-frame">
+  <img src={mattStationDetailImg.src} alt="Station-Detailansicht — Variablen mit Typ und Rolle" />
+</div>
+
+| Spalte | Beschreibung |
+|---|---|
+| **Name** | Name der Variable. |
+| **Adresse** | PLC-Adresse der Variable. |
+| **Typ** | Datentyp der Variable (z. B. S7_String, S7_Real). |
+| **Rolle** | **Auslöser** oder **Messgröße**. |
+
+#### Schritt 1 — Prozessdefinition
+
+| Feld | Beschreibung |
+|---|---|
+| **Name** | Pflichtfeld — eindeutiger Name der Prozessdefinition. |
+| **Beschreibung** | Optionales Freitextfeld. |
+| **Anlegen / Speichern** | Legt die Prozessdefinition an bzw. speichert Änderungen. |
+| **Materialverfolgung löschen** | Löscht die gesamte Prozessdefinition. |
+
+<div class="screenshot-frame">
+  <img src={mattWizardStep1Img.src} alt="Assistent — Schritt 1: Prozessdefinition" />
+</div>
+
+#### Schritt 2 — Zonen-/Stationsdefinition
+
+| Element | Beschreibung |
+|---|---|
+| **Zone/Station auswählen** | Dropdown zur Navigation zwischen bestehenden Zonen/Stationen oder zum Anlegen einer neuen. |
+| **Name** | Pflichtfeld — eindeutiger Name der Zone/Station. |
+| **Zonen-/Stations-Nr.** | Wird automatisch vergeben; bestimmt die Reihenfolge im Prozess. |
+| **Beschreibung** | Optionales Freitextfeld. |
+| **Ist letzte Station** | Markiert diese Zone/Station als Exit-Gate. Ein Werkstück gilt als COMPLETED, sobald es diese Station durchläuft. |
+| **Auslöser auswählen** | Wählt die Messgröße, deren Wertänderung das Eintreten eines Werkstücks signalisiert. |
+| **Messgrößen hinzufügen** | Fügt Variablen hinzu, deren Werte für jedes Werkstück aufgezeichnet werden. |
+| **+ Neue Zone/Station** | Fügt eine weitere Zone/Station hinzu. |
+| **Anlegen / Speichern** | Speichert die aktuelle Zone/Station. |
+| **Zone/Station löschen** | Entfernt die Zone/Station aus der Prozessdefinition. |
+
+<div class="screenshot-frame">
+  <img src={mattWizardStep2FilledImg.src} alt="Assistent — Schritt 2: Zone/Station mit Auslöser und Messgrößen" />
+</div>
+
+#### Aufzeichnungen
+
+Die Aufzeichnungen-Ansicht zeigt alle aufgezeichneten Werkstückdurchläufe der Prozessdefinition.
+
+<div class="screenshot-frame">
+  <img src={mattAufzeichnungenCompletedImg.src} alt="Materialverfolgung — Aufzeichnungen-Tabelle" />
+</div>
+
+| Spalte | Beschreibung |
+|---|---|
+| **ID** | Interne Aufzeichnungs-ID. |
+| **Werkstück-ID** | Bezeichner des Werkstücks, ermittelt aus dem Auslöser-Wert. |
+| **Status** | RUNNING, COMPLETED oder ERROR. |
+| **Start** | Zeitpunkt, zu dem das Werkstück die erste Station durchlaufen hat. |
+| **Ende** | Zeitpunkt, zu dem das Werkstück die letzte Station verlassen hat. |
+| **CSV** | Lädt die Aufzeichnung als CSV-Datei herunter. |
+
+Jede Aufzeichnung kann über das CSV-Symbol in der letzten Spalte als CSV-Datei gespeichert werden.
+
+Weitere Informationen zum Ablauf einer Aufzeichnung: [Materialverfolgung & Runs einrichten](/de/edge/how-to/material-tracking).
+
+    </div>
+
+    <div class="qs-panel">
+
+Runs ermöglichen die messgrößenbasierte, zeitgesteuerte oder alarmbasierte Aufzeichnung von Variablenwerten.
+
+#### Übersicht
+
+Die linke Seitenleiste zeigt alle angelegten Runs. Über **+ Run Erstellen** wird ein neuer Run angelegt. Ein Klick auf einen Run-Eintrag zeigt dessen Konfiguration; ein Klick auf **Runs** darunter zeigt die Aufzeichnungsliste.
+
+<div class="screenshot-frame">
+  <img src={runsOverviewImg.src} alt="Runs — Übersicht" />
+</div>
+
+#### Konfiguration — Messgrößenbasiert
+
+Ein messgrößenbasierter Run startet und stoppt, wenn eine Variable einen definierten Schwellwert über- oder unterschreitet.
+
+<div class="screenshot-frame">
+  <img src={runsConfigImg.src} alt="Run-Konfiguration — Trigger (Messgröße)" />
+</div>
+
+| Element | Beschreibung |
+|---|---|
+| **Aktiv** | Aktiviert oder deaktiviert den Run. |
+| **Trigger (Messgröße)** | Art des Auslösers. |
+| **Art** | START oder STOP. |
+| **Variable** | Trigger-Variable. |
+| **Bedingung** | Vergleichsoperator (z. B. `>=`, `<`). |
+| **Wert** | Schwellwert. |
+| **Variablen** | Messgrößen, die während des Runs aufgezeichnet werden. |
+
+#### Konfiguration — Alarmbasiert
+
+Ein alarmbasierter Run startet und stoppt durch das Auftreten bzw. Verschwinden eines Alarmzustands.
+
+<div class="screenshot-frame">
+  <img src={runsConfigAlarmImg.src} alt="Run-Konfiguration — Trigger (Alarm)" />
+</div>
+
+| Element | Beschreibung |
+|---|---|
+| **Aktiv** | Aktiviert oder deaktiviert den Run. |
+| **Trigger (Alarm)** | Art des Auslösers. |
+| **Variable** | Überwachte Messgröße. |
+| **Bedingung** | Vergleichsoperator. |
+| **Wert** | Schwellwert für den Alarmzustand. |
+| **Pre-Trigger** | Zeitraum vor dem Alarmereignis, der in die Aufzeichnung einbezogen wird. |
+| **Post-Trigger** | Zeitraum nach dem Alarmereignis, der in die Aufzeichnung einbezogen wird. |
+| **Variablen** | Messgrößen, die während des Runs aufgezeichnet werden. |
+
+#### Runs-Liste
+
+<div class="screenshot-frame">
+  <img src={runsListImg.src} alt="Runs-Liste" />
+</div>
+
+| Spalte | Beschreibung |
+|---|---|
+| **Nummer** | Fortlaufende Nummer des Runs. |
+| **State** | RUNNING oder COMPLETED. |
+| **Start** | Startzeit der Aufzeichnung. |
+| **Ende** | Endzeit der Aufzeichnung. |
+| **CSV** | Lädt die Aufzeichnung als CSV-Datei herunter. |
+
+Jede Aufzeichnung kann über das CSV-Symbol als CSV-Datei gespeichert werden.
+
+    </div>
+
+  </div>
+
+</div>
