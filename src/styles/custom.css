@@ -2115,6 +2115,11 @@ starlight-toc a {
   position: relative;
   height: 340px;
 }
+.page-hero-image--tall {
+  height: auto;
+  aspect-ratio: 2304 / 1296;
+  align-self: start;
+}
 .page-hero-image img {
   width: 100%;
   height: 100%;
@@ -2706,6 +2711,15 @@ html:not([data-has-sidebar]) .sl-container > * + * {
   color: var(--sl-color-gray-3);
   margin: -0.5rem 0 0;
 }
+
+.product-card-powered img {
+  height: 1.35em;
+  width: auto;
+  vertical-align: -0.3em;
+}
+
+.product-card-powered .logo-dark { display: inline; }
+:root[data-theme='light'] .product-card-powered .logo-light { display: inline; }
 
 .product-card-desc {
   flex: 1;

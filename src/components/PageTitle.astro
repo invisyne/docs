@@ -23,7 +23,9 @@ const { entry } = Astro.locals.starlightRoute;
       <p class="page-title-powered">
         powered by{' '}
         <a href="https://www.marpledata.com/marple-insight" target="_blank" rel="noopener">
-          Marple Insight
+          <img src="/logos/marple-light.svg" alt="Marple" class="dark:sl-hidden" />
+          <img src="/logos/marple-dark.svg" alt="Marple" class="light:sl-hidden" />
+          Insight
         </a>
       </p>
     )}
@@ -60,6 +62,12 @@ const { entry } = Astro.locals.starlightRoute;
       font-weight: 600;
       text-decoration: none;
       border-bottom: 1px solid var(--sl-color-gray-5);
+    }
+    .page-title-powered img {
+      display: inline;
+      height: 1.35em;
+      width: auto;
+      vertical-align: -0.3em;
     }
     .page-title-powered a:hover {
       color: var(--sl-color-accent);
