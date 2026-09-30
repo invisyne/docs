@@ -35,7 +35,7 @@ jobs:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: arn:aws:iam::343781770623:role/github-actions-invisyne-docs-ecr
+          role-to-assume: ${{ vars.ECR_AWS_ROLE_ARN }}
           aws-region: eu-central-1
 
       - name: Log in to Amazon ECR
@@ -48,7 +48,7 @@ jobs:
           context: .
           push: true
           tags: |
-            343781770623.dkr.ecr.eu-central-1.amazonaws.com/invisyne-docs:${{ github.ref_name }}
-            343781770623.dkr.ecr.eu-central-1.amazonaws.com/invisyne-docs:latest
+            ${{ steps.ecr-login.outputs.registry }}/invisyne-docs:${{ github.ref_name }}
+            ${{ steps.ecr-login.outputs.registry }}/invisyne-docs:latest
           build-args: |
             RELEASE_NOTES_PATH=release-notes
