@@ -92,22 +92,6 @@ h1, h2, h3, h4, h5, h6,
 .top-level > li:has(a[aria-current='page']) {
   margin-top: 0 !important;
 }
-/* PDF download link: visually separated from the section content above it.
-   The separator line floats in the margin via ::before so it never touches
-   the link's background box. */
-.sidebar-pdf-link {
-  margin-top: 2rem !important;
-  position: relative;
-}
-.sidebar-pdf-link::before {
-  content: '';
-  position: absolute;
-  top: -1rem;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: var(--sl-color-hairline);
-}
 
 /* Lang/theme controls live in the header — hide Starlight's sidebar-footer duplicates */
 .sidebar-pane .lang-switcher,

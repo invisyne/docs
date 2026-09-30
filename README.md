@@ -43,9 +43,6 @@ npm run dev
 # Build
 npm run build
 
-# Generate PDFs (run after build, outputs to dist/downloads/)
-npm run generate-pdfs
-
 # Run unit tests
 npm test
 ```
@@ -97,8 +94,7 @@ For a preview deploy that doesn't touch production, use `preview-*` tags the sam
 2. **Checkout release-notes** — The private repo is checked out into the build environment.
 3. **Generate changelogs** — `scripts/generate-changelogs.js` reads all public release notes and writes one changelog page per product (EN + DE). Files marked `-internal` and version folders marked `-upcoming` are excluded — they never appear in the published docs.
 4. **Build** — Astro compiles the full static site to `dist/`.
-5. **Generate PDFs** — `scripts/generate-pdfs.js` produces one PDF per product and language (`dist/downloads/edge-en.pdf`, `edge-de.pdf`, `hub-en.pdf`, etc.) via Puppeteer, with chapter structure and a table of contents derived from the live sidebar. PDFs are not committed to the repo.
-6. **Deploy** — The `dist/` folder is deployed to GitHub Pages under the custom domain with HTTPS.
+5. **Deploy** — The `dist/` folder is deployed to GitHub Pages under the custom domain with HTTPS.
 
 A manual re-deploy (e.g. to pick up an infrastructure change without new content) can also be triggered via `workflow_dispatch` from the Actions tab.
 

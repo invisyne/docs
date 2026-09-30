@@ -28,7 +28,6 @@ npm run generate          # Generate changelog pages from release-notes repo
 npm run dev               # Generate changelogs + start dev server
 npm run build             # Build static site (changelogs must already be generated)
 npm run preview           # Preview the built site
-npm run generate-pdfs     # Generate one PDF per product into dist/downloads/ (run after build)
 npm test                  # Run unit tests (scripts/*.test.js, via Node's built-in test runner)
 ```
 
@@ -41,7 +40,7 @@ npm test                  # Run unit tests (scripts/*.test.js, via Node's built-
 - **Images:** `src/assets/images/{product}/` (`hub`, `edge`, `companion`) — never `public/images/`. Import them (`import x from '../../../assets/images/{product}/x.png'`) and render via `<img src={x.src} />`, so Astro's asset pipeline optimizes them (webp, hashed filenames, auto `width`/`height`). Filenames keep the product prefix even though it repeats the folder name (`hub-devices-list.png`, `edge-certmgr-open.png`) — this is deliberate, for cross-product searchability when browsing or grepping filenames outside their folder context. Name files for what they show, not the source screenshot tool's ID. All three products (Hub, Edge, Companion) are fully migrated — `public/images/` no longer holds any product screenshots.
   - **When adding any new image:** name it correctly at creation time — product prefix + descriptive kebab-case name (e.g. `edge-hero-dashboard.png`, not `dashboard.png` or a source-tool ID) — don't wait to be asked to fix it afterward.
 - Filenames use lowercase kebab-case
-- **Product naming:** The Edge device was historically called "Crawler". In body content, always write **Edge** — never "Edge (Crawler)" or just "Crawler". The full form "Edge (Crawler)" is reserved for top-level product-identification contexts: the sidebar group label (`astro.config.mjs`), the site's top product nav and mobile menu (`Header.astro`), and the PDF's running header. Do not change `Crawler.Companion` or `Crawler.Hub` — those are proper product names.
+- **Product naming:** The Edge device was historically called "Crawler". In body content, always write **Edge** — never "Edge (Crawler)" or just "Crawler". The full form "Edge (Crawler)" is reserved for top-level product-identification contexts: the sidebar group label (`astro.config.mjs`) and the site's top product nav and mobile menu (`Header.astro`). Do not change `Crawler.Companion` or `Crawler.Hub` — those are proper product names.
 - **Deepview naming:** always **Deepview** — never "DeepView" or "Deep View". Deepview is built on **Marple Insight** (partner product, https://www.marpledata.com/marple-insight). The attribution "powered by Marple Insight" belongs on product-identification surfaces only — the Deepview overview page (subtitle under the logo in `PageTitle.astro` and the `## Powered by Marple Insight` section), the landing-page product card, and the overview page's frontmatter `description`. In ordinary body content write just **Deepview**.
 
 ## Changelog Generation
@@ -54,28 +53,11 @@ It skips `-internal` files and `-upcoming` version folders. Versions are sorted 
 
 Run `node scripts/generate-changelogs.js [path]` directly to regenerate. Default path is `../release-notes`.
 
-## PDF Generation
-
-`scripts/generate-pdfs.js` generates one PDF per product from the built site. It starts a local static file server over `dist/`, then for each product+language:
-
-- Scrapes that product's chapter structure directly from the live sidebar HTML (never a hand-maintained order list — the old one drifted out of sync with reality and was removed).
-- Renders every page in isolation first to measure its real page count (via `pdf-lib`), then computes real page numbers for a table of contents (two-pass render, since Chromium's print pipeline can't answer "what page will this land on" ahead of time).
-- Gives grouped sidebar sections (e.g. UI Reference, How-To's) their own chapter divider page; flat sections (Overview, Quickstart, Changelog) start directly with their content.
-- Flattens nested sidebar sub-groups (e.g. Deepview's Analysis › Plot Types › …) into their top-level chapter in sidebar order; TOC entries get the group path as a prefix.
-- Prints the product version on the cover, in the running header and in the PDF title — taken from the highest `## x.y.z` heading in the product's `changelog.md(x)`; fails fast if none is found.
-- Transforms known interactive components that don't degrade well without the site's own CSS/JS into flat print-friendly markup — e.g. `.qs-stepper` tab bars become a heading per panel (see Architecture Notes below).
-
-The pure page-number/HTML-generation logic lives in `scripts/pdf-toc.js` (unit-tested, `scripts/pdf-toc.test.js`); the Puppeteer/browser-driving orchestration stays in `generate-pdfs.js` itself.
-
-PDFs are written to `dist/downloads/` and deployed alongside the site. They are not committed to the repo.
-
-Run `npm run build && npm run generate-pdfs` to regenerate locally. The script runs its own static file server on a fixed port (4322) — stop any other dev server that might be sitting on that port first, or it fails fast with a clear error instead of silently serving mixed/wrong content.
-
 ## Architecture Notes
 
 - **Sidebar active-product filtering**: only the product group containing the current page is shown, via `:has()` CSS in `custom.css` (`.top-level > li:not(:has(a[aria-current='page'])) { display: none; }`). Not supported in Firefox < 121.
-- **Tab components** (`.qs-stepper` — Quickstart pages, several Companion UI-reference/how-to pages): a `.qs-tabbar` of `.qs-tab` links paired by position with `.qs-panels > .qs-panel` divs. Client-side switching lives in `Header.astro` (`initQsTabs()`); each `.qs-stepper` initializes independently, and panels are grid-stacked to avoid layout jump. In the generated PDF (no JS), `generate-pdfs.js` turns each tab label into a heading directly above its panel instead of leaving the tab bar as dead links.
+- **Tab components** (`.qs-stepper` — Quickstart pages, several Companion UI-reference/how-to pages): a `.qs-tabbar` of `.qs-tab` links paired by position with `.qs-panels > .qs-panel` divs. Client-side switching lives in `Header.astro` (`initQsTabs()`); each `.qs-stepper` initializes independently, and panels are grid-stacked to avoid layout jump.
 - **Sidebar toggle button** is appended to `document.body` (not inside `.sidebar`) — avoids a `transform: translateX` stacking-context issue.
 - **Language persistence**: navigating between the Hub/Edge/Companion top nav preserves the current language (DE/EN) via `updateProductNavLinks()` in `Header.astro`, which reads `window.location.pathname` and rewrites the nav `href`s.
 - **MDX constraints**: no HTML comments (`<!-- -->` — parse error) and no bare `<script>` tags (braces get parsed as JSX) inside `.mdx` files.
-- **Product overview page titles**: `PageTitle.astro` (overrides Starlight's default) replaces the H1 with the product's light/dark logo (`public/logos/{product}-{light,dark}.svg`, swapped via Starlight's `dark:sl-hidden`/`light:sl-hidden` utility classes) on each product's own overview page (`/hub`, `/de/edge`, `/de/companion`, `/deepview`, etc.) — everywhere else renders the normal text H1. Since there's then no `<h1>` on those pages, `generate-pdfs.js`'s `extractContent()` falls back to the logo `<img>`'s `alt` text so the PDF still gets a real title.
+- **Product overview page titles**: `PageTitle.astro` (overrides Starlight's default) replaces the H1 with the product's light/dark logo (`public/logos/{product}-{light,dark}.svg`, swapped via Starlight's `dark:sl-hidden`/`light:sl-hidden` utility classes) on each product's own overview page (`/hub`, `/de/edge`, `/de/companion`, `/deepview`, etc.) — everywhere else renders the normal text H1.

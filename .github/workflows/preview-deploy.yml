@@ -7,7 +7,6 @@ on:
 
 permissions:
   contents: read
-  packages: read # @invisyne/design-tokens comes from GitHub Packages
   id-token: write # required for AWS OIDC (no stored credentials)
 
 jobs:
@@ -38,17 +37,12 @@ jobs:
         with:
           node-version: 22
           cache: npm
-          registry-url: 'https://npm.pkg.github.com'
-          scope: '@invisyne'
 
       - run: npm ci
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       # PREVIEW_BUILD flips the noindex meta tag on (see src/components/Head.astro).
       # SITE_URL overrides astro.config.mjs's `site` so sitemap/canonical URLs point at
       # docs-preview.invisyne.com instead of the production domain.
-      # PDF generation is skipped here — not needed for a partner content review.
       - run: npm run build
         env:
           RELEASE_NOTES_PATH: release-notes
