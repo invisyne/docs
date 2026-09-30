@@ -56,3 +56,10 @@ test('processFile strips a leading horizontal rule left over from the source str
   const { body } = processFile(raw, EN_DATE);
   assert.ok(body.startsWith('### Highlights'));
 });
+
+test('processFile turns absolute links to the docs site into root-relative ones', () => {
+  const raw = '# Title\n\nSee [Certificates](https://docs.invisyne.com/de/edge/how-to/https-certificate/) and [Grafana](https://grafana.com/docs/).';
+  const { body } = processFile(raw, EN_DATE);
+  assert.ok(body.includes('[Certificates](/de/edge/how-to/https-certificate/)'));
+  assert.ok(body.includes('[Grafana](https://grafana.com/docs/)'));
+});
