@@ -1,22 +1,32 @@
 ---
 title: "Axes"
-description: "Configure axis scaling and the time zone used for epoch timestamps."
+description: "Choose the y-axis and x-axis modes and configure axis scaling."
 sidebar:
   order: 1
 ---
 
-## General
+## Y-axis modes
+
+- By default, all signals are grouped under one y-axis that zooms dynamically to the data in view. This is **Simple mode**.
+- For more y-axis settings, open the settings menu and switch on **Advanced mode**.
+- Clicking the **stack** or **unstack** button also leaves Simple mode.
+
+## Plot axes settings
 
 Axes settings are in the plot's settings:
 
-- **Autoscale axes** — rescale each signal's limits on zoom to fit its position on the plot
-- **Show all X axes** — show the x-axis of every data set being compared (only available when comparing data sets)
+- Choose between **Simple mode** and **Advanced mode**
+- **Autoscale axes** — the y-axis of each signal auto-scales to the data currently in view
+- **Show all X axes** — show the x-axis of every data set instead of just the first (only available when comparing data sets)
 - **Show all Y axes** — show the y-axis for every linked signal group
 
 ![](../../../../../../assets/images/deepview/deepview-analysis-plot-types-time-series-axes-1.png)
 
-## Time zone for the x-axis
+## X-axis modes
 
-Epoch timestamps are shown in your browser's local time zone by default. Use the **time zone** button at the top-right of the visualization to choose a different one.
+Depending on your data, the x-axis shows time in one of two modes:
+
+- **Absolute time** — if the data contains real timestamps, they are shown in your browser's local time zone by default. Click the globe icon at the top-right to choose a different time zone.
+- **Relative time** — click the stopwatch button to show seconds since the start of the data instead. The data then starts at 0 s.
 
 ![](../../../../../../assets/images/deepview/deepview-analysis-plot-types-time-series-axes-2.png)
