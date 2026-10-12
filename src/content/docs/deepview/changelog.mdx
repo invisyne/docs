@@ -3,6 +3,41 @@ title: Changelog
 description: Release notes for Deepview.
 ---
 
+## 3.12.0
+
+*2026-09-30*
+
+### Highlights
+
+> Deepview 3.12 adds simple and advanced y-axis modes and a relative time axis to time series plots, distance measurement on map plots, custom backgrounds on scatter plots, and a "Cursor" option for aggregates.
+
+---
+
+### New Features
+
+- **Relative time axis** — Start the x-axis of time series plots at 0 s instead of absolute timestamps.
+- **Simple and advanced y-axis modes** — Simple mode uses one auto-scaled axis for all signals; advanced mode keeps limits, grouping and stacking per signal. Set the default for new plots in your user preferences.
+- **Cursor value in aggregates** — The "Cursor" option in table, bar and number plots shows the value at the cursor.
+- **Measure distance on map plots** — Measure the distance between the cursor and the second cursor, in metric or imperial units. Cursor values and the distance appear in the legend.
+- **Connecting lines on map and scatter plots** — Draw lines between points, with adjustable line width and opacity. On scatter plots, the lines follow the color signal.
+- **Custom background on scatter plots** — Upload an image, set its opacity and align the plot corners to it.
+- **Axes and grid lines on scatter plots** — Show or hide them.
+- **"Add all" in state plots** — Create a state for every remaining value in one click.
+
+### Bug Fixes
+
+- **Duplicate plot** — The "Duplicate plot" button is back in the plot toolbar.
+- **Paste tabs** — Paste a tab from the tab menu, or overwrite the current tab with it.
+- **State plots** — Values are sorted in numeric order.
+- **Bullet size** — Bullet size in scatter and map plots is shown ×10 (the default now reads 5 instead of 0.5); plots look the same as before.
+- **Live mode** — Table, bar and number plots on the full data set range refresh in live mode.
+- **Plot settings** — Plot settings panels share one width.
+- **Overview dashboards** — "Analyse dataset" opens in the same browser tab; Ctrl/Cmd-click opens a new one.
+- **Advanced search** — Advanced search in the database is faster.
+- **Dataset details** — Empty metadata fields are hidden in the dataset details panel.
+
+---
+
 ## 3.11.0
 
 *2026-09-09*

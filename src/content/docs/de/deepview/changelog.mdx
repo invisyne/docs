@@ -3,6 +3,41 @@ title: Changelog
 description: Versionshinweise für Deepview.
 ---
 
+## 3.12.0
+
+*2026-09-30*
+
+### Highlights
+
+> Deepview 3.12 bringt Simple- und Advanced-Modus für die Y-Achse und eine relative Zeitachse in Zeitreihen-Plots, Distanzmessung auf Map-Plots, eigene Hintergründe für Scatter-Plots und die Option „Cursor" für Aggregate.
+
+---
+
+### Neue Funktionen
+
+- **Relative Zeitachse** — Lasst die X-Achse von Zeitreihen-Plots bei 0 s beginnen statt bei absoluten Timestamps.
+- **Simple- und Advanced-Modus für die Y-Achse** — Der Simple mode nutzt eine automatisch skalierte Achse für alle Signale; der Advanced mode behält Limits, Gruppierung und Stapelung je Signal. Den Standard für neue Plots legt ihr in euren User Preferences fest.
+- **Cursor-Wert in Aggregaten** — Die Option „Cursor" in Tabellen-, Balken- und Zahlen-Plots zeigt den Wert am Cursor.
+- **Distanz auf Map-Plots messen** — Messt die Distanz zwischen Cursor und zweitem Cursor, in metrischen oder imperialen Einheiten. Cursor-Werte und Distanz erscheinen in der Legende.
+- **Verbindungslinien auf Map- und Scatter-Plots** — Zeichnet Linien zwischen den Punkten, mit einstellbarer Linienbreite und Deckkraft. Auf Scatter-Plots folgen die Linien dem Color-Signal.
+- **Eigener Hintergrund auf Scatter-Plots** — Ladet ein Bild hoch, stellt seine Deckkraft ein und richtet die Plot-Ecken daran aus.
+- **Achsen und Gitterlinien auf Scatter-Plots** — Blendet sie ein oder aus.
+- **„Add all" in State-Plots** — Legt mit einem Klick einen Zustand für jeden verbleibenden Wert an.
+
+### Fehlerbehebungen
+
+- **Plot duplizieren** — Der Button „Duplicate plot" ist zurück in der Plot-Werkzeugleiste.
+- **Tabs einfügen** — Fügt einen Tab über das Tab-Menü ein oder überschreibt damit den aktuellen Tab.
+- **State-Plots** — Werte werden numerisch sortiert.
+- **Bullet-Größe** — Die Bullet-Größe in Scatter- und Map-Plots wird ×10 angezeigt (der Standard lautet jetzt 5 statt 0,5); die Plots sehen aus wie zuvor.
+- **Live-Modus** — Tabellen-, Balken- und Zahlen-Plots über den gesamten Datensatz aktualisieren sich im Live-Modus.
+- **Plot-Einstellungen** — Die Einstellungs-Panels der Plots haben eine einheitliche Breite.
+- **Overview Dashboards** — „Analyse dataset" öffnet im selben Browser-Tab; mit Strg/Cmd-Klick in einem neuen.
+- **Erweiterte Suche** — Die erweiterte Suche in der Datenbank ist schneller.
+- **Datensatz-Details** — Leere Metadatenfelder werden im Panel der Datensatz-Details ausgeblendet.
+
+---
+
 ## 3.11.0
 
 *2026-09-09*
