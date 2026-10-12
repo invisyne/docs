@@ -29,10 +29,14 @@ In den Plot-Einstellungen könnt ihr:
 
 - **Hide labels** — Labels ausblenden
 - **Hide cursor values** — Cursor-Werte ausblenden
-- Ein Signal auswählen, um dessen bedingte **Farbregeln** zu konfigurieren — sie erscheinen erst, wenn ein Signal hinzugefügt und ausgewählt ist
+- Ein Signal auswählen, um dessen **Color settings** zu konfigurieren — sie erscheinen erst, wenn ein Signal hinzugefügt und ausgewählt ist
 
 ### Farbregeln
 
-Farbregeln werden **von oben nach unten** ausgewertet. Der Plot wendet für jeden Zeitbereich die **erste zutreffende Regel** an. Mit dem Button **Add all** fügt ihr alle Zustände ein, die aktuell im Plot sichtbar sind.
+Unter **Color settings** ist jede Zeile in **State colors** eine Regel: Bedingung, Wert, Farbe und ein optionales Label. Die Regeln werden **von oben nach unten** ausgewertet — mit den Pfeilen ändert ihr die Reihenfolge. Der Plot wendet für jeden Zeitbereich die **erste zutreffende Regel** an, und die **Default color**, wo keine zutrifft.
+
+- **Add color** fügt eine Regel hinzu
+- **Add all** fügt alle Zustände ein, die aktuell im Plot sichtbar sind
+- **Clear all** entfernt alle Regeln
 
 ![](../../../../../../assets/images/deepview/deepview-analysis-plot-types-state-2.png)

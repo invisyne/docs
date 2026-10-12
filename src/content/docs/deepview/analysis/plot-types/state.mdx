@@ -29,10 +29,14 @@ In the plot settings, you can:
 
 - **Hide labels**
 - **Hide cursor values**
-- Select a signal to configure its conditional **color rules** — they only appear once a signal is added and selected
+- Select a signal to configure its **Color settings** — they only appear once a signal is added and selected
 
 ### Color rules
 
-Color rules are evaluated **top to bottom**. The plot applies the **first rule that matches** the value for each time range. Use the **Add all** button to insert all states currently visible in the plot.
+Under **Color settings**, each row in **State colors** is one rule: a condition, a value, a color and an optional label. Rules are evaluated **top to bottom** — reorder them with the arrows. The plot applies the **first rule that matches** the value for each time range, and **Default color** where none matches.
+
+- **Add color** adds a rule
+- **Add all** inserts all states currently visible in the plot
+- **Clear all** removes all rules
 
 ![](../../../../../assets/images/deepview/deepview-analysis-plot-types-state-2.png)
