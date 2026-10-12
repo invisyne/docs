@@ -5,6 +5,7 @@ sidebar:
   order: 1
 ---
 
+import { Badge } from '@astrojs/starlight/components';
 import deviceListImg from '../../../../../assets/images/companion/companion-device-list.png';
 import controlsImg from '../../../../../assets/images/companion/companion-device-list-controls.png';
 import addImg from '../../../../../assets/images/companion/companion-device-list-add.png';
@@ -50,8 +51,8 @@ Die Geräteliste ist die Hauptansicht von Crawler.Companion. Sie zeigt alle Edge
       </table>
     </div>
     <div class="qs-panel">
-      <p>Die Icons oben rechts in der Geräteliste bieten folgende Aktionen:</p>
-      <div class="screenshot-frame">
+      <p>Die Geräteliste bietet folgende Aktionen:</p>
+      <div class="screenshot-frame" style="max-width: 360px">
         <img src={controlsImg.src} alt="Steuerelemente der Geräteliste — Suche, Aktualisieren, Hinzufügen und Entfernen" />
       </div>
       <table>
@@ -59,8 +60,8 @@ Die Geräteliste ist die Hauptansicht von Crawler.Companion. Sie zeigt alle Edge
         <tbody>
           <tr><td>Lupe</td><td>Geräteliste nach Suchbegriff filtern.</td></tr>
           <tr><td>Kreispfeil</td><td>Netzwerk manuell nach Geräten durchsuchen.</td></tr>
-          <tr><td>Plus</td><td>Edge-Gerät manuell per IP-Adresse oder Hostname hinzufügen. Erfordert Edge-Firmware 2.24 oder höher.</td></tr>
-          <tr><td>Papierkorb</td><td>Dieses Gerät aus der Liste entfernen. Nur bei manuell hinzugefügten Geräten verfügbar.</td></tr>
+          <tr><td>Plus <Badge text="1.5+" variant="note" size="small" /></td><td>Edge-Gerät manuell per IP-Adresse oder Hostname hinzufügen. Erfordert Edge-Firmware 2.24 oder höher.</td></tr>
+          <tr><td>Papierkorb <Badge text="1.5+" variant="note" size="small" /></td><td>Gerät aus der Liste entfernen. Wird am Ende der Tabellenzeile des Geräts angezeigt, nur bei manuell hinzugefügten Geräten.</td></tr>
         </tbody>
       </table>
       <p>Ein Klick auf eine Zeile in der Liste öffnet die <a href="./device-details">Geräte-Detailansicht</a>.</p>
@@ -68,7 +69,7 @@ Die Geräteliste ist die Hauptansicht von Crawler.Companion. Sie zeigt alle Edge
   </div>
 </div>
 
-## Gerät manuell hinzufügen
+## Gerät manuell hinzufügen <Badge text="1.5+" variant="note" size="small" />
 
 Wenn ein Edge-Gerät nicht durch die automatische Netzwerkerkennung gefunden wird — zum Beispiel weil es sich in einem anderen Subnetz befindet — kann es manuell per IP-Adresse oder Hostname hinzugefügt werden. Voraussetzung ist Edge-Firmware 2.24 oder höher.
 

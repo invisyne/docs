@@ -5,6 +5,7 @@ sidebar:
   order: 1
 ---
 
+import { Badge } from '@astrojs/starlight/components';
 import deviceListImg from '../../../../assets/images/companion/companion-device-list.png';
 import controlsImg from '../../../../assets/images/companion/companion-device-list-controls.png';
 import addImg from '../../../../assets/images/companion/companion-device-list-add.png';
@@ -50,8 +51,8 @@ The device list is the main view of Crawler.Companion. It shows all Edge devices
       </table>
     </div>
     <div class="qs-panel">
-      <p>The icons in the top-right corner of the device list provide the following actions:</p>
-      <div class="screenshot-frame">
+      <p>The device list provides the following actions:</p>
+      <div class="screenshot-frame" style="max-width: 360px">
         <img src={controlsImg.src} alt="Device list controls — search, refresh, add and remove" />
       </div>
       <table>
@@ -59,8 +60,8 @@ The device list is the main view of Crawler.Companion. It shows all Edge devices
         <tbody>
           <tr><td>Magnifying glass</td><td>Filter the device list by search term.</td></tr>
           <tr><td>Circular arrow</td><td>Manually rescan the network for devices.</td></tr>
-          <tr><td>Plus</td><td>Add an Edge device manually by IP address or hostname. Requires Edge firmware 2.24 or later.</td></tr>
-          <tr><td>Trash</td><td>Remove this device from the list. Only available for manually added devices.</td></tr>
+          <tr><td>Plus <Badge text="1.5+" variant="note" size="small" /></td><td>Add an Edge device manually by IP address or hostname. Requires Edge firmware 2.24 or later.</td></tr>
+          <tr><td>Trash <Badge text="1.5+" variant="note" size="small" /></td><td>Remove the device from the list. Shown at the end of the device's table row, only for manually added devices.</td></tr>
         </tbody>
       </table>
       <p>Clicking any row in the list opens the <a href="./device-details">Device Detail Panel</a>.</p>
@@ -68,7 +69,7 @@ The device list is the main view of Crawler.Companion. It shows all Edge devices
   </div>
 </div>
 
-## Adding a Device Manually
+## Adding a Device Manually <Badge text="1.5+" variant="note" size="small" />
 
 If an Edge device is not found by automatic network discovery — for example because it is on a different subnet — you can add it manually by IP address or hostname. This requires Edge firmware 2.24 or later.
 

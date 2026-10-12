@@ -79,6 +79,18 @@ h1, h2, h3, h4, h5, h6,
   margin-bottom: 1.5rem;
 }
 
+/* ─── Inline badge in a table cell or heading: next to the label, outlined like the sidebar ─ */
+.sl-markdown-content td .sl-badge,
+.sl-markdown-content h2 .sl-badge {
+  --sl-color-bg-badge: transparent;
+  --sl-color-border-badge: currentColor;
+  color: inherit;
+  display: inline-block;
+  margin: 0 0 0 0.35em;
+  vertical-align: middle;
+  letter-spacing: normal;
+}
+
 /* ─── Sidebar: hide non-active product groups ───────────────────────── */
 /*
   Starlight renders top-level sidebar groups in ul.top-level > li.
