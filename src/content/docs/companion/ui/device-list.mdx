@@ -8,6 +8,7 @@ sidebar:
 import deviceListImg from '../../../../assets/images/companion/companion-device-list.png';
 import controlsImg from '../../../../assets/images/companion/companion-device-list-controls.png';
 import addImg from '../../../../assets/images/companion/companion-device-list-add.png';
+import addButtonImg from '../../../../assets/images/companion/companion-device-list-empty.png';
 import addDialogImg from '../../../../assets/images/companion/companion-device-list-add-dialog.png';
 
 The device list is the main view of Crawler.Companion. It shows all Edge devices discovered on the local network, including unconfigured devices.
@@ -75,7 +76,13 @@ If an Edge device is not found by automatic network discovery — for example be
   <img src={addImg.src} alt="Device list with manually added device and remove button" />
 </div>
 
-Click the **+** button in the top-right corner of the device list. Enter the IP address or hostname of the Edge device and click **Add**.
+Click the **+** button in the top-right corner of the device list.
+
+<div class="screenshot-frame">
+  <img src={addButtonImg.src} alt="Device list with the + button tooltip visible" />
+</div>
+
+Enter the IP address or hostname of the Edge device and click **Add**.
 
 <div class="screenshot-frame" style="max-width: 500px">
   <img src={addDialogImg.src} alt="Dialog for adding a device by IP address or hostname" />
