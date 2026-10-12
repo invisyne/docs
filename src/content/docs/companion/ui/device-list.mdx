@@ -7,6 +7,8 @@ sidebar:
 
 import deviceListImg from '../../../../assets/images/companion/companion-device-list.png';
 import controlsImg from '../../../../assets/images/companion/companion-device-list-controls.png';
+import addImg from '../../../../assets/images/companion/companion-device-list-add.png';
+import addDialogImg from '../../../../assets/images/companion/companion-device-list-add-dialog.png';
 
 The device list is the main view of Crawler.Companion. It shows all Edge devices discovered on the local network, including unconfigured devices.
 
@@ -56,9 +58,27 @@ The device list is the main view of Crawler.Companion. It shows all Edge devices
         <tbody>
           <tr><td>Magnifying glass</td><td>Filter the device list by search term.</td></tr>
           <tr><td>Circular arrow</td><td>Manually rescan the network for devices.</td></tr>
+          <tr><td>Plus</td><td>Add an Edge device manually by IP address or hostname. Requires Edge firmware 2.24 or later.</td></tr>
+          <tr><td>Trash</td><td>Remove this device from the list. Only available for manually added devices.</td></tr>
         </tbody>
       </table>
       <p>Clicking any row in the list opens the <a href="./device-details">Device Detail Panel</a>.</p>
     </div>
   </div>
 </div>
+
+## Adding a Device Manually
+
+If an Edge device is not found by automatic network discovery — for example because it is on a different subnet — you can add it manually by IP address or hostname. This requires Edge firmware 2.24 or later.
+
+<div class="screenshot-frame">
+  <img src={addImg.src} alt="Device list with manually added device and remove button" />
+</div>
+
+Click the **+** button in the top-right corner of the device list. Enter the IP address or hostname of the Edge device and click **Add**.
+
+<div class="screenshot-frame" style="max-width: 500px">
+  <img src={addDialogImg.src} alt="Dialog for adding a device by IP address or hostname" />
+</div>
+
+Manually added devices persist across application restarts. A device is removed from the list when you click its trash icon, or automatically when it is no longer reachable.
