@@ -31,5 +31,9 @@ export function processFile(raw, datePattern) {
   // Remove a leading horizontal rule left over from the original structure
   body = body.replace(/^---\s*\n+/, '').trim();
 
+  // Links to the docs site itself must stay relative, so they keep working on
+  // offline copies of the site (e.g. the docs image on the Edge device)
+  body = body.replace(/\]\(https:\/\/docs\.invisyne\.com\//g, '](/');
+
   return { body, releaseDate };
 }

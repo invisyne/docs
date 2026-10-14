@@ -15,6 +15,7 @@ import setupFinishImg from '../../../../../assets/images/edge/edge-setup-finish.
 import setupRestartImg from '../../../../../assets/images/edge/edge-setup-restart.png';
 import hwWagoX1X2Img from '../../../../../assets/images/edge/edge-hw-wago-x1-x2.png';
 import hwSimaticX1X2Img from '../../../../../assets/images/edge/edge-hw-simatic-x1-x2.png';
+import setupRestoreImg from '../../../../../assets/images/edge/edge-backup-setup-restore.png';
 
 <div class="qs-stepper">
 
@@ -45,6 +46,14 @@ import hwSimaticX1X2Img from '../../../../../assets/images/edge/edge-hw-simatic-
       </div>
 
       <p>Befindet sich der Edge in einem anderen Subnetz, ermöglicht das Discovery-Tool die Konfiguration des X1-Adapters, sodass die Web-Oberfläche erreichbar wird. Das Discovery-Tool ist Teil von Crawler.Companion — siehe [Companion: Ersteinrichtung](/de/companion/how-to/initial-setup) für die Installationsanleitung.</p>
+
+      :::note
+      Wird ein bestehender Edge ersetzt oder auf Werkseinstellungen zurückgesetzt, kann statt der manuellen Einrichtung direkt eine gespeicherte Konfiguration eingespielt werden. Dazu im Assistenten auf **Konfiguration einspielen** klicken — der vollständige Einrichtungsdurchlauf entfällt dann. Weitere Informationen: [Backup & Restore durchführen](/de/edge/how-to/backup-restore).
+      :::
+
+      <div class="screenshot-frame screenshot-frame-sm">
+        <img src={setupRestoreImg.src} alt="Einrichtungsassistent — Option Konfiguration einspielen" />
+      </div>
 
       <Steps>
 

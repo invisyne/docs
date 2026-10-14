@@ -60,10 +60,10 @@ h1, h2, h3, h4, h5, h6,
 
 /* ─── Sidebar badge: small and superscripted, so the label stays dominant ─ */
 .sidebar-content .sl-badge {
-  font-size: 0.65rem;
-  line-height: 1.4;
-  padding: 0 4px;
-  vertical-align: 0.3em;
+  font-size: 0.55rem;
+  line-height: 1.3;
+  padding: 0 3px;
+  vertical-align: 0.35em;
 }
 
 /* ─── Sidebar badge: outline on inactive items so it reads as a tag ─── */
@@ -79,6 +79,18 @@ h1, h2, h3, h4, h5, h6,
   margin-bottom: 1.5rem;
 }
 
+/* ─── Inline badge in a table cell or heading: next to the label, outlined like the sidebar ─ */
+.sl-markdown-content td .sl-badge,
+.sl-markdown-content h2 .sl-badge {
+  --sl-color-bg-badge: transparent;
+  --sl-color-border-badge: currentColor;
+  color: inherit;
+  display: inline-block;
+  margin: 0 0 0 0.35em;
+  vertical-align: middle;
+  letter-spacing: normal;
+}
+
 /* ─── Sidebar: hide non-active product groups ───────────────────────── */
 /*
   Starlight renders top-level sidebar groups in ul.top-level > li.
@@ -91,22 +103,6 @@ h1, h2, h3, h4, h5, h6,
 /* Cancel the li + li margin-top — the first visible item must always start flush. */
 .top-level > li:has(a[aria-current='page']) {
   margin-top: 0 !important;
-}
-/* PDF download link: visually separated from the section content above it.
-   The separator line floats in the margin via ::before so it never touches
-   the link's background box. */
-.sidebar-pdf-link {
-  margin-top: 2rem !important;
-  position: relative;
-}
-.sidebar-pdf-link::before {
-  content: '';
-  position: absolute;
-  top: -1rem;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: var(--sl-color-hairline);
 }
 
 /* Lang/theme controls live in the header — hide Starlight's sidebar-footer duplicates */
@@ -2115,6 +2111,11 @@ starlight-toc a {
   position: relative;
   height: 340px;
 }
+.page-hero-image--tall {
+  height: auto;
+  aspect-ratio: 2304 / 1296;
+  align-self: start;
+}
 .page-hero-image img {
   width: 100%;
   height: 100%;
@@ -2662,8 +2663,6 @@ html:not([data-has-sidebar]) .sl-container > * + * {
   border-color: var(--sl-color-accent);
   background: var(--sl-color-bg-nav);
 }
-.product-card--soon { opacity: 0.75; }
-.product-card--soon:hover { opacity: 1; }
 
 .product-card-logo {
   display: flex;
@@ -2685,21 +2684,20 @@ html:not([data-has-sidebar]) .sl-container > * + * {
 :root[data-theme='light'] .logo-dark  { display: none; }
 :root[data-theme='light'] .logo-light { display: block; }
 
-.product-card-badge {
-  position: absolute;
-  top: 1.25rem;
-  right: 1.5rem;
-  font-size: 0.65rem;
-  font-weight: 600;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
-  color: var(--sl-color-orange-high, #f59e0b);
-  border: 1px solid currentColor;
-  border-radius: 4px;
-  padding: 2px 6px;
-  white-space: nowrap;
-  line-height: 1.5;
+.product-card-powered {
+  font-size: 0.75rem;
+  color: var(--sl-color-gray-3);
+  margin: -0.5rem 0 0;
 }
+
+.product-card-powered img {
+  height: 1.35em;
+  width: auto;
+  vertical-align: -0.3em;
+}
+
+.product-card-powered .logo-dark { display: inline; }
+:root[data-theme='light'] .product-card-powered .logo-light { display: inline; }
 
 .product-card-desc {
   flex: 1;

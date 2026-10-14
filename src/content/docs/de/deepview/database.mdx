@@ -1,0 +1,129 @@
+---
+title: "Datenbank"
+description: "Datensätze in der Data Library durchsuchen, filtern und auswählen."
+sidebar:
+  order: 2
+---
+
+Um zur Database zu gelangen, klickt in der linken Navigationsleiste auf das Database-Icon.
+
+![](../../../../assets/images/deepview/deepview-database-1.png)
+
+## Ordnerstruktur
+
+Deepview bietet eine flexible Ordnerstruktur, die ihr anhand von Metadatenfeldern konfigurieren könnt, um eure Datensätze zu organisieren.
+
+![](../../../../assets/images/deepview/deepview-database-2.png)
+
+Navigiert zu **Settings → Connection → Metadata → Library folder structure**, um sie einzurichten.
+
+- Wählt ein oder mehrere Metadatenfelder, um mehrere Ordnerebenen zu erstellen
+- Optional: den Wert eines Metadatenfelds an einem bestimmten Zeichen aufteilen, um Unterebenen zu erzeugen
+
+![](../../../../assets/images/deepview/deepview-database-3.png)
+
+Soll eure Deepview-Ordnerstruktur ein `Folder`-Metadatenfeld widerspiegeln, wählt `Folder` als Ordnerebene und setzt `/` als Split-Zeichen.
+
+![](../../../../assets/images/deepview/deepview-database-4.png)
+
+## Spalten und Sortierung ändern
+
+In der Data Library seht ihr eine Liste aller in eurer Datenbank identifizierten Datensätze.
+
+Ihr könnt ändern, welche Spalten in der Datensatzliste angezeigt werden, indem ihr auf einen Spaltentitel klickt.
+
+![](../../../../assets/images/deepview/deepview-database-5.png)
+
+Klickt auf die Pfeile neben einem Spaltentitel, um die Sortierung der Datensätze zu ändern.
+
+![](../../../../assets/images/deepview/deepview-database-6.png)
+
+## Datensätze filtern und suchen
+
+Eine weitere nützliche Möglichkeit, eure Datensätze zu durchsuchen, ist die Suchleiste links von der Datenliste.
+
+![](../../../../assets/images/deepview/deepview-database-7.png)
+
+Es gibt mehrere Wege, um nach Datensätzen zu suchen:
+
+- Tippt einen Text ein, um die Datensätze danach zu filtern
+- Legt einen Zeitbereich fest — nur Datensätze, deren Startzeit in diesem Bereich liegt, werden angezeigt
+- Wählt bestimmte Werte für eines der Metadatenfelder
+
+### Advanced Search
+
+Mit Advanced Search findet ihr alle Datensätze, deren Signalwerte einer oder mehreren angegebenen Bedingungen entsprechen.
+
+Um eine Advanced-Search-Abfrage zu erstellen, wählt zunächst einen Referenz-Datensatz — das teilt Deepview mit, welche Signalnamen verfügbar sind. Danach könnt ihr Filter hinzufügen. Jeder Filter besteht aus:
+
+- **Signal** — ein beliebiges Signal aus dem Referenz-Datensatz, eine im Workspace definierte Function, oder ein selbst eingegebener Signalname, falls er nicht Teil des Referenz-Datensatzes ist
+- **Operator** — verfügbar sind `>`, `>=`, `<`, `<=`, `==` und `≠`
+- **Value** — aktuell werden nur numerische Werte unterstützt
+
+Ihr könnt mehrere Filter hinzufügen — nur Datensätze, die alle Filter erfüllen, werden zurückgegeben. Advanced Search sucht nach Datensätzen, die jeden Filter einzeln irgendwann im Datensatz erfüllen, nicht notwendigerweise alle zum selben Zeitpunkt.
+
+![](../../../../assets/images/deepview/deepview-database-8.png)
+
+Klickt auf **Run**, um die Advanced Search zu starten. Das kann etwas dauern, da es sich um eine komplexe Operation auf einer potenziell sehr großen Datenmenge handelt.
+
+Advanced Search wird auf alle Datensätze angewendet, die euren übrigen Suchkriterien entsprechen (Zeitbereich und Metadatenauswahl). Ändern sich diese Einstellungen oder die Filterwerte, werden eure Advanced-Search-Ergebnisse veraltet, und Deepview erinnert euch daran, die Suche erneut auszuführen.
+
+![](../../../../assets/images/deepview/deepview-database-9.png)
+
+Um alle Filter in der Suchleiste zu löschen, klickt auf den runden Pfeil neben dem Suchtitel.
+
+![](../../../../assets/images/deepview/deepview-database-10.png)
+
+## Daten auswählen
+
+Daten auszuwählen ist einfach — klickt auf die Checkbox neben einem Datensatz.
+
+![](../../../../assets/images/deepview/deepview-database-11.png)
+
+Um alle Daten in eurer Datenliste auszuwählen, klickt auf die Checkbox oben in der Datensatzliste.
+
+![](../../../../assets/images/deepview/deepview-database-12.png)
+
+Ausgewählte Datensätze erscheinen unten rechts auf eurem Bildschirm, unter **Selected datasets**.
+
+![](../../../../assets/images/deepview/deepview-database-13.png)
+
+Nach der Auswahl eurer Daten klickt auf **Visualise**, um in eure Daten einzutauchen.
+
+![](../../../../assets/images/deepview/deepview-database-14.png)
+
+## Bereits visualisierte Daten
+
+Sind Daten im aktuell geöffneten Projekt bereits visualisiert, erscheint ein Graph-Icon neben dem Datensatz.
+
+![](../../../../assets/images/deepview/deepview-database-15.png)
+
+## Signal Metadata
+
+Klickt ihr auf einen Datensatz, zeigt der Bereich rechts im Bildschirm einen Überblick aller verfügbaren Informationen dazu — das nennt man auch **Metadata**.
+
+![](../../../../assets/images/deepview/deepview-database-16.png)
+
+Wollt ihr diese Metadata für eure gesamte Datenliste anzeigen, könnt ihr ändern, welche Spalten angezeigt werden (siehe [Spalten und Sortierung ändern](#spalten-und-sortierung-ändern) oben). Das erlaubt auch, danach zu sortieren.
+
+## Metadata konfigurieren
+
+Als Admin könnt ihr in der Settings-Ansicht konfigurieren:
+
+- welche Datenspalten als Metadata gelten sollen
+- wie diese Metadata-Spalten dargestellt werden
+- welche Metadata standardmäßig in der Library-Ansicht angezeigt werden, und in welcher Reihenfolge
+
+Hier könnt ihr außerdem ändern, welche Felder bei der Definition von Datensätzen berücksichtigt werden — das ändert, welche Datensätze in der Data Library erscheinen.
+
+![](../../../../assets/images/deepview/deepview-database-17.png)
+
+## Leere Library
+
+![](../../../../assets/images/deepview/deepview-database-18.png)
+
+Ist die Library leer, liefert eure Datenverbindung wahrscheinlich noch keine Daten oder ist nicht eingerichtet — wendet euch an eure Invisyne-Administration.
+
+Es kann auch bedeuten, dass ein Filter aktiv ist und keine Datensätze eurer Auswahl entsprechen. Setzt in diesem Fall euren Filter zurück, indem ihr in der linken Toolbar auf **Clear Filter** klickt.
+
+![](../../../../assets/images/deepview/deepview-database-10.png)
