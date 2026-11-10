@@ -3,6 +3,74 @@ title: Changelog
 description: Versionshinweise für Deepview.
 ---
 
+## 3.13.1
+
+*2026-10-29*
+
+### Highlights
+
+> Ein Patch, der Functions in der erweiterten Suche repariert.
+
+---
+
+### Fehlerbehebungen
+
+- **Erweiterte Suche** — Functions lassen sich in der erweiterten Suche wieder verwenden.
+
+---
+
+## 3.13.0
+
+*2026-10-26*
+
+### Highlights
+
+> Deepview 3.13 benennt Overview Dashboards in Metrics um und bringt Trendline-Plots, Kennzahlen pro Segment und eigene Formate für Datum und Dauer. Die erweiterte Suche kann Filterbedingungen speichern und wiederverwenden.
+
+---
+
+### Neue Funktionen
+
+- **Metrics** — Overview Dashboards heißen jetzt Metrics Dashboards und liegen unter **Metrics** in der linken Navigation.
+- **Trendline-Plots** — Verfolgt eine Kennzahl über Datensätze oder Segmente, in der Reihenfolge eurer Wahl, mit einer Linie pro Gruppe.
+- **Kennzahlen pro Segment** — Berechnet eine Kennzahl für jedes Segment statt für jeden Datensatz und filtert die Segmente.
+- **Mehrere X-Achsen-Ebenen in Balken-Plots** — Gruppiert Balken nach mehr als einem Metadata-Feld, mit einer Beschriftungszeile pro Ebene.
+- **Eigene Formate für Datum und Dauer** — Zeigt eine Kennzahl als Datum oder Dauer an, mit eurem eigenen Muster.
+- **Farblegende für kategoriale Scatter-Plots** — Scatter-Plots, die nach einem kategorialen Wert eingefärbt sind, zeigen eine Legende.
+- **Schnellere Metrics Dashboards** — Die Dashboards reagieren schneller.
+- **Erweiterte Suche** — Speichert Filterbedingungen und nutzt sie wieder, visualisiert Datensätze mit Plots für Signal-Filterbedingungen und filtert einfacher.
+- **Segmente in der Datenbank** — Seht und visualisiert die Segmente eines Datensatzes in der Datenbank.
+- **OAuth für Trino-Verbindungen** — Trino-Verbindungen können OAuth-Zugangsdaten nutzen.
+
+### Fehlerbehebungen
+
+- **Annotationen** — Fehlende Annotationen werden wieder angezeigt.
+- **Metrics Dashboards** — Berechnete Kennzahlen werden nicht mehr als „-" angezeigt.
+- **Function Sandbox** — Der Wechsel zwischen Zahl- und Text-Typ führt nicht mehr zu einem weißen Bildschirm.
+- **Berechnete Signale** — Berechnete Signale funktionieren auf Verbindungen mit eigenen Signal-Anzeigenamen.
+- **Berichte** — Berichte zeigen Segmente.
+- **Export zwischen Cursorn** — Funktioniert unabhängig davon, welcher Cursor zuerst kommt.
+
+---
+
+## 3.12.2
+
+*2026-10-08*
+
+### Highlights
+
+> Ein Patch, der Stabilität und Ladezeiten verbessert.
+
+---
+
+### Fehlerbehebungen
+
+- **Stabilität** — Server-Prozesse, die hängen bleiben konnten, wurden behoben.
+- **Große Zahlen** — Überlaufende Ganzzahlwerte wurden behoben.
+- **Performance** — Analyse-Projekte und Signal-Infos laden schneller, Anfragen werden besser komprimiert.
+
+---
+
 ## 3.12.0
 
 *2026-09-30*

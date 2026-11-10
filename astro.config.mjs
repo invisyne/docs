@@ -9,7 +9,10 @@ export default defineConfig({
 	// For an org page (github.com/ORG/ORG.github.io): site='https://ORG.github.io', no base needed
 	// Overridable so the preview-deploy workflow can build against docs-preview.invisyne.com.
 	site: process.env.SITE_URL ?? 'https://docs.invisyne.com',
-	redirects: {},
+	redirects: {
+		'/deepview/overview-dashboards': '/deepview/metrics',
+		'/de/deepview/overview-dashboards': '/de/deepview/metrics',
+	},
 	markdown: {
 		// Astro leaves this unset by default; @astrojs/mdx reads it directly to decide
 		// whether to enable GFM tables, so without this .mdx tables silently fall back
@@ -154,7 +157,7 @@ export default defineConfig({
 							translations: { de: 'Benutzeroberfläche' },
 							items: [
 								{ label: 'Home', translations: { de: 'Startseite' }, slug: 'deepview/projects' },
-								{ label: 'Overview', translations: { de: 'Übersicht' }, slug: 'deepview/overview-dashboards' },
+								{ label: 'Metrics', translations: { de: 'Metrics' }, slug: 'deepview/metrics' },
 								{
 									label: 'Analysis',
 									translations: { de: 'Analyse' },

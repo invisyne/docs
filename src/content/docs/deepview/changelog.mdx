@@ -3,6 +3,74 @@ title: Changelog
 description: Release notes for Deepview.
 ---
 
+## 3.13.1
+
+*2026-10-29*
+
+### Highlights
+
+> A patch fixing functions in advanced search.
+
+---
+
+### Bug Fixes
+
+- **Advanced search** — Functions can be used in advanced search again.
+
+---
+
+## 3.13.0
+
+*2026-10-26*
+
+### Highlights
+
+> Deepview 3.13 renames Overview dashboards to Metrics and adds trendline plots, metrics per segment and custom date and duration formats. Advanced search can save and reuse filter conditions.
+
+---
+
+### New Features
+
+- **Metrics** — Overview dashboards are now called Metrics dashboards, under **Metrics** in the left navigation.
+- **Trendline plots** — Follow one metric across data sets or segments, in the order you choose, with one line per group.
+- **Metrics per segment** — Calculate a metric for every segment instead of every data set, and filter the segments.
+- **Multiple x-axis levels in bar charts** — Group bars on more than one metadata field, with one row of labels per level.
+- **Custom date and duration formats** — Show a metric as a date or a duration, written with your own pattern.
+- **Color legend for categorical scatter plots** — Scatter plots colored by a categorical value show a legend.
+- **Faster Metrics dashboards** — The dashboards respond faster.
+- **Advanced search** — Save and reuse filter conditions, visualize data sets with plots for signal filter conditions, and filter more easily.
+- **Segments in the database** — See and visualize the segments of a data set in the database.
+- **OAuth for Trino connections** — Trino connections can use OAuth credentials.
+
+### Bug Fixes
+
+- **Annotations** — Missing annotations are shown again.
+- **Metrics dashboards** — Calculated metrics are no longer shown as "-".
+- **Function sandbox** — Switching between number and text type no longer leads to a white screen.
+- **Calculated signals** — Calculated signals work on connections with custom signal display names.
+- **Reports** — Reports show segments.
+- **Export between cursors** — Works regardless of which cursor comes first.
+
+---
+
+## 3.12.2
+
+*2026-10-08*
+
+### Highlights
+
+> A patch improving stability and loading times.
+
+---
+
+### Bug Fixes
+
+- **Stability** — Fixed server processes that could hang.
+- **Large numbers** — Fixed overflowing integer values.
+- **Performance** — Analysis projects and signal info load faster, and requests are compressed better.
+
+---
+
 ## 3.12.0
 
 *2026-09-30*
